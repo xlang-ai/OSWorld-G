@@ -25,7 +25,13 @@ class GroundingEval:
 
         return success / total
 
-    def _eval(self, coordinate:List[int], boxes_type:str, boxes_size:List[int], boxes_coordinate:List[int]):
+    def _eval(self, 
+                coordinate:List[int], 
+                boxes_type:str, 
+                boxes_size:List[int], 
+                boxes_coordinate:List[int], 
+                image_size:List[int]
+            ):
 
         def _is_point_in_rectangle(point, rect):
             return (rect[0] <= point[0] <= rect[2] and
@@ -51,8 +57,7 @@ class GroundingEval:
         # detect first if th coordiante are relative (between 0 and 1)
         if all(0 <= coord <= 1 for coord in coordinate):
             # expand the coordinate to the image width and height
-            coordinate = [coord * boxes_size[i//2] for i, coord in enumerate(coordinate)]
-
+            coordinate = [coord * image_size[i%2] for i, coord in enumerate(coordinate)]
 
         # get the center point of the predicted box
         center_x = (coordinate[0] + coordinate[2]) / 2
@@ -60,9 +65,16 @@ class GroundingEval:
         center_point = [center_x, center_y]
 
         if boxes_type == "rectangle":
-            boxes_coordinate = [boxes_coordinate[0], boxes_coordinate[1],
-                              boxes_coordinate[0] + boxes_size[0],
-                              boxes_coordinate[1] + boxes_size[1]]
+            boxes_coordinate = [
+                boxes_coordinate[0], 
+                boxes_coordinate[1],
+                boxes_coordinate[0] + boxes_size[0],
+                boxes_coordinate[1] + boxes_size[1]
+            ]
+            # print(">>>>>>>")
+            # print(boxes_coordinate)
+            # print(center_point)
+            # print(">>>>>>>")
             return _is_point_in_rectangle(center_point, boxes_coordinate)
         elif boxes_type == "polygon":
             return _is_point_in_polygon(center_point, boxes_coordinate)
