@@ -1575,8 +1575,8 @@
         "box_coordinates": [
             256.62,
             440.28,
-            14.699999999999989,
-            14.710000000000036
+            66.88,
+            20.22
         ]
     },
     {
@@ -3244,7 +3244,7 @@
             1280,
             720
         ],
-        "instruction": "Ccurved angled connector icon in the shape connector dropdown menu",
+        "instruction": "Curved angled connector with arrow icon in the bottom-right side of shape connector dropdown menu",
         "box_type": "bbox",
         "box_coordinates": [
             477.38,
