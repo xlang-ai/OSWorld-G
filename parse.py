@@ -1,20 +1,21 @@
 import json
 import os
 
-import cv2
+# import cv2
 
 
 def combine_annotations(file_list, main_file):
-    json_dict = []
+    with open(main_file, "r") as f:
+        main_data = json.load(f)
+
     for file in file_list:
         with open(file, "r") as f:
             data = json.load(f)
-        json_dict.extend(data["items"])
-    with open(main_file, "r") as f:
-        data = json.load(f)
-    data["items"] = json_dict
+        main_data.extend(data["items"])
+    # data["items"] = json_dict
+    print(len(main_data))
     with open(main_file, "w") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
+        json.dump(main_data, f, ensure_ascii=False, indent=2)
 
 
 def parse_annotations(json_file, annotator):
@@ -135,10 +136,8 @@ if __name__ == "__main__":
     """
     function 3: combine annotations
     """
-    # file_list = [
-    #     "xiaochuan_1_until_f3A04p1Sec.json",
-    #     "xiaochuan_1_until_s8szzBS40r.json",
-    #     "./Github-repo/annotations.json",
-    # ]
-    # main_file = "./Github-repo/annotations.json"
-    # combine_annotations(file_list, main_file)
+    file_list = [
+        "jixuan_annotations.json",
+    ]
+    main_file = "./annotations_v2.json"
+    combine_annotations(file_list, main_file)
