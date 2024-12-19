@@ -22,7 +22,7 @@ class Model:
 class Atlas(Model):
     def __init__(self, model:str):
         super().__init__(model)
-        model_path = f"./models/{model}"
+        model_path = f"./lib_models/{model}"
         # Load the model and processor
         self.model = Qwen2VLForConditionalGeneration.from_pretrained(
             # "/nas/shared/NLP_A100/wuzhenyu/ckpt/241029-qwen-stage2", torch_dtype="auto", device_map="auto"
@@ -75,7 +75,7 @@ class Atlas(Model):
         output_text = self.processor.batch_decode(
             generated_ids_trimmed, skip_special_tokens=False, clean_up_tokenization_spaces=False
         )
-        print("Model returned: \n", output_text[0])
+        # print("Model returned: \n", output_text[0])
         return output_text[0]
     
     def extract_point_from_output(self, output_text):
@@ -91,7 +91,7 @@ class Atlas(Model):
 class ShowUI(Model):
     def __init__(self, model:str):
         super().__init__(model)
-        model_path = f"./models/{model}"
+        model_path = f"./lib_models/{model}"
         self.model = Qwen2VLForConditionalGeneration.from_pretrained(
             model_path,
             torch_dtype=torch.bfloat16,
@@ -148,7 +148,7 @@ class ShowUI(Model):
 class SeeClick(Model):
     def __init__(self, model:str):
         super().__init__(model)
-        model_path = f"./models/{model}"
+        model_path = f"./lib_models/{model}"
         self.tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen-VL-Chat", trust_remote_code=True)
         model = AutoModelForCausalLM.from_pretrained(model_path, device_map="cuda", trust_remote_code=True, bf16=True).eval()
         model.generation_config = GenerationConfig.from_pretrained("Qwen/Qwen-VL-Chat", trust_remote_code=True)
@@ -167,7 +167,7 @@ class SeeClick(Model):
 def eval_atlas():
     model = Atlas("atlas-pro-7b")
     # dataset = load_dataset("lixiaochuan2020/OSWorld-G")["train"]
-    with open("./annotations_v2.json", "r") as f:
+    with open("./annotations_v3.json", "r") as f:
         dataset = json.load(f)
     eval = GroundingEval(None)
     flatten_data_items = []
@@ -219,7 +219,9 @@ def eval_atlas():
         success += result
         print("Acc: ", success / len(flatten_data_items))
         # break
-    with open("./failed_record_atlas_v2.json", "w") as f:
+
+    os.makedirs("./failed_record_v3/", exist_ok=True)
+    with open("./failed_record_v3/atlas-pro-7b.json", "w") as f:
         json.dump(failed_record, f)
 
 
@@ -384,7 +386,7 @@ def eval_seeclick():
 
 
 if __name__ == "__main__":
-    eval_on_single_atlas("5KLFDjQGy6")
-    # eval_atlas()
+    # eval_on_single_atlas("5KLFDjQGy6")
+    eval_atlas()
     # eval_showui()
     # eval_seeclick()

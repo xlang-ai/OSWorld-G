@@ -64,7 +64,7 @@ class GroundingEval:
         center_y = (coordinate[1] + coordinate[3]) / 2
         center_point = [center_x, center_y]
 
-        if boxes_type == "rectangle":
+        if boxes_type == "bbox":
             boxes_coordinate = [
                 boxes_coordinate[0], 
                 boxes_coordinate[1],

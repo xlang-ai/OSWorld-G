@@ -8,12 +8,39 @@ def combine_annotations(file_list, main_file):
     with open(main_file, "r") as f:
         main_data = json.load(f)
 
+    to_be_added_list = []
+
     for file in file_list:
         with open(file, "r") as f:
             data = json.load(f)
-        main_data.extend(data["items"])
+        
+        items = data["items"]
+        
+        for item in items:
+            id = item["id"]
+            image_path = item["image"]["path"]
+            image_size = [item["image"]["size"][1], item["image"]["size"][0]]
+
+            for annotation in item["annotations"]:
+                instruction = annotation["attributes"]["Instruction"]
+                box_type = annotation["type"]
+                if box_type == "bbox":
+                    box_coordinates = annotation["bbox"]
+                else:
+                    box_coordinates = annotation["points"]
+
+                to_be_added_list.append({
+                    "id": id,
+                    "image_path": image_path,
+                    "image_size": image_size,
+                    "instruction": instruction,
+                    "box_type": box_type,
+                    "box_coordinates": box_coordinates,
+                })
+
+    main_data.extend(to_be_added_list)
     # data["items"] = json_dict
-    print(len(main_data))
+    # print(len(main_data))
     with open(main_file, "w") as f:
         json.dump(main_data, f, ensure_ascii=False, indent=2)
 
@@ -139,5 +166,5 @@ if __name__ == "__main__":
     file_list = [
         "jixuan_annotations.json",
     ]
-    main_file = "./annotations_v2.json"
+    main_file = "./annotations_v3.json"
     combine_annotations(file_list, main_file)
