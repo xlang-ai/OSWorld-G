@@ -94,11 +94,11 @@ def display_image_with_polygon(image_path, box_coordinates, image_size):
 
 
 # 主交互逻辑
-def process_json_data(json_file, image_folder):
+def process_json_data(json_file, image_folder, start_index):
     data = load_json(json_file)
     modifications_count = 0  # 记录修改次数
 
-    for i, item in enumerate(data):
+    for i, item in enumerate(data[start_index:]):
         modified = 0
         print(f"Item {i+1}/{len(data)}")
         print("Instruction:", item["instruction"])
@@ -144,7 +144,8 @@ def process_json_data(json_file, image_folder):
 
 # 使用示例
 if __name__ == "__main__":
-    json_file_path = "annotations_v3_refined_baby.json"  # TODO: change it to your annotation json file
+    json_file_path = "annotations_v3_refined_component.json"  # TODO: change it to your annotation json file
     images_folder_path = "images"
+    start_index = 0  # TODO: change it to your start index
 
-    process_json_data(json_file_path, images_folder_path)
+    process_json_data(json_file_path, images_folder_path, start_index)

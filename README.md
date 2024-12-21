@@ -24,12 +24,13 @@ component: Describe the instruction in a clear, actionable way, using basic comp
 
 baby: Describe the instruction in a extremely understandable way for anyone who doesn't have any computer-use experience.
 
-Secondly, run `data_check.py` to manually check all instruction-image pair. Change the json_file_path before running this .py
+Secondly, run `data_check.py` to manually check all instruction-image pair. Change the `start_index`(the index where you start your verification, in case you stop your verification halfway and want to continue) and `json_file_path`(the file that you want to check) before running this .py
 
 ```python
 if __name__ == "__main__":
     json_file_path = "annotations_v3_refined_baby.json"  # TODO: change it to your annotation json file
     images_folder_path = "images"
+    start_index = 0  # TODO: change it to your start index
 
     process_json_data(json_file_path, images_folder_path)
 ```
