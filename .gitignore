@@ -195,3 +195,5 @@ vmware_vm_data
 **/result*/**/*
 
 /OSWorld-G-test
+
+/secret_keys

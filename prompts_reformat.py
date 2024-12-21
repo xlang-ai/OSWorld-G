@@ -1,0 +1,5 @@
+REFORMAT_PROMPT = """
+    f"The following instruction is a user instruction for interacting with a computer interface:\n"
+    f"Instruction: {instruction}\n"
+    f"Please refine this into a clear, executable instruction, specifying exactly which elements to interact with (e.g., button name, section label, etc.) to ensure no further inference is needed."
+"""
