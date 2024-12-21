@@ -144,7 +144,7 @@ def process_json_data(json_file, image_folder):
 
 # 使用示例
 if __name__ == "__main__":
-    json_file_path = "annotations_v3_refined_baby.json"  # 替换为你的 JSON 文件路径
-    images_folder_path = "images"  # 替换为你的图片文件夹路径
+    json_file_path = "annotations_v3_refined_baby.json"  # TODO: change it to your annotation json file
+    images_folder_path = "images"
 
     process_json_data(json_file_path, images_folder_path)
