@@ -1,5 +1,15 @@
 # OSWORLD-G
 
+
+## Eval ScreenSpot-v2
+
+```bash
+export HF_ENDPOINT=https://hf-mirror.com 
+huggingface-cli download OS-Copilot/ScreenSpot-v2 --local-dir ./ --repo-type dataset
+unzip screenspotv2_image.zip -d ./
+python aguvis_7b_screenspot_v2.py
+```
+
 ## Instruction Refinement of OSWorld-G
 
 First, run `clear_referred_reformat.py` to get `annotations_v3_refined_{prompt_type}.json` to get annotation file with refiend instruction.
