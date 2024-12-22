@@ -1,5 +1,10 @@
 # OSWORLD-G
 
+## Eval OSWorld-G
+
+```bash 
+python aguvis_7b_osworld_g.py
+```
 
 ## Eval ScreenSpot-v2
 
