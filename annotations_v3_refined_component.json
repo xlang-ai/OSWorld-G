@@ -210,7 +210,7 @@
       1920,
       1080
     ],
-    "instruction": "Click the \"Center Horizontally\" button (which is 一个上箭头和一个下箭头挤压中间的几个横线) in the toolbar of LibreOffice Calc.",
+    "instruction": "Click the \"Center Horizontally\" button ( vertical stack with upward and downward arrows squeezing horizontal lines between them) in the toolbar of LibreOffice Calc.",
     "box_type": "bbox",
     "box_coordinates": [
         771,
