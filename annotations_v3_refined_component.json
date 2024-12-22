@@ -23,7 +23,7 @@
       1920,
       1080
     ],
-    "instruction": "Click the Extensions icon in the left sidebar of Visual Studio Code.",
+    "instruction": "Click the Extensions MarketPlace icon (which is formatted as for blocks with the top-right one move towards top-right) in the left sidebar of Visual Studio Code.",
     "box_type": "bbox",
     "box_coordinates": [
       456.69,
@@ -193,7 +193,7 @@
       1920,
       1080
     ],
-    "instruction": "Click the 'Export Directly as PDF' button in the toolbar of LibreOffice Writer.",
+    "instruction": "Click the 'Export Directly as PDF' button (icon is a file with adobe icon on it) in the toolbar of LibreOffice Writer.",
     "box_type": "bbox",
     "box_coordinates": [
       219.59,
@@ -210,13 +210,13 @@
       1920,
       1080
     ],
-    "instruction": "Click the \"Center Horizontally\" button in the toolbar of LibreOffice Calc.",
+    "instruction": "Click the \"Center Horizontally\" button (which is 一个上箭头和一个下箭头挤压中间的几个横线) in the toolbar of LibreOffice Calc.",
     "box_type": "bbox",
     "box_coordinates": [
-      665.16,
-      135.5,
-      22.620000000000005,
-      25.44999999999999
+        771,
+        135.5,
+        24,
+        25.44999999999999
     ],
     "refined": true
   },
@@ -261,7 +261,7 @@
       1920,
       1080
     ],
-    "instruction": "Click the \"Create New Folder\" button in the \"Select Directory\" window.",
+    "instruction": "Click the \"Create New Folder\" button (which is a file folder icon with green plus at the bottom right) in the \"Select Directory\" window.",
     "box_type": "bbox",
     "box_coordinates": [
       1205.28,
@@ -363,7 +363,7 @@
       1920,
       1080
     ],
-    "instruction": "Click the \"Font Color\" dropdown in the \"Properties\" sidebar under the \"Character\" section in LibreOffice Impress.",
+    "instruction": "Click the \"Font Color\" dropdown (which is a A with red underline) in the \"Properties\" sidebar under the \"Character\" section in LibreOffice Impress.",
     "box_type": "bbox",
     "box_coordinates": [
       1536.79,
@@ -414,7 +414,7 @@
       1920,
       1080
     ],
-    "instruction": "Click the \"Minimize\" button in the top-right corner of the Terminal window",
+    "instruction": "Click the \"Restore\" button in the top-right corner of the Terminal window",
     "box_type": "bbox",
     "box_coordinates": [
       1848.2,
@@ -516,7 +516,7 @@
       1920,
       1080
     ],
-    "instruction": "In LibreOffice Writer, click \"File\" in the top menu, hover over \"New,\" and then click \"HTML Document.\"",
+    "instruction": "Click \"HTML Document.\" under the drop-down menu.",
     "box_type": "bbox",
     "box_coordinates": [
       399.52,
@@ -767,7 +767,7 @@
       1920,
       1080
     ],
-    "instruction": "Click the \"Minimize\" button in the top-right corner of the terminal window to minimize the window.",
+    "instruction": "Click the \"Restore\" button in the top-right corner of the terminal window to restore the window.",
     "box_type": "bbox",
     "box_coordinates": [
       1845.4,
@@ -801,7 +801,7 @@
       1920,
       1080
     ],
-    "instruction": "Click and drag from the beginning of the user's information 'user@user-virtual-machine' in the Terminal window.",
+    "instruction": "The start point to click and drag from the beginning of the user's information 'user@user-virtual-machine' in the Terminal window.",
     "box_type": "bbox",
     "box_coordinates": [
       120.1,
@@ -818,7 +818,7 @@
       1280,
       720
     ],
-    "instruction": "Click the playlist format button in the top-right corner of the \"Select one or more files to open\" window to see the file in the playlist format.",
+    "instruction": "Click the playlist format button (which is formatted as for small blocks inside one bigger block) in the top-right corner of the \"Select one or more files to open\" window.",
     "box_type": "bbox",
     "box_coordinates": [
       913.97,
@@ -874,8 +874,8 @@
     "box_coordinates": [
       897.92,
       960.21,
-      12.980000000000018,
-      23.49000000000001
+      800,
+      100
     ],
     "refined": true
   },
@@ -1153,7 +1153,7 @@
       1280,
       720
     ],
-    "instruction": "Click the \"Insert Hyperlink\" icon button in the toolbar of LibreOffice Calc.",
+    "instruction": "Click the \"Insert Hyperlink\" icon button (which is a chain) in the toolbar of LibreOffice Calc.",
     "box_type": "bbox",
     "box_coordinates": [
       1075.3,
@@ -1221,7 +1221,7 @@
       1920,
       1080
     ],
-    "instruction": "Click the button near the left side of the Styles sidebar to collapse the Styles sidebar to the right",
+    "instruction": "Click the button with right arrow on it and near the left side of the Styles sidebar to collapse the Styles sidebar to the right",
     "box_type": "bbox",
     "box_coordinates": [
       1511.36,
@@ -1371,7 +1371,7 @@
       1280,
       720
     ],
-    "instruction": "Click the 'New' button in the toolbar of the Gedit text editor.",
+    "instruction": "Click the 'New' button (which is a plus symbol three-quarters surrounded by lines) in the toolbar of the Gedit text editor.",
     "box_type": "bbox",
     "box_coordinates": [
       169.75,
@@ -1388,7 +1388,7 @@
       1280,
       720
     ],
-    "instruction": "Click the bottom right corner of the selected cell in LibreOffice Calc.",
+    "instruction": "Click the very bottom right corner (for extending or selecting) of the selected cell in LibreOffice Calc.",
     "box_type": "bbox",
     "box_coordinates": [
       435.9,
@@ -1405,7 +1405,7 @@
       1280,
       720
     ],
-    "instruction": "Click the green circular arrow icon in the toolbar of LibreOffice Calc to undo the action.",
+    "instruction": "Click the red curved left arrow icon in the toolbar of LibreOffice Calc to undo the action.",
     "box_type": "bbox",
     "box_coordinates": [
       515.79,
@@ -1473,7 +1473,7 @@
       1280,
       720
     ],
-    "instruction": "Click the \"Split Editor\" button in the top right corner of the Visual Studio Code window.",
+    "instruction": "Click the \"Split Editor\" button (two square) in the top right corner of the Visual Studio Code window.",
     "box_type": "bbox",
     "box_coordinates": [
       1223.12,
@@ -1507,7 +1507,7 @@
       1280,
       720
     ],
-    "instruction": "Click the \"New Brush\" button in the brush panel on the right side of the GIMP window.",
+    "instruction": "Click the \"New file\" button (a file icon with a plus on the left-top) in the brush panel on the right side of the GIMP window.",
     "box_type": "bbox",
     "box_coordinates": [
       1118.8,
@@ -1524,7 +1524,7 @@
       1280,
       720
     ],
-    "instruction": "Click the \"Restore Tool Preset\" button in the bottom left corner of the GIMP window.",
+    "instruction": "Click the \"Restore Tool Preset\" button (which is a clockwise arrow) in the bottom left corner of the GIMP window.",
     "box_type": "bbox",
     "box_coordinates": [
       119.27,
@@ -1910,7 +1910,7 @@
       547.15,
       429.5,
       36.60000000000002,
-      13.069999999999993
+      20
     ],
     "refined": true
   },
@@ -1921,7 +1921,7 @@
       1280,
       800
     ],
-    "instruction": "In Visual Studio Code, go to the 'File' menu, select 'Preferences', then 'Theme', and click on 'Color Theme'.",
+    "instruction": "In Visual Studio Code, click on 'Color Theme'.",
     "box_type": "bbox",
     "box_coordinates": [
       812.5,
@@ -1989,7 +1989,7 @@
       1280,
       720
     ],
-    "instruction": "Click the \"Remote Explorer\" icon in the left sidebar of Visual Studio Code.",
+    "instruction": "Click the \"Remote Explorer\" icon (A blue icon with a less-than symbol (<) at the top and a greater-than symbol (>) at the bottom) in the left sidebar of Visual Studio Code.",
     "box_type": "bbox",
     "box_coordinates": [
       68.96,
@@ -2287,7 +2287,7 @@
       1280,
       720
     ],
-    "instruction": "Click on the progress bar in the VLC media player window and drag the slider to the middle.",
+    "instruction": "Click on the middle of the progress slider bar in the VLC media player window",
     "box_type": "bbox",
     "box_coordinates": [
       649.1,
@@ -2355,7 +2355,7 @@
       1280,
       720
     ],
-    "instruction": "Right-click on the image file in the Trash folder, and select \"Set As Wallpaper\" from the context menu.",
+    "instruction": "Select \"Set As Wallpaper\" from the context menu.",
     "box_type": "bbox",
     "box_coordinates": [
       496.17,
@@ -2372,7 +2372,7 @@
       1280,
       720
     ],
-    "instruction": "Right-click the file \"poster_party_night.webp\" in the Trash window and select \"Restore From Trash\" from the context menu.",
+    "instruction": "Select \"Restore From Trash\" from the context menu.",
     "box_type": "bbox",
     "box_coordinates": [
       496.17,
@@ -2528,7 +2528,7 @@
       1280,
       720
     ],
-    "instruction": "Click on the slide thumbnail labeled '3' in the left sidebar of the LibreOffice Impress window.",
+    "instruction": "Click on the slide '2' in the left sidebar of the LibreOffice Impress window.",
     "box_type": "bbox",
     "box_coordinates": [
       89.29,
@@ -2684,7 +2684,7 @@
       1920,
       1080
     ],
-    "instruction": "Click the cell containing '44.76' under the \"Jul, 2023\" column in the spreadsheet.",
+    "instruction": "Click cell I3 (the cell in column I, row 3)",
     "box_type": "bbox",
     "box_coordinates": [
       941,
@@ -2769,7 +2769,7 @@
       1920,
       1080
     ],
-    "instruction": "In LibreOffice Writer, click \"Format\" in the top menu, hover over \"Align Text,\" and then click \"Centered.\"",
+    "instruction": "Click \"Centered\" in the dropdown menu.",
     "box_type": "bbox",
     "box_coordinates": [
       525.64,
@@ -2950,7 +2950,7 @@
       1280,
       720
     ],
-    "instruction": "Click the picture of the circular object in the middle of the second row on the human verification page.",
+    "instruction": "Click the picture of the hat object in the middle of the second row on the human verification page.",
     "box_type": "bbox",
     "box_coordinates": [
       614.08,
@@ -3137,7 +3137,7 @@
       1920,
       1080
     ],
-    "instruction": "Click the Twitter icon below the email address on the CS50 course webpage.",
+    "instruction": "Click the Twitter icon (which is a bird) below the email address on the CS50 course webpage.",
     "box_type": "bbox",
     "box_coordinates": [
       523.67,
@@ -3171,7 +3171,7 @@
       1920,
       1080
     ],
-    "instruction": "Click the 'Italic' button in the toolbar of LibreOffice Calc.",
+    "instruction": "Click the 'Italic' button (which is a an italic capital letter I) in the toolbar of LibreOffice Calc.",
     "box_type": "bbox",
     "box_coordinates": [
       447.76,
@@ -3256,7 +3256,7 @@
       1920,
       1080
     ],
-    "instruction": "In the \"Brightness-Contrast\" window of GIMP, adjust the \"Brightness\" slider to the left to reduce brightness.",
+    "instruction": "In the \"Brightness-Contrast\" window of GIMP, adjust the \"Brightness\" slider to the left to reduce brightness by clicking the down arrow.",
     "box_type": "bbox",
     "box_coordinates": [
       613.79,
@@ -3426,7 +3426,7 @@
       1280,
       720
     ],
-    "instruction": "Click the curved angled connector with an arrow icon in the shape connector dropdown menu in LibreOffice Impress.",
+    "instruction": "Click the curved angled connector with an arrow icon in the bottom right of shape connector dropdown menu in LibreOffice Impress.",
     "box_type": "bbox",
     "box_coordinates": [
       477.38,
@@ -3501,7 +3501,7 @@
       1280,
       720
     ],
-    "instruction": "Click the refresh icon above the puzzle image on the TripAdvisor verification page.",
+    "instruction": "Click the refresh icon (which is a clockwise arrow) above the puzzle image on the TripAdvisor verification page.",
     "box_type": "bbox",
     "box_coordinates": [
       773.85,
@@ -3555,7 +3555,7 @@
       1280,
       720
     ],
-    "instruction": "Click on \"Proceedings of Knowledgeable NLP\" in the Volumes section of the ACL Anthology webpage for the Asian Chapter of the Association for Computational Linguistics (2020).",
+    "instruction": "Click on \"Proceedings of Knowledgeable NLP\" (not elsewhere!! even the rest of the whole title) in the Volumes section of the ACL Anthology webpage for the Asian Chapter of the Association for Computational Linguistics (2020).",
     "box_type": "bbox",
     "box_coordinates": [
       166.46,
@@ -3778,7 +3778,7 @@
       1920,
       1080
     ],
-    "instruction": "Click the rotate button in the PDF viewer toolbar of the browser window.",
+    "instruction": "Click the rotate button in the browser's PDF viewer toolbar. It appears as a square button with a clockwise arrow icon in its top-right corner.",
     "box_type": "polygon",
     "box_coordinates": [
       933.76,
@@ -4086,7 +4086,7 @@
       1280,
       720
     ],
-    "instruction": "Hover over the bottom edge of the tab dropdown menu in Google Chrome to trigger scrolling.",
+    "instruction": "Click the bottom-right edge of the tab dropdown menu in Google Chrome to trigger scrolling in the dropdown menu.",
     "box_type": "bbox",
     "box_coordinates": [
       392.72,
@@ -4103,7 +4103,7 @@
       1280,
       720
     ],
-    "instruction": "Scroll to the bottom of the 'Open tabs' list in the Chrome tab search dropdown.",
+    "instruction": "Click on the bottom of the 'Open tabs' list in the Chrome tab search dropdown to scroll.",
     "box_type": "bbox",
     "box_coordinates": [
       392.68,
@@ -4205,7 +4205,7 @@
       1920,
       1080
     ],
-    "instruction": "Click the green icon next to the search bar in the Text Editor to clear the current input.",
+    "instruction": "Click the close icon (which is a a pentagon contains a 'X' with one of its corners/points aimed towards the left) next to the search bar in the Text Editor to clear the current input.",
     "box_type": "polygon",
     "box_coordinates": [
       518.4,
@@ -4344,7 +4344,7 @@
       1920,
       1080
     ],
-    "instruction": "Click the \"Apr\" column header in the spreadsheet of LibreOffice Calc.",
+    "instruction": "Click the \"Apr\" column header (which is an 'E' above 'Apr') in the spreadsheet of LibreOffice Calc.",
     "box_type": "bbox",
     "box_coordinates": [
       418.74,
@@ -4565,7 +4565,7 @@
       1920,
       1080
     ],
-    "instruction": "Click the \"Random\" button in the VLC media player control panel.",
+    "instruction": "Click the \"Random\" button (two crossed arrows pointing right) in the VLC media player control panel.",
     "box_type": "bbox",
     "box_coordinates": [
       898.68,
@@ -4647,7 +4647,7 @@
       1920,
       1080
     ],
-    "instruction": "Click on slide 5 in the Slides panel on the left sidebar of LibreOffice Impress.",
+    "instruction": "Click on slide 6 in the Slides panel on the left sidebar of LibreOffice Impress.",
     "box_type": "bbox",
     "box_coordinates": [
       93.05,
@@ -4919,7 +4919,7 @@
       1280,
       720
     ],
-    "instruction": "Click the zoom slider at the bottom right corner of the LibreOffice Calc window and drag it to the right to enlarge the sheet view.",
+    "instruction": "Click the right area of zoom slider at the bottom right corner of the LibreOffice Calc window to enlarge the sheet view.",
     "box_type": "bbox",
     "box_coordinates": [
       1160.49,
@@ -4953,7 +4953,7 @@
       1280,
       720
     ],
-    "instruction": "Increase the value in the 'Spacing' field in the 'Brush' section on the right sidebar of the GIMP window.",
+    "instruction": "Increase the value in the 'Spacing' field in the 'Brush' section on the right sidebar of the GIMP window by click on the up arrow on the right side of the field.",
     "box_type": "bbox",
     "box_coordinates": [
       1259.01,
@@ -4987,7 +4987,7 @@
       1920,
       1080
     ],
-    "instruction": "Click the square icon in the top-right corner of the terminal window to expand it to full screen.",
+    "instruction": "Click the maximize button (square icon) in the top-right corner of the terminal window to expand it to full screen.",
     "box_type": "bbox",
     "box_coordinates": [
       775.76,
@@ -5157,7 +5157,7 @@
       1280,
       720
     ],
-    "instruction": "Click the \"Previous\" button in the VLC media player's control bar.",
+    "instruction": "Click the start point (on the most left side) in the VLC media player's control bar to replay from the beginning.",
     "box_type": "bbox",
     "box_coordinates": [
       126.13,
@@ -5293,7 +5293,7 @@
       1280,
       720
     ],
-    "instruction": "Type in the \"DEPARTMENT\" field in the \"EMPLOYEE INFORMATION\" section of the form.",
+    "instruction": "Type in the \"DEPARTMENT\" input field (below the 'DEPARTMENT' text) in the \"EMPLOYEE INFORMATION\" section of the form.",
     "box_type": "bbox",
     "box_coordinates": [
       316.24,
@@ -5378,7 +5378,7 @@
       1920,
       1080
     ],
-    "instruction": "Click the \"Fill Format Mode\" icon in the Styles sidebar of LibreOffice Writer.",
+    "instruction": "Click the 'a blue paint bucket that's pouring/tipping over' icon in the Styles sidebar of LibreOffice Writer.",
     "box_type": "bbox",
     "box_coordinates": [
       1769.36,
@@ -5446,7 +5446,7 @@
       1920,
       1080
     ],
-    "instruction": "Change the text \"[Answer] C\" under question 3 to the desired answer in the LibreOffice Writer document.",
+    "instruction": "The endpoint of selecting the text \"[Answer] C\" under question 3 (place next to [Answer] C on the right).",
     "box_type": "bbox",
     "box_coordinates": [
       450.08,
