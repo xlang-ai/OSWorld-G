@@ -34,7 +34,7 @@ def encode_image(image):
 
 
 # Function to call GPT API and refine the instruction
-async def refine_instruction(client, instruction, image_path):
+async def refine_instruction(client, id, instruction, image_path):
     prompt = REFORMAT_PROMPT.format(
         instruction=instruction,
     )
@@ -64,9 +64,21 @@ async def refine_instruction(client, instruction, image_path):
             response_format=Action,
         )
         print(response["choices"][0]["message"]["content"])
-        return response["choices"][0]["message"]["content"][
+        refined_instruction = response["choices"][0]["message"]["content"][
             "refined_instruction"
         ].strip()
+
+        # Save the refined instruction
+        output_instruction_path = os.path.join(
+            instruction_folder, os.path.basename(image_path).replace(".png", ".txt")
+        )
+        with open(output_instruction_path, "w") as out_f:
+            out_f.write(f"Original Instruction: {instruction}\n")
+            out_f.write(f"Refined Instruction: {refined_instruction}\n")
+
+        print(f"Processed: {instruction} -> {refined_instruction}")
+
+        return {id: refined_instruction}
     except Exception as e:
         print(f"Error calling GPT API: {e}")
         raise e
@@ -80,7 +92,9 @@ async def process_json(client, json_file, image_folder, instruction_folder):
     if not os.path.exists(instruction_folder):
         os.makedirs(instruction_folder)
     try:
+        futures = []
         for item in data[:5]:
+            id = item.get("id", "")
             instruction = item.get("instruction", "")
             image_path = os.path.join(image_folder, item.get("image_path", ""))
 
@@ -89,22 +103,9 @@ async def process_json(client, json_file, image_folder, instruction_folder):
                 continue
 
             # Refine the instruction using GPT
-            refined_instruction = await refine_instruction(
-                client, instruction, image_path
-            )
+            futures.append(refine_instruction(client, id, instruction, image_path))
 
-            # Save the refined instruction
-            output_instruction_path = os.path.join(
-                instruction_folder, os.path.basename(image_path).replace(".png", ".txt")
-            )
-            with open(output_instruction_path, "w") as out_f:
-                out_f.write(f"Original Instruction: {instruction}\n")
-                out_f.write(f"Refined Instruction: {refined_instruction}\n")
-
-            print(f"Processed: {instruction} -> {refined_instruction}")
-
-            # put refined instruction into new annotations file
-            item["instruction"] = refined_instruction
+        results = await asyncio.gather(*futures, return_exceptions=True)
         output_annotation_path = json_file.replace(".json", "_refined.json")
         with open(output_annotation_path, "w") as f:
             json.dump(data, open(json_file, "w"), indent=4)
