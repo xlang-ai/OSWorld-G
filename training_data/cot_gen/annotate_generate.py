@@ -3,7 +3,7 @@ import json
 import os
 from PIL import Image, ImageDraw, ImageFont
 from training_data.cot_gen.generate import query_model
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from tqdm import tqdm
 
 # Load the data
@@ -23,30 +23,63 @@ def annotate_generate(data):
     output_path = f"{folder}/annotated_image.png"
     image_size = image.size
     print(image_size)
-    annotate_image(image, click_coordinates, image_size, output_path, 10)
+    right_answer = annotate_image(image, click_coordinates, image_size, output_path, 10)
+    print(right_answer)
 
     problem = data["low_level_instruction"]
     results = []
-    query_times = 1
+    correct_list = []
+    query_times = 5
 
     # Query 5 times
-    for _ in range(query_times):
-        result = query_model(output_path, problem)
-        results.append({
-            "problem": problem,
-            "image_path": screenshot_path,
-            "result": result
-        })
+    def process_query(args):
+        _, output_path, problem, right_answer, screenshot_path = args
+        try:
+            result = query_model(output_path, problem)
+            correct = (("boxes{" + str(right_answer) + "}") in result.lower() or 
+                      ("boxed{" + str(right_answer) + "}") in result.lower() or 
+                      ("boxes[" + str(right_answer) + "]") in result.lower() or 
+                      ("boxed[" + str(right_answer) + "]") in result.lower())
+            return {
+                "problem": problem,
+                "image_path": screenshot_path,
+                "result": result,
+                "right_answer": right_answer,
+                "correct": correct
+            }
+        except Exception as e:
+            print(f"Error processing query: {e}")
+            return None
 
+    with ThreadPoolExecutor(max_workers=5) as executor:
+        futures = []
+        for i in range(query_times):
+            future = executor.submit(process_query, (i, output_path, problem, right_answer, screenshot_path))
+            futures.append(future)
+        
+        for future in as_completed(futures):
+            result = future.result()
+            if result:
+                results.append(result)
+                correct_list.append(result["correct"])
 
-        # Write results to a JSON file
+    if correct_list:
+        correct_rate = sum(correct_list) / len(correct_list)
+        print(f"Correct rate: {correct_rate}")
+
+    # Write results to a JSON file
     with open(f"{folder}/result.json", "w", encoding="utf-8") as f:
         json.dump(results, f, indent=4)
 
 if __name__ == "__main__":
-    results = []
-    with ThreadPoolExecutor(max_workers=10) as executor:
-        futures = list(tqdm(
-            executor.map(annotate_generate, data_list[200:215]),
-            total=len(data_list[200:215]),
-        ))
+    with ThreadPoolExecutor(max_workers=4) as executor:
+        futures = []
+        for data in data_list[200:205]:
+            future = executor.submit(annotate_generate, data)
+            futures.append(future)
+        
+        for future in tqdm(as_completed(futures), total=len(futures)):
+            try:
+                future.result()
+            except Exception as e:
+                print(f"Error processing data: {e}")
