@@ -34,7 +34,7 @@ def query_model(image_path, problem):
 
     # Send the request and get the response
     completion = client.chat.completions.create(
-        model="gpt-4o",
+        model="gpt-4o-2024-08-06",
         messages=[
             {
                 "role": "user",
@@ -47,9 +47,11 @@ def query_model(image_path, problem):
                         }
                     },
                 ],
+                "temperature": 1.0
             }
         ],
     )
+    print(completion.choices[0].message.content)
     return completion.choices[0].message.content
 
 def main():

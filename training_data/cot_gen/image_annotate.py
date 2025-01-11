@@ -56,7 +56,16 @@ def generate_boxes(click_position, image_size, num_boxes=5, box_size=(30, 30)):
             if attempt == max_attempts:
                 print("Warning: Max attempts reached when generating non-overlapping boxes.")
 
-    return boxes
+    # Store the original click box index
+    click_box = boxes[0]
+    
+    # Shuffle the boxes
+    np.random.shuffle(boxes)
+    
+    # Find and return the new index of the click box
+    right_answer = boxes.index(click_box) + 1
+    
+    return boxes, right_answer
 
 def annotate_image(image, click_coordinates, image_size, output_path, num_boxes=5):
     # Load the image
@@ -70,7 +79,7 @@ def annotate_image(image, click_coordinates, image_size, output_path, num_boxes=
     click_position = relative_to_absolute(click_coordinates, image_size)
 
     # Generate boxes
-    boxes = generate_boxes(click_position, image_size, num_boxes)
+    boxes, right_answer = generate_boxes(click_position, image_size, num_boxes)
 
     # Draw boxes and labels
     for idx, box in enumerate(boxes):
@@ -91,8 +100,11 @@ def annotate_image(image, click_coordinates, image_size, output_path, num_boxes=
     # Save the annotated image
     image_draw.save(output_path)
 
+    return right_answer
+
 # Example usage
-screenshot_path = "images/20241023144522_nanjwl.956@gmail.com_2b6cf7a1-524c-46a4-860b-2e6f22f3cfcd_19.png"
+screenshot_path = "images_agn/images/20241023144522_nanjwl.956@gmail.com_2b6cf7a1-524c-46a4-860b-2e6f22f3cfcd_19.png"
+# screenshot_path = "images/20241023144522_nanjwl.956@gmail.com_2b6cf7a1-524c-46a4-860b-2e6f22f3cfcd_19.png"
 click_coordinates = [0.9833,
       0.3083]
 image_size = [1920, 1080]
