@@ -6,6 +6,8 @@ import re
 import time
 import asyncio
 import base64
+import datetime
+from typing import List
 from logger import logger
 from playwright.async_api import async_playwright
 from openai import OpenAI
@@ -34,9 +36,14 @@ class ComponentCode(BaseModel):
     component_code: str
 
 
-class Action(BaseModel):
+class ActionDetail(BaseModel):
+    action_desc: str
     thought_process: str
     action_code: str
+
+
+class ActionList(BaseModel):
+    action_list: List[ActionDetail]
 
 
 class DataGenerator:
@@ -64,7 +71,7 @@ class DataGenerator:
         else:
             logger.warning("No page available to refresh")
 
-    def generate_component_data(
+    def generate_component_code(
         self,
         num_samples=1,
         component_desc="A star rating component with 5 stars, where 4 stars are selected by default",
@@ -93,16 +100,13 @@ class DataGenerator:
 
     def generate_action_data(
         self,
-        num_samples=1,
-        component_desc="A star rating component with 5 stars, where 4 stars are selected by default",
-        action_desc='Click the "CVPR2024" link in the conferences section on the right side of the screen.',
-        image_path="annotated_screenshot.png",
-        position=None,
+        component_name,
+        image_path,
+        position,
     ):
         base64_image = encode_image(image_path)
         prompt = ACTION_PROMPT.format(
-            action_desc=action_desc,
-            component_desc=component_desc,
+            component_name=component_name,
             position=position,
         )
 
@@ -123,7 +127,7 @@ class DataGenerator:
                     "temperature": 1.0,
                 }
             ],
-            response_format=Action,
+            response_format=ActionList,
         )
         try:
             # 提取JSON响应
@@ -344,6 +348,7 @@ class DataGenerator:
         action_code,
         screenshot_path,
         screenshot_folder,
+        action_index,
     ):
         if action_code:
             try:
@@ -402,7 +407,7 @@ class DataGenerator:
                 # 保存标注后的截图
                 annotated_path = (
                     Path(screenshot_folder)
-                    / f"{component_name}_annotated_action_{int(time.time())}.png"
+                    / f"{component_name}_annotated_action_{action_index}_{(time.time())}.png"
                 )
                 img.save(annotated_path)
                 logger.info(f"Saved annotated screenshot to {annotated_path}")
@@ -420,61 +425,39 @@ async def main():
     # 初始化浏览器
     await generator.initialize_browser()
     try:
+        component_desc = None
+        component_name = None
+        screenshot_path = None
+        annotated_component_path = None
+        annotated_action_paths = None
+        position = None
+        action_descs = None
+        action_thoughts = None
+        action_codes = None
 
+        # 创建screenshots文件夹
         screenshot_folder = Path("./screenshots")
         screenshot_folder.mkdir(parents=True, exist_ok=True)
-        # TODO: make 50 component descs based on UI com
-        # component_descs = [
-        #     "A rating component with 5 stars, where 4 stars are selected by default",
-        #     "An Excel-style table where users can click on cells and input content",
-        #     "A volume control slider that allows users to adjust the volume by clicking or dragging",
-        #     "A PowerPoint-style text box where users can resize or move it by dragging its eight control points on edges and corners",
-        #     "A Hello component that displays '你好，React！'",
-        # ]
-        # TODO: make 3 action descs for each component desc
-        # action_descs = [
-        #     [
-        #         "Click on the 2nd star of the rating component to select it",
-        #         "Click on the 4th star of the rating component to select it",
-        #         "Give a 3 star rating",
-        #     ],
-        #     [
-        #         "Click on the first cell of the Excel-style table and input <content>",
-        #         "Click on the last cell of the Excel-style table and input <content>",
-        #         "Click on the 3rd cell of the Excel-style table and input <content>",
-        #     ],
-        #     [
-        #         "Click on the volume slider to set the volume to <x>%",
-        #         "Click on the volume slider to set the volume to <x>%",
-        #         "Click on the volume slider to set the volume to <x>%",
-        #     ],
-        #     [
-        #         "Drag the bottom-right corner of the PowerPoint-style text box to resize it, increasing its width by <x> and height by <y>",
-        #         "Drag the bottom-right corner of the PowerPoint-style text box to resize it, increasing its width by <x> and height by <y>",
-        #         "Drag the bottom-right corner of the PowerPoint-style text box to resize it, increasing its width by <x> and height by <y>",
-        #     ],
-        #     "Click on the space between '你好' and '，React！'",
-        # ]
-        with open("component_action_list.json", "r") as f:
-            component_action_list = json.load(f)
+        with open("component_desc_list.json", "r") as f:
+            component_desc_list = json.load(f)
 
         # 生成组件数据
-        for i in range(len(component_action_list)):
-            component_desc = component_action_list[i]["component_desc"]
-            action_descs = component_action_list[i]["action_descs"]
-            logger.info(f"Generating component data for {component_desc}")
-            component_data = generator.generate_component_data(
+        for i in range(len(component_desc_list)):
+            component_desc = component_desc_list[i]["component_desc"]
+            # STEP 1: 生成组件代码
+            logger.info(f"Generating component code for {component_desc}")
+            component_code = generator.generate_component_code(
                 num_samples=1, component_desc=component_desc
             )
-            logger.info(f"Component data generated")
-            if component_data:
-                # 取第一个组件示例
-                component_code = component_data.component_code
+            logger.info(f"Component code generated")
+            if component_code:
+                # STEP 2: 提取组件名称
+                component_code = component_code.component_code
                 logger.info(f"Extracting component name")
                 component_name = generator.extract_export_name(component_code)
                 logger.info(f"Component name: {component_name}")
 
-                # 创建并启动React应用
+                # STEP 3: 创建并启动React应用，渲染组件，进行截图，并获取组件位置信息
                 logger.info(f"Creating and starting React app")
                 position, screenshot_path = await generator.refresh_react_app(
                     component_code, component_name, screenshot_folder
@@ -482,6 +465,7 @@ async def main():
                 logger.info(f"React app created and started")
 
                 if position:
+                    # STEP 4: 在截图中标注组件位置信息
                     logger.info(f"Annotating component screenshot")
                     annotated_component_path = (
                         await generator.annotate_screenshot_component(
@@ -492,25 +476,25 @@ async def main():
 
                 if screenshot_path:
                     annotated_action_paths = []
+                    action_descs = []
                     action_thoughts = []
                     action_codes = []
-                    for j in range(len(action_descs)):
-                        action_desc = action_descs[j]
-                        logger.info(f"Generating action data")
-                        action_data = generator.generate_action_data(
-                            num_samples=1,
-                            component_desc=component_desc,
-                            action_desc=action_desc,
-                            # TODO: 标注前截图 vs 标注后截图 ？
-                            # image_path=screenshot_path,
-                            image_path=annotated_component_path,
-                            position=position,
-                        )
-                        logger.info(f"Action data generated: {action_data}")
+                    # STEP 5: 生成动作数据
+                    logger.info(f"Generating action data")
+                    action_data = generator.generate_action_data(
+                        component_name=component_name,
+                        # TODO: 标注前截图 vs 标注后截图 ？
+                        # image_path=screenshot_path,
+                        image_path=annotated_component_path,
+                        position=position,
+                    )
+                    # logger.info(f"Action data generated: {action_data}")
 
-                        # 从action_data中提取action_code中的常量，标注在screenshot中
-                        action_thought = action_data.thought_process
-                        action_code = action_data.action_code
+                    for i in range(len(action_data.action_list)):
+                        # STEP 6: 从action_data中提取action_code中的常量，在截图中标注动作位置信息
+                        action_desc = action_data.action_list[i].action_desc
+                        action_thought = action_data.action_list[i].thought_process
+                        action_code = action_data.action_list[i].action_code
 
                         annotated_action_path = (
                             await generator.annotate_screenshot_action(
@@ -519,19 +503,25 @@ async def main():
                                 action_code,
                                 screenshot_path,
                                 screenshot_folder,
+                                i,
                             )
                         )
                         annotated_action_paths.append(annotated_action_path)
+                        action_descs.append(action_desc)
                         action_thoughts.append(action_thought)
                         action_codes.append(action_code)
 
-                # input("Press Enter to check the next one...")
+                # STEP 7: 保存组件代码到固定位置
                 component_js_path = Path("./react-app/src") / f"{component_name}.js"
                 component_js_path.rename(
                     Path("./component_code") / f"{component_name}_{time.time()}.js"
                 )
 
-                with open("data.jsonl", "a") as f:
+                # STEP 8: 保存数据到jsonl文件
+                with open(
+                    f"data_{datetime.datetime.now().strftime('%Y-%m-%d')}.jsonl",
+                    "a",
+                ) as f:
                     f.write(
                         json.dumps(
                             {
@@ -542,11 +532,11 @@ async def main():
                                 ),
                                 "screenshot_path": screenshot_path,
                                 "annotated_component_path": annotated_component_path,
-                                "annotated_action_path": annotated_action_path,
+                                "annotated_action_path": annotated_action_paths,
                                 "position_info": position,
                                 "action_desc": action_descs,
-                                "action_thought": action_thought,
-                                "action_code": action_code,
+                                "action_thought": action_thoughts,
+                                "action_code": action_codes,
                             },
                             indent=4,
                         )

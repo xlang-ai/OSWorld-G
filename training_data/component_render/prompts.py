@@ -13,41 +13,64 @@ Format your response as JSON:
 
 """
 
-ACTION_PROMPT = """Generate a PyAutoGUI function to interact with a UI component shown in the screenshot.
+ACTION_PROMPT = """ You're an UI Component Interaction Generator. You're given a component's name, screenshot, and position data. You need to generate 3 different interactions for the component.
 
-Input Information:
-1. Action Description: {action_desc}
-2. Component Description: {component_desc}
-3. Screenshot: An image showing the component's current state
-4. Position: The position of the elements in the screenshot, {position}
+## Input Format
+1. **Component Name**, The name of the UI component: {component_name}
+2. **Screenshot**, An image showing the component's current state.
+3. **Position Data**, JSON object containing the positions of all elements: {position}
 
-Task Analysis Process:
-1. First identify the key points in the UI that won't change with parameters, for example:
-   - For a slider: identify the left and right endpoints
-   - For a button: identify its center position
-   - For a text box: identify its corners or control points
-   You can use the position information to help you identify these key points' position. 
-   Note that you should generate these key points in the format of x_name, y_name = x, y. 
-   x and y of the same key point should appear together in the same line.
+## Output Requirements
+Generate 3 different interactions for the component. Each interaction should contain:
 
-2. Then identify the parameters from the action description:
-   - Parameters are marked with <param_name> in the description
-   - These will become function parameters
-   - Example: "<volume>" in "set volume to <volume>%"
+1. **Action Description** (`action_desc`)
+   - Describe what the action does
+   - Use `<param_name>` format for variable parameters
+   - Must be based on the component's CURRENT state in the SCREENSHOT only
+   - Should not describe actions that require prior interactions
 
-Requirements:
-1. Function name must be "action"
-2. Define constant coordinates for key UI points first
-3. Use parameters from action description as function parameters
-4. Include detailed explanation in thought_process
+2. **Thought Process** (`thought_process`)
+   - Identify key UI points that remain constant:
+     * Component endpoints (for sliders)
+     * Center positions (for buttons)
+     * Control points (for resizable elements)
+   - Document points using format: `x_name, y_name = x, y`
+   - Identify parameters from action description
+   - Explain calculation logic
 
-Example Scenarios:
+3. **Action Code** (`action_code`)
+   - Function name must be `action`
+   - Define constant coordinates first
+   - Include parameters from action description
+   - Use PyAutoGUI for interactions
 
-1. Action Description: "Set volume to <volume>%"
-   Component Description: "A volume slider"
-   Screenshot: An image showing the volume slider
-   Position: ```
-   {{
+## Response Format
+```json
+{{
+    "action_list": [
+        {{
+            "action_desc": "Description of the action",
+            "thought_process": "Detailed explanation of:
+                1. Key UI points identified
+                2. Reasoning for point selection
+                3. Parameter usage
+                4. Coordinate calculations",
+            "action_code": "PyAutoGUI implementation"
+        }}
+        // ... (2 more actions)
+    ]
+}}
+```
+
+## Examples
+
+### Example 1: Volume Slider
+**Input:**
+- Component Description: "A volume slider"
+- Screenshot: An image showing the volume slider
+- Position: 
+```
+{{
   "elements": [
     {{
       "attributes": {{
@@ -110,61 +133,43 @@ Example Scenarios:
   }}
 }}
 ```
-   thought_process:
-   - Identify the left and right endpoints of the slider using the position information:
-     - The left endpoint is (22, 30)
-     - The right endpoint is (222, 30)
-   - Use the volume parameter to calculate the click position
-   action_code:
-   def action(volume):
-       # Fixed points: slider endpoints
-       x_0, y_0 = 22, 30     # Left endpoint of slider
-       x_1, y_1 = 222, 30   # Right endpoint of slider
-       
-       # Calculate click position based on volume parameter
-       x = x_0 + (x_1 - x_0) * (volume / 100)
-       pyautogui.click(x, y_0)
 
-2. Action Description: "Click the \"CVPR2024\" link in the conferences section on the right side of the screen."
-   Component Description: "A conferences section"
-   Screenshot: An image showing the conferences section
-   Position: ```
-   {{
-   "elements": [
-     {{
-       "attributes": {{
-         "style": "width: 200px; margin: 20px;"
-       }},
-       "text": "CVPR2024",
-       "isInteractive": true,
-       "position": {{ 
-            x_left: 20,
-            y_top: 20,
-            x_right: 220,
-            y_bottom: 70,
-            x_center: 120,
-            y_center: 45,
-       }}
-     }}
-   ]
-   }}
-   ```
-    action_code:
-    def action():
-        x_0, y_0 = 120, 45
-        pyautogui.click(x_0, y_0)
-
-There is no parameter for the click, since the location of this action is fixed.
-
-Your Response Format:
+**Output:**
+```json
 {{
-    "thought_process": "Explain:
-        1. What key points you identified in the UI
-        2. Why you chose these points
-        3. How parameters affect the interaction
-        4. How you calculate the final coordinates",
-    "action_code": "Your PyAutoGUI function"
-}}
+    "action_list": [
+        {{
+            "action_desc": "Set volume to <volume>%",
+            "thought_process": "
+                - Identified slider endpoints: (22,30) and (222,30)
+                - Volume parameter determines click position
+                - Linear interpolation between endpoints based on volume",
+            "action_code": "
+                def action(volume):
+                    x_0, y_0 = 22, 30  # Left endpoint
+                    x_1, y_1 = 222, 30  # Right endpoint
+                    x = x_0 + (x_1 - x_0) * (volume / 100)
+                    pyautogui.click(x, y_0)"
+              }}
+          ]
+      }}
+  }}
+  ```
+
+## Important Notes
+- Generate exactly 3 actions per component, for example:
+For Rating Component:
+1. "Click on the 2nd star to select it"
+2. "Click on the 4th star to select it"
+3. "Give a 3 star rating"
+For Text Box:
+1. "Drag bottom-right corner to resize width by <x> and height by <y>"
+2. "Move text box to top-left corner"
+3. "Resize using top-left corner, width +<x> height +<y>"
+- Focus on diverse interactions (e.g., click, drag, resize), explore as many component functionalities as possible.
+- Only use current state information
+- Always include parameter placeholders when values are variable
+- Ensure coordinates match the position data provided
 """
 
 DESC_PROMPT = """Generate a `component_description` for each component. The description should be detailed and accurately describe its appearance and composition so that a front-end engineer can write the corresponding code based solely on this description without adding any additional information. 
@@ -174,27 +179,12 @@ Example:
 "A volume control slider that allows users to adjust the volume by clicking or dragging",
 "A PowerPoint-style text box where users can resize or move it by dragging its eight control points on edges and corners",
 
-After the component description, generate a list of 3 `action_descs` for each action that can be performed on the component. 
-You are encouraged to use parameters in the action description to describe the action. The parameters should be marked with <param_name> in the description.
-You are encouraged to explore as many functions of the component as possible.
-
-Example:
-For "A rating component with 5 stars, where 4 stars are selected by default":
-["Click on the 2nd star of the rating component to select it", "Click on the 4th star of the rating component to select it", "Give a 3 star rating"],
-
-For "A volume control slider that allows users to adjust the volume by clicking or dragging":
-["Click on the volume slider to set the volume to <x>%", "Increase the volume by <x>%", "Decrease the volume by <x>%"],
-
-For "A PowerPoint-style text box where users can resize or move it by dragging its eight control points on edges and corners":
-["Drag the bottom-right corner of the PowerPoint-style text box to resize it, increasing its width by <x> and height by <y>", "Move the text box to the top-left corner of the screen", "Increase the text box's width by <x> and height by <y>, by dragging the top-left corner"],
-
 Input Information:
 1. Component: {component_type}
 
 Your Response Format:
 {{
     "component_desc": "Your description for the component",
-    "action_descs": ["Your description for the action"]
 }}
 """
 
