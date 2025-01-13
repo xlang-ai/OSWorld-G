@@ -2,7 +2,7 @@ COMPONENT_PROMPT = """Create a single React component that implements: {componen
 
 Rules:
 1. Only provide the component's JavaScript code
-2. No external libraries or CSS imports
+2. No CSS imports, and MUI is the only library allowed
 3. Component must be a functional component
 4. Export the component as default
 
@@ -166,3 +166,97 @@ Your Response Format:
     "action_code": "Your PyAutoGUI function"
 }}
 """
+
+DESC_PROMPT = """Generate a `component_description` for each component. The description should be detailed and accurately describe its appearance and composition so that a front-end engineer can write the corresponding code based solely on this description without adding any additional information. 
+
+Example:
+"A rating component with 5 stars, where 4 stars are selected by default",
+"A volume control slider that allows users to adjust the volume by clicking or dragging",
+"A PowerPoint-style text box where users can resize or move it by dragging its eight control points on edges and corners",
+
+After the component description, generate a list of 3 `action_descs` for each action that can be performed on the component. 
+You are encouraged to use parameters in the action description to describe the action. The parameters should be marked with <param_name> in the description.
+You are encouraged to explore as many functions of the component as possible.
+
+Example:
+For "A rating component with 5 stars, where 4 stars are selected by default":
+["Click on the 2nd star of the rating component to select it", "Click on the 4th star of the rating component to select it", "Give a 3 star rating"],
+
+For "A volume control slider that allows users to adjust the volume by clicking or dragging":
+["Click on the volume slider to set the volume to <x>%", "Increase the volume by <x>%", "Decrease the volume by <x>%"],
+
+For "A PowerPoint-style text box where users can resize or move it by dragging its eight control points on edges and corners":
+["Drag the bottom-right corner of the PowerPoint-style text box to resize it, increasing its width by <x> and height by <y>", "Move the text box to the top-left corner of the screen", "Increase the text box's width by <x> and height by <y>, by dragging the top-left corner"],
+
+Input Information:
+1. Component: {component_type}
+
+Your Response Format:
+{{
+    "component_desc": "Your description for the component",
+    "action_descs": ["Your description for the action"]
+}}
+"""
+
+COMPONENT_TYPE_LIST = [
+    "Autocomplete - Provides a list of suggestions as the user types.",
+    "Button - Triggers an action or event.",
+    "Button Group - Groups multiple buttons together.",
+    "Checkbox - Allows selection of multiple options from a set.",
+    "Floating Action Button - A circular button for primary actions.",
+    "Radio Group - Allows selection of a single option from a set.",
+    "Rating - Enables users to provide a star rating.",
+    "Select - Dropdown menu for selecting options.",
+    "Slider - Adjusts values within a range by sliding a thumb.",
+    "Switch - Toggles between two states, such as on and off.",
+    "Text Field - Input field for text entry.",
+    "Transfer List - Moves items between two lists.",
+    "Toggle Button - Group of buttons that can be toggled on or off.",
+    "Avatar - Displays user profile images or initials.",
+    "Badge - Shows a small badge to indicate status or counts.",
+    "Chip - Represents complex entities in a compact form.",
+    "Divider - Separates content into clear groups.",
+    "Icons - Provides a set of material design icons.",
+    "Material Icons - Collection of Google's Material Design icons.",
+    "List - Displays a list of items.",
+    "Table - Organizes data into rows and columns.",
+    "Tooltip - Displays informative text when hovering over an element.",
+    "Typography - Applies consistent styling to text elements.",
+    "Alert - Displays important messages or notifications.",
+    "Backdrop - Dimmed background to focus attention on a foreground element.",
+    "Dialog - Modal window to display content or prompt user actions.",
+    "Progress - Indicates loading or ongoing processes.",
+    "Skeleton - Placeholder to display while content is loading.",
+    "Snackbar - Temporary notification messages.",
+    "Accordion - Expands and collapses content sections.",
+    "App Bar - Toolbar for application branding and navigation.",
+    "Card - Container for content and actions related to a single subject.",
+    "Paper - Material design paper background for elements.",
+    "Bottom Navigation - Navigation bar at the bottom of the screen.",
+    "Breadcrumbs - Indicates the current page’s location within a hierarchy.",
+    "Drawer - Sidebar for navigation links or content.",
+    "Link - Navigational hyperlink.",
+    "Menu - Displays a list of choices on temporary surfaces.",
+    "Pagination - Controls for navigating through paginated data.",
+    "Speed Dial - Quick access to primary actions.",
+    "Stepper - Guides users through multi-step processes.",
+    "Tabs - Organizes content into separate views.",
+    "Box - Wrapper component for applying layout styles.",
+    "Container - Centers content horizontally with padding.",
+    "Grid - 2D layout system for aligning items.",
+    "Grid v2 - Enhanced version of the Grid component.",
+    "Stack - Arranges children in a single direction, either vertically or horizontally.",
+    "Image List - Displays a collection of images in a grid.",
+    "Masonry - Responsive grid layout without fixed column sizes.",
+    "Timeline - Displays a list of events in chronological order.",
+    "Click-Away Listener - Detects clicks outside a specified element.",
+    "CSS Baseline - Provides a consistent baseline for CSS styles.",
+    "Modal - Component for creating modal dialogs.",
+    "No SSR - Disables server-side rendering for a component.",
+    "Popover - Displays content on top of another.",
+    "Popper - Positions elements relative to another element.",
+    "Portal - Renders children into a DOM node outside the parent hierarchy.",
+    "Textarea Autosize - Textarea that automatically adjusts its height.",
+    "Transitions - Provides animation effects for components.",
+    "useMediaQuery - React hook for matching CSS media queries.",
+]
