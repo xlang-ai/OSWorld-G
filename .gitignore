@@ -200,3 +200,6 @@ vmware_vm_data
 /instructions
 
 /images_agn
+screenshots/
+component_code/
+component_positions/

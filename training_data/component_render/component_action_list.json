@@ -1,0 +1,42 @@
+[
+    {
+        "component_desc": "An autocomplete input field that provides a real-time list of matching suggestions as a user begins typing the input query. This feature includes a text input box where users can enter text and a drop-down list that dynamically populates with relevant suggestions based on the characters entered. Each suggestion is displayed below the input field in a separate row within the drop-down, and the list auto-updates as the input changes. Selected suggestions are highlighted, and the list can be navigated using the keyboard's up and down arrows.",
+        "action_descs": [
+            "Begin typing '<query>' in the autocomplete input field and observe real-time suggestions appear below.",
+            "Press the down arrow key to navigate to the <n>th suggestion in the list.",
+            "Select the <n>th suggestion in the autocomplete list by clicking on it or pressing the Enter key."
+        ]
+    },
+    {
+        "component_desc": "A button component displayed as a rectangular shape with rounded corners. The button is centered on the page with a width of 200px and a height of 50px. Its background color is a gradient transitioning from light blue (#A0E1FF) at the top to medium blue (#007BFF) at the bottom. The button has a subtle drop shadow to give it an elevated appearance. The text within the button reads 'Click Me', is centered both horizontally and vertically, uses a sans-serif font style, is 18px in size, and is colored white (#FFFFFF). When hovered over, the button's background turns to a solid medium blue (#4D94FF), and the drop shadow is intensified. Upon clicking, the button momentarily appears darker (with background #0056b3) to indicate it has been pressed.",
+        "action_descs": [
+            "Hover over the button to change its background color to medium blue (#4D94FF)",
+            "Click the button, and it changes its background to a pressed state color (#0056b3)",
+            "Release the button after clicking, and it returns to its original state with a gradient background"
+        ]
+    },
+    {
+        "component_desc": "A button group component consisting of multiple buttons aligned horizontally or vertically, with each button maintaining equal spacing between them. Each button in the group retains its characteristics such as color, size, icon presence, text alignment, and hover effects. The button group can visually distinguish between selected and unselected buttons using color variations or border styles.",
+        "action_descs": [
+            "Select the <button_number>th button in the group by clicking on it, highlighting it with a border for visual distinction",
+            "Deselect the <button_number>th button by clicking on it again, returning to its unselected appearance",
+            "Hover over the <button_number>th button, changing its background color to <hover_color>"
+        ]
+    },
+    {
+        "component_desc": "A checkbox component that serves as a small square box, inside which a checkmark appears when selected, and disappears when deselected. The box is labeled with text representing the choice. The checkbox is typically square with dimensions of 20x20 pixels and uses a border-color of #ccc in its unchecked state and #008000 when checked. The checkmark is typically a centered, green tick symbol. Each checkbox is associated with a label, usually aligned to the right side of the box, with a font size of 14px.",
+        "action_descs": [
+            "Check the checkbox to enable the option labeled '<option_name>'",
+            "Uncheck the checkbox to disable the option labeled '<option_name>'",
+            "Toggle the checkbox labeled '<option_name>' to switch between checked and unchecked states"
+        ]
+    },
+    {
+        "component_desc": "A floating action button (FAB) is a prominent circular button with a diameter of 56 pixels, designed for performing primary actions. The button's surface is slightly elevated above other UI elements, casting a subtle shadow, giving the visual cue that it's interactive. The button's background color is vibrant to draw attention, with a contrasting white icon centered within it, sized at 24 pixels. The icon's use can vary, depending on the context, such as a '+' symbol for adding, a pencil for editing, etc. The FAB has a hover effect, where the shadow deepens, and the button slightly enlarges to indicate interactivity.",
+        "action_descs": [
+            "Click on the floating action button to perform the primary action associated with it, such as <action_name>.",
+            "Hover over the floating action button to see it increase in size and the shadow grow darker.",
+            "Press and hold the floating action button to see a ripple effect before confirming the <action_name> action."
+        ]
+    }
+]
