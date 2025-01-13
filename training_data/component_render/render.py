@@ -6,7 +6,7 @@ import re
 import time
 import asyncio
 import base64
-import logging
+from logger import logger
 from playwright.async_api import async_playwright
 from openai import OpenAI
 from pydantic import BaseModel
@@ -15,11 +15,6 @@ from PIL import Image, ImageDraw, ImageFont
 from prompts import COMPONENT_PROMPT, ACTION_PROMPT
 from javascripts import JS_WITH_COMPONENT, JS_WITHOUT_COMPONENT, JS_EVAL_POSITION
 
-# 配置 logger
-logging.basicConfig(
-    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
-)
-logger = logging.getLogger(__name__)
 
 # Setup proxy and API key
 os.environ["HTTP_PROXY"] = "http://127.0.0.1:7890"
@@ -35,7 +30,7 @@ def encode_image(image_path):
         return base64.b64encode(image_file.read()).decode("utf-8")
 
 
-class Component(BaseModel):
+class ComponentCode(BaseModel):
     component_code: str
 
 
@@ -87,7 +82,7 @@ class DataGenerator:
                     "temperature": 1.0,
                 }
             ],
-            response_format=Component,
+            response_format=ComponentCode,
         )
         try:
             logger.info(str(response.choices[0].message.parsed))
@@ -428,24 +423,45 @@ async def main():
 
         screenshot_folder = Path("./screenshots")
         screenshot_folder.mkdir(parents=True, exist_ok=True)
-        component_descs = [
-            "A rating component with 5 stars, where 4 stars are selected by default",
-            "An Excel-style table where users can click on cells and input content",
-            "A volume control slider that allows users to adjust the volume by clicking or dragging",
-            "A PowerPoint-style text box where users can resize or move it by dragging its eight control points on edges and corners",
-            "A Hello component that displays '你好，React！'",
-        ]
-        action_descs = [
-            "Click on the 2nd star of the rating component to select it",
-            "Click on the first cell of the Excel-style table and input <content>",
-            "Click on the volume slider to set the volume to <x>%",
-            "Drag the bottom-right corner of the PowerPoint-style text box to resize it, increasing its width by <x> and height by <y>",
-            "Click on the space between '你好' and '，React！'",
-        ]
+        # TODO: make 50 component descs based on UI com
+        # component_descs = [
+        #     "A rating component with 5 stars, where 4 stars are selected by default",
+        #     "An Excel-style table where users can click on cells and input content",
+        #     "A volume control slider that allows users to adjust the volume by clicking or dragging",
+        #     "A PowerPoint-style text box where users can resize or move it by dragging its eight control points on edges and corners",
+        #     "A Hello component that displays '你好，React！'",
+        # ]
+        # TODO: make 3 action descs for each component desc
+        # action_descs = [
+        #     [
+        #         "Click on the 2nd star of the rating component to select it",
+        #         "Click on the 4th star of the rating component to select it",
+        #         "Give a 3 star rating",
+        #     ],
+        #     [
+        #         "Click on the first cell of the Excel-style table and input <content>",
+        #         "Click on the last cell of the Excel-style table and input <content>",
+        #         "Click on the 3rd cell of the Excel-style table and input <content>",
+        #     ],
+        #     [
+        #         "Click on the volume slider to set the volume to <x>%",
+        #         "Click on the volume slider to set the volume to <x>%",
+        #         "Click on the volume slider to set the volume to <x>%",
+        #     ],
+        #     [
+        #         "Drag the bottom-right corner of the PowerPoint-style text box to resize it, increasing its width by <x> and height by <y>",
+        #         "Drag the bottom-right corner of the PowerPoint-style text box to resize it, increasing its width by <x> and height by <y>",
+        #         "Drag the bottom-right corner of the PowerPoint-style text box to resize it, increasing its width by <x> and height by <y>",
+        #     ],
+        #     "Click on the space between '你好' and '，React！'",
+        # ]
+        with open("component_action_list.json", "r") as f:
+            component_action_list = json.load(f)
 
         # 生成组件数据
-        for i in range(len(component_descs)):
-            component_desc = component_descs[i]
+        for i in range(len(component_action_list)):
+            component_desc = component_action_list[i]["component_desc"]
+            action_descs = component_action_list[i]["action_descs"]
             logger.info(f"Generating component data for {component_desc}")
             component_data = generator.generate_component_data(
                 num_samples=1, component_desc=component_desc
@@ -475,30 +491,39 @@ async def main():
                     logger.info(f"Annotated component screenshot")
 
                 if screenshot_path:
-                    action_desc = action_descs[i]
-                    logger.info(f"Generating action data")
-                    action_data = generator.generate_action_data(
-                        num_samples=1,
-                        component_desc=component_desc,
-                        action_desc=action_desc,
-                        # TODO: 标注前截图 vs 标注后截图 ？
-                        # image_path=screenshot_path,
-                        image_path=annotated_component_path,
-                        position=position,
-                    )
-                    logger.info(f"Action data generated: {action_data}")
+                    annotated_action_paths = []
+                    action_thoughts = []
+                    action_codes = []
+                    for j in range(len(action_descs)):
+                        action_desc = action_descs[j]
+                        logger.info(f"Generating action data")
+                        action_data = generator.generate_action_data(
+                            num_samples=1,
+                            component_desc=component_desc,
+                            action_desc=action_desc,
+                            # TODO: 标注前截图 vs 标注后截图 ？
+                            # image_path=screenshot_path,
+                            image_path=annotated_component_path,
+                            position=position,
+                        )
+                        logger.info(f"Action data generated: {action_data}")
 
-                    # 从action_data中提取action_code中的常量，标注在screenshot中
-                    action_thought = action_data.thought_process
-                    action_code = action_data.action_code
+                        # 从action_data中提取action_code中的常量，标注在screenshot中
+                        action_thought = action_data.thought_process
+                        action_code = action_data.action_code
 
-                    annotated_action_path = await generator.annotate_screenshot_action(
-                        component_name,
-                        action_desc,
-                        action_code,
-                        screenshot_path,
-                        screenshot_folder,
-                    )
+                        annotated_action_path = (
+                            await generator.annotate_screenshot_action(
+                                component_name,
+                                action_desc,
+                                action_code,
+                                screenshot_path,
+                                screenshot_folder,
+                            )
+                        )
+                        annotated_action_paths.append(annotated_action_path)
+                        action_thoughts.append(action_thought)
+                        action_codes.append(action_code)
 
                 # input("Press Enter to check the next one...")
                 component_js_path = Path("./react-app/src") / f"{component_name}.js"
@@ -506,7 +531,7 @@ async def main():
                     Path("./component_code") / f"{component_name}_{time.time()}.js"
                 )
 
-                with open("components.jsonl", "a") as f:
+                with open("data.jsonl", "a") as f:
                     f.write(
                         json.dumps(
                             {
@@ -519,7 +544,7 @@ async def main():
                                 "annotated_component_path": annotated_component_path,
                                 "annotated_action_path": annotated_action_path,
                                 "position_info": position,
-                                "action_desc": action_desc,
+                                "action_desc": action_descs,
                                 "action_thought": action_thought,
                                 "action_code": action_code,
                             },
