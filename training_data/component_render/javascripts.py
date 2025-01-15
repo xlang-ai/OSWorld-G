@@ -167,15 +167,6 @@ JS_EVAL_POSITION = """() => {
     
     return {
         elements: getAllElementsInfo(allElements),
-        metadata: {
-            timestamp: new Date().toISOString(),
-            totalElements: allElements.length,
-            interactiveElementsCount: interactiveElements.length,
-            viewport: {
-                width: window.innerWidth,
-                height: window.innerHeight
-            }
-        }
     };
 }
 """

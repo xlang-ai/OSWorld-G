@@ -23,9 +23,10 @@ Input:
 
 Requirements:
 1. Consider all possible interactions, as many as possible
-2. Group similar actions together
+2. Group similar actions together, don't include action intents that are too similar or repetitive
 3. Propose action on BOTH interactive elements and non-interactive elements(such as text, image, etc. You can click on text to select it or part of it)
 4. Check screenshot to make sure the action is possible
+5. The interaction should be completed in ONE step, don't include multiple steps in one action(e.g. you cannot click multiple buttons in one action)
 
 Output Format:
 {{
@@ -61,54 +62,66 @@ ACTION_DETAIL_PROMPT = """ You're an UI Component Interaction Generator. You're 
 
 ## Input Format
 1. **Component Name**, The name of the UI component: {component_name}
-2. **Screenshot**, An image showing the component's current state.
-3. **Position Data**, JSON object containing the positions of all elements: {position}
+2. **Component Description**, The description of the UI component: {component_desc}
+3. **Screenshot**, An image showing the component's current state.
 4. **Action Intent**, A possible user interaction intent category for the component: {action_intent}
+5. **Position Data**, JSON object containing the positions of all elements: {position}
 
-## 判断动作空间唯一性
 
-## 给出动作函数
+## Generate Action
+Based on the action space type and action intent, generate appropriate action specifications of action intent. The action should contain:
 
-## 给出确定后动作
-## Output Requirements
-Generate 3 different interactions for the component. Each interaction should contain:
+1. **Thought Process** (`thought_process`)
+   - Recall the action intent
+   - Think if this action intent is executable in the current state of the component
+   - If not, set action space type to "none" and generate empty action_desc and action_code.
+   - If yes, give corresponding action description for the action intent
+    - Identify key UI points that remain constant:
+        * Component endpoints (for sliders)
+        * Center positions (for buttons)
+        * Control points (for resizable elements)
+    - Document points using format: `x_name, y_name = x, y`
+    - Explain calculation logic
+    - For discrete or continuous action spaces: Identify and explain parameters from action description
 
-1. **Action Description** (`action_desc`)
-   - Describe what the action does
-   - Use `<param_name>` format for variable parameters
-   - Must be based on the component's CURRENT state in the SCREENSHOT only
+2. **Determine Action Space Type** (`action_space_type`)
+First, analyze and determine the type of action space for this interaction:
+- **None**: No action space exists (e.g., clicking a button - note: clicking different parts of the same button doesn't count as different actions)
+- **Unique**: Only one possible action exists (e.g., clicking a button - note: clicking different parts of the same button doesn't count as different actions)
+- **Discrete**: Limited/unlimited set of distinct possible actions (e.g., selecting from a list of options)
+- **Continuous**: Infinite possible actions within a range (e.g., dragging a slider to any position)
+
+You must specify one of these action space types: "none", "unique", "discrete", or "continuous"
+
+If the action space type is "none", you should generate empty action_desc and action_code, but generate thought_process to explain why the action space type is "none".
+
+3. **Action Description** (`action_desc`)
+   - Describe what the action does, which serves as the instantiation/implementation of the action intent
+   - Must be based on the component's CURRENT state in the SCREENSHOT only(e.g. you cannot click on the button that is not displayed in the screenshot. You cannot turn on a switch that is already on)
    - Should not describe actions that require prior interactions
+   - For discrete or continuous action spaces: Use `<param_name>` format for variable parameters
+   - For discrete action spaces: Enumerate all possible actions beforehand
 
-2. **Thought Process** (`thought_process`)
-   - Identify key UI points that remain constant:
-     * Component endpoints (for sliders)
-     * Center positions (for buttons)
-     * Control points (for resizable elements)
-   - Document points using format: `x_name, y_name = x, y`
-   - Identify parameters from action description
-   - Explain calculation logic
+4. **Action Discrete Params** (`action_discrete_params`)
+   - List of parameters for discrete action spaces, not [] only when action_space_type is "discrete"
 
-3. **Action Code** (`action_code`)
+5. **Action Code** (`action_code`)
    - Function name must be `action`
    - Define constant coordinates first
-   - Include parameters from action description
-   - Use PyAutoGUI for interactions
+   - Use PyAutoGUI only
+   - For discrete or continuous action spaces: Implement variable parameters using `<param_name>` format
 
 ## Response Format
 ```json
 {{
-    "action_list": [
-        {{
-            "action_desc": "Description of the action",
-            "thought_process": "Detailed explanation of:
+    "action_space_type": "none" | "unique" | "discrete" | "continuous",
+    "action_desc": "Description of the action",
+    "thought_process": "Detailed explanation of:
                 1. Key UI points identified
                 2. Reasoning for point selection
                 3. Parameter usage
                 4. Coordinate calculations",
-            "action_code": "PyAutoGUI implementation"
-        }}
-        // ... (2 more actions)
-    ]
+    "action_code": "PyAutoGUI implementation"
 }}
 ```
 
@@ -116,8 +129,10 @@ Generate 3 different interactions for the component. Each interaction should con
 
 ### Example 1: Volume Slider
 **Input:**
-- Component Description: "A volume slider"
+- Component Name: "A volume slider"
+- Component Description: "Sliders allow users to make selections from a range of values. Sliders reflect a range of values along a bar, from which users may select a single value. They are ideal for adjusting settings such as volume, brightness, or applying image filters."
 - Screenshot: An image showing the volume slider
+- Action Intent: "Set volume"
 - Position: 
 ```
 {{
@@ -172,25 +187,15 @@ Generate 3 different interactions for the component. Each interaction should con
       }}
     }}
   ]
-  "metadata": {{
-    "timestamp": "2025-01-11T17:34:50.039Z",
-    "totalElements": 3,
-    "interactiveElementsCount": 1,
-    "viewport": {{
-      "width": 1280,
-      "height": 720
-    }}
-  }}
 }}
 ```
 **Output:**
 ```json
 {{
-    "action_list": [
-        {{
-            "action_desc": "Set volume to <volume>%",
-            "thought_process": "
-                - Identified slider endpoints: (22,30) and (222,30)
+    "action_space_type": "continuous",
+    "action_desc": "Set volume to <volume>%",
+    "thought_process": "
+        - Identified slider endpoints: (22,30) and (222,30)
                 - Volume parameter determines click position
                 - Linear interpolation between endpoints based on volume",
             "action_code": "
@@ -203,21 +208,180 @@ Generate 3 different interactions for the component. Each interaction should con
           ]
       }}
   }}
-  ```
+```
+
+### Example 2: Rating Component
+- Component Name: "A rating component"
+- Component Description: "Rating components allow users to rate something by selecting a number of stars. They are ideal for rating products, articles, or other items."
+- Screenshot: An image showing the rating component
+- Action Intent: "Set rating"
+- Position: 
+{{
+    "elements": [
+        {{
+            "text": "★★★★★",
+            "isInteractive": "False",
+            "position": {{
+                "x": 0,
+                "y": 0,
+                "width": 1280,
+                "height": 28
+            }}
+        }},
+        {{
+            "text": "★",
+            "isInteractive": "False",
+            "position": {{
+                "x": 578.859375,
+                "y": 0,
+                "width": 24.453125,
+                "height": 28
+            }}
+        }},
+        {{
+            "attributes": {{
+                "data-testid": "star-1",
+                "style": "cursor: pointer; color: gold; font-size: 24px;"
+            }},
+            "text": "★",
+            "isInteractive": "False",
+            "position": {{
+                "x_left": 603.3125,
+                "y_top": 0,
+                "x_right": 627.765625,
+                "y_bottom": 28,
+                "x_center": 615.5390625,
+                "y_center": 14,
+            }}
+        }},
+        {{
+            "attributes": {{
+                "data-testid": "star-2",
+                "style": "cursor: pointer; color: gold; font-size: 24px;"
+            }},
+            "text": "★",
+            "isInteractive": "False",
+            "position": {{
+                "x_left": 627.765625,
+                "y_top": 0,
+                "x_right": 652.21875,
+                "y_bottom": 28,
+                "x_center": 640.4453125,
+                "y_center": 14,
+            }}
+        }},
+        {{
+            "type": "span",
+            "path": "div > span",
+            "attributes": {{
+                "data-testid": "star-3",
+                "style": "cursor: pointer; color: gold; font-size: 24px;"
+            }},
+            "text": "★",
+            "position": {{
+                "x_left": 652.21875,
+                "y_top": 0,
+                "x_right": 676.671875,
+                "y_bottom": 28,
+                "x_center": 664.4453125,
+                "y_center": 14,
+            }}
+        }},
+        {{
+            "attributes": {{
+                "data-testid": "star-4",
+                "style": "cursor: pointer; color: gray; font-size: 24px;"
+            }},
+            "text": "★",
+            "isInteractive": "False",
+            "position": {{
+                "x_left": 676.671875,
+                "y_top": 0,
+                "x_right": 701.124375,
+                "y_bottom": 28,
+                "x_center": 688.898125,
+                "y_center": 14,
+            }}
+        }}
+        {{
+            "attributes": {{
+                "data-testid": "star-5",
+                "style": "cursor: pointer; color: gray; font-size: 24px;"
+            }},
+            "text": "★",
+            "isInteractive": "False",
+            "position": {{
+                "x_left": 701.124375,
+                "y_top": 0,
+                "x_right": 725.5775,
+                "y_bottom": 28,
+                "x_center": 713.35125,
+                "y_center": 14,
+            }}
+        }}
+    ]
+}}
+
+**Output:**
+```json
+{{
+    "action_space_type": "discrete",
+    "action_desc": "Set rating to <rating> stars",
+    "thought_process": "
+        - Identified star endpoints: (615.5390625,14), (640.4453125,14), (664.4453125,14), (688.898125,14), (713.35125,14)
+                - Rating parameter determines click position
+                - Linear interpolation between endpoints based on rating",
+    "action_code": "
+        rating = [1, 2, 3, 4, 5] # make sure to list all possible actions beforehand
+        def action(rating):
+            x_0, y_0 = 615.5390625, 14  # Left endpoint
+            x_1, y_1 = 640.4453125, 14
+            x_2, y_2 = 664.4453125, 14
+            x_3, y_3 = 688.898125, 14
+            x_4, y_4 = 713.35125, 14
+            x = [x_0, x_1, x_2, x_3, x_4]
+            y = [y_0, y_1, y_2, y_3, y_4]
+            pyautogui.click(x[rating-1], y[rating-1])
+            "
+}}
+```
+
+### Example 3: Click on the submit button
+- Component Name: "A submit button"
+- Component Description: "Submit buttons are used to confirm actions or submit forms. They are typically found at the bottom of forms or dialogs."
+- Screenshot: An image showing the submit button
+- Action Intent: "Submit"
+{{
+    "elements": [
+        {{
+            "text": "submit",
+            "isInteractive": "True",
+            "position": {{
+                "x_left": 600,
+                "y_top": 200,
+                "x_right": 700,
+                "y_bottom": 250,
+                "x_center": 650,
+                "y_center": 225
+            }}
+        }}
+    ]
+}}
+
+**Output:**
+```json
+{{
+    "action_space_type": "unique",
+    "action_desc": "Click on the submit button",
+    "thought_process": "
+        - Identified button position: (650, 225)
+        - Click on the button",
+    "action_code": "pyautogui.click(650, 225)"
+}}
+```
 
 ## Important Notes
-- Generate exactly 3 actions per component, for example:
-For Rating Component:
-1. "Click on the 2nd star to select it"
-2. "Click on the 4th star to select it"
-3. "Give a 3 star rating"
-For Text Box:
-1. "Drag bottom-right corner to resize width by <x> and height by <y>"
-2. "Move text box to top-left corner"
-3. "Resize using top-left corner, width +<x> height +<y>"
-- Focus on diverse interactions (e.g., click, drag, resize), explore as many component functionalities as possible.
 - Only use current state information
-- Always include parameter placeholders when values are variable
 - Ensure coordinates match the position data provided
 """
 
