@@ -13,13 +13,63 @@ Format your response as JSON:
 
 """
 
-ACTION_PROMPT = """ You're an UI Component Interaction Generator. You're given a component's name, screenshot, and position data. You need to generate 3 different interactions for the component.
+ACTION_INTENT_PROMPT = """You are an assistant with deep knowledge of UI component functionality. Your task is to analyze a component's current state and generate a comprehensive list of possible user interactions, grouped by similar action types.
+
+Input:
+- Component description: {component_desc}
+- Component name: {component_name}
+- Screenshot: showing component's current state and properties
+
+
+Requirements:
+1. Consider all possible interactions, as many as possible
+2. Group similar actions together
+3. Propose action on BOTH interactive elements and non-interactive elements(such as text, image, etc. You can click on text to select it or part of it)
+4. Check screenshot to make sure the action is possible
+
+Output Format:
+{{
+    "action_intent_list": [
+        "<category_1>",
+        "<category_2>",
+        "<category_3>",
+        "<category_4>"...
+    ]
+}}
+
+Example for a Checkbox Group:
+{{
+    "action_intent_list": [
+        "Single selection",
+        "Select all",
+        "Deselect all",
+        "Deselect single item"
+    ]
+}}
+
+Example for a FloatingActionButtonZoom Group:
+{{
+    "action_intent_list": [
+        "Select different items",
+        "Select part or all of the displayed text",
+        "Click floating action button"
+    ]
+}}
+"""
+
+ACTION_DETAIL_PROMPT = """ You're an UI Component Interaction Generator. You're given a component's name, screenshot, and position data. You need to generate 3 different interactions for the component.
 
 ## Input Format
 1. **Component Name**, The name of the UI component: {component_name}
 2. **Screenshot**, An image showing the component's current state.
 3. **Position Data**, JSON object containing the positions of all elements: {position}
+4. **Action Intent**, A possible user interaction intent category for the component: {action_intent}
 
+## 判断动作空间唯一性
+
+## 给出动作函数
+
+## 给出确定后动作
 ## Output Requirements
 Generate 3 different interactions for the component. Each interaction should contain:
 
@@ -133,7 +183,6 @@ Generate 3 different interactions for the component. Each interaction should con
   }}
 }}
 ```
-
 **Output:**
 ```json
 {{
