@@ -1,4 +1,4 @@
-JS_WITH_COMPONENT = """
+JS_WITH_COMPONENT = r"""
 import React from 'react';
 import './App.css';
 import {component_name} from './{component_name}';
@@ -6,14 +6,14 @@ import {component_name} from './{component_name}';
 function App() {{
   return (
     <div className="App">
-      <div className="container" style={{ {{
+      <div className="container" style={{{{
         maxWidth: '800px',
         margin: '20px auto',
         padding: '24px',
         backgroundColor: '#ffffff',
         borderRadius: '8px',
         overflow: 'visible', // 确保内容不会被裁剪
-    }}>
+    }}}}>
         <{component_name} />
       </div>
     </div>
@@ -23,11 +23,11 @@ function App() {{
 export default App;
 """
 
-JS_WITHOUT_COMPONENT = """
+JS_WITHOUT_COMPONENT = r"""
 import React from 'react';
 import './App.css';
 
-function App() {{
+function App() {
   return (
     <div className="App">
       <div className="container" style={{
@@ -42,7 +42,7 @@ function App() {{
       </div>
     </div>
   );
-}}
+}
 
 export default App;
 """
