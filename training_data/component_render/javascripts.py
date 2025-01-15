@@ -1,12 +1,25 @@
-JS_WITH_COMPONENT = """
+JS_WITH_COMPONENT = r"""
 import React from 'react';
 import './App.css';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 import {component_name} from './{component_name}';
 
 function App() {{
   return (
     <div className="App">
-      <{component_name} />
+      <div className="container" style={{{{
+        maxWidth: '800px',
+        margin: '20px auto',
+        padding: '24px',
+        backgroundColor: '#ffffff',
+        borderRadius: '8px',
+        overflow: 'visible', // 确保内容不会被裁剪
+    }}}}>
+        <{component_name} />
+      </div>
     </div>
   );
 }}
@@ -14,20 +27,34 @@ function App() {{
 export default App;
 """
 
-JS_WITHOUT_COMPONENT = """
+JS_WITHOUT_COMPONENT = r"""
 import React from 'react';
 import './App.css';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 
-function App() {{
-    return (
-        <div className="App">
-            <h1>Hello, World</h1>
-        </div>
-    );
-}}
+function App() {
+  return (
+    <div className="App">
+      <div className="container" style={{
+        maxWidth: '800px',
+        margin: '20px auto',
+        padding: '24px',
+        backgroundColor: '#ffffff',
+        borderRadius: '8px',
+        overflow: 'visible', // 确保内容不会被裁剪
+        }}>
+        <h1>Hello, World</h1>
+      </div>
+    </div>
+  );
+}
 
 export default App;
 """
+
 
 JS_EVAL_POSITION = """() => {
     const component = document.querySelector('.App');
@@ -140,15 +167,6 @@ JS_EVAL_POSITION = """() => {
     
     return {
         elements: getAllElementsInfo(allElements),
-        metadata: {
-            timestamp: new Date().toISOString(),
-            totalElements: allElements.length,
-            interactiveElementsCount: interactiveElements.length,
-            viewport: {
-                width: window.innerWidth,
-                height: window.innerHeight
-            }
-        }
     };
 }
 """

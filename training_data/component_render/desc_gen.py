@@ -16,12 +16,11 @@ client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
 class Desc(BaseModel):
     component_desc: str
-    action_descs: list[str]
 
 
 if __name__ == "__main__":
-    component_action_list = []
-    for component in COMPONENT_TYPE_LIST[:5]:
+    component_desc_list = []
+    for component in COMPONENT_TYPE_LIST[:10]:
         try:
             response = client.beta.chat.completions.parse(
                 model="gpt-4o-2024-08-06",
@@ -36,15 +35,14 @@ if __name__ == "__main__":
             )
             logger.info(str(response.choices[0].message.parsed))
             desc = response.choices[0].message.parsed
-            component_action_list.append(
+            component_desc_list.append(
                 {
                     "component_desc": desc.component_desc,
-                    "action_descs": desc.action_descs,
                 }
             )
 
         except Exception as e:
             logger.error(f"Error parsing GPT response: {e}")
 
-    with open("component_action_list.json", "w") as f:
-        json.dump(component_action_list, f, indent=4)
+    with open("component_desc_list.json", "w") as f:
+        json.dump(component_desc_list, f, indent=4)

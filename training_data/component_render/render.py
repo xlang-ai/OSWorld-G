@@ -6,16 +6,19 @@ import re
 import time
 import asyncio
 import base64
+import datetime
+from typing import List, Literal
 from logger import logger
 from playwright.async_api import async_playwright
 from openai import OpenAI
 from pydantic import BaseModel
 from killproc import kill_port
 from PIL import Image, ImageDraw, ImageFont
-from prompts import COMPONENT_PROMPT, ACTION_PROMPT
+from render_prompts import COMPONENT_PROMPT, ACTION_INTENT_PROMPT, ACTION_DETAIL_PROMPT
 from javascripts import JS_WITH_COMPONENT, JS_WITHOUT_COMPONENT, JS_EVAL_POSITION
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
-
+MAX_WORKERS = 5
 # Setup proxy and API key
 os.environ["HTTP_PROXY"] = "http://127.0.0.1:7890"
 os.environ["HTTPS_PROXY"] = "http://127.0.0.1:7890"
@@ -34,9 +37,16 @@ class ComponentCode(BaseModel):
     component_code: str
 
 
-class Action(BaseModel):
+class ActionDetail(BaseModel):
     thought_process: str
+    action_space_type: Literal["none", "unique", "discrete", "continuous"]
+    action_desc: str
+    action_discrete_params: List[str | int | float]
     action_code: str
+
+
+class ActionIntentList(BaseModel):
+    action_intent_list: List[str]
 
 
 class DataGenerator:
@@ -64,7 +74,7 @@ class DataGenerator:
         else:
             logger.warning("No page available to refresh")
 
-    def generate_component_data(
+    def generate_component_code(
         self,
         num_samples=1,
         component_desc="A star rating component with 5 stars, where 4 stars are selected by default",
@@ -85,27 +95,64 @@ class DataGenerator:
             response_format=ComponentCode,
         )
         try:
-            logger.info(str(response.choices[0].message.parsed))
             return response.choices[0].message.parsed
         except Exception as e:
             logger.error(f"Error parsing GPT response: {e}")
             return None
 
-    def generate_action_data(
-        self,
-        num_samples=1,
-        component_desc="A star rating component with 5 stars, where 4 stars are selected by default",
-        action_desc='Click the "CVPR2024" link in the conferences section on the right side of the screen.',
-        image_path="annotated_screenshot.png",
-        position=None,
-    ):
-        base64_image = encode_image(image_path)
-        prompt = ACTION_PROMPT.format(
-            action_desc=action_desc,
+    def generate_action_detail(self, args) -> ActionDetail:
+        i, action_intent, component_desc, component_name, position, base64_raw_image = (
+            args
+        )
+        prompt = ACTION_DETAIL_PROMPT.format(
             component_desc=component_desc,
+            component_name=component_name,
             position=position,
+            action_intent=action_intent,
         )
 
+        try:
+            response = client.beta.chat.completions.parse(
+                model="gpt-4o-2024-08-06",
+                messages=[
+                    {
+                        "role": "user",
+                        "content": [
+                            {"type": "text", "text": prompt},
+                            {
+                                "type": "image_url",
+                                "image_url": {
+                                    "url": f"data:image/jpeg;base64,{base64_raw_image}",
+                                },
+                            },
+                        ],
+                        "temperature": 1.0,
+                    }
+                ],
+                response_format=ActionDetail,
+            )
+            logger.info(f"action detail {i} generated")
+            return i, response.choices[0].message.parsed
+        except Exception as e:
+            logger.error(f"Error generating action detail {i}: {str(e)}")
+            return None
+
+    def generate_action_data(
+        self,
+        component_desc,
+        component_name,
+        raw_image_path,
+        annotated_image_path,
+        position,
+    ):
+        base64_raw_image = encode_image(raw_image_path)
+        base64_annotated_image = encode_image(annotated_image_path)
+        prompt = ACTION_INTENT_PROMPT.format(
+            component_desc=component_desc,
+            component_name=component_name,
+        )
+        # action intent generation
+        logger.info("generating action intent")
         response = client.beta.chat.completions.parse(
             model="gpt-4o-2024-08-06",
             messages=[
@@ -116,28 +163,69 @@ class DataGenerator:
                         {
                             "type": "image_url",
                             "image_url": {
-                                "url": f"data:image/jpeg;base64,{base64_image}",
+                                "url": f"data:image/jpeg;base64,{base64_raw_image}",
                             },
                         },
                     ],
                     "temperature": 1.0,
                 }
             ],
-            response_format=Action,
+            response_format=ActionIntentList,
         )
-        try:
-            # 提取JSON响应
-            logger.info(str(response.choices[0].message.parsed))
-            return response.choices[0].message.parsed
-        except Exception as e:
-            logger.error(f"Error parsing GPT response: {e}")
-            return None
+        action_intent_list = response.choices[0].message.parsed.action_intent_list
+
+        # TODO: action detail generation
+        # 主处理函数
+        action_detail_list = []
+        logger.info(
+            f"generating action detail for {component_name}'s {len(action_intent_list)} actions"
+        )
+
+        # 准备参数列表
+        args_list = [
+            (
+                i,
+                action_intent,
+                component_desc,
+                component_name,
+                position,
+                base64_raw_image,
+            )
+            for i, action_intent in enumerate(action_intent_list)
+        ]
+
+        # 使用线程池并行处理
+        with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+            # 提交所有任务
+            future_to_action = {
+                executor.submit(self.generate_action_detail, args): args
+                for args in args_list
+            }
+
+            # 收集结果
+            for future in as_completed(future_to_action):
+                args = future_to_action[future]
+                try:
+                    result = future.result()
+                    print(result)
+                    if result is not None:
+                        action_detail_list.append(result)
+                except Exception as e:
+                    logger.error(f"Task failed for action {args[0]}: {str(e)}")
+        action_detail_list = [
+            detail for _, detail in sorted(action_detail_list, key=lambda x: x[0])
+        ]
+        return action_intent_list, action_detail_list
 
     def extract_export_name(self, input_string):
         # Regular expression to match 'export default <ComponentName>'
-        match = re.search(r"export\s+default\s+([a-zA-Z0-9_]+);", input_string)
+        # 方案1：使用命名捕获组
+        pattern = r"export\s+default\s+(?:function\s+(?P<name1>\w+)\s*\(|(?P<name2>[a-zA-Z0-9_]+);)"
+        match = re.search(pattern, input_string)
         if match:
-            return match.group(1)
+            # 获取匹配到的名称（两个组中非None的那个）
+            function_name = match.group("name1") or match.group("name2")
+            return function_name
         else:
             return None
 
@@ -214,7 +302,7 @@ class DataGenerator:
         # 获取组件位置信息
         position = await self.page.evaluate(JS_EVAL_POSITION)
 
-        logger.info(f"Component position: {position}")
+        # logger.info(f"Component position: {position}")
 
         if position:
             # 保存位置信息
@@ -255,6 +343,21 @@ class DataGenerator:
             # Return the path to the saved screenshot
             return screenshot_path
 
+    def draw_point(self, draw, x, y, color="red", radius=3):
+        """绘制一个点"""
+        draw.ellipse(
+            [
+                (x - radius, y - radius),
+                (x + radius, y + radius),
+            ],
+            fill=color,
+        )
+
+    def draw_point_and_label(self, draw, x, y, label, font, color="red", radius=3):
+        """绘制点和标签"""
+        self.draw_point(draw, x, y, color, radius)
+        draw.text((x + 5, y + 5), label, fill=color, font=font)
+
     async def annotate_screenshot_component(
         self, component_name, position, screenshot_path, screenshot_folder
     ):
@@ -283,35 +386,45 @@ class DataGenerator:
                     # 获取颜色（交互式元素用红色，非交互式元素用绿色）
                     color = "red" if element["isInteractive"] else "green"
 
+                    # 获取坐标
+                    x_left = element["position"]["x_left"]
+                    y_top = element["position"]["y_top"]
+                    x_right = element["position"]["x_right"]
+                    y_bottom = element["position"]["y_bottom"]
+
                     # 绘制元素边框
                     draw.rectangle(
-                        [
-                            (
-                                element["position"]["x_left"],
-                                element["position"]["y_top"],
-                            ),
-                            (
-                                element["position"]["x_right"],
-                                element["position"]["y_bottom"],
-                            ),
-                        ],
+                        [(x_left, y_top), (x_right, y_bottom)],
                         outline=color,
                         width=2,
                     )
 
+                    # 添加四个角的坐标标注
+                    corner_coords = [
+                        (x_left, y_top, f"({x_left}, {y_top})"),
+                        (x_right, y_top, f"({x_right}, {y_top})"),
+                        (x_left, y_bottom, f"({x_left}, {y_bottom})"),
+                        (x_right, y_bottom, f"({x_right}, {y_bottom})"),
+                    ]
+
+                    for x, y, coord_text in corner_coords:
+                        draw.text(
+                            (x, y),
+                            coord_text,
+                            fill=color,
+                            font=font,
+                            anchor="mm",  # 居中对齐
+                        )
+
                     # 添加元素文本标注（如果有）
                     if element["text"]:
-                        # 截断过长的文本
                         text = (
                             element["text"][:30] + "..."
                             if len(element["text"]) > 30
                             else element["text"]
                         )
                         draw.text(
-                            (
-                                element["position"]["x_left"],
-                                element["position"]["y_top"] - 15,
-                            ),
+                            (x_left, y_top - 15),
                             text,
                             fill=color,
                             font=font,
@@ -340,12 +453,17 @@ class DataGenerator:
     async def annotate_screenshot_action(
         self,
         component_name,
+        action_intent,
+        action_space_type,
         action_desc,
+        action_thought,
+        action_discrete_params,
         action_code,
+        action_index,
         screenshot_path,
         screenshot_folder,
     ):
-        if action_code:
+        if action_code and action_space_type != "none":
             try:
                 img = Image.open(screenshot_path)
                 draw = ImageDraw.Draw(img)
@@ -356,45 +474,65 @@ class DataGenerator:
                 except:
                     font = ImageFont.load_default()
 
-                # 新的正则表达式，支持两种格式
-                pattern = r"(?:([a-zA-Z0-9_]+)\s*,\s*([a-zA-Z0-9_]+)\s*=\s*([-+]?\d*\.?\d+)\s*,\s*([-+]?\d*\.?\d+)|([a-zA-Z0-9_]+)\s*=\s*([-+]?\d*\.?\d+)\s*\n\s*([a-zA-Z0-9_]+)\s*=\s*([-+]?\d*\.?\d+))"
+                # 原有的命名坐标匹配
+                pattern = r"(?:([a-zA-Z0-9_]+)\s*,\s*([a-zA-Z0-9_]+)\s*=\s*([-+]?\d*\.?\d+)\s*,\s*([-+]?\d*\.?\d+)|([a-zA-Z0-9_]+)\s*=\s*([-+]?\d*\.?\d+)\s*\n\s*([a-zA-Z0-9_]+)\s*=\s*([-+]?\d*\.?\d+)|'([^']+)':\s*\((\d+),\s*(\d+)\))"
 
-                # 处理匹配结果的代码需要相应修改
+                # 新增：匹配所有坐标对的模式
+                coord_pattern = r"\((\d*\.?\d+)\s*,\s*(\d*\.?\d+)\)"
+
+                # 处理命名坐标
                 coordinates = re.findall(pattern, action_code)
                 for match in coordinates:
-                    # match是一个8元组：(x_name1, y_name1, x1, y1, x_name2, y_name2, x2, y2)
-                    # 前4个值是第一种格式的捕获组，后4个值是第二种格式的捕获组
-                    # 需要判断哪种格式匹配成功
-                    if match[0]:  # 第一种格式匹配成功
+                    if match[0]:  # 第一种格式
                         x_name, y_name = match[0], match[1]
                         x, y = float(match[2]), float(match[3])
-                    else:  # 第二种格式匹配成功
-                        x_name, y_name = match[4], match[5]
-                        x, y = float(match[6]), float(match[7])
-                    # 画点
-                    point_radius = 3
-                    draw.ellipse(
-                        [
-                            (x - point_radius, y - point_radius),
-                            (x + point_radius, y + point_radius),
-                        ],
-                        fill="red",
-                    )
-                    # 添加坐标文本
-                    draw.text(
-                        (x + 5, y + 5), f"({x_name}, {y_name})", fill="red", font=font
-                    )
+                    elif match[4]:  # 第二种格式
+                        x_name, y_name = match[4], match[6]
+                        x, y = float(match[5]), float(match[7])
+                    elif match[8]:  # 第三种格式
+                        x_name = y_name = match[8]
+                        x, y = float(match[9]), float(match[10])
+                    else:
+                        continue
+
+                    # 绘制命名坐标点和标签
+                    self.draw_point_and_label(draw, x, y, f"({x_name}, {y_name})", font)
+
+                # 处理所有坐标对
+                all_coords = re.findall(coord_pattern, action_code)
+                for x_str, y_str in all_coords:
+                    x, y = float(x_str), float(y_str)
+                    # 只绘制点，不添加标签
+                    self.draw_point(draw, x, y)
 
                 # 在图片底部标记action_desc和action_code
                 draw.text(
                     (img.width / 2, img.height - 500),
-                    action_desc,
+                    "action_intent: " + action_intent,
+                    fill="blue",
+                    font=font,
+                )
+                draw.text(
+                    (img.width / 2, img.height - 475),
+                    "action_desc: " + action_desc,
                     fill="blue",
                     font=font,
                 )
                 draw.text(
                     (img.width / 2, img.height - 450),
-                    action_code,
+                    "action_space_type: " + action_space_type,
+                    fill="blue",
+                    font=font,
+                )
+                draw.text(
+                    (img.width / 2, img.height - 425),
+                    "action_discrete_params: " + str(action_discrete_params),
+                    fill="blue",
+                    font=font,
+                )
+                draw.text(
+                    (img.width / 2, img.height - 400),
+                    "action_code: " + action_code.encode().decode("unicode-escape"),
                     fill="blue",
                     font=font,
                 )
@@ -402,7 +540,7 @@ class DataGenerator:
                 # 保存标注后的截图
                 annotated_path = (
                     Path(screenshot_folder)
-                    / f"{component_name}_annotated_action_{int(time.time())}.png"
+                    / f"{component_name}_annotated_action_{action_index}_{(time.time())}.png"
                 )
                 img.save(annotated_path)
                 logger.info(f"Saved annotated screenshot to {annotated_path}")
@@ -420,61 +558,61 @@ async def main():
     # 初始化浏览器
     await generator.initialize_browser()
     try:
+        component_desc = None
+        component_name = None
+        screenshot_path = None
+        annotated_component_path = None
+        annotated_action_paths = None
+        position = None
+        action_descs = None
+        action_thoughts = None
+        action_codes = None
+        action_intent_list = None
+        action_detail_list = None
 
+        # 创建screenshots文件夹
         screenshot_folder = Path("./screenshots")
         screenshot_folder.mkdir(parents=True, exist_ok=True)
-        # TODO: make 50 component descs based on UI com
-        # component_descs = [
-        #     "A rating component with 5 stars, where 4 stars are selected by default",
-        #     "An Excel-style table where users can click on cells and input content",
-        #     "A volume control slider that allows users to adjust the volume by clicking or dragging",
-        #     "A PowerPoint-style text box where users can resize or move it by dragging its eight control points on edges and corners",
-        #     "A Hello component that displays '你好，React！'",
-        # ]
-        # TODO: make 3 action descs for each component desc
-        # action_descs = [
-        #     [
-        #         "Click on the 2nd star of the rating component to select it",
-        #         "Click on the 4th star of the rating component to select it",
-        #         "Give a 3 star rating",
-        #     ],
-        #     [
-        #         "Click on the first cell of the Excel-style table and input <content>",
-        #         "Click on the last cell of the Excel-style table and input <content>",
-        #         "Click on the 3rd cell of the Excel-style table and input <content>",
-        #     ],
-        #     [
-        #         "Click on the volume slider to set the volume to <x>%",
-        #         "Click on the volume slider to set the volume to <x>%",
-        #         "Click on the volume slider to set the volume to <x>%",
-        #     ],
-        #     [
-        #         "Drag the bottom-right corner of the PowerPoint-style text box to resize it, increasing its width by <x> and height by <y>",
-        #         "Drag the bottom-right corner of the PowerPoint-style text box to resize it, increasing its width by <x> and height by <y>",
-        #         "Drag the bottom-right corner of the PowerPoint-style text box to resize it, increasing its width by <x> and height by <y>",
-        #     ],
-        #     "Click on the space between '你好' and '，React！'",
-        # ]
-        with open("component_action_list.json", "r") as f:
-            component_action_list = json.load(f)
+        # with open("component_desc_list.json", "r") as f:
+        # component_desc_list = json.load(f)
+        component_desc_list = [
+            "Checkbox-Checkboxes allow the user to select one or more items from a set. Checkboxes can be used to turn an option on or off. If you have multiple options appearing in a list, you can preserve space by using checkboxes instead of on/off switches. If you have a single option, avoid using a checkbox and use an on/off switch instead.FormGroup is a helpful wrapper used to group selection control components.",
+            "Floating Action Button-A Floating Action Button (FAB) performs the primary, or most common, action on a screen. A floating action button appears in front of all screen content, typically as a circular shape with an icon in its center. FABs come in two types: regular, and extended. Only use a FAB if it is the most suitable way to present a screen's primary action. Only one component is recommended per screen to represent the most common action. The floating action button animates onto the screen as an expanding piece of material, by default. A floating action button that spans multiple lateral screens (such as tabbed screens) should briefly disappear, then reappear if its action changes. The Zoom transition can be used to achieve this. Note that since both the exiting and entering animations are triggered at the same time, we use enterDelay to allow the outgoing Floating Action Button's animation to finish before the new one enters.",
+            "Transfer List-A Transfer List (or 'shuttle') enables the user to move one or more list items between lists. For completeness, this example includes buttons for 'move all', but not every transfer list needs these.",
+            "Divider--The Divider component provides a thin, unobtrusive line for grouping elements to reinforce visual hierarchy.",
+            "Table-Tables display sets of data. They can be fully customized. Tables display information in a way that's easy to scan, so that users can look for patterns and insights. They can be embedded in primary content, such as cards. They can include: A corresponding visualization Navigation Tools to query and manipulate data. The Table component has a close mapping to the native <table> elements. This constraint makes building rich data tables challenging. The DataGrid component is designed for use-cases that are focused on handling large amounts of tabular data. While it comes with a more rigid structure, in exchange, you gain more powerful features.",
+        ]
+        with open("component_code_list_sample.txt", "r") as f:
+            # 读取整个文件内容
+            content = f.read()
 
-        # 生成组件数据
-        for i in range(len(component_action_list)):
-            component_desc = component_action_list[i]["component_desc"]
-            action_descs = component_action_list[i]["action_descs"]
-            logger.info(f"Generating component data for {component_desc}")
-            component_data = generator.generate_component_data(
-                num_samples=1, component_desc=component_desc
-            )
-            logger.info(f"Component data generated")
-            if component_data:
-                # 取第一个组件示例
-                component_code = component_data.component_code
+            # 如果内容是Python列表形式的字符串，可以用ast.literal_eval安全地转换
+            from ast import literal_eval
+
+            try:
+                component_code_list = literal_eval(content)
+            except:
+                print("解析失败，请检查文件格式")
+        for i in range(len(component_desc_list)):
+            # component_desc = component_desc_list[i]["component_desc"]
+            # STEP 1: 生成组件代码
+            # TODO: 从MUI.com爬取组件描述和代码
+            # logger.info(f"Generating component code for {component_desc}")
+            # component_code = generator.generate_component_code(
+            #     num_samples=1, component_desc=component_desc
+            # )
+            # logger.info(f"Component code generated")
+            component_desc = component_desc_list[i]
+            component_code = component_code_list[i]
+            if component_code:
+                # STEP 2: 提取组件名称
+                # component_code = component_code.component_code
+                component_code = component_code_list[i]
                 logger.info(f"Extracting component name")
                 component_name = generator.extract_export_name(component_code)
                 logger.info(f"Component name: {component_name}")
 
-                # 创建并启动React应用
+                # STEP 3: 创建并启动React应用，渲染组件，进行截图，并获取组件位置信息
                 logger.info(f"Creating and starting React app")
                 position, screenshot_path = await generator.refresh_react_app(
                     component_code, component_name, screenshot_folder
@@ -482,6 +620,7 @@ async def main():
                 logger.info(f"React app created and started")
 
                 if position:
+                    # STEP 4: 在截图中标注组件位置信息
                     logger.info(f"Annotating component screenshot")
                     annotated_component_path = (
                         await generator.annotate_screenshot_component(
@@ -492,46 +631,74 @@ async def main():
 
                 if screenshot_path:
                     annotated_action_paths = []
-                    action_thoughts = []
-                    action_codes = []
-                    for j in range(len(action_descs)):
-                        action_desc = action_descs[j]
-                        logger.info(f"Generating action data")
-                        action_data = generator.generate_action_data(
-                            num_samples=1,
+                    # action_descs = []
+                    # action_thoughts = []
+                    # action_codes = []
+                    # STEP 5: 生成动作数据
+                    # TODO: 2-stage action data generation, first intent, then detail
+                    logger.info(f"Generating action data")
+                    action_intent_list, action_detail_list = (
+                        generator.generate_action_data(
                             component_desc=component_desc,
-                            action_desc=action_desc,
-                            # TODO: 标注前截图 vs 标注后截图 ？
-                            # image_path=screenshot_path,
-                            image_path=annotated_component_path,
+                            component_name=component_name,
+                            raw_image_path=screenshot_path,
+                            annotated_image_path=annotated_component_path,
                             position=position,
                         )
-                        logger.info(f"Action data generated: {action_data}")
+                    )
+                    with open("action_intent.json", "a") as f:
+                        json.dump(action_intent_list, f, indent=4)
+                    with open("action_detail.json", "a") as f:
+                        json.dump(
+                            [
+                                action_detail.model_dump()
+                                for action_detail in action_detail_list
+                            ],
+                            f,
+                            indent=4,
+                        )
+                    logger.info(f"Action data generated")
 
-                        # 从action_data中提取action_code中的常量，标注在screenshot中
-                        action_thought = action_data.thought_process
-                        action_code = action_data.action_code
+                    for i in range(len(action_intent_list)):
+                        # STEP 6: 从action_data中提取action_code中的常量，在截图中标注动作位置信息
+                        action_intent = action_intent_list[i]
+                        action_space_type = action_detail_list[i].action_space_type
+                        action_desc = action_detail_list[i].action_desc
+                        action_thought = action_detail_list[i].thought_process
+                        action_discrete_params = action_detail_list[
+                            i
+                        ].action_discrete_params
+                        action_code = action_detail_list[i].action_code
 
                         annotated_action_path = (
                             await generator.annotate_screenshot_action(
                                 component_name,
+                                action_intent,
+                                action_space_type,
                                 action_desc,
+                                action_thought,
+                                action_discrete_params,
                                 action_code,
+                                i,
                                 screenshot_path,
                                 screenshot_folder,
                             )
                         )
                         annotated_action_paths.append(annotated_action_path)
-                        action_thoughts.append(action_thought)
-                        action_codes.append(action_code)
-
-                # input("Press Enter to check the next one...")
+                        # action_descs.append(action_desc)
+                        # action_thoughts.append(action_thought)
+                        # action_codes.append(action_code)
+                # STEP 7: 保存组件代码到固定位置
                 component_js_path = Path("./react-app/src") / f"{component_name}.js"
                 component_js_path.rename(
                     Path("./component_code") / f"{component_name}_{time.time()}.js"
                 )
 
-                with open("data.jsonl", "a") as f:
+                # STEP 8: 保存数据到jsonl文件
+                with open(
+                    f"data_{datetime.datetime.now().strftime('%Y-%m-%d')}_version_1.jsonl",
+                    "a",
+                ) as f:
                     f.write(
                         json.dumps(
                             {
@@ -542,11 +709,13 @@ async def main():
                                 ),
                                 "screenshot_path": screenshot_path,
                                 "annotated_component_path": annotated_component_path,
-                                "annotated_action_path": annotated_action_path,
+                                "annotated_action_path": annotated_action_paths,
                                 "position_info": position,
-                                "action_desc": action_descs,
-                                "action_thought": action_thought,
-                                "action_code": action_code,
+                                "action_intent_list": action_intent_list,
+                                "action_detail_list": [
+                                    action_detail.model_dump()
+                                    for action_detail in action_detail_list
+                                ],
                             },
                             indent=4,
                         )
