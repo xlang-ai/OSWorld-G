@@ -552,6 +552,31 @@ class DataGenerator:
                 return None
 
 
+def process_component_tree(component_tree):
+    """
+    处理组件树，为每个节点添加完整的描述路径
+    Args:
+        component_tree_list: 组件树列表
+    Returns:
+        处理后的组件树列表
+    """
+    def get_full_desc(node, parent_desc=""):
+        """递归获取完整描述"""
+        node_list = []
+        # 更新节点
+        # print(node)
+        for i, code_path in enumerate(node["code_path"]):
+            if code_path:
+                node_list.append({"name": node["name"], "introduction": parent_desc + "\n" + node["introduction"][i], "code_path": code_path})
+        # 处理子节点
+        for child in node.get("children", []):
+            node_list.extend(get_full_desc(child, node["introduction"][0]))
+            
+        return node_list
+
+    return get_full_desc(component_tree.copy())
+
+
 async def main():
     generator = DataGenerator()
     await generator.initialize_react_app()
@@ -573,130 +598,111 @@ async def main():
         # 创建screenshots文件夹
         screenshot_folder = Path("./screenshots")
         screenshot_folder.mkdir(parents=True, exist_ok=True)
-        # with open("component_desc_list.json", "r") as f:
-        # component_desc_list = json.load(f)
-        component_desc_list = [
-            "Checkbox-Checkboxes allow the user to select one or more items from a set. Checkboxes can be used to turn an option on or off. If you have multiple options appearing in a list, you can preserve space by using checkboxes instead of on/off switches. If you have a single option, avoid using a checkbox and use an on/off switch instead.FormGroup is a helpful wrapper used to group selection control components.",
-            "Floating Action Button-A Floating Action Button (FAB) performs the primary, or most common, action on a screen. A floating action button appears in front of all screen content, typically as a circular shape with an icon in its center. FABs come in two types: regular, and extended. Only use a FAB if it is the most suitable way to present a screen's primary action. Only one component is recommended per screen to represent the most common action. The floating action button animates onto the screen as an expanding piece of material, by default. A floating action button that spans multiple lateral screens (such as tabbed screens) should briefly disappear, then reappear if its action changes. The Zoom transition can be used to achieve this. Note that since both the exiting and entering animations are triggered at the same time, we use enterDelay to allow the outgoing Floating Action Button's animation to finish before the new one enters.",
-            "Transfer List-A Transfer List (or 'shuttle') enables the user to move one or more list items between lists. For completeness, this example includes buttons for 'move all', but not every transfer list needs these.",
-            "Divider--The Divider component provides a thin, unobtrusive line for grouping elements to reinforce visual hierarchy.",
-            "Table-Tables display sets of data. They can be fully customized. Tables display information in a way that's easy to scan, so that users can look for patterns and insights. They can be embedded in primary content, such as cards. They can include: A corresponding visualization Navigation Tools to query and manipulate data. The Table component has a close mapping to the native <table> elements. This constraint makes building rich data tables challenging. The DataGrid component is designed for use-cases that are focused on handling large amounts of tabular data. While it comes with a more rigid structure, in exchange, you gain more powerful features.",
-        ]
-        with open("component_code_list_sample.txt", "r") as f:
+        with open("component_tree.json", "r") as f:
             # 读取整个文件内容
-            content = f.read()
+            content = json.load(f)
+            component_tree_list = content["components"]
 
-            # 如果内容是Python列表形式的字符串，可以用ast.literal_eval安全地转换
-            from ast import literal_eval
+        for i in range(len(component_tree_list[:1])):
+            component_node_list = process_component_tree(component_tree_list[i])
+            component_root_name = component_tree_list[i]["name"]
+            for component_node in component_node_list:
+                component_desc = component_node["introduction"]
+                component_code_path = os.path.join("UIwebsite_doc", "material", "components", component_root_name, component_node["code_path"])
+                component_code = None
+                with open(component_code_path, "r") as f:
+                    component_code = f.read()
+                if component_code:
+                    # STEP 2: 提取组件名称
+                    # component_code = component_code.component_code
+                    component_name = component_node["name"]
 
-            try:
-                component_code_list = literal_eval(content)
-            except:
-                print("解析失败，请检查文件格式")
-        for i in range(len(component_desc_list)):
-            # component_desc = component_desc_list[i]["component_desc"]
-            # STEP 1: 生成组件代码
-            # TODO: 从MUI.com爬取组件描述和代码
-            # logger.info(f"Generating component code for {component_desc}")
-            # component_code = generator.generate_component_code(
-            #     num_samples=1, component_desc=component_desc
-            # )
-            # logger.info(f"Component code generated")
-            component_desc = component_desc_list[i]
-            component_code = component_code_list[i]
-            if component_code:
-                # STEP 2: 提取组件名称
-                # component_code = component_code.component_code
-                component_code = component_code_list[i]
-                logger.info(f"Extracting component name")
-                component_name = generator.extract_export_name(component_code)
-                logger.info(f"Component name: {component_name}")
-
-                # STEP 3: 创建并启动React应用，渲染组件，进行截图，并获取组件位置信息
-                logger.info(f"Creating and starting React app")
-                position, screenshot_path = await generator.refresh_react_app(
-                    component_code, component_name, screenshot_folder
-                )
-                logger.info(f"React app created and started")
-
-                if position:
-                    # STEP 4: 在截图中标注组件位置信息
-                    logger.info(f"Annotating component screenshot")
-                    annotated_component_path = (
-                        await generator.annotate_screenshot_component(
-                            component_name, position, screenshot_path, screenshot_folder
-                        )
+                    # STEP 3: 创建并启动React应用，渲染组件，进行截图，并获取组件位置信息
+                    logger.info(f"Creating and starting React app")
+                    position, screenshot_path = await generator.refresh_react_app(
+                        component_code, component_name, screenshot_folder
                     )
-                    logger.info(f"Annotated component screenshot")
+                    logger.info(f"React app created and started")
 
-                if screenshot_path:
-                    annotated_action_paths = []
-                    # action_descs = []
-                    # action_thoughts = []
-                    # action_codes = []
-                    # STEP 5: 生成动作数据
-                    # TODO: 2-stage action data generation, first intent, then detail
-                    logger.info(f"Generating action data")
-                    action_intent_list, action_detail_list = (
-                        generator.generate_action_data(
-                            component_desc=component_desc,
-                            component_name=component_name,
-                            raw_image_path=screenshot_path,
-                            annotated_image_path=annotated_component_path,
-                            position=position,
-                        )
-                    )
-                    with open("action_intent.json", "a") as f:
-                        json.dump(action_intent_list, f, indent=4)
-                    with open("action_detail.json", "a") as f:
-                        json.dump(
-                            [
-                                action_detail.model_dump()
-                                for action_detail in action_detail_list
-                            ],
-                            f,
-                            indent=4,
-                        )
-                    logger.info(f"Action data generated")
-
-                    for i in range(len(action_intent_list)):
-                        # STEP 6: 从action_data中提取action_code中的常量，在截图中标注动作位置信息
-                        action_intent = action_intent_list[i]
-                        action_space_type = action_detail_list[i].action_space_type
-                        action_desc = action_detail_list[i].action_desc
-                        action_thought = action_detail_list[i].thought_process
-                        action_discrete_params = action_detail_list[
-                            i
-                        ].action_discrete_params
-                        action_code = action_detail_list[i].action_code
-
-                        annotated_action_path = (
-                            await generator.annotate_screenshot_action(
-                                component_name,
-                                action_intent,
-                                action_space_type,
-                                action_desc,
-                                action_thought,
-                                action_discrete_params,
-                                action_code,
-                                i,
-                                screenshot_path,
-                                screenshot_folder,
+                    if position:
+                        # STEP 4: 在截图中标注组件位置信息
+                        logger.info(f"Annotating component screenshot")
+                        annotated_component_path = (
+                            await generator.annotate_screenshot_component(
+                                component_name, position, screenshot_path, screenshot_folder
                             )
                         )
-                        annotated_action_paths.append(annotated_action_path)
-                        # action_descs.append(action_desc)
-                        # action_thoughts.append(action_thought)
-                        # action_codes.append(action_code)
-                # STEP 7: 保存组件代码到固定位置
-                component_js_path = Path("./react-app/src") / f"{component_name}.js"
-                component_js_path.rename(
-                    Path("./component_code") / f"{component_name}_{time.time()}.js"
-                )
+                        logger.info(f"Annotated component screenshot")
+
+                    if screenshot_path:
+                        annotated_action_paths = []
+                        # action_descs = []
+                        # action_thoughts = []
+                        # action_codes = []
+                        # STEP 5: 生成动作数据
+                        # TODO: 2-stage action data generation, first intent, then detail
+                        logger.info(f"Generating action data")
+                        action_intent_list, action_detail_list = (
+                            generator.generate_action_data(
+                                component_desc=component_desc,
+                                component_name=component_name,
+                                raw_image_path=screenshot_path,
+                                annotated_image_path=annotated_component_path,
+                                position=position,
+                            )
+                        )
+                        with open("action_intent.json", "a") as f:
+                            json.dump(action_intent_list, f, indent=4)
+                        with open("action_detail.json", "a") as f:
+                            json.dump(
+                                [
+                                    action_detail.model_dump()
+                                    for action_detail in action_detail_list
+                                ],
+                                f,
+                                indent=4,
+                            )
+                        logger.info(f"Action data generated")
+
+                        for i in range(len(action_intent_list)):
+                            # STEP 6: 从action_data中提取action_code中的常量，在截图中标注动作位置信息
+                            action_intent = action_intent_list[i]
+                            action_space_type = action_detail_list[i].action_space_type
+                            action_desc = action_detail_list[i].action_desc
+                            action_thought = action_detail_list[i].thought_process
+                            action_discrete_params = action_detail_list[
+                                i
+                            ].action_discrete_params
+                            action_code = action_detail_list[i].action_code
+
+                            annotated_action_path = (
+                                await generator.annotate_screenshot_action(
+                                    component_name,
+                                    action_intent,
+                                    action_space_type,
+                                    action_desc,
+                                    action_thought,
+                                    action_discrete_params,
+                                    action_code,
+                                    i,
+                                    screenshot_path,
+                                    screenshot_folder,
+                                )
+                            )
+                            annotated_action_paths.append(annotated_action_path)
+                            # action_descs.append(action_desc)
+                            # action_thoughts.append(action_thought)
+                            # action_codes.append(action_code)
+                    # STEP 7: 保存组件代码到固定位置
+                    component_js_path = Path("./react-app/src") / f"{component_name}.js"
+                    os.makedirs(Path("./component_code"), exist_ok=True)
+                    component_js_path.rename(
+                        Path("./component_code") / f"{component_name}_{time.time()}.js"
+                    )
 
                 # STEP 8: 保存数据到jsonl文件
                 with open(
-                    f"data_{datetime.datetime.now().strftime('%Y-%m-%d')}_version_1.jsonl",
+                    f"data_{datetime.datetime.now().strftime('%Y-%m-%d')}.jsonl",
                     "a",
                 ) as f:
                     f.write(
@@ -715,7 +721,7 @@ async def main():
                                 "action_detail_list": [
                                     action_detail.model_dump()
                                     for action_detail in action_detail_list
-                                ],
+                                ] if action_detail_list else [],
                             },
                             indent=4,
                         )
