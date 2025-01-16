@@ -1,0 +1,164 @@
+{
+  "name": "radio-buttons",
+  "introduction": [
+    "# Radio Group\n\n<p class=\"description\">The Radio Group allows the user to select one option from a set.</p>\n\nUse radio buttons when the user needs to see all available options.\nIf available options can be collapsed, consider using a [Select component](/material-ui/react-select/) because it uses less space.\n\nRadio buttons should have the most commonly used option selected by default."
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Radio group",
+      "introduction": [
+        "Radio group\n\n`RadioGroup` is a helpful wrapper used to group `Radio` components that provides an easier API, and proper keyboard accessibility to the group."
+      ],
+      "code_path": [
+        "RadioButtonsGroup.js"
+      ],
+      "children": [
+        {
+          "name": "Direction",
+          "introduction": [
+            "Direction\n\nTo lay out the buttons horizontally, set the `row` prop:"
+          ],
+          "code_path": [
+            "RowRadioButtonsGroup.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Controlled",
+          "introduction": [
+            "Controlled\n\nYou can control the radio with the `value` and `onChange` props:"
+          ],
+          "code_path": [
+            "ControlledRadioButtonsGroup.js"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Standalone radio buttons",
+      "introduction": [
+        "Standalone radio buttons\n\n`Radio` can also be used standalone, without the RadioGroup wrapper."
+      ],
+      "code_path": [
+        "RadioButtons.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Size",
+      "introduction": [
+        "Size\n\nUse the `size` prop or customize the font size of the svg icons to change the size of the radios."
+      ],
+      "code_path": [
+        "SizeRadioButtons.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Color",
+      "introduction": [
+        "Color"
+      ],
+      "code_path": [
+        "ColorRadioButtons.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Label placement",
+      "introduction": [
+        "Label placement\n\nYou can change the placement of the label with the `FormControlLabel` component's `labelPlacement` prop:"
+      ],
+      "code_path": [
+        "FormControlLabelPlacement.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Show error",
+      "introduction": [
+        "Show error\n\nIn general, radio buttons should have a value selected by default. If this is not the case, you can display an error if no value is selected when the form is submitted:"
+      ],
+      "code_path": [
+        "ErrorRadios.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Customization",
+      "introduction": [
+        "Customization\n\nHere is an example of customizing the component.\nYou can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/)."
+      ],
+      "code_path": [
+        "CustomizedRadios.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "`useRadioGroup`",
+      "introduction": [
+        "`useRadioGroup`\n\nFor advanced customization use cases, a `useRadioGroup()` hook is exposed.\nIt returns the context value of the parent radio group.\nThe Radio component uses this hook internally."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "API",
+          "introduction": [
+            "API\n\n```jsx\nimport { useRadioGroup } from '@mui/material/RadioGroup';\n```"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": [
+            {
+              "name": "Returns",
+              "introduction": [
+                "Returns\n\n`value` (_object_):\n\n- `value.name` (_string_ [optional]): The name used to reference the value of the control.\n- `value.onChange` (_func_ [optional]): Callback fired when a radio button is selected.\n- `value.value` (_any_ [optional]): Value of the selected radio button."
+              ],
+              "code_path": [
+                null
+              ],
+              "children": []
+            },
+            {
+              "name": "Example",
+              "introduction": [
+                "Example"
+              ],
+              "code_path": [
+                "UseRadioGroup.js"
+              ],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "When to use",
+      "introduction": [
+        "When to use\n\n- [Checkboxes vs. Radio Buttons](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Accessibility",
+      "introduction": [
+        "Accessibility\n\n(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/radio/)\n\n- All form controls should have labels, and this includes radio buttons, checkboxes, and switches. In most cases, this is done by using the `<label>` element ([FormControlLabel](/material-ui/api/form-control-label/)).\n\n- When a label can't be used, it's necessary to add an attribute directly to the input component.\n  In this case, you can apply the additional attribute (for example `aria-label`, `aria-labelledby`, `title`) via the `inputProps` property.\n\n```jsx\n<Radio\n  value=\"radioA\"\n  inputProps={{\n    'aria-label': 'Radio A',\n  }}\n/>\n```"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    }
+  ]
+}

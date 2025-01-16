@@ -1,0 +1,162 @@
+{
+  "name": "lists",
+  "introduction": [
+    "# Lists\n\n<p class=\"description\">Lists are continuous, vertical indexes of text or images.</p>\n\nLists are a continuous group of text or images. They are composed of items containing primary and supplemental actions, which are represented by icons and text."
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Introduction",
+      "introduction": [
+        "Introduction\n\nLists present information in a concise, easy-to-follow format through a continuous, vertical index of text or images.\n\nMaterial UI Lists are implemented using a collection of related components:\n\n- List: a wrapper for list items. Renders as a `<ul>` by default.\n- List Item: a common list item. Renders as an `<li>` by default.\n- List Item Button: an action element to be used inside a list item.\n- List Item Icon: an icon to be used inside of a list item.\n- List Item Avatar: an avatar to be used inside of a list item.\n- List Item Text: a container inside a list item, used to display text content.\n- List Divider: a separator between list items.\n- List Subheader: a label for a nested list.\n\n{{\"demo\": \"BasicList.js\", \"bg\": true}}\n\nThe last item of the previous demo shows how you can render a link:\n\n```jsx\n<ListItemButton component=\"a\" href=\"#simple-list\">\n  <ListItemText primary=\"Spam\" />\n</ListItemButton>\n```\n\nYou can find a [demo with React Router following this section](/material-ui/integrations/routing/#list) of the documentation."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Basics",
+      "introduction": [
+        "Basics\n\n```jsx\nimport List from '@mui/material/List';\nimport ListItem from '@mui/material/ListItem';\n```"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Nested List",
+      "introduction": [
+        "Nested List\n\n{{\"demo\": \"NestedList.js\", \"bg\": true}}"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Folder List",
+      "introduction": [
+        "Folder List\n\n{{\"demo\": \"FolderList.js\", \"bg\": true}}"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Interactive",
+      "introduction": [
+        "Interactive\n\nBelow is an interactive demo that lets you explore the visual results of the different settings:\n\n{{\"demo\": \"InteractiveList.js\", \"bg\": true}}"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Selected ListItem",
+      "introduction": [
+        "Selected ListItem\n\n{{\"demo\": \"SelectedListItem.js\", \"bg\": true}}"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Align list items",
+      "introduction": [
+        "Align list items\n\nWhen displaying three lines or more, the avatar is not aligned at the top.\nYou should set the `alignItems=\"flex-start\"` prop to align the avatar at the top, following the Material Design guidelines:\n\n{{\"demo\": \"AlignItemsList.js\", \"bg\": true}}"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "List Controls",
+      "introduction": [
+        "List Controls"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Checkbox",
+          "introduction": [
+            "Checkbox\n\nA checkbox can either be a primary action or a secondary action.\n\nThe checkbox is the primary action and the state indicator for the list item. The comment button is a secondary action and a separate target.\n\n{{\"demo\": \"CheckboxList.js\", \"bg\": true}}\n\nThe checkbox is the secondary action for the list item and a separate target.\n\n{{\"demo\": \"CheckboxListSecondary.js\", \"bg\": true}}"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Switch",
+          "introduction": [
+            "Switch\n\nThe switch is the secondary action and a separate target.\n\n{{\"demo\": \"SwitchListSecondary.js\", \"bg\": true}}"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Sticky subheader",
+      "introduction": [
+        "Sticky subheader\n\nUpon scrolling, subheaders remain pinned to the top of the screen until pushed off screen by the next subheader.\nThis feature relies on CSS sticky positioning.\n\n{{\"demo\": \"PinnedSubheaderList.js\", \"bg\": true}}"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Inset List Item",
+      "introduction": [
+        "Inset List Item\n\nThe `inset` prop enables a list item that does not have a leading icon or avatar to align correctly with items that do.\n\n{{\"demo\": \"InsetList.js\", \"bg\": true}}"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Gutterless list",
+      "introduction": [
+        "Gutterless list\n\nWhen rendering a list within a component that defines its own gutters, `ListItem` gutters can be disabled with `disableGutters`.\n\n{{\"demo\": \"GutterlessList.js\", \"bg\": true}}"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Virtualized List",
+      "introduction": [
+        "Virtualized List\n\nIn the following example, we demonstrate how to use [react-window](https://github.com/bvaughn/react-window) with the `List` component.\nIt renders 200 rows and can easily handle more.\nVirtualization helps with performance issues.\n\n{{\"demo\": \"VirtualizedList.js\", \"bg\": true}}\n\nThe use of [react-window](https://github.com/bvaughn/react-window) when possible is encouraged.\nIf this library doesn't cover your use case, you should consider using alternatives like [react-virtuoso](https://github.com/petyosi/react-virtuoso)."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Customization",
+      "introduction": [
+        "Customization\n\nHere are some examples of customizing the component.\nYou can learn more about this in the\n[overrides documentation page](/material-ui/customization/how-to-customize/)."
+      ],
+      "code_path": [
+        "CustomizedList.js"
+      ],
+      "children": []
+    }
+  ]
+}

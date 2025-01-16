@@ -1,0 +1,81 @@
+{
+  "name": "button-group",
+  "introduction": [
+    "# Button Group\n\n<p class=\"description\">The ButtonGroup component can be used to group related buttons.</p>"
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Basic button group",
+      "introduction": [
+        "Basic button group\n\nThe buttons can be grouped by wrapping them with the `ButtonGroup` component.\nThey need to be immediate children."
+      ],
+      "code_path": [
+        "BasicButtonGroup.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Button variants",
+      "introduction": [
+        "Button variants\n\nAll the standard button variants are supported."
+      ],
+      "code_path": [
+        "VariantButtonGroup.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Sizes and colors",
+      "introduction": [
+        "Sizes and colors\n\nThe `size` and `color` props can be used to control the appearance of the button group."
+      ],
+      "code_path": [
+        "GroupSizesColors.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Vertical group",
+      "introduction": [
+        "Vertical group\n\nThe button group can be displayed vertically using the `orientation` prop."
+      ],
+      "code_path": [
+        "GroupOrientation.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Split button",
+      "introduction": [
+        "Split button\n\n`ButtonGroup` can also be used to create a split button. The dropdown can change the button action (as in this example) or be used to immediately trigger a related action."
+      ],
+      "code_path": [
+        "SplitButton.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Disabled elevation",
+      "introduction": [
+        "Disabled elevation\n\nYou can remove the elevation with the `disableElevation` prop."
+      ],
+      "code_path": [
+        "DisableElevation.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Loading",
+      "introduction": [
+        "Loading\n\nUse the `loading` prop from `Button` to set buttons in a loading state and disable interactions."
+      ],
+      "code_path": [
+        "LoadingButtonGroup.js"
+      ],
+      "children": []
+    }
+  ]
+}

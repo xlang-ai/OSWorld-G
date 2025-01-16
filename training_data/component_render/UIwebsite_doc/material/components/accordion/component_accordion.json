@@ -1,0 +1,143 @@
+{
+  "name": "accordion",
+  "introduction": [
+    "# Accordion\n\n<p class=\"description\">The Accordion component lets users show and hide sections of related content on a page.</p>"
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Introduction",
+      "introduction": [
+        "Introduction\n\nThe Material UI Accordion component includes several complementary utility components to handle various use cases:\n\n- Accordion: the wrapper for grouping related components.\n- Accordion Summary: the wrapper for the Accordion header, which expands or collapses the content when clicked.\n- Accordion Details: the wrapper for the Accordion content.\n- Accordion Actions: an optional wrapper that groups a set of buttons.\n\n{{\"demo\": \"AccordionUsage.js\", \"bg\": true}}\n\n:::info\nThis component is no longer documented in the [Material Design guidelines](https://m2.material.io/), but Material UI will continue to support it.\n:::"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Basics",
+      "introduction": [
+        "Basics\n\n```jsx\nimport Accordion from '@mui/material/Accordion';\nimport AccordionDetails from '@mui/material/AccordionDetails';\nimport AccordionSummary from '@mui/material/AccordionSummary';\n```"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Expand icon",
+          "introduction": [
+            "Expand icon\n\nUse the `expandIcon` prop on the Accordion Summary component to change the expand indicator icon.\nThe component handles the turning upside-down transition automatically.\n\n{{\"demo\": \"AccordionExpandIcon.js\", \"bg\": true}}"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Expanded by default",
+          "introduction": [
+            "Expanded by default\n\nUse the `defaultExpanded` prop on the Accordion component to have it opened by default.\n\n{{\"demo\": \"AccordionExpandDefault.js\", \"bg\": true}}"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Transition",
+          "introduction": [
+            "Transition\n\nUse the `slots.transition` and `slotProps.transition` props to change the Accordion's default transition.\n\n{{\"demo\": \"AccordionTransition.js\", \"bg\": true}}"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Disabled item",
+          "introduction": [
+            "Disabled item\n\nUse the `disabled` prop on the Accordion component to disable interaction and focus.\n\n{{\"demo\": \"DisabledAccordion.js\", \"bg\": true}}"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Controlled Accordion",
+          "introduction": [
+            "Controlled Accordion\n\nThe Accordion component can be controlled or uncontrolled.\n\n{{\"demo\": \"ControlledAccordions.js\", \"bg\": true}}\n\n:::info\n\n- A component is **controlled** when it's managed by its parent using props.\n- A component is **uncontrolled** when it's managed by its own local state.\n\nLearn more about controlled and uncontrolled components in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).\n:::"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Customization",
+      "introduction": [
+        "Customization"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Only one expanded at a time",
+          "introduction": [
+            "Only one expanded at a time\n\nUse the `expanded` prop with React's `useState` hook to allow only one Accordion item to be expanded at a time.\nThe demo below also shows a bit of visual customization.\n\n{{\"demo\": \"CustomizedAccordions.js\", \"bg\": true}}"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Changing heading level",
+          "introduction": [
+            "Changing heading level\n\nBy default, the Accordion uses an `h3` element for the heading. You can change the heading element using the `slotProps.heading.component` prop to ensure the correct heading hierarchy in your document.\n\n```jsx\n<Accordion slotProps={{ heading: { component: 'h4' } }}>\n  <AccordionSummary\n    expandIcon={<ExpandMoreIcon />}\n    aria-controls=\"panel1-content\"\n    id=\"panel1-header\"\n  >\n    Accordion\n  </AccordionSummary>\n  <AccordionDetails>\n    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada\n    lacus ex, sit amet blandit leo lobortis eget.\n  </AccordionDetails>\n</Accordion>\n```"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Performance",
+      "introduction": [
+        "Performance\n\nThe Accordion content is mounted by default even if it's not expanded.\nThis default behavior has server-side rendering and SEO in mind.\n\nIf you render the Accordion Details with a big component tree nested inside, or if you have many Accordions, you may want to change this behavior by setting `unmountOnExit` to `true` inside the `slotProps.transition` prop to improve performance:\n\n```jsx\n<Accordion slotProps={{ transition: { unmountOnExit: true } }} />\n```"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Accessibility",
+      "introduction": [
+        "Accessibility\n\nThe [WAI-ARIA guidelines for accordions](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/) recommend setting an `id` and `aria-controls`, which in this case would apply to the Accordion Summary component.\nThe Accordion component then derives the necessary `aria-labelledby` and `id` from its content.\n\n```jsx\n<Accordion>\n  <AccordionSummary id=\"panel-header\" aria-controls=\"panel-content\">\n    Header\n  </AccordionSummary>\n  <AccordionDetails>\n    Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n  </AccordionDetails>\n</Accordion>\n```"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Anatomy",
+      "introduction": [
+        "Anatomy\n\nThe Accordion component consists of a root `<div>` that contains the Accordion Summary, Accordion Details, and optional Accordion Actions for action buttons.\n\n```jsx\n<div class=\"MuiAccordion-root\">\n  <h3 class=\"MuiAccordion-heading\">\n    <button class=\"MuiButtonBase-root MuiAccordionSummary-root\" aria-expanded=\"\">\n      <!-- Accordion summary goes here -->\n    </button>\n  </h3>\n  <div class=\"MuiAccordion-region\" role=\"region\">\n    <div class=\"MuiAccordionDetails-root\">\n      <!-- Accordion content goes here -->\n    </div>\n  </div>\n</div>\n```"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    }
+  ]
+}

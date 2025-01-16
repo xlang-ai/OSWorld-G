@@ -1,0 +1,21 @@
+{
+  "name": "material-icons",
+  "introduction": [
+    "# Material Icons\n\n<p class=\"description\">2,100+ ready-to-use React Material Icons from the official website.</p>\n\n\n<br/>\n\n[@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material)\nincludes the 2,100+ official [Material Icons](https://fonts.google.com/icons?icon.set=Material+Icons) converted to [`SvgIcon`](/material-ui/api/svg-icon/) components.\nIt depends on `@mui/material`, which requires Emotion packages.\nUse one of the following commands to install it:\n\n<!-- #default-branch-switch -->\n\n<codeblock storageKey=\"package-manager\">\n\n```bash npm\nnpm install @mui/icons-material @mui/material @emotion/styled @emotion/react\n```\n\n```bash pnpm\npnpm add @mui/icons-material @mui/material @emotion/styled @emotion/react\n```\n\n```bash yarn\nyarn add @mui/icons-material @mui/material @emotion/styled @emotion/react\n```\n\n</codeblock>\n\nSee the [Installation](/material-ui/getting-started/installation/) page for additional docs about how to make sure everything is set up correctly.\n\n:::info\nGoogle also offers [Material Symbols](https://fonts.google.com/icons?icon.set=Material+Symbols) as the successor of Material Icons. `@mui/icons-material` only covers Icons at this time, there are no support for Symbols yet.\n:::\n\n<hr/>"
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Search Material Icons",
+      "introduction": [
+        "Search Material Icons\n\nBrowse through the icons below to find the one you need.\nThe search field supports synonyms—for example, try searching for \"hamburger\" or \"logout.\"\n\n{{\"demo\": \"SearchIcons.js\", \"hideToolbar\": true, \"bg\": true}}"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    }
+  ]
+}

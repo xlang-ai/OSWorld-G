@@ -1,0 +1,74 @@
+{
+  "name": "popover",
+  "introduction": [
+    "# Popover\n\n<p class=\"description\">A Popover can be used to display some content on top of another.</p>\n\nThings to know when using the `Popover` component:\n\n- The component is built on top of the [`Modal`](/material-ui/react-modal/) component.\n- The scroll and click away are blocked unlike with the [`Popper`](/material-ui/react-popper/) component."
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Basic Popover",
+      "introduction": [
+        "Basic Popover"
+      ],
+      "code_path": [
+        "BasicPopover.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Anchor playground",
+      "introduction": [
+        "Anchor playground\n\nUse the radio buttons to adjust the `anchorOrigin` and `transformOrigin` positions.\nYou can also set the `anchorReference` to `anchorPosition` or `anchorEl`.\nWhen it is `anchorPosition`, the component will, instead of `anchorEl`,\nrefer to the `anchorPosition` prop which you can adjust to set\nthe position of the popover.\n\n{{\"demo\": \"AnchorPlayground.js\", \"hideToolbar\": true}}"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Mouse hover interaction",
+      "introduction": [
+        "Mouse hover interaction\n\nThis demo demonstrates how to use the `Popover` component with `mouseenter` and `mouseleave` events to achieve popover behavior."
+      ],
+      "code_path": [
+        "MouseHoverPopover.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Virtual element",
+      "introduction": [
+        "Virtual element\n\nThe value of the `anchorEl` prop can be a reference to a fake DOM element.\nYou need to provide an object with the following interface:\n\n```ts\ninterface PopoverVirtualElement {\n  nodeType: 1;\n  getBoundingClientRect: () => DOMRect;\n}\n```\n\nHighlight part of the text to see the popover:",
+        "For more information on the virtual element's properties, see the following resources:\n\n- [getBoundingClientRect](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect)\n- [DOMRect](https://drafts.fxtf.org/geometry-1/#domrectreadonly)\n- [Node types](https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType)\n\n:::warning\nThe usage of a virtual element for the Popover component requires the `nodeType` property.\nThis is different from virtual elements used for the [`Popper`](/material-ui/react-popper/#virtual-element) or [`Tooltip`](/material-ui/react-tooltip/#virtual-element) components, both of which don't require the property.\n:::"
+      ],
+      "code_path": [
+        "VirtualElementPopover.js",
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Supplementary projects",
+      "introduction": [
+        "Supplementary projects\n\nFor more advanced use cases, you might be able to take advantage of:"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "material-ui-popup-state",
+          "introduction": [
+            "material-ui-popup-state\n\n![stars](https://img.shields.io/github/stars/jcoreio/material-ui-popup-state?style=social&label=Star)\n![npm downloads](https://img.shields.io/npm/dm/material-ui-popup-state.svg)\n\nThe package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of popover state for you in most cases."
+          ],
+          "code_path": [
+            "PopoverPopupState.js"
+          ],
+          "children": []
+        }
+      ]
+    }
+  ]
+}

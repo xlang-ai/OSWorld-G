@@ -1,0 +1,51 @@
+{
+  "name": "bottom-navigation",
+  "introduction": [
+    "# Bottom Navigation\n\n<p class=\"description\">The Bottom Navigation bar allows movement between primary destinations in an app.</p>\n\nBottom navigation bars display three to five destinations at the bottom of a screen. Each destination is represented by an icon and an optional text label. When a bottom navigation icon is tapped, the user is taken to the top-level navigation destination associated with that icon."
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Bottom navigation",
+      "introduction": [
+        "Bottom navigation\n\nWhen there are only **three** actions, display both icons and text labels at all times.\n\n{{\"demo\": \"SimpleBottomNavigation.js\", \"bg\": true}}"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Bottom navigation with no label",
+      "introduction": [
+        "Bottom navigation with no label\n\nIf there are **four** or **five** actions, display inactive views as icons only.\n\n{{\"demo\": \"LabelBottomNavigation.js\", \"bg\": true}}"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Fixed positioning",
+      "introduction": [
+        "Fixed positioning\n\nThis demo keeps bottom navigation fixed to the bottom, no matter the amount of content on-screen.\n\n{{\"demo\": \"FixedBottomNavigation.js\", \"bg\": true, \"iframe\": true, \"maxWidth\": 600}}"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Third-party routing library",
+      "introduction": [
+        "Third-party routing library\n\nOne frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server.\nThe `BottomNavigationAction` component provides the `component` prop to handle this use case.\nHere is a [more detailed guide](/material-ui/integrations/routing/)."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    }
+  ]
+}
