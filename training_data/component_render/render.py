@@ -572,6 +572,9 @@ def process_component_tree(component_tree):
 
 async def main():
     generator = DataGenerator()
+    os.makedirs("component_code", exist_ok=True)
+    os.makedirs("screenshots", exist_ok=True)
+    os.makedirs("component_positions", exist_ok=True)
     await generator.initialize_react_app()
     # 初始化浏览器
     await generator.initialize_browser()
