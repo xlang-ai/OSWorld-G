@@ -10,10 +10,10 @@
     {
       "name": "Introduction",
       "introduction": [
-        "Introduction\n\nIn Material Design, surface components and shadow styles are heavily influenced by their real-world physical counterparts.\n\nMaterial UI implements this concept with the Paper component, a container-like surface that features the [`elevation`](#elevation) prop for pulling box-shadow values from the theme.\n\n:::success\nThe Paper component is ideally suited for designs that follow [Material Design's elevation system](https://m2.material.io/design/environment/elevation.html#elevation-in-material-design), which is meant to replicate how light casts shadows in the physical world.\n\nIf you just need a generic container, you may prefer to use the [Box](/material-ui/react-box/) or [Container](/material-ui/react-container/) components.\n:::\n\n{{\"demo\": \"SimplePaper.js\", \"bg\": true}}"
+        "Introduction\n\nIn Material Design, surface components and shadow styles are heavily influenced by their real-world physical counterparts.\n\nMaterial UI implements this concept with the Paper component, a container-like surface that features the [`elevation`](#elevation) prop for pulling box-shadow values from the theme.\n\n:::success\nThe Paper component is ideally suited for designs that follow [Material Design's elevation system](https://m2.material.io/design/environment/elevation.html#elevation-in-material-design), which is meant to replicate how light casts shadows in the physical world.\n\nIf you just need a generic container, you may prefer to use the [Box](/material-ui/react-box/) or [Container](/material-ui/react-container/) components.\n:::"
       ],
       "code_path": [
-        null
+        "SimplePaper.js"
       ],
       "children": []
     },
@@ -39,30 +39,30 @@
         {
           "name": "Elevation",
           "introduction": [
-            "Elevation\n\nUse the `elevation` prop to establish hierarchy through the use of shadows.\nThe Paper component's default elevation level is `1`.\nThe prop accepts values from `0` to `24`.\nThe higher the number, the further away the Paper appears to be from its background.\n\nIn dark mode, increasing the elevation also makes the background color lighter.\nThis is done by applying a semi-transparent gradient with the `background-image` CSS property.\n\n:::warning\nThe aforementioned dark mode behavior can lead to confusion when overriding the Paper component, because changing the `background-color` property won't affect the lighter shading.\nTo override it, you must either use a new background value, or customize the values for both `background-color` and `background-image`.\n:::\n\n{{\"demo\": \"Elevation.js\", \"bg\": \"outlined\"}}"
+            "Elevation\n\nUse the `elevation` prop to establish hierarchy through the use of shadows.\nThe Paper component's default elevation level is `1`.\nThe prop accepts values from `0` to `24`.\nThe higher the number, the further away the Paper appears to be from its background.\n\nIn dark mode, increasing the elevation also makes the background color lighter.\nThis is done by applying a semi-transparent gradient with the `background-image` CSS property.\n\n:::warning\nThe aforementioned dark mode behavior can lead to confusion when overriding the Paper component, because changing the `background-color` property won't affect the lighter shading.\nTo override it, you must either use a new background value, or customize the values for both `background-color` and `background-image`.\n:::"
           ],
           "code_path": [
-            null
+            "Elevation.js"
           ],
           "children": []
         },
         {
           "name": "Variants",
           "introduction": [
-            "Variants\n\nSet the `variant` prop to `\"outlined\"` for a flat, outlined Paper with no shadows:\n\n{{\"demo\": \"Variants.js\", \"bg\": true}}"
+            "Variants\n\nSet the `variant` prop to `\"outlined\"` for a flat, outlined Paper with no shadows:"
           ],
           "code_path": [
-            null
+            "Variants.js"
           ],
           "children": []
         },
         {
           "name": "Corners",
           "introduction": [
-            "Corners\n\nThe Paper component features rounded corners by default.\nAdd the `square` prop for square corners:\n\n{{\"demo\": \"SquareCorners.js\", \"bg\": true}}"
+            "Corners\n\nThe Paper component features rounded corners by default.\nAdd the `square` prop for square corners:"
           ],
           "code_path": [
-            null
+            "SquareCorners.js"
           ],
           "children": []
         }

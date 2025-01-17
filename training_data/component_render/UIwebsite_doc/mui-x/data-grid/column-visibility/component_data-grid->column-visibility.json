@@ -1,0 +1,92 @@
+{
+  "name": "data-grid->column-visibility",
+  "introduction": [
+    "# Data Grid - Column visibility\n\n<p class=\"description\">Define which columns are visible.</p>\n\nBy default, all the columns are visible.\nThe column's visibility can be switched through the user interface in two ways:\n\n- By opening the column menu and clicking the _Hide_ menu item.\n- By clicking the _Columns_ menu and toggling the columns to show or hide.\n\nYou can prevent the user from hiding a column through the user interface by setting the `hideable` in `GridColDef` to `false`.\n\nIn the following demo, the \"username\" column cannot be hidden."
+  ],
+  "code_path": [
+    "VisibleColumnsBasicExample.js"
+  ],
+  "children": [
+    {
+      "name": "Initialize the visible columns",
+      "introduction": [
+        "Initialize the visible columns\n\nTo initialize the visible columns without controlling them, provide the model to the `initialState` prop.\n\n:::info\n\nPassing the visible columns to the `initialState` prop will only have an impact when the Data Grid is rendered for the first time. In order to update the visible columns after the first render, you need to use the [`columnVisibilityModel`](#controlled-visible-columns) prop.\n\n:::\n\n```tsx\n<DataGrid\n  initialState={{\n    columns: {\n      columnVisibilityModel: {\n        // Hide columns status and traderName, the other columns will remain visible\n        status: false,\n        traderName: false,\n      },\n    },\n  }}\n/>\n```"
+      ],
+      "code_path": [
+        "VisibleColumnsModelInitialState.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Controlled visible columns",
+      "introduction": [
+        "Controlled visible columns\n\nUse the `columnVisibilityModel` prop to control the visible columns.\nYou can use the `onColumnVisibilityModelChange` prop to listen to the changes to the visible columns and update the prop accordingly.\n\n```tsx\n<DataGrid\n  columnVisibilityModel={{\n    // Hide columns status and traderName, the other columns will remain visible\n    status: false,\n    traderName: false,\n  }}\n/>\n```"
+      ],
+      "code_path": [
+        "VisibleColumnsModelControlled.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Column visibility panel",
+      "introduction": [
+        "Column visibility panel\n\nThe column visibility panel allows the user to control which columns are visible in the Data Grid.\n\nThe panel can be opened by:\n\n- Clicking the _Columns_ button in the [toolbar](/x/react-data-grid/components/#toolbar).\n- Clicking the _Manage columns_ button in the [column menu](/x/react-data-grid/column-menu/)."
+      ],
+      "code_path": [
+        "ColumnSelectorGrid.js"
+      ],
+      "children": [
+        {
+          "name": "Disable the column visibility panel",
+          "introduction": [
+            "Disable the column visibility panel\n\nSometimes, the intention is to disable the columns panel or control the visible columns programmatically based on the application state.\nTo disable the column visibility panel, set the prop `disableColumnSelector={true}` and use the [`columnVisibilityModel`](#controlled-visible-columns) prop to control the visible columns.\n\n```tsx\n<DataGrid disableColumnSelector columnVisibilityModel={columnVisibilityModel} />\n```\n\nIn the following demo, the columns panel is disabled, and access to columns `id`, `quantity`, and `filledQuantity` is only allowed for the `Admin` type user."
+          ],
+          "code_path": [
+            "ColumnSelectorDisabledGrid.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Customize the list of columns in columns management",
+          "introduction": [
+            "Customize the list of columns in columns management\n\nTo show or hide specific columns in the column visibility panel, use the `slotProps.columnsManagement.getTogglableColumns` prop. It should return an array of column field names.\n\n```tsx\nimport {\n  DataGridPremium,\n  GRID_ROW_GROUPING_SINGLE_GROUPING_FIELD,\n} from '@mui/x-data-grid-premium';\n\n// stop `id`, GRID_ROW_GROUPING_SINGLE_GROUPING_FIELD, and `status` columns to be togglable\nconst hiddenFields = ['id', GRID_ROW_GROUPING_SINGLE_GROUPING_FIELD, 'status'];\n\nconst getTogglableColumns = (columns: GridColDef[]) => {\n  return columns\n    .filter((column) => !hiddenFields.includes(column.field))\n    .map((column) => column.field);\n};\n\n<DataGridPremium\n  slots={{\n    toolbar: GridToolbar,\n  }}\n  slotProps={{\n    columnsManagement: {\n      getTogglableColumns,\n    },\n  }}\n/>;\n```"
+          ],
+          "code_path": [
+            "ColumnSelectorGridCustomizeColumns.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Disable actions in footer",
+          "introduction": [
+            "Disable actions in footer\n\nTo disable `Show/Hide All` checkbox or `Reset` button in the footer of the columns management component, pass `disableShowHideToggle` or `disableResetButton` to `slotProps.columnsManagement`.\n\n```tsx\n<DataGrid\n  slots={{\n    toolbar: GridToolbar,\n  }}\n  slotProps={{\n    columnsManagement: {\n      disableShowHideToggle: true,\n      disableResetButton: true,\n    },\n  }}\n/>\n```"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Customize action buttons behavior when search is active",
+          "introduction": [
+            "Customize action buttons behavior when search is active\n\nBy default, the `Show/Hide All` checkbox toggles the visibility of all columns, including the ones that are not visible in the current search results.\n\nTo only toggle the visibility of the columns that are present in the current search results, pass `toggleAllMode: 'filteredOnly'` to `slotProps.columnsManagement`.\n\n```tsx\n<DataGrid\n  slotProps={{\n    columnsManagement: {\n      toggleAllMode: 'filteredOnly',\n    },\n  }}\n/>\n```"
+          ],
+          "code_path": [
+            "ColumnSelectorGridToggleAllMode.js"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "API",
+      "introduction": [
+        "API\n\n- [DataGrid](/x/api/data-grid/data-grid/)\n- [DataGridPro](/x/api/data-grid/data-grid-pro/)\n- [DataGridPremium](/x/api/data-grid/data-grid-premium/)"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    }
+  ]
+}

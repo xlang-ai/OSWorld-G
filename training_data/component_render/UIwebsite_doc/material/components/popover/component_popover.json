@@ -20,10 +20,10 @@
     {
       "name": "Anchor playground",
       "introduction": [
-        "Anchor playground\n\nUse the radio buttons to adjust the `anchorOrigin` and `transformOrigin` positions.\nYou can also set the `anchorReference` to `anchorPosition` or `anchorEl`.\nWhen it is `anchorPosition`, the component will, instead of `anchorEl`,\nrefer to the `anchorPosition` prop which you can adjust to set\nthe position of the popover.\n\n{{\"demo\": \"AnchorPlayground.js\", \"hideToolbar\": true}}"
+        "Anchor playground\n\nUse the radio buttons to adjust the `anchorOrigin` and `transformOrigin` positions.\nYou can also set the `anchorReference` to `anchorPosition` or `anchorEl`.\nWhen it is `anchorPosition`, the component will, instead of `anchorEl`,\nrefer to the `anchorPosition` prop which you can adjust to set\nthe position of the popover."
       ],
       "code_path": [
-        null
+        "AnchorPlayground.js"
       ],
       "children": []
     },

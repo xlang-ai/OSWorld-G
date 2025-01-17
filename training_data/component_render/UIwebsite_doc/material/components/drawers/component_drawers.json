@@ -41,10 +41,10 @@
         {
           "name": "Swipeable edge",
           "introduction": [
-            "Swipeable edge\n\nYou can configure the `SwipeableDrawer` to have a visible edge when closed.\n\nIf you are on a desktop, you can toggle the drawer with the \"OPEN\" button.\nIf you are on mobile, you can open the demo in CodeSandbox (\"edit\" icon) and swipe.\n\n{{\"demo\": \"SwipeableEdgeDrawer.js\", \"iframe\": true, \"disableLiveEdit\": true, \"height\": 400, \"maxWidth\": 300}}"
+            "Swipeable edge\n\nYou can configure the `SwipeableDrawer` to have a visible edge when closed.\n\nIf you are on a desktop, you can toggle the drawer with the \"OPEN\" button.\nIf you are on mobile, you can open the demo in CodeSandbox (\"edit\" icon) and swipe."
           ],
           "code_path": [
-            null
+            "SwipeableEdgeDrawer.js"
           ],
           "children": []
         },
@@ -63,30 +63,32 @@
     {
       "name": "Responsive drawer",
       "introduction": [
-        "Responsive drawer\n\nYou can use the `temporary` variant to display a drawer for small screens and `permanent` for a drawer for wider screens.\n\n{{\"demo\": \"ResponsiveDrawer.js\", \"iframe\": true, \"disableLiveEdit\": true}}"
+        "Responsive drawer\n\nYou can use the `temporary` variant to display a drawer for small screens and `permanent` for a drawer for wider screens."
       ],
       "code_path": [
-        null
+        "ResponsiveDrawer.js"
       ],
       "children": []
     },
     {
       "name": "Persistent drawer",
       "introduction": [
-        "Persistent drawer\n\nPersistent navigation drawers can toggle open or closed.\nThe drawer sits on the same surface elevation as the content.\nIt is closed by default and opens by selecting the menu icon, and stays open until closed by the user.\nThe state of the drawer is remembered from action to action and session to session.\n\nWhen the drawer is outside of the page grid and opens, the drawer forces other content to change size and adapt to the smaller viewport.\n\nPersistent navigation drawers are acceptable for all sizes larger than mobile.\nThey are not recommended for apps with multiple levels of hierarchy that require using an up arrow for navigation.\n\n{{\"demo\": \"PersistentDrawerLeft.js\", \"iframe\": true}}\n\n{{\"demo\": \"PersistentDrawerRight.js\", \"iframe\": true}}"
+        "Persistent drawer\n\nPersistent navigation drawers can toggle open or closed.\nThe drawer sits on the same surface elevation as the content.\nIt is closed by default and opens by selecting the menu icon, and stays open until closed by the user.\nThe state of the drawer is remembered from action to action and session to session.\n\nWhen the drawer is outside of the page grid and opens, the drawer forces other content to change size and adapt to the smaller viewport.\n\nPersistent navigation drawers are acceptable for all sizes larger than mobile.\nThey are not recommended for apps with multiple levels of hierarchy that require using an up arrow for navigation.",
+        ""
       ],
       "code_path": [
-        null
+        "PersistentDrawerLeft.js",
+        "PersistentDrawerRight.js"
       ],
       "children": []
     },
     {
       "name": "Mini variant drawer",
       "introduction": [
-        "Mini variant drawer\n\nIn this variation, the persistent navigation drawer changes its width.\nIts resting state is as a mini-drawer at the same elevation as the content, clipped by the app bar.\nWhen expanded, it appears as the standard persistent navigation drawer.\n\nThe mini variant is recommended for apps sections that need quick selection access alongside content.\n\n{{\"demo\": \"MiniDrawer.js\", \"iframe\": true}}"
+        "Mini variant drawer\n\nIn this variation, the persistent navigation drawer changes its width.\nIts resting state is as a mini-drawer at the same elevation as the content, clipped by the app bar.\nWhen expanded, it appears as the standard persistent navigation drawer.\n\nThe mini variant is recommended for apps sections that need quick selection access alongside content."
       ],
       "code_path": [
-        null
+        "MiniDrawer.js"
       ],
       "children": []
     },
@@ -102,20 +104,22 @@
         {
           "name": "Full-height navigation",
           "introduction": [
-            "Full-height navigation\n\nApps focused on information consumption that use a left-to-right hierarchy.\n\n{{\"demo\": \"PermanentDrawerLeft.js\", \"iframe\": true}}\n\n{{\"demo\": \"PermanentDrawerRight.js\", \"iframe\": true}}"
+            "Full-height navigation\n\nApps focused on information consumption that use a left-to-right hierarchy.",
+            ""
           ],
           "code_path": [
-            null
+            "PermanentDrawerLeft.js",
+            "PermanentDrawerRight.js"
           ],
           "children": []
         },
         {
           "name": "Clipped under the app bar",
           "introduction": [
-            "Clipped under the app bar\n\nApps focused on productivity that require balance across the screen.\n\n{{\"demo\": \"ClippedDrawer.js\", \"iframe\": true}}"
+            "Clipped under the app bar\n\nApps focused on productivity that require balance across the screen."
           ],
           "code_path": [
-            null
+            "ClippedDrawer.js"
           ],
           "children": []
         }
@@ -133,10 +137,10 @@
         {
           "name": "Dashboard Layout",
           "introduction": [
-            "Dashboard Layout\n\nThe [DashboardLayout](https://mui.com/toolpad/core/react-dashboard-layout/) component from `@toolpad/core` is the starting point for dashboarding applications. It takes care of application layout, theming, navigation, and more. An example usage of this component:\n\n{{\"demo\": \"../app-bar/DashboardLayoutBasic.js\", \"height\": 400, \"iframe\": true, \"bg\": \"inline\", \"defaultExpanded\": false}}"
+            "Dashboard Layout\n\nThe [DashboardLayout](https://mui.com/toolpad/core/react-dashboard-layout/) component from `@toolpad/core` is the starting point for dashboarding applications. It takes care of application layout, theming, navigation, and more. An example usage of this component:"
           ],
           "code_path": [
-            null
+            "../app-bar/DashboardLayoutBasic.js"
           ],
           "children": []
         }

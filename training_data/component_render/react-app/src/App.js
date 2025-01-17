@@ -1,7 +1,11 @@
 
 import React from 'react';
 import './App.css';
-import DataTable from './DataTable';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+import FileExplorer from './FileExplorer';
 
 function App() {
   return (
@@ -14,7 +18,7 @@ function App() {
         borderRadius: '8px',
         overflow: 'visible', // 确保内容不会被裁剪
     }}>
-        <DataTable />
+        <FileExplorer />
       </div>
     </div>
   );

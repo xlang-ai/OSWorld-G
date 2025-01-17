@@ -10,30 +10,30 @@
     {
       "name": "Bottom navigation",
       "introduction": [
-        "Bottom navigation\n\nWhen there are only **three** actions, display both icons and text labels at all times.\n\n{{\"demo\": \"SimpleBottomNavigation.js\", \"bg\": true}}"
+        "Bottom navigation\n\nWhen there are only **three** actions, display both icons and text labels at all times."
       ],
       "code_path": [
-        null
+        "SimpleBottomNavigation.js"
       ],
       "children": []
     },
     {
       "name": "Bottom navigation with no label",
       "introduction": [
-        "Bottom navigation with no label\n\nIf there are **four** or **five** actions, display inactive views as icons only.\n\n{{\"demo\": \"LabelBottomNavigation.js\", \"bg\": true}}"
+        "Bottom navigation with no label\n\nIf there are **four** or **five** actions, display inactive views as icons only."
       ],
       "code_path": [
-        null
+        "LabelBottomNavigation.js"
       ],
       "children": []
     },
     {
       "name": "Fixed positioning",
       "introduction": [
-        "Fixed positioning\n\nThis demo keeps bottom navigation fixed to the bottom, no matter the amount of content on-screen.\n\n{{\"demo\": \"FixedBottomNavigation.js\", \"bg\": true, \"iframe\": true, \"maxWidth\": 600}}"
+        "Fixed positioning\n\nThis demo keeps bottom navigation fixed to the bottom, no matter the amount of content on-screen."
       ],
       "code_path": [
-        null
+        "FixedBottomNavigation.js"
       ],
       "children": []
     },

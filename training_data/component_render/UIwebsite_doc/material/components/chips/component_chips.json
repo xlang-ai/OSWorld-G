@@ -152,10 +152,10 @@
     {
       "name": "Chip playground",
       "introduction": [
-        "Chip playground\n\n{{\"demo\": \"ChipsPlayground.js\", \"hideToolbar\": true}}"
+        "Chip playground"
       ],
       "code_path": [
-        null
+        "ChipsPlayground.js"
       ],
       "children": []
     },

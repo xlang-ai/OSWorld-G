@@ -1,0 +1,74 @@
+{
+  "name": "data-grid->recipes-editing",
+  "introduction": [
+    "# Data Grid - Editing recipes\n\n<p class=\"description\">Advanced grid customization recipes.</p>"
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Multiline editing",
+      "introduction": [
+        "Multiline editing\n\nYou can have columns with multiline text and edit them by creating a custom edit component.\n\nIn the demo below, the **Bio** column is composed of multiple lines.\nTo persist the changes, use <kbd><kbd class=\"key\">Ctrl</kbd>+<kbd class=\"key\">Enter</kbd></kbd> (or <kbd><kbd class=\"key\">⌘ Command</kbd>+<kbd class=\"key\">Enter</kbd></kbd> on macOS)."
+      ],
+      "code_path": [
+        "MultilineEditing.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Conditional validation",
+      "introduction": [
+        "Conditional validation\n\nWhen all cells in a row are in edit mode, you can validate fields by comparing their values against one another.\nTo do this, start by adding the `preProcessEditCellProps` as explained in the [validation](/x/react-data-grid/editing/#validation) section.\nWhen the callback is called, it will have an additional `otherFieldsProps` param containing the props from the other fields in the same row.\nUse this param to check if the value from the current column is valid or not.\nReturn the modified `props` containing the error as you would for cell editing.\nOnce at the least one field has the `error` attribute set to a truthy value, the row will not exit edit mode.\n\nThe following demo requires a value for the **Payment method** column only if the **Is paid?** column is checked:"
+      ],
+      "code_path": [
+        "ConditionalValidationGrid.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Linked fields",
+      "introduction": [
+        "Linked fields\n\nThe options available for one field may depend on the value of another field.\nFor instance, if the `singleSelect` column is used, you can provide a function to `valueOptions` returning the relevant options for the value selected in another field, as exemplified below.\n\n```tsx\nconst columns: GridColDef[] = [\n  {\n    field: 'account',\n    type: 'singleSelect',\n    valueOptions: ({ row }) => {\n      if (!row) {\n        // The row is not available when filtering this column\n        return ['Sales', 'Investments', 'Ads', 'Taxes', 'Payroll', 'Utilities'];\n      }\n\n      return row.type === 'Income' // Gets the value of the \"type\" field\n        ? ['Sales', 'Investments', 'Ads']\n        : ['Taxes', 'Payroll', 'Utilities'];\n    },\n  },\n];\n```\n\nThe code above is already enough to display different options in the **Account** column based on the value selected in the **Type** column.\nThe only task left is to reset the account once the type is changed.\nThis is needed because the previously selected account will not exist now in the options.\nTo solve that, you can create a custom edit component, reusing the built-in one, and pass a function to the `onValueChange` prop.\nThis function should call `apiRef.current.setEditCellValue()` to reset the value of the other field.\n\n```tsx\nconst CustomTypeEditComponent = (props: GridEditSingleSelectCellProps) => {\n  const apiRef = useGridApiContext();\n\n  const handleValueChange = async () => {\n    await apiRef.current.setEditCellValue({\n      id: props.id,\n      field: 'account',\n      value: '',\n    });\n  };\n\n  return <GridEditSingleSelectCell onValueChange={handleValueChange} {...props} />;\n};\n```\n\nThe demo below combines the steps showed above.\nYou can experiment it by changing the value of any cell in the **Type** column.\nThe **Account** column is automatically updated with the correct options.",
+        ":::warning\nThe call to `apiRef.current.setEditCellValue()` returns a promise that must be awaited.\nFor instance, if the `singleSelect` column type is used, not awaiting will cause the other column to be rendered with a `value` that is not in the options.\n\n```ts\nconst handleChange = async () => {\n  await apiRef.current.setEditCellValue({\n    id: props.id,\n    field: 'account',\n    value: '',\n  });\n};\n```\n\n:::\n\nA similar behavior can be reproduced with cell editing.\nInstead of `apiRef.current.setEditCellValue()`, the `rows` prop must be updated or `apiRef.current.updateRows()` be used.\nNote that the `onCellEditStart` and `onCellEditStop` props also have to be used to revert the value of the cell changed, in case the user cancels the edit."
+      ],
+      "code_path": [
+        "LinkedFieldsRowEditing.js",
+        "LinkedFieldsCellEditing.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Single click editing",
+      "introduction": [
+        "Single click editing\n\nBy default, one of the ways to [enter the edit mode](/x/react-data-grid/editing/#start-editing) is by double-clicking a cell.\nUsing the [controlled mode](/x/react-data-grid/editing/#controlled-model) and listening to click events, you can also enter the edit mode with just a single click.\nThe following demo implements this behavior."
+      ],
+      "code_path": [
+        "SingleClickEditing.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Bulk editing",
+      "introduction": [
+        "Bulk editing\n\nThe Data Grid [Editing](/x/react-data-grid/editing/) API exposes [the `processRowUpdate` callback](/x/react-data-grid/editing/persistence/#the-processrowupdate-callback) which is commonly used to persist edits on per-row basis.\nYou can utilize this callback to batch edits locally and then choose to either persist or discard them in bulk.\n\nThe demo below stores edited and deleted rows in the `unsavedChangesRef`.\nThese changes are saved or discarded when the user clicks the **Save** or **Discard** buttons respectively."
+      ],
+      "code_path": [
+        "BulkEditing.js"
+      ],
+      "children": [
+        {
+          "name": "With commercial features [<span class=\"plan-premium\"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')",
+          "introduction": [
+            "With commercial features [<span class=\"plan-premium\"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')\n\nWhen using [Data Grid Premium](/x/react-data-grid/#premium-plan), bulk editing applies to row updates from [Clipboard paste](/x/react-data-grid/clipboard/#clipboard-paste) automatically, since [Clipboard paste uses Editing API for persistence](/x/react-data-grid/clipboard/#persisting-pasted-data):"
+          ],
+          "code_path": [
+            "BulkEditingPremiumNoSnap.js"
+          ],
+          "children": []
+        }
+      ]
+    }
+  ]
+}

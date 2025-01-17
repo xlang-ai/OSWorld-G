@@ -1,0 +1,103 @@
+{
+  "name": "charts->getting-started",
+  "introduction": [
+    "# Charts - Getting started\n\n<p class=\"description\">Install the MUI X Charts package to start building React data visualization components.</p>"
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Installation",
+      "introduction": [
+        "Installation\n\nRun one of the following commands to install the free Community version or the paid Pro version of the MUI X Charts:\n\n<!-- #default-branch-switch -->\n\n{{\"component\": \"modules/components/ChartsInstallationInstructions.js\"}}\n\nThe Charts packages have a peer dependency on `@mui/material`.\nIf you're not already using it, install it with the following command:\n\n<codeblock storageKey=\"package-manager\">\n\n```bash npm\nnpm install @mui/material @emotion/react @emotion/styled\n```\n\n```bash pnpm\npnpm add @mui/material @emotion/react @emotion/styled\n```\n\n```bash yarn\nyarn add @mui/material @emotion/react @emotion/styled\n```\n\n</codeblock>\n\n<!-- #react-peer-version -->\n\n[`react`](https://www.npmjs.com/package/react) and [`react-dom`](https://www.npmjs.com/package/react-dom) are also peer dependencies:\n\n```json\n\"peerDependencies\": {\n  \"react\": \"^17.0.0 || ^18.0.0 || ^19.0.0\",\n  \"react-dom\": \"^17.0.0 || ^18.0.0 || ^19.0.0\"\n},\n```"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Usage with D3",
+          "introduction": [
+            "Usage with D3\n\nTo help folks using CommonJS, the `@mui/x-charts` package uses a vendored package named `@mui/x-charts-vendor` to access D3 libraries.\nYou can import D3 functions from `@mui/x-charts-vendor/d3-scale`."
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Rendering Charts",
+      "introduction": [
+        "Rendering Charts\n\nMUI X Charts can be rendered as _self-contained_ or _composable_ components.\n[Self-contained components](#self-contained-charts) are simpler to get started with and are recommended for most common use cases; more complex visualization (such as combining Bar and Line Charts on a single plot) requires [custom composition](#composable-charts)."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Self-contained Charts",
+          "introduction": [
+            "Self-contained Charts\n\nSelf-contained Chart components are imported and rendered as a single React component (such as `<BarChart />` or `<LineChart />`) which contains all of the necessary subcomponents.\n\nThese components require a `series` prop describing the data to render, as well as a numerical value (rendered in pixels) for the `height` prop.\nThe `width` prop is optional; if no value is provided, the Charts expand to fill the available space."
+          ],
+          "code_path": [
+            "SimpleCharts.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Composable Charts",
+          "introduction": [
+            "Composable Charts\n\nMore complex use cases require composition of the necessary subcomponents inside of a Chart Container wrapper.\nSubcomponents include:\n\n- Axis components – to define the X and Y axes\n- Plot components – to create Bars, Lines, or any other Chart type\n- Auxillary components - to add Tooltips, Highlights, and more\n- Utilities - such as classes and types\n\nSee the [Charts composition documentation](/x/react-charts/composition/) for complete details.\n\nThe demo below shows how to use composition to create a custom Chart that combines a Bar and a Line Chart on a single plot:"
+          ],
+          "code_path": [
+            "Combining.js"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Chart layouts",
+      "introduction": [
+        "Chart layouts\n\nThe layout of a Chart is defined by two main spaces: the plot area, and the outer margins.\n\nThe `width` and `height` props define the dimensions of the SVG which is the root of the chart.\nWithin this SVG, the plot area (or drawing area) serves as the canvas for data visualization, where the lines, bars or other visual elements are rendered.\nThe size of the plot area is determined by the `margin = {top, bottom, left, right}` object which defines its outer margins inside the SVG.\nThe outer margin space is where information like axes, titles, and legends are displayed.\n\nSee the [Styling documentation](/x/react-charts/styling/#placement) for complete details."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Server-side rendering",
+      "introduction": [
+        "Server-side rendering\n\nThe chart support server-side rendering under two conditions:\n\n1. The `width` and `height` props needs to be provided.\n2. The animation should be disabled with the `skipAnimation` prop.\n\nThe reason is that it is not possible to compute the SVG dimensions on the server, and the `skipAnimation` ensures that the animation is not in an \"empty\" state when first rendering."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Axis management",
+      "introduction": [
+        "Axis management\n\nMUI X Charts take a flexible approach to axis management, with support for multiple axes and any combination of scales and ranges.\n\nSee the [Axis documentation](/x/react-charts/axis/) for complete details."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "TypeScript",
+      "introduction": [
+        "TypeScript\n\nTo benefit from [CSS overrides](/material-ui/customization/theme-components/#theme-style-overrides) and [default prop customization](/material-ui/customization/theme-components/#theme-default-props) with the theme, TypeScript users must import the following types.\nThese types use module augmentation to extend the default theme structure.\n\n```tsx\n// only one import is necessary,\n// from the version you're currently using.\nimport type {} from '@mui/x-charts/themeAugmentation';\nimport type {} from '@mui/x-charts-pro/themeAugmentation';\n\nconst theme = createTheme({\n  components: {\n    MuiChartsAxis: {\n      styleOverrides: {\n        tick: {\n          stroke: '#006BD6',\n        },\n      },\n    },\n  },\n});\n```"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    }
+  ]
+}

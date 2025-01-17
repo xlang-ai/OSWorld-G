@@ -1,0 +1,84 @@
+{
+  "name": "layout",
+  "introduction": [
+    "# Data Grid - Layout\n\n<p class=\"description\">The Data Grid offers multiple layout modes.</p>\n\n:::error\nBy default, the Data Grid has **no intrinsic dimensions**.\nInstead, it takes up the space given by its parent.\nThe Data Grid will raise an error in the console if its container has no intrinsic dimensions.\n:::"
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Flex parent container",
+      "introduction": [
+        "Flex parent container\n\nThe Data Grid can be placed inside a flex container with `flex-direction: column`.\nWithout setting the minimum and maximum height, the Data Grid takes as much space as it needs to display all rows.\n\n:::warning\nConsider setting `maxHeight` on the flex parent container, otherwise row virtualization will not be able to improve performance by limiting the number of elements rendered in the DOM.\n:::",
+        ":::success\nThe flex parent in the demo above is effectively equivalent [`autoHeight`](/x/react-data-grid/layout/#auto-height) prop, but with the added benefit of being able to set the minimum and maximum height of the parent container.\n:::"
+      ],
+      "code_path": [
+        "FlexGrid.js",
+        null
+      ],
+      "children": [
+        {
+          "name": "Minimum and maximum height",
+          "introduction": [
+            "Minimum and maximum height\n\nIn the demo below, the Data Grid is placed inside a flex container with a minimum height of `200px` and a maximum height of `400px` and adapts its height when the number of rows changes."
+          ],
+          "code_path": [
+            "MinMaxHeightGrid.js"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Percentage dimensions",
+      "introduction": [
+        "Percentage dimensions\n\nWhen using percentages (%) for height or width, make sure that the Data Grid's parent container has intrinsic dimensions.\nBrowsers adjust the element based on a percentage of its parent's size.\nIf the parent has no size, the percentage will be zero."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Predefined dimensions",
+      "introduction": [
+        "Predefined dimensions\n\nYou can predefine dimensions for the parent of the Data Grid."
+      ],
+      "code_path": [
+        "FixedSizeGrid.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Overlay height",
+      "introduction": [
+        "Overlay height\n\nWhen data grid has no content, overlays (such as\n[\"Loading\"](/x/react-data-grid/overlays/#loading-overlay) or\n[\"No rows\"](/x/react-data-grid/overlays/#no-rows-overlay))\ntake the height of two rows by default.\n\nTo customize the overlay height, use the `--DataGrid-overlayHeight` CSS variable."
+      ],
+      "code_path": [
+        "GridOverlayHeight.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Auto height",
+      "introduction": [
+        "Auto height\n\n:::error\nThis prop is deprecated, use the [flex parent container](/x/react-data-grid/layout/#flex-parent-container) instead.\n:::\n\nThe `autoHeight` prop enables the Data Grid to adjust its size based on its content.\nThis means that the Data Grid's height will be determined by the number of rows, ensuring that all rows will be visible to the user simultaneously."
+      ],
+      "code_path": [
+        "AutoHeightGrid.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "API",
+      "introduction": [
+        "API\n\n- [DataGrid](/x/api/data-grid/data-grid/)\n- [DataGridPro](/x/api/data-grid/data-grid-pro/)\n- [DataGridPremium](/x/api/data-grid/data-grid-premium/)"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    }
+  ]
+}

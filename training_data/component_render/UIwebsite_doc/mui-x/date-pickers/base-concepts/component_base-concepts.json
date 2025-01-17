@@ -1,0 +1,209 @@
+{
+  "name": "base-concepts",
+  "introduction": [
+    "# Date and Time Pickers - Base concepts\n\n<p class=\"description\">The Date and Time Pickers expose a lot of components to fit your every need.</p>"
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Controlled value",
+      "introduction": [
+        "Controlled value\n\nAll the components have a `value` / `onChange` API to set and control the values:"
+      ],
+      "code_path": [
+        "ControlledComponent.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Imports",
+      "introduction": [
+        "Imports\n\nAll the components exported by `@mui/x-date-pickers` are also exported by `@mui/x-date-pickers-pro` but without the nested imports.\n\nFor example, to use the `DatePicker` component, the following three imports are valid:\n\n```tsx\nimport { DatePicker } from '@mui/x-date-pickers/DatePicker';\nimport { DatePicker } from '@mui/x-date-pickers';\nimport { DatePicker } from '@mui/x-date-pickers-pro';\n```"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Date library",
+      "introduction": [
+        "Date library\n\nThe Date and Time Pickers are focused on UI/UX and, like most other picker components available, require a third-party library to format, parse, and mutate dates.\n\nMUI's components let you choose which library you prefer for this purpose.\nThis gives you the flexibility to implement any date library you may already be using in your application, without adding an extra one to your bundle.\n\nTo achieve this, both `@mui/x-date-pickers` and `@mui/x-date-pickers-pro` export a set of **adapters** that expose the date manipulation libraries under a unified API."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Available libraries",
+          "introduction": [
+            "Available libraries\n\nThe Date and Time Pickers currently support the following date libraries:\n\n- [Day.js](https://day.js.org/)\n- [date-fns](https://date-fns.org/)\n- [Luxon](https://moment.github.io/luxon/#/)\n- [Moment.js](https://momentjs.com/)\n\n:::info\nIf you are using a non-Gregorian calendar (such as Jalali or Hijri), please refer to the [Support for other calendar systems](/x/react-date-pickers/calendar-systems/) page.\n:::"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Recommended library",
+          "introduction": [
+            "Recommended library\n\nIf you are already using one of the libraries listed above in your application, then you can keep using it with the Date and Time Pickers as well.\nThis will avoid bundling two libraries.\n\nIf you don't have your own requirements or don't manipulate dates outside of MUI X components, then the recommendation is to use `dayjs` because it has the smallest impact on your application's bundle size.\n\nHere is the weight added to your gzipped bundle size by each of these libraries when used inside the Date and Time Pickers:\n\n| Library           | Gzipped size |\n| :--: |\n| `dayjs@1.11.5`    |      6.77 kB |\n| `date-fns@2.29.3` |     19.39 kB |\n| `luxon@3.0.4`     |     23.26 kB |\n| `moment@2.29.4`   |     20.78 kB |\n\n:::info\nThe results above were obtained in October 2022 with the latest version of each library.\nThe bundling of the JavaScript modules was done by a Create React App, and no locale was loaded for any of the libraries.\n\nThe results may vary in your application depending on the version of each library, the locale, and the bundler used.\n:::"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Other components",
+      "introduction": [
+        "Other components"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Choose interaction style",
+          "introduction": [
+            "Choose interaction style\n\nDepending on your use case, different interaction styles are preferred.\n\n- For input editing with a popover or modal for mouse interaction, use the _Picker_ components:",
+            "- For input-only editing, use the _Field_ components:",
+            "- For inline editing, use the _Calendar / Clock_ components:",
+            ":::info\nEach _Picker_ is a combination of one _Field_ and one or several _Calendar / Clock_ components.\nFor example, the `DatePicker` is the combination of the `DateField` and the `DateCalendar`.\n\nThe _Calendar / Clock_ components are rendered inside a _Popover_ on desktop and inside a _Modal_ on mobile.\n:::"
+          ],
+          "code_path": [
+            "BasicDatePicker.js",
+            "BasicDateField.js",
+            "BasicDateCalendar.js",
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Date or time editing?",
+          "introduction": [
+            "Date or time editing?\n\nThe Date and Time Pickers are divided into six families of components.\nThe demo below shows each one of them using their field component:"
+          ],
+          "code_path": [
+            "ComponentFamilies.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Responsiveness",
+          "introduction": [
+            "Responsiveness\n\nEach _Picker_ is available in a responsive, desktop and mobile variant:\n\n- The responsive component (for example `DatePicker`) which renders the desktop component or the mobile one depending on the device it runs on.\n\n- The desktop component (for example `DesktopDatePicker`) which works best for mouse devices and large screens.\n  It renders the views inside a popover and a field for keyboard editing.\n\n- The mobile component (for example `MobileDatePicker`) which works best for touch devices and small screens.\n  It renders the view inside a modal and a field for keyboard editing."
+          ],
+          "code_path": [
+            "ResponsivePickers.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Find your component",
+          "introduction": [
+            "Find your component\n\nThere are many components available, each fitting specific use cases. Use the form below to find the component you need:"
+          ],
+          "code_path": [
+            "ComponentExplorerNoSnap.js"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Reference date when no value is defined",
+      "introduction": [
+        "Reference date when no value is defined\n\nIf `value` or `defaultValue` contains a valid date, this date will be used to initialize the rendered component.\n\nIn the demo below, you can see that the calendar is set to April 2022 on mount:",
+        "When `value` and `defaultValue` contains no valid date, the component will try to find a reference date that passes the validation to initialize its rendering:",
+        "You can override this date using the `referenceDate` prop:",
+        "This can also be useful to set the part of the value that will not be selectable in the component.\nFor example, in a Time Picker, it allows you to choose the date of your value:"
+      ],
+      "code_path": [
+        "ReferenceDateUsingValue.js",
+        "ReferenceDateDefaultBehavior.js",
+        "ReferenceDateExplicitDateTimePicker.js",
+        "ReferenceDateExplicitTimePicker.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "TypeScript",
+      "introduction": [
+        "TypeScript"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Theme augmentation",
+          "introduction": [
+            "Theme augmentation\n\nTo benefit from the [CSS overrides](/material-ui/customization/theme-components/#theme-style-overrides) and [default prop customization](/material-ui/customization/theme-components/#theme-default-props) with the theme, TypeScript users need to import the following types.\nInternally, it uses module augmentation to extend the default theme structure.\n\n```tsx\nimport type {} from '@mui/x-date-pickers/themeAugmentation';\nimport type {} from '@mui/x-date-pickers-pro/themeAugmentation';\n\nconst theme = createTheme({\n  components: {\n    MuiDatePicker: {\n      defaultProps: {\n        displayWeekNumber: true,\n      },\n    },\n    MuiDateRangeCalendar: {\n      styleOverrides: {\n        root: {\n          backgroundColor: '#f0f0f0',\n        },\n      },\n    },\n  },\n});\n```\n\n:::info\nYou don't have to import the theme augmentation from both `@mui/x-date-pickers` and `@mui/x-date-pickers-pro` when using `@mui/x-date-pickers-pro`.\nImporting it from `@mui/x-date-pickers-pro` is enough.\n:::"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Typing of the date",
+          "introduction": [
+            "Typing of the date\n\nThe Date and Time Pickers components are compatible with several date libraries\nthat use different formats to represent their dates\n(`Date` object for `date-fns`, `daysjs.Dayjs` object for `days-js`, etc.).\nTo correctly type all the props that are date-related, the adapters override a global type named `PickerValidDate`\nto allow the usage of their own date format.\nThis allows TypeScript to throw an error if you try to pass `value={new Date()}` to a component using `AdapterDayjs` for instance.\n\nIf you are not sure your adapter is set up correctly to infer the type of date-related props, you can import the `PickerValidDate` type and check its current value.\n\nIf its equal to the format used by your date library, then you don't have to do anything:\n\n<img src=\"/static/x/date-pickers/picker-valid-date-configured.png\" alt=\"PickerValidDate correctly configured\" />\n\nIf it's equal to `any`, you can fix it by manually importing the adapter in some file of your project as show below:\n\n<img src=\"/static/x/date-pickers/picker-valid-date-not-configured.png\" alt=\"PickerValidDate not correctly configured\" />\n\n```ts\n// Replace `AdapterDayjs` with the adapter you are using.\nimport type {} from '@mui/x-date-pickers/AdapterDayjs';\n```\n\n:::info\nBefore version 7.19.0, TypeScript was throwing an error such as `DesktopDatePickerProps<Date> error Type 'Date' does not satisfy the constraint 'never'`\nwhen you were not importing the adapter in the same TypeScript project as the rest of your codebase.\n\nThe fix described above should also solve the problem.\n:::"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Testing caveats",
+      "introduction": [
+        "Testing caveats"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Responsive components",
+          "introduction": [
+            "Responsive components\n\n:::info\nSome test environments (for example `jsdom`) do not support media query. In such cases, components will be rendered in desktop mode. To modify this behavior you can fake the `window.matchMedia`.\n:::\n\nBe aware that running tests in headless browsers might not pass the default mediaQuery (`pointer: fine`).\nIn such case you can [force pointer precision](https://github.com/microsoft/playwright/issues/7769#issuecomment-1205106311) via browser flags or preferences."
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Field components",
+          "introduction": [
+            "Field components\n\n:::info\nTo support RTL and some keyboard interactions, field components add some Unicode character that are invisible, but appears in the input value.\n:::\n\nTo add tests about a field value without having to care about those characters, you can remove the specific character before testing the equality.\nHere is an example about how to do it.\n\n```js\n// Helper removing specific characters\nconst cleanText = (string) =>\n  string.replace(/\\u200e|\\u2066|\\u2067|\\u2068|\\u2069/g, '');\n\n// Example of a test using the helper\nexpect(cleanText(input.value)).to.equal('04-17-2022');\n```"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Overriding slots and slot props",
+      "introduction": [
+        "Overriding slots and slot props\n\nDate and Time Pickers are complex components built using many subcomponents known as **slots**.\nSlots are commonly filled by React components that you can override using the `slots` prop.\nYou can also pass additional props to the available slots using the `slotProps` prop.\nLearn more about the mental model of slots in the Base UI documentation: [Overriding component structure](/base-ui/guides/overriding-component-structure/).\n\nYou can find the list of available slots for each component in its respective [API reference](/x/api/date-pickers/date-picker/#slots) doc.\n\nSome parts of the Pickers' UI are built on several nested slots. For instance, the adornment of the `TextField` on `DatePicker` contains three slots (`inputAdornment`, `openPickerButton`, and `openPickerIcon`) that you can use depending on what you are trying to customize.",
+        ":::info\nLearn more about overriding slots in the doc page about [Custom slots and subcomponents](/x/react-date-pickers/custom-components/).\n:::"
+      ],
+      "code_path": [
+        "CustomSlots.js",
+        null
+      ],
+      "children": []
+    }
+  ]
+}

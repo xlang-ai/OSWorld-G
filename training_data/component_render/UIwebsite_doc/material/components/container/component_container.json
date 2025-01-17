@@ -10,9 +10,11 @@
     {
       "name": "Fluid",
       "introduction": [
-        "Fluid\n\nA fluid container width is bounded by the `maxWidth` prop value.\n\n{{\"demo\": \"SimpleContainer.js\", \"iframe\": true, \"defaultCodeOpen\": false}}\n\n```jsx\n<Container maxWidth=\"sm\">\n```"
+        "Fluid\n\nA fluid container width is bounded by the `maxWidth` prop value.",
+        "```jsx\n<Container maxWidth=\"sm\">\n```"
       ],
       "code_path": [
+        "SimpleContainer.js",
         null
       ],
       "children": []
@@ -20,9 +22,11 @@
     {
       "name": "Fixed",
       "introduction": [
-        "Fixed\n\nIf you prefer to design for a fixed set of sizes instead of trying to accommodate a fully fluid viewport, you can set the `fixed` prop.\nThe max-width matches the min-width of the current breakpoint.\n\n{{\"demo\": \"FixedContainer.js\", \"iframe\": true, \"defaultCodeOpen\": false}}\n\n```jsx\n<Container fixed>\n```"
+        "Fixed\n\nIf you prefer to design for a fixed set of sizes instead of trying to accommodate a fully fluid viewport, you can set the `fixed` prop.\nThe max-width matches the min-width of the current breakpoint.",
+        "```jsx\n<Container fixed>\n```"
       ],
       "code_path": [
+        "FixedContainer.js",
         null
       ],
       "children": []
@@ -39,10 +43,10 @@
         {
           "name": "Page Container",
           "introduction": [
-            "Page Container\n\nThe [PageContainer](https://mui.com/toolpad/core/react-page-container/) component in `@toolpad/core` is the ideal wrapper for the content of your dashboard. It makes the Material UI Container navigation-aware and extends it with page title, breadcrumbs, actions, and more.\n\n{{\"demo\": \"../breadcrumbs/PageContainerBasic.js\", \"height\": 400, \"bg\": \"inline\", \"defaultExpanded\": false}}"
+            "Page Container\n\nThe [PageContainer](https://mui.com/toolpad/core/react-page-container/) component in `@toolpad/core` is the ideal wrapper for the content of your dashboard. It makes the Material UI Container navigation-aware and extends it with page title, breadcrumbs, actions, and more."
           ],
           "code_path": [
-            null
+            "../breadcrumbs/PageContainerBasic.js"
           ],
           "children": []
         }

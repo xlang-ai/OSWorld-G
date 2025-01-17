@@ -44,9 +44,11 @@
     {
       "name": "Performance",
       "introduction": [
-        "Performance\n\nThe content of modal is unmounted when closed.\nIf you need to make the content available to search engines or render expensive component trees inside your modal while optimizing for interaction responsiveness\nit might be a good idea to change this default behavior by enabling the `keepMounted` prop:\n\n```jsx\n<Modal keepMounted />\n```\n\n{{\"demo\": \"KeepMountedModal.js\", \"defaultCodeOpen\": false}}\n\nAs with any performance optimization, this is not a silver bullet.\nBe sure to identify bottlenecks first, and then try out these optimization strategies."
+        "Performance\n\nThe content of modal is unmounted when closed.\nIf you need to make the content available to search engines or render expensive component trees inside your modal while optimizing for interaction responsiveness\nit might be a good idea to change this default behavior by enabling the `keepMounted` prop:\n\n```jsx\n<Modal keepMounted />\n```",
+        "As with any performance optimization, this is not a silver bullet.\nBe sure to identify bottlenecks first, and then try out these optimization strategies."
       ],
       "code_path": [
+        "KeepMountedModal.js",
         null
       ],
       "children": []

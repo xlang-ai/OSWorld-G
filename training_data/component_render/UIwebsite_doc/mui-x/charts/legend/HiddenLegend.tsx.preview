@@ -1,0 +1,2 @@
+{Toggle}
+<PieChart series={series} hideLegend={isHidden} width={200} height={200} />

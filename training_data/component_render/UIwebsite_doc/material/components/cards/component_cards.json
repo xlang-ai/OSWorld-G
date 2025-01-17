@@ -10,10 +10,10 @@
     {
       "name": "Introduction",
       "introduction": [
-        "Introduction\n\nCards are surfaces that display content and actions on a single topic.\nThe Material UI Card component includes several complementary utility components to handle various use cases:\n\n- Card: a surface-level container for grouping related components.\n- Card Content: the wrapper for the Card content.\n- Card Header: an optional wrapper for the Card header.\n- Card Media: an optional container for displaying images, videos, etc.\n- Card Actions: an optional wrapper that groups a set of buttons.\n- Card Action Area: an optional wrapper that allows users to interact with the specified area of the Card.\n\n{{\"demo\": \"BasicCard.js\", \"bg\": true}}"
+        "Introduction\n\nCards are surfaces that display content and actions on a single topic.\nThe Material UI Card component includes several complementary utility components to handle various use cases:\n\n- Card: a surface-level container for grouping related components.\n- Card Content: the wrapper for the Card content.\n- Card Header: an optional wrapper for the Card header.\n- Card Media: an optional container for displaying images, videos, etc.\n- Card Actions: an optional wrapper that groups a set of buttons.\n- Card Action Area: an optional wrapper that allows users to interact with the specified area of the Card."
       ],
       "code_path": [
-        null
+        "BasicCard.js"
       ],
       "children": []
     },
@@ -29,10 +29,10 @@
         {
           "name": "Outlined Card",
           "introduction": [
-            "Outlined Card\n\nSet `variant=\"outlined\"` to render an outlined card.\n\n{{\"demo\": \"OutlinedCard.js\", \"bg\": true}}"
+            "Outlined Card\n\nSet `variant=\"outlined\"` to render an outlined card."
           ],
           "code_path": [
-            null
+            "OutlinedCard.js"
           ],
           "children": []
         }
@@ -41,49 +41,55 @@
     {
       "name": "Complex Interaction",
       "introduction": [
-        "Complex Interaction\n\nOn desktop, card content can expand. (Click the downward chevron to view the recipe.)\n\n{{\"demo\": \"RecipeReviewCard.js\", \"bg\": true}}"
+        "Complex Interaction\n\nOn desktop, card content can expand. (Click the downward chevron to view the recipe.)"
       ],
       "code_path": [
-        null
+        "RecipeReviewCard.js"
       ],
       "children": []
     },
     {
       "name": "Media",
       "introduction": [
-        "Media\n\nExample of a card using an image to reinforce the content.\n\n{{\"demo\": \"MediaCard.js\", \"bg\": true}}\n\nBy default, we use the combination of a `<div>` element and a _background image_ to display the media. It can be problematic in some situations, for example, you might want to display a video or a responsive image. Use the `component` prop for these use cases:\n\n{{\"demo\": \"ImgMediaCard.js\", \"bg\": true}}"
+        "Media\n\nExample of a card using an image to reinforce the content.",
+        "By default, we use the combination of a `<div>` element and a _background image_ to display the media. It can be problematic in some situations, for example, you might want to display a video or a responsive image. Use the `component` prop for these use cases:"
       ],
       "code_path": [
-        null
+        "MediaCard.js",
+        "ImgMediaCard.js"
       ],
       "children": []
     },
     {
       "name": "Primary action",
       "introduction": [
-        "Primary action\n\nOften a card allow users to interact with the entirety of its surface to trigger its main action, be it an expansion, a link to another screen or some other behavior. The action area of the card can be specified by wrapping its contents in a `CardActionArea` component.\n\n{{\"demo\": \"ActionAreaCard.js\", \"bg\": true}}\n\nA card can also offer supplemental actions which should stand detached from the main action area in order to avoid event overlap.\n\n{{\"demo\": \"MultiActionAreaCard.js\", \"bg\": true}}"
+        "Primary action\n\nOften a card allow users to interact with the entirety of its surface to trigger its main action, be it an expansion, a link to another screen or some other behavior. The action area of the card can be specified by wrapping its contents in a `CardActionArea` component.",
+        "A card can also offer supplemental actions which should stand detached from the main action area in order to avoid event overlap."
       ],
       "code_path": [
-        null
+        "ActionAreaCard.js",
+        "MultiActionAreaCard.js"
       ],
       "children": []
     },
     {
       "name": "UI Controls",
       "introduction": [
-        "UI Controls\n\nSupplemental actions within the card are explicitly called out using icons, text, and UI controls, typically placed at the bottom of the card.\n\nHere's an example of a media control card.\n\n{{\"demo\": \"MediaControlCard.js\", \"bg\": true}}"
+        "UI Controls\n\nSupplemental actions within the card are explicitly called out using icons, text, and UI controls, typically placed at the bottom of the card.\n\nHere's an example of a media control card."
       ],
       "code_path": [
-        null
+        "MediaControlCard.js"
       ],
       "children": []
     },
     {
       "name": "Active state styles",
       "introduction": [
-        "Active state styles\n\nTo customize a Card's styles when it's in an active state, you can attach a `data-active` attribute to the Card Action Area component and apply styles with the `&[data-active]` selector, as shown below:\n\n{{\"demo\": \"SelectActionCard.js\", \"bg\": true}}\n\n🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/?path=/docs/card-introduction--docs)."
+        "Active state styles\n\nTo customize a Card's styles when it's in an active state, you can attach a `data-active` attribute to the Card Action Area component and apply styles with the `&[data-active]` selector, as shown below:",
+        "🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/?path=/docs/card-introduction--docs)."
       ],
       "code_path": [
+        "SelectActionCard.js",
         null
       ],
       "children": []

@@ -10,9 +10,11 @@
     {
       "name": "Introduction",
       "introduction": [
-        "Introduction\n\nThe Material UI Accordion component includes several complementary utility components to handle various use cases:\n\n- Accordion: the wrapper for grouping related components.\n- Accordion Summary: the wrapper for the Accordion header, which expands or collapses the content when clicked.\n- Accordion Details: the wrapper for the Accordion content.\n- Accordion Actions: an optional wrapper that groups a set of buttons.\n\n{{\"demo\": \"AccordionUsage.js\", \"bg\": true}}\n\n:::info\nThis component is no longer documented in the [Material Design guidelines](https://m2.material.io/), but Material UI will continue to support it.\n:::"
+        "Introduction\n\nThe Material UI Accordion component includes several complementary utility components to handle various use cases:\n\n- Accordion: the wrapper for grouping related components.\n- Accordion Summary: the wrapper for the Accordion header, which expands or collapses the content when clicked.\n- Accordion Details: the wrapper for the Accordion content.\n- Accordion Actions: an optional wrapper that groups a set of buttons.",
+        ":::info\nThis component is no longer documented in the [Material Design guidelines](https://m2.material.io/), but Material UI will continue to support it.\n:::"
       ],
       "code_path": [
+        "AccordionUsage.js",
         null
       ],
       "children": []
@@ -29,49 +31,51 @@
         {
           "name": "Expand icon",
           "introduction": [
-            "Expand icon\n\nUse the `expandIcon` prop on the Accordion Summary component to change the expand indicator icon.\nThe component handles the turning upside-down transition automatically.\n\n{{\"demo\": \"AccordionExpandIcon.js\", \"bg\": true}}"
+            "Expand icon\n\nUse the `expandIcon` prop on the Accordion Summary component to change the expand indicator icon.\nThe component handles the turning upside-down transition automatically."
           ],
           "code_path": [
-            null
+            "AccordionExpandIcon.js"
           ],
           "children": []
         },
         {
           "name": "Expanded by default",
           "introduction": [
-            "Expanded by default\n\nUse the `defaultExpanded` prop on the Accordion component to have it opened by default.\n\n{{\"demo\": \"AccordionExpandDefault.js\", \"bg\": true}}"
+            "Expanded by default\n\nUse the `defaultExpanded` prop on the Accordion component to have it opened by default."
           ],
           "code_path": [
-            null
+            "AccordionExpandDefault.js"
           ],
           "children": []
         },
         {
           "name": "Transition",
           "introduction": [
-            "Transition\n\nUse the `slots.transition` and `slotProps.transition` props to change the Accordion's default transition.\n\n{{\"demo\": \"AccordionTransition.js\", \"bg\": true}}"
+            "Transition\n\nUse the `slots.transition` and `slotProps.transition` props to change the Accordion's default transition."
           ],
           "code_path": [
-            null
+            "AccordionTransition.js"
           ],
           "children": []
         },
         {
           "name": "Disabled item",
           "introduction": [
-            "Disabled item\n\nUse the `disabled` prop on the Accordion component to disable interaction and focus.\n\n{{\"demo\": \"DisabledAccordion.js\", \"bg\": true}}"
+            "Disabled item\n\nUse the `disabled` prop on the Accordion component to disable interaction and focus."
           ],
           "code_path": [
-            null
+            "DisabledAccordion.js"
           ],
           "children": []
         },
         {
           "name": "Controlled Accordion",
           "introduction": [
-            "Controlled Accordion\n\nThe Accordion component can be controlled or uncontrolled.\n\n{{\"demo\": \"ControlledAccordions.js\", \"bg\": true}}\n\n:::info\n\n- A component is **controlled** when it's managed by its parent using props.\n- A component is **uncontrolled** when it's managed by its own local state.\n\nLearn more about controlled and uncontrolled components in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).\n:::"
+            "Controlled Accordion\n\nThe Accordion component can be controlled or uncontrolled.",
+            ":::info\n\n- A component is **controlled** when it's managed by its parent using props.\n- A component is **uncontrolled** when it's managed by its own local state.\n\nLearn more about controlled and uncontrolled components in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).\n:::"
           ],
           "code_path": [
+            "ControlledAccordions.js",
             null
           ],
           "children": []
@@ -90,10 +94,10 @@
         {
           "name": "Only one expanded at a time",
           "introduction": [
-            "Only one expanded at a time\n\nUse the `expanded` prop with React's `useState` hook to allow only one Accordion item to be expanded at a time.\nThe demo below also shows a bit of visual customization.\n\n{{\"demo\": \"CustomizedAccordions.js\", \"bg\": true}}"
+            "Only one expanded at a time\n\nUse the `expanded` prop with React's `useState` hook to allow only one Accordion item to be expanded at a time.\nThe demo below also shows a bit of visual customization."
           ],
           "code_path": [
-            null
+            "CustomizedAccordions.js"
           ],
           "children": []
         },

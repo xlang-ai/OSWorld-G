@@ -10,10 +10,10 @@
     {
       "name": "Search Material Icons",
       "introduction": [
-        "Search Material Icons\n\nBrowse through the icons below to find the one you need.\nThe search field supports synonyms—for example, try searching for \"hamburger\" or \"logout.\"\n\n{{\"demo\": \"SearchIcons.js\", \"hideToolbar\": true, \"bg\": true}}"
+        "Search Material Icons\n\nBrowse through the icons below to find the one you need.\nThe search field supports synonyms—for example, try searching for \"hamburger\" or \"logout.\""
       ],
       "code_path": [
-        null
+        "SearchIcons.js"
       ],
       "children": []
     }

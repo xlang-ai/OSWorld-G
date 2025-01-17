@@ -30,20 +30,20 @@
     {
       "name": "Icon menu",
       "introduction": [
-        "Icon menu\n\nIn desktop viewport, padding is increased to give more space to the menu.\n\n{{\"demo\": \"IconMenu.js\", \"bg\": true}}"
+        "Icon menu\n\nIn desktop viewport, padding is increased to give more space to the menu."
       ],
       "code_path": [
-        null
+        "IconMenu.js"
       ],
       "children": []
     },
     {
       "name": "Dense menu",
       "introduction": [
-        "Dense menu\n\nFor the menu that has long list and long text, you can use the `dense` prop to reduce the padding and text size.\n\n{{\"demo\": \"DenseMenu.js\", \"bg\": true}}"
+        "Dense menu\n\nFor the menu that has long list and long text, you can use the `dense` prop to reduce the padding and text size."
       ],
       "code_path": [
-        null
+        "DenseMenu.js"
       ],
       "children": []
     },
@@ -70,10 +70,10 @@
     {
       "name": "Composition with Menu List",
       "introduction": [
-        "Composition with Menu List\n\nThe Menu component uses the Popover component internally.\nBut you might want to use a different positioning strategy, or prefer not to block scrolling, for example.\n\nThe Menu List component lets you compose your own menu for these kinds of use cases—its primary purpose is to handle focus.\nSee the demo below for an example of composition that uses Menu List and replaces the Menu's default Popover with a Popper component instead:\n\n{{\"demo\": \"MenuListComposition.js\", \"bg\": true}}"
+        "Composition with Menu List\n\nThe Menu component uses the Popover component internally.\nBut you might want to use a different positioning strategy, or prefer not to block scrolling, for example.\n\nThe Menu List component lets you compose your own menu for these kinds of use cases—its primary purpose is to handle focus.\nSee the demo below for an example of composition that uses Menu List and replaces the Menu's default Popover with a Popper component instead:"
       ],
       "code_path": [
-        null
+        "MenuListComposition.js"
       ],
       "children": []
     },
@@ -112,10 +112,10 @@
     {
       "name": "Limitations",
       "introduction": [
-        "Limitations\n\nThere is [a flexbox bug](https://issues.chromium.org/issues/40344463) that prevents `text-overflow: ellipsis` from working in a flexbox layout.\nYou can use the `Typography` component with `noWrap` to workaround this issue:\n\n{{\"demo\": \"TypographyMenu.js\", \"bg\": true}}"
+        "Limitations\n\nThere is [a flexbox bug](https://issues.chromium.org/issues/40344463) that prevents `text-overflow: ellipsis` from working in a flexbox layout.\nYou can use the `Typography` component with `noWrap` to workaround this issue:"
       ],
       "code_path": [
-        null
+        "TypographyMenu.js"
       ],
       "children": []
     },

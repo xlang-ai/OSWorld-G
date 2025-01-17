@@ -39,20 +39,20 @@
         {
           "name": "Pulsate example",
           "introduction": [
-            "Pulsate example\n\n{{\"demo\": \"YouTube.js\", \"defaultCodeOpen\": false}}"
+            "Pulsate example"
           ],
           "code_path": [
-            null
+            "YouTube.js"
           ],
           "children": []
         },
         {
           "name": "Wave example",
           "introduction": [
-            "Wave example\n\n{{\"demo\": \"Facebook.js\", \"defaultCodeOpen\": false, \"bg\": true}}"
+            "Wave example"
           ],
           "code_path": [
-            null
+            "Facebook.js"
           ],
           "children": []
         }
@@ -61,20 +61,22 @@
     {
       "name": "Inferring dimensions",
       "introduction": [
-        "Inferring dimensions\n\nIn addition to accepting `width` and `height` props, the component can also infer the dimensions.\n\nIt works well when it comes to typography as its height is set using `em` units.\n\n```jsx\n<Typography variant=\"h1\">{loading ? <Skeleton /> : 'h1'}</Typography>\n```\n\n{{\"demo\": \"SkeletonTypography.js\", \"defaultCodeOpen\": false}}\n\nBut when it comes to other components, you may not want to repeat the width and\nheight. In these instances, you can pass `children` and it will\ninfer its width and height from them.\n\n```jsx\nloading ? (\n  <Skeleton variant=\"circular\">\n    <Avatar />\n  </Skeleton>\n) : (\n  <Avatar src={data.avatar} />\n);\n```\n\n{{\"demo\": \"SkeletonChildren.js\", \"defaultCodeOpen\": false}}"
+        "Inferring dimensions\n\nIn addition to accepting `width` and `height` props, the component can also infer the dimensions.\n\nIt works well when it comes to typography as its height is set using `em` units.\n\n```jsx\n<Typography variant=\"h1\">{loading ? <Skeleton /> : 'h1'}</Typography>\n```",
+        "But when it comes to other components, you may not want to repeat the width and\nheight. In these instances, you can pass `children` and it will\ninfer its width and height from them.\n\n```jsx\nloading ? (\n  <Skeleton variant=\"circular\">\n    <Avatar />\n  </Skeleton>\n) : (\n  <Avatar src={data.avatar} />\n);\n```"
       ],
       "code_path": [
-        null
+        "SkeletonTypography.js",
+        "SkeletonChildren.js"
       ],
       "children": []
     },
     {
       "name": "Color",
       "introduction": [
-        "Color\n\nThe color of the component can be customized by changing its `background-color` CSS property.\nThis is especially useful when on a black background (as the skeleton will otherwise be invisible).\n\n{{\"demo\": \"SkeletonColor.js\", \"bg\": \"inline\"}}"
+        "Color\n\nThe color of the component can be customized by changing its `background-color` CSS property.\nThis is especially useful when on a black background (as the skeleton will otherwise be invisible)."
       ],
       "code_path": [
-        null
+        "SkeletonColor.js"
       ],
       "children": []
     },

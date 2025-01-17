@@ -80,10 +80,10 @@
     {
       "name": "Integration with react-router",
       "introduction": [
-        "Integration with react-router\n\n{{\"demo\": \"RouterBreadcrumbs.js\", \"bg\": true}}"
+        "Integration with react-router"
       ],
       "code_path": [
-        null
+        "RouterBreadcrumbs.js"
       ],
       "children": []
     },
@@ -109,10 +109,10 @@
         {
           "name": "Page Container",
           "introduction": [
-            "Page Container\n\nThe [PageContainer](https://mui.com/toolpad/core/react-page-container/) component in `@toolpad/core` is the ideal wrapper for the content of your dashboard. It makes the Material UI Container navigation-aware and extends it with page title, breadcrumbs, actions, and more.\n\n{{\"demo\": \"PageContainerBasic.js\", \"height\": 400, \"bg\": \"inline\", \"defaultExpanded\": false}}"
+            "Page Container\n\nThe [PageContainer](https://mui.com/toolpad/core/react-page-container/) component in `@toolpad/core` is the ideal wrapper for the content of your dashboard. It makes the Material UI Container navigation-aware and extends it with page title, breadcrumbs, actions, and more."
           ],
           "code_path": [
-            null
+            "PageContainerBasic.js"
           ],
           "children": []
         }

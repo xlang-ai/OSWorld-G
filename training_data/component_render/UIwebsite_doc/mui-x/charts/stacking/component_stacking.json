@@ -1,0 +1,54 @@
+{
+  "name": "stacking",
+  "introduction": [
+    "# Charts - Stacking\n\n<p class=\"description\">Stacking allows displaying the decomposition of values.</p>"
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Basics",
+      "introduction": [
+        "Basics\n\nBar and line charts allow stacking series.\nTo stack series together, you need to pass them a `stack` attribute.\nSeries with the same `stack` value will get stacked together."
+      ],
+      "code_path": [
+        "BasicStacking.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Stacking strategy",
+      "introduction": [
+        "Stacking strategy\n\nBased on D3 [stack orders](https://github.com/d3/d3-shape#stack-orders) and [stack offsets](https://github.com/d3/d3-shape#stack-offsets) you can modify how series are stacked.\n\nTo pass those attributes, use series properties `stackOffset` (default `'diverging'` for bar and `'none'` for line) and `stackOrder` (default `'none'`).\nYou can define them for only one of the series of a stack group."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Stack offset",
+          "introduction": [
+            "Stack offset\n\nIf you just want to stack values, the `stackOffset` set to `'none'` should do the job.\n\nHowever, with negative values, you should use `'diverging'`.\nOtherwise, the stacked rectangle will overlap.\n\nTo show series evolution relative to other stacked series (instead of their absolute values), you can use `'expand'`.\n\n| Value         | Description                                               |\n| : | :-- |\n| `'none'`      | Set baseline at 0 and stack data on top of each other.    |\n| `'expand'`    | Set baseline at zero and scale data to end up at 1.       |\n| `'diverging'` | Stack positive value above zero and negative value below. |\n\nThe next demonstration allows testing the different `stackOffset` values.\n\nTo see how they interact with a dataset containing negative values, you can toggle \"data has negative values\" switch.\nWhen turned on, the series will have the following composition:\n\n- series A has only positive values.\n- series B has one negative value.\n- series C and D have only negative values."
+          ],
+          "code_path": [
+            "StackOffsetDemo.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Stack order",
+          "introduction": [
+            "Stack order\n\nThe order of stacked data matters for the reading of charts.\nThe evolution of the series at the bottom is the easiest to read since its baseline is 0.\n\nIf you know the data you are displaying, you can use `'none'` which respects the order you defined the series in.\nOtherwise, it might be interesting to order them according to their properties.\n\nWith `'appearance'`, the position of the maximal series value is taken into consideration.\n\nWith `'ascending'` and `'descending'`, the sum of values is taken into consideration.\nWhich corresponds to the area taken by the series on the chart.\n\n| Value          | Description                                                                                                                               |\n| :- | :---- |\n| `'none'`       | Respect the order the series are provided in.                                                                                             |\n| `'reverse'`    | Reverse the order the series are provided in.                                                                                             |\n| `'appearance'` | Sort series by ascending order according to the index of their maximal value. The series with the earliest maximum will be at the bottom. |\n| `'ascending'`  | Sort series by ascending order according to the sum of their values. Series taking the smallest surface will be at the bottom             |\n| `'descending'` | Sort series by descending order according to the sum of their values. Series taking the largest surface will be at the bottom             |\n\nTo experiment with stack orders, here are statistics about the transport used to go to the office depending on the distance between home and office.",
+            "With the `'appearance'` order, **walking** will be the first since its maximal percentage is for **0-1km**. And the last one is **common transportation** because its maximum value is at the **>50km** distance.\n\nWith the `'ascending'` order, stacking starts with **bicycles** and **motorbikes** since their values respectively sum to **41.7** and **55.4**.\nThen arrives **walking** (with values sum to **94.1**).\nLastly, comes **common transportation** and **cars** which are visually more important.\n\nThe `'descending'` order is the strict opposite."
+          ],
+          "code_path": [
+            "StackOrderDemo.js",
+            null
+          ],
+          "children": []
+        }
+      ]
+    }
+  ]
+}

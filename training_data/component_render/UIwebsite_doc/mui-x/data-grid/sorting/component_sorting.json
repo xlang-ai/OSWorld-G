@@ -1,0 +1,225 @@
+{
+  "name": "sorting",
+  "introduction": [
+    "# Data Grid - Sorting\n\n<p class=\"description\">Easily sort your rows based on one or several criteria.</p>\n\nSorting is enabled by default to the Data Grid users and works out of the box without any explicit configuration.\nUsers can set a sorting rule simply by clicking on a column header.\nFollowing clicks change the column's sorting direction. You can see the applied direction on the header's arrow indicator."
+  ],
+  "code_path": [
+    "BasicExampleDataGrid.js"
+  ],
+  "children": [
+    {
+      "name": "Single and multi-sorting",
+      "introduction": [
+        "Single and multi-sorting\n\n:::warning\nThe Data Grid can only sort the rows according to one criterion at a time.\n\nTo use multi-sorting, you need to upgrade to [Pro plan](/x/introduction/licensing/#pro-plan) or above.\n:::"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Multi-sorting [<span class=\"plan-pro\"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')",
+      "introduction": [
+        "Multi-sorting [<span class=\"plan-pro\"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')\n\nThe following demo lets you sort the rows according to several criteria at the same time.\n\nHold down the <kbd class=\"key\">Ctrl</kbd> or <kbd class=\"key\">Shift</kbd> (use <kbd class=\"key\">⌘ Command</kbd> on macOS) key while clicking the column header."
+      ],
+      "code_path": [
+        "BasicExampleDataGridPro.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Pass sorting rules to the Data Grid",
+      "introduction": [
+        "Pass sorting rules to the Data Grid"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Structure of the model",
+          "introduction": [
+            "Structure of the model\n\nThe sort model is a list of sorting items.\nEach item represents a sorting rule and is composed of several elements:\n\n- `sortingItem.field`: the field on which the rule applies.\n- `sortingItem.sort`: the direction of the sorting (`'asc'`, `'desc'`, `null` or `undefined`). If `null` or `undefined`, the rule doesn't apply."
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Initialize the sort model",
+          "introduction": [
+            "Initialize the sort model\n\nSorting is enabled by default to the user.\nBut if you want to set an initial sorting order, simply provide the model to the `initialState` prop.\n\n```jsx\n<DataGrid\n  initialState={{\n    sorting: {\n      sortModel: [{ field: 'rating', sort: 'desc' }],\n    },\n  }}\n/>\n```"
+          ],
+          "code_path": [
+            "InitialSort.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Controlled sort model",
+          "introduction": [
+            "Controlled sort model\n\nUse the `sortModel` prop to control the state of the sorting rules.\n\nYou can use the `onSortModelChange` prop to listen to changes in the sorting rules and update the prop accordingly."
+          ],
+          "code_path": [
+            "ControlledSort.js"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Disable the sorting",
+      "introduction": [
+        "Disable the sorting"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "For all columns",
+          "introduction": [
+            "For all columns\n\nSorting is enabled by default, but you can easily disable this feature by setting the `disableColumnSorting` prop.\n\n```jsx\n<DataGrid disableColumnSorting />\n```"
+          ],
+          "code_path": [
+            "DisableSortingGridAllColumns.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "For some columns",
+          "introduction": [
+            "For some columns\n\nBy default, all columns are sortable.\nTo disable sorting on a column, set the `sortable` property of `GridColDef` to `false`.\nIn the following demo, the user cannot sort the _rating_ column from the UI.\n\n```tsx\n<DataGrid columns={[...columns, { field: 'rating', sortable: false }]} />\n```"
+          ],
+          "code_path": [
+            "DisableSortingGrid.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Sorting non-sortable columns programmatically",
+          "introduction": [
+            "Sorting non-sortable columns programmatically\n\nThe columns with `colDef.sortable` set to `false` are not sortable from the grid UI but could still be sorted programmatically. To add a sort rule to such a column, you could initialize the `sortModel`, use the `sortModel` prop, or use the API methods `sortColumn` or `setSortModel`.\n\nIn the following demo, the `firstName` column is not sortable by the default grid UI, but it is sorted programmatically by a custom built UI."
+          ],
+          "code_path": [
+            "ReadOnlySortingGrid.js"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Custom comparator",
+      "introduction": [
+        "Custom comparator\n\nA comparator determines how two cell values should be sorted.\n\nEach column type comes with a default comparator method.\nYou can re-use them by importing the following functions:\n\n- `gridStringOrNumberComparator` (used by the `string` and `singleSelect` columns)\n- `gridNumberComparator` (used by the `number` and `boolean` columns)\n- `gridDateComparator` (used by the `date` and `date-time` columns)\n\nTo extend or modify this behavior in a specific column, you can pass in a custom comparator, and override the `sortComparator` property of the `GridColDef` interface."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Create a comparator from scratch",
+          "introduction": [
+            "Create a comparator from scratch\n\nIn the following demo, the \"Created on\" column sorting is based on the day of the month of the `createdOn` field.\nIt is a fully custom sorting comparator."
+          ],
+          "code_path": [
+            "FullyCustomSortComparator.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Combine built-in comparators",
+          "introduction": [
+            "Combine built-in comparators\n\nIn the following demo, the \"Name\" column combines the `name` and `isAdmin` fields.\nThe sorting is based on `isAdmin` and then on `name`, if necessary. It re-uses the built-in sorting comparator."
+          ],
+          "code_path": [
+            "ExtendedSortComparator.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Asymmetric comparator",
+          "introduction": [
+            "Asymmetric comparator\n\nThe Data Grid considers the `sortComparator` function symmetric, automatically reversing the return value for descending sorting by multiplying it by `-1`.\n\nWhile this is sufficient for most use cases, it is possible to define an asymmetric comparator using the `getSortComparator` function – it receives the sorting direction as an argument and returns a comparator function.\n\nIn the demo below, the `getSortComparator` function is used in the \"Quantity\" column to keep the `null` values at the bottom when sorting is applied (regardless of the sorting direction):"
+          ],
+          "code_path": [
+            "GetSortComparator.js"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Custom sort order",
+      "introduction": [
+        "Custom sort order\n\nBy default, the sort order cycles between these three different modes:\n\n```jsx\nconst sortingOrder = ['asc', 'desc', null];\n```\n\nIn practice, when you click a column that is not sorted, it will sort ascending (`asc`).\nThe next click will make it sort descending (`desc`). Another click will remove the sort (`null`), reverting to the order that the data was provided in."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "For all columns",
+          "introduction": [
+            "For all columns\n\nThe default sort order can be overridden for all columns with the `sortingOrder` prop.\nIn the following demo, columns are only sortable in descending or ascending order."
+          ],
+          "code_path": [
+            "OrderSortingGrid.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Per column",
+          "introduction": [
+            "Per column\n\nSort order can be configured (and overridden) on a per-column basis by setting the `sortingOrder` property of the `GridColDef` interface:\n\n```tsx\nconst columns: GridColDef = [\n  { field: 'rating', sortingOrder: ['desc', 'asc', null] },\n];\n```"
+          ],
+          "code_path": [
+            "OrderSortingPerColumnGrid.js"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Server-side sorting",
+      "introduction": [
+        "Server-side sorting\n\nSorting can be run server-side by setting the `sortingMode` prop to `server`, and implementing the `onSortModelChange` handler."
+      ],
+      "code_path": [
+        "ServerSortingGrid.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "apiRef",
+      "introduction": [
+        "apiRef\n\n:::warning\nOnly use this API as the last option. Give preference to the props to control the Data Grid.\n:::"
+      ],
+      "code_path": [
+        "SortingApiNoSnap.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Selectors",
+      "introduction": [
+        "Selectors\n\n{{\"component\": \"modules/components/SelectorsDocs.js\", \"category\": \"Sorting\"}}\n\nMore information about the selectors and how to use them on the [dedicated page](/x/react-data-grid/state/#access-the-state)"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "API",
+      "introduction": [
+        "API\n\n- [DataGrid](/x/api/data-grid/data-grid/)\n- [DataGridPro](/x/api/data-grid/data-grid-pro/)\n- [DataGridPremium](/x/api/data-grid/data-grid-premium/)"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    }
+  ]
+}

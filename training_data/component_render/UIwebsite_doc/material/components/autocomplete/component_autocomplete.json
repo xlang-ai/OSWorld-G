@@ -120,10 +120,10 @@
     {
       "name": "`useAutocomplete`",
       "introduction": [
-        "`useAutocomplete`\n\nFor advanced customization use cases, a headless `useAutocomplete()` hook is exposed.\nIt accepts almost the same options as the Autocomplete component minus all the props\nrelated to the rendering of JSX.\nThe Autocomplete component is built on this hook.\n\n```tsx\nimport { useAutocomplete } from '@mui/base/useAutocomplete';\n```\n\nThe `useAutocomplete` hook is also reexported from @mui/material for convenience and backward compatibility.\n\n```tsx\nimport useAutocomplete from '@mui/material/useAutocomplete';\n```\n\n- 📦 [4.6 kB gzipped](https://bundlephobia.com/package/@mui/material).\n\n{{\"demo\": \"UseAutocomplete.js\", \"defaultCodeOpen\": false}}"
+        "`useAutocomplete`\n\nFor advanced customization use cases, a headless `useAutocomplete()` hook is exposed.\nIt accepts almost the same options as the Autocomplete component minus all the props\nrelated to the rendering of JSX.\nThe Autocomplete component is built on this hook.\n\n```tsx\nimport { useAutocomplete } from '@mui/base/useAutocomplete';\n```\n\nThe `useAutocomplete` hook is also reexported from @mui/material for convenience and backward compatibility.\n\n```tsx\nimport useAutocomplete from '@mui/material/useAutocomplete';\n```\n\n- 📦 [4.6 kB gzipped](https://bundlephobia.com/package/@mui/material)."
       ],
       "code_path": [
-        null
+        "UseAutocomplete.js"
       ],
       "children": [
         {
@@ -328,10 +328,10 @@
             {
               "name": "Returns",
               "introduction": [
-                "Returns\n\n`filterOptions`: the returned filter method can be provided directly to the `filterOptions` prop of the `Autocomplete` component, or the parameter of the same name for the hook.\n\nIn the following demo, the options need to start with the query prefix:\n\n```jsx\nconst filterOptions = createFilterOptions({\n  matchFrom: 'start',\n  stringify: (option) => option.title,\n});\n\n<Autocomplete filterOptions={filterOptions} />;\n```\n\n{{\"demo\": \"Filter.js\", \"defaultCodeOpen\": false}}"
+                "Returns\n\n`filterOptions`: the returned filter method can be provided directly to the `filterOptions` prop of the `Autocomplete` component, or the parameter of the same name for the hook.\n\nIn the following demo, the options need to start with the query prefix:\n\n```jsx\nconst filterOptions = createFilterOptions({\n  matchFrom: 'start',\n  stringify: (option) => option.title,\n});\n\n<Autocomplete filterOptions={filterOptions} />;\n```"
               ],
               "code_path": [
-                null
+                "Filter.js"
               ],
               "children": []
             }

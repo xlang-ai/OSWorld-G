@@ -82,10 +82,10 @@
     {
       "name": "Badge alignment",
       "introduction": [
-        "Badge alignment\n\nYou can use the `anchorOrigin` prop to move the badge to any corner of the wrapped element.\n\n{{\"demo\": \"BadgeAlignment.js\", \"hideToolbar\": true}}"
+        "Badge alignment\n\nYou can use the `anchorOrigin` prop to move the badge to any corner of the wrapped element."
       ],
       "code_path": [
-        null
+        "BadgeAlignment.js"
       ],
       "children": []
     },

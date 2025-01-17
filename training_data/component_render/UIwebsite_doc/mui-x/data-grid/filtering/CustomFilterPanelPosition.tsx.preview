@@ -1,0 +1,11 @@
+<DataGrid
+  {...data}
+  loading={loading}
+  slots={{ toolbar: CustomToolbar }}
+  slotProps={{
+    panel: {
+      anchorEl: filterButtonEl,
+    },
+    toolbar: { setFilterButtonEl },
+  }}
+/>

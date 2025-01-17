@@ -10,10 +10,10 @@
     {
       "name": "Introduction",
       "introduction": [
-        "Introduction\n\nThe Material UI Divider component renders as a dark gray `<hr>` by default, and features several useful props for quick style adjustments.\n\n{{\"demo\": \"IntroDivider.js\", \"bg\": true}}"
+        "Introduction\n\nThe Material UI Divider component renders as a dark gray `<hr>` by default, and features several useful props for quick style adjustments."
       ],
       "code_path": [
-        null
+        "IntroDivider.js"
       ],
       "children": []
     },
@@ -29,40 +29,40 @@
         {
           "name": "Variants",
           "introduction": [
-            "Variants\n\nThe Divider component supports three variants: `fullWidth` (default), `inset`, and `middle`.\n\n{{\"demo\": \"DividerVariants.js\", \"bg\": true}}"
+            "Variants\n\nThe Divider component supports three variants: `fullWidth` (default), `inset`, and `middle`."
           ],
           "code_path": [
-            null
+            "DividerVariants.js"
           ],
           "children": []
         },
         {
           "name": "Orientation",
           "introduction": [
-            "Orientation\n\nUse the `orientation` prop to change the Divider from horizontal to vertical. When using vertical orientation, the Divider renders a `<div>` with the corresponding accessibility attributes instead of `<hr>` to adhere to the WAI-ARIA [spec](https://www.w3.org/TR/wai-aria-1.2/#separator).\n\n{{\"demo\": \"VerticalDividers.js\", \"bg\": true}}"
+            "Orientation\n\nUse the `orientation` prop to change the Divider from horizontal to vertical. When using vertical orientation, the Divider renders a `<div>` with the corresponding accessibility attributes instead of `<hr>` to adhere to the WAI-ARIA [spec](https://www.w3.org/TR/wai-aria-1.2/#separator)."
           ],
           "code_path": [
-            null
+            "VerticalDividers.js"
           ],
           "children": []
         },
         {
           "name": "Flex item",
           "introduction": [
-            "Flex item\n\nUse the `flexItem` prop to display the Divider when it's being used in a flex container.\n\n{{\"demo\": \"FlexDivider.js\", \"bg\": true}}"
+            "Flex item\n\nUse the `flexItem` prop to display the Divider when it's being used in a flex container."
           ],
           "code_path": [
-            null
+            "FlexDivider.js"
           ],
           "children": []
         },
         {
           "name": "With children",
           "introduction": [
-            "With children\n\nUse the `textAlign` prop to align elements that are wrapped by the Divider.\n\n{{\"demo\": \"DividerText.js\", \"bg\": true}}"
+            "With children\n\nUse the `textAlign` prop to align elements that are wrapped by the Divider."
           ],
           "code_path": [
-            null
+            "DividerText.js"
           ],
           "children": []
         }
@@ -80,20 +80,20 @@
         {
           "name": "Use with a List",
           "introduction": [
-            "Use with a List\n\nWhen using the Divider to separate items in a List, use the `component` prop to render it as an `<li>`—otherwise it won't be a valid HTML element.\n\n{{\"demo\": \"ListDividers.js\", \"bg\": true}}"
+            "Use with a List\n\nWhen using the Divider to separate items in a List, use the `component` prop to render it as an `<li>`—otherwise it won't be a valid HTML element."
           ],
           "code_path": [
-            null
+            "ListDividers.js"
           ],
           "children": []
         },
         {
           "name": "Icon grouping",
           "introduction": [
-            "Icon grouping\n\nThe demo below shows how to combine the props `variant=\"middle\"` and `orientation=\"vertical\"`.\n\n{{\"demo\": \"VerticalDividerMiddle.js\", \"bg\": true}}"
+            "Icon grouping\n\nThe demo below shows how to combine the props `variant=\"middle\"` and `orientation=\"vertical\"`."
           ],
           "code_path": [
-            null
+            "VerticalDividerMiddle.js"
           ],
           "children": []
         }

@@ -1,0 +1,173 @@
+{
+  "name": "charts->legend",
+  "introduction": [
+    "# Charts - Legend\n\n<p class=\"description\">Legend is the UI element mapping symbols and colors to the series' label.</p>"
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Basic display",
+      "introduction": [
+        "Basic display\n\nIn chart components, the legend links series with `label` properties and their color."
+      ],
+      "code_path": [
+        "BasicLegend.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Customization",
+      "introduction": [
+        "Customization\n\nThis section explains how to customize the legend using classes and properties."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Dimensions",
+          "introduction": [
+            "Dimensions\n\nMuch of the customization can be done using CSS properties.\nThere is a main class for the legend container, `.MuiChartsLegend-root`.\nAlternatively the `legendClasses` variable can be used if using CSS-in-JS to target the elements.\n\nEach legend item is composed of two main elements: the `mark` and the `label`.\n\nThe example below explains how it is possible to customize some parts the legend.\nAnd shows how to use both the `legendClasses` variable and the CSS class directly."
+          ],
+          "code_path": [
+            "LegendDimensionNoSnap.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Position",
+          "introduction": [
+            "Position\n\nThe legend can either be displayed in a `'vertical'` or `'horizontal'` layout controlled with the `direction` property.\n\nIt can also be moved with the `position: { vertical, horizontal }` property which defines how the legend aligns itself in the parent container.\n\n- `vertical` can be `'top'`, `'middle'`, or `'bottom'`.\n- `horizontal` can be `'left'`, `'middle'`, or `'right'`.\n\nBy default, the legend is placed above the charts.\n\n:::warning\nThe `position` property is only available in the `slotProps`, but not in the `<ChartsLegend />`.\nIn the second case, you are free to place the legend where you want.\n:::"
+          ],
+          "code_path": [
+            "LegendPositionNoSnap.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Hiding",
+          "introduction": [
+            "Hiding\n\nYou can hide the legend with the `hideLegend` property of the Chart."
+          ],
+          "code_path": [
+            "HiddenLegend.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Label styling",
+          "introduction": [
+            "Label styling\n\nChanging the `label` style can be done by targeting the root component's font properties.\n\nTo change the `mark` color or shape, the `fill` class is used instead.\nKeep in mind that the `mark` is an SVG element, so the `fill` property is used to change its color."
+          ],
+          "code_path": [
+            "LegendTextStylingNoSnap.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Change mark shape",
+          "introduction": [
+            "Change mark shape\n\nTo change the mark shape, you can use the `labelMarkType` property of the series item.\nFor the `pie` series, the `labelMarkType` property is available for each of the pie slices too."
+          ],
+          "code_path": [
+            "LegendMarkTypeNoSnap.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Scrollable legend",
+          "introduction": [
+            "Scrollable legend\n\nThe legend can be made scrollable by setting the `overflowY` for vertical legends or `overflowX` for horizontal legends.\nMake sure that the legend container has a fixed height or width to enable scrolling."
+          ],
+          "code_path": [
+            "ScrollableLegend.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Custom component",
+          "introduction": [
+            "Custom component\n\nFor advanced customization, you can create your own legend with `useLegend`.\nThis hook returns the items that the default legend would plot.\nAllowing you to focus on the rendering.\n\nThis demo show how to use it with slots.\nAnother demo in [HTML components docs](/x/react-charts/components/#html-components) shows how to use it with composition."
+          ],
+          "code_path": [
+            "CustomLegend.js"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Color legend",
+      "introduction": [
+        "Color legend\n\nTo display legend associated to a [colorMap](https://mui.com/x/react-charts/styling/#values-color), you can use:\n\n- `<ContinuousColorLegend />` if you're using `colorMap.type='continuous'`\n- `<PiecewiseColorLegend />` if you're using `colorMap.type='piecewise'`.\n\nThen it is possible to override the `legend` slot to display the wanted legend, or use the [composition API](https://mui.com/x/react-charts/composition/) to add as many legends as needed."
+      ],
+      "code_path": [
+        "VeryBasicColorLegend.js"
+      ],
+      "children": [
+        {
+          "name": "Select data",
+          "introduction": [
+            "Select data\n\nTo select the color mapping to represent, use the following props:\n\n- `axisDirection` can be `'x'`, `'y'`, or `'z'`. It indicates which axis contain the `colorMap` definition.\n- `axisId` The id of the axis to use in case the selected direction contains multiple ones."
+          ],
+          "code_path": [
+            "BasicColorLegend.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Position",
+          "introduction": [
+            "Position\n\nThis component position is done exactly the same way as the [legend for series](#position)."
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Label position",
+          "introduction": [
+            "Label position\n\nThe labels can be positioned in relation to the marks or gradient with the `labelPosition` prop.\nThe values accepted are `'start'`, `'end'` or `'extremes'`.\n\n- With `direction='horizontal'`, using `'start'` places the labels above the visual marker, while `end` places them below.\n- When `direction='vertical'`, is `'start'` or `'end'` the labels are positioned `left` and `right` of the visual markers, respectively.\n- With the `'extremes'` value, the labels are positioned at both the beginning and end of the visual marker."
+          ],
+          "code_path": [
+            "LegendLabelPositions.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Continuous color mapping",
+          "introduction": [
+            "Continuous color mapping\n\nTo modify the shape of the gradient, use the `length` and `thickness` props.\nThe `length` can either be a number (in px) or a percentage string. The `\"100%\"` corresponds to the parent dimension.\n\nTo format labels use the `minLabel`/`maxLabel`.\nThey accept either a string to display.\nOr a function `({value, formattedValue}) => string`.\n\nIt is also possible to reverse the gradient with the `reverse` prop."
+          ],
+          "code_path": [
+            "ContinuousInteractiveDemoNoSnap.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Piecewise color mapping",
+          "introduction": [
+            "Piecewise color mapping\n\nThe piecewise Legend is quite similar to the series legend.\nIt accepts the same props for [customization](#dimensions).\n\nTo override labels generated by default, provide a `labelFormatter` prop.\nIt takes the min/max of the piece and returns the label.\n\nValues can be `null` for the first and last pieces.\nAnd returning `null` removes the piece from the legend.\nReturning an empty string removes any label, but still display the `mark`.\n\n```ts\nlabelFormatter = ({ index, length, min, max, formattedMin, formattedMax }) =>\n  string | null;\n```\n\nThe `markType` can be changed with the `markType` prop.\nSince the color values are based on the axis, and not the series, the `markType` has to be set directly on the legend."
+          ],
+          "code_path": [
+            "PiecewiseInteractiveDemoNoSnap.js"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Click event",
+      "introduction": [
+        "Click event\n\nYou can pass an `onItemClick` function to the `ChartsLegend` or `PiecewiseColorLegend` components to handle click events.\nThey both provide the following signature.\n\n```js\nconst clickHandler = (\n  event, // The click event.\n  context, // An object that identifies the clicked item.\n  index, // The index of the clicked item.\n) => {};\n```\n\nThe `context` object contains different properties depending on the legend type.\nClick the legend items to see their content."
+      ],
+      "code_path": [
+        "LegendClickNoSnap.js"
+      ],
+      "children": []
+    }
+  ]
+}

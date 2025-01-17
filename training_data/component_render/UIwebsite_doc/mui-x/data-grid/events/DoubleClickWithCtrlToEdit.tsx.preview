@@ -1,0 +1,9 @@
+<DataGrid
+  onCellDoubleClick={(params, event) => {
+    if (!event.ctrlKey) {
+      event.defaultMuiPrevented = true;
+    }
+  }}
+  {...data}
+  loading={loading}
+/>

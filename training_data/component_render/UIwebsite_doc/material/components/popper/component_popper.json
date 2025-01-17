@@ -42,10 +42,10 @@
     {
       "name": "Scroll playground",
       "introduction": [
-        "Scroll playground\n\n{{\"demo\": \"ScrollPlayground.js\", \"hideToolbar\": true, \"bg\": true}}"
+        "Scroll playground"
       ],
       "code_path": [
-        null
+        "ScrollPlayground.js"
       ],
       "children": []
     },

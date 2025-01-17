@@ -1,0 +1,81 @@
+{
+  "name": "charts->bar-demo",
+  "introduction": [
+    "# Charts - Bar demonstration\n\n<p class=\"description\">This page groups demonstration using bar charts.</p>"
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "TinyBarChart",
+      "introduction": [
+        "TinyBarChart"
+      ],
+      "code_path": [
+        "TinyBarChart.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "SimpleBarChart",
+      "introduction": [
+        "SimpleBarChart"
+      ],
+      "code_path": [
+        "SimpleBarChart.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "StackedBarChart",
+      "introduction": [
+        "StackedBarChart"
+      ],
+      "code_path": [
+        "StackedBarChart.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "MixedBarChart",
+      "introduction": [
+        "MixedBarChart"
+      ],
+      "code_path": [
+        "MixedBarChart.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "PositiveAndNegativeBarChart",
+      "introduction": [
+        "PositiveAndNegativeBarChart"
+      ],
+      "code_path": [
+        "PositiveAndNegativeBarChart.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "BarChartStackedBySign",
+      "introduction": [
+        "BarChartStackedBySign"
+      ],
+      "code_path": [
+        "BarChartStackedBySign.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "BiaxialBarChart",
+      "introduction": [
+        "BiaxialBarChart"
+      ],
+      "code_path": [
+        "BiaxialBarChart.js"
+      ],
+      "children": []
+    }
+  ]
+}

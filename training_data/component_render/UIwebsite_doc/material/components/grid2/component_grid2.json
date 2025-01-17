@@ -29,20 +29,20 @@
         {
           "name": "Basic grid",
           "introduction": [
-            "Basic grid\n\nIn order to create a grid layout, you need a container.\nUse the `container` prop to create a grid container that wraps the grid items (the `Grid` is always an item).\n\nColumn widths are integer values between 1 and 12.\nFor example, an item with `size={6}` occupies half of the grid container's width.\n\n{{\"demo\": \"BasicGrid.js\", \"bg\": true}}"
+            "Basic grid\n\nIn order to create a grid layout, you need a container.\nUse the `container` prop to create a grid container that wraps the grid items (the `Grid` is always an item).\n\nColumn widths are integer values between 1 and 12.\nFor example, an item with `size={6}` occupies half of the grid container's width."
           ],
           "code_path": [
-            null
+            "BasicGrid.js"
           ],
           "children": []
         },
         {
           "name": "Multiple breakpoints",
           "introduction": [
-            "Multiple breakpoints\n\nItems may have multiple widths defined, causing the layout to change at the defined breakpoint.\nWidth values apply to all wider breakpoints, and larger breakpoints override those given to smaller breakpoints.\n\nFor example, a component with `size={{ xs: 12, sm: 6 }}` occupies the entire viewport width when the viewport is [less than 600 pixels wide](/material-ui/customization/breakpoints/#default-breakpoints).\nWhen the viewport grows beyond this size, the component occupies half of the total width—six columns rather than 12.\n\n{{\"demo\": \"FullWidthGrid.js\", \"bg\": true}}"
+            "Multiple breakpoints\n\nItems may have multiple widths defined, causing the layout to change at the defined breakpoint.\nWidth values apply to all wider breakpoints, and larger breakpoints override those given to smaller breakpoints.\n\nFor example, a component with `size={{ xs: 12, sm: 6 }}` occupies the entire viewport width when the viewport is [less than 600 pixels wide](/material-ui/customization/breakpoints/#default-breakpoints).\nWhen the viewport grows beyond this size, the component occupies half of the total width—six columns rather than 12."
           ],
           "code_path": [
-            null
+            "FullWidthGrid.js"
           ],
           "children": []
         }
@@ -51,19 +51,19 @@
     {
       "name": "Spacing",
       "introduction": [
-        "Spacing\n\nUse the `spacing` prop to control the space between children.\nThe spacing value can be any positive number (including decimals) or a string.\nThe prop is converted into a CSS property using the [`theme.spacing()`](/material-ui/customization/spacing/) helper.\n\nThe following demo illustrates the use of the `spacing` prop:\n\n{{\"demo\": \"SpacingGrid.js\", \"bg\": true, \"hideToolbar\": true}}"
+        "Spacing\n\nUse the `spacing` prop to control the space between children.\nThe spacing value can be any positive number (including decimals) or a string.\nThe prop is converted into a CSS property using the [`theme.spacing()`](/material-ui/customization/spacing/) helper.\n\nThe following demo illustrates the use of the `spacing` prop:"
       ],
       "code_path": [
-        null
+        "SpacingGrid.js"
       ],
       "children": [
         {
           "name": "Row and column spacing",
           "introduction": [
-            "Row and column spacing\n\nThe `rowSpacing` and `columnSpacing` props let you specify row and column gaps independently of one another.\nThey behave similarly to the `row-gap` and `column-gap` properties of [CSS Grid](/system/grid/#row-gap-amp-column-gap).\n\n{{\"demo\": \"RowAndColumnSpacing.js\", \"bg\": true}}"
+            "Row and column spacing\n\nThe `rowSpacing` and `columnSpacing` props let you specify row and column gaps independently of one another.\nThey behave similarly to the `row-gap` and `column-gap` properties of [CSS Grid](/system/grid/#row-gap-amp-column-gap)."
           ],
           "code_path": [
-            null
+            "RowAndColumnSpacing.js"
           ],
           "children": []
         }
@@ -72,9 +72,11 @@
     {
       "name": "Responsive values",
       "introduction": [
-        "Responsive values\n\nYou can set prop values to change when a given breakpoint is active.\nFor instance, we can implement Material Design's [recommended](https://m2.material.io/design/layout/responsive-layout-grid.html) responsive layout grid, as seen in the following demo:\n\n{{\"demo\": \"ResponsiveGrid.js\", \"bg\": true}}\n\nResponsive values are supported by:\n\n- `size`\n- `columns`\n- `columnSpacing`\n- `direction`\n- `rowSpacing`\n- `spacing`\n- `offset`"
+        "Responsive values\n\nYou can set prop values to change when a given breakpoint is active.\nFor instance, we can implement Material Design's [recommended](https://m2.material.io/design/layout/responsive-layout-grid.html) responsive layout grid, as seen in the following demo:",
+        "Responsive values are supported by:\n\n- `size`\n- `columns`\n- `columnSpacing`\n- `direction`\n- `rowSpacing`\n- `spacing`\n- `offset`"
       ],
       "code_path": [
+        "ResponsiveGrid.js",
         null
       ],
       "children": []
@@ -82,29 +84,29 @@
     {
       "name": "Interactive",
       "introduction": [
-        "Interactive\n\nBelow is an interactive demo that lets you explore the visual results of the different settings:\n\n{{\"demo\": \"InteractiveGrid.js\", \"hideToolbar\": true, \"bg\": true}}"
+        "Interactive\n\nBelow is an interactive demo that lets you explore the visual results of the different settings:"
       ],
       "code_path": [
-        null
+        "InteractiveGrid.js"
       ],
       "children": []
     },
     {
       "name": "Auto-layout",
       "introduction": [
-        "Auto-layout\n\nThe auto-layout feature gives equal space to all items present.\nWhen you set the width of one item, the others will automatically resize to match it.\n\n{{\"demo\": \"AutoGrid.js\", \"bg\": true}}"
+        "Auto-layout\n\nThe auto-layout feature gives equal space to all items present.\nWhen you set the width of one item, the others will automatically resize to match it."
       ],
       "code_path": [
-        null
+        "AutoGrid.js"
       ],
       "children": [
         {
           "name": "Variable width content",
           "introduction": [
-            "Variable width content\n\nWhen a breakpoint's value is given as `\"auto\"`, then a column's size will automatically adjust to match the width of its content.\nThe demo below shows how this works:\n\n{{\"demo\": \"VariableWidthGrid.js\", \"bg\": true}}"
+            "Variable width content\n\nWhen a breakpoint's value is given as `\"auto\"`, then a column's size will automatically adjust to match the width of its content.\nThe demo below shows how this works:"
           ],
           "code_path": [
-            null
+            "VariableWidthGrid.js"
           ],
           "children": []
         }
@@ -122,20 +124,20 @@
         {
           "name": "Inheriting spacing",
           "introduction": [
-            "Inheriting spacing\n\nA nested grid container inherits the row and column spacing from its parent unless the `spacing` prop is specified to the instance.\n\n{{\"demo\": \"NestedGrid.js\", \"bg\": true}}"
+            "Inheriting spacing\n\nA nested grid container inherits the row and column spacing from its parent unless the `spacing` prop is specified to the instance."
           ],
           "code_path": [
-            null
+            "NestedGrid.js"
           ],
           "children": []
         },
         {
           "name": "Inheriting columns",
           "introduction": [
-            "Inheriting columns\n\nA nested grid container inherits the columns from its parent unless the `columns` prop is specified to the instance.\n\n{{\"demo\": \"NestedGridColumns.js\", \"bg\": true}}"
+            "Inheriting columns\n\nA nested grid container inherits the columns from its parent unless the `columns` prop is specified to the instance."
           ],
           "code_path": [
-            null
+            "NestedGridColumns.js"
           ],
           "children": []
         }
@@ -144,20 +146,20 @@
     {
       "name": "Columns",
       "introduction": [
-        "Columns\n\nUse the `columns` prop to change the default number of columns (12) in the grid, as shown below:\n\n{{\"demo\": \"ColumnsGrid.js\", \"bg\": true}}"
+        "Columns\n\nUse the `columns` prop to change the default number of columns (12) in the grid, as shown below:"
       ],
       "code_path": [
-        null
+        "ColumnsGrid.js"
       ],
       "children": []
     },
     {
       "name": "Offset",
       "introduction": [
-        "Offset\n\nThe `offset` prop pushes an item to the right side of the grid.\nThis props accepts:\n\n- numbers—for example, `offset={{ md: 2 }}` pushes an item two columns to the right when the viewport size is equal to or greater than the `md` breakpoint.\n- `\"auto\"`—this pushes the item to the far right side of the grid container.\n\nThe demo below illustrates how to use the offset props:\n\n{{\"demo\": \"OffsetGrid.js\", \"bg\": true}}"
+        "Offset\n\nThe `offset` prop pushes an item to the right side of the grid.\nThis props accepts:\n\n- numbers—for example, `offset={{ md: 2 }}` pushes an item two columns to the right when the viewport size is equal to or greater than the `md` breakpoint.\n- `\"auto\"`—this pushes the item to the far right side of the grid container.\n\nThe demo below illustrates how to use the offset props:"
       ],
       "code_path": [
-        null
+        "OffsetGrid.js"
       ],
       "children": []
     },
@@ -194,9 +196,11 @@
         {
           "name": "Centered elements",
           "introduction": [
-            "Centered elements\n\nTo center a grid item's content, specify `display=\"flex\"` directly on the item.\nThen use `justifyContent` and/or `alignItems` to adjust the position of the content, as shown below:\n\n{{\"demo\": \"CenteredElementGrid.js\", \"bg\": true}}\n\n:::warning\nUsing the `container` prop does not work in this situation because the grid container is designed exclusively to wrap grid items.\nIt cannot wrap other elements.\n:::"
+            "Centered elements\n\nTo center a grid item's content, specify `display=\"flex\"` directly on the item.\nThen use `justifyContent` and/or `alignItems` to adjust the position of the content, as shown below:",
+            ":::warning\nUsing the `container` prop does not work in this situation because the grid container is designed exclusively to wrap grid items.\nIt cannot wrap other elements.\n:::"
           ],
           "code_path": [
+            "CenteredElementGrid.js",
             null
           ],
           "children": []

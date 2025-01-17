@@ -1,0 +1,12 @@
+<DataGridPremium
+  {...data}
+  loading={loading}
+  slots={{ toolbar: CustomToolbar }}
+  initialState={{
+    ...data.initialState,
+    rowGrouping: {
+      ...data.initialState?.rowGrouping,
+      model: ['commodity'],
+    },
+  }}
+/>

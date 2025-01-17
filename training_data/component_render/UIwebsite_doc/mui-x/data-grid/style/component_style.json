@@ -1,0 +1,103 @@
+{
+  "name": "style",
+  "introduction": [
+    "# Data Grid - Styling\n\n<p class=\"description\">The grid CSS can be easily overwritten.</p>"
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Using the `sx` prop",
+      "introduction": [
+        "Using the `sx` prop\n\nFor one-off styles, the `sx` prop can be used.\nIt allows to apply simple to complex customizations directly onto the Data Grid element.\nThe keys accepted can be any CSS property as well as the custom properties provided by MUI.\nFor more details, visit the [`sx` prop page](/system/getting-started/the-sx-prop/).\n\n```tsx\n<DataGrid sx={{ m: 2 }} /> // Sets the margin to 2 times the spacing unit = 16px\n```"
+      ],
+      "code_path": [
+        "SxProp.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Styling column headers",
+      "introduction": [
+        "Styling column headers\n\nThe `GridColDef` type has properties to apply class names and custom CSS on the header.\n\n- `headerClassName`: to apply class names into the column header. It can also be a function, which is called with a `GridColumnHeaderParams` object.\n- `headerAlign`: to align the content of the header. It must be 'left' | 'right' | 'center'.\n\n```tsx\nconst columns: GridColDef[] = [\n  {\n    field: 'first',\n    headerClassName: 'super-app-theme--header',\n    headerAlign: 'center',\n  },\n  {\n    field: 'last',\n    headerClassName: 'super-app-theme--header',\n    headerAlign: 'center',\n  },\n];\n```"
+      ],
+      "code_path": [
+        "StylingHeaderGrid.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Styling rows",
+      "introduction": [
+        "Styling rows\n\nThe `getRowClassName` prop can be used to apply a custom CSS class on each row. It's called with a `GridRowParams` object and must return a string. Sometimes it might be needed to override the existing rules using higher specificity CSS selectors.\n\n```tsx\ninterface GridRowParams<R extends GridRowModel = GridRowModel> {\n  /**\n   * The grid row id.\n   */\n  id: GridRowId;\n  /**\n   * The row model of the row that the current cell belongs to.\n   */\n  row: R;\n  /**\n   * All grid columns.\n   */\n  columns: GridColDef[];\n}\n```"
+      ],
+      "code_path": [
+        "StylingRowsGrid.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Styling cells",
+      "introduction": [
+        "Styling cells\n\nThere are multiple ways to apply a custom CSS class on a cell.\n\n1. Using the`cellClassName` property of `GridColDef`:\n\nThis property allows to set a CSS class that is applied on every cell of the column it was defined.\nIt can also be a function, which is called with a `GridCellParams` object.\n\n```tsx\nconst columns: GridColDef[] = [\n  {\n    field: 'name',\n    cellClassName: 'super-app-theme--cell',\n  },\n  {\n    field: 'score',\n    type: 'number',\n    cellClassName: (params: GridCellParams<number>) =>\n      clsx('super-app', {\n        negative: params.value < 0,\n        positive: params.value > 0,\n      }),\n  },\n];\n```",
+        "2. Using the `getCellClassName` prop:\n\nThis prop is called for every cell in every column.\nDifferent from the first option, this prop is defined at the Data Grid level, not column level.\nIt is also called with a `GridCellParams` object."
+      ],
+      "code_path": [
+        "StylingCellsGrid.js",
+        "StylingAllCells.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Cell alignment",
+      "introduction": [
+        "Cell alignment\n\nUse the `align` property in `GridColDef` to change the alignment of content of the cells.\nChoose between one of the following values: 'left' | 'right' | 'center'.\n\n:::warning\nYou must use `headerAlign` to align the content of the header.\n:::"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Striped rows",
+      "introduction": [
+        "Striped rows\n\nYou can use the `indexRelativeToCurrentPage` param passed to `getRowClassName` to apply alternating styles to the rows.\n\nThe following demo illustrates how this can be achieved."
+      ],
+      "code_path": [
+        "StripedGrid.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Theme header and pinned sections",
+      "introduction": [
+        "Theme header and pinned sections\n\nBy default, the Data Grid uses the Material UI `theme.palette.background.default` color for the background of its header and pinned sections. These elements require a solid color to hide the scrollable content behind them. You can override that color with the following configuration:\n\n```tsx\nimport { createTheme } from '@mui/material/styles';\nimport type {} from '@mui/x-data-grid/themeAugmentation';\n\nconst theme = createTheme({\n  mixins: {\n    MuiDataGrid: {\n      // Pinned columns sections\n      pinnedBackground: '#340606',\n      // Headers, and top & bottom fixed rows\n      containerBackground: '#343434',\n    },\n  },\n});\n```"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Custom theme",
+      "introduction": [
+        "Custom theme\n\nThe following demo leverages the CSS customization API to match the Ant Design specification."
+      ],
+      "code_path": [
+        "AntDesignGrid.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "API",
+      "introduction": [
+        "API\n\n- [DataGrid](/x/api/data-grid/data-grid/)\n- [DataGridPro](/x/api/data-grid/data-grid-pro/)\n- [DataGridPremium](/x/api/data-grid/data-grid-premium/)"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    }
+  ]
+}

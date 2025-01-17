@@ -1,0 +1,52 @@
+{
+  "name": "migration->migration-tree-view-lab",
+  "introduction": [
+    "# Migration from the lab\n\n<p class=\"description\">Material UI Tree View is now available on MUI X!</p>"
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Introduction",
+      "introduction": [
+        "Introduction\n\nThis is a reference for migrating your site's Tree View from `@mui/lab` to `@mui/x-tree-view`.\nThis migration is about the npm packages used, it **does not** affect the behavior of the components in your application.\n\n[//]: # 'You can find why we are moving in this direction in the [announcement blog post](/blog/lab-tree-view-to-mui-x/).'"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Migration steps",
+      "introduction": [
+        "Migration steps"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "1. Install MUI X package",
+          "introduction": [
+            "1. Install MUI X package\n\n<codeblock storageKey=\"package-manager\">\n\n```bash npm\nnpm install @mui/x-tree-view\n```\n\n```bash pnpm\npnpm add @mui/x-tree-view\n```\n\n```bash yarn\nyarn add @mui/x-tree-view\n```\n\n</codeblock>"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "2. Run the code mod",
+          "introduction": [
+            "2. Run the code mod\n\nWe have prepared a codemod to help you migrate your codebase.\n\nYou can either run it on a specific file, folder, or your entire codebase when choosing the `<path>` argument.\n\n```bash\nnpx @mui/codemod v5.0.0/tree-view-moved-to-x <path>\n```\n\nWhich will transform the imports like this:\n\n```diff\n-import TreeView from '@mui/lab/TreeView';\n+import { TreeView } from '@mui/x-tree-view/TreeView';\n\n-import { TreeView, TreeItem } from '@mui/lab';\n+import { TreeView, TreeItem } from '@mui/x-tree-view';\n```"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        }
+      ]
+    }
+  ]
+}

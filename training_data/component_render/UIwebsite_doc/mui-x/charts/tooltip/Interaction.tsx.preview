@@ -1,0 +1,2 @@
+<BarChart {...barChartsParams} slotProps={{ tooltip: { trigger: 'axis' } }} />
+<BarChart {...barChartsParams} slotProps={{ tooltip: { trigger: 'item' } }} />

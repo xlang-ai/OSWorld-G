@@ -81,10 +81,10 @@
     {
       "name": "Custom image list",
       "introduction": [
-        "Custom image list\n\nIn this example the items have a customized titlebar, positioned at the top and with a custom gradient `titleBackground`.\nThe secondary action `IconButton` is positioned on the left. The `gap` prop is used to adjust the gap between items.\n\n{{\"demo\": \"CustomImageList.js\", \"defaultCodeOpen\": false}}"
+        "Custom image list\n\nIn this example the items have a customized titlebar, positioned at the top and with a custom gradient `titleBackground`.\nThe secondary action `IconButton` is positioned on the left. The `gap` prop is used to adjust the gap between items."
       ],
       "code_path": [
-        null
+        "CustomImageList.js"
       ],
       "children": []
     }

@@ -1,0 +1,87 @@
+{
+  "name": "ordering",
+  "introduction": [
+    "# Rich Tree View - Ordering [<span class=\"plan-pro\"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')\n\n<p class=\"description\">Drag and drop your items to reorder them.</p>\n\n:::success\nTo be able to reorder items, you first have to enable the `itemsReordering` experimental feature:\n\n```tsx\n<RichTreeViewPro items={ITEMS} experimentalFeatures={{ itemsReordering: true }} />\n```\n\n:::"
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Enable drag & drop re-ordering",
+      "introduction": [
+        "Enable drag & drop re-ordering\n\nYou can enable the drag & drop re-ordering of items by setting the `itemsReordering` prop to `true`:"
+      ],
+      "code_path": [
+        "DragAndDrop.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Limit the re-ordering",
+      "introduction": [
+        "Limit the re-ordering\n\nBy default, all the items are reorderable.\nYou can prevent the re-ordering of some items using the `isItemReorderable` prop.\nThe following example shows how to only allow re-ordering of the leaves using the [`getItemOrderedChildrenIds`](/x/react-tree-view/rich-tree-view/items/#get-an-items-children-by-id) API method.",
+        "You can also limit the items in which an item can be dropped using the `canMoveItemToNewPosition` prop.\nThe following example shows how to only allow re-ordering inside the same parent:"
+      ],
+      "code_path": [
+        "OnlyReorderLeaves.js",
+        "OnlyReorderInSameParent.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "React to an item re-ordering",
+      "introduction": [
+        "React to an item re-ordering\n\nYou can use the `onItemPositionChange` to send the new position of an item to your backend:",
+        "If you want to send the entire dataset to your backend, you can use the [`getItemTree`](/x/react-tree-view/rich-tree-view/items/#get-the-current-item-tree) API method.\nThe following demo demonstrates it by synchronizing the first Tree View with the second one whenever you do a re-ordering:"
+      ],
+      "code_path": [
+        "OnItemPositionChange.js",
+        "SendAllItemsToServer.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Customization",
+      "introduction": [
+        "Customization"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Only trigger the reordering from a drag handle",
+          "introduction": [
+            "Only trigger the reordering from a drag handle\n\nYou can create a custom Tree Item component to render a drag handle icon and only trigger the reordering when dragging from it:"
+          ],
+          "code_path": [
+            "OnlyReorderFromDragHandle.js"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Common examples",
+      "introduction": [
+        "Common examples"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "File explorer",
+          "introduction": [
+            "File explorer\n\nThe example below is a simplified version of the [File Explorer](/x/react-tree-view/rich-tree-view/customization/#file-explorer) example with drag & drop re-ordering.\nYou can re-order items but only inside folders (or inside the trash)."
+          ],
+          "code_path": [
+            "FileExplorer.js"
+          ],
+          "children": []
+        }
+      ]
+    }
+  ]
+}

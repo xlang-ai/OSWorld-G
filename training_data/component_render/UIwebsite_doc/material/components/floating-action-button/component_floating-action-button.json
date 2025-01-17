@@ -32,10 +32,10 @@
     {
       "name": "Animation",
       "introduction": [
-        "Animation\n\nThe floating action button animates onto the screen as an expanding piece of material, by default.\n\nA floating action button that spans multiple lateral screens (such as tabbed screens) should briefly disappear,\nthen reappear if its action changes.\n\nThe Zoom transition can be used to achieve this. Note that since both the exiting and entering\nanimations are triggered at the same time, we use `enterDelay` to allow the outgoing Floating Action Button's\nanimation to finish before the new one enters.\n\n{{\"demo\": \"FloatingActionButtonZoom.js\", \"bg\": true}}"
+        "Animation\n\nThe floating action button animates onto the screen as an expanding piece of material, by default.\n\nA floating action button that spans multiple lateral screens (such as tabbed screens) should briefly disappear,\nthen reappear if its action changes.\n\nThe Zoom transition can be used to achieve this. Note that since both the exiting and entering\nanimations are triggered at the same time, we use `enterDelay` to allow the outgoing Floating Action Button's\nanimation to finish before the new one enters."
       ],
       "code_path": [
-        null
+        "FloatingActionButtonZoom.js"
       ],
       "children": []
     }

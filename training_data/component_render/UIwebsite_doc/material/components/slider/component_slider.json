@@ -131,10 +131,10 @@
         {
           "name": "Music player",
           "introduction": [
-            "Music player\n\n{{\"demo\": \"MusicPlayerSlider.js\", \"bg\": \"inline\"}}"
+            "Music player"
           ],
           "code_path": [
-            null
+            "MusicPlayerSlider.js"
           ],
           "children": []
         }

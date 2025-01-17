@@ -1,0 +1,14 @@
+<DataGridPro
+  {...data}
+  loading={loading}
+  initialState={{
+    ...data.initialState,
+    columns: {
+      columnVisibilityModel: {
+        avatar: false,
+        id: false,
+      },
+    },
+  }}
+  headerFilters
+/>

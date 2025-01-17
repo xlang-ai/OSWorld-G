@@ -1,0 +1,13 @@
+<DataGridPro
+  {...data}
+  loading={loading}
+  pagination
+  initialState={{
+    ...data.initialState,
+    pagination: {
+      paginationModel: {
+        pageSize: 10,
+      },
+    },
+  }}
+/>

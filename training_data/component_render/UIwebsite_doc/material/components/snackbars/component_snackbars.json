@@ -111,10 +111,10 @@
         {
           "name": "Use with Floating Action Buttons",
           "introduction": [
-            "Use with Floating Action Buttons\n\nIf you're using a [Floating Action Button](/material-ui/react-floating-action-button/) on mobile, Material Design recommends positioning snackbars directly above it, as shown in the demo below:\n\n{{\"demo\": \"FabIntegrationSnackbar.js\", \"iframe\": true, \"maxWidth\": 400}}"
+            "Use with Floating Action Buttons\n\nIf you're using a [Floating Action Button](/material-ui/react-floating-action-button/) on mobile, Material Design recommends positioning snackbars directly above it, as shown in the demo below:"
           ],
           "code_path": [
-            null
+            "FabIntegrationSnackbar.js"
           ],
           "children": []
         }
@@ -153,9 +153,11 @@
         {
           "name": "notistack",
           "introduction": [
-            "notistack\n\n![stars](https://img.shields.io/github/stars/iamhosseindhv/notistack.svg?style=social&label=Star)\n![npm downloads](https://img.shields.io/npm/dm/notistack.svg)\n\nWith an imperative API, [notistack](https://github.com/iamhosseindhv/notistack) lets you vertically stack multiple Snackbars without having to handle their open and close states.\nEven though this is discouraged in the Material Design guidelines, it is still a common pattern.\n\n{{\"demo\": \"IntegrationNotistack.js\", \"defaultCodeOpen\": false}}\n\n:::warning\nNote that notistack prevents Snackbars from being [closed by pressing <kbd class=\"key\">Escape</kbd>](#accessibility).\n:::"
+            "notistack\n\n![stars](https://img.shields.io/github/stars/iamhosseindhv/notistack.svg?style=social&label=Star)\n![npm downloads](https://img.shields.io/npm/dm/notistack.svg)\n\nWith an imperative API, [notistack](https://github.com/iamhosseindhv/notistack) lets you vertically stack multiple Snackbars without having to handle their open and close states.\nEven though this is discouraged in the Material Design guidelines, it is still a common pattern.",
+            ":::warning\nNote that notistack prevents Snackbars from being [closed by pressing <kbd class=\"key\">Escape</kbd>](#accessibility).\n:::"
           ],
           "code_path": [
+            "IntegrationNotistack.js",
             null
           ],
           "children": []
@@ -194,10 +196,10 @@
         {
           "name": "useNotifications",
           "introduction": [
-            "useNotifications\n\nYou can create and manipulate notifications imperatively with the [`useNotifications()`](https://mui.com/toolpad/core/react-use-notifications/) API in `@toolpad/core`. This API provides state management for opening and closing snackbars. It also allows for queueing multiple notifications at once.\n\n{{\"demo\": \"ToolpadNotificationsNoSnap.js\", \"defaultCodeOpen\": false}}"
+            "useNotifications\n\nYou can create and manipulate notifications imperatively with the [`useNotifications()`](https://mui.com/toolpad/core/react-use-notifications/) API in `@toolpad/core`. This API provides state management for opening and closing snackbars. It also allows for queueing multiple notifications at once."
           ],
           "code_path": [
-            null
+            "ToolpadNotificationsNoSnap.js"
           ],
           "children": []
         }

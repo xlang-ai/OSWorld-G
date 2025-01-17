@@ -1,0 +1,41 @@
+{
+  "name": "data-grid->style-recipes",
+  "introduction": [
+    "# Data Grid - Styling recipes\n\n<p class=\"description\">Advanced grid styling recipes.</p>"
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Remove cell focus outline",
+      "introduction": [
+        "Remove cell focus outline\n\nThe Data Grid cells are actionable elements and visually indicate the `focus` state by default.\nYou can remove the focus outline by overriding the `:focus` and `:focus-within` styles for the cells and header cells.\n\n:::warning\nRemoving the visible `focus` state hurts the accessibility of the grid.\n:::"
+      ],
+      "code_path": [
+        "CellFocusNoOutline.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Remove drag handle for columns that are not resizeable",
+      "introduction": [
+        "Remove drag handle for columns that are not resizeable\n\nIn the MUI Data Grid, each column has a resize handle that allows users to adjust the width of the column.\nHowever, there might be cases where you want to disable this feature for certain columns.\n\nTo hide the drag handles on columns that are not resizable, you can use the resizable property in the GridColDef object.\nWhen the column is not resizable, the drag handle will not have the `columnSeparator--resizable` class.\nWe can use that to hide the separator."
+      ],
+      "code_path": [
+        "ColumnHeaderHideSeparator.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Styling Cells without impacting aggregation cells [<span class=\"plan-premium\"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')",
+      "introduction": [
+        "Styling Cells without impacting aggregation cells [<span class=\"plan-premium\"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')\n\nAggregation cells do not receive a special class, so styling cells without impacting them needs a small workaround in the `getClassName` function."
+      ],
+      "code_path": [
+        "StylingAllCellsButAggregation.js"
+      ],
+      "children": []
+    }
+  ]
+}

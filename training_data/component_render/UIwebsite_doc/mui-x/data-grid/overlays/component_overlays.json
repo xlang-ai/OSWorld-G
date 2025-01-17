@@ -1,0 +1,114 @@
+{
+  "name": "overlays",
+  "introduction": [
+    "# Data Grid - Overlays\n\n<p class=\"description\">The various Data Grid overlays.</p>"
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Loading overlay",
+      "introduction": [
+        "Loading overlay\n\nTo display a loading overlay and signify that the Data Grid is in a loading state, set the `loading` prop to `true`.\n\nThe Data Grid supports 3 loading overlay variants out of the box:\n\n- `skeleton`: an animated placeholder of the Data Grid.\n- `linear-progress`: an indeterminate linear progress bar.\n- `circular-progress`: a circular loading spinner.\n\nThe type of loading overlay to display can be set via `slotProps.loadingOverlay` for the following two props:\n\n- `variant` (default: `linear-progress`): when `loading` and there are rows in the table.\n- `noRowsVariant` (default: `skeleton`): when `loading` and there are not any rows in the table.\n\n```tsx\n<DataGrid\n  {...data}\n  loading\n  slotProps={{\n    loadingOverlay: {\n      variant: 'linear-progress',\n      noRowsVariant: 'skeleton',\n    },\n  }}\n/>\n```"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Skeleton",
+          "introduction": [
+            "Skeleton\n\nAn animated placeholder of the Data Grid."
+          ],
+          "code_path": [
+            "LoadingOverlaySkeleton.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Linear progress",
+          "introduction": [
+            "Linear progress\n\nAn indeterminate linear progress bar."
+          ],
+          "code_path": [
+            "LoadingOverlayLinearProgress.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Circular progress",
+          "introduction": [
+            "Circular progress\n\nA circular loading spinner."
+          ],
+          "code_path": [
+            "LoadingOverlayCircularProgress.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Custom component",
+          "introduction": [
+            "Custom component\n\nIf you want to customize the no-rows overlay, a component can be passed to the `loadingOverlay` slot.\n\nIn the following demo, a labeled determinate [CircularProgress](/material-ui/react-progress/#circular-determinate) component is rendered in place of the default loading overlay, with some additional _Loading rows…_ text."
+          ],
+          "code_path": [
+            "LoadingOverlayCustom.js"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "No rows overlay",
+      "introduction": [
+        "No rows overlay\n\nThe no-rows overlay is displayed when the Data Grid has no rows."
+      ],
+      "code_path": [
+        "NoRowsOverlay.js"
+      ],
+      "children": [
+        {
+          "name": "Custom component",
+          "introduction": [
+            "Custom component\n\nIf you want to customize the no-rows overlay, a component can be passed to the `noRowsOverlay` slot and rendered in place.\n\nIn the following demo, an illustration is added on top of the default \"No rows\" message."
+          ],
+          "code_path": [
+            "NoRowsOverlayCustom.js"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "No results overlay",
+      "introduction": [
+        "No results overlay\n\nThe no-results overlay is displayed when the Data Grid has no results after filtering."
+      ],
+      "code_path": [
+        "NoResultsOverlay.js"
+      ],
+      "children": [
+        {
+          "name": "Custom component",
+          "introduction": [
+            "Custom component\n\nIf you want to customize the no results overlay, a component can be passed to the `noResults` slot and rendered in place.\n\nIn the following demo, an illustration is added on top of the default \"No results found\" message."
+          ],
+          "code_path": [
+            "NoResultsOverlayCustom.js"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "API",
+      "introduction": [
+        "API\n\n- [DataGrid](/x/api/data-grid/data-grid/)\n- [DataGridPro](/x/api/data-grid/data-grid-pro/)\n- [DataGridPremium](/x/api/data-grid/data-grid-premium/)"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    }
+  ]
+}

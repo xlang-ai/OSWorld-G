@@ -10,90 +10,90 @@
     {
       "name": "Basic App bar",
       "introduction": [
-        "Basic App bar\n\n{{\"demo\": \"ButtonAppBar.js\", \"bg\": true}}"
+        "Basic App bar"
       ],
       "code_path": [
-        null
+        "ButtonAppBar.js"
       ],
       "children": []
     },
     {
       "name": "App bar with menu",
       "introduction": [
-        "App bar with menu\n\n{{\"demo\": \"MenuAppBar.js\", \"bg\": true}}"
+        "App bar with menu"
       ],
       "code_path": [
-        null
+        "MenuAppBar.js"
       ],
       "children": []
     },
     {
       "name": "App bar with responsive menu",
       "introduction": [
-        "App bar with responsive menu\n\n{{\"demo\": \"ResponsiveAppBar.js\", \"bg\": true}}"
+        "App bar with responsive menu"
       ],
       "code_path": [
-        null
+        "ResponsiveAppBar.js"
       ],
       "children": []
     },
     {
       "name": "App bar with search field",
       "introduction": [
-        "App bar with search field\n\nA side searchbar.\n\n{{\"demo\": \"SearchAppBar.js\", \"bg\": true}}"
+        "App bar with search field\n\nA side searchbar."
       ],
       "code_path": [
-        null
+        "SearchAppBar.js"
       ],
       "children": []
     },
     {
       "name": "Responsive App bar with Drawer",
       "introduction": [
-        "Responsive App bar with Drawer\n\n{{\"demo\": \"DrawerAppBar.js\", \"bg\": true,\"iframe\": true}}"
+        "Responsive App bar with Drawer"
       ],
       "code_path": [
-        null
+        "DrawerAppBar.js"
       ],
       "children": []
     },
     {
       "name": "App bar with a primary search field",
       "introduction": [
-        "App bar with a primary search field\n\nA primary searchbar.\n\n{{\"demo\": \"PrimarySearchAppBar.js\", \"bg\": true}}"
+        "App bar with a primary search field\n\nA primary searchbar."
       ],
       "code_path": [
-        null
+        "PrimarySearchAppBar.js"
       ],
       "children": []
     },
     {
       "name": "Dense (desktop only)",
       "introduction": [
-        "Dense (desktop only)\n\n{{\"demo\": \"DenseAppBar.js\", \"bg\": true}}"
+        "Dense (desktop only)"
       ],
       "code_path": [
-        null
+        "DenseAppBar.js"
       ],
       "children": []
     },
     {
       "name": "Prominent",
       "introduction": [
-        "Prominent\n\nA prominent app bar.\n\n{{\"demo\": \"ProminentAppBar.js\", \"bg\": true}}"
+        "Prominent\n\nA prominent app bar."
       ],
       "code_path": [
-        null
+        "ProminentAppBar.js"
       ],
       "children": []
     },
     {
       "name": "Bottom App bar",
       "introduction": [
-        "Bottom App bar\n\n{{\"demo\": \"BottomAppBar.js\", \"iframe\": true, \"maxWidth\": 400}}"
+        "Bottom App bar"
       ],
       "code_path": [
-        null
+        "BottomAppBar.js"
       ],
       "children": []
     },
@@ -119,30 +119,30 @@
         {
           "name": "Hide App bar",
           "introduction": [
-            "Hide App bar\n\nThe app bar hides on scroll down to leave more space for reading.\n\n{{\"demo\": \"HideAppBar.js\", \"iframe\": true, \"disableLiveEdit\": true}}"
+            "Hide App bar\n\nThe app bar hides on scroll down to leave more space for reading."
           ],
           "code_path": [
-            null
+            "HideAppBar.js"
           ],
           "children": []
         },
         {
           "name": "Elevate App bar",
           "introduction": [
-            "Elevate App bar\n\nThe app bar elevates on scroll to communicate that the user is not at the top of the page.\n\n{{\"demo\": \"ElevateAppBar.js\", \"iframe\": true, \"disableLiveEdit\": true}}"
+            "Elevate App bar\n\nThe app bar elevates on scroll to communicate that the user is not at the top of the page."
           ],
           "code_path": [
-            null
+            "ElevateAppBar.js"
           ],
           "children": []
         },
         {
           "name": "Back to top",
           "introduction": [
-            "Back to top\n\nA floating action button appears on scroll to make it easy to get back to the top of the page.\n\n{{\"demo\": \"BackToTop.js\", \"iframe\": true, \"disableLiveEdit\": true}}"
+            "Back to top\n\nA floating action button appears on scroll to make it easy to get back to the top of the page."
           ],
           "code_path": [
-            null
+            "BackToTop.js"
           ],
           "children": []
         },
@@ -192,10 +192,10 @@
     {
       "name": "Enable color on dark",
       "introduction": [
-        "Enable color on dark\n\nFollowing the [Material Design guidelines](https://m2.material.io/design/color/dark-theme.html), the `color` prop has no effect on the appearance of the app bar in dark mode.\nYou can override this behavior by setting the `enableColorOnDark` prop to `true`.\n\n{{\"demo\": \"EnableColorOnDarkAppBar.js\", \"bg\": true}}"
+        "Enable color on dark\n\nFollowing the [Material Design guidelines](https://m2.material.io/design/color/dark-theme.html), the `color` prop has no effect on the appearance of the app bar in dark mode.\nYou can override this behavior by setting the `enableColorOnDark` prop to `true`."
       ],
       "code_path": [
-        null
+        "EnableColorOnDarkAppBar.js"
       ],
       "children": []
     },
@@ -211,10 +211,10 @@
         {
           "name": "Dashboard Layout",
           "introduction": [
-            "Dashboard Layout\n\nThe [DashboardLayout](https://mui.com/toolpad/core/react-dashboard-layout/) component from `@toolpad/core` is the starting point for dashboarding applications. It takes care of application layout, theming, navigation, and more. An example usage of this component:\n\n{{\"demo\": \"DashboardLayoutBasic.js\", \"height\": 400, \"iframe\": true, \"defaultExpanded\": false}}"
+            "Dashboard Layout\n\nThe [DashboardLayout](https://mui.com/toolpad/core/react-dashboard-layout/) component from `@toolpad/core` is the starting point for dashboarding applications. It takes care of application layout, theming, navigation, and more. An example usage of this component:"
           ],
           "code_path": [
-            null
+            "DashboardLayoutBasic.js"
           ],
           "children": []
         }
