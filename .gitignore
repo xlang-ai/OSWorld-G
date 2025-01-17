@@ -203,3 +203,5 @@ vmware_vm_data
 screenshots/
 component_code/
 component_positions/
+
+secret_key.txt

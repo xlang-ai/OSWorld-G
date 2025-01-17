@@ -20,11 +20,9 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 MAX_WORKERS = 5
 # Setup proxy and API key
-os.environ["HTTP_PROXY"] = "http://127.0.0.1:7890"
-os.environ["HTTPS_PROXY"] = "http://127.0.0.1:7890"
-os.environ["OPENAI_API_KEY"] = (
-    "sk-proj-NbPoE7tGAYdL4KkoVIKAT3BlbkFJdGVE4jgZJ7jh321tgV9U"
-)
+# os.environ["HTTP_PROXY"] = "http://127.0.0.1:7890"
+# os.environ["HTTPS_PROXY"] = "http://127.0.0.1:7890"
+os.environ["OPENAI_API_KEY"] = "YOUR_KEY"
 client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
 
@@ -587,8 +585,8 @@ async def main():
         action_intent_list = None
         action_detail_list = None
         base_path_dict = {
-            "material": "/Users/nickyang/Desktop/Research/HKUNLP/OSWorld-G/training_data/component_render/UIwebsite_doc/material/components",
-            "mui-x": "/Users/nickyang/Desktop/Research/HKUNLP/OSWorld-G/training_data/component_render/UIwebsite_doc/mui-x",
+            "material": "TODO",  # "OSWorld-G/training_data/component_render/UIwebsite_doc/material/components"
+            "mui-x": "TODO",  # "OSWorld-G/training_data/component_render/UIwebsite_doc/mui-x",
         }
 
         # 创建screenshots文件夹
@@ -774,5 +772,3 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
-
-# https://github.com/mui/mui-x/blob/master/docs/data

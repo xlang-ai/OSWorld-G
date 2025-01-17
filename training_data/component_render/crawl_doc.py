@@ -4,9 +4,6 @@ import os
 from typing import List, Dict
 import time
 
-os.environ["HTTP_PROXY"] = "http://127.0.0.1:7890"
-os.environ["HTTPS_PROXY"] = "http://127.0.0.1:7890"
-
 
 async def download_file(
     session: aiohttp.ClientSession,
@@ -113,7 +110,9 @@ def main():
     branch = "master"
 
     # 指定下载位置
-    download_dir = "/Users/nickyang/Desktop/Research/HKUNLP/OSWorld-G/training_data/component_render/UIwebsite_doc/mui-x"  # 可以改为任意目标路径
+    download_dir = (
+        "TODO"  # "OSWorld-G/training_data/component_render/UIwebsite_doc/mui-x"
+    )
     os.makedirs(download_dir, exist_ok=True)
 
     asyncio.run(download_folder_contents(repo, folder_path, download_dir, branch))

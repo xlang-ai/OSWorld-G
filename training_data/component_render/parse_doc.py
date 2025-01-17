@@ -171,8 +171,8 @@ class ComponentParser:
 def main():
     lib_name = "mui-x"
     base_path_dict = {
-        "material": "/Users/nickyang/Desktop/Research/HKUNLP/OSWorld-G/training_data/component_render/UIwebsite_doc/material/components",
-        "mui-x": "/Users/nickyang/Desktop/Research/HKUNLP/OSWorld-G/training_data/component_render/UIwebsite_doc/mui-x",
+        "material": "TODO",  # "OSWorld-G/training_data/component_render/UIwebsite_doc/material/components",
+        "mui-x": "TODO",  # "OSWorld-G/training_data/component_render/UIwebsite_doc/mui-x",
     }
     parser = ComponentParser(base_path_dict[lib_name])
     components = parser.parse_all_components()

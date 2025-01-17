@@ -6,11 +6,9 @@ from pydantic import BaseModel
 from logger import logger
 
 # Setup proxy and API key
-os.environ["HTTP_PROXY"] = "http://127.0.0.1:7890"
-os.environ["HTTPS_PROXY"] = "http://127.0.0.1:7890"
-os.environ["OPENAI_API_KEY"] = (
-    "sk-proj-NbPoE7tGAYdL4KkoVIKAT3BlbkFJdGVE4jgZJ7jh321tgV9U"
-)
+# os.environ["HTTP_PROXY"] = "http://127.0.0.1:7890"
+# os.environ["HTTPS_PROXY"] = "http://127.0.0.1:7890"
+os.environ["OPENAI_API_KEY"] = "YOUR_KEY"
 client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
 
