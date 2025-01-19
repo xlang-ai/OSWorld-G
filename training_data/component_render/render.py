@@ -4,6 +4,7 @@ import datetime
 import json
 import os
 import re
+import shutil
 import subprocess
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -32,8 +33,8 @@ MAX_WORKERS = 5
 # Setup proxy and API key
 # os.environ["HTTP_PROXY"] = "http://127.0.0.1:7890"
 # os.environ["HTTPS_PROXY"] = "http://127.0.0.1:7890"
-os.environ["OPENAI_API_KEY"] = "YOUR_KEY"
-os.environ["ANTHROPIC_API_KEY"] = "YOUR_KEY"
+os.environ["OPENAI_API_KEY"] = ""
+os.environ["ANTHROPIC_API_KEY"] = ""
 client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 claude = anthropic.Anthropic()
 
@@ -285,7 +286,7 @@ class DataGenerator:
             raise
 
     async def refresh_react_app(
-        self, component_code, component_name, screenshot_folder
+        self, component_code, style_code, component_name, screenshot_folder, style_index
     ):
         """刷新React应用并分析组件"""
         # 创建必要的目录
@@ -293,12 +294,14 @@ class DataGenerator:
         app_dir.mkdir(parents=True, exist_ok=True)
 
         # 写入组件文件
-        component_js_path = app_dir / "src" / f"{component_name}.js"
+        component_js_path = app_dir / "src" / "components" / f"{component_name}.js"
         with open(component_js_path, "w") as f:
             f.write(component_code)
 
         # 更新App.js
-        app_js_content = JS_WITH_COMPONENT.format(component_name=component_name)
+        app_js_content = JS_WITH_COMPONENT.format(
+            component_name=component_name, style_code=style_code
+        )
         app_js_path = app_dir / "src" / "App.js"
         with open(app_js_path, "w") as f:
             f.write(app_js_content)
@@ -317,7 +320,8 @@ class DataGenerator:
         if position:
             # 保存位置信息
             position_file = (
-                Path("./component_positions") / f"{component_name}_position.json"
+                Path("./component_positions")
+                / f"{component_name}_position_{style_index}.json"
             )
             position_file.parent.mkdir(parents=True, exist_ok=True)
             with open(position_file, "w") as f:
@@ -325,12 +329,12 @@ class DataGenerator:
 
             # 捕获截图
             screenshot_path = await self.capture_screenshot(
-                screenshot_folder, component_name
+                screenshot_folder, component_name, style_index
             )
             return position, screenshot_path
         return None, None
 
-    async def capture_screenshot(self, screenshot_folder, component_name):
+    async def capture_screenshot(self, screenshot_folder, component_name, style_index):
         # Launch Playwright browser
         async with async_playwright() as p:
             browser = await p.chromium.launch(headless=True)  # Launch headless browser
@@ -340,8 +344,9 @@ class DataGenerator:
             await page.goto("http://localhost:3000")
 
             # Define the path to save the screenshot
-            screenshot_path = os.path.join(
-                screenshot_folder, f"{component_name}_{time.time()}.png"
+            screenshot_path = (
+                Path(screenshot_folder)
+                / f"{component_name}_style_{style_index}_{time.time()}.png"
             )
 
             # Take the screenshot and save it
@@ -369,12 +374,13 @@ class DataGenerator:
         draw.text((x + 5, y + 5), label, fill=color, font=font)
 
     async def annotate_screenshot_component(
-        self, component_name, position, screenshot_path, screenshot_folder
+        self, component_name, position, screenshot_path, screenshot_folder, style_index
     ):
         if position:
             # 保存位置信息
             position_file = (
-                Path("./component_positions") / f"{component_name}_position.json"
+                Path("./component_positions")
+                / f"{component_name}_position_{style_index}.json"
             )
             position_file.parent.mkdir(parents=True, exist_ok=True)
             with open(position_file, "w") as f:
@@ -443,14 +449,15 @@ class DataGenerator:
                 # 保存标注后的截图
                 annotated_path = (
                     Path(screenshot_folder)
-                    / f"{component_name}_annotated_component_{int(time.time())}.png"
+                    / f"{component_name}_annotated_component_{style_index}_{int(time.time())}.png"
                 )
                 img.save(annotated_path)
                 logger.info(f"Saved annotated screenshot to {annotated_path}")
 
                 # 保存元素信息
                 info_path = (
-                    Path("./component_positions") / f"{component_name}_elements.json"
+                    Path("./component_positions")
+                    / f"{component_name}_elements_{style_index}.json"
                 )
                 with open(info_path, "w") as f:
                     json.dump(position, f, indent=2)
@@ -463,6 +470,7 @@ class DataGenerator:
     async def annotate_screenshot_action(
         self,
         component_name,
+        style_index,
         action_intent,
         action_space_type,
         action_desc,
@@ -550,7 +558,7 @@ class DataGenerator:
                 # 保存标注后的截图
                 annotated_path = (
                     Path(screenshot_folder)
-                    / f"{component_name}_annotated_action_{action_index}_{(time.time())}.png"
+                    / f"{component_name}_annotated_action_{style_index}_{action_index}_{(time.time())}.png"
                 )
                 img.save(annotated_path)
                 logger.info(f"Saved annotated screenshot to {annotated_path}")
@@ -730,6 +738,7 @@ async def main():
                 with open(component_code_path, "r") as f:
                     component_code = f.read()
 
+                base_component_code = component_code
                 ### 进行数据扩增。分为两步，第一步根据应用场景扩增新风格的数据。第二步为数据添加css样式模版，方便进一步扩增。
                 # Step 1
                 scenario_augmentation_list = scenario_augmentation(component_code, n=3)
@@ -742,152 +751,163 @@ async def main():
 
                 # Save to local file
                 # Create augmentation_data directory if it doesn't exist
-                augmentation_dir = os.path.join(
-                    os.path.dirname(component_code_path), "augmentation_data"
-                )
-                os.makedirs(augmentation_dir, exist_ok=True)
+                augmentation_dir = Path("./augmentation_data")
+                augmentation_dir.mkdir(parents=True, exist_ok=True)
 
                 # Get original filename without extension
-                base_filename = os.path.splitext(os.path.basename(component_code_path))[
-                    0
-                ]
+                base_filename = Path(component_code_path).stem
                 output_path = os.path.join(augmentation_dir, f"{base_filename}.json")
 
-                # Write style augmentation data to json file
+                # Write augmentation data to json file
                 with open(output_path, "w") as f:
-                    json.dump(style_augmentation_list, f, indent=4)
+                    json.dump(style_augmentation_list, f, indent=4, ensure_ascii=False)
 
                 for style_augmentation_data in style_augmentation_list:
                     component_code = style_augmentation_data["component_code"]
                     style_template = style_augmentation_data["style_template"]
                     style_code_list = style_augmentation_data["style_code_list"]
 
-                    # TODO : 将code整合到下面当中
+                    for style_index, style_code in enumerate(style_code_list):
 
-                    try:
-                        # STEP 2: 提取组件名称
-                        logger.info(f"Extracting component name")
-                        component_name = generator.extract_export_name(component_code)
-                        logger.info(f"Component name: {component_name}")
-
-                        # STEP 3: 创建并启动React应用，渲染组件，进行截图，并获取组件位置信息
-                        logger.info(f"Creating and starting React app")
-                        position, screenshot_path = await generator.refresh_react_app(
-                            component_code, component_name, screenshot_folder
-                        )
-                        logger.info(f"React app created and started")
-
-                        # STEP 4: 在截图中标注组件位置信息
-                        logger.info(f"Annotating component screenshot")
-                        annotated_component_path = (
-                            await generator.annotate_screenshot_component(
-                                component_name,
-                                position,
-                                screenshot_path,
-                                screenshot_folder,
+                        try:
+                            # STEP 2: 提取组件名称
+                            logger.info(f"Extracting component name")
+                            component_name = generator.extract_export_name(
+                                component_code
                             )
-                        )
-                        logger.info(f"Annotated component screenshot")
+                            logger.info(f"Component name: {component_name}")
 
-                        annotated_action_paths = []
-                        # STEP 5: 生成动作数据
-                        logger.info(f"Generating action data")
-                        action_intent_list, action_detail_list = (
-                            generator.generate_action_data(
-                                component_desc=component_desc,
-                                component_name=component_name,
-                                raw_image_path=screenshot_path,
-                                annotated_image_path=annotated_component_path,
-                                position=position,
-                            )
-                        )
-                        with open("action_intent.json", "a") as f:
-                            json.dump(action_intent_list, f, indent=4)
-                        with open("action_detail.json", "a") as f:
-                            json.dump(
-                                [
-                                    action_detail.model_dump()
-                                    for action_detail in action_detail_list
-                                ],
-                                f,
-                                indent=4,
-                            )
-                        logger.info(f"Action data generated")
-
-                        for i in range(len(action_intent_list)):
-                            # STEP 6: 从action_data中提取action_code中的常量，在截图中标注动作位置信息
-                            action_intent = action_intent_list[i]
-                            action_space_type = action_detail_list[i].action_space_type
-                            action_desc = action_detail_list[i].action_desc
-                            action_thought = action_detail_list[i].thought_process
-                            action_discrete_params = action_detail_list[
-                                i
-                            ].action_discrete_params
-                            action_code = action_detail_list[i].action_code
-
-                            annotated_action_path = (
-                                await generator.annotate_screenshot_action(
+                            # STEP 3: 创建并启动React应用，渲染组件，进行截图，并获取组件位置信息
+                            logger.info(f"Creating and starting React app")
+                            position, screenshot_path = (
+                                await generator.refresh_react_app(
+                                    component_code,
+                                    style_code,
                                     component_name,
-                                    action_intent,
-                                    action_space_type,
-                                    action_desc,
-                                    action_thought,
-                                    action_discrete_params,
-                                    action_code,
-                                    i,
+                                    screenshot_folder,
+                                    style_index=style_index,
+                                )
+                            )
+                            logger.info(f"React app created and started")
+
+                            # STEP 4: 在截图中标注组件位置信息
+                            logger.info(f"Annotating component screenshot")
+                            annotated_component_path = (
+                                await generator.annotate_screenshot_component(
+                                    component_name,
+                                    position,
                                     screenshot_path,
                                     screenshot_folder,
+                                    style_index=style_index,
                                 )
                             )
-                            annotated_action_paths.append(annotated_action_path)
-                        # STEP 7: 保存组件代码到固定位置
-                        component_js_path = (
-                            Path("./react-app/src") / f"{component_name}.js"
-                        )
-                        os.makedirs(Path("./component_code"), exist_ok=True)
-                        component_js_path.rename(
-                            Path("./component_code")
-                            / f"{component_name}_{time.time()}.js"
-                        )
+                            logger.info(f"Annotated component screenshot")
 
-                        # STEP 8: 保存数据到jsonl文件
-                        component_num += 1
-                        action_num += len(annotated_action_paths)
-                        with open(
-                            f"data_{datetime.datetime.now().strftime('%Y-%m-%d')}.jsonl",
-                            "a",
-                        ) as f:
-                            f.write(
-                                json.dumps(
-                                    {
-                                        "component_desc": component_desc,
-                                        "component_name": component_name,
-                                        "component_code_path": str(
-                                            Path("./component_code")
-                                            / f"{component_name}.js"
-                                        ),
-                                        "screenshot_path": screenshot_path,
-                                        "annotated_component_path": annotated_component_path,
-                                        "annotated_action_path": annotated_action_paths,
-                                        "position_info": position,
-                                        "action_intent_list": action_intent_list,
-                                        "action_detail_list": (
-                                            [
-                                                action_detail.model_dump()
-                                                for action_detail in action_detail_list
-                                            ]
-                                            if action_detail_list
-                                            else []
-                                        ),
-                                    },
+                            annotated_action_paths = []
+                            # STEP 5: 生成动作数据
+                            logger.info(f"Generating action data")
+                            action_intent_list, action_detail_list = (
+                                generator.generate_action_data(
+                                    component_desc=component_desc,
+                                    component_name=component_name,
+                                    raw_image_path=screenshot_path,
+                                    annotated_image_path=annotated_component_path,
+                                    position=position,
+                                )
+                            )
+                            with open("action_intent.json", "a") as f:
+                                json.dump(action_intent_list, f, indent=4)
+                            with open("action_detail.json", "a") as f:
+                                json.dump(
+                                    [
+                                        action_detail.model_dump()
+                                        for action_detail in action_detail_list
+                                    ],
+                                    f,
                                     indent=4,
                                 )
-                                + "\n"
+                            logger.info(f"Action data generated")
+
+                            for i in range(len(action_intent_list)):
+                                # STEP 6: 从action_data中提取action_code中的常量，在截图中标注动作位置信息
+                                action_intent = action_intent_list[i]
+                                action_space_type = action_detail_list[
+                                    i
+                                ].action_space_type
+                                action_desc = action_detail_list[i].action_desc
+                                action_thought = action_detail_list[i].thought_process
+                                action_discrete_params = action_detail_list[
+                                    i
+                                ].action_discrete_params
+                                action_code = action_detail_list[i].action_code
+
+                                annotated_action_path = (
+                                    await generator.annotate_screenshot_action(
+                                        component_name,
+                                        style_index,
+                                        action_intent,
+                                        action_space_type,
+                                        action_desc,
+                                        action_thought,
+                                        action_discrete_params,
+                                        action_code,
+                                        i,
+                                        screenshot_path,
+                                        screenshot_folder,
+                                    )
+                                )
+                                annotated_action_paths.append(annotated_action_path)
+                            # STEP 7: 保存组件代码到固定位置
+                            component_js_path = (
+                                Path("./react-app/src/components")
+                                / f"{component_name}.js"
                             )
-                    except Exception as e:
-                        logger.error(
-                            f"Error processing component {component_node['name']}: {e}"
-                        )
+                            os.makedirs(Path("./component_code"), exist_ok=True)
+                            shutil.copy2(
+                                component_js_path,
+                                Path("./component_code")
+                                / f"{component_name}_{time.time()}.js",
+                            )
+
+                            # STEP 8: 保存数据到jsonl文件
+                            component_num += 1
+                            action_num += len(annotated_action_paths)
+                            with open(
+                                f"data_{datetime.datetime.now().strftime('%Y-%m-%d')}.jsonl",
+                                "a",
+                            ) as f:
+                                f.write(
+                                    json.dumps(
+                                        {
+                                            "component_desc": component_desc,
+                                            "component_name": component_name,
+                                            "component_code_path": str(
+                                                Path("./component_code")
+                                                / f"{component_name}.js"
+                                            ),
+                                            "augmentation_data_path": output_path,
+                                            "screenshot_path": screenshot_path,
+                                            "annotated_component_path": annotated_component_path,
+                                            "annotated_action_path": annotated_action_paths,
+                                            "position_info": position,
+                                            "action_intent_list": action_intent_list,
+                                            "action_detail_list": (
+                                                [
+                                                    action_detail.model_dump()
+                                                    for action_detail in action_detail_list
+                                                ]
+                                                if action_detail_list
+                                                else []
+                                            ),
+                                        },
+                                        indent=4,
+                                    )
+                                    + "\n"
+                                )
+                        except Exception as e:
+                            logger.error(
+                                f"Error processing component {component_node['name']}: {e}"
+                            )
             stats[component_root_name] = {
                 "component_num": component_num,
                 "action_num": action_num,

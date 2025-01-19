@@ -5,7 +5,7 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
-import {component_name} from './{component_name}';
+import {component_name} from './components/{component_name}';
 
 function App() {{
   return (
@@ -18,7 +18,7 @@ function App() {{
         borderRadius: '8px',
         overflow: 'visible', // 确保内容不会被裁剪
     }}}}>
-        <{component_name} />
+        <{style_code} />
       </div>
     </div>
   );
