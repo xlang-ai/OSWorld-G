@@ -22,7 +22,8 @@ MAX_WORKERS = 5
 # Setup proxy and API key
 # os.environ["HTTP_PROXY"] = "http://127.0.0.1:7890"
 # os.environ["HTTPS_PROXY"] = "http://127.0.0.1:7890"
-os.environ["OPENAI_API_KEY"] = "YOUR_KEY"
+with open("secret_key.txt", "r") as f:
+    os.environ["OPENAI_API_KEY"] = f.read()
 client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
 
@@ -588,8 +589,8 @@ async def main():
         action_intent_list = None
         action_detail_list = None
         base_path_dict = {
-            "material": "TODO",  # "OSWorld-G/training_data/component_render/UIwebsite_doc/material/components"
-            "mui-x": "TODO",  # "OSWorld-G/training_data/component_render/UIwebsite_doc/mui-x",
+            "material": "UIwebsite_doc/material/components",
+            "mui-x": "UIwebsite_doc/mui-x",
         }
 
         # 创建screenshots文件夹
@@ -611,9 +612,9 @@ async def main():
             for component_tree in component_tree_list
             if component_tree["name"]
             in [
-                "tree-view->rich-tree-view->customization",
-                "tree-view->rich-tree-view->editing",
-                "tree-view->rich-tree-view->ordering",
+                # "tree-view->rich-tree-view->customization",
+                # "tree-view->rich-tree-view->editing",
+                # "tree-view->rich-tree-view->ordering",
                 "slider",
                 "menus",
                 "drawers",
