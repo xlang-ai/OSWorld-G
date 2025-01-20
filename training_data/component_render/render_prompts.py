@@ -463,3 +463,119 @@ COMPONENT_TYPE_LIST = [
     "Transitions - Provides animation effects for components.",
     "useMediaQuery - React hook for matching CSS media queries.",
 ]
+
+SYSTEM_PROMPT_FOR_STYLE_AUGMENTATION = """You are an assistant familiar with the React framework and skilled at writing frontend code."""
+
+
+def generate_new_style_component_prompt(
+    original_code: str, generated_codes: list[str] = None
+) -> str:
+    base_template = """
+<UI Component Code>
+{original_code}
+</UI Component Code>
+This is a piece of front-end UI code written in React, describing a component with basic interactive functionality.
+
+{generated_blocks}
+Please come up with a real application scenario for this type of component based on the original component {generated_reference}, and reconstruct a differently styled component based on the application scenario. Requirements:
+
+1. The core functionality must remain consistent with the original component. Based on this, you can design new application scenarios and styles. {uniqueness_constraint}
+
+2. Please add some new subcomponents that are commonly found in modern UI design and are related to component functionality. These subcomponents should prioritize the use of images for display, and text can be used when necessary.
+
+3. You can adjust the content of the original component. When extending styles, please focus on functional components. There is no need to modify purely presentational properties (such as background color, static text, etc.).
+
+4. Focus on components with interactive attributes that provide a rich interactive experience. Avoid overly simple layouts or components.
+
+Please respond in JSON format:
+{{
+    "thoughts": "The thought process of design ideas and scene selection",
+    "new_style_code": "The specific code for the new component"
+}}"""
+
+    # 处理已生成的组件代码块
+    generated_blocks = ""
+    if generated_codes:
+        for i, code in enumerate(generated_codes, 1):
+            generated_blocks += f"""<Generated Component Code {i}>
+                    {code}
+                    </Generated Component Code {i}>
+
+                    """
+
+    # 根据是否有已生成的组件来设置相关引用和约束
+    generated_reference = (
+        "and the different scene components generated previously"
+        if generated_codes
+        else ""
+    )
+    uniqueness_constraint = (
+        "The new scene cannot be the same as the existing scene."
+        if generated_codes
+        else ""
+    )
+
+    # 填充模板并返回完整prompt
+    return base_template.format(
+        original_code=original_code,
+        generated_blocks=generated_blocks,
+        generated_reference=generated_reference,
+        uniqueness_constraint=uniqueness_constraint,
+    )
+
+
+STYLE_TEMPLATE_GENERATE_PROMPT = """
+User Prompt:
+
+<UI Component Code>
+{original_code}
+</UI Component Code>
+
+This is a piece of front-end UI code written in React, describing a component with interactive functionality in a specific application scenario. Please analyze this React code and add a style template for this UI component. The style template should include replaceable images, text, colors, relative positions, etc. This way, I can achieve data augmentation by assigning different style values (image paths, text content, etc.).
+
+I hope to interact more with this component, so please focus on those components that have interactive properties. There is no need to include the properties of non-interactive components in the style template, such as background color, non-interactive text, etc.
+
+Here is an example of style code:
+
+<EnhancedMusicPlayer
+  songData={{
+    title: "Custom Song Name",
+    artist: "Custom Artist",
+    album: "Custom Album",
+    duration: 300,
+    coverImage: "/path/to/cover.jpg",
+    lyrics: "Custom Lyrics...",
+  }}
+  theme={{
+    primary: "bg-purple-500",
+    secondary: "bg-purple-300",
+    text: "text-gray-900",
+    iconColor: "text-gray-700"
+  }}
+/>
+You need to implement the acceptance of these parameters in the EnhancedMusicPlayer component object.
+
+Please respond in JSON format. First, think about which components in this component are suitable to be used as objects for the style template. Then provide the complete React component code containing the style template. Finally, provide the replaceable style file code. Your styles do not need to be consistent with the example.
+
+{{
+    "thoughts": "",
+    "component_code": "",
+    "style_template": "",
+}}
+"""
+
+
+STYLE_CODE_GENERATE_PROMPT = """
+User Prompt:
+<Style Control Code>
+{style_code}
+<Style Control Code>
+
+This is a style control code for a React object. Please help me randomly fill in these properties to help me get a variety of component objects.
+
+Please respond in JSON format.
+{{
+	"thoughts": "Return your thoughts here.",
+	"style_code": "Return your React code here"
+}}
+"""
