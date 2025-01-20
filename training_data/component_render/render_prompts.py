@@ -24,7 +24,7 @@ Input:
 Requirements:
 1. Consider all possible interactions, as many as possible
 2. Group similar actions together, don't include action intents that are too similar or repetitive
-3. Propose action on BOTH interactive elements and non-interactive elements(such as text, image, etc. You can click on text to select it or part of it, you can click on image to select it or click part of it)
+3. Propose action on BOTH interactive elements and non-interactive elements(such as text, image, etc. You can click on text to select it or select part of it, you can click on image to select it or click part of it)
 4. Check screenshot to make sure the action is possible
 5. The interaction should be completed in ONE step, don't include multiple steps in one action(e.g. you cannot click multiple buttons in one action)
 
@@ -110,6 +110,7 @@ If the action space type is "none", you should generate empty action_desc and ac
    - Define constant coordinates first
    - Use PyAutoGUI only
    - For discrete or continuous action spaces: Implement variable parameters using `<param_name>` format
+   - Use singleclick action whenever possible and suitable.
 
 ## Response Format
 ```json
@@ -198,14 +199,15 @@ If the action space type is "none", you should generate empty action_desc and ac
         - Identified slider endpoints: (22,30) and (222,30)
                 - Volume parameter determines click position
                 - Linear interpolation between endpoints based on volume",
-            "action_code": "
-                def action(volume):
-                    x_0, y_0 = 22, 30  # Left endpoint
-                    x_1, y_1 = 222, 30  # Right endpoint
-                    x = x_0 + (x_1 - x_0) * (volume / 100)
-                    pyautogui.click(x, y_0)"
-              }}
-          ]
+    "action_discrete_params": [],
+    "action_code": "
+        def action(volume):
+            x_0, y_0 = 22, 30  # Left endpoint
+            x_1, y_1 = 222, 30  # Right endpoint
+            x = x_0 + (x_1 - x_0) * (volume / 100)
+            pyautogui.click(x, y_0)"
+        }}
+    ]
       }}
   }}
 ```
@@ -331,6 +333,7 @@ If the action space type is "none", you should generate empty action_desc and ac
         - Identified star endpoints: (615.5390625,14), (640.4453125,14), (664.4453125,14), (688.898125,14), (713.35125,14)
                 - Rating parameter determines click position
                 - Linear interpolation between endpoints based on rating",
+    "action_discrete_params": [1, 2, 3, 4, 5],
     "action_code": "
         rating = [1, 2, 3, 4, 5] # make sure to list all possible actions beforehand
         def action(rating):
@@ -376,6 +379,7 @@ If the action space type is "none", you should generate empty action_desc and ac
     "thought_process": "
         - Identified button position: (650, 225)
         - Click on the button",
+    "action_discrete_params": [],
     "action_code": "pyautogui.click(650, 225)"
 }}
 ```
@@ -383,6 +387,45 @@ If the action space type is "none", you should generate empty action_desc and ac
 ## Important Notes
 - Only use current state information
 - Ensure coordinates match the position data provided
+"""
+
+ACTION_GROUNDING_PROMPT = """You are an assistant skilled at understanding pyautogui code. I will provide you with an action_detail, and based on it, you will generate an instruction and a pyautogui_action. The instruction represents what the user intends to do, and the pyautogui_action is the corresponding pyautogui code.
+
+Specifically, the action_detail contains the following information:
+- **thought_process**: The reasoning behind the action.
+- **action_space_type**: The type of action space, which could be "none", "unique", "discrete", or "continuous".
+- **action_desc**: A description of the action.
+- **action_discrete_params**: The discrete parameters for the action, applicable when the action_space_type is "discrete".
+- **action_code**: The pyautogui code that corresponds to the action.
+
+Your task is to generate the action's grounding based on the action_space_type:
+- **For "unique"**: Directly generate one instruction and one pyautogui_action.
+- **For "discrete"**: For each discrete parameter in action_discrete_params, generate an instruction and pyautogui_action by substituting the parameter into the action_desc and action_code.
+- **For "continuous"**: Based on the thought_process and action_desc, randomly generate three reasonable values, substitute them into the action_desc and action_code, and generate three sets of instruction and pyautogui_action.
+
+**Important note**: The values used in the `pyautogui_action` (such as coordinates, durations, etc.) must be constants, derived from evaluating the code, not variables. When extracting the values for the pyautogui actions, ensure they are fixed numbers (constants) instead of symbolic variables.
+
+The provided action_detail will be as follows:
+{action_detail}
+
+Your Response Format:
+{{
+    "action_grounding_list": [
+        {{
+            "instruction": "The user input instruction",
+            "pyautogui_action": "The corresponding pyautogui code with constants"
+        }},
+        {{
+            "instruction": "The user input instruction",
+            "pyautogui_action": "The corresponding pyautogui code with constants"
+        }},
+        {{
+            "instruction": "The user input instruction",
+            "pyautogui_action": "The corresponding pyautogui code with constants"
+        }},
+        ...
+    ]
+}}
 """
 
 DESC_PROMPT = """Generate a `component_description` for each component. The description should be detailed and accurately describe its appearance and composition so that a front-end engineer can write the corresponding code based solely on this description without adding any additional information. 
@@ -489,6 +532,8 @@ Please come up with a real application scenario for this type of component based
 
 5. Do not import images since we don't have the image data. You can import anything from MUI libraries.
 
+6. You don't always have to use the most common use cases; diversified use cases are encouraged.
+
 Please respond in JSON format:
 {{
     "thoughts": "The thought process of design ideas and scene selection",
@@ -527,21 +572,51 @@ Please respond in JSON format:
 
 
 STYLE_TEMPLATE_GENERATE_PROMPT = """
-User Prompt:
-
-<UI Component Code>
+<Original UI Component Code>
 {original_code}
-</UI Component Code>
+</Original UI Component Code>
+```
 
-This is a piece of front-end UI code written in React, describing a component with interactive functionality in a specific application scenario. Please analyze this React code and add a style template for this UI component. The style template should include replaceable images, text, colors, relative positions, etc. This way, I can achieve data augmentation by assigning different style values (image paths, text content, etc.). Please set default values for the style and use this default value in component code.
+This is a piece of front-end UI code written in React, which defines a component with interactive functionality for a specific application scenario. 
 
-Do not import images since we don't have the image data. You can import anything from MUI libraries.
+### Task:
+1. **Analyze the Original Code:**  
+   Carefully examine the React component code and think about the appropriate style properties that can be used as objects for the component. Consider visual aspects such as colors, text, margins, padding, and positioning.
 
-You're encouraged to design a style that is colorful, diverse, beautiful, and functional. Appearance is important.
+2. **Create a Style Template:**  
+   Generate a new complete React component code that includes the style template. The style template should contain dynamic, replaceable values for text, colors, relative positions, etc. These will allow you to achieve data augmentation by simply changing values like text content, colors, etc.
 
-Here is an example of style code, style code should follow the format--A React component with nested prop objects for data and styling configuration:
+3. **Provide Component Prop Nesting Code:**  
+   After creating the style template, include the component prop nesting code, which shows how to assign the style template to the component. This means wrapping the component with the nested props containing your styling and data structure.
 
-<EnhancedMusicPlayer
+### Guidelines:
+
+1. **Style Template:** The style template should contain replaceable values for visual properties, such as:
+   - **Colors** (e.g., background color, text color, etc.)
+   - **Text content** (e.g., title, artist, etc.)
+   - **Spacing** (e.g., margin, padding)
+   - **Positions** (e.g., absolute, relative)
+   - **Fonts and icons** (optional, based on the component's needs)
+
+2. **Design Aesthetic:**  
+   - Ensure that the generated style is visually appealing, colorful, and functional.
+   - Experiment with diverse, engaging color schemes and layouts.
+   - Authenticity is key: The component should resemble real-world components that users interact with daily. Pay close attention to style parameters, such as spacing, font sizes, button interactions, and overall layout. Make sure the design is consistent with what we typically use in modern, functional UI components.
+   - Appearance is important—ensure the component is easy to interact with, visually engaging, and provides a smooth user experience.
+
+3. **No Image Imports:**  
+   Since we don’t have image data, avoid importing images. You can import components from Material-UI (MUI) or use CSS classes to handle visual styles. Avoid importing libraries that are not from MUI.
+
+4. **Encourage Creativity:**  
+   Feel free to experiment with different design layouts or color schemes that fit the component's purpose.
+
+5. **Output Accuracy:**  
+   MAKE SURE that "component_code" is a complete React component code that obey js grammar, and "component_prop_nesting" is a prop nesting code that assigns the style template to the component that obey js grammar.
+
+### Example Component Prop Nesting:
+
+```
+<MusicPlayer
   songData={{
     title: "Custom Song Name",
     artist: "Custom Artist",
@@ -556,18 +631,77 @@ Here is an example of style code, style code should follow the format--A React c
     iconColor: "text-gray-700"
   }}
 />
+```
 
-You need to implement the acceptance of these parameters in the EnhancedMusicPlayer component object.
+```
+<ProductCard
+  productData={{
+    name: "Wireless Headphones",
+    price: "$99.99",
+    description: "High-quality sound with noise cancellation feature.",
+    rating: 4.5,
+    images: ["headphones.jpg"],
+  }}
+  theme={{
+    primary: "bg-yellow-500",
+    secondary: "bg-yellow-300",
+    text: "text-black",
+    iconColor: "text-yellow-700"
+  }}
+/>
+```
 
-Please respond in JSON format. First, think about which components in this component are suitable to be used as objects for the style template. Then provide the complete React component code containing the style template. Finally, provide the replaceable style file code. Your styles do not need to be consistent with the example.
+```
+<TodoList
+  todoData={{
+    tasks: [
+      {{ title: "Buy groceries", completed: false }},
+      {{ title: "Clean the house", completed: true }},
+      {{ title: "Finish project", completed: false }},
+    ],
+  }}
+  theme={{
+    primary: "bg-indigo-500",
+    secondary: "bg-indigo-300",
+    text: "text-white",
+    iconColor: "text-indigo-700"
+  }}
+/>
+```
 
+```
+<UserProfile
+  userData={{
+    name: "Alice Smith",
+    age: 29,
+    location: "New York",
+    bio: "Software engineer and tech enthusiast.",
+    profilePicture: "alice.jpg",
+  }}
+  theme={{
+    primary: "bg-pink-500",
+    secondary: "bg-pink-300",
+    text: "text-white",
+    iconColor: "text-pink-700"
+  }}
+/>
+```
+
+The result should include:
+
+1. A **complete React component** with a flexible style template.
+2. A **prop nesting** structure that assigns the style template dynamically.
+
+**Output Format for New Component:**
+```json
 {{
-    "thoughts": "",
-    "component_code": "",
-    "style_template": "",
+  "thoughts": "The `MusicPlayer` component could benefit from customization in terms of background color, text color, and button styling. These properties should be made flexible for data augmentation.",
+  "component_code": "<Component code with the generated style template>",
+  "component_prop_nesting": "<Component with data and theme props assigned for dynamic styling>"
 }}
-"""
+```
 
+"""
 
 STYLE_CODE_GENERATE_PROMPT = """
 User Prompt:

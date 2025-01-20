@@ -21,7 +21,7 @@ from screenshot_annotate import (
     annotate_screenshot_component,
     annotate_screenshot_action,
 )
-from action import generate_action_data
+from action import generate_action_data, process_grounding
 
 MAX_WORKERS = 5
 
@@ -119,7 +119,7 @@ class DataGenerator:
                 f.write(app_js_content)
 
             # 启动服务器并重定向输出到日志文件
-            with open(log_file, "w") as f:
+            with open(log_file, "a") as f:
                 subprocess.Popen(
                     "npm start",
                     shell=True,
@@ -169,8 +169,6 @@ class DataGenerator:
 
         # 获取组件位置信息
         position = await self.page.evaluate(JS_EVAL_POSITION)
-
-        # logger.info(f"Component position: {position}")
 
         if position:
             # 保存位置信息
@@ -318,14 +316,13 @@ async def main():
 
                 ### 进行数据扩增。分为两步，第一步根据应用场景扩增新风格的数据。第二步为数据添加css样式模版，方便进一步扩增。
                 # Step 1
-                scenario_augmentation_list = scenario_augmentation(component_code, n=1)
+                scenario_augmentation_list = scenario_augmentation(component_code, n=3)
 
                 # Step 2
                 style_augmentation_list = [
                     style_augmentation(scenario_augmentation_list[i])
                     for i in range(len(scenario_augmentation_list))
                 ]
-
                 # Save to local file
                 # Create augmentation_data directory if it doesn't exist
                 augmentation_dir = Path("./data/augmentation_data")
@@ -341,12 +338,18 @@ async def main():
 
                 for style_augmentation_data in style_augmentation_list:
                     component_code = style_augmentation_data["component_code"]
-                    style_template = style_augmentation_data["style_template"]
-                    style_code_list = style_augmentation_data["style_code_list"]
+                    component_prop_nesting = style_augmentation_data[
+                        "component_prop_nesting"
+                    ]
+                    styled_component_prop_nesting_list = style_augmentation_data[
+                        "styled_component_prop_nesting_list"
+                    ]
                     # style_code_list = ["placeholder"]
 
-                    for style_index, style_code in enumerate(style_code_list):
-                        print(style_code)
+                    for style_index, styled_component_prop_nesting in enumerate(
+                        styled_component_prop_nesting_list
+                    ):
+                        print(styled_component_prop_nesting)
 
                         try:
                             # STEP 2: 提取组件名称&创建组件
@@ -370,7 +373,7 @@ async def main():
                             position, screenshot_path = (
                                 await generator.refresh_react_app(
                                     component_code,
-                                    style_code,
+                                    styled_component_prop_nesting,
                                     component_name,
                                     screenshot_folder,
                                     style_index=style_index,
@@ -433,18 +436,14 @@ async def main():
                                 )
                                 annotated_action_paths.append(annotated_action_path)
                             # STEP 7: 保存组件代码到固定位置
-                            component_js_path = (
+                            src_path = (
                                 Path("./react-app/src/components")
                                 / f"{component_name}.js"
                             )
-
-                            os.makedirs(Path("./component_code"), exist_ok=True)
-                            shutil.copy2(
-                                component_js_path,
-                                Path("./component_code")
-                                / f"{component_name}_{time.time()}.js",
-                            )
-
+                            backup_dir = Path("./component_code")
+                            backup_dir.mkdir(exist_ok=True)
+                            dst_path = backup_dir / f"{component_name}_{time.time()}.js"
+                            shutil.move(src_path, dst_path)
                             # STEP 8: 保存数据到jsonl文件
                             component_num += 1
                             action_num += len(annotated_action_paths)
@@ -489,31 +488,51 @@ async def main():
                                     )
                                     + "\n"
                                 )
-                            with open(
-                                os.path.join(
-                                    component_root_dir,
-                                    "grounding",
-                                    f"{component_name}_grounding_{datetime.datetime.now().strftime('%m-%d %H:%M')}.json",
-                                ),
-                                "w",
-                            ) as f:
-                                f.write(
-                                    json.dumps(
-                                        {
-                                            # TODO: parse action_detail_list into real actions
-                                            "instruction": "TODO: parse action_detail_list into real actions",
-                                            "screenshot_path": str(screenshot_path),
-                                            "action": "TODO: parse action_detail_list into real actions",
-                                        },
-                                        indent=4,
-                                    )
-                                    + "\n"
+                            # STEP 9: 保存grounding数据到jsonl
+                            for i, action_detail in enumerate(action_detail_list):
+                                grounding_data_list = process_grounding(
+                                    component_name,
+                                    action_detail,
+                                    screenshot_path,
                                 )
+                                for j, grounding_data in enumerate(grounding_data_list):
+                                    with open(
+                                        os.path.join(
+                                            component_root_dir,
+                                            "grounding",
+                                            f"{component_name}_grounding_type_{i}_no_{j}_{datetime.datetime.now().strftime('%m-%d %H:%M')}.json",
+                                        ),
+                                        "w",
+                                    ) as f:
+                                        f.write(
+                                            json.dumps(
+                                                {
+                                                    # TODO: parse action_detail_list into real actions
+                                                    "instruction": grounding_data[
+                                                        "instruction"
+                                                    ],
+                                                    "screenshot_path": str(
+                                                        screenshot_path
+                                                    ),
+                                                    "action": grounding_data["action"],
+                                                },
+                                                indent=4,
+                                            )
+                                            + "\n"
+                                        )
                         except Exception as e:
                             logger.error(
                                 f"Error processing component {component_node['name']}: {e}",
                                 exc_info=True,  # 这会自动添加完整的堆栈跟踪
                             )
+                            src_path = (
+                                Path("./react-app/src/components")
+                                / f"{component_name}.js"
+                            )
+                            backup_dir = Path("./component_code")
+                            backup_dir.mkdir(exist_ok=True)
+                            dst_path = backup_dir / f"{component_name}_{time.time()}.js"
+                            shutil.move(src_path, dst_path)
             stats[component_root_name] = {
                 "component_num": component_num,
                 "action_num": action_num,

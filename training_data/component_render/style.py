@@ -26,7 +26,7 @@ class ScenarioAugmentationResponse(BaseModel):
 class StyleAugmentationResponse(BaseModel):
     thoughts: str
     component_code: str
-    style_template: str
+    component_prop_nesting: str
 
 
 class StyleCodeResponse(BaseModel):
@@ -134,56 +134,62 @@ def style_augmentation(
         response_format=StyleAugmentationResponse,
     )
     json_response = response.choices[0].message.parsed
-    thoughts, component_code, style_template = (
+    thoughts, component_code, component_prop_nesting = (
         json_response.thoughts,
         json_response.component_code,
-        json_response.style_template,
+        json_response.component_prop_nesting,
     )
 
-    style_code_list = []
+    logger.info(f"COMPONENT PROP NESTING: {component_prop_nesting}")
 
-    for i in range(n):
-        style_code_prompt = STYLE_CODE_GENERATE_PROMPT.format(
-            component_code=scenario_component_code, style_code=style_template
-        )
-        # response = claude.messages.create(
-        #     model="claude-3-5-sonnet-20241022",
-        #     max_tokens=4000,  # TODO
-        #     temperature=0.6,  # TODO
-        #     system=SYSTEM_PROMPT_FOR_STYLE_AUGMENTATION,
-        #     messages=[
-        #         {
-        #             "role": "user",
-        #             "content": [{"type": "text", "text": style_code_prompt}],
-        #         }
-        #     ],
-        # )
-        response = client.beta.chat.completions.parse(
-            model="gpt-4o-2024-08-06",
-            messages=[
-                {
-                    "role": "system",
-                    "content": [
-                        {"type": "text", "text": SYSTEM_PROMPT_FOR_STYLE_AUGMENTATION},
-                    ],
-                },
-                {
-                    "role": "user",
-                    "content": [
-                        {"type": "text", "text": style_code_prompt},
-                    ],
-                    "temperature": 0.6,
-                },
-            ],
-            response_format=StyleCodeResponse,
-        )
+    # style_code_list = []
+    styled_component_prop_nesting_list = [component_prop_nesting]
 
-        json_response = response.choices[0].message.parsed
-        thoughts, code = json_response.thoughts, json_response.style_code
-        style_code_list.append(code)
+    # for i in range(n):
+    #     style_code_prompt = STYLE_CODE_GENERATE_PROMPT.format(
+    #         component_code=scenario_component_code,
+    #         component_prop_nesting=component_prop_nesting,
+    #     )
+    #     # response = claude.messages.create(
+    #     #     model="claude-3-5-sonnet-20241022",
+    #     #     max_tokens=4000,  # TODO
+    #     #     temperature=0.6,  # TODO
+    #     #     system=SYSTEM_PROMPT_FOR_STYLE_AUGMENTATION,
+    #     #     messages=[
+    #     #         {
+    #     #             "role": "user",
+    #     #             "content": [{"type": "text", "text": style_code_prompt}],
+    #     #         }
+    #     #     ],
+    #     # )
+    #     response = client.beta.chat.completions.parse(
+    #         model="gpt-4o-2024-08-06",
+    #         messages=[
+    #             {
+    #                 "role": "system",
+    #                 "content": [
+    #                     {"type": "text", "text": SYSTEM_PROMPT_FOR_STYLE_AUGMENTATION},
+    #                 ],
+    #             },
+    #             {
+    #                 "role": "user",
+    #                 "content": [
+    #                     {"type": "text", "text": style_code_prompt},
+    #                 ],
+    #                 "temperature": 0.6,
+    #             },
+    #         ],
+    #         response_format=StyleCodeResponse,
+    #     )
+
+    #     json_response = response.choices[0].message.parsed
+    #     thoughts, code = json_response.thoughts, json_response.style_code
+    #     style_code_list.append(code)
+
+    # logger.info(f"STYLE CODE LIST: {str(style_code_list)}")
 
     return {
         "component_code": component_code,
-        "style_template": style_template,
-        "style_code_list": style_code_list,
+        "component_prop_nesting": component_prop_nesting,
+        "styled_component_prop_nesting_list": styled_component_prop_nesting_list,
     }
