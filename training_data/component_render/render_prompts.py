@@ -24,7 +24,7 @@ Input:
 Requirements:
 1. Consider all possible interactions, as many as possible
 2. Group similar actions together, don't include action intents that are too similar or repetitive
-3. Propose action on BOTH interactive elements and non-interactive elements(such as text, image, etc. You can click on text to select it or part of it)
+3. Propose action on BOTH interactive elements and non-interactive elements(such as text, image, etc. You can click on text to select it or part of it, you can click on image to select it or click part of it)
 4. Check screenshot to make sure the action is possible
 5. The interaction should be completed in ONE step, don't include multiple steps in one action(e.g. you cannot click multiple buttons in one action)
 
@@ -467,7 +467,7 @@ COMPONENT_TYPE_LIST = [
 SYSTEM_PROMPT_FOR_STYLE_AUGMENTATION = """You are an assistant familiar with the React framework and skilled at writing frontend code."""
 
 
-def generate_new_style_component_prompt(
+def generate_new_scenario_component_prompt(
     original_code: str, generated_codes: list[str] = None
 ) -> str:
     base_template = """
@@ -486,6 +486,8 @@ Please come up with a real application scenario for this type of component based
 3. You can adjust the content of the original component. When extending styles, please focus on functional components. There is no need to modify purely presentational properties (such as background color, static text, etc.).
 
 4. Focus on components with interactive attributes that provide a rich interactive experience. Avoid overly simple layouts or components.
+
+5. Do not import images since we don't have the image data. You can import anything from MUI libraries.
 
 Please respond in JSON format:
 {{
@@ -531,19 +533,20 @@ User Prompt:
 {original_code}
 </UI Component Code>
 
-This is a piece of front-end UI code written in React, describing a component with interactive functionality in a specific application scenario. Please analyze this React code and add a style template for this UI component. The style template should include replaceable images, text, colors, relative positions, etc. This way, I can achieve data augmentation by assigning different style values (image paths, text content, etc.).
+This is a piece of front-end UI code written in React, describing a component with interactive functionality in a specific application scenario. Please analyze this React code and add a style template for this UI component. The style template should include replaceable images, text, colors, relative positions, etc. This way, I can achieve data augmentation by assigning different style values (image paths, text content, etc.). Please set default values for the style and use this default value in component code.
 
-I hope to interact more with this component, so please focus on those components that have interactive properties. There is no need to include the properties of non-interactive components in the style template, such as background color, non-interactive text, etc.
+Do not import images since we don't have the image data. You can import anything from MUI libraries.
 
-Here is an example of style code:
+You're encouraged to design a style that is colorful, diverse, beautiful, and functional. Appearance is important.
+
+Here is an example of style code, style code should follow the format--A React component with nested prop objects for data and styling configuration:
 
 <EnhancedMusicPlayer
   songData={{
     title: "Custom Song Name",
     artist: "Custom Artist",
     album: "Custom Album",
-    duration: 300,
-    coverImage: "/path/to/cover.jpg",
+    duration: 500,
     lyrics: "Custom Lyrics...",
   }}
   theme={{
@@ -553,6 +556,7 @@ Here is an example of style code:
     iconColor: "text-gray-700"
   }}
 />
+
 You need to implement the acceptance of these parameters in the EnhancedMusicPlayer component object.
 
 Please respond in JSON format. First, think about which components in this component are suitable to be used as objects for the style template. Then provide the complete React component code containing the style template. Finally, provide the replaceable style file code. Your styles do not need to be consistent with the example.
@@ -567,13 +571,23 @@ Please respond in JSON format. First, think about which components in this compo
 
 STYLE_CODE_GENERATE_PROMPT = """
 User Prompt:
-<Style Control Code>
+<Component Code>
+{component_code}
+<Component Code>
+
+<Original Style Control Code>
 {style_code}
-<Style Control Code>
+<Original Style Control Code>
 
-This is a style control code for a React object. Please help me randomly fill in these properties to help me get a variety of component objects.
+This is a style control code for a React object. Please help me randomly fill in these properties to help me get a variety of component objects, and generate a new style code that strictly follows the format of original style code, but with different values.
 
-Please respond in JSON format.
+You're encouraged to design a style that is colorful, diverse, beautiful, and functional. Appearance is important.
+
+Remember not to add attributes that results in additional imports.
+
+Do not import images since we don't have the image data.
+
+Output Format:
 {{
 	"thoughts": "Return your thoughts here.",
 	"style_code": "Return your React code here"
