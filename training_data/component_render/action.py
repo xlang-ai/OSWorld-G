@@ -1,24 +1,23 @@
-import os
-import json
-from concurrent.futures import ThreadPoolExecutor, as_completed
-from typing import Dict, List, Literal, Optional, Callable
-from PIL import Image, ImageDraw, ImageFont
-from openai import OpenAI
-from anthropic import Anthropic
-from pydantic import BaseModel
-from logger import logger
-import re
 import ast
 import datetime
-from typing import Dict, List, Tuple
+import json
+import os
+import re
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from typing import Callable, Dict, List, Literal, Optional, Tuple
 
+from api import claude, client
+from logger import logger
+from openai import OpenAI
+from PIL import Image, ImageDraw, ImageFont
 
+# from anthropic import Anthropic
+from pydantic import BaseModel
 from render_prompts import (
     ACTION_DETAIL_PROMPT,
-    ACTION_INTENT_PROMPT,
     ACTION_GROUNDING_PROMPT,
+    ACTION_INTENT_PROMPT,
 )
-from api import client, claude
 from utils import encode_image
 
 MAX_WORKERS = 5
@@ -422,7 +421,7 @@ def process_gpt_fallback(action_detail):
 
 def process_grounding(
     component_name: str, action_detail: Dict, screenshot_path: str
-) -> None:
+) -> List[Dict]:
     """
     Process the action data and visualize instructions with coordinates on the screenshot.
     For each instruction-action pair, generates a separate annotated image.
@@ -441,6 +440,9 @@ def process_grounding(
     #     pairs = process_unique_action(action_detail)
     # else:
     #     pairs = []
+
+    grounding_data_pair = []
+
     pairs = process_gpt_fallback(action_detail)
 
     print(f"Generated pairs: {str(pairs)}")
@@ -478,10 +480,23 @@ def process_grounding(
                     background="white",
                 )
 
+                os.makedirs("./screenshots/grounding", exist_ok=True)
                 # Save individual annotated image
-                output_path = f"{component_name}_action_{idx + 1}_{datetime.datetime.now().strftime('%m-%d %H:%M:%S')}.png"
+                # output_path = f"./screenshots/{component_name}_action_{idx + 1}_{datetime.datetime.now().strftime('%m-%d %H:%M:%S')}.png"
+                output_path = f"./screenshots/grounding/{component_name}_action_{idx + 1}_{datetime.datetime.now().strftime('%m-%d %H:%M:%S')}.png"
                 img.save(output_path)
-                print(f"Saved annotated image for action {idx + 1}: {output_path}")
+
+                grounding_data_pair.append(
+                    {
+                        "instruction": pair.instruction,
+                        "action": pair.pyautogui_action,
+                        "annotated_image_path": output_path,
+                    }
+                )
+
+                # print(f"Saved annotated image for action {idx + 1}: {output_path}")
+
+    return grounding_data_pair
 
 
 if __name__ == "__main__":

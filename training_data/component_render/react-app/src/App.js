@@ -5,7 +5,6 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
-import FileExplorer from './FileExplorer';
 
 function App() {
   return (
@@ -17,8 +16,8 @@ function App() {
         backgroundColor: '#ffffff',
         borderRadius: '8px',
         overflow: 'visible', // 确保内容不会被裁剪
-    }}>
-        <FileExplorer />
+        }}>
+        <h1>Hello, World</h1>
       </div>
     </div>
   );
