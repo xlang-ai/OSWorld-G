@@ -102,10 +102,18 @@ If the action space type is "none", you should generate empty action_desc and ac
    - For discrete or continuous action spaces: Use `<param_name>` format for variable parameters
    - For discrete action spaces: Enumerate all possible actions beforehand
 
-4. **Action Discrete Params** (`action_discrete_params`)
-   - List of parameters for discrete action spaces, not [] only when action_space_type is "discrete"
+4. **Action Params** (`action_params`)
+   - List of all parameter names for the action, not [] only when action_space_type is "discrete" or "continuous"
 
-5. **Action Code** (`action_code`)
+5. **Action Discrete Values** (`action_discrete_values`)
+   - List of all possible parameter values for discrete action spaces, not {{}} only when action_space_type is "discrete".
+   - Use a dictionary to represent the parameter values, with the key as the parameter name(e.g. "volume") and the value as the list of parameter values(e.g. [0, 30, 60, 100]).
+
+6. **Action Continuous Interval** (`action_continuous_interval`)
+   - List of interval for all possible parameter values for continuous action spaces, not {{}} only when action_space_type is "continuous".
+   - Use a dictionary to represent the interval, with the key as the parameter name(e.g. "volume") and the value as the list of intervals(e.g. [(0, 30), (60, 100)]). The interval should be a tuple of two numbers, representing the lower and upper bounds of the interval. Most of the time, one interval is enough, but more than one interval is possible.
+
+7. **Action Code** (`action_code`)
    - Function name must be `action`
    - Define constant coordinates first
    - Use PyAutoGUI only
@@ -122,6 +130,17 @@ If the action space type is "none", you should generate empty action_desc and ac
                 2. Reasoning for point selection
                 3. Parameter usage
                 4. Coordinate calculations",
+    "action_params": [<param1>, <param2>, ...],
+    "action_discrete_values": {{
+        "<param1>": [<value1>, <value2>, ...],
+        "<param2>": [<value1>, <value2>, ...],
+        ...
+    }},
+    "action_continuous_interval": {{
+        "<param1>": [<interval1>, <interval2>, ...],
+        "<param2>": [<interval1>, <interval2>, ...],
+        ...
+    }},
     "action_code": "PyAutoGUI implementation"
 }}
 ```
@@ -199,17 +218,16 @@ If the action space type is "none", you should generate empty action_desc and ac
         - Identified slider endpoints: (22,30) and (222,30)
                 - Volume parameter determines click position
                 - Linear interpolation between endpoints based on volume",
-    "action_discrete_params": [],
+    "action_params": ["volume"],
+    "action_discrete_values": {{}},
+    "action_continuous_interval": {{"volume": [(0, 100)]}},
     "action_code": "
         def action(volume):
             x_0, y_0 = 22, 30  # Left endpoint
             x_1, y_1 = 222, 30  # Right endpoint
             x = x_0 + (x_1 - x_0) * (volume / 100)
             pyautogui.click(x, y_0)"
-        }}
-    ]
-      }}
-  }}
+}}
 ```
 
 ### Example 2: Rating Component
@@ -333,7 +351,9 @@ If the action space type is "none", you should generate empty action_desc and ac
         - Identified star endpoints: (615.5390625,14), (640.4453125,14), (664.4453125,14), (688.898125,14), (713.35125,14)
                 - Rating parameter determines click position
                 - Linear interpolation between endpoints based on rating",
-    "action_discrete_params": [1, 2, 3, 4, 5],
+    "action_params": ["rating"],
+    "action_discrete_values": {{"rating": [1, 2, 3, 4, 5]}},
+    "action_continuous_interval": {{}},
     "action_code": "
         rating = [1, 2, 3, 4, 5] # make sure to list all possible actions beforehand
         def action(rating):
@@ -379,7 +399,9 @@ If the action space type is "none", you should generate empty action_desc and ac
     "thought_process": "
         - Identified button position: (650, 225)
         - Click on the button",
-    "action_discrete_params": [],
+    "action_params": [],
+    "action_discrete_values": {{}},
+    "action_continuous_interval": {{}},
     "action_code": "pyautogui.click(650, 225)"
 }}
 ```

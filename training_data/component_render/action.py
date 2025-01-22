@@ -1,7 +1,8 @@
 import os
 import json
+import tempfile
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from typing import Dict, List, Literal, Optional, Callable
+from typing import Dict, List, Literal, Optional, Callable, Union
 from PIL import Image, ImageDraw, ImageFont
 from openai import OpenAI
 from anthropic import Anthropic
@@ -9,7 +10,9 @@ from pydantic import BaseModel
 from logger import logger
 import re
 import ast
+import random
 import datetime
+from itertools import product
 from typing import Dict, List, Tuple
 
 
@@ -28,7 +31,9 @@ class ActionDetail(BaseModel):
     thought_process: str
     action_space_type: Literal["none", "unique", "discrete", "continuous"]
     action_desc: str
-    action_discrete_params: List[str | int | float]
+    action_params: List[str]
+    action_discrete_values: Optional[Dict[str, List[Union[str, int, float]]]] = None
+    action_continuous_interval: Optional[Dict[str, List[List[float]]]] = None
     action_code: str
 
 
@@ -165,246 +170,6 @@ class ActionParsingError(Exception):
     pass
 
 
-def process_discrete_action(
-    action_detail: Dict,
-) -> List[Tuple[str, str]]:
-    """
-    Process discrete action space data to generate (instruction, pyautogui_action) pairs.
-    Only handles single-step click actions.
-
-    Args:
-        action_detail: Dictionary containing action_code, action_desc, and action_discrete_params
-
-    Returns:
-        List of tuples containing (instruction, pyautogui_action)
-    """
-
-    def is_single_click_action(code: str) -> bool:
-        """Check if the action contains only a single pyautogui.click."""
-        # Check for multiple pyautogui calls
-        pyautogui_calls = re.findall(r"pyautogui\.[a-zA-Z]+", code)
-        if len(pyautogui_calls) > 1:
-            return False
-
-        # Check if the only call is click
-        if pyautogui_calls and pyautogui_calls[0] != "pyautogui.click":
-            return False
-
-        return True
-
-    def parse_action_function(code: str) -> Optional[ast.FunctionDef]:
-        """Parse the action function from code string."""
-        try:
-            if not is_single_click_action(code):
-                raise ActionParsingError("Only single click actions are supported")
-
-            tree = ast.parse(code)
-            for node in ast.walk(tree):
-                if isinstance(node, ast.FunctionDef) and node.name == "action":
-                    return node
-        except Exception as e:
-            raise ActionParsingError(f"Failed to parse action function: {str(e)}")
-        return None
-
-    def extract_pyautogui_action(code: str, param: str) -> str:
-        """Extract the actual pyautogui.click coordinates for a given parameter."""
-        try:
-            # Verify it's a single click action
-            if not is_single_click_action(code):
-                raise ActionParsingError("Only single click actions are supported")
-
-            positions_match = re.search(r"positions\s*=\s*{([^}]+)}", code)
-            if positions_match:
-                positions_str = positions_match.group(1)
-                positions_dict = eval("{" + positions_str + "}")
-
-                # Handle tuple coordinates
-                if isinstance(positions_dict[param], tuple):
-                    x, y = positions_dict[param]
-                    return f"pyautogui.click({x}, {y})"
-
-                # Handle separate x, y coordinates
-                else:
-                    x = positions_dict[str(param)]
-                    y_match = re.search(r"y_center\s*=\s*(\d+)", code)
-                    if y_match:
-                        y = int(y_match.group(1))
-                        return f"pyautogui.click({x}, {y})"
-
-            raise ActionParsingError(
-                "Could not find positions dictionary or valid coordinates"
-            )
-        except Exception as e:
-            raise ActionParsingError(f"Failed to extract pyautogui action: {str(e)}")
-
-    def format_instruction(desc: str, param: str, func_def: ast.FunctionDef) -> str:
-        """
-        Format the instruction by replacing placeholder with parameter.
-        Uses the function parameter name to identify the placeholder.
-        """
-        try:
-            # Get the parameter name from the function definition
-            if not func_def.args.args:
-                raise ActionParsingError("No parameters found in action function")
-            param_name = func_def.args.args[0].arg
-
-            # Create the placeholder pattern from the parameter name
-            placeholder = f"<{param_name}>"
-
-            # Replace the placeholder with the actual parameter value
-            if placeholder not in desc:
-                raise ActionParsingError(
-                    f"Placeholder {placeholder} not found in action description"
-                )
-
-            return desc.replace(placeholder, param)
-
-        except Exception as e:
-            raise ActionParsingError(f"Failed to format instruction: {str(e)}")
-
-    try:
-        # Parse the action function first
-        func_def = parse_action_function(action_detail["action_code"])
-        if not func_def:
-            raise ActionParsingError("Could not find action function in code")
-
-        # Generate pairs
-        pairs = []
-        for param in action_detail["action_discrete_params"]:
-            try:
-                instruction = format_instruction(
-                    action_detail["action_desc"], param, func_def
-                )
-                pyautogui_action = extract_pyautogui_action(
-                    action_detail["action_code"], param
-                )
-                pairs.append((instruction, pyautogui_action))
-            except ActionParsingError as e:
-                print(f"Skipping parameter {param}: {str(e)}")
-                continue
-
-        return pairs
-
-    except ActionParsingError as e:
-        if "Only single click actions are supported" in str(e):
-            return []
-        else:
-            try:
-                print(f"Parsing failed: {str(e)}. Falling back to GPT.")
-                return gpt_fallback(action_detail)
-            except Exception as e:
-                raise ActionParsingError(f"Parsing failed: {str(e)}")
-
-
-def process_unique_action(action_detail: Dict) -> List[Tuple[str, str]]:
-    """
-    Process unique action space data to generate (instruction, pyautogui_action) pairs.
-    Handles unique actions, including those with and without action code functions.
-
-    Args:
-        action_detail: Dictionary containing thought_process, action_desc, action_discrete_params, and action_code
-
-    Returns:
-        List of tuples containing (instruction, pyautogui_action)
-    """
-
-    def extract_pyautogui_action_from_code(code: str) -> str:
-        """Extract the pyautogui.click action and its coordinates from the action code."""
-        try:
-            # Check if action code contains pyautogui.click with coordinates
-            click_match = re.search(r"pyautogui\.click\(([^)]+)\)", code)
-            if click_match:
-                coordinates = click_match.group(1)
-                return f"pyautogui.click({coordinates})"
-            raise ActionParsingError("Could not find pyautogui.click action in code")
-        except Exception as e:
-            raise ActionParsingError(f"Failed to extract pyautogui action: {str(e)}")
-
-    def extract_coordinates_from_function_code(code: str) -> Tuple[float, float]:
-        """
-        Use exec to simulate the execution of the action code and extract the actual values
-        for x_center and y_center.
-        """
-        try:
-
-            class CapturingExecEnv:
-                def __init__(self):
-                    # 用于存储捕获的变量
-                    self.variables = {}
-
-                def __setitem__(self, key, value):
-                    # 捕获赋值操作，将变量及其值保存到字典
-                    self.variables[key] = value
-
-                def __getitem__(self, key):
-                    # 返回变量的值
-                    return self.variables[key]
-
-                def __contains__(self, key):
-                    # 检查变量是否已存在
-                    return key in self.variables
-
-            # 创建一个自定义环境来捕获所有变量
-            exec_env = CapturingExecEnv()
-
-            # 执行代码并将环境传入
-            exec(code, {}, exec_env.variables)
-
-            # 执行 action() 来模拟代码的执行
-
-            # 返回所有捕获的变量
-            print("local_vars", str(exec_env.variables))
-            # Now extract the actual coordinates from local variables
-            x_center = exec_env.variables.get("x_center")
-            y_center = exec_env.variables.get("y_center")
-
-            if x_center is not None and y_center is not None:
-                return x_center, y_center
-            else:
-                raise ActionParsingError(
-                    "Could not find valid coordinates in action function."
-                )
-
-        except Exception as e:
-            raise ActionParsingError(
-                f"Failed to extract coordinates from function: {str(e)}"
-            )
-
-    def format_instruction(desc: str) -> str:
-        """Format the instruction based on the action description."""
-        return desc
-
-    try:
-        # Handle the first form where the action code contains a function definition
-        if "def action" in action_detail["action_code"]:
-            # Extract the coordinates from the action function code using exec
-            x_center, y_center = extract_coordinates_from_function_code(
-                action_detail["action_code"]
-            )
-            pyautogui_action = f"pyautogui.click({x_center}, {y_center})"
-            instruction = format_instruction(action_detail["action_desc"])
-            return [(instruction, pyautogui_action)]
-
-        # Handle the second form where the action code directly contains pyautogui.click
-        elif "pyautogui.click" in action_detail["action_code"]:
-            instruction = format_instruction(action_detail["action_desc"])
-            pyautogui_action = extract_pyautogui_action_from_code(
-                action_detail["action_code"]
-            )
-            return [(instruction, pyautogui_action)]
-
-        else:
-            raise ActionParsingError("Invalid action code format")
-
-    except ActionParsingError as e:
-        print(f"Skipping action due to error: {str(e)}")
-        return []
-
-
-def process_continuous_action(action_detail: Dict) -> List[Tuple[str, str]]:
-    pass
-
-
 def process_gpt_fallback(action_detail):
     # Call GPT API to generate pairs
     prompt = ACTION_GROUNDING_PROMPT.format(
@@ -422,27 +187,152 @@ def process_gpt_fallback(action_detail):
 
 def process_grounding(
     component_name: str, action_detail: Dict, screenshot_path: str
-) -> None:
-    """
-    Process the action data and visualize instructions with coordinates on the screenshot.
-    For each instruction-action pair, generates a separate annotated image.
+) -> str:
+    # 检查并添加 import
+    if "import pyautogui" not in action_detail.action_code:
+        action_detail.action_code = "import pyautogui\n" + action_detail.action_code
+    raw_pairs = []
+    pairs = []
+    # 生成raw_pairs: inst + raw_code
 
-    Args:
-        action_detail: ActionDetail containing action information
-        screenshot_path: Path to the screenshot image
-    """
-    # Get pairs based on action type
-    # pairs = []
-    # if action_detail["action_space_type"] == "discrete":
-    #     pairs = process_discrete_action(action_detail)
-    # elif action_detail["action_space_type"] == "continuous":
-    #     pairs = process_continuous_action(action_detail)
-    # elif action_detail["action_space_type"] == "unique":
-    #     pairs = process_unique_action(action_detail)
-    # else:
-    #     pairs = []
-    pairs = process_gpt_fallback(action_detail)
+    if action_detail.action_space_type == "unique":
+        # 1 pair
+        raw_pairs.append((action_detail.action_desc, action_detail.action_code))
 
+    elif action_detail.action_space_type == "discrete":
+        # Get all parameter combinations
+        param_names = action_detail.action_params
+        param_values = action_detail.action_discrete_values
+
+        param_combinations = product(*[param_values[param] for param in param_names])
+
+        for param_combo in param_combinations:
+            # Create parameter dictionary
+            param_dict = dict(zip(param_names, param_combo))
+
+            # Replace parameters in action description
+            inst = action_detail.action_desc
+            for param_name, param_value in param_dict.items():
+                inst = inst.replace(f"<{param_name}>", str(param_value))
+
+            # Create code with main block and action call
+            code = action_detail.action_code
+
+            # Add main block with action call
+            param_str = ", ".join(str(value) for value in param_combo)
+            main_block = f"\n\nif __name__ == '__main__':\n    action({param_str})"
+            code += main_block
+
+            raw_pairs.append((inst, code))
+
+    elif action_detail.action_space_type == "continuous":
+
+        # Get parameter names and their intervals
+        param_names = action_detail.action_params
+        param_intervals = action_detail.action_continuous_interval
+
+        # Sample 3 values from each interval
+        sampled_values = {}
+        for param_name in param_names:
+            intervals = param_intervals[param_name]
+            param_samples = []
+            for start, end in intervals:
+                # Sample 3 random values from this interval
+                samples = [random.uniform(start, end) for _ in range(3)]
+                param_samples.extend(samples)
+            sampled_values[param_name] = param_samples
+
+        param_combinations = product(*[sampled_values[param] for param in param_names])
+
+        for param_combo in param_combinations:
+            # Create parameter dictionary
+            param_dict = dict(zip(param_names, param_combo))
+
+            # Replace parameters in action description
+            inst = action_detail.action_desc
+            for param_name, param_value in param_dict.items():
+                # Round continuous values to 2 decimal places for readability
+                formatted_value = f"{param_value:.2f}"
+                inst = inst.replace(f"<{param_name}>", formatted_value)
+
+            # Create code with main block and action call
+            code = action_detail.action_code
+
+            # Add main block with action call
+            param_str = ", ".join(f"{value:.2f}" for value in param_combo)
+            main_block = f"\n\nif __name__ == '__main__':\n    action({param_str})"
+            code += main_block
+
+            raw_pairs.append((inst, code))
+
+    # 生成pairs: inst + final_code
+    for raw_pair in raw_pairs:
+        lines = raw_pair[1].split("\n")
+        modified_lines = []
+
+        for line in lines:
+            if "pyautogui." in line:
+                # 使用正则表达式提取函数名和参数
+                indent = re.match(r"(\s*)", line).group(1)
+                match = re.match(r".*pyautogui\.(\w+)\((.*)\)", line.strip())
+                if match:
+                    func_name = match.group(1)
+                    params_str = match.group(2)
+
+                    # 添加原始调用
+                    modified_lines.append("# " + line)
+
+                    # 分割参数（考虑括号内的逗号）
+                    params = []
+                    param_start = 0
+                    paren_count = 0
+                    for i, char in enumerate(
+                        params_str + ","
+                    ):  # 添加逗号以处理最后一个参数
+                        if char == "(":
+                            paren_count += 1
+                        elif char == ")":
+                            paren_count -= 1
+                        elif char == "," and paren_count == 0:
+                            param = params_str[param_start:i].strip()
+                            if param:  # 避免空参数
+                                params.append(param)
+                            param_start = i + 1
+
+                    # 添加打印语句
+                    eval_params = []
+                    for param in params:
+                        if param.startswith('"') or param.startswith("'"):
+                            # 字符串参数直接使用
+                            eval_params.append('"' + param + '"')
+                        else:
+                            # 非字符串参数需要eval
+                            eval_params.append(f"str(eval({repr(param)}))")
+
+                    print_stmt = (
+                        indent
+                        + f"print(f'pyautogui.{func_name}(' + ', '.join([{', '.join(eval_params)}]) + ')')"
+                    )
+                    modified_lines.append(print_stmt)
+                else:
+                    modified_lines.append("# " + line)
+            else:
+                modified_lines.append(line)
+
+        modified_code = "\n".join(modified_lines)
+        print("modified_code:\n", modified_code)
+
+        with tempfile.NamedTemporaryFile(
+            mode="w", suffix=".py", delete=False
+        ) as temp_file:
+            temp_file.write(modified_code)
+            temp_path = temp_file.name
+
+        try:
+            output = os.popen(f"python {temp_path}").read()
+            pairs.append((raw_pair[0], output))
+        finally:
+            os.remove(temp_path)
     print(f"Generated pairs: {str(pairs)}")
 
     # Try to load a font, fallback to default if not found
@@ -459,9 +349,7 @@ def process_grounding(
             draw = ImageDraw.Draw(img)
 
             # Extract coordinates from pyautogui action
-            coords = re.search(
-                r"click\((\d+\.?\d*),\s*(\d+\.?\d*)\)", pair.pyautogui_action
-            )
+            coords = re.search(r"click\((\d+\.?\d*),\s*(\d+\.?\d*)\)", pair[1])
             if coords:
                 x, y = float(coords.group(1)), float(coords.group(2))
 
@@ -472,7 +360,7 @@ def process_grounding(
                 y_offset = img.height - 50  # Moved closer to bottom
                 draw.text(
                     (10, y_offset),
-                    f"{pair.instruction} -> {pair.pyautogui_action}",
+                    f"{pair[0]} -> {pair[1]}",
                     fill="black",
                     font=font,
                     background="white",
@@ -484,15 +372,53 @@ def process_grounding(
                 print(f"Saved annotated image for action {idx + 1}: {output_path}")
 
 
+# 测试代码
 if __name__ == "__main__":
-    # /Users/nickyang/Desktop/Research/HKUNLP/OSWorld-G/training_data/component_render/SmartHomeTemperatureControl_raw_01-21 00:21.json
-    with open(
-        "/Users/nickyang/Desktop/Research/HKUNLP/OSWorld-G/training_data/component_render/SmartHomeTemperatureControl_raw_01-21 00:21.json",
-        "r",
-    ) as f:
-        data = json.load(f)
-        component_name = data["component_name"]
-        action_detail_list = data["action_detail_list"]
-        screenshot_path = data["screenshot_path"]
-    for action_detail in action_detail_list:
-        process_grounding(component_name, action_detail, screenshot_path)
+    # 示例输入代码片段
+    #     test_code = """
+    # import pyautogui
+    # def action(temperature):
+    #     # Define constant coordinates for discrete points
+    #     temp_positions = {\"0\u00b0C\": 456, \"20\u00b0C\": 603, \"37\u00b0C\": 728}
+    #     x = temp_positions[temperature]
+    #     y = 326  # Vertical position remains constant for slider interaction=
+    #     pyautogui.moveTo(x, y)
+    #     # pyautogui.click()
+    # if __name__ == "__main__":
+    #     action("20\u00b0C")
+    # """
+
+    # with open(
+    #     "/Users/nickyang/Desktop/Research/HKUNLP/OSWorld-G/training_data/component_render/SmartHomeTemperatureControl_raw_01-21 00:21.json",
+    #     "r",
+    # ) as f:
+    #     data = json.load(f)
+    #     component_name = data["component_name"]
+    #     action_detail_list = data["action_detail_list"]
+    #     screenshot_path = data["screenshot_path"]
+    # for action_detail in action_detail_list:
+    # result = process_grounding(component_name, action_detail, screenshot_path)
+    # print(result)
+    result = process_grounding(
+        "component_name",
+        {
+            "action_space_type": "continuous",
+            "action_desc": "Set volume to <volume>%",
+            "thought_process": """
+        - Identified slider endpoints: (22,30) and (222,30)
+                - Volume parameter determines click position
+                - Linear interpolation between endpoints based on volume""",
+            "action_params": ["volume"],
+            "action_discrete_values": {},
+            "action_continuous_interval": {"volume": [(0, 100)]},
+            "action_code": """
+def action(volume):
+    x_0, y_0 = 22, 30  # Left endpoint
+    x_1, y_1 = 222, 30  # Right endpoint
+    x = x_0 + (x_1 - x_0) * (volume / 100)
+    pyautogui.click(x, y_0)
+            """,
+        },
+        "screenshot_path",
+    )
+    print(result)
