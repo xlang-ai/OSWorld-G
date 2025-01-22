@@ -15,13 +15,18 @@ import datetime
 from itertools import product
 from typing import Dict, List, Tuple
 
+from api import claude, client
+from logger import logger
+from openai import OpenAI
+from PIL import Image, ImageDraw, ImageFont
 
+# from anthropic import Anthropic
+from pydantic import BaseModel
 from render_prompts import (
     ACTION_DETAIL_PROMPT,
-    ACTION_INTENT_PROMPT,
     ACTION_GROUNDING_PROMPT,
+    ACTION_INTENT_PROMPT,
 )
-from api import client, claude
 from utils import encode_image
 
 MAX_WORKERS = 5
@@ -366,10 +371,23 @@ def process_grounding(
                     background="white",
                 )
 
+                os.makedirs("./screenshots/grounding", exist_ok=True)
                 # Save individual annotated image
-                output_path = f"{component_name}_action_{idx + 1}_{datetime.datetime.now().strftime('%m-%d %H:%M:%S')}.png"
+                # output_path = f"./screenshots/{component_name}_action_{idx + 1}_{datetime.datetime.now().strftime('%m-%d %H:%M:%S')}.png"
+                output_path = f"./screenshots/grounding/{component_name}_action_{idx + 1}_{datetime.datetime.now().strftime('%m-%d %H:%M:%S')}.png"
                 img.save(output_path)
-                print(f"Saved annotated image for action {idx + 1}: {output_path}")
+
+                grounding_data_pair.append(
+                    {
+                        "instruction": pair.instruction,
+                        "action": pair.pyautogui_action,
+                        "annotated_image_path": output_path,
+                    }
+                )
+
+                # print(f"Saved annotated image for action {idx + 1}: {output_path}")
+
+    return grounding_data_pair
 
 
 # 测试代码

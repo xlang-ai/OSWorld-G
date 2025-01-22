@@ -1,21 +1,21 @@
 import json
 import os
-from typing import Dict, List, Union
-from openai import OpenAI
-import anthropic
+
+# import anthropic
 from concurrent.futures import ThreadPoolExecutor
+from typing import Dict, List, Union
 
-
+from api import claude, client
+from logger import logger
+from openai import OpenAI
+from pydantic import BaseModel
 from render_prompts import (
     STYLE_CODE_GENERATE_PROMPT,
     STYLE_TEMPLATE_GENERATE_PROMPT,
     SYSTEM_PROMPT_FOR_STYLE_AUGMENTATION,
     generate_new_scenario_component_prompt,
 )
-from logger import logger
-from api import client, claude
 from utils import encode_image
-from pydantic import BaseModel
 
 
 class ScenarioAugmentationResponse(BaseModel):

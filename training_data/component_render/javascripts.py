@@ -18,7 +18,7 @@ function App() {{
         borderRadius: '8px',
         overflow: 'visible', // 确保内容不会被裁剪
     }}}}>
-        {style_code}
+        <{component_name} />
       </div>
     </div>
   );

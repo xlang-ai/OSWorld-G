@@ -205,3 +205,6 @@ component_code/
 component_positions/
 
 secret_key.txt
+
+log.txt
+stats.json
