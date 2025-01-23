@@ -62,6 +62,11 @@ def _generate_single_scenario(args) -> str:
             ],
             response_format=ScenarioAugmentationResponse,
         )
+        with open("token_cost.txt", "a") as file:
+            file.write(f"prompt_gen_scenario:\n{response.usage.prompt_tokens}\n")
+            file.write(
+                f"completion_gen_scenario:\n{response.usage.completion_tokens}\n"
+            )
 
         json_response = response.choices[0].message.parsed
         return json_response.new_style_code
@@ -133,6 +138,9 @@ def style_augmentation(
         ],
         response_format=StyleAugmentationResponse,
     )
+    with open("token_cost.txt", "a") as file:
+        file.write(f"prompt_style_aug:\n{response.usage.prompt_tokens}\n")
+        file.write(f"completion_style_aug:\n{response.usage.completion_tokens}\n")
     json_response = response.choices[0].message.parsed
     thoughts, component_code, component_prop_nesting = (
         json_response.thoughts,

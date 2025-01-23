@@ -21,6 +21,8 @@ from screenshot_annotate import (
     annotate_screenshot_component,
 )
 from style import scenario_augmentation, style_augmentation
+from killproc import kill_port
+from usage import usage
 
 MAX_WORKERS = 5
 
@@ -53,32 +55,6 @@ class DataGenerator:
             logger.info("Page refreshed")
         else:
             logger.warning("No page available to refresh")
-
-    def generate_component_code(
-        self,
-        num_samples=1,
-        component_desc="A star rating component with 5 stars, where 4 stars are selected by default",
-    ):
-        prompt = COMPONENT_PROMPT.format(component_desc=component_desc)
-
-        response = client.beta.chat.completions.parse(
-            model="gpt-4o-2024-08-06",
-            messages=[
-                {
-                    "role": "user",
-                    "content": [
-                        {"type": "text", "text": prompt},
-                    ],
-                    "temperature": 1.0,
-                }
-            ],
-            response_format=ComponentCode,
-        )
-        try:
-            return response.choices[0].message.parsed
-        except Exception as e:
-            logger.error(f"Error parsing GPT response: {e}")
-            return None
 
     def extract_export_name(self, input_string):
         # Regular expression to match 'export default <ComponentName>'
@@ -116,9 +92,6 @@ class DataGenerator:
 
             # 设置环境变量
             env = os.environ.copy()
-            env["PORT"] = "3000"
-            env["FAST_REFRESH"] = "false"
-            env["CHOKIDAR_USEPOLLING"] = "false"
 
             # Modify App.js
             app_js_content = JS_WITHOUT_COMPONENT
@@ -136,9 +109,9 @@ class DataGenerator:
                     stdout=f,
                     stderr=f,
                 )
-
+            logger.info("React app started")
             # 等待服务器启动
-            time.sleep(10)  # 增加等待时间确保服务器完全启动
+            time.sleep(8)  # 增加等待时间确保服务器完全启动
 
             return
 
@@ -255,6 +228,7 @@ class DataGenerator:
             self.process.wait()
 
         # 重新启动服务器
+        # kill_port(3000)
         await self.initialize_react_app()
 
         # 等待服务器启动
@@ -283,6 +257,8 @@ def process_component_tree(component_tree):
 
 
 async def main():
+    with open("token_cost.txt", "w") as f:
+        pass
     generator = DataGenerator()
     app_dir = Path("./react-app")
     os.makedirs("data", exist_ok=True)
@@ -326,22 +302,32 @@ async def main():
             for component_tree in component_tree_list
             if component_tree["name"]
             in [
-                # "tree-view->rich-tree-view->customization",
-                # "tree-view->rich-tree-view->editing",
-                # "tree-view->rich-tree-view->ordering",
-                # "slider",
+                "slider",
                 # "menus",
-                "drawers",
-                "checkboxes",
-                "progress",
-                "rating",
-                "selects",
+                # "drawers",
+                # "checkboxes",
+                # "progress",
+                # "rating",
+                # "badges",
+                # "chips",
+                # "dividers",
+                # "lists",
+                # "alert",
+                # "dialogs",
+                # "snackbars",
+                # "app-bar",
+                # "bottom-navigation",
+                # "pagination",
             ]
         ]
         logger.info(
             f"Processing {len(select_component_tree_list)} components at the beginning"
         )
+        with open("success.txt", "w") as file:
+            pass
         for i in range(len(select_component_tree_list)):
+            with open("token_cost.txt", "a") as file:
+                file.write(f"{select_component_tree_list[i]['name']}\n")
             if "tree-view" in select_component_tree_list[i]["name"]:
                 lib_name = "mui-x"
             else:
@@ -431,17 +417,6 @@ async def main():
                         logger.info(
                             f"Scenario {i} of component {k} / {len(component_node_list)}: {component_name}"
                         )
-                        # TODO: 似乎是多余的
-                        component_js_path = (
-                            Path(app_dir)
-                            / "src"
-                            / "components"
-                            / f"{component_name}.js"
-                        )
-
-                        with open(component_js_path, "w") as f:
-                            f.write(component_code)
-
                         # STEP 3: 创建并启动React应用，渲染组件，进行截图，并获取组件位置信息
                         logger.info(f"Creating and starting React app")
                         position, screenshot_path = await generator.refresh_react_app(
@@ -479,9 +454,9 @@ async def main():
                             action_space_type = action_detail_list[i].action_space_type
                             action_desc = action_detail_list[i].action_desc
                             action_thought = action_detail_list[i].thought_process
-                            action_discrete_params = action_detail_list[
+                            action_discrete_values = action_detail_list[
                                 i
-                            ].action_discrete_params
+                            ].action_discrete_values
                             action_code = action_detail_list[i].action_code
 
                             annotated_action_path = await annotate_screenshot_action(
@@ -490,7 +465,7 @@ async def main():
                                 action_space_type,
                                 action_desc,
                                 action_thought,
-                                action_discrete_params,
+                                action_discrete_values,
                                 action_code,
                                 i,
                                 screenshot_path,
@@ -544,9 +519,7 @@ async def main():
                         # STEP 9: 保存grounding数据到jsonl
                         for i, action_detail in enumerate(action_detail_list):
                             grounding_data_list = process_grounding(
-                                component_name,
-                                action_detail,
-                                screenshot_path,
+                                component_name, action_detail, screenshot_path, i
                             )
                             for j, grounding_data in enumerate(grounding_data_list):
                                 with open(
@@ -560,7 +533,6 @@ async def main():
                                     f.write(
                                         json.dumps(
                                             {
-                                                # TODO: parse action_detail_list into real actions
                                                 "instruction": grounding_data[
                                                     "instruction"
                                                 ],
@@ -576,6 +548,10 @@ async def main():
                                         )
                                         + "\n"
                                     )
+                        with open("success.txt", "a") as file:
+                            file.write(
+                                f"{component_root_name}--{component_node['name']}\n"
+                            )
                     except Exception as e:
                         logger.error(
                             f"Error processing component {component_node['name']}: {e}",

@@ -417,7 +417,9 @@ Specifically, the action_detail contains the following information:
 - **thought_process**: The reasoning behind the action.
 - **action_space_type**: The type of action space, which could be "none", "unique", "discrete", or "continuous".
 - **action_desc**: A description of the action.
-- **action_discrete_params**: The discrete parameters for the action, applicable when the action_space_type is "discrete".
+- **action_params**: The parameters for the action.
+- **action_discrete_values**: The discrete parameters for the action's params, applicable when the action_space_type is "discrete".
+- **action_continuous_intervals**: The continuous intervals for the action's params, applicable when the action_space_type is "continuous".
 - **action_code**: The pyautogui code that corresponds to the action.
 
 Your task is to generate the action's grounding based on the action_space_type:
@@ -555,6 +557,19 @@ Please come up with a real application scenario for this type of component based
 5. Do not import images since we don't have the image data. You can import anything from MUI libraries.
 
 6. You don't always have to use the most common use cases; diversified use cases are encouraged.
+
+7. Style: You're encouraged to design colorful, aesthetic, functional UI components. You can make design in aspects such as:
+   - **Colors** (e.g., background color, text color, etc.)
+   - **Text content** (e.g., title, artist, etc.)
+   - **Spacing** (e.g., margin, padding)
+   - **Positions** (e.g., absolute, relative)
+   - **Fonts and icons** (optional, based on the component's needs)
+
+8. Design Aesthetic: Authenticity is key. The component should resemble real-world components that users interact with daily. Pay close attention to style parameters, such as spacing, font sizes, button interactions, and overall layout. Make sure the design is consistent with what we typically use in modern, functional UI components.
+
+9. No Image Imports: Since we don’t have image data, avoid importing images. You can import components from Material-UI (MUI) or use CSS classes to handle visual styles.
+
+10. Output Accuracy: MAKE SURE that "new_style_code" is a complete React component code that obey js grammar.
 
 Please respond in JSON format:
 {{

@@ -13,7 +13,9 @@ file_handler = logging.FileHandler("log.txt")
 file_handler.setLevel(logging.INFO)
 
 # Create a formatter and set it for both handlers
-formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
+formatter = logging.Formatter(
+    "%(asctime)s - %(levelname)s - %(message)s [Line: %(lineno)d]"
+)
 console_handler.setFormatter(formatter)
 file_handler.setFormatter(formatter)
 
@@ -21,5 +23,8 @@ file_handler.setFormatter(formatter)
 logger.addHandler(console_handler)
 logger.addHandler(file_handler)
 
-# # Now you can log messages to both console and file
-# logger.info("This is an info message")
+# Example logging usage
+if __name__ == "__main__":
+    logger.info("This is an informational message.")
+    logger.warning("This is a warning message.")
+    logger.error("This is an error message.")

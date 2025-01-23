@@ -146,7 +146,6 @@ JS_EVAL_POSITION = """() => {
                 return {
                     attributes: getElementAttributes(element),
                     text: element.textContent.trim(),
-                    isInteractive: interactiveElements.includes(element),
                     position: {
                         x_left: rect.left + window.scrollX,
                         y_top: rect.top + window.scrollY,

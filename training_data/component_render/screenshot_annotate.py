@@ -117,7 +117,7 @@ async def annotate_screenshot_action(
     action_space_type,
     action_desc,
     action_thought,
-    action_discrete_params,
+    action_discrete_values,
     action_code,
     action_index,
     screenshot_path,
@@ -201,7 +201,7 @@ async def annotate_screenshot_action(
             )
             draw.text(
                 (img.width / 2, img.height - 425),
-                "action_discrete_params: " + str(action_discrete_params),
+                "action_discrete_values: " + str(action_discrete_values),
                 fill="blue",
                 font=font,
             )

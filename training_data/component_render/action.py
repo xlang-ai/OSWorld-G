@@ -84,6 +84,11 @@ def generate_action_detail(args) -> ActionDetail:
             ],
             response_format=ActionDetail,
         )
+        with open("token_cost.txt", "a") as file:
+            file.write(f"prompt_action_detail:\n{response.usage.prompt_tokens}\n")
+            file.write(
+                f"completion_action_detail:\n{response.usage.completion_tokens}\n"
+            )
         logger.info(f"action detail {i} generated")
         return i, response.choices[0].message.parsed
     except Exception as e:
@@ -125,6 +130,10 @@ def generate_action_data(
         ],
         response_format=ActionIntentList,
     )
+    with open("token_cost.txt", "a") as file:
+        file.write(f"prompt_action_intent:\n{response.usage.prompt_tokens}\n")
+        file.write(f"completion_action_intent:\n{response.usage.completion_tokens}\n")
+
     action_intent_list = response.choices[0].message.parsed.action_intent_list
 
     # 主处理函数
@@ -187,207 +196,239 @@ def process_gpt_fallback(action_detail):
         ],
         response_format=ActionGroundingList,
     )
+    with open("token_cost.txt", "a") as file:
+        file.write(f"prompt_gpt_fallback:\n{response.usage.prompt_tokens}\n")
+        file.write(f"completion_gpt_fallback:\n{response.usage.completion_tokens}\n")
     return response.choices[0].message.parsed.action_grounding_list
 
 
 def process_grounding(
-    component_name: str, action_detail: Dict, screenshot_path: str
+    component_name: str, action_detail: Dict, screenshot_path: str, index: int
 ) -> str:
-    # 检查并添加 import
-    if "import pyautogui" not in action_detail.action_code:
-        action_detail.action_code = "import pyautogui\n" + action_detail.action_code
-    raw_pairs = []
-    pairs = []
-    # 生成raw_pairs: inst + raw_code
-
-    if action_detail.action_space_type == "unique":
-        # 1 pair
-        raw_pairs.append((action_detail.action_desc, action_detail.action_code))
-
-    elif action_detail.action_space_type == "discrete":
-        # Get all parameter combinations
-        param_names = action_detail.action_params
-        param_values = action_detail.action_discrete_values
-
-        param_combinations = product(*[param_values[param] for param in param_names])
-
-        for param_combo in param_combinations:
-            # Create parameter dictionary
-            param_dict = dict(zip(param_names, param_combo))
-
-            # Replace parameters in action description
-            inst = action_detail.action_desc
-            for param_name, param_value in param_dict.items():
-                inst = inst.replace(f"<{param_name}>", str(param_value))
-
-            # Create code with main block and action call
-            code = action_detail.action_code
-
-            # Add main block with action call
-            param_str = ", ".join(str(value) for value in param_combo)
-            main_block = f"\n\nif __name__ == '__main__':\n    action({param_str})"
-            code += main_block
-
-            raw_pairs.append((inst, code))
-
-    elif action_detail.action_space_type == "continuous":
-
-        # Get parameter names and their intervals
-        param_names = action_detail.action_params
-        param_intervals = action_detail.action_continuous_interval
-
-        # Sample 3 values from each interval
-        sampled_values = {}
-        for param_name in param_names:
-            intervals = param_intervals[param_name]
-            param_samples = []
-            for start, end in intervals:
-                # Sample 3 random values from this interval
-                samples = [random.uniform(start, end) for _ in range(3)]
-                param_samples.extend(samples)
-            sampled_values[param_name] = param_samples
-
-        param_combinations = product(*[sampled_values[param] for param in param_names])
-
-        for param_combo in param_combinations:
-            # Create parameter dictionary
-            param_dict = dict(zip(param_names, param_combo))
-
-            # Replace parameters in action description
-            inst = action_detail.action_desc
-            for param_name, param_value in param_dict.items():
-                # Round continuous values to 2 decimal places for readability
-                formatted_value = f"{param_value:.2f}"
-                inst = inst.replace(f"<{param_name}>", formatted_value)
-
-            # Create code with main block and action call
-            code = action_detail.action_code
-
-            # Add main block with action call
-            param_str = ", ".join(f"{value:.2f}" for value in param_combo)
-            main_block = f"\n\nif __name__ == '__main__':\n    action({param_str})"
-            code += main_block
-
-            raw_pairs.append((inst, code))
-
-    # 生成pairs: inst + final_code
-    for raw_pair in raw_pairs:
-        lines = raw_pair[1].split("\n")
-        modified_lines = []
-
-        for line in lines:
-            if "pyautogui." in line:
-                # 使用正则表达式提取函数名和参数
-                indent = re.match(r"(\s*)", line).group(1)
-                match = re.match(r".*pyautogui\.(\w+)\((.*)\)", line.strip())
-                if match:
-                    func_name = match.group(1)
-                    params_str = match.group(2)
-
-                    # 添加原始调用
-                    modified_lines.append("# " + line)
-
-                    # 分割参数（考虑括号内的逗号）
-                    params = []
-                    param_start = 0
-                    paren_count = 0
-                    for i, char in enumerate(
-                        params_str + ","
-                    ):  # 添加逗号以处理最后一个参数
-                        if char == "(":
-                            paren_count += 1
-                        elif char == ")":
-                            paren_count -= 1
-                        elif char == "," and paren_count == 0:
-                            param = params_str[param_start:i].strip()
-                            if param:  # 避免空参数
-                                params.append(param)
-                            param_start = i + 1
-
-                    # 添加打印语句
-                    eval_params = []
-                    for param in params:
-                        if param.startswith('"') or param.startswith("'"):
-                            # 字符串参数直接使用
-                            eval_params.append('"' + param + '"')
-                        else:
-                            # 非字符串参数需要eval
-                            eval_params.append(f"str(eval({repr(param)}))")
-
-                    print_stmt = (
-                        indent
-                        + f"print(f'pyautogui.{func_name}(' + ', '.join([{', '.join(eval_params)}]) + ')')"
-                    )
-                    modified_lines.append(print_stmt)
-                else:
-                    modified_lines.append("# " + line)
-            else:
-                modified_lines.append(line)
-
-        modified_code = "\n".join(modified_lines)
-        print("modified_code:\n", modified_code)
-
-        with tempfile.NamedTemporaryFile(
-            mode="w", suffix=".py", delete=False
-        ) as temp_file:
-            temp_file.write(modified_code)
-            temp_path = temp_file.name
-
-        try:
-            output = os.popen(f"python {temp_path}").read()
-            pairs.append((raw_pair[0], output))
-        finally:
-            os.remove(temp_path)
-    print(f"Generated pairs: {str(pairs)}")
-
-    # Try to load a font, fallback to default if not found
     try:
-        font = ImageFont.truetype("Arial.ttf", 16)
-    except:
-        font = ImageFont.load_default()
+        # 检查并添加 import
+        #         action_detail.action_code = """import pyautogui
+        # def action(option):
+        #     positions = {
+        #         'Recents': (472, 321),
+        #         'Favorites': (640, 321),
+        #         'Nearby': (808, 321)
+        #     }
+        #     x, y = positions[option]
+        #     pyautogui.click(x, y)
+        # """
+        if "import pyautogui" not in action_detail.action_code:
+            action_detail.action_code = "import pyautogui\n" + action_detail.action_code
+        raw_pairs = []
+        grounding_pairs = []
+        grounding_dicts = []
+        # 生成raw_pairs: inst + raw_code
 
-    # Process each pair individually
-    if pairs:
-        for idx, pair in enumerate(pairs):
-            # Load a fresh copy of the image for each pair
-            img = Image.open(screenshot_path)
-            draw = ImageDraw.Draw(img)
+        if action_detail.action_space_type == "unique":
+            # 1 pair
+            raw_pairs.append((action_detail.action_desc, action_detail.action_code))
 
-            # Extract coordinates from pyautogui action
-            coords = re.search(r"click\((\d+\.?\d*),\s*(\d+\.?\d*)\)", pair[1])
-            if coords:
-                x, y = float(coords.group(1)), float(coords.group(2))
+        elif action_detail.action_space_type == "discrete":
+            # Get all parameter combinations
+            param_names = action_detail.action_params
+            param_values = action_detail.action_discrete_values
 
-                # Draw coordinate point
-                draw.ellipse([(x - 5, y - 5), (x + 5, y + 5)], fill="red")
+            param_combinations = product(
+                *[param_values[param] for param in param_names]
+            )
 
-                # Add instruction text
-                y_offset = img.height - 50  # Moved closer to bottom
-                draw.text(
-                    (10, y_offset),
-                    f"{pair[0]} -> {pair[1]}",
-                    fill="black",
-                    font=font,
-                    background="white",
+            for param_combo in param_combinations:
+                # Create parameter dictionary
+                param_dict = dict(zip(param_names, param_combo))
+
+                # Replace parameters in action description
+                inst = action_detail.action_desc
+                for param_name, param_value in param_dict.items():
+                    inst = inst.replace(f"<{param_name}>", str(param_value))
+
+                # Create code with main block and action call
+                code = action_detail.action_code
+
+                # Add main block with action call
+                param_str = ", ".join(
+                    f'"{value}"' if isinstance(value, str) else f"{value:.2f}"
+                    for value in param_combo
+                )
+                main_block = f"\n\nif __name__ == '__main__':\n    action({param_str})"
+                code += main_block
+
+                raw_pairs.append((inst, code))
+
+        elif action_detail.action_space_type == "continuous":
+
+            # Get parameter names and their intervals
+            param_names = action_detail.action_params
+            param_intervals = action_detail.action_continuous_interval
+
+            # Sample 3 values from each interval
+            sampled_values = {}
+            for param_name in param_names:
+                intervals = param_intervals[param_name]
+                param_samples = []
+                for start, end in intervals:
+                    # Sample 3 random values from this interval
+                    samples = [random.uniform(start, end) for _ in range(3)]
+                    param_samples.extend(samples)
+                sampled_values[param_name] = param_samples
+
+            param_combinations = product(
+                *[sampled_values[param] for param in param_names]
+            )
+
+            for param_combo in param_combinations:
+                # Create parameter dictionary
+                param_dict = dict(zip(param_names, param_combo))
+
+                # Replace parameters in action description
+                inst = action_detail.action_desc
+                for param_name, param_value in param_dict.items():
+                    # Round continuous values to 2 decimal places for readability
+                    formatted_value = f"{param_value:.2f}"
+                    inst = inst.replace(f"<{param_name}>", formatted_value)
+
+                # Create code with main block and action call
+                code = action_detail.action_code
+
+                # Add main block with action call
+                param_str = ", ".join(
+                    f'"{value}"' if isinstance(value, str) else f"{value:.2f}"
+                    for value in param_combo
                 )
 
-                os.makedirs("./screenshots/grounding", exist_ok=True)
-                # Save individual annotated image
-                # output_path = f"./screenshots/{component_name}_action_{idx + 1}_{datetime.datetime.now().strftime('%m-%d %H:%M:%S')}.png"
-                output_path = f"./screenshots/grounding/{component_name}_action_{idx + 1}_{datetime.datetime.now().strftime('%m-%d %H:%M:%S')}.png"
-                img.save(output_path)
+                main_block = f"\n\nif __name__ == '__main__':\n    action({param_str})"
+                code += main_block
 
-                grounding_data_pair.append(
-                    {
-                        "instruction": pair.instruction,
-                        "action": pair.pyautogui_action,
-                        "annotated_image_path": output_path,
-                    }
-                )
+                raw_pairs.append((inst, code))
 
-                # print(f"Saved annotated image for action {idx + 1}: {output_path}")
+        # 生成pairs: inst + final_code
+        for raw_pair in raw_pairs:
+            lines = raw_pair[1].split("\n")
+            modified_lines = []
 
-    return grounding_data_pair
+            for line in lines:
+                if "pyautogui." in line:
+                    # 使用正则表达式提取函数名和参数
+                    indent = re.match(r"(\s*)", line).group(1)
+                    match = re.match(r".*pyautogui\.(\w+)\((.*)\)", line.strip())
+                    if match:
+                        func_name = match.group(1)
+                        params_str = match.group(2)
+
+                        # 添加原始调用
+                        modified_lines.append("# " + line)
+
+                        # 分割参数（考虑括号内的逗号）
+                        params = []
+                        param_start = 0
+                        paren_count = 0
+                        for i, char in enumerate(
+                            params_str + ","
+                        ):  # 添加逗号以处理最后一个参数
+                            if char == "(":
+                                paren_count += 1
+                            elif char == ")":
+                                paren_count -= 1
+                            elif char == "," and paren_count == 0:
+                                param = params_str[param_start:i].strip()
+                                if param:  # 避免空参数
+                                    params.append(param)
+                                param_start = i + 1
+
+                        # 添加打印语句
+                        eval_params = []
+                        for param in params:
+                            if (
+                                param.startswith('"')
+                                or param.startswith("'")
+                                or "=" in param
+                            ):
+                                # 字符串参数直接使用
+                                eval_params.append('"' + param + '"')
+                            else:
+                                # 非字符串参数需要eval
+                                eval_params.append(f"str(eval({repr(param)}))")
+
+                        print_stmt = (
+                            indent
+                            + f"print(f'pyautogui.{func_name}(' + ', '.join([{', '.join(eval_params)}]) + ')')"
+                        )
+                        modified_lines.append(print_stmt)
+                    else:
+                        modified_lines.append("# " + line)
+                else:
+                    modified_lines.append(line)
+
+            modified_code = "\n".join(modified_lines)
+            print("modified_code:\n", modified_code)
+
+            with tempfile.NamedTemporaryFile(
+                mode="w", suffix=".py", delete=False
+            ) as temp_file:
+                temp_file.write(modified_code)
+                temp_path = temp_file.name
+
+            try:
+                output = os.popen(f"python {temp_path}").read()
+                grounding_pairs.append((raw_pair[0], output))
+            finally:
+                os.remove(temp_path)
+        logger.info(f"Generated pairs: {str(grounding_pairs)}")
+
+        # Try to load a font, fallback to default if not found
+        try:
+            font = ImageFont.truetype("Arial.ttf", 16)
+        except:
+            font = ImageFont.load_default()
+
+        # Process each pair individually
+        if grounding_pairs:
+            for j, pair in enumerate(grounding_pairs):
+                # Load a fresh copy of the image for each pair
+                img = Image.open(screenshot_path)
+                draw = ImageDraw.Draw(img)
+
+                # Extract coordinates from pyautogui action
+                coords = re.search(r"click\((\d+\.?\d*),\s*(\d+\.?\d*)\)", pair[1])
+                if coords:
+                    x, y = float(coords.group(1)), float(coords.group(2))
+
+                    # Draw coordinate point
+                    draw.ellipse([(x - 5, y - 5), (x + 5, y + 5)], fill="red")
+
+                    # Add instruction text
+                    y_offset = img.height - 50  # Moved closer to bottom
+                    draw.text(
+                        (10, y_offset),
+                        f"{pair[0]} -> {pair[1]}",
+                        fill="black",
+                        font=font,
+                        background="white",
+                    )
+
+                    os.makedirs("./data/screenshots/grounding", exist_ok=True)
+                    # Save individual annotated image
+                    output_path = f"./data/screenshots/grounding/{component_name}_type_{index}_action_{j + 1}_{datetime.datetime.now().strftime('%m-%d %H:%M:%S')}.png"
+                    img.save(output_path)
+
+                    grounding_dicts.append(
+                        {
+                            "instruction": pair[0],
+                            "action": pair[1],
+                            "annotated_image_path": output_path,
+                        }
+                    )
+
+        return grounding_dicts
+    except Exception as e:
+        logger.error(
+            f"Error processing action {action_detail.action_desc}: {e}", exc_info=True
+        )
+        return []
 
 
 # 测试代码
@@ -417,26 +458,18 @@ if __name__ == "__main__":
     # for action_detail in action_detail_list:
     # result = process_grounding(component_name, action_detail, screenshot_path)
     # print(result)
+    action_detail = ActionDetail(
+        thought_process="Analyze user input and decide the next step.",
+        action_space_type="discrete",
+        action_desc="Select one of the predefined actions.",
+        action_params=["option"],
+        action_discrete_values={"option": ["Recents", "Favorites", "Nearby"]},
+        action_continuous_interval=None,
+        action_code="def execute_action(): pass",
+    )
     result = process_grounding(
         "component_name",
-        {
-            "action_space_type": "continuous",
-            "action_desc": "Set volume to <volume>%",
-            "thought_process": """
-        - Identified slider endpoints: (22,30) and (222,30)
-                - Volume parameter determines click position
-                - Linear interpolation between endpoints based on volume""",
-            "action_params": ["volume"],
-            "action_discrete_values": {},
-            "action_continuous_interval": {"volume": [(0, 100)]},
-            "action_code": """
-def action(volume):
-    x_0, y_0 = 22, 30  # Left endpoint
-    x_1, y_1 = 222, 30  # Right endpoint
-    x = x_0 + (x_1 - x_0) * (volume / 100)
-    pyautogui.click(x, y_0)
-            """,
-        },
+        action_detail,
         "screenshot_path",
     )
     print(result)
