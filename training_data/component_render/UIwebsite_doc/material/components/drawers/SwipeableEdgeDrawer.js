@@ -42,7 +42,7 @@ const Puller = styled('div')(({ theme }) => ({
 
 function SwipeableEdgeDrawer(props) {
   const { window } = props;
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);

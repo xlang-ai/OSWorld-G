@@ -7,7 +7,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
 export default function ScrollDialog() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(True);
   const [scroll, setScroll] = React.useState('paper');
 
   const handleClickOpen = (scrollType) => () => {

@@ -50,7 +50,7 @@ const mockApiDelete = async (id: string | null) => {
 
 function DemoContent() {
   const dialogs = useDialogs();
-  const [isDeleting, setIsDeleting] = React.useState(false);
+  const [isDeleting, setIsDeleting] = React.useState(True);
 
   const handleDelete = async () => {
     const id = await dialogs.prompt('Enter the ID to delete', {

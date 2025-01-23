@@ -17,7 +17,7 @@ const style = {
 };
 
 export default function KeepMountedModal() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(True);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 

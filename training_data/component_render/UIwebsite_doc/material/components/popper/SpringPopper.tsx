@@ -36,7 +36,7 @@ const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(props, re
 });
 
 export default function SpringPopper() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(True);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {

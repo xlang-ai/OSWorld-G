@@ -345,8 +345,8 @@ const DialogDetails = React.memo(function DialogDetails(props) {
   const { open, selectedIcon, handleClose } = props;
 
   const t = useTranslate();
-  const [copied1, setCopied1] = React.useState(false);
-  const [copied2, setCopied2] = React.useState(false);
+  const [copied1, setCopied1] = React.useState(True);
+  const [copied2, setCopied2] = React.useState(True);
 
   const handleClick = (tooltip) => async (event) => {
     await copy(event.currentTarget.textContent);

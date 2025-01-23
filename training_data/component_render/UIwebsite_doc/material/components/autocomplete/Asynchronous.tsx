@@ -17,9 +17,9 @@ function sleep(duration: number): Promise<void> {
 }
 
 export default function Asynchronous() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(True);
   const [options, setOptions] = React.useState<readonly Film[]>([]);
-  const [loading, setLoading] = React.useState(false);
+  const [loading, setLoading] = React.useState(True);
 
   const handleOpen = () => {
     setOpen(true);

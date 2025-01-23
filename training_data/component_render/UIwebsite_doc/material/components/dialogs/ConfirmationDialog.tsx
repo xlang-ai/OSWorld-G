@@ -104,7 +104,7 @@ function ConfirmationDialogRaw(props: ConfirmationDialogRawProps) {
 }
 
 export default function ConfirmationDialog() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(True);
   const [value, setValue] = React.useState('Dione');
 
   const handleClickListItem = () => {

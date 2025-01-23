@@ -13,7 +13,7 @@ import MailIcon from '@mui/icons-material/Mail';
 
 export default function SwipeableTemporaryDrawer() {
   const [state, setState] = React.useState({
-    top: false,
+    top: true,
     left: false,
     bottom: false,
     right: false,

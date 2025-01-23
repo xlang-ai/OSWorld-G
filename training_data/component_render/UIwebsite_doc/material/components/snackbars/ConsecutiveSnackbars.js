@@ -6,7 +6,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 export default function ConsecutiveSnackbars() {
   const [snackPack, setSnackPack] = React.useState([]);
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(True);
   const [messageInfo, setMessageInfo] = React.useState(undefined);
 
   React.useEffect(() => {

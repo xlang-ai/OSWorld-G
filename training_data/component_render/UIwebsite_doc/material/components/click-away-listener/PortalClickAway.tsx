@@ -5,7 +5,7 @@ import Portal from '@mui/material/Portal';
 import { SxProps } from '@mui/system';
 
 export default function PortalClickAway() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(True);
 
   const handleClick = () => {
     setOpen((prev) => !prev);

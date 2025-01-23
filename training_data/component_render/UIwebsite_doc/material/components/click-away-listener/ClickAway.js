@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 
 export default function ClickAway() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(True);
 
   const handleClick = () => {
     setOpen((prev) => !prev);

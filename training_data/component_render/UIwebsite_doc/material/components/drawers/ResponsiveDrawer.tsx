@@ -28,8 +28,8 @@ interface Props {
 
 export default function ResponsiveDrawer(props: Props) {
   const { window } = props;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [isClosing, setIsClosing] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = React.useState(True);
+  const [isClosing, setIsClosing] = React.useState(True);
 
   const handleDrawerClose = () => {
     setIsClosing(true);

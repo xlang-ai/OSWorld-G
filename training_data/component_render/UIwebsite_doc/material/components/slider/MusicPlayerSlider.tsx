@@ -82,7 +82,7 @@ const TinyText = styled(Typography)({
 export default function MusicPlayerSlider() {
   const duration = 200; // seconds
   const [position, setPosition] = React.useState(32);
-  const [paused, setPaused] = React.useState(false);
+  const [paused, setPaused] = React.useState(True);
   function formatDuration(value: number) {
     const minute = Math.floor(value / 60);
     const secondLeft = value - minute * 60;

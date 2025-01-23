@@ -5,7 +5,7 @@ import Fade from '@mui/material/Fade';
 import Paper from '@mui/material/Paper';
 
 export default function VirtualElementPopper() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(True);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const previousAnchorElPosition = React.useRef(undefined);
