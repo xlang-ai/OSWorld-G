@@ -533,6 +533,8 @@ COMPONENT_TYPE_LIST = [
 
 SYSTEM_PROMPT_FOR_STYLE_AUGMENTATION = """You are an assistant familiar with the React framework and skilled at writing frontend code."""
 
+# 5. Do not import images since we don't have the image data. You can import anything from MUI libraries.
+
 
 def generate_new_scenario_component_prompt(
     original_code: str, generated_codes: list[str] = None
@@ -554,9 +556,9 @@ Please come up with a real application scenario for this type of component based
 
 4. Focus on components with interactive attributes that provide a rich interactive experience. Avoid overly simple layouts or components.
 
-5. Do not import images since we don't have the image data. You can import anything from MUI libraries.
+5. You don't always have to use the most common use cases; diversified use cases are encouraged.
 
-6. You don't always have to use the most common use cases; diversified use cases are encouraged.
+6. Please write the code using only basic lucid-react and tailwind css.
 
 7. Style: You're encouraged to design colorful, aesthetic, functional UI components. You can make design in aspects such as:
    - **Colors** (e.g., background color, text color, etc.)
@@ -608,6 +610,8 @@ Please respond in JSON format:
     )
 
 
+# You can import components from Material-UI (MUI) or use CSS classes to handle visual styles. Avoid importing libraries that are not from MUI.
+
 STYLE_TEMPLATE_GENERATE_PROMPT = """
 <Original UI Component Code>
 {original_code}
@@ -642,7 +646,7 @@ This is a piece of front-end UI code written in React, which defines a component
    - Appearance is important—ensure the component is easy to interact with, visually engaging, and provides a smooth user experience.
 
 3. **No Image Imports:**  
-   Since we don’t have image data, avoid importing images. You can import components from Material-UI (MUI) or use CSS classes to handle visual styles. Avoid importing libraries that are not from MUI.
+   Since we don’t have image data, avoid importing images. You can use Tailwind CSS  and lucid-react classes to handle visual styles.
 
 4. **Encourage Creativity:**  
    Feel free to experiment with different design layouts or color schemes that fit the component's purpose.

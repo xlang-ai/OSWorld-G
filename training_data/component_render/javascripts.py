@@ -1,10 +1,10 @@
+# import '@fontsource/roboto/300.css';
+# import '@fontsource/roboto/400.css';
+# import '@fontsource/roboto/500.css';
+# import '@fontsource/roboto/700.css';
 JS_WITH_COMPONENT = r"""
 import React from 'react';
 import './App.css';
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
 import {component_name} from './components/{component_name}';
 
 function App() {{
@@ -30,10 +30,6 @@ export default App;
 JS_WITHOUT_COMPONENT = r"""
 import React from 'react';
 import './App.css';
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
 
 function App() {
   return (
