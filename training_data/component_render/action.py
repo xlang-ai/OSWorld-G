@@ -1,20 +1,15 @@
-import os
+import ast
+import datetime
 import json
+import os
+import random
+import re
 import tempfile
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from typing import Dict, List, Literal, Optional, Callable, Union
-from PIL import Image, ImageDraw, ImageFont
-from openai import OpenAI
-from anthropic import Anthropic
-from pydantic import BaseModel
-from logger import logger
-import re
-import ast
-import random
-import datetime
 from itertools import product
-from typing import Dict, List, Tuple
+from typing import Callable, Dict, List, Literal, Optional, Tuple, Union
 
+from anthropic import Anthropic
 from api import claude, client
 from logger import logger
 from openai import OpenAI
@@ -373,7 +368,9 @@ def process_grounding(
                 temp_path = temp_file.name
 
             try:
-                output = os.popen(f"python {temp_path}").read()
+                import sys
+
+                output = os.popen(f"{sys.executable} {temp_path}").read()
                 grounding_pairs.append((raw_pair[0], output))
             finally:
                 os.remove(temp_path)

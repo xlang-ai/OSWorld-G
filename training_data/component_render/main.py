@@ -12,6 +12,7 @@ from pathlib import Path
 from action import generate_action_data, process_grounding
 from api import claude, client
 from javascripts import JS_EVAL_POSITION, JS_WITH_COMPONENT, JS_WITHOUT_COMPONENT
+from killproc import kill_port
 from logger import logger
 from playwright.async_api import async_playwright
 from pydantic import BaseModel
@@ -21,7 +22,6 @@ from screenshot_annotate import (
     annotate_screenshot_component,
 )
 from style import scenario_augmentation, style_augmentation
-from killproc import kill_port
 from usage import usage
 
 MAX_WORKERS = 5
@@ -202,6 +202,7 @@ class DataGenerator:
             screenshot_path = (
                 Path(screenshot_folder)
                 # / f"{component_name}_style_{style_index}_{time.time()}.png"
+                / "raw"
                 / f"{component_name}_{time.time()}.png"
             )
 
@@ -264,6 +265,8 @@ async def main():
     os.makedirs("data", exist_ok=True)
     os.makedirs("data/component_code", exist_ok=True)
     os.makedirs("data/screenshots", exist_ok=True)
+    os.makedirs("data/screenshots/raw", exist_ok=True)
+    os.makedirs("data/screenshots/grounding", exist_ok=True)
     os.makedirs("data/component_positions", exist_ok=True)
     os.makedirs(Path(app_dir) / "src" / "components", exist_ok=True)
     await generator.initialize_react_app()
@@ -454,9 +457,7 @@ async def main():
                             action_space_type = action_detail_list[i].action_space_type
                             action_desc = action_detail_list[i].action_desc
                             action_thought = action_detail_list[i].thought_process
-                            action_discrete_values = action_detail_list[
-                                i
-                            ].action_discrete_values
+                            action_discrete_values = action_detail_list[i].action_values
                             action_code = action_detail_list[i].action_code
 
                             annotated_action_path = await annotate_screenshot_action(

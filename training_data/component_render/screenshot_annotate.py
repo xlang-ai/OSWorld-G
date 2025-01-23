@@ -89,6 +89,7 @@ async def annotate_screenshot_component(
             annotated_path = (
                 Path(screenshot_folder)
                 # / f"{component_name}_annotated_component_{style_index}_{int(time.time())}.png"
+                / "raw"
                 / f"{component_name}_annotated_component_{int(time.time())}.png"
             )
             img.save(annotated_path)
@@ -216,6 +217,7 @@ async def annotate_screenshot_action(
             annotated_path = (
                 Path(screenshot_folder)
                 # / f"{component_name}_annotated_action_{style_index}_{action_index}_{(time.time())}.png"
+                / "raw"
                 / f"{component_name}_annotated_action_{action_index}_{(time.time())}.png"
             )
             img.save(annotated_path)
