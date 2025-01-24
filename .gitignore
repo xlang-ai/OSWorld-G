@@ -210,3 +210,9 @@ log.txt
 stats.json
 
 iter-0
+
+data/
+logs/
+
+token_cost.txt
+success.txt

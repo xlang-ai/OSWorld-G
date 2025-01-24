@@ -533,7 +533,17 @@ COMPONENT_TYPE_LIST = [
 
 SYSTEM_PROMPT_FOR_STYLE_AUGMENTATION = """You are an assistant familiar with the React framework and skilled at writing frontend code."""
 
+
+# Some prompts for last turn's try. Save here for potential future use.
 # 5. Do not import images since we don't have the image data. You can import anything from MUI libraries.
+# 3. You can adjust the content of the original component. When extending styles, please focus on functional components. There is no need to modify purely presentational properties (such as background color, static text, etc.).
+# 5. You don't always have to use the most common use cases; diversified use cases are encouraged.
+# . You can make design in aspects such as:
+#    - **Colors** (e.g., background color, text color, etc.)
+#    - **Text content** (e.g., title, artist, etc.)
+#    - **Spacing** (e.g., margin, padding)
+#    - **Positions** (e.g., absolute, relative)
+#    - **Fonts and icons** (optional, based on the component's needs)
 
 
 def generate_new_scenario_component_prompt(
@@ -552,28 +562,19 @@ Please come up with a real application scenario for this type of component based
 
 2. Please add some new subcomponents that are commonly found in modern UI design and are related to component functionality. These subcomponents should prioritize the use of images for display, and text can be used when necessary.
 
-3. You can adjust the content of the original component. When extending styles, please focus on functional components. There is no need to modify purely presentational properties (such as background color, static text, etc.).
+3. Focus on components with interactive attributes that provide a rich interactive experience. Avoid overly simple layouts or components.
 
-4. Focus on components with interactive attributes that provide a rich interactive experience. Avoid overly simple layouts or components.
+4. Please write the code using only basic lucide-react and tailwind css.
 
-5. You don't always have to use the most common use cases; diversified use cases are encouraged.
+5. Style: You're encouraged to design colorful, aesthetic, functional UI components
 
-6. Please write the code using only basic lucid-react and tailwind css.
+6. Design Aesthetic: Authenticity is key. The component should resemble real-world components that users interact with daily. Pay close attention to style parameters, such as spacing, font sizes, button interactions, and overall layout. Make sure the design is consistent with what we typically use in modern, functional UI components.
 
-7. Style: You're encouraged to design colorful, aesthetic, functional UI components. You can make design in aspects such as:
-   - **Colors** (e.g., background color, text color, etc.)
-   - **Text content** (e.g., title, artist, etc.)
-   - **Spacing** (e.g., margin, padding)
-   - **Positions** (e.g., absolute, relative)
-   - **Fonts and icons** (optional, based on the component's needs)
+7. Library to use: You can use tailwind css classes and lucide-react classes to handle visual styles. Make sure the classes you use are real and not fake. No Image Imports: Since we don’t have image data, avoid importing images. 
 
-8. Design Aesthetic: Authenticity is key. The component should resemble real-world components that users interact with daily. Pay close attention to style parameters, such as spacing, font sizes, button interactions, and overall layout. Make sure the design is consistent with what we typically use in modern, functional UI components.
+8. Output Accuracy: MAKE SURE that "new_style_code" is a complete React component code that obey js grammar. Ensure your code is correct!
 
-9. No Image Imports: Since we don’t have image data, avoid importing images. You can import components from Material-UI (MUI) or use CSS classes to handle visual styles.
-
-10. Output Accuracy: MAKE SURE that "new_style_code" is a complete React component code that obey js grammar.
-
-Please respond in JSON format:
+Please respond in JSON format directly. You should not add any other text or comments.
 {{
     "thoughts": "The thought process of design ideas and scene selection",
     "new_style_code": "The specific code for the new component"
@@ -646,7 +647,7 @@ This is a piece of front-end UI code written in React, which defines a component
    - Appearance is important—ensure the component is easy to interact with, visually engaging, and provides a smooth user experience.
 
 3. **No Image Imports:**  
-   Since we don’t have image data, avoid importing images. You can use Tailwind CSS  and lucid-react classes to handle visual styles.
+   Since we don’t have image data, avoid importing images. You can use Tailwind CSS  and lucide-react classes to handle visual styles.
 
 4. **Encourage Creativity:**  
    Feel free to experiment with different design layouts or color schemes that fit the component's purpose.

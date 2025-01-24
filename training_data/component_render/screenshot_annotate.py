@@ -39,7 +39,8 @@ async def annotate_screenshot_component(
             # 为每个元素添加标注
             for element in position["elements"]:
                 # 获取颜色（交互式元素用红色，非交互式元素用绿色）
-                color = "red" if element["isInteractive"] else "green"
+                # color = "red" if element["isInteractive"] else "green"
+                color = "red"
 
                 # 获取坐标
                 x_left = element["position"]["x_left"]

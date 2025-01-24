@@ -1,3 +1,4 @@
+import codecs
 import json
 import os
 
@@ -75,6 +76,67 @@ def _generate_single_scenario(args) -> str:
         return None
 
 
+def _generate_single_scenario_claude(args) -> str:
+    base_component_code, generated_codes, system_prompt = args
+
+    scenario_prompt = generate_new_scenario_component_prompt(
+        original_code=base_component_code, generated_codes=generated_codes
+    )
+
+    import json
+
+    import requests
+
+    url = "https://api2.aigcbest.top/v1/chat/completions"
+
+    payload = {
+        "model": "claude-3-5-sonnet-20241022",
+        "max_tokens": 4000,
+        "messages": [
+            {
+                "role": "user",
+                "content": [
+                    {"type": "text", "text": system_prompt},
+                    {"type": "text", "text": scenario_prompt},
+                ],
+            }
+        ],
+    }
+
+    headers = {
+        "Accept": "application/json",
+        "Authorization": "Bearer {you_key}",
+        "Content-Type": "application/json",
+    }
+
+    try:
+        response = requests.request("POST", url, headers=headers, json=payload)
+        response = json.loads(response.text)
+
+        with open("token_cost.txt", "a") as file:
+            file.write(f"prompt_gen_scenario:\n{response['usage']['prompt_tokens']}\n")
+            file.write(
+                f"completion_gen_scenario:\n{response['usage']['completion_tokens']}\n"
+            )
+
+        json_response = response["choices"][0]["message"]["content"]
+        # print(json_response + "\n\n\n")
+
+        # 直接从响应中提取 new_style_code
+        import re
+
+        code_match = re.search(
+            r'"new_style_code"\s*:\s*"((?:[^"\\]|\\.|\\n)*)"', json_response, re.DOTALL
+        )
+        if not code_match:
+            raise ValueError("No new_style_code found in the response")
+        new_style_code = code_match.group(1)
+        return codecs.decode(new_style_code, "unicode_escape")
+    except Exception as e:
+        logger.error(f"Error generating style: {str(e)}")
+        return None
+
+
 def scenario_augmentation(base_component_code: str, n: int) -> List[str]:
     generated_code_list = []
 
@@ -90,7 +152,8 @@ def scenario_augmentation(base_component_code: str, n: int) -> List[str]:
 
     # 使用ThreadPoolExecutor并行处理
     with ThreadPoolExecutor(max_workers=min(n, 4)) as executor:
-        results = list(executor.map(_generate_single_scenario, tasks))
+        # results = list(executor.map(_generate_single_scenario, tasks))
+        results = list(executor.map(_generate_single_scenario_claude, tasks))
 
     # 过滤掉None值并返回结果
     generated_code_list = [code for code in results if code is not None]
@@ -201,3 +264,7 @@ def style_augmentation(
         "component_prop_nesting": component_prop_nesting,
         "styled_component_prop_nesting_list": styled_component_prop_nesting_list,
     }
+
+
+if __name__ == "__main__":
+    print(_generate_single_scenario_claude(("Hello world!", [], "")))

@@ -22,7 +22,8 @@ from screenshot_annotate import (
     annotate_screenshot_component,
 )
 from style import scenario_augmentation, style_augmentation
-from usage import usage
+
+# from usage import usage
 
 MAX_WORKERS = 5
 
@@ -147,7 +148,7 @@ class DataGenerator:
             component_js_path = (
                 Path(app_dir) / "src" / "components" / f"{component_name}.js"
             )
-            with open(component_js_path, "w") as f:
+            with open(component_js_path, "w", encoding="utf-8", newline="\n") as f:
                 f.write(component_code)
 
             # 最后更新 App.js 引入新组件
@@ -162,6 +163,7 @@ class DataGenerator:
             await self.refresh_page()
 
             # 获取组件位置信息
+            await self.page.wait_for_selector(".App", state="visible", timeout=10000)
             position = await self.page.evaluate(JS_EVAL_POSITION)
 
             if position:
@@ -305,7 +307,7 @@ async def main():
             for component_tree in component_tree_list
             if component_tree["name"]
             in [
-                "slider",
+                # "slider",
                 # "menus",
                 # "drawers",
                 # "checkboxes",
@@ -316,7 +318,7 @@ async def main():
                 # "dividers",
                 # "lists",
                 # "alert",
-                # "dialogs",
+                "dialogs",
                 # "snackbars",
                 # "app-bar",
                 # "bottom-navigation",
@@ -457,7 +459,9 @@ async def main():
                             action_space_type = action_detail_list[i].action_space_type
                             action_desc = action_detail_list[i].action_desc
                             action_thought = action_detail_list[i].thought_process
-                            action_discrete_values = action_detail_list[i].action_values
+                            action_discrete_values = action_detail_list[
+                                i
+                            ].action_discrete_values
                             action_code = action_detail_list[i].action_code
 
                             annotated_action_path = await annotate_screenshot_action(
