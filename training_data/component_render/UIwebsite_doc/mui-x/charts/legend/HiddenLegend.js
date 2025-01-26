@@ -15,7 +15,7 @@ const series = [
 ];
 
 export default function HiddenLegend() {
-  const [isHidden, setIsHidden] = React.useState(false);
+  const [isHidden, setIsHidden] = React.useState(true);
 
   const Toggle = (
     <FormControlLabel

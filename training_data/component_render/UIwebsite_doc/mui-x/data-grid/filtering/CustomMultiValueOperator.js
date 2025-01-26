@@ -11,7 +11,7 @@ function InputNumberInterval(props) {
 
   const filterTimeout = React.useRef(undefined);
   const [filterValueState, setFilterValueState] = React.useState(item.value ?? '');
-  const [applying, setIsApplying] = React.useState(false);
+  const [applying, setIsApplying] = React.useState(true);
 
   React.useEffect(() => {
     return () => {

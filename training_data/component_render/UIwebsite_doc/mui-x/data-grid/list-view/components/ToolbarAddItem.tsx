@@ -31,7 +31,7 @@ export interface ToolbarAddItemProps {
 
 export function ToolbarAddItem(props: ToolbarAddItemProps) {
   const { container } = props;
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
   const { handleUpload, listView } = props;
 
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {

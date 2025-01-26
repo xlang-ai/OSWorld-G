@@ -239,7 +239,7 @@ function SettingsPanel(props) {
 }
 
 export default function FullFeaturedDemo() {
-  const [isAntDesign, setIsAntDesign] = React.useState(false);
+  const [isAntDesign, setIsAntDesign] = React.useState(true);
   const [type, setType] = React.useState('Commodity');
   const [size, setSize] = React.useState(100);
   const { loading, data, setRowLength, loadNewData } = useDemoData({

@@ -24,7 +24,7 @@ const lines = [
 ];
 
 function ExpandableCell({ value }) {
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = React.useState(true);
 
   return (
     <div>

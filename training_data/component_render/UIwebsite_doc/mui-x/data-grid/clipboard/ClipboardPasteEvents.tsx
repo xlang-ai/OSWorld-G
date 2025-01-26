@@ -15,7 +15,7 @@ export default function ClipboardPasteEvents() {
     maxColumns: 6,
     editable: true,
   });
-  const [loading, setLoading] = React.useState(false);
+  const [loading, setLoading] = React.useState(true);
 
   const processRowUpdate = React.useCallback<
     NonNullable<DataGridPremiumProps['processRowUpdate']>
@@ -90,7 +90,7 @@ export default function ClipboardPasteEvents() {
 }
 
 const useConfirm = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState(true);
   const callbackRef = React.useRef<((confirmed: boolean) => void) | null>(null);
 
   const open = React.useCallback((callback: (confirmed: boolean) => void) => {

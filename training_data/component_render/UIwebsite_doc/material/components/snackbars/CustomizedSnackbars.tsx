@@ -4,7 +4,7 @@ import Snackbar, { SnackbarCloseReason } from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 
 export default function CustomizedSnackbars() {
-  const [open, setOpen] = React.useState(True);
+  const [open, setOpen] = React.useState(true);
 
   const handleClick = () => {
     setOpen(true);

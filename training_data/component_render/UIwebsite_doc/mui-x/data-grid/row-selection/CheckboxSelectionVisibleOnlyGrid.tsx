@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 
 export default function CheckboxSelectionVisibleOnlyGrid() {
   const [checkboxSelectionVisibleOnly, setCheckboxSelectionVisibleOnly] =
-    React.useState(false);
+    React.useState(true);
 
   const { data, loading } = useDemoData({
     dataSet: 'Commodity',

@@ -6,7 +6,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Typography from '@mui/material/Typography';
 
 export default function DelayingAppearance() {
-  const [loading, setLoading] = React.useState(True);
+  const [loading, setLoading] = React.useState(true);
   const [query, setQuery] = React.useState('idle');
   const timerRef = React.useRef<ReturnType<typeof setTimeout>>(undefined);
 

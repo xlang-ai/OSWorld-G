@@ -4,7 +4,7 @@ import Popper from '@mui/material/Popper';
 import Fade from '@mui/material/Fade';
 
 export default function TransitionsPopper() {
-  const [open, setOpen] = React.useState(True);
+  const [open, setOpen] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {

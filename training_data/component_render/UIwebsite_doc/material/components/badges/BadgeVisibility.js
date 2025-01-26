@@ -11,7 +11,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 
 export default function BadgeVisibility() {
   const [count, setCount] = React.useState(1);
-  const [invisible, setInvisible] = React.useState(True);
+  const [invisible, setInvisible] = React.useState(true);
 
   const handleBadgeVisibility = () => {
     setInvisible(!invisible);

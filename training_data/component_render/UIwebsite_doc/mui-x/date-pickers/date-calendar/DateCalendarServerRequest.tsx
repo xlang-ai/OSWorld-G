@@ -52,7 +52,7 @@ function ServerDay(props: PickersDayProps & { highlightedDays?: number[] }) {
 
 export default function DateCalendarServerRequest() {
   const requestAbortController = React.useRef<AbortController | null>(null);
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(true);
   const [highlightedDays, setHighlightedDays] = React.useState([1, 2, 15]);
 
   const fetchHighlightedDays = (date: Dayjs) => {

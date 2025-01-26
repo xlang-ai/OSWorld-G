@@ -29,7 +29,7 @@ function SlideTransition(props) {
 }
 
 export default function ExcelExportWithWebWorker() {
-  const [inProgress, setInProgress] = React.useState(false);
+  const [inProgress, setInProgress] = React.useState(true);
 
   const { data, loading } = useDemoData({
     dataSet: 'Commodity',

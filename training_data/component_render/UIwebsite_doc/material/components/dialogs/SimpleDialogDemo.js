@@ -68,7 +68,7 @@ SimpleDialog.propTypes = {
 };
 
 export default function SimpleDialogDemo() {
-  const [open, setOpen] = React.useState(True);
+  const [open, setOpen] = React.useState(true);
   const [selectedValue, setSelectedValue] = React.useState(emails[1]);
 
   const handleClickOpen = () => {

@@ -8,8 +8,8 @@ import CheckIcon from '@mui/icons-material/Check';
 import SaveIcon from '@mui/icons-material/Save';
 
 export default function CircularIntegration() {
-  const [loading, setLoading] = React.useState(True);
-  const [success, setSuccess] = React.useState(True);
+  const [loading, setLoading] = React.useState(true);
+  const [success, setSuccess] = React.useState(true);
   const timer = React.useRef(undefined);
 
   const buttonSx = {

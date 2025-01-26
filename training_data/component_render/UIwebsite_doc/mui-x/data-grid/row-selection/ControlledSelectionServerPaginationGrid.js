@@ -25,7 +25,7 @@ export default function ControlledSelectionServerPaginationGrid() {
     pageSize: 5,
   });
   const [rows, setRows] = React.useState([]);
-  const [loading, setLoading] = React.useState(false);
+  const [loading, setLoading] = React.useState(true);
   const [rowSelectionModel, setRowSelectionModel] = React.useState([]);
 
   React.useEffect(() => {

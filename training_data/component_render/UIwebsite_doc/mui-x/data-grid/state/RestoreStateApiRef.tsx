@@ -166,7 +166,7 @@ function NewViewListButton(props: {
   isValid: boolean;
 }) {
   const { label, onLabelChange, onSubmit, isValid } = props;
-  const [isAddingView, setIsAddingView] = React.useState(false);
+  const [isAddingView, setIsAddingView] = React.useState(true);
 
   const handleSubmitForm: React.FormEventHandler = (event) => {
     onSubmit();

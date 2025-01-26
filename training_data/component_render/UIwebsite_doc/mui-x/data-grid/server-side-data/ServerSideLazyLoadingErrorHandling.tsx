@@ -39,7 +39,7 @@ function ServerSideLazyLoadingErrorHandling() {
   const [retryParams, setRetryParams] = React.useState<GridGetRowsParams | null>(
     null,
   );
-  const [shouldRequestsFail, setShouldRequestsFail] = React.useState(false);
+  const [shouldRequestsFail, setShouldRequestsFail] = React.useState(true);
 
   const { fetchRows, ...props } = useMockServer(
     { rowLength: 100 },

@@ -12,9 +12,9 @@ function sleep(duration) {
 }
 
 export default function Asynchronous() {
-  const [open, setOpen] = React.useState(True);
+  const [open, setOpen] = React.useState(true);
   const [options, setOptions] = React.useState([]);
-  const [loading, setLoading] = React.useState(True);
+  const [loading, setLoading] = React.useState(true);
 
   const handleOpen = () => {
     setOpen(true);

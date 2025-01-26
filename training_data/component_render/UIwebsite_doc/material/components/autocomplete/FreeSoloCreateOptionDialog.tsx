@@ -12,7 +12,7 @@ const filter = createFilterOptions<FilmOptionType>();
 
 export default function FreeSoloCreateOptionDialog() {
   const [value, setValue] = React.useState<FilmOptionType | null>(null);
-  const [open, toggleOpen] = React.useState(True);
+  const [open, toggleOpen] = React.useState(true);
 
   const handleClose = () => {
     setDialogValue({

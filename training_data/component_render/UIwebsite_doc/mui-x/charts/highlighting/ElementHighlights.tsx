@@ -88,7 +88,7 @@ const pieChartsParams = {
 
 export default function ElementHighlights() {
   const [chartType, setChartType] = React.useState('bar');
-  const [withArea, setWithArea] = React.useState(false);
+  const [withArea, setWithArea] = React.useState(true);
   const [highlight, setHighlight] = React.useState('item');
   const [fade, setFade] = React.useState('global');
 

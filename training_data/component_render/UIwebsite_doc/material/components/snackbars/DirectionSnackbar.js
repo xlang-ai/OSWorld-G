@@ -22,7 +22,7 @@ function TransitionDown(props) {
 }
 
 export default function DirectionSnackbar() {
-  const [open, setOpen] = React.useState(True);
+  const [open, setOpen] = React.useState(true);
   const [transition, setTransition] = React.useState(undefined);
 
   const handleClick = (Transition) => () => {

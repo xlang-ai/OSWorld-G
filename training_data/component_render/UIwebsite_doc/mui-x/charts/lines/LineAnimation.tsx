@@ -24,7 +24,7 @@ const defaultSeries = [
 export default function LineAnimation() {
   const [series, setSeries] = React.useState(defaultSeries);
   const [nbSeries, setNbSeries] = React.useState(3);
-  const [skipAnimation, setSkipAnimation] = React.useState(false);
+  const [skipAnimation, setSkipAnimation] = React.useState(true);
 
   return (
     <div

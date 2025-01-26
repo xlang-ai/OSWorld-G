@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 
 export default function AutohideSnackbar() {
-  const [open, setOpen] = React.useState(True);
+  const [open, setOpen] = React.useState(true);
 
   const handleClick = () => {
     setOpen(true);

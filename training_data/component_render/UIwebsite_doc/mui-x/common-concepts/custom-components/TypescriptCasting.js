@@ -40,7 +40,7 @@ function CustomCalendarHeader({
 }
 
 export default function TypescriptCasting() {
-  const [displayWeekNumber, setDisplayWeekNumber] = React.useState(false);
+  const [displayWeekNumber, setDisplayWeekNumber] = React.useState(true);
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>

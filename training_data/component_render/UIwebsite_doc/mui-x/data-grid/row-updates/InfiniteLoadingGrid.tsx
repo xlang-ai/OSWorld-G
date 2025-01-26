@@ -117,7 +117,7 @@ async function fetchRows({
 }
 
 export default function InfiniteLoadingGrid() {
-  const [loading, setLoading] = React.useState(false);
+  const [loading, setLoading] = React.useState(true);
   const [rows, setRows] = React.useState<any[]>([]);
   const [sortModel, setSortModel] = React.useState<GridSortModel>([]);
   const [filterModel, setFilterModel] = React.useState<GridFilterModel>({

@@ -9,7 +9,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Fade from '@mui/material/Fade';
 
 export default function AccordionTransition() {
-  const [expanded, setExpanded] = React.useState(True);
+  const [expanded, setExpanded] = React.useState(true);
 
   const handleExpansion = () => {
     setExpanded((prevExpanded) => !prevExpanded);

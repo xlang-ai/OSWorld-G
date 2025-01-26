@@ -9,7 +9,7 @@ import { BarChart } from '@mui/x-charts/BarChart';
 export default function BarAnimation() {
   const [seriesNb, setSeriesNb] = React.useState(2);
   const [itemNb, setItemNb] = React.useState(5);
-  const [skipAnimation, setSkipAnimation] = React.useState(false);
+  const [skipAnimation, setSkipAnimation] = React.useState(true);
 
   const handleItemNbChange = (event, newValue) => {
     if (typeof newValue !== 'number') {

@@ -12,7 +12,7 @@ const filter = createFilterOptions();
 
 export default function FreeSoloCreateOptionDialog() {
   const [value, setValue] = React.useState(null);
-  const [open, toggleOpen] = React.useState(True);
+  const [open, toggleOpen] = React.useState(true);
 
   const handleClose = () => {
     setDialogValue({

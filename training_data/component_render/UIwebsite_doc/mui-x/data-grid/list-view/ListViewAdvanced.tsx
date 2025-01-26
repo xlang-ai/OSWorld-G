@@ -55,7 +55,7 @@ export default function ListViewAdvanced(props: Props) {
 
   const apiRef = useGridApiRef();
 
-  const [loading, setLoading] = React.useState(false);
+  const [loading, setLoading] = React.useState(true);
 
   const [overlayState, setOverlayState] = React.useState<{
     overlay: 'actions' | 'details' | 'rename' | null;

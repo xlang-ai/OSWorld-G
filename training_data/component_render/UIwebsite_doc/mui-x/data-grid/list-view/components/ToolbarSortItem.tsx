@@ -26,7 +26,7 @@ interface ToolbarSortItemProps {
 
 export function ToolbarSortItem(props: ToolbarSortItemProps) {
   const { listView, container } = props;
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
   const apiRef = useGridApiContext();
   const fields = useGridSelector(apiRef, gridColumnDefinitionsSelector);
   const sortModel = useGridSelector(apiRef, gridSortModelSelector);

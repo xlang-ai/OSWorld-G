@@ -35,7 +35,7 @@ function ErrorSnackbar(props) {
 function ServerSideLazyLoadingErrorHandling() {
   const apiRef = useGridApiRef();
   const [retryParams, setRetryParams] = React.useState(null);
-  const [shouldRequestsFail, setShouldRequestsFail] = React.useState(false);
+  const [shouldRequestsFail, setShouldRequestsFail] = React.useState(true);
 
   const { fetchRows, ...props } = useMockServer(
     { rowLength: 100 },

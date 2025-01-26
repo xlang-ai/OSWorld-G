@@ -46,7 +46,7 @@ const MUI_X_PRODUCTS: MuiXProduct[] = [
 const isItemDisabled = (item: MuiXProduct) => !!item.disabled;
 
 export default function DisabledItemsFocusable() {
-  const [disabledItemsFocusable, setDisabledItemsFocusable] = React.useState(false);
+  const [disabledItemsFocusable, setDisabledItemsFocusable] = React.useState(true);
   const handleToggle = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDisabledItemsFocusable(event.target.checked);
   };

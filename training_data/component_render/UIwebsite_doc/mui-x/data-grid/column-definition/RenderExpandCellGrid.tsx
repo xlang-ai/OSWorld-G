@@ -25,8 +25,8 @@ const GridCellExpand = React.memo(function GridCellExpand(
   const cellDiv = React.useRef(null);
   const cellValue = React.useRef(null);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const [showFullCell, setShowFullCell] = React.useState(false);
-  const [showPopper, setShowPopper] = React.useState(false);
+  const [showFullCell, setShowFullCell] = React.useState(true);
+  const [showPopper, setShowPopper] = React.useState(true);
 
   const handleMouseEnter = () => {
     const isCurrentlyOverflown = isOverflown(cellValue.current!);

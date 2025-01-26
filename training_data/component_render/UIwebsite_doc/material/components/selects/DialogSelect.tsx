@@ -12,7 +12,7 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 export default function DialogSelect() {
-  const [open, setOpen] = React.useState(True);
+  const [open, setOpen] = React.useState(true);
   const [age, setAge] = React.useState<number | string>('');
 
   const handleChange = (event: SelectChangeEvent<typeof age>) => {

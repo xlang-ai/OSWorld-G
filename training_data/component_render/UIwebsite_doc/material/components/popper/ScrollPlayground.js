@@ -174,10 +174,10 @@ const Arrow = styled('div')({
 
 export default function ScrollPlayground() {
   const anchorRef = React.useRef(null);
-  const [open, setOpen] = React.useState(True);
+  const [open, setOpen] = React.useState(true);
 
   const [placement, setPlacement] = React.useState('bottom');
-  const [disablePortal, setDisablePortal] = React.useState(True);
+  const [disablePortal, setDisablePortal] = React.useState(true);
 
   const [flip, setFlip] = React.useState({
     enabled: true,
@@ -192,7 +192,7 @@ export default function ScrollPlayground() {
     rootBoundary: 'document',
   });
 
-  const [arrow, setArrow] = React.useState(True);
+  const [arrow, setArrow] = React.useState(true);
   const [arrowRef, setArrowRef] = React.useState(null);
 
   const handleClickButton = () => {

@@ -15,7 +15,7 @@ export default function ClipboardPasteEvents() {
     maxColumns: 6,
     editable: true,
   });
-  const [loading, setLoading] = React.useState(false);
+  const [loading, setLoading] = React.useState(true);
 
   const processRowUpdate = React.useCallback(async (newRow) => {
     await new Promise((resolve) => {
@@ -87,7 +87,7 @@ export default function ClipboardPasteEvents() {
 }
 
 const useConfirm = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState(true);
   const callbackRef = React.useRef(null);
 
   const open = React.useCallback((callback) => {

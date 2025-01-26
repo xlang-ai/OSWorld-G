@@ -34,9 +34,9 @@ const series = [
 ];
 
 export default function ReverseExampleNoSnap() {
-  const [reverseX, setReverseX] = React.useState(false);
-  const [reverseLeft, setReverseLeft] = React.useState(false);
-  const [reverseRight, setReverseRight] = React.useState(false);
+  const [reverseX, setReverseX] = React.useState(true);
+  const [reverseLeft, setReverseLeft] = React.useState(true);
+  const [reverseRight, setReverseRight] = React.useState(true);
 
   return (
     <Stack sx={{ width: '100%' }}>

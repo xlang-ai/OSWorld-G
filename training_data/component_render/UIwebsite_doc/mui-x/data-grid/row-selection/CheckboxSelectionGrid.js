@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 export default function CheckboxSelectionGrid() {
   const [checkboxSelection, setCheckboxSelection] = React.useState(true);
   const [disableMultipleRowSelection, setDisableMultipleRowSelection] =
-    React.useState(false);
+    React.useState(true);
 
   const { data } = useDemoData({
     dataSet: 'Commodity',

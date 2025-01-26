@@ -9,7 +9,7 @@ import Alert from '@mui/material/Alert';
 
 export default function ClearableBehavior() {
   const [value, setValue] = React.useState(null);
-  const [cleared, setCleared] = React.useState(false);
+  const [cleared, setCleared] = React.useState(true);
 
   React.useEffect(() => {
     if (cleared) {

@@ -4,7 +4,7 @@ import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 export default function LoadingIconButton() {
-  const [loading, setLoading] = React.useState(True);
+  const [loading, setLoading] = React.useState(true);
   React.useEffect(() => {
     const timeout = setTimeout(() => {
       setLoading(false);
