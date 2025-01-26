@@ -1,0 +1,2150 @@
+{
+  "components": [
+    {
+      "name": "selectable-text",
+      "introduction": "A text component with lots of text that can be easily selected by users",
+      "code_path": ["SelectableText.js"]
+    },
+    {
+      "name": "resizable-draggable-text-box",
+      "introduction": "A text box that is draggable like ones in PPT",
+      "code_path": ["PPTTextBox.js"]
+    },
+    {
+      "name": "table",
+      "introduction": "A table with grid",
+      "code_path": ["GridTable.js"]
+    },
+    {
+      "name": "bottom-navigation",
+      "introduction": [
+        "# Bottom Navigation\n\n<p class=\"description\">The Bottom Navigation bar allows movement between primary destinations in an app.</p>\n\nBottom navigation bars display three to five destinations at the bottom of a screen. Each destination is represented by an icon and an optional text label. When a bottom navigation icon is tapped, the user is taken to the top-level navigation destination associated with that icon."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Bottom navigation",
+          "introduction": [
+            "Bottom navigation\n\nWhen there are only **three** actions, display both icons and text labels at all times."
+          ],
+          "code_path": [
+            "SimpleBottomNavigation.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Bottom navigation with no label",
+          "introduction": [
+            "Bottom navigation with no label\n\nIf there are **four** or **five** actions, display inactive views as icons only."
+          ],
+          "code_path": [
+            "LabelBottomNavigation.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Fixed positioning",
+          "introduction": [
+            "Fixed positioning\n\nThis demo keeps bottom navigation fixed to the bottom, no matter the amount of content on-screen."
+          ],
+          "code_path": [
+            "FixedBottomNavigation.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Third-party routing library",
+          "introduction": [
+            "Third-party routing library\n\nOne frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server.\nThe `BottomNavigationAction` component provides the `component` prop to handle this use case.\nHere is a [more detailed guide](/material-ui/integrations/routing/)."
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "pagination",
+      "introduction": [
+        "# Pagination\n\n<p class=\"description\">The Pagination component enables the user to select a specific page from a range of pages.</p>"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Basic pagination",
+          "introduction": [
+            "Basic pagination"
+          ],
+          "code_path": [
+            "BasicPagination.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Outlined pagination",
+          "introduction": [
+            "Outlined pagination"
+          ],
+          "code_path": [
+            "PaginationOutlined.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Rounded pagination",
+          "introduction": [
+            "Rounded pagination"
+          ],
+          "code_path": [
+            "PaginationRounded.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Pagination size",
+          "introduction": [
+            "Pagination size"
+          ],
+          "code_path": [
+            "PaginationSize.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Buttons",
+          "introduction": [
+            "Buttons\n\nYou can optionally enable first-page and last-page buttons, or disable the previous-page and next-page buttons."
+          ],
+          "code_path": [
+            "PaginationButtons.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Custom icons",
+          "introduction": [
+            "Custom icons\n\nIt's possible to customize the control icons."
+          ],
+          "code_path": [
+            "CustomIcons.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Pagination ranges",
+          "introduction": [
+            "Pagination ranges\n\nYou can specify how many digits to display either side of current page with the `siblingCount` prop, and adjacent to the start and end page number with the `boundaryCount` prop."
+          ],
+          "code_path": [
+            "PaginationRanges.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Controlled pagination",
+          "introduction": [
+            "Controlled pagination"
+          ],
+          "code_path": [
+            "PaginationControlled.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Router integration",
+          "introduction": [
+            "Router integration"
+          ],
+          "code_path": [
+            "PaginationLink.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "`usePagination`",
+          "introduction": [
+            "`usePagination`\n\nFor advanced customization use cases, a headless `usePagination()` hook is exposed.\nIt accepts almost the same options as the Pagination component minus all the props\nrelated to the rendering of JSX.\nThe Pagination component is built on this hook.\n\n```jsx\nimport usePagination from '@mui/material/usePagination';\n```"
+          ],
+          "code_path": [
+            "UsePagination.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Table pagination",
+          "introduction": [
+            "Table pagination\n\nThe `Pagination` component was designed to paginate a list of arbitrary items when infinite loading isn't used.\nIt's preferred in contexts where SEO is important, for instance, a blog.\n\nFor the pagination of a large set of tabular data, you should use the `TablePagination` component.",
+            ":::warning\nNote that the `Pagination` page prop starts at 1 to match the requirement of including the value in the URL, while the `TablePagination` page prop starts at 0 to match the requirement of zero-based JavaScript arrays that come with rendering a lot of tabular data.\n:::\n\nYou can learn more about this use case in the [table section](/material-ui/react-table/#custom-pagination-options) of the documentation."
+          ],
+          "code_path": [
+            "TablePaginationDemo.js",
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Accessibility",
+          "introduction": [
+            "Accessibility"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": [
+            {
+              "name": "ARIA",
+              "introduction": [
+                "ARIA\n\nThe root node has a role of \"navigation\" and aria-label \"pagination navigation\" by default. The page items have an aria-label that identifies the purpose of the item (\"go to first page\", \"go to previous page\", \"go to page 1\" etc.).\nYou can override these using the `getItemAriaLabel` prop."
+              ],
+              "code_path": [
+                null
+              ],
+              "children": []
+            },
+            {
+              "name": "Keyboard",
+              "introduction": [
+                "Keyboard\n\nThe pagination items are in tab order, with a tabindex of \"0\"."
+              ],
+              "code_path": [
+                null
+              ],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "rating",
+      "introduction": [
+        "# Rating\n\n<p class=\"description\">Ratings provide insight regarding others' opinions and experiences, and can allow the user to submit a rating of their own.</p>"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Basic rating",
+          "introduction": [
+            "Basic rating"
+          ],
+          "code_path": [
+            "BasicRating.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Rating precision",
+          "introduction": [
+            "Rating precision\n\nThe rating can display any float number with the `value` prop.\nUse the `precision` prop to define the minimum increment value change allowed."
+          ],
+          "code_path": [
+            "HalfRating.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Hover feedback",
+          "introduction": [
+            "Hover feedback\n\nYou can display a label on hover to help the user pick the correct rating value.\nThe demo uses the `onChangeActive` prop."
+          ],
+          "code_path": [
+            "HoverRating.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Sizes",
+          "introduction": [
+            "Sizes\n\nFor larger or smaller ratings use the `size` prop."
+          ],
+          "code_path": [
+            "RatingSize.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Customization",
+          "introduction": [
+            "Customization\n\nHere are some examples of customizing the component.\nYou can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/)."
+          ],
+          "code_path": [
+            "CustomizedRating.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Radio group",
+          "introduction": [
+            "Radio group\n\nThe rating is implemented with a radio group, set `highlightSelectedOnly` to restore the natural behavior."
+          ],
+          "code_path": [
+            "RadioGroupRating.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Accessibility",
+          "introduction": [
+            "Accessibility\n\n([WAI tutorial](https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating))\n\nThe accessibility of this component relies on:\n\n- A radio group with its fields visually hidden.\n  It contains six radio buttons, one for each star, and another for 0 stars that is checked by default. Be sure to provide a value for the `name` prop that is unique to the parent form.\n- Labels for the radio buttons containing actual text (\"1 Star\", \"2 Stars\", …).\n  Be sure to provide a suitable function to the `getLabelText` prop when the page is in a language other than English. You can use the [included locales](/material-ui/guides/localization/), or provide your own.\n- A visually distinct appearance for the rating icons.\n  By default, the rating component uses both a difference of color and shape (filled and empty icons) to indicate the value. In the event that you are using color as the only means to indicate the value, the information should also be also displayed as text, as in this demo. This is important to match [success Criterion 1.4.1](https://www.w3.org/TR/WCAG21/#use-of-color) of WCAG2.1."
+          ],
+          "code_path": [
+            "TextRating.js"
+          ],
+          "children": [
+            {
+              "name": "ARIA",
+              "introduction": [
+                "ARIA\n\nThe read only rating has a role of \"img\", and an aria-label that describes the displayed rating."
+              ],
+              "code_path": [
+                null
+              ],
+              "children": []
+            },
+            {
+              "name": "Keyboard",
+              "introduction": [
+                "Keyboard\n\nBecause the rating component uses radio buttons, keyboard interaction follows the native browser behavior. Tab will focus the current rating, and cursor keys control the selected rating.\n\nThe read only rating is not focusable."
+              ],
+              "code_path": [
+                null
+              ],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "lists",
+      "introduction": [
+        "# Lists\n\n<p class=\"description\">Lists are continuous, vertical indexes of text or images.</p>\n\nLists are a continuous group of text or images. They are composed of items containing primary and supplemental actions, which are represented by icons and text."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Introduction",
+          "introduction": [
+            "Introduction\n\nLists present information in a concise, easy-to-follow format through a continuous, vertical index of text or images.\n\nMaterial UI Lists are implemented using a collection of related components:\n\n- List: a wrapper for list items. Renders as a `<ul>` by default.\n- List Item: a common list item. Renders as an `<li>` by default.\n- List Item Button: an action element to be used inside a list item.\n- List Item Icon: an icon to be used inside of a list item.\n- List Item Avatar: an avatar to be used inside of a list item.\n- List Item Text: a container inside a list item, used to display text content.\n- List Divider: a separator between list items.\n- List Subheader: a label for a nested list.",
+            "The last item of the previous demo shows how you can render a link:\n\n```jsx\n<ListItemButton component=\"a\" href=\"#simple-list\">\n  <ListItemText primary=\"Spam\" />\n</ListItemButton>\n```\n\nYou can find a [demo with React Router following this section](/material-ui/integrations/routing/#list) of the documentation."
+          ],
+          "code_path": [
+            "BasicList.js",
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Basics",
+          "introduction": [
+            "Basics\n\n```jsx\nimport List from '@mui/material/List';\nimport ListItem from '@mui/material/ListItem';\n```"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Nested List",
+          "introduction": [
+            "Nested List"
+          ],
+          "code_path": [
+            "NestedList.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Folder List",
+          "introduction": [
+            "Folder List"
+          ],
+          "code_path": [
+            "FolderList.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Interactive",
+          "introduction": [
+            "Interactive\n\nBelow is an interactive demo that lets you explore the visual results of the different settings:"
+          ],
+          "code_path": [
+            "InteractiveList.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Selected ListItem",
+          "introduction": [
+            "Selected ListItem"
+          ],
+          "code_path": [
+            "SelectedListItem.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Align list items",
+          "introduction": [
+            "Align list items\n\nWhen displaying three lines or more, the avatar is not aligned at the top.\nYou should set the `alignItems=\"flex-start\"` prop to align the avatar at the top, following the Material Design guidelines:"
+          ],
+          "code_path": [
+            "AlignItemsList.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "List Controls",
+          "introduction": [
+            "List Controls"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": [
+            {
+              "name": "Checkbox",
+              "introduction": [
+                "Checkbox\n\nA checkbox can either be a primary action or a secondary action.\n\nThe checkbox is the primary action and the state indicator for the list item. The comment button is a secondary action and a separate target.",
+                "The checkbox is the secondary action for the list item and a separate target."
+              ],
+              "code_path": [
+                "CheckboxList.js",
+                "CheckboxListSecondary.js"
+              ],
+              "children": []
+            },
+            {
+              "name": "Switch",
+              "introduction": [
+                "Switch\n\nThe switch is the secondary action and a separate target."
+              ],
+              "code_path": [
+                "SwitchListSecondary.js"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Sticky subheader",
+          "introduction": [
+            "Sticky subheader\n\nUpon scrolling, subheaders remain pinned to the top of the screen until pushed off screen by the next subheader.\nThis feature relies on CSS sticky positioning."
+          ],
+          "code_path": [
+            "PinnedSubheaderList.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Inset List Item",
+          "introduction": [
+            "Inset List Item\n\nThe `inset` prop enables a list item that does not have a leading icon or avatar to align correctly with items that do."
+          ],
+          "code_path": [
+            "InsetList.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Gutterless list",
+          "introduction": [
+            "Gutterless list\n\nWhen rendering a list within a component that defines its own gutters, `ListItem` gutters can be disabled with `disableGutters`."
+          ],
+          "code_path": [
+            "GutterlessList.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Virtualized List",
+          "introduction": [
+            "Virtualized List\n\nIn the following example, we demonstrate how to use [react-window](https://github.com/bvaughn/react-window) with the `List` component.\nIt renders 200 rows and can easily handle more.\nVirtualization helps with performance issues.",
+            "The use of [react-window](https://github.com/bvaughn/react-window) when possible is encouraged.\nIf this library doesn't cover your use case, you should consider using alternatives like [react-virtuoso](https://github.com/petyosi/react-virtuoso)."
+          ],
+          "code_path": [
+            "VirtualizedList.js",
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Customization",
+          "introduction": [
+            "Customization\n\nHere are some examples of customizing the component.\nYou can learn more about this in the\n[overrides documentation page](/material-ui/customization/how-to-customize/)."
+          ],
+          "code_path": [
+            "CustomizedList.js"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "chips",
+      "introduction": [
+        "# Chip\n\n<p class=\"description\">Chips are compact elements that represent an input, attribute, or action.</p>\n\nChips allow users to enter information, make selections, filter content, or trigger actions.\n\nWhile included here as a standalone component, the most common use will\nbe in some form of input, so some of the behavior demonstrated here is\nnot shown in context."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Basic chip",
+          "introduction": [
+            "Basic chip\n\nThe `Chip` component supports outlined and filled styling."
+          ],
+          "code_path": [
+            "BasicChips.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Chip actions",
+          "introduction": [
+            "Chip actions\n\nYou can use the following actions.\n\n- Chips with the `onClick` prop defined change appearance on focus, hover, and click.\n- Chips with the `onDelete` prop defined will display a delete icon which changes appearance on hover."
+          ],
+          "code_path": [
+            null
+          ],
+          "children": [
+            {
+              "name": "Clickable",
+              "introduction": [
+                "Clickable"
+              ],
+              "code_path": [
+                "ClickableChips.js"
+              ],
+              "children": []
+            },
+            {
+              "name": "Deletable",
+              "introduction": [
+                "Deletable"
+              ],
+              "code_path": [
+                "DeletableChips.js"
+              ],
+              "children": []
+            },
+            {
+              "name": "Clickable and deletable",
+              "introduction": [
+                "Clickable and deletable"
+              ],
+              "code_path": [
+                "ClickableAndDeletableChips.js"
+              ],
+              "children": []
+            },
+            {
+              "name": "Clickable link",
+              "introduction": [
+                "Clickable link"
+              ],
+              "code_path": [
+                "ClickableLinkChips.js"
+              ],
+              "children": []
+            },
+            {
+              "name": "Custom delete icon",
+              "introduction": [
+                "Custom delete icon"
+              ],
+              "code_path": [
+                "CustomDeleteIconChips.js"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Chip adornments",
+          "introduction": [
+            "Chip adornments\n\nYou can add ornaments to the beginning of the component.\n\nUse the `avatar` prop to add an avatar or use the `icon` prop to add an icon."
+          ],
+          "code_path": [
+            null
+          ],
+          "children": [
+            {
+              "name": "Avatar chip",
+              "introduction": [
+                "Avatar chip"
+              ],
+              "code_path": [
+                "AvatarChips.js"
+              ],
+              "children": []
+            },
+            {
+              "name": "Icon chip",
+              "introduction": [
+                "Icon chip"
+              ],
+              "code_path": [
+                "IconChips.js"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Color chip",
+          "introduction": [
+            "Color chip\n\nYou can use the `color` prop to define a color from theme palette."
+          ],
+          "code_path": [
+            "ColorChips.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Sizes chip",
+          "introduction": [
+            "Sizes chip\n\nYou can use the `size` prop to define a small Chip."
+          ],
+          "code_path": [
+            "SizesChips.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Multiline chip",
+          "introduction": [
+            "Multiline chip\n\nBy default, Chips displays labels only in a single line.\nTo have them support multiline content, use the `sx` prop to add `height:auto` to the Chip component, and `whiteSpace: normal` to the `label` styles."
+          ],
+          "code_path": [
+            "MultilineChips.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Chip array",
+          "introduction": [
+            "Chip array\n\nAn example of rendering multiple chips from an array of values.\nDeleting a chip removes it from the array. Note that since no\n`onClick` prop is defined, the `Chip` can be focused, but does not\ngain depth while clicked or touched."
+          ],
+          "code_path": [
+            "ChipsArray.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Chip playground",
+          "introduction": [
+            "Chip playground"
+          ],
+          "code_path": [
+            "ChipsPlayground.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Accessibility",
+          "introduction": [
+            "Accessibility\n\nIf the Chip is deletable or clickable then it is a button in tab order. When the Chip is focused (for example when tabbing) releasing (`keyup` event) `Backspace` or `Delete` will call the `onDelete` handler while releasing `Escape` will blur the Chip."
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "alert",
+      "introduction": [
+        "# Alert\n\n<p class=\"description\">Alerts display brief messages for the user without interrupting their use of the app.</p>"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Introduction",
+          "introduction": [
+            "Introduction\n\nAlerts give users brief and potentially time-sensitive information in an unobtrusive manner.\n\nThe Material UI Alert component includes several props for quickly customizing its styles to provide immediate visual cues about its contents.",
+            ":::info\nThis component is no longer documented in the [Material Design guidelines](https://m2.material.io/), but Material UI will continue to support it.\n:::"
+          ],
+          "code_path": [
+            "SimpleAlert.js",
+            null
+          ],
+          "children": [
+            {
+              "name": "Usage",
+              "introduction": [
+                "Usage\n\nA key trait of the alert pattern is that [it should not interrupt the user's experience](https://www.w3.org/WAI/ARIA/apg/patterns/alert/) of the app.\nAlerts should not be confused with alert _dialogs_ ([ARIA](https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/)), which _are_ intended to interrupt the user to obtain a response.\nUse the Material UI [Dialog](/material-ui/react-dialog/) component if you need this behavior."
+              ],
+              "code_path": [
+                null
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Basics",
+          "introduction": [
+            "Basics\n\n```jsx\nimport Alert from '@mui/material/Alert';\n```\n\nThe Alert component wraps around its content, and stretches to fill its enclosing container."
+          ],
+          "code_path": [
+            null
+          ],
+          "children": [
+            {
+              "name": "Severity",
+              "introduction": [
+                "Severity\n\nThe `severity` prop accepts four values representing different states—`success` (the default), `info`, `warning`, and `error`–with corresponding icon and color combinations for each:"
+              ],
+              "code_path": [
+                "BasicAlerts.js"
+              ],
+              "children": []
+            },
+            {
+              "name": "Variants",
+              "introduction": [
+                "Variants\n\nThe Alert component comes with two alternative style options—`filled` and `outlined`—which you can set using the `variant` prop."
+              ],
+              "code_path": [
+                null
+              ],
+              "children": [
+                {
+                  "name": "Filled",
+                  "introduction": [
+                    "Filled"
+                  ],
+                  "code_path": [
+                    "FilledAlerts.js"
+                  ],
+                  "children": []
+                },
+                {
+                  "name": "Outlined",
+                  "introduction": [
+                    "Outlined",
+                    ":::warning\nWhen using an outlined Alert with the [Snackbar](/material-ui/react-snackbar/) component, background content will be visible and bleed through the Alert by default.\nYou can prevent this by adding `bgcolor: 'background.paper'` to [the `sx` prop](/material-ui/customization/how-to-customize/#the-sx-prop) on the Alert component:\n\n```jsx\n<Alert sx={{ bgcolor: 'background.paper' }} />\n```\n\nCheck out the [Snackbar—customization](/material-ui/react-snackbar/#customization) doc for an example of how to use these two components together.\n:::"
+                  ],
+                  "code_path": [
+                    "OutlinedAlerts.js",
+                    null
+                  ],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "name": "Color",
+              "introduction": [
+                "Color\n\nUse the `color` prop to override the default color for the specified [`severity`](#severity)—for instance, to apply `warning` colors to a `success` Alert:"
+              ],
+              "code_path": [
+                "ColorAlerts.js"
+              ],
+              "children": []
+            },
+            {
+              "name": "Actions",
+              "introduction": [
+                "Actions\n\nAdd an action to your Alert with the `action` prop.\nThis lets you insert any element—an HTML tag, an SVG icon, or a React component such as a Material UI Button—after the Alert's message, justified to the right.\n\nIf you provide an `onClose` callback to the Alert without setting the `action` prop, the component will display a close icon (&#x2715;) by default."
+              ],
+              "code_path": [
+                "ActionAlerts.js"
+              ],
+              "children": []
+            },
+            {
+              "name": "Icons",
+              "introduction": [
+                "Icons\n\nUse the `icon` prop to override an Alert's icon.\nAs with the [`action`](#actions) prop, your `icon` can be an HTML element, an SVG icon, or a React component.\nSet this prop to `false` to remove the icon altogether.\n\nIf you need to override all instances of an icon for a given [`severity`](#severity), you can use the `iconMapping` prop instead.\nYou can define this prop globally by customizing your app's theme. See [Theme components—Default props](/material-ui/customization/theme-components/#theme-default-props) for details."
+              ],
+              "code_path": [
+                "IconAlerts.js"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Customization",
+          "introduction": [
+            "Customization"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": [
+            {
+              "name": "Titles",
+              "introduction": [
+                "Titles\n\nTo add a title to an Alert, import the Alert Title component:\n\n```jsx\nimport AlertTitle from '@mui/material/AlertTitle';\n```\n\nYou can nest this component above the message in your Alert for a neatly styled and properly aligned title, as shown below:"
+              ],
+              "code_path": [
+                "DescriptionAlerts.js"
+              ],
+              "children": []
+            },
+            {
+              "name": "Transitions",
+              "introduction": [
+                "Transitions\n\nYou can use [Transition components](/material-ui/transitions/) like [Collapse](/material-ui/transitions/#collapse) to add motion to an Alert's entrance and exit."
+              ],
+              "code_path": [
+                "TransitionAlerts.js"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Accessibility",
+          "introduction": [
+            "Accessibility\n\nHere are some factors to consider to ensure that your Alert is accessible:\n\n- Because alerts are not intended to interfere with the use of the app, your Alert component should _never_ affect the keyboard focus.\n- If an alert contains an action, that action must have a `tabindex` of `0` so it can be reached by keyboard-only users.\n- Essential alerts should not disappear automatically—[timed interactions](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits-no-exceptions.html) can make your app inaccessible to users who need extra time to understand or locate the alert.\n- Alerts that occur too frequently can [inhibit the usability](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits-postponed.html) of your app.\n- Dynamically rendered alerts are announced by screen readers; alerts that are already present on the page when it loads are _not_ announced.\n- Color does not add meaning to the UI for users who require assistive technology. You must ensure that any information conveyed through color is also denoted in other ways, such as within the text of the alert itself, or with additional hidden text that's read by screen readers."
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Anatomy",
+          "introduction": [
+            "Anatomy\n\nThe Alert component is composed of a root [Paper](/material-ui/react-paper/) component (which renders as a `<div>`) that houses an icon, a message, and an optional [action](#actions):\n\n```html\n<div class=\"MuiPaper-root MuiAlert-root\" role=\"alert\">\n  <div class=\"MuiAlert-icon\">\n    <!-- svg icon here -->\n  </div>\n  <div class=\"MuiAlert-message\">This is how an Alert renders in the DOM.</div>\n  <div class=\"MuiAlert-action\">\n    <!-- optional action element here -->\n  </div>\n</div>\n```"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "snackbars",
+      "introduction": [
+        "# Snackbar\n\n<p class=\"description\">Snackbars (also known as toasts) are used for brief notifications of processes that have been or will be performed.</p>"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Introduction",
+          "introduction": [
+            "Introduction\n\nThe Snackbar component appears temporarily and floats above the UI to provide users with (non-critical) updates on an app's processes.\nThe demo below, inspired by Google Keep, shows a basic Snackbar with a text element and two actions:"
+          ],
+          "code_path": [
+            "SimpleSnackbar.js"
+          ],
+          "children": [
+            {
+              "name": "Usage",
+              "introduction": [
+                "Usage\n\nSnackbars differ from [Alerts](/material-ui/react-alert/) in that Snackbars have a fixed position and a high z-index, so they're intended to break out of the document flow; Alerts, on the other hand, are usually part of the flow—except when they're [used as children of a Snackbar](#use-with-alerts).\n\nSnackbars also from differ from [Dialogs](/material-ui/react-dialog/) in that Snackbars are not intended to convey _critical_ information or block the user from interacting with the rest of the app; Dialogs, by contrast, require input from the user in order to be dismissed."
+              ],
+              "code_path": [
+                null
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Basics",
+          "introduction": [
+            "Basics"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": [
+            {
+              "name": "Import",
+              "introduction": [
+                "Import\n\n```jsx\nimport Snackbar from '@mui/material/Snackbar';\n```"
+              ],
+              "code_path": [
+                null
+              ],
+              "children": []
+            },
+            {
+              "name": "Position",
+              "introduction": [
+                "Position\n\nUse the `anchorOrigin` prop to control the Snackbar's position on the screen."
+              ],
+              "code_path": [
+                "PositionedSnackbar.js"
+              ],
+              "children": []
+            },
+            {
+              "name": "Content",
+              "introduction": [
+                "Content\n\n```jsx\nimport SnackbarContent from '@mui/material/SnackbarContent';\n```\n\nUse the Snackbar Content component to add text and actions to the Snackbar."
+              ],
+              "code_path": [
+                "LongTextSnackbar.js"
+              ],
+              "children": []
+            },
+            {
+              "name": "Automatic dismiss",
+              "introduction": [
+                "Automatic dismiss\n\nUse the `autoHideDuration` prop to automatically trigger the Snackbar's `onClose` function after a set period of time (in milliseconds).\n\nMake sure to [provide sufficient time](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits.html) for the user to process the information displayed on it."
+              ],
+              "code_path": [
+                "AutohideSnackbar.js"
+              ],
+              "children": []
+            },
+            {
+              "name": "Transitions",
+              "introduction": [
+                "Transitions\n\nYou can use the `TransitionComponent` prop to change the transition of the Snackbar from [Grow](/material-ui/transitions/#grow) (the default) to others such as [Slide](/material-ui/transitions/#slide)."
+              ],
+              "code_path": [
+                "TransitionsSnackbar.js"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Customization",
+          "introduction": [
+            "Customization"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": [
+            {
+              "name": "Use with Alerts",
+              "introduction": [
+                "Use with Alerts\n\nUse an Alert inside a Snackbar for messages that communicate a certain severity."
+              ],
+              "code_path": [
+                "CustomizedSnackbars.js"
+              ],
+              "children": []
+            },
+            {
+              "name": "Use with Floating Action Buttons",
+              "introduction": [
+                "Use with Floating Action Buttons\n\nIf you're using a [Floating Action Button](/material-ui/react-floating-action-button/) on mobile, Material Design recommends positioning snackbars directly above it, as shown in the demo below:"
+              ],
+              "code_path": [
+                "FabIntegrationSnackbar.js"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Common examples",
+          "introduction": [
+            "Common examples"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": [
+            {
+              "name": "Consecutive Snackbars",
+              "introduction": [
+                "Consecutive Snackbars\n\nThis demo shows how to display multiple Snackbars without stacking them by using a consecutive animation."
+              ],
+              "code_path": [
+                "ConsecutiveSnackbars.js"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Supplementary components",
+          "introduction": [
+            "Supplementary components"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": [
+            {
+              "name": "notistack",
+              "introduction": [
+                "notistack\n\n![stars](https://img.shields.io/github/stars/iamhosseindhv/notistack.svg?style=social&label=Star)\n![npm downloads](https://img.shields.io/npm/dm/notistack.svg)\n\nWith an imperative API, [notistack](https://github.com/iamhosseindhv/notistack) lets you vertically stack multiple Snackbars without having to handle their open and close states.\nEven though this is discouraged in the Material Design guidelines, it is still a common pattern.",
+                ":::warning\nNote that notistack prevents Snackbars from being [closed by pressing <kbd class=\"key\">Escape</kbd>](#accessibility).\n:::"
+              ],
+              "code_path": [
+                "IntegrationNotistack.js",
+                null
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Accessibility",
+          "introduction": [
+            "Accessibility\n\nThe user should be able to dismiss Snackbars by pressing <kbd class=\"key\">Escape</kbd>. If there are multiple instances appearing at the same time and you want <kbd class=\"key\">Escape</kbd> to dismiss only the oldest one that's currently open, call `event.preventDefault` in the `onClose` prop.\n\n```jsx\nexport default function MyComponent() {\n  const [open, setOpen] = React.useState(true);\n\n  return (\n    <React.Fragment>\n      <Snackbar\n        open={open}\n        onClose={(event, reason) => {\n          // `reason === 'escapeKeyDown'` if `Escape` was pressed\n          setOpen(false);\n          // call `event.preventDefault` to only close one Snackbar at a time.\n        }}\n      />\n      <Snackbar open={open} onClose={() => setOpen(false)} />\n    </React.Fragment>\n  );\n}\n```"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Anatomy",
+          "introduction": [
+            "Anatomy\n\nThe Snackbar component is composed of a root `<div>` that houses interior elements like the Snackbar Content and other optional components (such as buttons or decorators).\n\n```html\n<div role=\"presentation\" class=\"MuiSnackbar-root\">\n  <div class=\"MuiPaper-root MuiSnackbarContent-root\" role=\"alert\">\n    <div class=\"MuiSnackbarContent-message\">\n      <!-- Snackbar content goes here -->\n    </div>\n  </div>\n</div>\n```"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Experimental APIs - Toolpad",
+          "introduction": [
+            "Experimental APIs - Toolpad"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": [
+            {
+              "name": "useNotifications",
+              "introduction": [
+                "useNotifications\n\nYou can create and manipulate notifications imperatively with the [`useNotifications()`](https://mui.com/toolpad/core/react-use-notifications/) API in `@toolpad/core`. This API provides state management for opening and closing snackbars. It also allows for queueing multiple notifications at once."
+              ],
+              "code_path": [
+                "ToolpadNotificationsNoSnap.js"
+              ],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "slider",
+      "introduction": [
+        "# Slider\n\n<p class=\"description\">Sliders allow users to make selections from a range of values.</p>\n\nSliders reflect a range of values along a bar, from which users may select a single value. They are ideal for adjusting settings such as volume, brightness, or applying image filters."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Continuous sliders",
+          "introduction": [
+            "Continuous sliders\n\nContinuous sliders allow users to select a value along a subjective range."
+          ],
+          "code_path": [
+            "ContinuousSlider.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Sizes",
+          "introduction": [
+            "Sizes\n\nFor smaller slider, use the prop `size=\"small\"`."
+          ],
+          "code_path": [
+            "SliderSizes.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Discrete sliders",
+          "introduction": [
+            "Discrete sliders\n\nDiscrete sliders can be adjusted to a specific value by referencing its value indicator.\nYou can generate a mark for each step with `marks={true}`."
+          ],
+          "code_path": [
+            "DiscreteSlider.js"
+          ],
+          "children": [
+            {
+              "name": "Small steps",
+              "introduction": [
+                "Small steps\n\nYou can change the default step increment.\nMake sure to adjust the `shiftStep` prop (the granularity with which the slider can step when using Page Up/Down or Shift + Arrow Up/Down) to a value divadable with the `step`."
+              ],
+              "code_path": [
+                "DiscreteSliderSteps.js"
+              ],
+              "children": []
+            },
+            {
+              "name": "Custom marks",
+              "introduction": [
+                "Custom marks\n\nYou can have custom marks by providing a rich array to the `marks` prop."
+              ],
+              "code_path": [
+                "DiscreteSliderMarks.js"
+              ],
+              "children": []
+            },
+            {
+              "name": "Restricted values",
+              "introduction": [
+                "Restricted values\n\nYou can restrict the selectable values to those provided with the `marks` prop with `step={null}`."
+              ],
+              "code_path": [
+                "DiscreteSliderValues.js"
+              ],
+              "children": []
+            },
+            {
+              "name": "Label always visible",
+              "introduction": [
+                "Label always visible\n\nYou can force the thumb label to be always visible with `valueLabelDisplay=\"on\"`."
+              ],
+              "code_path": [
+                "DiscreteSliderLabel.js"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Range slider",
+          "introduction": [
+            "Range slider\n\nThe slider can be used to set the start and end of a range by supplying an array of values to the `value` prop."
+          ],
+          "code_path": [
+            "RangeSlider.js"
+          ],
+          "children": [
+            {
+              "name": "Minimum distance",
+              "introduction": [
+                "Minimum distance\n\nYou can enforce a minimum distance between values in the `onChange` event handler.\nBy default, when you move the pointer over a thumb while dragging another thumb, the active thumb will swap to the hovered thumb. You can disable this behavior with the `disableSwap` prop.\nIf you want the range to shift when reaching minimum distance, you can utilize the `activeThumb` parameter in `onChange`."
+              ],
+              "code_path": [
+                "MinimumDistanceSlider.js"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Slider with input field",
+          "introduction": [
+            "Slider with input field\n\nIn this example, an input allows a discrete value to be set."
+          ],
+          "code_path": [
+            "InputSlider.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Color",
+          "introduction": [
+            "Color"
+          ],
+          "code_path": [
+            "ColorSlider.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Customization",
+          "introduction": [
+            "Customization\n\nHere are some examples of customizing the component.\nYou can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/)."
+          ],
+          "code_path": [
+            "CustomizedSlider.js"
+          ],
+          "children": [
+            {
+              "name": "Music player",
+              "introduction": [
+                "Music player"
+              ],
+              "code_path": [
+                "MusicPlayerSlider.js"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Vertical sliders",
+          "introduction": [
+            "Vertical sliders\n\nSet the `orientation` prop to `\"vertical\"` to create vertical sliders. The thumb will track vertical movement instead of horizontal movement.",
+            ":::warning\nChrome versions below 124 implement `aria-orientation` incorrectly for vertical sliders and expose them as `'horizontal'` in the accessibility tree. ([Chromium issue #40736841](https://issues.chromium.org/issues/40736841))\n\nThe `-webkit-appearance: slider-vertical` CSS property can be used to correct this for these older versions, with the trade-off of causing a console warning in newer Chrome versions:\n\n```css\n.MuiSlider-thumb input {\n  -webkit-appearance: slider-vertical;\n}\n```\n\n:::"
+          ],
+          "code_path": [
+            "VerticalSlider.js",
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Marks placement",
+          "introduction": [
+            "Marks placement\n\nYou can customize your slider by adding and repositioning marks for minimum and maximum values."
+          ],
+          "code_path": [
+            "CustomMarks.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Track",
+          "introduction": [
+            "Track\n\nThe track shows the range available for user selection."
+          ],
+          "code_path": [
+            null
+          ],
+          "children": [
+            {
+              "name": "Removed track",
+              "introduction": [
+                "Removed track\n\nThe track can be turned off with `track={false}`."
+              ],
+              "code_path": [
+                "TrackFalseSlider.js"
+              ],
+              "children": []
+            },
+            {
+              "name": "Inverted track",
+              "introduction": [
+                "Inverted track\n\nThe track can be inverted with `track=\"inverted\"`."
+              ],
+              "code_path": [
+                "TrackInvertedSlider.js"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Non-linear scale",
+          "introduction": [
+            "Non-linear scale\n\nYou can use the `scale` prop to represent the `value` on a different scale.\n\nIn the following demo, the value _x_ represents the value _2^x_.\nIncreasing _x_ by one increases the represented value by factor _2_."
+          ],
+          "code_path": [
+            "NonLinearSlider.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Accessibility",
+          "introduction": [
+            "Accessibility\n\n(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/slider-multithumb/)\n\nThe component handles most of the work necessary to make it accessible.\nHowever, you need to make sure that:\n\n- Each thumb has a user-friendly label (`aria-label`, `aria-labelledby` or `getAriaLabel` prop).\n- Each thumb has a user-friendly text for its current value.\n  This is not required if the value matches the semantics of the label.\n  You can change the name with the `getAriaValueText` or `aria-valuetext` prop."
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "app-bar",
+      "introduction": [
+        "# App Bar\n\n<p class=\"description\">The App Bar displays information and actions relating to the current screen.</p>\n\nThe top App bar provides content and actions related to the current screen. It's used for branding, screen titles, navigation, and actions.\n\nIt can transform into a contextual action bar or be used as a navbar."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Basic App bar",
+          "introduction": [
+            "Basic App bar"
+          ],
+          "code_path": [
+            "ButtonAppBar.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "App bar with menu",
+          "introduction": [
+            "App bar with menu"
+          ],
+          "code_path": [
+            "MenuAppBar.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "App bar with responsive menu",
+          "introduction": [
+            "App bar with responsive menu"
+          ],
+          "code_path": [
+            "ResponsiveAppBar.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "App bar with search field",
+          "introduction": [
+            "App bar with search field\n\nA side searchbar."
+          ],
+          "code_path": [
+            "SearchAppBar.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Responsive App bar with Drawer",
+          "introduction": [
+            "Responsive App bar with Drawer"
+          ],
+          "code_path": [
+            "DrawerAppBar.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "App bar with a primary search field",
+          "introduction": [
+            "App bar with a primary search field\n\nA primary searchbar."
+          ],
+          "code_path": [
+            "PrimarySearchAppBar.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Dense (desktop only)",
+          "introduction": [
+            "Dense (desktop only)"
+          ],
+          "code_path": [
+            "DenseAppBar.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Prominent",
+          "introduction": [
+            "Prominent\n\nA prominent app bar."
+          ],
+          "code_path": [
+            "ProminentAppBar.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Bottom App bar",
+          "introduction": [
+            "Bottom App bar"
+          ],
+          "code_path": [
+            "BottomAppBar.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Fixed placement",
+          "introduction": [
+            "Fixed placement\n\nWhen you render the app bar position fixed, the dimension of the element doesn't impact the rest of the page. This can cause some part of your content to be invisible, behind the app bar. Here are 3 possible solutions:\n\n1. You can use `position=\"sticky\"` instead of fixed.\n2. You can render a second `<Toolbar />` component:\n\n```jsx\nfunction App() {\n  return (\n    <React.Fragment>\n      <AppBar position=\"fixed\">\n        <Toolbar>{/* content */}</Toolbar>\n      </AppBar>\n      <Toolbar />\n    </React.Fragment>\n  );\n}\n```\n\n3. You can use `theme.mixins.toolbar` CSS:\n\n```jsx\nconst Offset = styled('div')(({ theme }) => theme.mixins.toolbar);\n\nfunction App() {\n  return (\n    <React.Fragment>\n      <AppBar position=\"fixed\">\n        <Toolbar>{/* content */}</Toolbar>\n      </AppBar>\n      <Offset />\n    </React.Fragment>\n  );\n}\n```"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Scrolling",
+          "introduction": [
+            "Scrolling\n\nYou can use the `useScrollTrigger()` hook to respond to user scroll actions."
+          ],
+          "code_path": [
+            null
+          ],
+          "children": [
+            {
+              "name": "Hide App bar",
+              "introduction": [
+                "Hide App bar\n\nThe app bar hides on scroll down to leave more space for reading."
+              ],
+              "code_path": [
+                "HideAppBar.js"
+              ],
+              "children": []
+            },
+            {
+              "name": "Elevate App bar",
+              "introduction": [
+                "Elevate App bar\n\nThe app bar elevates on scroll to communicate that the user is not at the top of the page."
+              ],
+              "code_path": [
+                "ElevateAppBar.js"
+              ],
+              "children": []
+            },
+            {
+              "name": "Back to top",
+              "introduction": [
+                "Back to top\n\nA floating action button appears on scroll to make it easy to get back to the top of the page."
+              ],
+              "code_path": [
+                "BackToTop.js"
+              ],
+              "children": []
+            },
+            {
+              "name": "`useScrollTrigger([options]) => trigger`",
+              "introduction": [
+                "`useScrollTrigger([options]) => trigger`"
+              ],
+              "code_path": [
+                null
+              ],
+              "children": [
+                {
+                  "name": "Arguments",
+                  "introduction": [
+                    "Arguments\n\n1. `options` (_object_ [optional]):\n\n   - `options.disableHysteresis` (_bool_ [optional]): Defaults to `false`. Disable the hysteresis. Ignore the scroll direction when determining the `trigger` value.\n   - `options.target` (_Node_ [optional]): Defaults to `window`.\n   - `options.threshold` (_number_ [optional]): Defaults to `100`. Change the `trigger` value when the vertical scroll strictly crosses this threshold (exclusive)."
+                  ],
+                  "code_path": [
+                    null
+                  ],
+                  "children": []
+                },
+                {
+                  "name": "Returns",
+                  "introduction": [
+                    "Returns\n\n`trigger`: Does the scroll position match the criteria?"
+                  ],
+                  "code_path": [
+                    null
+                  ],
+                  "children": []
+                },
+                {
+                  "name": "Examples",
+                  "introduction": [
+                    "Examples\n\n```jsx\nimport useScrollTrigger from '@mui/material/useScrollTrigger';\n\nfunction HideOnScroll(props) {\n  const trigger = useScrollTrigger();\n  return (\n    <Slide in={!trigger}>\n      <div>Hello</div>\n    </Slide>\n  );\n}\n```"
+                  ],
+                  "code_path": [
+                    null
+                  ],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Enable color on dark",
+          "introduction": [
+            "Enable color on dark\n\nFollowing the [Material Design guidelines](https://m2.material.io/design/color/dark-theme.html), the `color` prop has no effect on the appearance of the app bar in dark mode.\nYou can override this behavior by setting the `enableColorOnDark` prop to `true`."
+          ],
+          "code_path": [
+            "EnableColorOnDarkAppBar.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Toolpad (Beta)",
+          "introduction": [
+            "Toolpad (Beta)"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": [
+            {
+              "name": "Dashboard Layout",
+              "introduction": [
+                "Dashboard Layout\n\nThe [DashboardLayout](https://mui.com/toolpad/core/react-dashboard-layout/) component from `@toolpad/core` is the starting point for dashboarding applications. It takes care of application layout, theming, navigation, and more. An example usage of this component:"
+              ],
+              "code_path": [
+                "DashboardLayoutBasic.js"
+              ],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "checkboxes",
+      "introduction": [
+        "# Checkbox\n\n<p class=\"description\">Checkboxes allow the user to select one or more items from a set.</p>\n\nCheckboxes can be used to turn an option on or off.\n\nIf you have multiple options appearing in a list,\nyou can preserve space by using checkboxes instead of on/off switches.\nIf you have a single option, avoid using a checkbox and use an on/off switch instead."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Basic checkboxes",
+          "introduction": [
+            "Basic checkboxes"
+          ],
+          "code_path": [
+            "Checkboxes.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Label",
+          "introduction": [
+            "Label\n\nYou can provide a label to the `Checkbox` thanks to the `FormControlLabel` component."
+          ],
+          "code_path": [
+            "CheckboxLabels.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Size",
+          "introduction": [
+            "Size\n\nUse the `size` prop or customize the font size of the svg icons to change the size of the checkboxes."
+          ],
+          "code_path": [
+            "SizeCheckboxes.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Color",
+          "introduction": [
+            "Color"
+          ],
+          "code_path": [
+            "ColorCheckboxes.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Icon",
+          "introduction": [
+            "Icon"
+          ],
+          "code_path": [
+            "IconCheckboxes.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Controlled",
+          "introduction": [
+            "Controlled\n\nYou can control the checkbox with the `checked` and `onChange` props:"
+          ],
+          "code_path": [
+            "ControlledCheckbox.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Indeterminate",
+          "introduction": [
+            "Indeterminate\n\nA checkbox input can only have two states in a form: checked or unchecked.\nIt either submits its value or doesn't.\nVisually, there are **three** states a checkbox can be in: checked, unchecked, or indeterminate.\n\nYou can change the indeterminate icon using the `indeterminateIcon` prop.",
+            ":::warning\nWhen indeterminate is set, the value of the `checked` prop only impacts the form submitted values.\nIt has no accessibility or UX implications.\n:::"
+          ],
+          "code_path": [
+            "IndeterminateCheckbox.js",
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "FormGroup",
+          "introduction": [
+            "FormGroup\n\n`FormGroup` is a helpful wrapper used to group selection control components."
+          ],
+          "code_path": [
+            "CheckboxesGroup.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Label placement",
+          "introduction": [
+            "Label placement\n\nYou can change the placement of the label:"
+          ],
+          "code_path": [
+            "FormControlLabelPosition.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Customization",
+          "introduction": [
+            "Customization\n\nHere is an example of customizing the component.\nYou can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).",
+            "🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/?path=/docs/checkbox-introduction--docs)."
+          ],
+          "code_path": [
+            "CustomizedCheckbox.js",
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "When to use",
+          "introduction": [
+            "When to use\n\n- [Checkboxes vs. Radio Buttons](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)\n- [Checkboxes vs. Switches](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Accessibility",
+          "introduction": [
+            "Accessibility\n\n(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/)\n\n- All form controls should have labels, and this includes radio buttons, checkboxes, and switches. In most cases, this is done by using the `<label>` element ([FormControlLabel](/material-ui/api/form-control-label/)).\n- When a label can't be used, it's necessary to add an attribute directly to the input component.\n  In this case, you can apply the additional attribute (for example `aria-label`, `aria-labelledby`, `title`) via the `inputProps` prop.\n\n```jsx\n<Checkbox\n  value=\"checkedA\"\n  inputProps={{\n    'aria-label': 'Checkbox A',\n  }}\n/>\n```"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "menus",
+      "introduction": [
+        "# Menu\n\n<p class=\"description\">Menus display a list of choices on temporary surfaces.</p>\n\nA menu displays a list of choices on a temporary surface. It appears when the user interacts with a button, or other control."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Introduction",
+          "introduction": [
+            "Introduction\n\nMenus are implemented using a collection of related components:\n\n- Menu: The container/surface of the menu.\n- Menu Item: An option for users to select from the menu.\n- Menu List (optional): Alternative composable container for Menu Items—see [Composition with Menu List](#composition-with-menu-list) for details."
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Basic menu",
+          "introduction": [
+            "Basic menu\n\nA basic menu opens over the anchor element by default (this option can be [changed](#menu-positioning) via props). When close to a screen edge, a basic menu vertically realigns to make sure that all menu items are completely visible.\n\nYou should configure the component so that selecting an option immediately confirms it and closes the menu, as shown in the demo below."
+          ],
+          "code_path": [
+            "BasicMenu.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Icon menu",
+          "introduction": [
+            "Icon menu\n\nIn desktop viewport, padding is increased to give more space to the menu."
+          ],
+          "code_path": [
+            "IconMenu.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Dense menu",
+          "introduction": [
+            "Dense menu\n\nFor the menu that has long list and long text, you can use the `dense` prop to reduce the padding and text size."
+          ],
+          "code_path": [
+            "DenseMenu.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Selected menu",
+          "introduction": [
+            "Selected menu\n\nIf used for item selection, when opened, simple menus places the initial focus on the selected menu item.\nThe currently selected menu item is set using the `selected` prop (from [ListItem](/material-ui/api/list-item/)).\nTo use a selected menu item without impacting the initial focus, set the `variant` prop to \"menu\"."
+          ],
+          "code_path": [
+            "SimpleListMenu.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Positioned menu",
+          "introduction": [
+            "Positioned menu\n\nBecause the `Menu` component uses the `Popover` component to position itself, you can use the same [positioning props](/material-ui/react-popover/#anchor-playground) to position it.\nFor instance, you can display the menu on top of the anchor:"
+          ],
+          "code_path": [
+            "PositionedMenu.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Composition with Menu List",
+          "introduction": [
+            "Composition with Menu List\n\nThe Menu component uses the Popover component internally.\nBut you might want to use a different positioning strategy, or prefer not to block scrolling, for example.\n\nThe Menu List component lets you compose your own menu for these kinds of use cases—its primary purpose is to handle focus.\nSee the demo below for an example of composition that uses Menu List and replaces the Menu's default Popover with a Popper component instead:"
+          ],
+          "code_path": [
+            "MenuListComposition.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Account menu",
+          "introduction": [
+            "Account menu\n\n`Menu` content can be mixed with other components like `Avatar`."
+          ],
+          "code_path": [
+            "AccountMenu.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Customization",
+          "introduction": [
+            "Customization\n\nHere is an example of customizing the component.\nYou can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).",
+            "The `MenuItem` is a wrapper around `ListItem` with some additional styles.\nYou can use the same list composition features with the `MenuItem` component:\n\n🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/?path=/docs/menu-introduction--docs)."
+          ],
+          "code_path": [
+            "CustomizedMenus.js",
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Max height menu",
+          "introduction": [
+            "Max height menu\n\nIf the height of a menu prevents all menu items from being displayed, the menu can scroll internally."
+          ],
+          "code_path": [
+            "LongMenu.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Limitations",
+          "introduction": [
+            "Limitations\n\nThere is [a flexbox bug](https://issues.chromium.org/issues/40344463) that prevents `text-overflow: ellipsis` from working in a flexbox layout.\nYou can use the `Typography` component with `noWrap` to workaround this issue:"
+          ],
+          "code_path": [
+            "TypographyMenu.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Change transition",
+          "introduction": [
+            "Change transition\n\nUse a different transition."
+          ],
+          "code_path": [
+            "FadeMenu.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Context menu",
+          "introduction": [
+            "Context menu\n\nHere is an example of a context menu. (Right click to open.)"
+          ],
+          "code_path": [
+            "ContextMenu.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Supplementary projects",
+          "introduction": [
+            "Supplementary projects\n\nFor more advanced use cases you might be able to take advantage of:"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": [
+            {
+              "name": "material-ui-popup-state",
+              "introduction": [
+                "material-ui-popup-state\n\n![stars](https://img.shields.io/github/stars/jcoreio/material-ui-popup-state?style=social&label=Star)\n![npm downloads](https://img.shields.io/npm/dm/material-ui-popup-state.svg)\n\nThe package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of menu state for you in most cases."
+              ],
+              "code_path": [
+                "MenuPopupState.js"
+              ],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "dialogs",
+      "introduction": [
+        "# Dialog\n\n<p class=\"description\">Dialogs inform users about a task and can contain critical information, require decisions, or involve multiple tasks.</p>\n\nA Dialog is a type of [modal](/material-ui/react-modal/) window that appears in front of app content to provide critical information or ask for a decision. Dialogs disable all app functionality when they appear, and remain on screen until confirmed, dismissed, or a required action has been taken.\n\nDialogs are purposefully interruptive, so they should be used sparingly."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Introduction",
+          "introduction": [
+            "Introduction\n\nDialogs are implemented using a collection of related components:\n\n- Dialog: the parent component that renders the modal.\n- Dialog Title: a wrapper used for the title of a Dialog.\n- Dialog Actions: an optional container for a Dialog's Buttons.\n- Dialog Content: an optional container for displaying the Dialog's content.\n- Dialog Content Text: a wrapper for text inside of `<DialogContent />`.\n- Slide: optional [Transition](/material-ui/transitions/#slide) used to slide the Dialog in from the edge of the screen."
+          ],
+          "code_path": [
+            "SimpleDialogDemo.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Basics",
+          "introduction": [
+            "Basics\n\n```jsx\nimport Dialog from '@mui/material/Dialog';\nimport DialogTitle from '@mui/material/DialogTitle';\n```"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Alerts",
+          "introduction": [
+            "Alerts\n\nAlerts are urgent interruptions, requiring acknowledgement, that inform the user about a situation.\n\nMost alerts don't need titles.\nThey summarize a decision in a sentence or two by either:\n\n- Asking a question (for example \"Delete this conversation?\")\n- Making a statement related to the action buttons\n\nUse title bar alerts only for high-risk situations, such as the potential loss of connectivity.\nUsers should be able to understand the choices based on the title and button text alone.\n\nIf a title is required:\n\n- Use a clear question or statement with an explanation in the content area, such as \"Erase USB storage?\".\n- Avoid apologies, ambiguity, or questions, such as \"Warning!\" or \"Are you sure?\""
+          ],
+          "code_path": [
+            "AlertDialog.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Transitions",
+          "introduction": [
+            "Transitions\n\nYou can also swap out the transition, the next example uses `Slide`."
+          ],
+          "code_path": [
+            "AlertDialogSlide.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Form dialogs",
+          "introduction": [
+            "Form dialogs\n\nForm dialogs allow users to fill out form fields within a dialog.\nFor example, if your site prompts for potential subscribers to fill in their email address, they can fill out the email field and touch 'Submit'."
+          ],
+          "code_path": [
+            "FormDialog.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Customization",
+          "introduction": [
+            "Customization\n\nHere is an example of customizing the component.\nYou can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).\n\nThe dialog has a close button added to aid usability."
+          ],
+          "code_path": [
+            "CustomizedDialogs.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Full-screen dialogs",
+          "introduction": [
+            "Full-screen dialogs"
+          ],
+          "code_path": [
+            "FullScreenDialog.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Optional sizes",
+          "introduction": [
+            "Optional sizes\n\nYou can set a dialog maximum width by using the `maxWidth` enumerable in combination with the `fullWidth` boolean.\nWhen the `fullWidth` prop is true, the dialog will adapt based on the `maxWidth` value."
+          ],
+          "code_path": [
+            "MaxWidthDialog.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Responsive full-screen",
+          "introduction": [
+            "Responsive full-screen\n\nYou may make a dialog responsively full screen using [`useMediaQuery`](/material-ui/react-use-media-query/).\n\n```jsx\nimport useMediaQuery from '@mui/material/useMediaQuery';\n\nfunction MyComponent() {\n  const theme = useTheme();\n  const fullScreen = useMediaQuery(theme.breakpoints.down('md'));\n\n  return <Dialog fullScreen={fullScreen} />;\n}\n```"
+          ],
+          "code_path": [
+            "ResponsiveDialog.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Confirmation dialogs",
+          "introduction": [
+            "Confirmation dialogs\n\nConfirmation dialogs require users to explicitly confirm their choice before an option is committed.\nFor example, users can listen to multiple ringtones but only make a final selection upon touching \"OK\".\n\nTouching \"Cancel\" in a confirmation dialog, cancels the action, discards any changes, and closes the dialog."
+          ],
+          "code_path": [
+            "ConfirmationDialog.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Non-modal dialog",
+          "introduction": [
+            "Non-modal dialog\n\nDialogs can also be non-modal, meaning they don't interrupt user interaction behind it.\nVisit [the Nielsen Norman Group article](https://www.nngroup.com/articles/modal-nonmodal-dialog/) for more in-depth guidance about modal vs. non-modal dialog usage.\n\nThe demo below shows a persistent cookie banner, a common non-modal dialog use case."
+          ],
+          "code_path": [
+            "CookiesBanner.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Draggable dialog",
+          "introduction": [
+            "Draggable dialog\n\nYou can create a draggable dialog by using [react-draggable](https://github.com/react-grid-layout/react-draggable).\nTo do so, you can pass the imported `Draggable` component as the `PaperComponent` of the `Dialog` component.\nThis will make the entire dialog draggable."
+          ],
+          "code_path": [
+            "DraggableDialog.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Scrolling long content",
+          "introduction": [
+            "Scrolling long content\n\nWhen dialogs become too long for the user's viewport or device, they scroll.\n\n- `scroll=paper` the content of the dialog scrolls within the paper element.\n- `scroll=body` the content of the dialog scrolls within the body element.\n\nTry the demo below to see what we mean:"
+          ],
+          "code_path": [
+            "ScrollDialog.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Performance",
+          "introduction": [
+            "Performance\n\nFollow the [Modal performance section](/material-ui/react-modal/#performance)."
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Limitations",
+          "introduction": [
+            "Limitations\n\nFollow the [Modal limitations section](/material-ui/react-modal/#limitations)."
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Supplementary projects",
+          "introduction": [
+            "Supplementary projects\n\nFor more advanced use cases you might be able to take advantage of:"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": [
+            {
+              "name": "material-ui-confirm",
+              "introduction": [
+                "material-ui-confirm\n\n![stars](https://img.shields.io/github/stars/jonatanklosko/material-ui-confirm?style=social&label=Star)\n![npm downloads](https://img.shields.io/npm/dm/material-ui-confirm.svg)\n\nThe package [`material-ui-confirm`](https://github.com/jonatanklosko/material-ui-confirm/) provides dialogs for confirming user actions without writing boilerplate code."
+              ],
+              "code_path": [
+                null
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Accessibility",
+          "introduction": [
+            "Accessibility\n\nFollow the [Modal accessibility section](/material-ui/react-modal/#accessibility)."
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Toolpad (Beta)",
+          "introduction": [
+            "Toolpad (Beta)"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": [
+            {
+              "name": "useDialogs",
+              "introduction": [
+                "useDialogs\n\nYou can create and manipulate dialogs imperatively with the [`useDialogs()`](https://mui.com/toolpad/core/react-use-dialogs/) API in `@toolpad/core`. This hook handles\n\n- state management for opening and closing dialogs\n- passing data to dialogs and receiving results back from them\n- stacking multiple dialogs\n- themed, asynchronous versions of `window.alert()`, `window.confirm()` and `window.prompt()`\n\nThe following example demonstrates some of these features:",
+                "```tsx\nconst handleDelete = async () => {\n  const id = await dialogs.prompt('Enter the ID to delete', {\n    okText: 'Delete',\n    cancelText: 'Cancel',\n  });\n\n  if (id) {\n    const deleteConfirmed = await dialogs.confirm(\n      `Are you sure you want to delete \"${id}\"?`,\n    );\n    if (deleteConfirmed) {\n      try {\n        setIsDeleting(true);\n        await mockApiDelete(id);\n        dialogs.alert('Deleted!');\n      } catch (error) {\n        const message = error instanceof Error ? error.message : 'Unknown error';\n        await dialogs.open(MyCustomDialog, { id, error: message });\n      } finally {\n        setIsDeleting(false);\n      }\n    }\n  }\n};\n```"
+              ],
+              "code_path": [
+                "ToolpadDialogsNoSnap.js",
+                null
+              ],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "drawers",
+      "introduction": [
+        "# Drawer\n\n<p class=\"description\">The navigation drawers (or \"sidebars\") provide ergonomic access to destinations in a site or app functionality such as switching accounts.</p>\n\nA navigation drawer can either be permanently on-screen or controlled by a navigation menu icon.\n\n[Side sheets](https://m2.material.io/components/sheets-side) are supplementary surfaces primarily used on tablet and desktop."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Temporary drawer",
+          "introduction": [
+            "Temporary drawer\n\nTemporary navigation drawers can toggle open or closed. Closed by default, the drawer opens temporarily above all other content until a section is selected.\n\nThe Drawer can be cancelled by clicking the overlay or pressing the Esc key.\nIt closes when an item is selected, handled by controlling the `open` prop."
+          ],
+          "code_path": [
+            "TemporaryDrawer.js"
+          ],
+          "children": [
+            {
+              "name": "Anchor",
+              "introduction": [
+                "Anchor\n\nUse the `anchor` prop to specify which side of the screen the Drawer should originate from.\n\nThe default value is `left`."
+              ],
+              "code_path": [
+                "AnchorTemporaryDrawer.js"
+              ],
+              "children": []
+            },
+            {
+              "name": "Swipeable",
+              "introduction": [
+                "Swipeable\n\nYou can make the drawer swipeable with the `SwipeableDrawer` component.\n\nThis component comes with a 2 kB gzipped payload overhead.\nSome low-end mobile devices won't be able to follow the fingers at 60 FPS.\nYou can use the `disableBackdropTransition` prop to help.",
+                "The following properties are used in this documentation website for optimal usability of the component:\n\n- iOS is hosted on high-end devices.\n  The backdrop transition can be enabled without dropping frames.\n  The performance will be good enough.\n- iOS has a \"swipe to go back\" feature that interferes\n  with the discovery feature, so discovery has to be disabled.\n\n```jsx\nconst iOS =\n  typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);\n\n<SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />;\n```"
+              ],
+              "code_path": [
+                "SwipeableTemporaryDrawer.js",
+                null
+              ],
+              "children": []
+            },
+            {
+              "name": "Swipeable edge",
+              "introduction": [
+                "Swipeable edge\n\nYou can configure the `SwipeableDrawer` to have a visible edge when closed.\n\nIf you are on a desktop, you can toggle the drawer with the \"OPEN\" button.\nIf you are on mobile, you can open the demo in CodeSandbox (\"edit\" icon) and swipe."
+              ],
+              "code_path": [
+                "SwipeableEdgeDrawer.js"
+              ],
+              "children": []
+            },
+            {
+              "name": "Keep mounted",
+              "introduction": [
+                "Keep mounted\n\nThe Modal used internally by the Swipeable Drawer has the `keepMounted` prop set by default.\nThis means that the contents of the drawer are always present in the DOM.\n\nYou can change this default behavior with the `ModalProps` prop, but you may encounter issues with `keepMounted: false` in React 18.\n\n```jsx\n<Drawer\n  variant=\"temporary\"\n  ModalProps={{\n    keepMounted: false,\n  }}\n/>\n```"
+              ],
+              "code_path": [
+                null
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Responsive drawer",
+          "introduction": [
+            "Responsive drawer\n\nYou can use the `temporary` variant to display a drawer for small screens and `permanent` for a drawer for wider screens."
+          ],
+          "code_path": [
+            "ResponsiveDrawer.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Persistent drawer",
+          "introduction": [
+            "Persistent drawer\n\nPersistent navigation drawers can toggle open or closed.\nThe drawer sits on the same surface elevation as the content.\nIt is closed by default and opens by selecting the menu icon, and stays open until closed by the user.\nThe state of the drawer is remembered from action to action and session to session.\n\nWhen the drawer is outside of the page grid and opens, the drawer forces other content to change size and adapt to the smaller viewport.\n\nPersistent navigation drawers are acceptable for all sizes larger than mobile.\nThey are not recommended for apps with multiple levels of hierarchy that require using an up arrow for navigation.",
+            ""
+          ],
+          "code_path": [
+            "PersistentDrawerLeft.js",
+            "PersistentDrawerRight.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Mini variant drawer",
+          "introduction": [
+            "Mini variant drawer\n\nIn this variation, the persistent navigation drawer changes its width.\nIts resting state is as a mini-drawer at the same elevation as the content, clipped by the app bar.\nWhen expanded, it appears as the standard persistent navigation drawer.\n\nThe mini variant is recommended for apps sections that need quick selection access alongside content."
+          ],
+          "code_path": [
+            "MiniDrawer.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Permanent drawer",
+          "introduction": [
+            "Permanent drawer\n\nPermanent navigation drawers are always visible and pinned to the left edge, at the same elevation as the content or background. They cannot be closed.\n\nPermanent navigation drawers are the **recommended default for desktop**."
+          ],
+          "code_path": [
+            null
+          ],
+          "children": [
+            {
+              "name": "Full-height navigation",
+              "introduction": [
+                "Full-height navigation\n\nApps focused on information consumption that use a left-to-right hierarchy.",
+                ""
+              ],
+              "code_path": [
+                "PermanentDrawerLeft.js",
+                "PermanentDrawerRight.js"
+              ],
+              "children": []
+            },
+            {
+              "name": "Clipped under the app bar",
+              "introduction": [
+                "Clipped under the app bar\n\nApps focused on productivity that require balance across the screen."
+              ],
+              "code_path": [
+                "ClippedDrawer.js"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Toolpad (Beta)",
+          "introduction": [
+            "Toolpad (Beta)"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": [
+            {
+              "name": "Dashboard Layout",
+              "introduction": [
+                "Dashboard Layout\n\nThe [DashboardLayout](https://mui.com/toolpad/core/react-dashboard-layout/) component from `@toolpad/core` is the starting point for dashboarding applications. It takes care of application layout, theming, navigation, and more. An example usage of this component:"
+              ],
+              "code_path": [
+                "../app-bar/DashboardLayoutBasic.js"
+              ],
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

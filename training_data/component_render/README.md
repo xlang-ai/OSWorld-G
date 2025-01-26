@@ -17,23 +17,16 @@ Full information of a component-action pair can be found in `data.jsonl`.
 Go to `training_data/component_render/react-app` and run `npm install` to install the dependencies.
 
 ## Possible Types:
-"slider",
-"menus",
-"drawers",
-"checkboxes",
-"rating",
-"chips",
-"lists",
-"alert",
-"dialogs",
-"snackbars",
-"app-bar",
-"bottom-navigation",
-"pagination",
-"transfer-list",
-"toggle-buttons",
-"switch",
-"table",
-"speed-dial",--controled
-"stepper",
-"tabs",
+slider menus drawers checkboxes rating
+
+bottom-navigation pagination table selectable-text resizable-draggable-text-box
+
+chips lists alert dialogs snackbars app-bar
+
+
+transfer-list
+toggle-buttons
+switch
+speed-dial
+stepper
+tabs

@@ -105,12 +105,13 @@ def _generate_single_scenario_claude(args) -> str:
 
     headers = {
         "Accept": "application/json",
-        "Authorization": "Bearer {you_key}",
+        "Authorization": f"Bearer {os.environ.get('CLAUDE_API_KEY')}",
         "Content-Type": "application/json",
     }
 
     try:
         response = requests.request("POST", url, headers=headers, json=payload)
+        print("response:", response.text)
         response = json.loads(response.text)
 
         with open("token_cost.txt", "a") as file:

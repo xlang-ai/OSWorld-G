@@ -169,16 +169,40 @@ class ComponentParser:
 
 
 def main():
-    lib_name = "mui-x"
+    lib_name = "material"
     base_path_dict = {
-        "material": "TODO",  # "OSWorld-G/training_data/component_render/UIwebsite_doc/material/components",
-        "mui-x": "TODO",  # "OSWorld-G/training_data/component_render/UIwebsite_doc/mui-x",
+        "material": "UIwebsite_doc/material/components",
+        "mui-x": "UIwebsite_doc/mui-x",
     }
     parser = ComponentParser(base_path_dict[lib_name])
     components = parser.parse_all_components()
-
-    output = {"components": components}
-    with open(f"component_tree_{lib_name}.json", "w", encoding="utf-8") as f:
+    namelist = [
+        "slider",
+        "menus",
+        "drawers",
+        "checkboxes",
+        "rating",
+        "chips",
+        "lists",
+        "alert",
+        "dialogs",
+        "snackbars",
+        "app-bar",
+        "bottom-navigation",
+        "pagination",
+        "transfer-list",
+        "toggle-buttons",
+        "switch",
+        "table",
+        "speed-dial",
+        "stepper",
+        "tabs",
+    ]
+    filtered_components = [
+        component for component in components if component["name"] in namelist
+    ]
+    output = {"components": filtered_components}
+    with open(f"selected_component_tree_{lib_name}.json", "w", encoding="utf-8") as f:
         json.dump(output, f, indent=2, ensure_ascii=False)
 
 

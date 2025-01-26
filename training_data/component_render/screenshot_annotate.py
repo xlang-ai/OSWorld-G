@@ -1,3 +1,4 @@
+import os
 import json
 import re
 import time
@@ -15,15 +16,6 @@ async def annotate_screenshot_component(
     screenshot_folder,
 ):
     if position:
-        # TODO: 似乎多余
-        # position_file = (
-        #     Path("./component_positions")
-        #     # / f"{component_name}_position_{style_index}.json"
-        #     / f"{component_name}.json"
-        # )
-        # position_file.parent.mkdir(parents=True, exist_ok=True)
-        # with open(position_file, "w") as f:
-        #     json.dump(position, f, indent=2)
 
         # 在截图上添加标注
         try:
@@ -87,24 +79,25 @@ async def annotate_screenshot_component(
                     )
 
             # 保存标注后的截图
+            os.makedirs(Path(screenshot_folder) / "location_annotated", exist_ok=True)
             annotated_path = (
                 Path(screenshot_folder)
                 # / f"{component_name}_annotated_component_{style_index}_{int(time.time())}.png"
-                / "raw"
+                / "location_annotated"
                 / f"{component_name}_annotated_component_{int(time.time())}.png"
             )
             img.save(annotated_path)
             logger.info(f"Saved annotated screenshot to {annotated_path}")
 
             # 保存元素信息
-            info_path = (
-                Path("./data/component_positions")
-                # / f"{component_name}_elements_{style_index}.json"
-                # / f"{component_name}_elements.json"
-                / f"{component_name}_positions.json"
-            )
-            with open(info_path, "w") as f:
-                json.dump(position, f, indent=2)
+            # info_path = (
+            #     Path("./data/component_positions")
+            #     # / f"{component_name}_elements_{style_index}.json"
+            #     # / f"{component_name}_elements.json"
+            #     / f"{component_name}_positions.json"
+            # )
+            # with open(info_path, "w") as f:
+            #     json.dump(position, f, indent=2)
 
             return str(annotated_path)
         except Exception as e:

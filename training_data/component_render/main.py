@@ -4,9 +4,9 @@ import json
 import os
 import re
 import shutil
-import signal
 import subprocess
 import time
+import argparse
 from pathlib import Path
 
 from action import generate_action_data, process_grounding
@@ -22,6 +22,7 @@ from screenshot_annotate import (
     annotate_screenshot_component,
 )
 from style import scenario_augmentation, style_augmentation
+from filter import filter_grounding
 
 # from usage import usage
 
@@ -33,9 +34,10 @@ class ComponentCode(BaseModel):
 
 
 class DataGenerator:
-    def __init__(self):
+    def __init__(self, port):
         self.browser = None
         self.page = None
+        self.port = port
 
     async def initialize_browser(self):
         """Initialize browser and page"""
@@ -43,7 +45,10 @@ class DataGenerator:
             playwright = await async_playwright().start()
             self.browser = await playwright.chromium.launch(headless=True)
             self.page = await self.browser.new_page()
-            await self.page.goto("http://localhost:3000")
+            # Set viewport size to 1920x1080
+            await self.page.set_viewport_size({"width": 1920, "height": 1080})
+
+            await self.page.goto(f"http://localhost:{self.port}")
             logger.info("Browser initialized")
 
     async def refresh_page(self):
@@ -53,6 +58,10 @@ class DataGenerator:
             await self.page.reload()
             # Wait for page to load
             await self.page.wait_for_load_state("networkidle")
+
+            # Set viewport size to 1920x1080
+            await self.page.set_viewport_size({"width": 1920, "height": 1080})
+
             logger.info("Page refreshed")
         else:
             logger.warning("No page available to refresh")
@@ -70,7 +79,7 @@ class DataGenerator:
             return None
 
     async def initialize_react_app(self):
-        app_dir = Path("./react-app")
+        app_dir = Path(f"./react-app-{self.port}")
         app_dir.mkdir(parents=True, exist_ok=True)
 
         # Start the React development server
@@ -103,7 +112,7 @@ class DataGenerator:
             # 启动服务器
             with open(log_file, "w") as f:
                 self.process = subprocess.Popen(
-                    "npm start",
+                    f"PORT={self.port} npm start",
                     shell=True,
                     cwd=str(app_dir),
                     env=env,
@@ -133,7 +142,7 @@ class DataGenerator:
         """刷新React应用并分析组件"""
         try:
             # 创建必要的目录
-            app_dir = Path("./react-app")
+            app_dir = Path(f"./react-app-{self.port}")
             app_dir.mkdir(parents=True, exist_ok=True)
 
             # 首先重置 App.js 到初始状态
@@ -163,18 +172,18 @@ class DataGenerator:
             await self.refresh_page()
 
             # 获取组件位置信息
-            await self.page.wait_for_selector(".App", state="visible", timeout=10000)
+            await self.page.wait_for_selector(".App", state="visible", timeout=5000)
             position = await self.page.evaluate(JS_EVAL_POSITION)
 
             if position:
-                # 保存位置信息
-                position_file = (
-                    Path("data/component_positions") / f"{component_name}_position.json"
-                )
+                # # 保存位置信息
+                # position_file = (
+                #     Path("data/component_positions") / f"{component_name}_position.json"
+                # )
 
-                position_file.parent.mkdir(parents=True, exist_ok=True)
-                with open(position_file, "w") as f:
-                    json.dump(position, f, indent=2)
+                # position_file.parent.mkdir(parents=True, exist_ok=True)
+                # with open(position_file, "w") as f:
+                #     json.dump(position, f, indent=2)
 
                 # 捕获截图
                 screenshot_path = await self.capture_screenshot(
@@ -194,25 +203,16 @@ class DataGenerator:
     ):  # style_index
         # Launch Playwright browser
         async with async_playwright() as p:
-            browser = await p.chromium.launch(headless=True)  # Launch headless browser
-            page = await browser.new_page()
-
-            # Go to the React app's URL (adjust port if necessary)
-            await page.goto("http://localhost:3000")
-
             # Define the path to save the screenshot
+            os.makedirs(Path(screenshot_folder) / "original", exist_ok=True)
             screenshot_path = (
                 Path(screenshot_folder)
-                # / f"{component_name}_style_{style_index}_{time.time()}.png"
-                / "raw"
+                / "original"
                 / f"{component_name}_{time.time()}.png"
             )
 
             # Take the screenshot and save it
-            await page.screenshot(path=screenshot_path)
-
-            # Close the browser
-            await browser.close()
+            await self.page.screenshot(path=screenshot_path)
 
             # Return the path to the saved screenshot
             return screenshot_path
@@ -231,7 +231,6 @@ class DataGenerator:
             self.process.wait()
 
         # 重新启动服务器
-        # kill_port(3000)
         await self.initialize_react_app()
 
         # 等待服务器启动
@@ -262,14 +261,31 @@ def process_component_tree(component_tree):
 async def main():
     with open("token_cost.txt", "w") as f:
         pass
-    generator = DataGenerator()
-    app_dir = Path("./react-app")
+    # 初始化参数解析器
+    parser = argparse.ArgumentParser(
+        description="Process an image and draw text on it."
+    )
+
+    # 添加参数
+    parser.add_argument("--port", type=int, required=True)
+    parser.add_argument(
+        "--components",
+        nargs="+",  # 表示接受一个或多个字符串
+        required=True,  # 设置为必填参数
+        help="A list of strings separated by space.",
+    )
+    parser.add_argument("--scenario_count", type=int, required=True)
+
+    args = parser.parse_args()
+    print("components: ", args.components)
+    generator = DataGenerator(args.port)
+
+    app_dir = Path(f"./react-app-{args.port}")
     os.makedirs("data", exist_ok=True)
     os.makedirs("data/component_code", exist_ok=True)
     os.makedirs("data/screenshots", exist_ok=True)
     os.makedirs("data/screenshots/raw", exist_ok=True)
     os.makedirs("data/screenshots/grounding", exist_ok=True)
-    os.makedirs("data/component_positions", exist_ok=True)
     os.makedirs(Path(app_dir) / "src" / "components", exist_ok=True)
     await generator.initialize_react_app()
     # 初始化浏览器
@@ -288,14 +304,11 @@ async def main():
             "mui-x": "UIwebsite_doc/mui-x",
         }
 
-        # 创建screenshots文件夹
-        screenshot_folder = Path("./screenshots")
-        screenshot_folder.mkdir(parents=True, exist_ok=True)
         with open("component_tree_mui-x.json", "r") as f:
             # 读取整个文件内容
             content = json.load(f)
             component_tree_list = content["components"]
-        with open("component_tree_material.json", "r") as f:
+        with open("selected_component_tree_material.json", "r") as f:
             # 读取整个文件内容
             content = json.load(f)
             component_tree_list.extend(content["components"])
@@ -305,25 +318,7 @@ async def main():
         select_component_tree_list = [
             component_tree
             for component_tree in component_tree_list
-            if component_tree["name"]
-            in [
-                # "slider",
-                # "menus",
-                # "drawers",
-                # "checkboxes",
-                # "progress",
-                # "rating",
-                # "badges",
-                # "chips",
-                # "dividers",
-                # "lists",
-                # "alert",
-                "dialogs",
-                # "snackbars",
-                # "app-bar",
-                # "bottom-navigation",
-                # "pagination",
-            ]
+            if component_tree["name"] in args.components
         ]
         logger.info(
             f"Processing {len(select_component_tree_list)} components at the beginning"
@@ -348,24 +343,37 @@ async def main():
             os.makedirs(component_root_dir, exist_ok=True)
             os.makedirs(Path(component_root_dir) / "raw", exist_ok=True)
             os.makedirs(Path(component_root_dir) / "grounding", exist_ok=True)
+            # 创建screenshots文件夹
+            screenshot_folder = Path(f"{component_root_dir}/other_screenshot")
+            screenshot_folder.mkdir(parents=True, exist_ok=True)
+            grounding_true_screenshot_folder = Path(
+                f"{component_root_dir}/grounding_true_screenshot"
+            )
+            grounding_true_screenshot_folder.mkdir(parents=True, exist_ok=True)
+            grounding_false_screenshot_folder = Path(
+                f"{component_root_dir}/grounding_false_screenshot"
+            )
+            grounding_false_screenshot_folder.mkdir(parents=True, exist_ok=True)
             component_root_path = str(Path(*component_root_name.split("->")))
             for k, component_node in enumerate(component_node_list):
                 logger.info(
                     f"Start to process component: {k} / {len(component_node_list)} --- {component_node['code_path']}"
                 )
                 component_desc = component_node["introduction"]
-                component_code_path = os.path.join(
+                base_component_code_path = os.path.join(
                     base_path_dict[lib_name],
                     component_root_path,
                     component_node["code_path"],
                 )
                 component_code = None
-                with open(component_code_path, "r") as f:
+                with open(base_component_code_path, "r") as f:
                     component_code = f.read()
 
                 ### 进行数据扩增。分为两步，第一步根据应用场景扩增新风格的数据。第二步为数据添加css样式模版，方便进一步扩增。
                 # Step 1
-                scenario_augmentation_list = scenario_augmentation(component_code, n=3)
+                scenario_augmentation_list = scenario_augmentation(
+                    component_code, n=args.scenario_count
+                )
 
                 # Step 2
                 # style_augmentation_list = [
@@ -453,33 +461,39 @@ async def main():
                             annotated_image_path=annotated_component_path,
                             position=position,
                         )
-                        for i in range(len(action_intent_list)):
-                            # STEP 6: 从action_data中提取action_code中的常量，在截图中标注动作位置信息
-                            action_intent = action_intent_list[i]
-                            action_space_type = action_detail_list[i].action_space_type
-                            action_desc = action_detail_list[i].action_desc
-                            action_thought = action_detail_list[i].thought_process
-                            action_discrete_values = action_detail_list[
-                                i
-                            ].action_discrete_values
-                            action_code = action_detail_list[i].action_code
+                        # for i in range(len(action_intent_list)):
+                        # STEP 6: 从action_data中提取action_code中的常量，在截图中标注动作位置信息
+                        # action_intent = action_intent_list[i]
+                        # action_space_type = action_detail_list[i].action_space_type
+                        # action_desc = action_detail_list[i].action_desc
+                        # action_thought = action_detail_list[i].thought_process
+                        # action_discrete_values = action_detail_list[
+                        #     i
+                        # ].action_discrete_values
+                        # action_code = action_detail_list[i].action_code
 
-                            annotated_action_path = await annotate_screenshot_action(
-                                component_name,
-                                action_intent,
-                                action_space_type,
-                                action_desc,
-                                action_thought,
-                                action_discrete_values,
-                                action_code,
-                                i,
-                                screenshot_path,
-                                screenshot_folder,
-                            )
-                            annotated_action_paths.append(annotated_action_path)
-                        # STEP 8: 保存数据到jsonl文件
+                        # annotated_action_path = await annotate_screenshot_action(
+                        #     component_name,
+                        #     action_intent,
+                        #     action_space_type,
+                        #     action_desc,
+                        #     action_thought,
+                        #     action_discrete_values,
+                        #     action_code,
+                        #     i,
+                        #     screenshot_path,
+                        #     screenshot_folder,
+                        # )
+                        # annotated_action_paths.append(annotated_action_path)
+                        # STEP 8: 保存raw数据到json文件
                         component_num += 1
                         action_num += len(annotated_action_paths)
+                        component_code_path = str(
+                            Path(f"{component_root_dir}")
+                            / "component_code"
+                            / f"{component_name}_{datetime.datetime.now().strftime('%m-%d %H:%M')}.js"
+                        )
+                        os.makedirs(os.path.dirname(component_code_path), exist_ok=True)
                         with open(
                             os.path.join(
                                 component_root_dir,
@@ -521,12 +535,18 @@ async def main():
                                 )
                                 + "\n"
                             )
-                        # STEP 9: 保存grounding数据到jsonl
+                        # STEP 9: 保存grounding数据到json
                         for i, action_detail in enumerate(action_detail_list):
                             grounding_data_list = process_grounding(
-                                component_name, action_detail, screenshot_path, i
+                                component_root_dir,
+                                component_name,
+                                action_detail,
+                                screenshot_path,
+                                i,
                             )
+                            logger.info(str(grounding_data_list))
                             for j, grounding_data in enumerate(grounding_data_list):
+                                # filter_result = filter_grounding(grounding_data)
                                 with open(
                                     os.path.join(
                                         component_root_dir,
@@ -548,11 +568,39 @@ async def main():
                                                     ]
                                                 ),
                                                 "action": grounding_data["action"],
+                                                # "filter_thought_process": filter_result.thought_process,
+                                                # "is_correct": filter_result.is_correct,
+                                                # "correct_instruction": filter_result.correct_instruction,
                                             },
                                             indent=4,
                                         )
                                         + "\n"
                                     )
+                                    # if filter_result.is_correct:
+                                    #     shutil.copy(
+                                    #         grounding_data["annotated_image_path"],
+                                    #         os.path.join(
+                                    #             grounding_true_screenshot_folder,
+                                    #             os.path.basename(
+                                    #                 grounding_data[
+                                    #                     "annotated_image_path"
+                                    #                 ]
+                                    #             ),
+                                    #         ),
+                                    #     )
+                                    # else:
+                                    #     shutil.copy(
+                                    #         grounding_data["annotated_image_path"],
+                                    #         os.path.join(
+                                    #             grounding_false_screenshot_folder,
+                                    #             os.path.basename(
+                                    #                 grounding_data[
+                                    #                     "annotated_image_path"
+                                    #                 ]
+                                    #             ),
+                                    #         ),
+                                    #     )
+
                         with open("success.txt", "a") as file:
                             file.write(
                                 f"{component_root_name}--{component_node['name']}\n"
@@ -564,12 +612,10 @@ async def main():
                         )
                     finally:
                         src_path = (
-                            Path("./react-app/src/components") / f"{component_name}.js"
+                            Path(f"./react-app-{args.port}/src/components")
+                            / f"{component_name}.js"
                         )
-                        backup_dir = Path("./data/back_up_component_code")
-                        backup_dir.mkdir(exist_ok=True)
-                        dst_path = backup_dir / f"{component_name}_{time.time()}.js"
-                        shutil.move(src_path, dst_path)
+                        shutil.move(src_path, component_code_path)
                         await generator.restart_react_server()
 
                 stats[component_root_name] = {
