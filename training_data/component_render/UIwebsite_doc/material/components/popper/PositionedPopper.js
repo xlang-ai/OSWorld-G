@@ -9,7 +9,7 @@ import Paper from '@mui/material/Paper';
 
 export default function PositionedPopper() {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
   const [placement, setPlacement] = React.useState();
 
   const handleClick = (newPlacement) => (event) => {

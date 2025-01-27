@@ -12,7 +12,7 @@ import MenuList from '@mui/material/MenuList';
 const options = ['Create a merge commit', 'Squash and merge', 'Rebase and merge'];
 
 export default function SplitButton() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
   const anchorRef = React.useRef<HTMLDivElement>(null);
   const [selectedIndex, setSelectedIndex] = React.useState(1);
 

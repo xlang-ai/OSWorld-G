@@ -4,7 +4,7 @@ import { DataGridPremium } from '@mui/x-data-grid-premium';
 import { useDemoData } from '@mui/x-data-grid-generator';
 
 export default function CellSelectionGrid() {
-  const [rowSelection, setRowSelection] = React.useState(false);
+  const [rowSelection, setRowSelection] = React.useState(true);
 
   const { data } = useDemoData({
     dataSet: 'Commodity',

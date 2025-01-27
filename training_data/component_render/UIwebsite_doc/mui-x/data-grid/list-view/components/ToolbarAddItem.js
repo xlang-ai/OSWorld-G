@@ -25,7 +25,7 @@ const ListItemUploadButton = React.forwardRef(
 
 export function ToolbarAddItem(props) {
   const { container } = props;
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
   const { handleUpload, listView } = props;
 
   const handleFileSelect = (event) => {

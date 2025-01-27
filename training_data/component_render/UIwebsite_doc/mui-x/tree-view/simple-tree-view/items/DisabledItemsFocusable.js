@@ -7,7 +7,7 @@ import { SimpleTreeView } from '@mui/x-tree-view/SimpleTreeView';
 import { TreeItem } from '@mui/x-tree-view/TreeItem';
 
 export default function DisabledItemsFocusable() {
-  const [disabledItemsFocusable, setDisabledItemsFocusable] = React.useState(false);
+  const [disabledItemsFocusable, setDisabledItemsFocusable] = React.useState(true);
   const handleToggle = (event) => {
     setDisabledItemsFocusable(event.target.checked);
   };

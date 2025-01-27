@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 
 export default function ErrorRadios() {
   const [value, setValue] = React.useState('');
-  const [error, setError] = React.useState(false);
+  const [error, setError] = React.useState(true);
   const [helperText, setHelperText] = React.useState('Choose wisely');
 
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {

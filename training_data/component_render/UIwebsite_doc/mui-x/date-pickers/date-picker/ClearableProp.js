@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 
 export default function ClearableProp() {
-  const [cleared, setCleared] = React.useState(false);
+  const [cleared, setCleared] = React.useState(true);
 
   React.useEffect(() => {
     if (cleared) {

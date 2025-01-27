@@ -19,7 +19,7 @@ function InputNumberInterval(props: GridFilterInputValueProps) {
   const [filterValueState, setFilterValueState] = React.useState<[string, string]>(
     item.value ?? '',
   );
-  const [applying, setIsApplying] = React.useState(false);
+  const [applying, setIsApplying] = React.useState(true);
 
   React.useEffect(() => {
     return () => {

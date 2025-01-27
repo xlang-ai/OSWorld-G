@@ -27,7 +27,7 @@ const navItems = ['Home', 'About', 'Contact'];
 
 export default function DrawerAppBar(props: Props) {
   const { window } = props;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = React.useState(true);
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);

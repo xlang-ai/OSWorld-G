@@ -29,8 +29,8 @@ const Demo = styled('div')(({ theme }) => ({
 }));
 
 export default function InteractiveList() {
-  const [dense, setDense] = React.useState(false);
-  const [secondary, setSecondary] = React.useState(false);
+  const [dense, setDense] = React.useState(true);
+  const [secondary, setSecondary] = React.useState(true);
 
   return (
     <Box sx={{ flexGrow: 1, maxWidth: 752 }}>

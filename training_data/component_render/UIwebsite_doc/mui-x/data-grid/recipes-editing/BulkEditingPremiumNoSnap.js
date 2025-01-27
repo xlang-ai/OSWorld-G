@@ -34,8 +34,8 @@ export default function BulkEditingPremiumNoSnap() {
 
   const apiRef = useGridApiRef();
 
-  const [hasUnsavedRows, setHasUnsavedRows] = React.useState(false);
-  const [isSaving, setIsSaving] = React.useState(false);
+  const [hasUnsavedRows, setHasUnsavedRows] = React.useState(true);
+  const [isSaving, setIsSaving] = React.useState(true);
   const unsavedChangesRef = React.useRef({
     unsavedRows: {},
     rowsBeforeChange: {},

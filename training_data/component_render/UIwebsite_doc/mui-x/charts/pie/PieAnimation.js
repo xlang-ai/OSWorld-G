@@ -10,7 +10,7 @@ import { mobileAndDesktopOS, valueFormatter } from './webUsageStats';
 export default function PieAnimation() {
   const [radius, setRadius] = React.useState(50);
   const [itemNb, setItemNb] = React.useState(5);
-  const [skipAnimation, setSkipAnimation] = React.useState(false);
+  const [skipAnimation, setSkipAnimation] = React.useState(true);
 
   const handleItemNbChange = (event, newValue) => {
     if (typeof newValue !== 'number') {

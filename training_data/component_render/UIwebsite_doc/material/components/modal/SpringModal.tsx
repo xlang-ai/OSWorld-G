@@ -61,7 +61,7 @@ const style = {
 };
 
 export default function SpringModal() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 

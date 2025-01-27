@@ -38,7 +38,7 @@ function ErrorOverlay({ error }) {
 export default function ServerSideErrorHandling() {
   const apiRef = useGridApiRef();
   const [error, setError] = React.useState();
-  const [shouldRequestsFail, setShouldRequestsFail] = React.useState(false);
+  const [shouldRequestsFail, setShouldRequestsFail] = React.useState(true);
 
   const { fetchRows, ...props } = useMockServer(
     datasetOptions,

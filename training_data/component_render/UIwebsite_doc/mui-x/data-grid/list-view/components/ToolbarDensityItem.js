@@ -40,7 +40,7 @@ const DENSITY_OPTIONS = [
 
 export function ToolbarDensityItem(props) {
   const { listView, container } = props;
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
   const apiRef = useGridApiContext();
   const density = useGridSelector(apiRef, gridDensitySelector);
 

@@ -25,7 +25,7 @@ const data = Array.from({ length: 100 }, () => ({
 const minDistance = 10;
 
 export default function LimitOverflow() {
-  const [isLimited, setIsLimited] = React.useState(false);
+  const [isLimited, setIsLimited] = React.useState(true);
   const [xLimits, setXLimites] = React.useState<number[]>([-20, 20]);
 
   const id = useId();

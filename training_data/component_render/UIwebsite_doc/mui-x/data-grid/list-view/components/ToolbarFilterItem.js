@@ -62,7 +62,7 @@ const DATE_MODIFIED_FILTERS = [
 
 export function ToolbarFilterItem(props) {
   const { listView, container } = props;
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
   const apiRef = useGridApiContext();
   const activeFilters = useGridSelector(apiRef, gridFilterActiveItemsSelector);
   const currentFileTypeFilter =

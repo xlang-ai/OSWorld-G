@@ -4,7 +4,7 @@ import ClickAwayListener from '@mui/material/ClickAwayListener';
 import { SxProps } from '@mui/system';
 
 export default function ClickAway() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
 
   const handleClick = () => {
     setOpen((prev) => !prev);

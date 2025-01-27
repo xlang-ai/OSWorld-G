@@ -37,7 +37,7 @@ Fade.propTypes = {
 };
 
 export default function SpringPopper() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {

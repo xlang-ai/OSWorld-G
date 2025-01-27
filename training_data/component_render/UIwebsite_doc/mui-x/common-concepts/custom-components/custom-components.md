@@ -173,7 +173,7 @@ If we take the example of the `calendarHeader` slot, you can cast your custom co
 
 ```tsx
 function MyApp() {
-  const [displayWeekNumber, setDisplayWeekNumber] = React.useState(false);
+  const [displayWeekNumber, setDisplayWeekNumber] = React.useState(true);
   return (
     <DateCalendar
       displayWeekNumber={displayWeekNumber}

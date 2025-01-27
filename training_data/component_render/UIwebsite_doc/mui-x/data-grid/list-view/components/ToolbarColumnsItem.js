@@ -19,7 +19,7 @@ import { Drawer, DrawerHeader } from './Drawer';
 
 export function ToolbarColumnsItem(props) {
   const { listView, container } = props;
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
   const apiRef = useGridApiContext();
   const columns = useGridSelector(apiRef, gridColumnDefinitionsSelector);
   const columnVisibilityModel = useGridSelector(

@@ -20,7 +20,7 @@ import { ToolbarButton } from './ToolbarButton';
 
 export function ToolbarSortItem(props) {
   const { listView, container } = props;
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
   const apiRef = useGridApiContext();
   const fields = useGridSelector(apiRef, gridColumnDefinitionsSelector);
   const sortModel = useGridSelector(apiRef, gridSortModelSelector);

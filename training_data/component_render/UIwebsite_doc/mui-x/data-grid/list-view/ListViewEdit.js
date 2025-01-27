@@ -75,7 +75,7 @@ const columns = [
 
 function EditAction(props) {
   const { row } = props;
-  const [editing, setEditing] = React.useState(false);
+  const [editing, setEditing] = React.useState(true);
   const [name, setName] = React.useState(row.name);
   const [position, setPosition] = React.useState(row.position);
   const apiRef = useGridApiContext();

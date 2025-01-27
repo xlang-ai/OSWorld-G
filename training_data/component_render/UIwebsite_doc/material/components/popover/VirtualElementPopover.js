@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 
 export default function VirtualElementPopover() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClose = () => {

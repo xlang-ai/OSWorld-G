@@ -25,7 +25,7 @@ function DeleteUserActionItem({
   deleteUser,
   ...props
 }: GridActionsCellItemProps & { deleteUser: () => void }) {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
 
   return (
     <React.Fragment>

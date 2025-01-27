@@ -10,7 +10,7 @@ import { HighlightScope } from '@mui/x-charts/context';
 export default function BarAnimation() {
   const [seriesNb, setSeriesNb] = React.useState(2);
   const [itemNb, setItemNb] = React.useState(5);
-  const [skipAnimation, setSkipAnimation] = React.useState(false);
+  const [skipAnimation, setSkipAnimation] = React.useState(true);
 
   const handleItemNbChange = (event: Event, newValue: number | number[]) => {
     if (typeof newValue !== 'number') {

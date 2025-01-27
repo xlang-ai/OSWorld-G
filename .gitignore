@@ -207,3 +207,14 @@ component_code/
 component_positions/
 
 secret_key.txt
+
+log.txt
+stats.json
+
+iter-0
+
+data/
+logs/
+
+token_cost.txt
+success.txt

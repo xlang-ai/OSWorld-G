@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 
 export default function ControlledOpenSelect() {
   const [age, setAge] = React.useState('');
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
 
   const handleChange = (event) => {
     setAge(event.target.value);

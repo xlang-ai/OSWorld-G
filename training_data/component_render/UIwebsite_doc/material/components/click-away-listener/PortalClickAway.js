@@ -4,7 +4,7 @@ import ClickAwayListener from '@mui/material/ClickAwayListener';
 import Portal from '@mui/material/Portal';
 
 export default function PortalClickAway() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
 
   const handleClick = () => {
     setOpen((prev) => !prev);

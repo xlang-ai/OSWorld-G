@@ -9,7 +9,7 @@ import MenuList from '@mui/material/MenuList';
 import Stack from '@mui/material/Stack';
 
 export default function MenuListComposition() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
   const anchorRef = React.useRef<HTMLButtonElement>(null);
 
   const handleToggle = () => {

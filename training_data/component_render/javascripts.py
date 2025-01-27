@@ -1,10 +1,10 @@
+# import '@fontsource/roboto/300.css';
+# import '@fontsource/roboto/400.css';
+# import '@fontsource/roboto/500.css';
+# import '@fontsource/roboto/700.css';
 JS_WITH_COMPONENT = r"""
 import React from 'react';
 import './App.css';
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
 import {component_name} from './components/{component_name}';
 
 function App() {{
@@ -18,7 +18,7 @@ function App() {{
         borderRadius: '8px',
         overflow: 'visible', // 确保内容不会被裁剪
     }}}}>
-        <{style_code} />
+        <{component_name} />
       </div>
     </div>
   );
@@ -30,10 +30,6 @@ export default App;
 JS_WITHOUT_COMPONENT = r"""
 import React from 'react';
 import './App.css';
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
 
 function App() {
   return (
@@ -146,7 +142,6 @@ JS_EVAL_POSITION = """() => {
                 return {
                     attributes: getElementAttributes(element),
                     text: element.textContent.trim(),
-                    isInteractive: interactiveElements.includes(element),
                     position: {
                         x_left: rect.left + window.scrollX,
                         y_top: rect.top + window.scrollY,

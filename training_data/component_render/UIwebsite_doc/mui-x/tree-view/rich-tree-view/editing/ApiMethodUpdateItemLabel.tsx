@@ -7,7 +7,7 @@ import { useTreeViewApiRef } from '@mui/x-tree-view/hooks';
 import { MUI_X_PRODUCTS } from './products';
 
 export default function ApiMethodUpdateItemLabel() {
-  const [isLabelUpdated, setIsLabelUpdated] = React.useState(false);
+  const [isLabelUpdated, setIsLabelUpdated] = React.useState(true);
   const apiRef = useTreeViewApiRef();
 
   const handleUpdateLabel = () => {

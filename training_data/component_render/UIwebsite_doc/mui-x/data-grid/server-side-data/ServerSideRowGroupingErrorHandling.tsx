@@ -16,7 +16,7 @@ export default function ServerSideRowGroupingErrorHandling() {
   const apiRef = useGridApiRef();
   const [rootError, setRootError] = React.useState<string>();
   const [childrenError, setChildrenError] = React.useState<string>();
-  const [shouldRequestsFail, setShouldRequestsFail] = React.useState(false);
+  const [shouldRequestsFail, setShouldRequestsFail] = React.useState(true);
 
   const { fetchRows, columns } = useMockServer(
     {

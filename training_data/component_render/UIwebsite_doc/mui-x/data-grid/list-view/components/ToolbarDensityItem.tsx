@@ -47,7 +47,7 @@ interface ToolbarDensityItemProps {
 
 export function ToolbarDensityItem(props: ToolbarDensityItemProps) {
   const { listView, container } = props;
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
   const apiRef = useGridApiContext();
   const density = useGridSelector(apiRef, gridDensitySelector);
 

@@ -24,7 +24,7 @@ interface ToolbarColumnsItemProps {
 
 export function ToolbarColumnsItem(props: ToolbarColumnsItemProps) {
   const { listView, container } = props;
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
   const apiRef = useGridApiContext();
   const columns = useGridSelector(apiRef, gridColumnDefinitionsSelector);
   const columnVisibilityModel = useGridSelector(

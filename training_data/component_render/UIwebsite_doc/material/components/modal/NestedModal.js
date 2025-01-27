@@ -18,7 +18,7 @@ const style = {
 };
 
 function ChildModal() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
   const handleOpen = () => {
     setOpen(true);
   };
@@ -48,7 +48,7 @@ function ChildModal() {
 }
 
 export default function NestedModal() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
   const handleOpen = () => {
     setOpen(true);
   };

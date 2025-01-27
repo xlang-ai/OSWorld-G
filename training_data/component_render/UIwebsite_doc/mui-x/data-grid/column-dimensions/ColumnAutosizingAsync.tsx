@@ -53,7 +53,7 @@ function getFakeData(length: number): Promise<{ rows: GridData['rows'] }> {
 
 export default function ColumnAutosizingAsync() {
   const apiRef = useGridApiRef();
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(true);
   const [rows] = React.useState([]);
 
   const fetchData = React.useCallback(() => {

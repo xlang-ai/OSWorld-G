@@ -9,7 +9,7 @@ import { LinePlot, MarkPlot } from '@mui/x-charts/LineChart';
 import { ChartsXAxis } from '@mui/x-charts/ChartsXAxis';
 
 export default function BasicComposition() {
-  const [isResponsive, setIsResponsive] = React.useState(false);
+  const [isResponsive, setIsResponsive] = React.useState(true);
 
   const sizingProps = isResponsive ? {} : { width: 500, height: 300 };
   return (
