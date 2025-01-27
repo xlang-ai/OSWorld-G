@@ -146,6 +146,8 @@ dmypy.json
 # data
 **/data/**/*
 !**/utils/data/**/*
+/layout_crawling/systhesis/processed_data/**/*
+
 
 # tmp files
 **/tmp/**/*

@@ -8,6 +8,7 @@ from io import BytesIO
 import concurrent.futures
 from concurrent.futures import ThreadPoolExecutor
 import numpy as np
+import time
 
 # TODO: test figma token, change the access token with your own
 
@@ -72,13 +73,11 @@ class FigmaExporter:
             return ready_for_dev_nodes
         return traverse_node(node)
 
-    def get_image_urls_batch(self, file_key: str, ids: List[str], batch_size: int = 50) -> Dict:
-        """分批获取图片URL"""
+    def get_image_urls_batch(self, file_key: str, ids: List[str], batch_size: int = 5, max_retries: int = 3, retry_delay: float = 1.0) -> Dict:
+        """分批并发获取图片URL，带有重试机制"""
         all_images = {}
-        
-        # 将ID列表分成多个批次
-        for i in range(0, len(ids), batch_size):
-            batch_ids = ids[i:i + batch_size]
+
+        def fetch_batch(batch_ids: List[str]) -> Dict:
             params = {
                 'ids': ','.join(batch_ids),
                 'format': 'png',
@@ -86,25 +85,50 @@ class FigmaExporter:
                 'use_absolute_bounds': 'true'
             }
             url = f"{self.base_url}/images/{file_key}"
-            response = requests.get(url, headers=self.headers, params=params)
             
-            if response.status_code == 200:
-                all_images.update(response.json()['images'])
-            else:
-                print(f"Failed to get images batch {i//batch_size + 1}: {response.status_code}")
-                continue
-                
+            for retry in range(max_retries):
+                try:
+                    response = requests.get(url, headers=self.headers, params=params)
+                    if response.status_code == 200:
+                        return response.json()['images']
+                    else:
+                        print(f"Attempt {retry + 1}/{max_retries}: Failed to get images batch: {response.status_code}")
+                        if retry < max_retries - 1:
+                            time.sleep(retry_delay * (retry + 1))
+                except Exception as e:
+                    print(f"Attempt {retry + 1}/{max_retries}: Error occurred: {str(e)}")
+                    if retry < max_retries - 1:
+                        time.sleep(retry_delay * (retry + 1))
+            return {}
+
+        # 将ID列表分成多个批次
+        batches = [ids[i:i + batch_size] for i in range(0, len(ids), batch_size)]
+        
+        # 使用线程池并发获取图片URL
+        with ThreadPoolExecutor(max_workers=min(32, len(batches))) as executor:
+            futures = [executor.submit(fetch_batch, batch) for batch in batches]
+            
+            for future in concurrent.futures.as_completed(futures):
+                try:
+                    batch_results = future.result()
+                    all_images.update(batch_results)
+                except Exception as e:
+                    print(f"Error processing batch: {str(e)}")
+
         return all_images
     
     def download_image(self, image_url: str, save_path: str):
         """下载并保存图片"""
-        response = requests.get(image_url)
-        if response.status_code == 200:
-            img = Image.open(BytesIO(response.content))
+        try:
+            response = requests.get(image_url)
+            if response.status_code == 200:
+                img = Image.open(BytesIO(response.content))
 
-            img.save(save_path)
-        else:
-            raise Exception(f"Failed to download image: {response.status_code}")
+                img.save(save_path)
+            else:
+                raise Exception(f"Failed to download image: {response.status_code}")
+        except Exception as e:
+            print(f"Failed to download image: {e}")
     
     def get_element_type(self, node: Dict) -> str:
         """识别UI元素的具体类型"""
@@ -127,10 +151,12 @@ class FigmaExporter:
             children = [self.extract_ui_element(child) for child in node['children']]
         
         # 获取绝对位置和大小
-        x = node.get('absoluteBoundingBox', {}).get('x', 0)
-        y = node.get('absoluteBoundingBox', {}).get('y', 0)
-        width = node.get('absoluteBoundingBox', {}).get('width', 0)
-        height = node.get('absoluteBoundingBox', {}).get('height', 0)
+        # 添加额外的空字典作为默认值，防止 None 的情况
+        bounding_box = node.get('absoluteBoundingBox') or {}
+        x = bounding_box.get('x', 0)
+        y = bounding_box.get('y', 0)
+        width = bounding_box.get('width', 0)
+        height = bounding_box.get('height', 0)
         
         return UIElement(
             id=node['id'],
@@ -197,15 +223,16 @@ class FigmaExporter:
 
 def main():
     # 设置访问令牌和文件信息
-    access_token = "figd_n87Xd6ICBd-D0cgsGlYhftfrYmYtlEnJkqRmhGwc"
-    file_key = "66jTOhEUVXJxfeem9m03hH"
-    output_dir = "data/E-commerce-UI---Figma-Ecommerce-UI-Kit-(Demo-Version)-(Community)"
+    access_token = "figd_TmftK8znoD35IZJPjMEKKgozHviTOKFam0LlbF7e"
+    file_key = "AS1kkyewsUwui44PzFFPhx"
+    output_dir = "data/Amazon-UI-Design-(Community)"
     
     exporter = FigmaExporter(access_token)
     
     try:
         print("Getting file data...")
         node_data = exporter.get_file(file_key)['document']
+        #node_data = exporter.get_node(file_key, "29497-31982")['nodes']['29497:31982']['document']
         print(f"Successfully retrieved node data")
 
         filtered_node = exporter.filter_node(node_data)
@@ -233,7 +260,7 @@ def main():
             image_urls = exporter.get_image_urls_batch(file_key, image_nodes)
             
             # 使用线程池并行下载图片
-            with ThreadPoolExecutor(max_workers=16) as executor:
+            with ThreadPoolExecutor(max_workers=32) as executor:
                 futures = [
                     executor.submit(
                         exporter.download_image_task, 
