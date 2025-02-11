@@ -3,6 +3,8 @@ import os
 import json
 import matplotlib.pyplot as plt
 import numpy as np
+import argparse
+from aguvis_7b_osworld_g import BenchmarkRunner
 # from aguvis import BenchmarkRunner
 
 
@@ -110,7 +112,7 @@ def batch_visualize_results(runner, results_dir="visualization_results"):
     os.makedirs(results_dir, exist_ok=True)
 
     # 加载缓存的预测结果
-    cache_file = "prediction_cache.json"
+    cache_file = "_".join(runner.model_path.split('/')[-3:]) + runner.annotation_path.replace('/', '_').replace('.json', '.cache') + "_prediction_cache.json"
     if not os.path.exists(cache_file):
         print(f"Cache file {cache_file} not found!")
         return
@@ -159,12 +161,15 @@ def batch_visualize_results(runner, results_dir="visualization_results"):
             continue
 
         # 获取真实标注
-        if item['type'] == 'bbox':
+        if 'bbox' == item['box_type']:
             annotation_type = "bbox"
-            annotation_coords = item['annotation']['bbox']
+            annotation_coords = item['box_coordinates']
+            image_size = item['image_size']
         else:
             annotation_type = "polygon"
-            annotation_coords = item['annotation']['points']
+            annotation_coords = item['box_coordinates']
+            boxes_size = item['image_size']
+            image_size = item['image_size']
 
         # 生成可视化
         save_path = os.path.join(results_dir, f"{cache_key}.png")
@@ -179,35 +184,49 @@ def batch_visualize_results(runner, results_dir="visualization_results"):
         print(f"Saved visualization to {save_path}")
 
 
-# if __name__ == "__main__":
-#     # Example usage
-#     runner = BenchmarkRunner(
-#         annotation_path="annotations.json",
-#         model_path="/cpfs01/data/shared/Group-m6/zeyu.czy/workspace/pythonfile/xlang/tianbao/LLaVA_agent_dlc_results/mm-agent/checkpoints/stage4.1_reason/Qwen2-VL-7B-Instruct-sft-stage4.1_reason-4.1.5-lr1e_5-bsz128-reason",
-#         image_dir="images"
-#     )
-#
-#     results = runner.evaluate()
-#     print(f"Evaluation Results:")
-#     print(f"Total samples: {results['total']}")
-#     print(f"Correct predictions: {results['correct']}")
-#     print(f"Accuracy: {results['accuracy']*100:.2f}%")
-#
-#     batch_visualize_results(runner, "visualization_results")
-if __name__ == '__main__':
-    image_path = "images/FfjmOj9Bbr.png"
-    image = Image.open(image_path)
+if __name__ == "__main__":
+    # Set up argument parsing
+    parser = argparse.ArgumentParser(description="Run benchmark evaluation with custom annotation and model paths.")
+    
+    # Add arguments for annotation_path and model_path
+    parser.add_argument("--annotation_path", type=str, required=True, help="Path to the annotation file.")
+    parser.add_argument("--model_path", type=str, required=True, help="Path to the model checkpoint.")
+    parser.add_argument("--image_dir", type=str, default="images", help="Directory containing images (default: 'images').")
+    parser.add_argument("--vis_dir", type=str, default="vis", help="Directory containing visualization results (default: 'vis').")
 
-    visualize_prediction(
-        image = image,
-        instruction = "",
-        annotation_type="bbox",
-        annotation_coords=[
-        771,
-        135.5,
-        24,
-        25.44999999999999
-    ],
-        predicted_coords=[0, 0, 0, 0],
-        save_path="./tmp_visualization.png"
+    # Parse the arguments
+    args = parser.parse_args()
+
+    # Example usage with parsed arguments
+    runner = BenchmarkRunner(
+        annotation_path=args.annotation_path,
+        model_path=args.model_path,
+        image_dir=args.image_dir
     )
+    
+    results = runner.evaluate()
+    
+    print(f"Evaluation Results:")
+    print(f"Total samples: {results['total']}")
+    print(f"Correct predictions: {results['correct']}")
+    print(f"Accuracy: {results['accuracy']*100:.2f}%")
+
+    batch_visualize_results(runner, args.vis_dir)
+
+# if __name__ == '__main__':
+#     image_path = "images/FfjmOj9Bbr.png"
+#     image = Image.open(image_path)
+
+#     visualize_prediction(
+#         image = image,
+#         instruction = "",
+#         annotation_type="bbox",
+#         annotation_coords=[
+#         771,
+#         135.5,
+#         24,
+#         25.44999999999999
+#     ],
+#         predicted_coords=[0, 0, 0, 0],
+#         save_path="./tmp_visualization.png"
+#     )

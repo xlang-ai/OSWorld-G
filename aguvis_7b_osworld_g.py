@@ -18,10 +18,12 @@ warnings.filterwarnings("ignore")
 from loguru import logger as eval_logger
 from transformers import AutoTokenizer
 from qwen_vl_utils import process_vision_info
-from llava.model.language_model.qwen2_vl.image_processing_qwen2_vl import Qwen2VLImageProcessor
-from llava.model.language_model.qwen2_vl.processing_qwen2_vl import Qwen2VLProcessor
-from llava.model.language_model.qwen2_vl.modeling_qwen2_vl import Qwen2VLForConditionalGeneration
 
+from transformers import (
+    Qwen2VLImageProcessor,
+    Qwen2VLForConditionalGeneration,
+    Qwen2VLProcessor,
+)
 from eval import GroundingEval
 from PIL import Image
 
@@ -398,7 +400,7 @@ class BenchmarkRunner:
         self.model.task_dict['grounding'] = {'test': {}}
 
         # Load cached predictions if they exist
-        cache_file = "prediction_cache_aguvis_7b_refined_component_instruction.json"
+        cache_file = "_".join(self.model_path.split('/')[-3:]) + self.annotation_path.replace('/', '_').replace('.json', '.cache') + "_prediction_cache.json"
         predictions_cache = {}
         if os.path.exists(cache_file):
             with open(cache_file, 'r') as f:
@@ -536,15 +538,29 @@ class BenchmarkRunner:
             'new_predictions': len(items_to_predict)
         }
 
+import argparse
+
 if __name__ == "__main__":
-    # Example usage
+    # Set up argument parsing
+    parser = argparse.ArgumentParser(description="Run benchmark evaluation with custom annotation and model paths.")
+    
+    # Add arguments for annotation_path and model_path
+    parser.add_argument("--annotation_path", type=str, required=True, help="Path to the annotation file.")
+    parser.add_argument("--model_path", type=str, required=True, help="Path to the model checkpoint.")
+    parser.add_argument("--image_dir", type=str, default="images", help="Directory containing images (default: 'images').")
+    
+    # Parse the arguments
+    args = parser.parse_args()
+
+    # Example usage with parsed arguments
     runner = BenchmarkRunner(
-        annotation_path="annotations_v3_refined_component.json",
-        model_path="/cpfs01/data/shared/Group-m6/zeyu.czy/workspace/pythonfile/xlang/tianbao/LLaVA_agent_dlc_results/mm-agent/checkpoints/stage4.1_reason/Qwen2-VL-7B-Instruct-sft-stage4.1_reason-4.1.5-lr1e_5-bsz128-reason",
-        image_dir="images"
+        annotation_path=args.annotation_path,
+        model_path=args.model_path,
+        image_dir=args.image_dir
     )
     
     results = runner.evaluate()
+    
     print(f"Evaluation Results:")
     print(f"Total samples: {results['total']}")
     print(f"Correct predictions: {results['correct']}")

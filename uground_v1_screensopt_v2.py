@@ -9,6 +9,7 @@ from accelerate import Accelerator, DistributedType
 from typing import List, Optional, Union, Tuple
 import uuid
 import os
+import re
 
 import warnings
 
@@ -28,7 +29,44 @@ from PIL import Image
 
 import json
 
-ground_system_message = f"You are a GUI agent. You are given a task and a screenshot of the screen. You need to perform pyautogui click/moveTo action to complete the task."
+# ground_system_message = f"You are a GUI agent. You are given a task and a screenshot of the screen. You need to perform pyautogui click/moveTo action to complete the task."
+# ground_system_message = """You are a GUI agent. You are given a task and your action history, with screenshots. You need to perform the next action to complete the task. 
+
+# ## Output Format
+# ```\nThought: ...
+# Action: ...\n```
+
+# ## Action Space
+
+# click(start_box='<|box_start|>(x1,y1)<|box_end|>')
+# left_double(start_box='<|box_start|>(x1,y1)<|box_end|>')
+# right_single(start_box='<|box_start|>(x1,y1)<|box_end|>')
+# drag(start_box='<|box_start|>(x1,y1)<|box_end|>', end_box='<|box_start|>(x3,y3)<|box_end|>')
+# hotkey(key='')
+# type(content='') #If you want to submit your input, use \"\
+# \" at the end of `content`.
+# scroll(start_box='<|box_start|>(x1,y1)<|box_end|>', direction='down or up or right or left')
+# wait() #Sleep for 5s and take a screenshot to check for any changes.
+# finished()
+# call_user() # Submit the task and call the user when the task is unsolvable, or when you need the user's help.
+
+
+# ## Note
+# - Use Chinese in `Thought` part.
+# - Summarize your next action (with its target element) in one sentence in `Thought` part.
+
+# ## User Instruction
+# """
+user_prompt = """
+  Your task is to help the user identify the precise coordinates (x, y) of a specific area/element/object on the screen based on a description.
+
+  - Your response should aim to point to the center or a representative point within the described area/element/object as accurately as possible.
+  - If the description is unclear or ambiguous, infer the most relevant area or element based on its likely context or purpose.
+  - Your answer should be a single string (x, y) corresponding to the point of the interest.
+
+  Description: {description}
+
+  Answer:"""
 
 
 def make_context(
@@ -57,6 +95,7 @@ class Qwen2_VL(lmms):
         use_cache=True,
         **kwargs,
     ) -> None:
+        print("Batch_size: ", batch_size)
         super().__init__()
         # Do not use kwargs for now
         assert kwargs == {}, f"Unexpected kwargs: {kwargs}"
@@ -70,7 +109,8 @@ class Qwen2_VL(lmms):
         self._tokenizer = AutoTokenizer.from_pretrained(pretrained)
         min_pixels = 256*28*28
         # max_pixels = 46*26*28*28 #720p
-        max_pixels = 69*39*28*28 #1080p
+        # max_pixels = 69*39*28*28 #1080p
+        max_pixels = 1280*28*28
         self._processor = Qwen2VLProcessor.from_pretrained(pretrained,min_pixels=min_pixels, max_pixels=max_pixels)
         self.tokenizer.padding_side = "left"
         self._config = self._model.config
@@ -116,7 +156,7 @@ class Qwen2_VL(lmms):
     @property
     def eot_token_id(self):
         # we use EOT because end of *text* is more accurate for what we're doing than end of *sentence*
-        return 151643
+        return 151645
 
     @property
     def max_length(self):
@@ -259,12 +299,12 @@ class Qwen2_VL(lmms):
                 if "<image>" in contexts[i]:
                     contexts[i] = contexts[i].replace("<image>", "")
 
-            chat_template = "{% set image_count = namespace(value=0) %}{% set video_count = namespace(value=0) %}{% for message in messages %}<|im_start|>{{ message['role'] }}\n{% if message['content'] is string %}{{ message['content'] }}<|im_end|>\n{% else %}{% for content in message['content'] %}{% if content['type'] == 'image' or 'image' in content or 'image_url' in content %}{% set image_count.value = image_count.value + 1 %}{% if add_vision_id %}Picture {{ image_count.value }}: {% endif %}<|vision_start|><|image_pad|><|vision_end|>{% elif content['type'] == 'video' or 'video' in content %}{% set video_count.value = video_count.value + 1 %}{% if add_vision_id %}Video {{ video_count.value }}: {% endif %}<|vision_start|><|video_pad|><|vision_end|>{% elif 'text' in content %}{{ content['text'] }}{% endif %}{% endfor %}<|im_end|>\n{% endif %}{% endfor %}{% if add_generation_prompt %}<|im_start|>assistant\n{% endif %}"
+            chat_template = "{% set image_count = namespace(value=0) %}{% set video_count = namespace(value=0) %}{% for message in messages %}{% if loop.first and message['role'] != 'system' %}<|im_start|>system\nYou are a helpful assistant.<|im_end|>\n{% endif %}<|im_start|>{{ message['role'] }}\n{% if message['content'] is string %}{{ message['content'] }}<|im_end|>\n{% else %}{% for content in message['content'] %}{% if content['type'] == 'image' or 'image' in content or 'image_url' in content %}{% set image_count.value = image_count.value + 1 %}{% if add_vision_id %}Picture {{ image_count.value }}: {% endif %}<|vision_start|><|image_pad|><|vision_end|>{% elif content['type'] == 'video' or 'video' in content %}{% set video_count.value = video_count.value + 1 %}{% if add_vision_id %}Video {{ video_count.value }}: {% endif %}<|vision_start|><|video_pad|><|vision_end|>{% elif 'text' in content %}{{ content['text'] }}{% endif %}{% endfor %}<|im_end|>\n{% endif %}{% endfor %}{% if add_generation_prompt %}<|im_start|>assistant\n{% endif %}"
             # Similar to llava, is visual paths has len 0
             # Then nothing will be executed
             messages = []
-            system_message = ground_system_message
-            messages.append({"role" : "system", "content" : [{"type": "text", "text": system_message}]})
+            # system_message = ground_system_message
+            # messages.append({"role" : "system", "content" : [{"type": "text", "text": system_message}]})
             current_action = ""
             if len(visual_paths) == 0:
                 for context in contexts:
@@ -272,25 +312,26 @@ class Qwen2_VL(lmms):
                         context_json = json.loads(context)
                         context = context_json["user_instruction"]
                         current_action = context_json["current_action"]
-                    messages.append({"role": "user", "content": [{"type": "text", "text": context}]})
+                    messages.append({"role": "user", "content": [{"type": "text", "text": user_prompt.format(description = context)}]})
             else:
                 for visual_path, context in zip(visual_paths, contexts):
                     if utils.is_json(context):
                         context_json = json.loads(context)
                         context = context_json["user_instruction"]
                         current_action = context_json["current_action"]
-                    messages.append({"role": "user", "content": [{"type": "image", "image": visual_path}, {"type": "text", "text": context}]})
+                    print("Visual_Path: ", visual_path)
+                    messages.append({"role": "user", "content": [ {"type": "image", "image": visual_path}, {"type": "text", "text": user_prompt.format(description = context)}]})
 
             # Preparation for inference
             print(messages)
             text = self._processor.apply_chat_template(
                 messages, tokenize=False, add_generation_prompt=False, chat_template=chat_template,
             )
-            recipient_text = '<|im_start|>assistant<|recipient|>os\n'
-            recipient_text += current_action
-            if current_action != "":
-                recipient_text += "<|im_end|>\n<|im_start|>assistant<|recipient|>os\n"
-            text = text + recipient_text
+            # recipient_text = '<|im_start|>assistant<|recipient|>os\n'
+            # recipient_text += current_action
+            # if current_action != "":
+            #     recipient_text += "<|im_end|>\n<|im_start|>assistant<|recipient|>os\n"
+            # text = text + recipient_text
             eval_logger.info(text)
 
             image_inputs, video_inputs = process_vision_info(messages)
@@ -302,14 +343,18 @@ class Qwen2_VL(lmms):
                 return_tensors="pt",
             )
             # preconfigure gen_kwargs with defaults
-            if "max_new_tokens" not in gen_kwargs:
-                gen_kwargs["max_new_tokens"] = 1024
+            # for ui-tars, max_new_tokens are 128
+            gen_kwargs["max_new_tokens"] = 128
+            # if "max_new_tokens" not in gen_kwargs:
+            #     gen_kwargs["max_new_tokens"] = 1024
             if "temperature" not in gen_kwargs:
                 gen_kwargs["temperature"] = 0
             if "top_p" not in gen_kwargs:
                 gen_kwargs["top_p"] = None
             if "num_beams" not in gen_kwargs:
                 gen_kwargs["num_beams"] = 1
+            if "frequency_penalty" not in gen_kwargs:
+                gen_kwargs["frequency_penalty"] = 1
 
             pad_token_id = self.tokenizer.pad_token_id if self.tokenizer.pad_token_id is not None else self.tokenizer.eos_token_id
 
@@ -402,6 +447,7 @@ class BenchmarkRunner:
         predictions_cache = {}
         if os.path.exists(cache_file):
             with open(cache_file, 'r') as f:
+                print(f"Loading cached predictions from {cache_file}")
                 predictions_cache = json.load(f)
 
         # 准备所有instances
@@ -431,7 +477,7 @@ class BenchmarkRunner:
             
             instance = Instance(
                 request_type="generate_until",
-                arguments=(message_str, {"max_new_tokens": 100}, get_image, str(idx), "grounding", "test"),
+                arguments=(message_str, {"max_new_tokens": 128}, get_image, str(idx), "grounding", "test"),
                 idx=idx,
                 metadata={"task": "grounding", "doc_id": str(idx), "repeats": None}
             )
@@ -455,18 +501,18 @@ class BenchmarkRunner:
                 predictions_cache[cache_key] = response.strip()
                 cached_results.append(response.strip())
             
-            with open(cache_file, 'w') as f:
-                json.dump(predictions_cache, f)
+            with open(cache_file, 'w', encoding='utf-8') as f:
+                json.dump(predictions_cache, f, ensure_ascii=False)
         
         def parse_coordinates(response_text):
             """Parse coordinates from model output string."""
             # 移除所有空白字符
             response_text = response_text.strip()
-            response_text = response_text.split('\n')[0] if len(response_text.split('\n')) > 1 else response_text
+            # response_text = response_text.split('\n')[0] if len(response_text.split('\n')) > 1 else response_text
             # print(response_text, ">>>>>>")
             
             # 如果是pyautogui.click格式
-            if "pyautogui.click" or "pyautogui.moveTo" in response_text:
+            if "pyautogui.click" in response_text or "pyautogui.moveTo" in response_text:
                 # 提取x=和y=后的数值
                 coordinates = {}
                 parts = response_text.split(',')
@@ -490,7 +536,15 @@ class BenchmarkRunner:
                 if isinstance(coords, list) and len(coords) == 4:
                     return coords
             else:
-                print("Invalid coordinate format")
+                # for ui-tars and uground
+                pattern = r'(\d+,\s*\d+)'
+                matches = re.findall(pattern, response_text)
+                if matches:
+                    last_match = matches[-1]
+                    x = float(int(last_match[0]) / 1000)
+                    y = float(int(last_match[1]) / 1000)
+                    return [x, y, x, y]
+                print(f"Invalid coordinate format: {response_text}")
                 return [0, 0, 0, 0]
         
         # 统计正确率
@@ -536,29 +590,16 @@ class BenchmarkRunner:
             'new_predictions': len(items_to_predict)
         }
 
-import argparse
-
 if __name__ == "__main__":
-    # Set up argument parsing
-    parser = argparse.ArgumentParser(description="Run benchmark evaluation with custom annotation, model, and image paths.")
-    
-    # Add arguments for annotation_path, model_path, and image_dir
-    parser.add_argument("--annotation_path", type=str, required=True, help="Path to the annotation file (e.g., screenspot_desktop_v2.json).")
-    parser.add_argument("--model_path", type=str, required=True, help="Path to the model checkpoint.")
-    parser.add_argument("--image_dir", type=str, default="screenspotv2_image", help="Directory containing images (default: 'screenspotv2_image').")
-    
-    # Parse the arguments
-    args = parser.parse_args()
-
-    # Example usage with parsed arguments
+    # Example usage
     runner = BenchmarkRunner(
-        annotation_path=args.annotation_path,
-        model_path=args.model_path,
-        image_dir=args.image_dir
+        annotation_path="screenspot_desktop_v2.json",
+        # model_path="/cpfs01/data/shared/Group-m6/zeyu.czy/workspace/pythonfile/xlang/tianbao/hf_models/checkpoints/Qwen2-VL-7B-Instruct-sft-aguvis_stage1+iconv0122-images_pure_color_background-720p",
+        model_path="/cpfs01/data/shared/Group-m6/zeyu.czy/workspace/pythonfile/xlang/tianbao/hf_models/UGround-V1-2B", # UGround-V1-7B
+        image_dir="screenspotv2_image"
     )
     
     results = runner.evaluate()
-    
     print(f"Evaluation Results:")
     print(f"Total samples: {results['total']}")
     print(f"Correct predictions: {results['correct']}")
