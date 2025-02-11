@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Annotation Visualizer</title>
+    <style>
+        .image-wrapper {
+            position: relative;
+            display: inline-block;
+            margin: 0 auto;
+        }
+        .image-wrapper img {
+            display: block;
+            height: 720px;
+            width: auto;
+        }
+        .annotation {
+            position: absolute;
+            border: 2px solid #ff0000;
+            background-color: rgba(255, 0, 0, 0.1);
+            pointer-events: none;
+            transform-origin: top left;
+        }
+        .polygon {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        .navigation {
+            margin: 20px 0;
+        }
+        .annotations-list {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navigation">
+        <a href="/?page={{ current_page - 1 }}">Previous</a>
+        <span>Image {{ current_page + 1 }} of {{ total_pages }}</span>
+        <a href="/?page={{ current_page + 1 }}">Next</a>
+    </div>
+
+    <div class="image-wrapper" style="width: {{ '%.4f'|format(image_data.display_width) }}px; height: {{ image_data.display_height }}px;">
+        <img src="data:image/png;base64,{{ image_data.image }}"
+             width="{{ '%.4f'|format(image_data.display_width) }}"
+             height="{{ image_data.display_height }}">
+
+        {% for annotation in image_data.annotations %}
+            {% if annotation.type == 'bbox' %}
+                <div class="annotation" style="
+                    left: {{ '%.4f'|format(annotation.coords[0]) }}px;
+                    top: {{ '%.4f'|format(annotation.coords[1]) }}px;
+                    width: {{ '%.4f'|format(annotation.coords[2]) }}px;
+                    height: {{ '%.4f'|format(annotation.coords[3]) }}px;"
+                    title="{{ annotation.instruction }}">
+                </div>
+            {% elif annotation.type == 'polygon' %}
+                <svg class="polygon">
+                    <polygon points="{% for x, y in annotation.point_pairs %}{{ '%.4f'|format(x) }},{{ '%.4f'|format(y) }} {% endfor %}"
+                            style="fill: rgba(255, 0, 0, 0.1); stroke: #ff0000; stroke-width: 2;"
+                            title="{{ annotation.instruction }}"/>
+                </svg>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="annotations-list">
+        {% for annotation in image_data.annotations %}
+            <div>
+                <p>{{ annotation.instruction }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
