@@ -141,16 +141,20 @@ class BenchmarkRunner:
         flatten_data_items = []
 
         for i, item in enumerate(data):
-            image_path = os.path.join(self.image_dir, item['img_filename'])
+            image_path = os.path.join(self.image_dir, item['image_path'])
             image = Image.open(image_path)
+            
+            # Get instruction and coordinates
+            # for i, annotation in enumerate(item['annotations']):
 
             flatten_data_items.append({
-                'annotation_id': str(i),
+                'id': item['id'],
+                'annotation_id': str(i), # annotation['id'] is wrong....
                 'image': image,
                 'instruction': item['instruction'],
-                'image_size': [image.width, image.height],
-                'box_type': 'bbox',
-                'box_coordinates': item['bbox']
+                'image_size': [item['image_size'][0], item['image_size'][1]],
+                'box_type': item['box_type'],
+                'box_coordinates': item['box_coordinates']
             })
 
         return flatten_data_items
