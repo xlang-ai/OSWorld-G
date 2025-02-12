@@ -468,7 +468,7 @@ class BenchmarkRunner:
             # print(response_text, ">>>>>>")
             
             # 如果是pyautogui.click格式
-            if "pyautogui.click" or "pyautogui.moveTo" in response_text:
+            if "pyautogui.click" in response_text or "pyautogui.moveTo" in response_text:
                 # 提取x=和y=后的数值
                 coordinates = {}
                 parts = response_text.split(',')

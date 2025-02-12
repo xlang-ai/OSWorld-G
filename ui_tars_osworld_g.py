@@ -537,8 +537,12 @@ class BenchmarkRunner:
                     x = float(int(last_match[0]) / 1000)
                     y = float(int(last_match[1]) / 1000)
                     return [x, y, x, y]
-                print(f"Invalid coordinate format: {response_text}")
-                return [0, 0, 0, 0]
+                else:
+                    if 'refusal' in response_text or 'none' in response_text:
+                        return [-1, -1, -1, -1]
+                    else:
+                        print(f"Invalid coordinate format: {response_text}")
+                        return [-1, -1, -1, -1]
         
         # 统计正确率
         total = len(items)
@@ -557,11 +561,19 @@ class BenchmarkRunner:
                 boxes_coordinate = item['box_coordinates'][:2]
                 boxes_size = item['box_coordinates'][2:]
                 image_size = item['image_size']
-            else:
+            elif 'polygon' == item['box_type']:
                 boxes_type = "polygon"
                 boxes_coordinate = item['box_coordinates']
                 boxes_size = item['image_size']
                 image_size = item['image_size']
+            elif 'refusal' == item['box_type']:
+                boxes_type = "refusal"
+                boxes_coordinate = [-1, -1, -1, -1]
+                boxes_size = item['image_size']
+                image_size = item['image_size']
+            else:
+                print("Invalid box type")
+                continue
             
             is_correct = evaluator._eval(
                 predicted_coords,
