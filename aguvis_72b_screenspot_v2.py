@@ -270,7 +270,7 @@ class BenchmarkRunner:
             # print(response_text, ">>>>>>")
             
             # 如果是pyautogui.click格式
-            if "pyautogui.click" or "pyautogui.moveTo" in response_text:
+            if "pyautogui.click" in response_text or "pyautogui.moveTo" in response_text:
                 # 提取x=和y=后的数值
                 coordinates = {}
                 parts = response_text.split(',')
@@ -340,12 +340,25 @@ class BenchmarkRunner:
             'new_predictions': len(items_to_predict)
         }
 
+import argparse
+
 if __name__ == "__main__":
+    # Set up argument parsing
+    parser = argparse.ArgumentParser(description="Run benchmark evaluation with custom annotation, model, and image paths.")
+    
+    # Add arguments for annotation_path, model_path, and image_dir
+    parser.add_argument("--annotation_path", type=str, required=True, help="Path to the annotation file (e.g., screenspot_desktop_v2.json).")
+    parser.add_argument("--model_path", type=str, required=True, help="Path to the model checkpoint.")
+    parser.add_argument("--image_dir", type=str, default="screenspotv2_image", help="Directory containing images (default: 'screenspotv2_image').")
+    
+    # Parse the arguments
+    args = parser.parse_args()
+
     # Example usage
     runner = BenchmarkRunner(
-        annotation_path="screenspot_desktop_v2.json",
-        model_path="agentnet_13k_l3x3_aguvis_obs",
-        image_dir="screenspotv2_image"
+        annotation_path=args.annotation_path,
+        model_path=args.model_path,
+        image_dir=args.image_dir
     )
     
     results = runner.evaluate()

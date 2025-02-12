@@ -262,19 +262,11 @@ class BenchmarkRunner:
                 boxes_coordinate = item['box_coordinates'][:2]
                 boxes_size = item['box_coordinates'][2:]
                 image_size = item['image_size']
-            elif 'polygon' == item['box_type']:
+            else:
                 boxes_type = "polygon"
                 boxes_coordinate = item['box_coordinates']
                 boxes_size = item['image_size']
                 image_size = item['image_size']
-            elif 'refusal' == item['box_type']:
-                boxes_type = "refusal"
-                boxes_coordinate = [-1, -1, -1, -1]
-                boxes_size = item['image_size']
-                image_size = item['image_size']
-            else:
-                print("Invalid box type")
-                continue
 
             is_correct = evaluator._eval(
                 predicted_coords,
@@ -329,24 +321,35 @@ def terminate_vllm_service(process):
     except Exception as e:
         print(f"Failed to terminate VLLM service: {e}")
 
+import argparse
+
 if __name__ == "__main__":
-    ckpt_path = "/cpfs01/data/shared/Group-m6/zeyu.czy/workspace/pythonfile/xlang/tianbao/hf_models/UI-TARS-72B-SFT"
-    port = 8908
-    model_name = "ui_tars_72b_sft"
+    # Set up argument parsing
+    parser = argparse.ArgumentParser(description="Run benchmark evaluation with custom annotation, model, and image paths.")
+    
+    # Add arguments for annotation_path, model_path, and image_dir
+    parser.add_argument("--annotation_path", type=str, required=True, help="Path to the annotation file (e.g., screenspot_desktop_v2.json).")
+    parser.add_argument("--port", type=int, default=8908, help="Port number for the VLLM service (default: 8908).")
+    parser.add_argument("--model_name", type=str, default="ui_tars_72b_sft", help="Name of the model (default: 'ui_tars_72b_sft').")
+    parser.add_argument("--model_path", type=str, required=True, help="Path to the model checkpoint.")
+    parser.add_argument("--image_dir", type=str, default="screenspotv2_image", help="Directory containing images (default: 'screenspotv2_image').")
+    
+    # Parse the arguments
+    args = parser.parse_args()
 
     # Start VLLM service
-    process = start_vllm_service(ckpt_path, port, model_name)
+    process = start_vllm_service(args.model_path, args.port, args.model_name)
 
     # Wait for the service to start
-    if not wait_for_service(port):
-        print(f"Failed to start VLLM service on port {port}")
+    if not wait_for_service(args.port):
+        print(f"Failed to start VLLM service on port {args.port}")
         terminate_vllm_service(process)
     else:
         # Initialize BenchmarkRunner and evaluate
         runner = BenchmarkRunner(
-            annotation_path="screenspot_desktop_v2.json",
-            model_path=model_name,
-            image_dir="screenspotv2_image"
+            annotation_path=args.annotation_path,
+            model_path=args.model_name,
+            image_dir=args.image_dir
         )
         
         results = runner.evaluate()
