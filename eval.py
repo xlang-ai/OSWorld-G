@@ -78,7 +78,10 @@ class GroundingEval:
             return _is_point_in_rectangle(center_point, boxes_coordinate)
         elif boxes_type == "polygon":
             return _is_point_in_polygon(center_point, boxes_coordinate)
-
+        elif boxes_type == "refusal":
+            # todo: think about how to evaluate the refusal
+            # all the center point should be negative
+            return all(center_point[i] < 0 for i in range(2))
 if __name__ == "__main__":
     eval = GroundingEval("./OSWorld-G-test")
     print(eval.eval())

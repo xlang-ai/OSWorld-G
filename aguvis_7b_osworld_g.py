@@ -512,11 +512,19 @@ class BenchmarkRunner:
                 boxes_coordinate = item['box_coordinates'][:2]
                 boxes_size = item['box_coordinates'][2:]
                 image_size = item['image_size']
-            else:
+            elif 'polygon' == item['box_type']:
                 boxes_type = "polygon"
                 boxes_coordinate = item['box_coordinates']
                 boxes_size = item['image_size']
                 image_size = item['image_size']
+            elif 'refusal' == item['box_type']:
+                boxes_type = "refusal"
+                boxes_coordinate = [-1, -1, -1, -1]
+                boxes_size = item['image_size']
+                image_size = item['image_size']
+            else:
+                print("Invalid box type")
+                continue
             
             is_correct = evaluator._eval(
                 predicted_coords,
