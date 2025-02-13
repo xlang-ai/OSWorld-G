@@ -179,7 +179,7 @@ class BenchmarkRunner:
         cached_results = []
 
         for item in items:
-            cache_key = f"{item['annotation_id']}"
+            cache_key = f"{item['id']}_{item['annotation_id']}"
 
             if cache_key in predictions_cache:
                 cached_results.append(predictions_cache[cache_key])
