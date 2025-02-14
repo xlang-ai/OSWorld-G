@@ -1,0 +1,271 @@
+import os
+import re
+import json
+import time
+import shutil
+from render_prompts import VISUAL_FILTER_PROMPT
+from api import client, claude
+from utils import encode_image
+from logger import logger
+from typing import Dict
+from pydantic import BaseModel
+from concurrent.futures import ThreadPoolExecutor
+from pathlib import Path
+from PIL import Image
+
+
+class FilterResult(BaseModel):
+    thought_process: str
+    is_correct: bool
+    correct_instruction: str
+
+
+async def visual_filter(
+    grounding_dict: Dict, grounding_screenshot_dir: str | None = None
+):
+    # logger.info(f"start filter grounding {str(grounding_dict)}")
+    instruction = grounding_dict["instruction"]
+    try:
+        # crop要做异常排查
+
+        # if process in a different folder, then we need this
+        # new_annotated_path = os.path.join(
+        #     grounding_screenshot_dir,
+        #     os.path.basename(grounding_dict["annotated_grounding_path"]),
+        # )
+        new_annotated_path = grounding_dict["annotated_grounding_path"]
+        # new_original_path = os.path.join(
+        #     original_screenshot_dir,
+        #     os.path.basename(grounding_dict["screenshot_path"]),
+        # )
+        # or grounding_dict["annotated_grounding_path"]
+
+        # Extract coordinates from the action string
+        coords = re.search(r"\((\d+\.?\d*),\s*(\d+\.?\d*)\)", grounding_dict["action"])
+        x, y = float(coords.group(1)), float(coords.group(2))
+
+        # Open the image [try]
+        image = Image.open(new_annotated_path)
+        # image = Image.open(new_annotated_path)
+        # image = Image.open(grounding_dict["screenshot_path"])
+
+        # Define the cropping box (width 500, centered around (x, y))
+        box_width = 500
+        left = max(0, x - box_width // 2)
+        top = max(0, y - box_width // 2)
+        right = min(image.width, x + box_width // 2)
+        bottom = min(image.height, y + box_width // 2)
+
+        # Crop the image using the calculated box
+        cropped_image = image.crop((left, top, right, bottom))
+
+        # You can save or process the cropped image as needed
+        cropped_image_path = f"cropped_image/cropped_image_{time.time()}.png"
+        cropped_image.save(cropped_image_path)
+        # print(f"cropped_image: {cropped_image_path}")
+
+        # Optionally, you could encode the cropped image here if needed:
+        cropped_image_encoded = encode_image(cropped_image_path)
+        os.remove(cropped_image_path)
+        # Continue with the rest of your processing
+        screenshot_encoded = encode_image(new_annotated_path)
+        prompt = VISUAL_FILTER_PROMPT.format(instruction=instruction)
+        messages = (
+            [
+                {
+                    "role": "user",
+                    "content": [
+                        {"type": "text", "text": prompt},
+                        {
+                            "type": "image_url",
+                            "image_url": {
+                                "url": f"data:image/jpeg;base64,{screenshot_encoded}",
+                            },
+                        },
+                        {
+                            "type": "image_url",
+                            "image_url": {
+                                "url": f"data:image/jpeg;base64,{cropped_image_encoded}",
+                            },
+                        },
+                    ],
+                }
+            ]
+            if cropped_image_encoded != None
+            else [
+                {
+                    "role": "user",
+                    "content": [
+                        {"type": "text", "text": prompt},
+                        {
+                            "type": "image_url",
+                            "image_url": {
+                                "url": f"data:image/jpeg;base64,{screenshot_encoded}",
+                            },
+                        },
+                    ],
+                }
+            ]
+        )
+        response = await client.beta.chat.completions.parse(
+            model="gpt-4o-2024-08-06",
+            messages=messages,
+            temperature=0,
+            response_format=FilterResult,
+        )
+        logger.info("Visual Filter Done")
+        original_filter_result = response.choices[0].message.parsed
+        new_grounding_dict = {
+            **grounding_dict,
+            "thought_process": original_filter_result.thought_process,
+            "is_correct": original_filter_result.is_correct,
+            "correct_instruction": original_filter_result.correct_instruction,
+        }
+        return new_grounding_dict
+    except Exception as e:
+        logger.error(
+            f"Error filtering action {instruction} in {new_annotated_path}: {str(e)}"
+        )
+        exception_result = FilterResult(
+            thought_process="None.", is_correct=False, correct_instruction="None"
+        )
+        new_grounding_dict = {
+            **grounding_dict,
+            "thought_process": exception_result.thought_process,
+            "is_correct": exception_result.is_correct,
+            "correct_instruction": exception_result.correct_instruction,
+        }
+
+        return new_grounding_dict
+
+
+def process_file(
+    data_dir,
+    grounding_screenshot_dir,
+    original_screenshot_dir,
+    screenshot_true_dir,
+    screenshot_false_dir,
+    data_file,
+):
+    with open(os.path.join(data_dir, data_file), "r") as f:
+        data = json.load(f)
+
+    # grounding screenshot
+    # - true: grounding true
+    # - false: false
+    # - unknown: grounding
+    filter_result = visual_filter(data, grounding_screenshot_dir)
+    # print(
+    #     os.path.join(
+    #         grounding_screenshot_dir, os.path.basename(data["annotated_grounding_path"])
+    #     )
+    # )
+    # print(filter_result)
+    data["thought_process"] = filter_result.thought_process
+    data["correct_instruction"] = filter_result.correct_instruction
+    data["is_correct"] = filter_result.is_correct
+    with open(os.path.join(data_dir, data_file), "w") as f:
+        json.dump(data, f, indent=4)
+    # print(f"")
+    if filter_result.is_correct:
+        shutil.copy(
+            # data["annotated_grounding_path"],
+            os.path.join(
+                grounding_screenshot_dir,
+                os.path.basename(data["annotated_grounding_path"]),
+            ),
+            os.path.join(
+                screenshot_true_dir,
+                os.path.basename(data["annotated_grounding_path"]),
+            ),
+        )
+        return 1
+    else:
+        if os.path.exists(
+            os.path.join(
+                grounding_screenshot_dir,
+                os.path.basename(data["annotated_grounding_path"]),
+            )
+        ):
+            shutil.copy(
+                # data["annotated_grounding_path"],
+                os.path.join(
+                    grounding_screenshot_dir,
+                    os.path.basename(data["annotated_grounding_path"]),
+                ),
+                os.path.join(
+                    screenshot_false_dir,
+                    os.path.basename(data["annotated_grounding_path"]),
+                ),
+            )
+
+            # TODO: 先看filter结果，之后再考虑删的事情
+            # 删grounding screenshot
+            os.remove(
+                os.path.join(
+                    grounding_screenshot_dir,
+                    os.path.basename(data["annotated_grounding_path"]),
+                )
+            )
+        # 删grounding data
+        # print(f"remove {os.path.join(data_dir, data_file)}")
+        os.remove(os.path.join(data_dir, data_file))
+        return 0
+
+
+if __name__ == "__main__":
+    name_list = [
+        # "slider",
+        # "menus",
+        # "drawers",
+        # "checkboxes",
+        # "rating",
+        # "bottom-navigation",
+        # "pagination",
+        # "table",
+        # "selectable-text",
+        # "resizable-draggable-text-box",
+        "chips",
+        "lists",
+        "alert",
+        "dialogs",
+        "snackbars",
+        "app-bar",
+    ]
+    for name in name_list:
+        data_dir = f"/Users/nickyang/Desktop/Research/HKUNLP/OSWorld-G/training_data/component_render/data/20250125_v0/{name}/grounding"
+        grounding_screenshot_dir = f"/Users/nickyang/Desktop/Research/HKUNLP/OSWorld-G/training_data/component_render/data/20250125_v0/{name}/grounding_screenshot"
+        original_screenshot_dir = f"/Users/nickyang/Desktop/Research/HKUNLP/OSWorld-G/training_data/component_render/data/20250125_v0/{name}/other_screenshot/original"
+
+        screenshot_true_dir = f"/Users/nickyang/Desktop/Research/HKUNLP/OSWorld-G/training_data/component_render/data/20250125_v0/{name}/grounding_true_screenshot"
+        screenshot_false_dir = f"/Users/nickyang/Desktop/Research/HKUNLP/OSWorld-G/training_data/component_render/data/20250125_v0/{name}/grounding_false_screenshot"
+        os.makedirs(screenshot_true_dir, exist_ok=True)
+        os.makedirs(screenshot_false_dir, exist_ok=True)
+        data_file_list = os.listdir(data_dir)
+        # List all files in the data directory
+        data_file_list = os.listdir(data_dir)
+        total_data_count = len(data_file_list)
+        true_data_count = 0
+
+        # Process files in parallel
+        with ThreadPoolExecutor() as executor:
+            futures = [
+                executor.submit(
+                    process_file,
+                    data_dir,
+                    grounding_screenshot_dir,
+                    original_screenshot_dir,
+                    screenshot_true_dir,
+                    screenshot_false_dir,
+                    data_file,
+                )
+                for data_file in data_file_list
+            ]
+
+            # Ensure all tasks complete
+            for future in futures:
+                true_data_count += future.result()
+        with open("filter_note.txt", "a") as file:
+            file.write(
+                f"{name}: {true_data_count}/{total_data_count} ({true_data_count/total_data_count*100:.2f}%)\n"
+            )
