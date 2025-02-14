@@ -146,8 +146,11 @@ dmypy.json
 # data
 **/data/**/*
 !**/utils/data/**/*
+<<<<<<< HEAD
+=======
 /layout_crawling/systhesis/processed_data/**/*
 
+>>>>>>> 176db72db90cd3fbe4c29db385ea85a5a8ae5433
 
 # tmp files
 **/tmp/**/*
@@ -218,3 +221,11 @@ logs/
 
 token_cost.txt
 success.txt
+
+react-app-3003/
+react-app-3004/
+react-app-3005/
+react-app-3006/
+react-app-3007/
+react-app-3008/
+sample/
