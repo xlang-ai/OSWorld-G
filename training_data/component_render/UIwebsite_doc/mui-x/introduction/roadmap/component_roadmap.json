@@ -1,0 +1,31 @@
+{
+  "name": "roadmap",
+  "introduction": [
+    "# Roadmap\n\n<p class=\"description\">Find out about our plans for MUI X.</p>"
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "MUI X roadmap",
+      "introduction": [
+        "MUI X roadmap\n\nTo learn more about our plans for MUI X, visit the [public roadmap](https://github.com/orgs/mui/projects/35).\n\n:::warning\nWe operate in a dynamic environment,so things are subject to change.\nThe information provided is intended to outline the general direction, but is for informational purposes only.\n\nWe may decide to add or remove new items at any time, depending on our capability to deliver, while meeting our quality standards.\nThe development, releases, and timing of any features or functionality remains at the sole discretion of MUI.\nThe roadmap does not represent a commitment, obligation, or promise to deliver at any time.\n:::"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Global roadmap",
+      "introduction": [
+        "Global roadmap\n\nTo learn more about our plans for MUI in general, visit the:\n\n- [Material UI roadmap](/material-ui/discover-more/roadmap/)."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    }
+  ]
+}

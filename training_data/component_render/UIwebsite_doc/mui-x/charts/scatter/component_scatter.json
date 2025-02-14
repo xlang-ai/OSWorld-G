@@ -1,0 +1,117 @@
+{
+  "name": "scatter",
+  "introduction": [
+    "# Charts - Scatter\n\n<p class=\"description\">Scatter charts express the relation between two variables, using points in a surface.</p>"
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Basics",
+      "introduction": [
+        "Basics\n\nScatter chart series should contain a `data` property containing an array of objects.\nThose objects require `x`, `y`, and `id` properties."
+      ],
+      "code_path": [
+        "BasicScatter.js"
+      ],
+      "children": [
+        {
+          "name": "Using a dataset",
+          "introduction": [
+            "Using a dataset\n\nIf your data is stored in an array of objects, you can use the `dataset` helper prop.\nIt accepts an array of objects such as `dataset={[{a: 1, b: 32, c: 873}, {a: 2, b: 41, c: 182}, ...]}`.\n\nYou can reuse this data when defining the series.\nThe scatter series work a bit differently than in other charts.\nYou need to specify the `datasetKeys` properties which is an object that requires `x`, `y`, and `id` keys.\nWith an optional `z` key if needed."
+          ],
+          "code_path": [
+            "ScatterDataset.js"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Interaction",
+      "introduction": [
+        "Interaction\n\nSince scatter elements can be small, interactions do not require hovering exactly over an element.\nWhen the pointer is in the drawing area, the closest scatter element will be used for interactions (tooltip or highlights).\nTo do so, the chart computes [Voronoi cells](https://en.wikipedia.org/wiki/Voronoi_diagram) which map the pointer position to the closest element.\n\nYou can define a maximal radius with the `voronoiMaxRadius` prop.\nIf the distance with the pointer is larger than this radius, no item will be selected.\nOr set the `disableVoronoi` prop to `true` to trigger interactions only when hovering exactly over an element instead of Voronoi cells.",
+        "To use this feature with composition, add the `ChartsVoronoiHandler`.\n\n```jsx\n<ChartsVoronoiHandler voronoiMaxRadius={50} />\n```"
+      ],
+      "code_path": [
+        "VoronoiInteraction.js",
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Click event",
+      "introduction": [
+        "Click event\n\nScatter Chart provides an `onItemClick` handler for handling clicks on specific scatter items.\nIt has the following signature.\n\n```js\nconst onItemClick = (\n  event, // The mouse event.\n  params, // An object that identifies the clicked elements.\n) => {};\n```",
+        "If `disableVoronoi=true`, users need to click precisely on the scatter element, and the mouse event will come from this element.\n\nOtherwise, the click behavior will be the same as defined in the [interaction section](#interaction) and the mouse event will come from the svg component."
+      ],
+      "code_path": [
+        "ScatterClickNoSnap.js",
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Styling",
+      "introduction": [
+        "Styling"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Color scale",
+          "introduction": [
+            "Color scale\n\nAs with other charts, you can modify the [series color](/x/react-charts/styling/#colors) either directly, or with the color palette.\n\nYou can also modify the color by using axes `colorMap` which maps values to colors.\nThe scatter charts use by priority:\n\n1. The z-axis color\n2. The y-axis color\n3. The x-axis color\n4. The series color\n\n:::info\nThe z-axis is a third axis that allows to customize scatter points independently from their position.\nIt can be provided with `zAxis` props.\n\nThe value to map can either come from the `z` property of series data, or from the zAxis data.\nHere are three ways to set z value to 5.\n\n```jsx\n<ScatterChart\n  // First option\n  series={[{ data: [{ id: 0, x: 1, y: 1, z: 5 }] }]}\n  // Second option\n  zAxis={[{ data: [5] }]}\n  // Third option\n  dataset={[{ price: 5 }]}\n  zAxis={[{ dataKey: 'price' }]}\n/>\n```\n\n:::\n\nLearn more about the `colorMap` properties in the [Styling docs](/x/react-charts/styling/#values-color)."
+          ],
+          "code_path": [
+            "ColorScale.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Grid",
+          "introduction": [
+            "Grid\n\nYou can add a grid in the background of the chart with the `grid` prop.\n\nSee [Axis—Grid](/x/react-charts/axis/#grid) documentation for more information."
+          ],
+          "code_path": [
+            "GridDemo.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "CSS 🚧",
+          "introduction": [
+            "CSS 🚧"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Shape 🚧",
+          "introduction": [
+            "Shape 🚧"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Size 🚧",
+          "introduction": [
+            "Size 🚧"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        }
+      ]
+    }
+  ]
+}

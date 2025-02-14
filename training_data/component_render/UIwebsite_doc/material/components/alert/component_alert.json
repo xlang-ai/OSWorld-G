@@ -1,0 +1,169 @@
+{
+  "name": "alert",
+  "introduction": [
+    "# Alert\n\n<p class=\"description\">Alerts display brief messages for the user without interrupting their use of the app.</p>"
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Introduction",
+      "introduction": [
+        "Introduction\n\nAlerts give users brief and potentially time-sensitive information in an unobtrusive manner.\n\nThe Material UI Alert component includes several props for quickly customizing its styles to provide immediate visual cues about its contents.",
+        ":::info\nThis component is no longer documented in the [Material Design guidelines](https://m2.material.io/), but Material UI will continue to support it.\n:::"
+      ],
+      "code_path": [
+        "SimpleAlert.js",
+        null
+      ],
+      "children": [
+        {
+          "name": "Usage",
+          "introduction": [
+            "Usage\n\nA key trait of the alert pattern is that [it should not interrupt the user's experience](https://www.w3.org/WAI/ARIA/apg/patterns/alert/) of the app.\nAlerts should not be confused with alert _dialogs_ ([ARIA](https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/)), which _are_ intended to interrupt the user to obtain a response.\nUse the Material UI [Dialog](/material-ui/react-dialog/) component if you need this behavior."
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Basics",
+      "introduction": [
+        "Basics\n\n```jsx\nimport Alert from '@mui/material/Alert';\n```\n\nThe Alert component wraps around its content, and stretches to fill its enclosing container."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Severity",
+          "introduction": [
+            "Severity\n\nThe `severity` prop accepts four values representing different states—`success` (the default), `info`, `warning`, and `error`–with corresponding icon and color combinations for each:"
+          ],
+          "code_path": [
+            "BasicAlerts.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Variants",
+          "introduction": [
+            "Variants\n\nThe Alert component comes with two alternative style options—`filled` and `outlined`—which you can set using the `variant` prop."
+          ],
+          "code_path": [
+            null
+          ],
+          "children": [
+            {
+              "name": "Filled",
+              "introduction": [
+                "Filled"
+              ],
+              "code_path": [
+                "FilledAlerts.js"
+              ],
+              "children": []
+            },
+            {
+              "name": "Outlined",
+              "introduction": [
+                "Outlined",
+                ":::warning\nWhen using an outlined Alert with the [Snackbar](/material-ui/react-snackbar/) component, background content will be visible and bleed through the Alert by default.\nYou can prevent this by adding `bgcolor: 'background.paper'` to [the `sx` prop](/material-ui/customization/how-to-customize/#the-sx-prop) on the Alert component:\n\n```jsx\n<Alert sx={{ bgcolor: 'background.paper' }} />\n```\n\nCheck out the [Snackbar—customization](/material-ui/react-snackbar/#customization) doc for an example of how to use these two components together.\n:::"
+              ],
+              "code_path": [
+                "OutlinedAlerts.js",
+                null
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Color",
+          "introduction": [
+            "Color\n\nUse the `color` prop to override the default color for the specified [`severity`](#severity)—for instance, to apply `warning` colors to a `success` Alert:"
+          ],
+          "code_path": [
+            "ColorAlerts.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Actions",
+          "introduction": [
+            "Actions\n\nAdd an action to your Alert with the `action` prop.\nThis lets you insert any element—an HTML tag, an SVG icon, or a React component such as a Material UI Button—after the Alert's message, justified to the right.\n\nIf you provide an `onClose` callback to the Alert without setting the `action` prop, the component will display a close icon (&#x2715;) by default."
+          ],
+          "code_path": [
+            "ActionAlerts.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Icons",
+          "introduction": [
+            "Icons\n\nUse the `icon` prop to override an Alert's icon.\nAs with the [`action`](#actions) prop, your `icon` can be an HTML element, an SVG icon, or a React component.\nSet this prop to `false` to remove the icon altogether.\n\nIf you need to override all instances of an icon for a given [`severity`](#severity), you can use the `iconMapping` prop instead.\nYou can define this prop globally by customizing your app's theme. See [Theme components—Default props](/material-ui/customization/theme-components/#theme-default-props) for details."
+          ],
+          "code_path": [
+            "IconAlerts.js"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Customization",
+      "introduction": [
+        "Customization"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Titles",
+          "introduction": [
+            "Titles\n\nTo add a title to an Alert, import the Alert Title component:\n\n```jsx\nimport AlertTitle from '@mui/material/AlertTitle';\n```\n\nYou can nest this component above the message in your Alert for a neatly styled and properly aligned title, as shown below:"
+          ],
+          "code_path": [
+            "DescriptionAlerts.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Transitions",
+          "introduction": [
+            "Transitions\n\nYou can use [Transition components](/material-ui/transitions/) like [Collapse](/material-ui/transitions/#collapse) to add motion to an Alert's entrance and exit."
+          ],
+          "code_path": [
+            "TransitionAlerts.js"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Accessibility",
+      "introduction": [
+        "Accessibility\n\nHere are some factors to consider to ensure that your Alert is accessible:\n\n- Because alerts are not intended to interfere with the use of the app, your Alert component should _never_ affect the keyboard focus.\n- If an alert contains an action, that action must have a `tabindex` of `0` so it can be reached by keyboard-only users.\n- Essential alerts should not disappear automatically—[timed interactions](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits-no-exceptions.html) can make your app inaccessible to users who need extra time to understand or locate the alert.\n- Alerts that occur too frequently can [inhibit the usability](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits-postponed.html) of your app.\n- Dynamically rendered alerts are announced by screen readers; alerts that are already present on the page when it loads are _not_ announced.\n- Color does not add meaning to the UI for users who require assistive technology. You must ensure that any information conveyed through color is also denoted in other ways, such as within the text of the alert itself, or with additional hidden text that's read by screen readers."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Anatomy",
+      "introduction": [
+        "Anatomy\n\nThe Alert component is composed of a root [Paper](/material-ui/react-paper/) component (which renders as a `<div>`) that houses an icon, a message, and an optional [action](#actions):\n\n```html\n<div class=\"MuiPaper-root MuiAlert-root\" role=\"alert\">\n  <div class=\"MuiAlert-icon\">\n    <!-- svg icon here -->\n  </div>\n  <div class=\"MuiAlert-message\">This is how an Alert renders in the DOM.</div>\n  <div class=\"MuiAlert-action\">\n    <!-- optional action element here -->\n  </div>\n</div>\n```"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    }
+  ]
+}

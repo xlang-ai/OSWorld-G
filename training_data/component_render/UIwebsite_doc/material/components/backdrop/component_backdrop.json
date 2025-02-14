@@ -1,0 +1,21 @@
+{
+  "name": "backdrop",
+  "introduction": [
+    "# Backdrop\n\n<p class=\"description\">The Backdrop component narrows the user's focus to a particular element on the screen.</p>\n\nThe Backdrop signals a state change within the application and can be used for creating loaders, dialogs, and more.\nIn its simplest form, the Backdrop component will add a dimmed layer over your application."
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Example",
+      "introduction": [
+        "Example\n\nThe demo below shows a basic Backdrop with a Circular Progress component in the foreground to indicate a loading state.\nAfter clicking **Show Backdrop**, you can click anywhere on the page to close it."
+      ],
+      "code_path": [
+        "SimpleBackdrop.js"
+      ],
+      "children": []
+    }
+  ]
+}

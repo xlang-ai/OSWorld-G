@@ -1,0 +1,56 @@
+{
+  "name": "container",
+  "introduction": [
+    "# Container\n\n<p class=\"description\">The container centers your content horizontally. It's the most basic layout element.</p>\n\nWhile containers can be nested, most layouts do not require a nested container."
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Fluid",
+      "introduction": [
+        "Fluid\n\nA fluid container width is bounded by the `maxWidth` prop value.",
+        "```jsx\n<Container maxWidth=\"sm\">\n```"
+      ],
+      "code_path": [
+        "SimpleContainer.js",
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Fixed",
+      "introduction": [
+        "Fixed\n\nIf you prefer to design for a fixed set of sizes instead of trying to accommodate a fully fluid viewport, you can set the `fixed` prop.\nThe max-width matches the min-width of the current breakpoint.",
+        "```jsx\n<Container fixed>\n```"
+      ],
+      "code_path": [
+        "FixedContainer.js",
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Toolpad (Beta)",
+      "introduction": [
+        "Toolpad (Beta)"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Page Container",
+          "introduction": [
+            "Page Container\n\nThe [PageContainer](https://mui.com/toolpad/core/react-page-container/) component in `@toolpad/core` is the ideal wrapper for the content of your dashboard. It makes the Material UI Container navigation-aware and extends it with page title, breadcrumbs, actions, and more."
+          ],
+          "code_path": [
+            "../breadcrumbs/PageContainerBasic.js"
+          ],
+          "children": []
+        }
+      ]
+    }
+  ]
+}

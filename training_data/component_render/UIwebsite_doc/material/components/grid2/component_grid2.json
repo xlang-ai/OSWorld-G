@@ -1,0 +1,252 @@
+{
+  "name": "grid2",
+  "introduction": [
+    "# Grid version 2\n\n<p class=\"description\">The responsive layout grid adapts to screen size and orientation, ensuring consistency across layouts.</p>\n\nThe `Grid` component works well for a layout with a known number of columns.\nThe columns can be configured with multiple breakpoints to specify the column span of each child."
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "How it works",
+      "introduction": [
+        "How it works\n\nThe grid system is implemented with the `Grid` component:\n\n- It uses [CSS Flexbox](https://www.w3.org/TR/css-flexbox-1/) (rather than CSS Grid) for high flexibility.\n- The grid is always a flex item. Use the `container` prop to add a flex container.\n- Item widths are set in percentages, so they're always fluid and sized relative to their parent element.\n- There are five default grid breakpoints: xs, sm, md, lg, and xl. If you need custom breakpoints, check out [custom breakpoints grid](#custom-breakpoints).\n- You can give integer values for each breakpoint, to indicate how many of the 12 available columns are occupied by the component when the viewport width satisfies the [breakpoint constraints](/material-ui/customization/breakpoints/#default-breakpoints).\n- It uses [the `gap` CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/gap) to add spacing between items.\n- It does _not_ support row spanning. Children elements cannot span multiple rows. We recommend using [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout) if you need this functionality.\n- It does _not_ automatically place children. It will try to fit the children one by one, and if there is not enough space, the rest of the children will start on the next line, and so on. If you need auto-placement, we recommend using [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout/Auto-placement_in_grid_layout) instead.\n\n:::warning\nThe `Grid` component is a _layout_ grid, not a _data_ grid.\nIf you need a data grid, check out [the MUI X `DataGrid` component](/x/react-data-grid/).\n:::"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Fluid grids",
+      "introduction": [
+        "Fluid grids\n\nFluid grids use columns that scale and resize content. A fluid grid's layout can use breakpoints to determine if the layout needs to change dramatically."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Basic grid",
+          "introduction": [
+            "Basic grid\n\nIn order to create a grid layout, you need a container.\nUse the `container` prop to create a grid container that wraps the grid items (the `Grid` is always an item).\n\nColumn widths are integer values between 1 and 12.\nFor example, an item with `size={6}` occupies half of the grid container's width."
+          ],
+          "code_path": [
+            "BasicGrid.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Multiple breakpoints",
+          "introduction": [
+            "Multiple breakpoints\n\nItems may have multiple widths defined, causing the layout to change at the defined breakpoint.\nWidth values apply to all wider breakpoints, and larger breakpoints override those given to smaller breakpoints.\n\nFor example, a component with `size={{ xs: 12, sm: 6 }}` occupies the entire viewport width when the viewport is [less than 600 pixels wide](/material-ui/customization/breakpoints/#default-breakpoints).\nWhen the viewport grows beyond this size, the component occupies half of the total width—six columns rather than 12."
+          ],
+          "code_path": [
+            "FullWidthGrid.js"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Spacing",
+      "introduction": [
+        "Spacing\n\nUse the `spacing` prop to control the space between children.\nThe spacing value can be any positive number (including decimals) or a string.\nThe prop is converted into a CSS property using the [`theme.spacing()`](/material-ui/customization/spacing/) helper.\n\nThe following demo illustrates the use of the `spacing` prop:"
+      ],
+      "code_path": [
+        "SpacingGrid.js"
+      ],
+      "children": [
+        {
+          "name": "Row and column spacing",
+          "introduction": [
+            "Row and column spacing\n\nThe `rowSpacing` and `columnSpacing` props let you specify row and column gaps independently of one another.\nThey behave similarly to the `row-gap` and `column-gap` properties of [CSS Grid](/system/grid/#row-gap-amp-column-gap)."
+          ],
+          "code_path": [
+            "RowAndColumnSpacing.js"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Responsive values",
+      "introduction": [
+        "Responsive values\n\nYou can set prop values to change when a given breakpoint is active.\nFor instance, we can implement Material Design's [recommended](https://m2.material.io/design/layout/responsive-layout-grid.html) responsive layout grid, as seen in the following demo:",
+        "Responsive values are supported by:\n\n- `size`\n- `columns`\n- `columnSpacing`\n- `direction`\n- `rowSpacing`\n- `spacing`\n- `offset`"
+      ],
+      "code_path": [
+        "ResponsiveGrid.js",
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Interactive",
+      "introduction": [
+        "Interactive\n\nBelow is an interactive demo that lets you explore the visual results of the different settings:"
+      ],
+      "code_path": [
+        "InteractiveGrid.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Auto-layout",
+      "introduction": [
+        "Auto-layout\n\nThe auto-layout feature gives equal space to all items present.\nWhen you set the width of one item, the others will automatically resize to match it."
+      ],
+      "code_path": [
+        "AutoGrid.js"
+      ],
+      "children": [
+        {
+          "name": "Variable width content",
+          "introduction": [
+            "Variable width content\n\nWhen a breakpoint's value is given as `\"auto\"`, then a column's size will automatically adjust to match the width of its content.\nThe demo below shows how this works:"
+          ],
+          "code_path": [
+            "VariableWidthGrid.js"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Nested grid",
+      "introduction": [
+        "Nested grid\n\nThe grid container that renders as a **direct child** inside another grid container is a nested grid that inherits its [`columns`](#columns) and [`spacing`](#spacing) from the top level.\nIt will also inherit the props of the top-level grid if it receives those props.\n\n:::success\n\nNote that a nested grid container should be a direct child of another grid container. If there are non-grid elements in between, the grid container will start as the new root container.\n\n```js\n<Grid container>\n  <Grid container> // A nested grid container that inherits columns and spacing from above.\n    <div>\n      <Grid container> // A new root grid container with its own variables scope.\n```\n\n:::"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Inheriting spacing",
+          "introduction": [
+            "Inheriting spacing\n\nA nested grid container inherits the row and column spacing from its parent unless the `spacing` prop is specified to the instance."
+          ],
+          "code_path": [
+            "NestedGrid.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Inheriting columns",
+          "introduction": [
+            "Inheriting columns\n\nA nested grid container inherits the columns from its parent unless the `columns` prop is specified to the instance."
+          ],
+          "code_path": [
+            "NestedGridColumns.js"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Columns",
+      "introduction": [
+        "Columns\n\nUse the `columns` prop to change the default number of columns (12) in the grid, as shown below:"
+      ],
+      "code_path": [
+        "ColumnsGrid.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Offset",
+      "introduction": [
+        "Offset\n\nThe `offset` prop pushes an item to the right side of the grid.\nThis props accepts:\n\n- numbers—for example, `offset={{ md: 2 }}` pushes an item two columns to the right when the viewport size is equal to or greater than the `md` breakpoint.\n- `\"auto\"`—this pushes the item to the far right side of the grid container.\n\nThe demo below illustrates how to use the offset props:"
+      ],
+      "code_path": [
+        "OffsetGrid.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Custom breakpoints",
+      "introduction": [
+        "Custom breakpoints\n\nIf you specify custom breakpoints in the theme, you can use those names as grid item props in responsive values:\n\n```js\nimport { ThemeProvider, createTheme } from '@mui/material/styles';\n\nfunction Demo() {\n  return (\n    <ThemeProvider\n      theme={createTheme({\n        breakpoints: {\n          values: {\n            laptop: 1024,\n            tablet: 640,\n            mobile: 0,\n            desktop: 1280,\n          },\n        },\n      })}\n    >\n      <Grid container spacing={{ mobile: 1, tablet: 2, laptop: 3 }}>\n        {Array.from(Array(4)).map((_, index) => (\n          <Grid key={index} size={{ mobile: 6, tablet: 4, laptop: 3 }}>\n            <div>{index + 1}</div>\n          </Grid>\n        ))}\n      </Grid>\n    </ThemeProvider>\n  );\n}\n```\n\n:::info\nCustom breakpoints affect all [responsive values](#responsive-values).\n:::"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "TypeScript",
+          "introduction": [
+            "TypeScript\n\nYou have to set module augmentation on the theme breakpoints interface.\n\n```ts\ndeclare module '@mui/system' {\n  interface BreakpointOverrides {\n    // Your custom breakpoints\n    laptop: true;\n    tablet: true;\n    mobile: true;\n    desktop: true;\n    // Remove default breakpoints\n    xs: false;\n    sm: false;\n    md: false;\n    lg: false;\n    xl: false;\n  }\n}\n```"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Customization",
+      "introduction": [
+        "Customization"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Centered elements",
+          "introduction": [
+            "Centered elements\n\nTo center a grid item's content, specify `display=\"flex\"` directly on the item.\nThen use `justifyContent` and/or `alignItems` to adjust the position of the content, as shown below:",
+            ":::warning\nUsing the `container` prop does not work in this situation because the grid container is designed exclusively to wrap grid items.\nIt cannot wrap other elements.\n:::"
+          ],
+          "code_path": [
+            "CenteredElementGrid.js",
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Full border",
+          "introduction": [
+            "Full border"
+          ],
+          "code_path": [
+            "FullBorderedGrid.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Half border",
+          "introduction": [
+            "Half border"
+          ],
+          "code_path": [
+            "HalfBorderedGrid.js"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Limitations",
+      "introduction": [
+        "Limitations"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Column direction and reversing",
+          "introduction": [
+            "Column direction and reversing\n\nThe `size` and `offset` props are _not_ supported within containers that use `direction=\"column\"` or `direction=\"column-reverse\"`.\n\nSize and offset props define the number of columns the component will use for a given breakpoint.\nThey are intended to control the width using `flex-basis` in `row` containers, but they will impact the height in `column` containers.\nIf used, these props may have undesirable effects on the height of the `Grid` item elements."
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        }
+      ]
+    }
+  ]
+}

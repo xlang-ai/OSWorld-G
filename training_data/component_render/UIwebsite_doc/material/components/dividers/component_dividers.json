@@ -1,0 +1,123 @@
+{
+  "name": "dividers",
+  "introduction": [
+    "# Divider\n\n<p class=\"description\">The Divider component provides a thin, unobtrusive line for grouping elements to reinforce visual hierarchy.</p>"
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Introduction",
+      "introduction": [
+        "Introduction\n\nThe Material UI Divider component renders as a dark gray `<hr>` by default, and features several useful props for quick style adjustments."
+      ],
+      "code_path": [
+        "IntroDivider.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Basics",
+      "introduction": [
+        "Basics\n\n```jsx\nimport Divider from '@mui/material/Divider';\n```"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Variants",
+          "introduction": [
+            "Variants\n\nThe Divider component supports three variants: `fullWidth` (default), `inset`, and `middle`."
+          ],
+          "code_path": [
+            "DividerVariants.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Orientation",
+          "introduction": [
+            "Orientation\n\nUse the `orientation` prop to change the Divider from horizontal to vertical. When using vertical orientation, the Divider renders a `<div>` with the corresponding accessibility attributes instead of `<hr>` to adhere to the WAI-ARIA [spec](https://www.w3.org/TR/wai-aria-1.2/#separator)."
+          ],
+          "code_path": [
+            "VerticalDividers.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Flex item",
+          "introduction": [
+            "Flex item\n\nUse the `flexItem` prop to display the Divider when it's being used in a flex container."
+          ],
+          "code_path": [
+            "FlexDivider.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "With children",
+          "introduction": [
+            "With children\n\nUse the `textAlign` prop to align elements that are wrapped by the Divider."
+          ],
+          "code_path": [
+            "DividerText.js"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Customization",
+      "introduction": [
+        "Customization"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Use with a List",
+          "introduction": [
+            "Use with a List\n\nWhen using the Divider to separate items in a List, use the `component` prop to render it as an `<li>`—otherwise it won't be a valid HTML element."
+          ],
+          "code_path": [
+            "ListDividers.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Icon grouping",
+          "introduction": [
+            "Icon grouping\n\nThe demo below shows how to combine the props `variant=\"middle\"` and `orientation=\"vertical\"`."
+          ],
+          "code_path": [
+            "VerticalDividerMiddle.js"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Accessibility",
+      "introduction": [
+        "Accessibility\n\nDue to its implicit role of `separator`, the Divider, which is a `<hr>` element, will be announced by screen readers as a \"Horziontal Splitter\" (or vertical, if you're using the `orientation` prop).\n\nIf you're using it as a purely stylistic element, we recommend setting `aria-hidden=\"true\"` which will make screen readers bypass it.\n\n```js\n<Divider aria-hidden=\"true\" />\n```\n\nIf you're using the Divider to wrap other elements, such as text or chips, we recommend changing its rendered element to a plain `<div>` using the `component` prop, and setting `role=\"presentation\"`.\nThis ensures that it's not announced by screen readers while still preserving the semantics of the elements inside it.\n\n```js\n<Divider component=\"div\" role=\"presentation\">\n  <Typography>Text element</Typography>\n</Divider>\n```"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Anatomy",
+      "introduction": [
+        "Anatomy\n\nThe Divider component is composed of a root `<hr>`.\n\n```html\n<hr class=\"MuiDivider-root\">\n  <!-- Divider children goes here -->\n</hr>\n```"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    }
+  ]
+}

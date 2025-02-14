@@ -1,0 +1,84 @@
+{
+  "name": "date-pickers->getting-started",
+  "introduction": [
+    "# Date and Time Pickers - Getting started\n\n<p class=\"description\">Install the Date and Time Pickers package and set up your date library to start building.</p>"
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Installation",
+      "introduction": [
+        "Installation\n\nInstall the base package (which can either be the free Community version or the paid Pro version) along with a required third-party date library.\nThe Pickers currently support [Day.js](https://day.js.org/), [date-fns](https://date-fns.org/), [Luxon](https://moment.github.io/luxon/#/), and [Moment.js](https://momentjs.com/).\n\nChoose your packages and manager through the toggles below, then run the commands as provided to install:\n\n<!-- #default-branch-switch -->\n\n{{\"component\": \"modules/components/PickersInstallationInstructions.js\"}}\n\n:::success\nNot sure which date library to choose?\nIf you're starting from scratch with no other date libraries in your app, we recommend Day.js because of its small bundle size.\n:::"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Peer dependencies",
+          "introduction": [
+            "Peer dependencies"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": [
+            {
+              "name": "Material UI",
+              "introduction": [
+                "Material UI\n\nThe Date and Time Pickers have a peer dependency on `@mui/material`.\nIf you're not already using it, install it with the following command:\n\n<codeblock storageKey=\"package-manager\">\n\n```bash npm\nnpm install @mui/material @emotion/react @emotion/styled\n```\n\n```bash pnpm\npnpm add @mui/material @emotion/react @emotion/styled\n```\n\n```bash yarn\nyarn add @mui/material @emotion/react @emotion/styled\n```\n\n</codeblock>"
+              ],
+              "code_path": [
+                null
+              ],
+              "children": []
+            },
+            {
+              "name": "React",
+              "introduction": [
+                "React\n\n<!-- #react-peer-version -->\n\n[`react`](https://www.npmjs.com/package/react) and [`react-dom`](https://www.npmjs.com/package/react-dom) are also peer dependencies:\n\n```json\n\"peerDependencies\": {\n  \"react\": \"^17.0.0 || ^18.0.0 || ^19.0.0\",\n  \"react-dom\": \"^17.0.0 || ^18.0.0 || ^19.0.0\"\n},\n```"
+              ],
+              "code_path": [
+                null
+              ],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Date library adapter setup",
+      "introduction": [
+        "Date library adapter setup\n\nTo integrate your chosen date library with the Date and Time Pickers, you'll need to plug the corresponding adapter into a `LocalizationProvider` that wraps your Picker components.\n\nAdapters are provided for each of the supported libraries, and all are exported by both `@mui/x-date-pickers` and `@mui/x-date-pickers-pro`—for example,`AdapterDayjs`, which is used throughout this documentation for [Day.js](https://day.js.org/) integration:\n\n```tsx\nimport { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';\nimport { AdapterDayjs } from '@mui/x-date-pickers-pro/AdapterDayjs';\n```"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "LocalizationProvider",
+          "introduction": [
+            "LocalizationProvider\n\nThe `LocalizationProvider` component is exported by both `@mui/x-date-pickers` and `@mui/x-date-pickers-pro`:\n\n```tsx\nimport { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';\nimport { LocalizationProvider } from '@mui/x-date-pickers-pro/LocalizationProvider';\n```\n\n:::warning\nFor practical purposes, each demo in the documentation has its own `LocalizationProvider` wrapper.\n**We _do not_ recommend reproducing this pattern as-is.**\nFor almost all use cases, you should wrap your entire app with a single `LocalizationProvider` to avoid repeating boilerplate code in multiple places.\n:::\n\n{{\"component\": \"modules/components/PickersRenderingInstructions.js\"}}\n\n:::info\nTo use the Date and Time Pickers with a custom locale, see [Date and format localization](/x/react-date-pickers/adapters-locale/).\n:::"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Render your first component",
+      "introduction": [
+        "Render your first component\n\nTo confirm that everything is set up correctly, try rendering a basic Date Picker component:"
+      ],
+      "code_path": [
+        "FirstComponent.js"
+      ],
+      "children": []
+    }
+  ]
+}

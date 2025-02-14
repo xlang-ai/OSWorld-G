@@ -1,0 +1,115 @@
+{
+  "name": "data-grid->master-detail",
+  "introduction": [
+    "# Data Grid - Master detail [<span class=\"plan-pro\"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')\n\n<p class=\"description\">Expand your rows to display additional information.</p>\n\nThe master detail feature allows expanding a row to display additional information inside a panel.\nTo use this feature, pass a function to the `getDetailPanelContent` prop with the content to be rendered inside the panel.\nAny valid React element can be used as the row detail, even another grid.\n\nBy default, the detail panel height is 500px.\nYou can customize it by passing a function to the `getDetailPanelHeight` prop.\nThis function must return either a number or the `\"auto\"` string.\nIf it returns a number, then the panel will use that value (in pixels) for the height.\nIf it returns `\"auto\"`, then the height will be [derived](#infer-height-from-the-content) from the content.\n\n```tsx\n<DataGridPro\n  getDetailPanelContent={({ row }) => <div>Row ID: {row.id}</div>}\n  getDetailPanelHeight={({ row }) => 100} // Optional, default is 500px.\n/>\n\n// or\n\n<DataGridPro\n  getDetailPanelContent={({ row }) => <div>Row ID: {row.id}</div>}\n  getDetailPanelHeight={({ row }) => 'auto'} // Height based on the content.\n/>\n```\n\n:::info\nBoth props are called with a [`GridRowParams`](/x/api/data-grid/grid-row-params/) object, which lets you return a different value for each row.\n:::\n\nTo expand a row, click on the **+** icon or press <kbd class=\"key\">Space</kbd> inside the detail toggle column.\nReturning `null` or `undefined` as the value of `getDetailPanelContent` will prevent the respective row from being expanded.",
+    ":::warning\nAlways memoize the function provided to `getDetailPanelContent` and `getDetailPanelHeight`.\nThe Data Grid depends on the referential value of these props to cache their values and optimize the rendering.\n\n```tsx\nconst getDetailPanelContent = React.useCallback(() => { ... }, []);\n\n<DataGridPro getDetailPanelContent={getDetailPanelContent} />\n```\n\n:::"
+  ],
+  "code_path": [
+    "BasicDetailPanels.js",
+    null
+  ],
+  "children": [
+    {
+      "name": "Infer height from the content",
+      "introduction": [
+        "Infer height from the content\n\nLike [dynamic row height](/x/react-data-grid/row-height/#dynamic-row-height), you can also derive the detail panel height from its content.\nFor this, pass a function to the `getDetailPanelHeight` prop returning `\"auto\"`, as below:\n\n```tsx\n<DataGridPro getDetailPanelHeight={() => 'auto'} />\n```\n\nThe following example demonstrates this option in action:"
+      ],
+      "code_path": [
+        "DetailPanelAutoHeight.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Controlling expanded detail panels",
+      "introduction": [
+        "Controlling expanded detail panels\n\nTo control which rows are expanded, pass a set of row IDs to the `detailPanelExpandedRowIds` prop.\nPassing a callback to the `onDetailPanelExpandedRowIds` prop can be used to detect when a row gets expanded or collapsed.\n\nOn the other hand, if you only want to initialize the Data Grid with some rows already expanded, use the `initialState` prop as follows:\n\n```tsx\n<DataGridPro initialState={{ detailPanel: { expandedRowIds: new Set([1, 2, 3]) } }}>\n```"
+      ],
+      "code_path": [
+        "ControlMasterDetail.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Lazy loading detail panel content",
+      "introduction": [
+        "Lazy loading detail panel content\n\nYou don't need to provide the content for detail panels upfront.\nInstead, you can load it lazily when the row is expanded.\n\nIn the following example, the `DetailPanelContent` component is fetching the data on mount.\nThis component is used by the `getDetailPanelContent` prop to render the detail panel content."
+      ],
+      "code_path": [
+        "LazyLoadingDetailPanel.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Using a detail panel as a form",
+      "introduction": [
+        "Using a detail panel as a form\n\nAs an alternative to the built-in [row editing](/x/react-data-grid/editing/#row-editing), a form component can be rendered inside the detail panel, allowing the user to edit the current row values.\n\nThe following demo shows integration with [react-hook-form](https://react-hook-form.com/), but other form libraries are also supported."
+      ],
+      "code_path": [
+        "FormDetailPanel.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Customizing the detail panel toggle",
+      "introduction": [
+        "Customizing the detail panel toggle\n\nTo change the icon used for the toggle, you can provide a different component for the [icon slot](/x/react-data-grid/components/#icons) as follow:\n\n```tsx\n<DataGridPro\n  slots={{\n    detailPanelExpandIcon: CustomExpandIcon,\n    detailPanelCollapseIcon: CustomCollapseIcon,\n  }}\n/>\n```\n\nIf this is not sufficient, the entire toggle component can be overridden.\nTo fully customize it, add another column with `field: GRID_DETAIL_PANEL_TOGGLE_FIELD` to your set of columns.\nThe grid will detect that there is already a toggle column defined and it will not add another toggle in the default position.\nThe new toggle component can be provided via [`renderCell`](/x/react-data-grid/column-definition/#rendering-cells) in the same as any other column.\nBy only setting the `field`, is up to you to configure the remaining options (for example disable the column menu, filtering, sorting).\nTo already start with a few suggested options configured, spread `GRID_DETAIL_PANEL_TOGGLE_COL_DEF` when defining the column.\n\n```tsx\n<DataGridPro\n  columns={[\n    {\n      field: GRID_DETAIL_PANEL_TOGGLE_FIELD,\n      renderCell: (params) => <CustomDetailPanelToggle {...params} />\n    },\n  ]}\n/>\n\n// or\n\n<DataGridPro\n  columns={[\n    {\n      ...GRID_DETAIL_PANEL_TOGGLE_COL_DEF, // Already contains the right field\n      renderCell: (params) => <CustomDetailPanelToggle {...params}>\n    },\n  ]}\n/>\n```\n\nThis approach can also be used to change the location of the toggle column, as shown below.",
+        ":::info\nAs any ordinary cell renderer, the `value` prop is also available, and it corresponds to the state of the row: `true` when expanded and `false` when collapsed.\n:::"
+      ],
+      "code_path": [
+        "CustomizeDetailPanelToggle.js",
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Custom header for detail panel column",
+      "introduction": [
+        "Custom header for detail panel column\n\nTo render a custom header for the detail panel column, use the [`renderHeader`](/x/react-data-grid/column-header/#custom-header-renderer) property in the column definition.\nThis property receives a `GridRenderHeaderParams` object that contains `colDef` (the column definition) and `field`.\nThe following example demonstrates how to render a custom header for the detail panel column:\n\n```tsx\nconst columns = [\n  {\n    ...GRID_DETAIL_PANEL_TOGGLE_COL_DEF,\n    renderHeader: (params) => (\n      <div>\n        <span>{params.colDef.headerName}</span>\n        <button onClick={() => console.log('Custom action')}>Custom action</button>\n      </div>\n    ),\n  },\n  //... other columns\n];\n```\n\n:::info\nFor a more advanced example check out the [Expand or collapse all detail panels](/x/react-data-grid/row-recipes/#expand-or-collapse-all-detail-panels) recipe.\n:::"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Disable detail panel content scroll",
+      "introduction": [
+        "Disable detail panel content scroll\n\nBy default, the detail panel has a width that is the sum of the widths of all columns.\nThis means that when a horizontal scrollbar is present, scrolling it will also scroll the panel content.\nTo avoid this behavior, set the size of the detail panel to the outer size of the Data Grid.\nUse `apiRef.current.getRootDimensions()` to get the latest dimension values.\nFinally, to prevent the panel from scrolling, set `position: sticky` and `left: 0`.\n\nThe following demo shows how this can be achieved.\nNotice that the toggle column is pinned to make sure that it will always be visible when the Data Grid is scrolled horizontally."
+      ],
+      "code_path": [
+        "FullWidthDetailPanel.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Recipes",
+      "introduction": [
+        "Recipes\n\nMore examples of how to customize the detail panel:\n\n- [One expanded detail panel at a time](/x/react-data-grid/row-recipes/#one-expanded-detail-panel-at-a-time)\n- [Expand or collapse all detail panels](/x/react-data-grid/row-recipes/#expand-or-collapse-all-detail-panels)\n- [Toggling detail panels on row click](/x/react-data-grid/row-recipes/#toggling-detail-panels-on-row-click)"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "apiRef",
+      "introduction": [
+        "apiRef\n\nThe grid exposes a set of methods that enables all of these features using the imperative `apiRef`. To know more about how to use it, check the [API Object](/x/react-data-grid/api-object/) section."
+      ],
+      "code_path": [
+        "DetailPanelApiNoSnap.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "API",
+      "introduction": [
+        "API\n\n- [DataGrid](/x/api/data-grid/data-grid/)\n- [DataGridPro](/x/api/data-grid/data-grid-pro/)\n- [DataGridPremium](/x/api/data-grid/data-grid-premium/)"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    }
+  ]
+}

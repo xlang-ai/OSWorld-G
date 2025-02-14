@@ -1,0 +1,84 @@
+{
+  "name": "links",
+  "introduction": [
+    "# Links\n\n<p class=\"description\">The Link component allows you to easily customize anchor elements with your theme colors and typography styles.</p>"
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Basic links",
+      "introduction": [
+        "Basic links\n\nThe Link component is built on top of the [Typography](/material-ui/api/typography/) component, meaning that you can use its props.",
+        "However, the Link component has some different default props than the Typography component:\n\n- `color=\"primary\"` as the link needs to stand out.\n- `variant=\"inherit\"` as the link will, most of the time, be used as a child of a Typography component."
+      ],
+      "code_path": [
+        "Links.js",
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Underline",
+      "introduction": [
+        "Underline\n\nThe `underline` prop can be used to set the underline behavior. The default is `always`."
+      ],
+      "code_path": [
+        "UnderlineLink.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Security",
+      "introduction": [
+        "Security\n\nWhen you use `target=\"_blank\"` with Links, it is [recommended](https://developers.google.com/web/tools/lighthouse/audits/noopener) to always set `rel=\"noopener\"` or `rel=\"noreferrer\"` when linking to third party content.\n\n- `rel=\"noopener\"` prevents the new page from being able to access the `window.opener` property and ensures it runs in a separate process.\n  Without this, the target page can potentially redirect your page to a malicious URL.\n- `rel=\"noreferrer\"` has the same effect, but also prevents the _Referer_ header from being sent to the new page.\n  ⚠️ Removing the referrer header will affect analytics."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Third-party routing library",
+      "introduction": [
+        "Third-party routing library\n\nOne frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server.\nThe `Link` component provides the `component` prop to handle this use case.\nHere is a [more detailed guide](/material-ui/integrations/routing/#link)."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Accessibility",
+      "introduction": [
+        "Accessibility\n\n(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/link/)\n\n- When providing the content for the link, avoid generic descriptions like \"click here\" or \"go to\".\n  Instead, use [specific descriptions](https://developers.google.com/web/tools/lighthouse/audits/descriptive-link-text).\n- For the best user experience, links should stand out from the text on the page. For instance, you can keep the default `underline=\"always\"` behavior.\n- If a link doesn't have a meaningful href, [it should be rendered using a `<button>` element](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-valid.md).\n  The demo below illustrates how to properly link with a `<button>`:"
+      ],
+      "code_path": [
+        "ButtonLink.js"
+      ],
+      "children": [
+        {
+          "name": "Keyboard accessibility",
+          "introduction": [
+            "Keyboard accessibility\n\n- Interactive elements should receive focus in a coherent order when the user presses the <kbd class=\"key\">Tab</kbd> key.\n- Users should be able to open a link by pressing <kbd class=\"key\">Enter</kbd>."
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Screen reader accessibility",
+          "introduction": [
+            "Screen reader accessibility\n\n- When a link receives focus, screen readers should announce a descriptive link name.\n  If the link opens in a new window or browser tab, add an [`aria-label`](https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA8) to inform screen reader users—for example, _\"To learn more, visit the About page which opens in a new window.\"_"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        }
+      ]
+    }
+  ]
+}

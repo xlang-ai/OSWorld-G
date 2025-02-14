@@ -1,0 +1,8 @@
+<DataGridPro
+  {...data}
+  loading={loading}
+  rowHeight={38}
+  checkboxSelection
+  disableRowSelectionOnClick
+  slots={slots}
+/>

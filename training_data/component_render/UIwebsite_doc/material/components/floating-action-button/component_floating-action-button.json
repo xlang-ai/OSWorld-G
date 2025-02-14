@@ -1,0 +1,43 @@
+{
+  "name": "floating-action-button",
+  "introduction": [
+    "# Floating Action Button\n\n<p class=\"description\">A Floating Action Button (FAB) performs the primary, or most common, action on a screen.</p>\n\nA floating action button appears in front of all screen content, typically as a circular shape with an icon in its center.\nFABs come in two types: regular, and extended.\n\nOnly use a FAB if it is the most suitable way to present a screen's primary action.\nOnly one component is recommended per screen to represent the most common action."
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Basic FAB",
+      "introduction": [
+        "Basic FAB"
+      ],
+      "code_path": [
+        "FloatingActionButtons.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Size",
+      "introduction": [
+        "Size\n\nBy default, the size is `large`. Use the `size` prop for smaller floating action buttons.",
+        ""
+      ],
+      "code_path": [
+        "FloatingActionButtonSize.js",
+        "FloatingActionButtonExtendedSize.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Animation",
+      "introduction": [
+        "Animation\n\nThe floating action button animates onto the screen as an expanding piece of material, by default.\n\nA floating action button that spans multiple lateral screens (such as tabbed screens) should briefly disappear,\nthen reappear if its action changes.\n\nThe Zoom transition can be used to achieve this. Note that since both the exiting and entering\nanimations are triggered at the same time, we use `enterDelay` to allow the outgoing Floating Action Button's\nanimation to finish before the new one enters."
+      ],
+      "code_path": [
+        "FloatingActionButtonZoom.js"
+      ],
+      "children": []
+    }
+  ]
+}

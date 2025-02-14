@@ -1,0 +1,229 @@
+{
+  "name": "selects",
+  "introduction": [
+    "# Select\n\n<p class=\"description\">Select components are used for collecting user provided information from a list of options.</p>"
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Basic select",
+      "introduction": [
+        "Basic select\n\nMenus are positioned under their emitting elements, unless they are close to the bottom of the viewport."
+      ],
+      "code_path": [
+        "BasicSelect.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Advanced features",
+      "introduction": [
+        "Advanced features\n\nThe Select component is meant to be interchangeable with a native `<select>` element.\n\nIf you are looking for more advanced features, like combobox, multiselect, autocomplete, async or creatable support, head to the [`Autocomplete` component](/material-ui/react-autocomplete/).\nIt's meant to be an improved version of the \"react-select\" and \"downshift\" packages."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Props",
+      "introduction": [
+        "Props\n\nThe Select component is implemented as a custom `<input>` element of the [InputBase](/material-ui/api/input-base/).\nIt extends the [text field components](/material-ui/react-text-field/) subcomponents, either the [OutlinedInput](/material-ui/api/outlined-input/), [Input](/material-ui/api/input/), or [FilledInput](/material-ui/api/filled-input/), depending on the variant selected.\nIt shares the same styles and many of the same props. Refer to the respective component's API page for details.\n\n:::warning\nUnlike input components, the `placeholder` prop is not available in Select. To add a placeholder, refer to the [placeholder](#placeholder) section below.\n:::"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Filled and standard variants",
+          "introduction": [
+            "Filled and standard variants"
+          ],
+          "code_path": [
+            "SelectVariants.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Labels and helper text",
+          "introduction": [
+            "Labels and helper text",
+            ":::warning\nNote that when using FormControl with the outlined variant of the Select, you need to provide a label in two places: in the InputLabel component and in the `label` prop of the Select component (see the above demo).\n:::"
+          ],
+          "code_path": [
+            "SelectLabels.js",
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Auto width",
+          "introduction": [
+            "Auto width"
+          ],
+          "code_path": [
+            "SelectAutoWidth.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Small Size",
+          "introduction": [
+            "Small Size"
+          ],
+          "code_path": [
+            "SelectSmall.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Other props",
+          "introduction": [
+            "Other props"
+          ],
+          "code_path": [
+            "SelectOtherProps.js"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Native select",
+      "introduction": [
+        "Native select\n\nAs the user experience can be improved on mobile using the native select of the platform,\nwe allow such pattern."
+      ],
+      "code_path": [
+        "NativeSelectDemo.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "TextField",
+      "introduction": [
+        "TextField\n\nThe `TextField` wrapper component is a complete form control including a label, input and help text.\nYou can find an example with the select mode [in this section](/material-ui/react-text-field/#select)."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Customization",
+      "introduction": [
+        "Customization\n\nHere are some examples of customizing the component.\nYou can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).\n\nThe first step is to style the `InputBase` component.\nOnce it's styled, you can either use it directly as a text field or provide it to the select `input` prop to have a `select` field.\nNotice that the `\"standard\"` variant is easier to customize, since it does not wrap the contents in a `fieldset`/`legend` markup.",
+        "🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/?path=/docs/select-introduction--docs)."
+      ],
+      "code_path": [
+        "CustomizedSelects.js",
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Multiple select",
+      "introduction": [
+        "Multiple select\n\nThe `Select` component can handle multiple selections.\nIt's enabled with the `multiple` prop.\n\nLike with the single selection, you can pull out the new value by accessing `event.target.value` in the `onChange` callback. It's always an array."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Default",
+          "introduction": [
+            "Default"
+          ],
+          "code_path": [
+            "MultipleSelect.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Checkmarks",
+          "introduction": [
+            "Checkmarks"
+          ],
+          "code_path": [
+            "MultipleSelectCheckmarks.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Chip",
+          "introduction": [
+            "Chip"
+          ],
+          "code_path": [
+            "MultipleSelectChip.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Placeholder",
+          "introduction": [
+            "Placeholder"
+          ],
+          "code_path": [
+            "MultipleSelectPlaceholder.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Native",
+          "introduction": [
+            "Native"
+          ],
+          "code_path": [
+            "MultipleSelectNative.js"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Controlling the open state",
+      "introduction": [
+        "Controlling the open state\n\nYou can control the open state of the select with the `open` prop. Alternatively, it is also possible to set the initial (uncontrolled) open state of the component with the `defaultOpen` prop.\n\n:::info\n\n- A component is **controlled** when it's managed by its parent using props.\n- A component is **uncontrolled** when it's managed by its own local state.\n\nLearn more about controlled and uncontrolled components in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).\n:::"
+      ],
+      "code_path": [
+        "ControlledOpenSelect.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "With a dialog",
+      "introduction": [
+        "With a dialog\n\nWhile it's discouraged by the Material Design guidelines, you can use a select inside a dialog."
+      ],
+      "code_path": [
+        "DialogSelect.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Grouping",
+      "introduction": [
+        "Grouping\n\nDisplay categories with the `ListSubheader` component or the native `<optgroup>` element.",
+        ":::warning\nIf you wish to wrap the ListSubheader in a custom component, you'll have to annotate it so Material UI can handle it properly when determining focusable elements.\n\nYou have two options for solving this:\nOption 1: Define a static boolean field called `muiSkipListHighlight` on your component function, and set it to `true`:\n\n```tsx\nfunction MyListSubheader(props: ListSubheaderProps) {\n  return <ListSubheader {...props} />;\n}\n\nMyListSubheader.muiSkipListHighlight = true;\nexport default MyListSubheader;\n\n// elsewhere:\n\nreturn (\n  <Select>\n    <MyListSubheader>Group 1</MyListSubheader>\n    <MenuItem value={1}>Option 1</MenuItem>\n    <MenuItem value={2}>Option 2</MenuItem>\n    <MyListSubheader>Group 2</MyListSubheader>\n    <MenuItem value={3}>Option 3</MenuItem>\n    <MenuItem value={4}>Option 4</MenuItem>\n    {/* ... */}\n  </Select>\n```\n\nOption 2: Place a `muiSkipListHighlight` prop on each instance of your component.\nThe prop doesn't have to be forwarded to the ListSubheader, nor present in the underlying DOM element.\nIt just has to be placed on a component that's used as a subheader.\n\n```tsx\nexport default function MyListSubheader(\n  props: ListSubheaderProps & { muiSkipListHighlight: boolean },\n) {\n  const { muiSkipListHighlight, ...other } = props;\n  return <ListSubheader {...other} />;\n}\n\n// elsewhere:\n\nreturn (\n  <Select>\n    <MyListSubheader muiSkipListHighlight>Group 1</MyListSubheader>\n    <MenuItem value={1}>Option 1</MenuItem>\n    <MenuItem value={2}>Option 2</MenuItem>\n    <MyListSubheader muiSkipListHighlight>Group 2</MyListSubheader>\n    <MenuItem value={3}>Option 3</MenuItem>\n    <MenuItem value={4}>Option 4</MenuItem>\n    {/* ... */}\n  </Select>\n);\n```\n\nWe recommend the first option as it doesn't require updating all the usage sites of the component.\n\nKeep in mind this is **only necessary** if you wrap the ListSubheader in a custom component.\nIf you use the ListSubheader directly, **no additional code is required**.\n:::"
+      ],
+      "code_path": [
+        "GroupedSelect.js",
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Accessibility",
+      "introduction": [
+        "Accessibility\n\nTo properly label your `Select` input you need an extra element with an `id` that contains a label.\nThat `id` needs to match the `labelId` of the `Select`, for example:\n\n```jsx\n<InputLabel id=\"label\">Age</InputLabel>\n<Select labelId=\"label\" id=\"select\" value=\"20\">\n  <MenuItem value=\"10\">Ten</MenuItem>\n  <MenuItem value=\"20\">Twenty</MenuItem>\n</Select>\n```\n\nAlternatively a `TextField` with an `id` and `label` creates the proper markup and\nids for you:\n\n```jsx\n<TextField id=\"select\" label=\"Age\" value=\"20\" select>\n  <MenuItem value=\"10\">Ten</MenuItem>\n  <MenuItem value=\"20\">Twenty</MenuItem>\n</TextField>\n```\n\nFor a [native select](#native-select), you should mention a label by giving the value of the `id` attribute of the select element to the `InputLabel`'s `htmlFor` attribute:\n\n```jsx\n<InputLabel htmlFor=\"select\">Age</InputLabel>\n<NativeSelect id=\"select\">\n  <option value=\"10\">Ten</option>\n  <option value=\"20\">Twenty</option>\n</NativeSelect>\n```"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    }
+  ]
+}

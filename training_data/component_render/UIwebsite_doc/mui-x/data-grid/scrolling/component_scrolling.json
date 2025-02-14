@@ -1,0 +1,51 @@
+{
+  "name": "scrolling",
+  "introduction": [
+    "# Data Grid - Scrolling\n\n<p class=\"description\">This section presents how to programmatically control the scroll.</p>"
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Scrolling to specific cells",
+      "introduction": [
+        "Scrolling to specific cells\n\nYou can scroll to a specific cell by calling `apiRef.current.scrollToIndexes()`.\nThe only argument that must be passed is an object containing the row index and the column index of the cell to scroll.\nIf the row or column index is not present, the Data Grid will not do any movement in the missing axis.\n\nThe following demo explores the usage of this API:"
+      ],
+      "code_path": [
+        "ScrollPlayground.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Scroll restoration",
+      "introduction": [
+        "Scroll restoration\n\nYou can restore scroll to a previous position by definining `initialState.scroll` values `{ top: number, left: number }`. The Data Grid will mount at the specified scroll offset in pixels.\n\nThe following demo explores the usage of scroll restoration:"
+      ],
+      "code_path": [
+        "ScrollRestoration.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "apiRef",
+      "introduction": [
+        "apiRef\n\nThe grid exposes a set of methods that enables all of these features using the imperative `apiRef`. To know more about how to use it, check the [API Object](/x/react-data-grid/api-object/) section.\n\n:::warning\nOnly use this API as the last option. Give preference to the props to control the Data Grid.\n:::"
+      ],
+      "code_path": [
+        "ScrollApiNoSnap.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "API",
+      "introduction": [
+        "API\n\n- [DataGrid](/x/api/data-grid/data-grid/)\n- [DataGridPro](/x/api/data-grid/data-grid-pro/)\n- [DataGridPremium](/x/api/data-grid/data-grid-premium/)"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    }
+  ]
+}

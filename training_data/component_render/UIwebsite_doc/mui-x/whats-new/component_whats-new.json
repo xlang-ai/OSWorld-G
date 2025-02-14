@@ -1,0 +1,10 @@
+{
+  "name": "whats-new",
+  "introduction": [
+    "# What's new in MUI X\n\n<p class=\"description\">Discover all the latest new features and other highlights.</p>\n\n{{\"component\": \"modules/components/WhatsNewLayout.js\"}}"
+  ],
+  "code_path": [
+    null
+  ],
+  "children": []
+}

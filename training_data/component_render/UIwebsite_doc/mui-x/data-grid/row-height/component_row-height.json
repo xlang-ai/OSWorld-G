@@ -1,0 +1,90 @@
+{
+  "name": "row-height",
+  "introduction": [
+    "# Data Grid - Row height\n\n<p class=\"description\">Customize the height of your rows.</p>"
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Static row height",
+      "introduction": [
+        "Static row height\n\nBy default, the rows have a height of 52 pixels.\nThis matches the normal height in the [Material Design guidelines](https://m2.material.io/components/data-tables).\n\nUse the `rowHeight` prop to change this default value, as shown below:"
+      ],
+      "code_path": [
+        "DenseHeightGrid.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Variable row height",
+      "introduction": [
+        "Variable row height\n\nIf you need some rows to have different row heights, this can be achieved using the `getRowHeight` prop.\nThis function is called for each visible row and if the return value is a `number` then that `number` will be set as that row's `rowHeight`.\nIf the return value is `null` or `undefined`, then the `rowHeight` prop will take effect for the given row.",
+        ":::warning\nChanging the Data Grid density does not affect the rows with variable row height.\nYou can access the density factor from the params provided to the `getRowHeight` prop\n:::\n\n:::warning\nAlways memoize the function provided to `getRowHeight`.\nThe Data Grid bases on the referential value of these props to cache their values and optimize the rendering.\n:::\n\n```tsx\nconst getRowHeight = React.useCallback(() => { ... }, []);\n\n<DataGridPro getRowHeight={getRowHeight} />\n```"
+      ],
+      "code_path": [
+        "VariableRowHeightGrid.js",
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Dynamic row height",
+      "introduction": [
+        "Dynamic row height\n\nInstead of a fixed row height, you can let the Data Grid calculate the height of each row based on its content.\nTo do so, return `\"auto\"` on the function passed to the `getRowHeight` prop.\n\n```tsx\n<DataGrid getRowHeight={() => 'auto'} />\n```\n\nThe following demo shows this feature in action:",
+        "The dynamic row height implementation is based on a lazy approach, which means that the rows are measured as they are rendered.\nBecause of this, you may see the size of the scrollbar thumb changing during scroll.\nThis side effect happens because a row height estimation is used while a row is not rendered, then this value is replaced once the true measurement is obtained.\nYou can configure the estimated value used by passing a function to the `getEstimatedRowHeight` prop.\nIf not provided, the default row height of `52px` is used as estimation.\nIt's recommended to pass this prop if the content deviates too much from the default value.\n\n```tsx\n<DataGrid getRowHeight={() => 'auto'} getEstimatedRowHeight={() => 200} />\n```",
+        ":::warning\nWhen the height of a row is set to `\"auto\"`, the final height will follow exactly the content size and ignore the density.\nAdd padding to the cells to increase the space between the content and the cell borders.\n\n```tsx\n<DataGrid\n  sx={{\n    '&.MuiDataGrid-root--densityCompact .MuiDataGrid-cell': { py: '8px' },\n    '&.MuiDataGrid-root--densityStandard .MuiDataGrid-cell': { py: '15px' },\n    '&.MuiDataGrid-root--densityComfortable .MuiDataGrid-cell': { py: '22px' },\n  }}\n/>\n```\n\n:::"
+      ],
+      "code_path": [
+        "DynamicRowHeightGrid.js",
+        "ExpandableCells.js",
+        null
+      ],
+      "children": [
+        {
+          "name": "Column virtualization",
+          "introduction": [
+            "Column virtualization\n\nBy default, the virtualization of the columns is disabled to force all columns to be rendered at the same time and calculate the row height correctly.\nHowever, this can lead to poor performance when rendering a lot of columns.\n\nIf you need column virtualization, you can set the `virtualizeColumnsWithAutoRowHeight` prop to `true`.\nWith this approach, the Data Grid measures the row height based on the visible columns.\nHowever, the row height might change during horizontal scrolling."
+          ],
+          "code_path": [
+            "VirtualizeColumnsWithAutoRowHeight.js"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Row density",
+      "introduction": [
+        "Row density\n\nGive your users the option to change the default row density to match their preferences—compact, standard, or comfortable.\nDensity is calculated based on the `rowHeight` and/or `columnHeaderHeight` props, when present.\nSee [Density](https://mui.com/x/react-data-grid/accessibility/#density) for details."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Row spacing",
+      "introduction": [
+        "Row spacing\n\nYou can use the `getRowSpacing` prop to increase the spacing between rows.\nThis prop is called with a [`GridRowSpacingParams`](/x/api/data-grid/grid-row-spacing-params/) object.\n\n```tsx\nconst getRowSpacing = React.useCallback((params: GridRowSpacingParams) => {\n  return {\n    top: params.isFirstVisible ? 0 : 5,\n    bottom: params.isLastVisible ? 0 : 5,\n  };\n}, []);\n```",
+        "By default, setting `getRowSpacing` will change the `marginXXX` CSS properties of each row.\nTo add a border instead, set `rowSpacingType` to `\"border\"` and customize the color and style.\n\n```tsx\n<DataGrid\n  getRowSpacing={...}\n  rowSpacingType=\"border\"\n  sx={{ '& .MuiDataGrid-row': { borderTopColor: 'yellow', borderTopStyle: 'solid' } }}\n/>\n```\n\n:::success\nAdding a bottom margin or border to rows that also have a [detail panel](/x/react-data-grid/master-detail/) is not recommended because the detail panel relies on the bottom margin to work.\n\nAs an alternative, you can use the top spacing to define the space between rows.\nIt's easier to always increase the next row spacing no matter if the detail panel is expanded or not, but you can use `gridDetailPanelExpandedRowIdsSelector` to apply a spacing depending on the open state.\n:::"
+      ],
+      "code_path": [
+        "RowMarginGrid.js",
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "API",
+      "introduction": [
+        "API\n\n- [DataGrid](/x/api/data-grid/data-grid/)\n- [DataGridPro](/x/api/data-grid/data-grid-pro/)\n- [DataGridPremium](/x/api/data-grid/data-grid-premium/)"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    }
+  ]
+}

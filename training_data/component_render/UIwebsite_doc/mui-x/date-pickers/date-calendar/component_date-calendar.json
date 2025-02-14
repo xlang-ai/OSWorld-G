@@ -1,0 +1,157 @@
+{
+  "name": "date-calendar",
+  "introduction": [
+    "# Date Calendar\n\n<p class=\"description\">The Date Calendar component lets users select a date without any input or popper / modal.</p>"
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Basic usage",
+      "introduction": [
+        "Basic usage"
+      ],
+      "code_path": [
+        "BasicDateCalendar.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Uncontrolled vs. controlled value",
+      "introduction": [
+        "Uncontrolled vs. controlled value\n\nThe value of the component can be uncontrolled or controlled.",
+        ":::info\n\n- The value is **controlled** when its parent manages it by providing a `value` prop.\n- The value is **uncontrolled** when it is managed by the component's own internal state. This state can be initialized using the `defaultValue` prop.\n\nLearn more about the _Controlled and uncontrolled_ pattern in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).\n:::"
+      ],
+      "code_path": [
+        "DateCalendarValue.js",
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Form props",
+      "introduction": [
+        "Form props\n\nThe component can be disabled or read-only."
+      ],
+      "code_path": [
+        "DateCalendarFormProps.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Views",
+      "introduction": [
+        "Views\n\nThe component can contain three views: `day`, `month`, and `year`.\nBy default, only the `day` and `year` views are enabled.\n\nYou can customize the enabled views using the `views` prop.\nViews will appear in the order they're included in the `views` array."
+      ],
+      "code_path": [
+        "DateCalendarViews.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Choose the initial year / month",
+      "introduction": [
+        "Choose the initial year / month\n\nIf `value` or `defaultValue` contains a valid date, this date will be used to choose which month to render in the `day` view and which year to render in the `month` view.\nIf both `value` and `defaultValue` contain no valid date, the component will try to find a month and year that satisfies the validation rules.\n\nYou can override this date using the `referenceDate`, in the example below the calendar renders April 2022 even though no date is visually selected:",
+        ":::success\nLearn more about the `referenceDate` in the [dedicated doc section](/x/react-date-pickers/base-concepts/#reference-date-when-no-value-is-defined).\n:::"
+      ],
+      "code_path": [
+        "DateCalendarReferenceDate.js",
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Month and Year Calendar",
+      "introduction": [
+        "Month and Year Calendar\n\nIf you only need the `year` view or the `month` view, you can use the `YearCalendar` / `MonthCalendar` components:"
+      ],
+      "code_path": [
+        "YearMonthCalendar.js"
+      ],
+      "children": [
+        {
+          "name": "Order of years",
+          "introduction": [
+            "Order of years\n\nBy default, years are displayed in ascending order, chronologically from the minimum year to the maximum.\nSet the `yearsOrder` prop to `desc` to show the years in descending order."
+          ],
+          "code_path": [
+            "YearsOrderDescendingCalendar.js"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Day view customization",
+      "introduction": [
+        "Day view customization"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Show additional days",
+          "introduction": [
+            "Show additional days\n\nTo show all days of displayed weeks, including those outside of the current month, use `showDaysOutsideCurrentMonth`.\n\nBy default, only weeks of the current month are displayed, but you can provide a total number of weeks to display with `fixedWeekNumber` prop.\nThis value is usually set to `6` for Gregorian calendars, because month display can vary between 4 and 6 weeks."
+          ],
+          "code_path": [
+            "CustomMonthLayout.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Display week number",
+          "introduction": [
+            "Display week number\n\nTo display week number, use the `displayWeekNumber`.\nYou can customize the calendar week header by using the localization key `localeText.calendarWeekNumberHeaderText`.\nYou can also customize what's rendered as a calendar week number, using a callback for the localization key `localeText.calendarWeekNumberText`."
+          ],
+          "code_path": [
+            "AddWeekNumber.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Week picker",
+          "introduction": [
+            "Week picker\n\nYou can select the whole week using the `day` component slot:"
+          ],
+          "code_path": [
+            "WeekPicker.js"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Dynamic data",
+      "introduction": [
+        "Dynamic data\n\nSometimes it may be necessary to display additional info right in the calendar.\nThe following demo shows how to add a badge on some day based on server-side data:"
+      ],
+      "code_path": [
+        "DateCalendarServerRequest.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Localization",
+      "introduction": [
+        "Localization\n\nSee the [Date format and localization](/x/react-date-pickers/adapters-locale/) and [Translated components](/x/react-date-pickers/localization/) documentation pages for more details."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Validation",
+      "introduction": [
+        "Validation\n\nSee the [Validation](/x/react-date-pickers/validation/) documentation page for more details."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    }
+  ]
+}

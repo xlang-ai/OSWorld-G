@@ -1,0 +1,32 @@
+{
+  "name": "focus",
+  "introduction": [
+    "# Simple Tree View - Focus\n\n<p class=\"description\">Learn how to focus Tree View items.</p>"
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Imperative API",
+      "introduction": [
+        "Imperative API\n\n:::success\nTo use the `apiRef` object, you need to initialize it using the `useTreeViewApiRef` hook as follows:\n\n```tsx\nconst apiRef = useTreeViewApiRef();\n\nreturn <SimpleTreeView apiRef={apiRef}>{children}</SimpleTreeView>;\n```\n\nWhen your component first renders, `apiRef` will be `undefined`.\nAfter this initial render, `apiRef` holds methods to interact imperatively with the Tree View.\n:::"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Focus a specific item",
+          "introduction": [
+            "Focus a specific item\n\nUse the `focusItem` API method to focus a specific item.\n\n```ts\napiRef.current.focusItem(\n  // The DOM event that triggered the change\n  event,\n  // The id of the item to focus\n  itemId,\n);\n```\n\n:::info\nThis method only works with items that are currently visible.\nCalling `apiRef.focusItem()` on an item whose parent is collapsed does nothing.\n:::"
+          ],
+          "code_path": [
+            "ApiMethodFocusItem.js"
+          ],
+          "children": []
+        }
+      ]
+    }
+  ]
+}

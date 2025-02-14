@@ -1,0 +1,107 @@
+{
+  "name": "data-grid->accessibility",
+  "introduction": [
+    "# Data Grid - Accessibility\n\n<p class=\"description\">Learn how the Data Grid implements accessibility features and guidelines, including keyboard navigation that follows international standards.</p>"
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Guidelines",
+      "introduction": [
+        "Guidelines\n\nCommon conformance guidelines for accessibility include:\n\n- Globally accepted standard: [WCAG](https://www.w3.org/WAI/standards-guidelines/wcag/)\n- US:\n  - [ADA](https://www.ada.gov/) - US Department of Justice\n  - [Section 508](https://www.section508.gov/) - US federal agencies\n- Europe: [EAA](https://employment-social-affairs.ec.europa.eu/policies-and-activities/social-protection-social-inclusion/persons-disabilities/union-equality-strategy-rights-persons-disabilities-2021-2030/european-accessibility-act_en) (European Accessibility Act)\n\nWCAG 2.1 has three levels of conformance: A, AA, and AAA.\nLevel AA exceeds the basic criteria for accessibility and is a common target for most organizations, so this is what we aim to support.\n\nThe [WAI-ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/patterns/grid/) provide valuable information on how to optimize the accessibility of a Data Grid."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Density",
+      "introduction": [
+        "Density\n\nYou can change the density of the rows and the column header."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Density selection from the toolbar",
+          "introduction": [
+            "Density selection from the toolbar\n\nTo enable the density selection from the toolbar, you can do one of the following:\n\n1. Enable the default toolbar component by passing the `slots.toolbar` prop to the Data Grid.\n2. Create a specific toolbar containing only the `GridToolbarDensitySelector` component and apply it using the `toolbar` property in the Data Grid's `slots` prop.\n\nThe user can then change the density of the Data Grid by using the density selection menu from the toolbar, as the following demo illustrates:",
+            "To disable the density selection menu, pass the `disableDensitySelector` prop to the Data Grid."
+          ],
+          "code_path": [
+            "DensitySelectorGrid.js",
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Set the density programmatically",
+          "introduction": [
+            "Set the density programmatically\n\nThe Data Grid exposes the `density` prop which supports the following values:\n\n- `standard` (default)\n- `compact`\n- `comfortable`\n\nYou can set the density programmatically in one of the following ways:\n\n1. Uncontrolled – initialize the density with the `initialState.density` prop.\n\n   ```tsx\n   <DataGrid\n     initialState={{\n       density: 'compact',\n     }}\n   />\n   ```\n\n2. Controlled – pass the `density` and `onDensityChange` props. For more advanced use cases, you can also subscribe to the `densityChange` grid event.\n\n   ```tsx\n   const [density, setDensity] = React.useState<GridDensity>('compact');\n\n   return (\n     <DataGrid\n       density={density}\n       onDensityChange={(newDensity) => setDensity(newDensity)}\n     />\n   );\n   ```\n\nThe `density` prop applies the values determined by the `rowHeight` and `columnHeaderHeight` props, if supplied.\nThe user can override this setting with the optional toolbar density selector.\n\nThe following demo shows a Data Grid with the controlled density set to `compact` and outputs the current density to the console when the user changes it using the density selector from the toolbar:"
+          ],
+          "code_path": [
+            "DensitySelectorSmallGrid.js"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Keyboard navigation",
+      "introduction": [
+        "Keyboard navigation\n\nThe Data Grid listens for keyboard interactions from the user and emits events in response to key presses within cells."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Tab sequence",
+          "introduction": [
+            "Tab sequence\n\nAccording to [WAI-ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/patterns/grid/), only one of the focusable elements contained by a composite widget should be included in the page tab sequence.\nFor an element to be included in the tab sequence, it needs to have a `tabIndex` value of zero or greater.\n\nWhen a user focuses on a Data Grid cell, the first inner element with `tabIndex={0}` receives the focus.\nIf there is no element with `tabIndex={0}`, the focus is set on the cell itself.\n\nThe two Data Grids below illustrate how the user experience is impacted by improper management of the page tab sequence, making it difficult to navigate through the data set:",
+            "If you customize cell rendering with the [`renderCell`](/x/react-data-grid/column-definition/#rendering-cells) method, you become responsible for removing focusable elements from the page tab sequence.\nUse the `tabIndex` prop passed to the `renderCell` params to determine if the rendered cell has focus and if, as a result, the inner elements should be removed from the tab sequence:\n\n```jsx\nrenderCell: (params) => (\n  <div>\n    <Link tabIndex={params.tabIndex} href=\"/#\">\n      more info\n    </Link>\n  </div>\n);\n```"
+          ],
+          "code_path": [
+            "FocusManagement.js",
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Navigation",
+          "introduction": [
+            "Navigation\n\n:::info\nThe key assignments in the table below apply to Windows and Linux users.\n\nOn macOS replace:\n\n- <kbd class=\"key\">Ctrl</kbd> with <kbd class=\"key\">⌘ Command</kbd>\n- <kbd class=\"key\">Alt</kbd> with <kbd class=\"key\">⌥ Option</kbd>\n\nSome devices may lack certain keys, requiring the use of key combinations. In this case, replace:\n\n- <kbd class=\"key\">Page Up</kbd> with <kbd class=\"key\">Fn</kbd>+<kbd class=\"key\">Arrow Up</kbd>\n- <kbd class=\"key\">Page Down</kbd> with <kbd class=\"key\">Fn</kbd>+<kbd class=\"key\">Arrow Down</kbd>\n- <kbd class=\"key\">Home</kbd> with <kbd class=\"key\">Fn</kbd>+<kbd class=\"key\">Arrow Left</kbd>\n- <kbd class=\"key\">End</kbd> with <kbd class=\"key\">Fn</kbd>+<kbd class=\"key\">Arrow Right</kbd>\n\n:::\n\n|                                                               Keys | Description                                                 |\n| - |\n|                                  <kbd class=\"key\">Arrow Left</kbd> | Navigate between cell elements                              |\n|                                  <kbd class=\"key\">Arrow Down</kbd> | Navigate between cell elements                              |\n|                                 <kbd class=\"key\">Arrow Right</kbd> | Navigate between cell elements                              |\n|                                    <kbd class=\"key\">Arrow Up</kbd> | Navigate between cell elements                              |\n|                                        <kbd class=\"key\">Home</kbd> | Navigate to the first cell of the current row               |\n|                                         <kbd class=\"key\">End</kbd> | Navigate to the last cell of the current row                |\n| <kbd><kbd class=\"key\">Ctrl</kbd>+<kbd class=\"key\">Home</kbd></kbd> | Navigate to the first cell of the first row                 |\n|  <kbd><kbd class=\"key\">Ctrl</kbd>+<kbd class=\"key\">End</kbd></kbd> | Navigate to the last cell of the last row                   |\n|                                       <kbd class=\"key\">Space</kbd> | Navigate to the next scrollable page                        |\n|                                     <kbd class=\"key\">Page Up</kbd> | Navigate to the previous scrollable page                    |\n|                                   <kbd class=\"key\">Page Down</kbd> | Navigate to the next scrollable page                        |\n|                                       <kbd class=\"key\">Space</kbd> | Toggle row children expansion when grouping cell is focused |"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Selection",
+          "introduction": [
+            "Selection\n\n|                                                                         Keys | Description                                                          |\n| ---- |\n| <kbd><kbd class=\"key\">Ctrl</kbd>+<kbd class=\"key\">Enter</kbd></kbd> | Toggle the detail panel of a row |"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "API",
+      "introduction": [
+        "API\n\n- [DataGrid](/x/api/data-grid/data-grid/)\n- [DataGridPro](/x/api/data-grid/data-grid-pro/)\n- [DataGridPremium](/x/api/data-grid/data-grid-premium/)"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    }
+  ]
+}

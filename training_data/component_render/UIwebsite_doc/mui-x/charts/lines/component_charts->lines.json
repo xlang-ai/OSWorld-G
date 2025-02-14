@@ -1,0 +1,212 @@
+{
+  "name": "charts->lines",
+  "introduction": [
+    "# Charts - Lines\n\n<p class=\"description\">Line charts can express qualities about data, such as hierarchy, highlights, and comparisons.</p>"
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Basics",
+      "introduction": [
+        "Basics"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Data format",
+          "introduction": [
+            "Data format\n\nTo plot lines, a series must have a `data` property containing an array of numbers.\nThis `data` array corresponds to y values.\n\nBy default, those y values will be associated with integers starting from 0 (0, 1, 2, 3, ...).\nTo modify the x values, you should provide a `xAxis` with data property."
+          ],
+          "code_path": [
+            "BasicLineChart.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Using a dataset",
+          "introduction": [
+            "Using a dataset\n\nIf your data is stored in an array of objects, you can use the `dataset` helper prop.\nIt accepts an array of objects such as `dataset={[{x: 1, y: 32}, {x: 2, y: 41}, ...]}`.\n\nYou can reuse this data when defining the series and axis, thanks to the `dataKey` property.\n\nFor example `xAxis={[{ dataKey: 'x'}]}` or `series={[{ dataKey: 'y'}]}`.\n\nHere is a plot of the evolution of world electricity production by source."
+          ],
+          "code_path": [
+            "LineDataset.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Area",
+          "introduction": [
+            "Area\n\nYou can fill the area of the line by setting the series' `area` property to `true`."
+          ],
+          "code_path": [
+            "BasicArea.js"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Stacking",
+      "introduction": [
+        "Stacking\n\nEach line series can get a `stack` property which expects a string value.\nSeries with the same `stack` will be stacked on top of each other."
+      ],
+      "code_path": [
+        "StackedAreas.js"
+      ],
+      "children": [
+        {
+          "name": "Stacking strategy",
+          "introduction": [
+            "Stacking strategy\n\nYou can use the `stackOffset` and `stackOrder` properties to define how the series will be stacked.\n\nBy default, they are stacked in the order you defined them, with positive values stacked above 0 and negative values stacked below 0.\n\nFor more information, see [stacking docs](/x/react-charts/stacking/)."
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Partial data",
+      "introduction": [
+        "Partial data"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Skip missing points",
+          "introduction": [
+            "Skip missing points\n\nLine series can have fewer data points than the axis.\nYou can handle lines with partial data or data starting at different points by providing `null` values.\n\nBy default, the tooltip does not show series if they have no value.\nTo override this behavior, use the `valueFormatter` to return a string if the value is `null` or `undefined`.",
+            ":::info\nWhen series data length is smaller than the axis one, overflowing values are `undefined` and not `null`.\n\nThe following code plots a line for x between 2 and 4.\n\n- For x<2, values are set to `null` and then not shown.\n- For x>4, values are set to `undefined` and then not shown.\n\n```jsx\n<LineChart\n  series={[{ data: [null, null, 10, 11, 12] }]}\n  xAxis={[{ data: [0, 1, 2, 3, 4, 5, 6] }]}\n/>\n```\n\n:::"
+          ],
+          "code_path": [
+            "DifferentLength.js",
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Connect missing points",
+          "introduction": [
+            "Connect missing points\n\nLine series accepts a `connectNulls` property which will continue the interpolation across points with a `null` value.\nThis property can link two sets of points, with `null` data between them.\nHowever, it cannot extrapolate the curve before the first non-null data point or after the last one."
+          ],
+          "code_path": [
+            "ConnectNulls.js"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Click event",
+      "introduction": [
+        "Click event\n\nLine charts provides multiple click handlers:\n\n- `onAreaClick` for click on a specific area.\n- `onLineClick` for click on a specific line.\n- `onMarkClick` for click on a specific mark.\n- `onAxisClick` for a click anywhere in the chart\n\nThey all provide the following signature.\n\n```js\nconst clickHandler = (\n  event, // The mouse event.\n  params, // An object that identifies the clicked elements.\n) => {};\n```",
+        ":::info\nTheir is a slight difference between the `event` of `onAxisClick` and the others:\n\n- For `onAxisClick` it's a native mouse event emitted by the svg component.\n- For others, it's a React synthetic mouse event emitted by the area, line, or mark component.\n\n:::"
+      ],
+      "code_path": [
+        "LineClickNoSnap.js",
+        null
+      ],
+      "children": [
+        {
+          "name": "Composition",
+          "introduction": [
+            "Composition\n\nIf you're using composition, you can get those click event as follow.\nNotice that the `onAxisClick` will handle both bar and line series if you mix them.\n\n```jsx\nimport ChartsOnAxisClickHandler from '@mui/x-charts/ChartsOnAxisClickHandler';\n// ...\n\n<ChartContainer>\n  {/* ... */}\n  <ChartsOnAxisClickHandler onAxisClick={onAxisClick} />\n  <LinePlot onItemClick={onLineClick} />\n  <AreaPlot onItemClick={onAreaClick} />\n</ChartContainer>;\n```"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Styling",
+      "introduction": [
+        "Styling"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Grid",
+          "introduction": [
+            "Grid\n\nYou can add a grid in the background of the chart with the `grid` prop.\n\nSee [Axis—Grid](/x/react-charts/axis/#grid) documentation for more information."
+          ],
+          "code_path": [
+            "GridDemo.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Color scale",
+          "introduction": [
+            "Color scale\n\nAs with other charts, you can modify the [series color](/x/react-charts/styling/#colors) either directly, or with the color palette.\n\nYou can also modify the color by using axes `colorMap` which maps values to colors.\nThe line charts use by priority:\n\n1. The y-axis color\n2. The x-axis color\n3. The series color\n\nLearn more about the `colorMap` properties in the [Styling docs](/x/react-charts/styling/#values-color).",
+            ":::warning\nFor now, ordinal config is not supported for line chart.\n:::"
+          ],
+          "code_path": [
+            "ColorScale.js",
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Interpolation",
+          "introduction": [
+            "Interpolation\n\nThe interpolation between data points can be customized by the `curve` property.\nThis property expects one of the following string values, corresponding to the interpolation method: `'catmullRom'`, `'linear'`, `'monotoneX'`, `'monotoneY'`, `'natural'`, `'step'`, `'stepBefore'`, `'stepAfter'`.\n\nThis series property adds the option to control the interpolation of a series.\nDifferent series could even have different interpolations."
+          ],
+          "code_path": [
+            "InterpolationDemoNoSnap.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Baseline",
+          "introduction": [
+            "Baseline\n\nThe area chart draws a `baseline` on the Y axis `0`.\nThis is useful as a base value, but customized visualizations may require a different baseline.\n\nTo get the area filling the space above or below the line, set `baseline` to `\"min\"` or `\"max\"`.\nIt is also possible to provide a `number` value to fix the baseline at the desired position.\n\n:::warning\nThe `baseline` should not be used with stacked areas, as it will not work as expected.\n:::"
+          ],
+          "code_path": [
+            "AreaBaseline.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Optimization",
+          "introduction": [
+            "Optimization\n\nTo show mark elements, use `showMark` series property.\nIt accepts a boolean or a callback.\nThe next example shows how to use it to display only one mark every two data points.\n\nWhen a value is highlighted, a mark is rendered for that given value.\nIf the charts already have some marks (due to `showMark=true`) the highlight one will be on top of others.\n\nThis behavior can be removed with the `disableHighlight` series property or at the root of the line chart with a `disableLineItemHighlight` prop.\n\nIn this example, you have one mark for every value with an even index.\nThe highlighted data has a mark regardless if it has an even or odd index."
+          ],
+          "code_path": [
+            "MarkOptimization.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "CSS",
+          "introduction": [
+            "CSS\n\nLine plots are made of three elements named `LineElement`, `AreaElement`, and `MarkElement`.\nEach element can be selected with the CSS class name `.MuiLineElement-root`, `.MuiAreaElement-root`, or `.MuiMarkElement-root`.\n\nIf you want to select the element of a given series, you can use classes `.MuiLineElement-series-<seriesId>` with `<seriesId>` the id of the series you want to customize.\n\nIn the next example, each line style is customized with dashes, and marks are removed.\nThe area of Germany's GDP also gets a custom gradient color.\nThe definition of `myGradient` is passed as a children of the chart component.\n\n```jsx\nsx={{\n  '& .MuiLineElement-root': {\n    strokeDasharray: '10 5',\n    strokeWidth: 4,\n  },\n  '& .MuiAreaElement-series-Germany': {\n    fill: \"url('#myGradient')\",\n  },\n}}\n```"
+          ],
+          "code_path": [
+            "CSSCustomization.js"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Animation",
+      "introduction": [
+        "Animation\n\nTo skip animation at the creation and update of your chart, you can use the `skipAnimation` prop.\nWhen set to `true` it skips animation powered by `@react-spring/web`.\n\nCharts containers already use the `useReducedMotion()` from `@react-spring/web` to skip animation [according to user preferences](https://react-spring.dev/docs/utilities/use-reduced-motion#why-is-it-important).\n\n:::warning\nIf you support interactive ways to add or remove series from your chart, you have to provide the series' id.\n\nOtherwise the chart will have no way to know if you are modifying, removing, or adding some series.\nThis will lead to strange behaviors.\n:::\n\n```jsx\n// For a single component chart\n<LineChart skipAnimation />\n\n// For a composed chart\n<ChartContainer>\n  <LinePlot skipAnimation />\n  <AreaPlot skipAnimation />\n</ChartContainer>\n```"
+      ],
+      "code_path": [
+        "LineAnimation.js"
+      ],
+      "children": []
+    }
+  ]
+}

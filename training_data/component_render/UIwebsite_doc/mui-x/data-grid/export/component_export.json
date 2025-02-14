@@ -1,0 +1,302 @@
+{
+  "name": "export",
+  "introduction": [
+    "# Data Grid - Export\n\n<p class=\"description\">Easily export the rows in various file formats such as CSV, Excel, or PDF.</p>"
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Enabling export",
+      "introduction": [
+        "Enabling export"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Default Toolbar",
+          "introduction": [
+            "Default Toolbar\n\nTo enable the export menu, pass the `GridToolbar` component in the `Toolbar` [component slot](/x/react-data-grid/components/#toolbar)."
+          ],
+          "code_path": [
+            "ExportDefaultToolbar.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Custom Toolbar",
+          "introduction": [
+            "Custom Toolbar\n\nThe export menu is provided in a stand-alone component named `GridToolbarExport`. You can use it in a custom toolbar component as follows.\n\n```jsx\nfunction CustomToolbar() {\n  return (\n    <GridToolbarContainer>\n      <GridToolbarExport />\n    </GridToolbarContainer>\n  );\n}\n```"
+          ],
+          "code_path": [
+            "ExportCustomToolbar.js"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Export options",
+      "introduction": [
+        "Export options\n\nBy default, the export menu displays all the available export formats, according to your license, which are\n\n- [Print](#print-export)\n- [CSV](#csv-export)\n- [Excel](#excel-export) [<span class=\"plan-premium\"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')\n- [Clipboard](#clipboard) [<span class=\"plan-premium\"></span>](/x/introduction/licensing/#premium-plan 'Premium plan') (🚧 Not delivered yet)\n\nYou can customize their respective behavior by passing an options object either to the `GridToolbar` or to the `GridToolbarExport` as a prop.\n\n```tsx\n<DataGrid slotProps={{ toolbar: { csvOptions } }} />\n\n// same as\n\n<GridToolbarExport csvOptions={csvOptions} />\n```\n\nEach export option has its own API page:\n\n- [`csvOptions`](/x/api/data-grid/grid-csv-export-options/)\n- [`printOptions`](/x/api/data-grid/grid-print-export-options/)"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Disabled format",
+      "introduction": [
+        "Disabled format\n\nYou can remove an export format from the toolbar by setting its option property `disableToolbarButton` to `true`.\nIn the following example, the print export is disabled.\n\n```jsx\n<DataGrid\n  slotProps={{ toolbar: { printOptions: { disableToolbarButton: true } } }}\n/>\n```"
+      ],
+      "code_path": [
+        "RemovePrintExport.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Exported columns",
+      "introduction": [
+        "Exported columns\n\nBy default, the export will only contain the visible columns of the Data Grid.\nThere are a few ways to include or hide other columns.\n\n- Set the `disableExport` attribute to `true` in `GridColDef` for columns you don't want to be exported.\n\n```jsx\n<DataGrid columns={[{ field: 'name', disableExport: true }, { field: 'brand' }]} />\n```\n\n- Set `allColumns` in export option to `true` to also include hidden columns. Those with `disableExport=true` will not be exported.\n\n```jsx\n<DataGrid slotProps={{ toolbar: { csvOptions: { allColumns: true } } }} />\n```\n\n- Set the exact columns to be exported in the export option. Setting `fields` overrides the other properties. Such that the exported columns are exactly those in `fields` in the same order.\n\n```jsx\n<DataGrid slotProps={{ toolbar: { csvOptions: { fields: ['name', 'brand'] } } }} />\n```"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Exported rows",
+      "introduction": [
+        "Exported rows\n\nBy default, the Data Grid exports the selected rows if there are any.\nIf not, it exports all rows except the footers (filtered and sorted rows, according to active rules), including the collapsed ones."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Customizing the rows to export",
+          "introduction": [
+            "Customizing the rows to export\n\nAlternatively, you can set the `getRowsToExport` function and export any rows you want, as in the following example.\nThe grid exports a few [selectors](/x/react-data-grid/state/#access-the-state) that can help you get the rows for the most common use-cases:\n\n| Selector                                       | Behavior                                                                                                                                                                                                                   |\n| :---- |\n| `gridRowIdsSelector`                           | The rows in their original order.                                                                                                                                                                                          |\n| `gridSortedRowIdsSelector`                     | The rows after applying the sorting rules.                                                                                                                                                                                 |\n| `gridFilteredSortedRowIdsSelector`             | The rows after applying the sorting rules, and the filtering rules.                                                                                                                                                        |\n| `gridExpandedSortedRowIdsSelector`             | The rows after applying the sorting rules, the filtering rules, and without the collapsed rows.                                                                                                                            |\n| `gridPaginatedVisibleSortedGridRowIdsSelector` | The rows after applying the sorting rules, the filtering rules, without the collapsed rows and only for the current page (**Note**: If the pagination is disabled, it will still take the value of `page` and `pageSize`). |",
+            "When using [Row grouping](/x/react-data-grid/row-grouping/), it can be useful to remove the groups from the CSV export."
+          ],
+          "code_path": [
+            "CsvGetRowsToExport.js",
+            "CsvGetRowsToExportRowGrouping.js"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "CSV export",
+      "introduction": [
+        "CSV export"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Exported cells",
+          "introduction": [
+            "Exported cells\n\nWhen the value of a field is an object or a `renderCell` is provided, the CSV export might not display the value correctly.\nYou can provide a [`valueFormatter`](/x/react-data-grid/column-definition/#value-formatter) with a string representation to be used.\n\n```jsx\n<DataGrid\n  columns={[\n    {\n      field: 'progress',\n      valueFormatter: (value) => `${value * 100}%`,\n      renderCell: ({ value }) => <ProgressBar value={value} />,\n    },\n  ]}\n/>\n```"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "File encoding",
+          "introduction": [
+            "File encoding\n\nYou can use `csvOptions` to specify the format of the export, such as the `delimiter` character used to separate fields, the `fileName`, or `utf8WithBom` to prefix the exported file with UTF-8 Byte Order Mark (BOM).\nFor more details on these options, please visit the [`csvOptions` API page](/x/api/data-grid/grid-csv-export-options/).\n\n```jsx\n<GridToolbarExport\n  csvOptions={{\n    fileName: 'customerDataBase',\n    delimiter: ';',\n    utf8WithBom: true,\n  }}\n/>\n```"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Escape formulas",
+          "introduction": [
+            "Escape formulas\n\nBy default, the formulas in the cells are escaped.\nThis is to prevent the formulas from being executed when [the CSV file is opened in Excel](https://owasp.org/www-community/attacks/CSV_Injection).\n\nIf you want to keep the formulas working, you can set the `escapeFormulas` option to `false`.\n\n```jsx\n<DataGrid slotProps={{ toolbar: { csvOptions: { escapeFormulas: false } } }} />\n\n// or\n\n<GridToolbarExport csvOptions={{ escapeFormulas: false }} />\n```"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Print export",
+      "introduction": [
+        "Print export"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Modify the Data Grid style",
+          "introduction": [
+            "Modify the Data Grid style\n\nBy default, the printed grid is equivalent to printing a page containing only the Data Grid.\nTo modify the styles used for printing, such as colors, you can either use the `@media print` media query or the `pageStyle` property of `printOptions`.\n\nFor example, if the Data Grid is in dark mode, the text color will be inappropriate for printing (too light).\n\nWith media query, you have to start your `sx` object with `@media print` key, such that all the style inside are only applied when printing.\n\n```jsx\n<DataGrid\n  sx={{\n    '@media print': {\n      '.MuiDataGrid-main': { color: 'rgba(0, 0, 0, 0.87)' },\n    },\n  }}\n  {/* ... */}\n/>\n```\n\nWith `pageStyle` option, you can override the main content color with a [more specific selector](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity).\n\n```jsx\n<DataGrid\n  slotProps={{\n    toolbar: {\n      printOptions:{\n        pageStyle: '.MuiDataGrid-root .MuiDataGrid-main { color: rgba(0, 0, 0, 0.87); }',\n      }\n    }\n  }}\n  {/* ... */}\n/>\n```"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Customize grid display",
+          "introduction": [
+            "Customize grid display\n\nBy default, the print export displays all the DataGrid. It is possible to remove the footer and the toolbar by setting respectively `hideFooter` and `hideToolbar` to `true`.\n\n```jsx\n<GridToolbarExport\n  printOptions={{\n    hideFooter: true,\n    hideToolbar: true,\n  }}\n/>\n```\n\nIf rows are selected when exporting, the checkboxes will not be included in the printed page. To export the checkboxes you can set `includeCheckboxes` to `true`.\n\n```jsx\n<GridToolbarExport\n  printOptions={{\n    includeCheckboxes: true,\n  }}\n/>\n```\n\nFor more options to customize the print export, please visit the [`printOptions` API page](/x/api/data-grid/grid-print-export-options/)."
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Custom export format",
+      "introduction": [
+        "Custom export format\n\nYou can add custom export formats by creating your own export menu.\nTo simplify its creation, you can use `<GridToolbarExportContainer />` which contains the menu logic.\nThe default `<GridToolbarExport />` is defined as follow:\n\n```jsx\nconst GridToolbarExport = ({ csvOptions, printOptions, ...other }) => (\n  <GridToolbarExportContainer {...other}>\n    <GridCsvExportMenuItem options={csvOptions} />\n    <GridPrintExportMenuItem options={printOptions} />\n  </GridToolbarExportContainer>\n);\n```\n\nEach child of the `<GridToolbarExportContainer />` receives a prop `hideMenu` to close the export menu after the export.\nThe demo below shows how to add a JSON export."
+      ],
+      "code_path": [
+        "CustomExport.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Excel export [<span class=\"plan-premium\"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')",
+      "introduction": [
+        "Excel export [<span class=\"plan-premium\"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')\n\nThis feature relies on [exceljs](https://github.com/exceljs/exceljs).\nThe Excel export allows translating columns' type and tree structure of a DataGrid to an Excel file.\n\nColumns with types `'boolean'`, `'number'`, `'singleSelect'`, `'date'`, and `'dateTime'` are exported in their corresponding type in Excel. Please ensure the `rows` values have the correct type, you can always [convert them](/x/react-data-grid/column-definition/#converting-types) as needed."
+      ],
+      "code_path": [
+        "ExcelExport.js"
+      ],
+      "children": [
+        {
+          "name": "Customization",
+          "introduction": [
+            "Customization"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": [
+            {
+              "name": "Customizing the columns",
+              "introduction": [
+                "Customizing the columns\n\nYou can use the `columnsStyles` property to customize the column style.\nThis property accepts an object in which keys are the column field and values an [exceljs style object](https://github.com/exceljs/exceljs#styles).\n\nThis can be used to specify value formatting or to add some colors.\n\n```jsx\n<GridToolbarExport\n  excelOptions={{\n    columnsStyles: {\n      // replace the dd.mm.yyyy default date format\n      recruitmentDay: { numFmt: 'dd/mm/yyyy' },\n      // set this column in green\n      incomes: { font: { argb: 'FF00FF00' } },\n    },\n  }}\n/>\n```"
+              ],
+              "code_path": [
+                null
+              ],
+              "children": []
+            },
+            {
+              "name": "Customizing the document",
+              "introduction": [
+                "Customizing the document\n\nYou can customize the document using two callback functions:\n\n- `exceljsPreProcess` called **before** adding the rows' dataset.\n- `exceljsPostProcess` called **after** the dataset has been exported to the document.\n\nBoth functions receive `{ workbook, worksheet }` as input.\nThey are [exceljs](https://github.com/exceljs/exceljs#interface) objects and allow you to directly manipulate the Excel file.\n\nThanks to these two methods, you can modify the metadata of the exported spreadsheet.\nYou can also use it to add custom content on top or bottom of the worksheet, as follows:\n\n```jsx\nfunction exceljsPreProcess({ workbook, worksheet }) {\n  workbook.created = new Date(); // Add metadata\n  worksheet.name = 'Monthly Results'; // Modify worksheet name\n\n  // Write on first line the date of creation\n  worksheet.getCell('A1').value = `Values from the`;\n  worksheet.getCell('A2').value = new Date();\n}\n\nfunction exceljsPostProcess({ worksheet }) {\n  // Add a text after the data\n  worksheet.addRow(); // Add empty row\n\n  const newRow = worksheet.addRow();\n  newRow.getCell(1).value = 'Those data are for internal use only';\n}\n\n// ...\n\n<GridToolbarExport\n  excelOptions={{\n    exceljsPreProcess,\n    exceljsPostProcess,\n  }}\n/>;\n```\n\nSince `exceljsPreProcess` is applied before adding the content of the Data Grid, you can use it to add some informative rows on top of the document.\nThe content of the Data Grid will start on the next row after those added by `exceljsPreProcess`.\n\nTo customize the rows after the Data Grid content, you should use `exceljsPostProcess`. As it is applied after adding the content, you can also use it to access the generated cells.\n\nIn the following demo, both methods are used to set a custom header and a custom footer."
+              ],
+              "code_path": [
+                "ExcelCustomExport.js"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Using a web worker",
+          "introduction": [
+            "Using a web worker\n\n:::warning\nThis feature only works with `@mui/styled-engine` v5.11.8 or newer.\nMake sure that the Material UI version you are using is also installing the correct version for this dependency.\n:::\n\nInstead of generating the Excel file in the main thread, you can delegate the task to a web worker.\nThis method reduces the amount of time that the main thread remains frozen, allowing to interact with the grid while the data is exported in background.\nTo start using web workers for the Excel export, first you need to create a file with the content below.\nThis file will be later used as the worker script, so it must be accessible by a direct URL.\n\n```tsx\n// in file ./worker.ts\nimport { setupExcelExportWebWorker } from '@mui/x-data-grid-premium';\n\nsetupExcelExportWebWorker();\n```\n\nThe final step is to pass the path to the file created to `GridToolbarExport` or the API method:\n\n```tsx\n<GridToolbarExport\n  excelOptions={{\n    worker: () => new Worker('/worker.ts'),\n  }}\n/>;\n\n// or\n\napiRef.current.exportDataAsExcel({\n  worker: () => new Worker('/worker.ts'),\n});\n```\n\n:::info\nIf you are using Next.js or webpack 5, use the following syntax instead.\nMake sure to pass the **relative path**, considering the current file, to the worker script.\n\n```tsx\n<GridToolbarExport\n  excelOptions={{\n    worker: () => new Worker(new URL('./worker.ts', import.meta.url)),\n  }}\n/>;\n\n// or\n\napiRef.current.exportDataAsExcel({\n  worker: () => new Worker(new URL('./worker.ts', import.meta.url)),\n});\n```\n\nIt is not necessary to make the script public because [webpack](https://webpack.js.org/guides/web-workers/) will handle that automatically for you.\n:::\n\nSince the main thread is not locked while the data is exported, it is important to give feedback for users that something is in progress.\nYou can pass a callback to the `onExcelExportStateChange` prop and display a message or loader.\nThe following demo contains an example using a [Snackbar](/material-ui/react-snackbar/):",
+            ":::info\nWhen opening the demo above in CodeSandbox or StackBlitz you need to manually create the `worker.ts` script.\n:::\n\n:::warning\nIf you want to use the `exceljsPreProcess` and `exceljsPostProcess` options to customize the final spreadsheet, as shown in the [Customization](/x/react-data-grid/export/#customization) section above, you have to pass them to `setupExcelExportWebWorker` instead.\nThis is necessary because [functions](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm#things_that_dont_work_with_structured_clone) cannot be passed to the web worker.\n\n```tsx\n// Instead of\n<GridToolbarExport\n  excelOptions={{\n    exceljsPreProcess,\n    exceljsPostProcess,\n  }}\n/>;\n\n// Do the following in the ./worker.ts file\nsetupExcelExportWebWorker({\n  exceljsPreProcess,\n  exceljsPostProcess,\n});\n```\n\n:::"
+          ],
+          "code_path": [
+            "ExcelExportWithWebWorker.js",
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Escape formulas",
+          "introduction": [
+            "Escape formulas\n\nBy default, the formulas in the cells are escaped.\nThis is to prevent the formulas from being executed when [the file is opened in Excel](https://owasp.org/www-community/attacks/CSV_Injection).\n\nIf you want to keep the formulas working, you can set the `escapeFormulas` option to `false`.\n\n```jsx\n<DataGridPremium slotProps={{ toolbar: { excelOptions: { escapeFormulas: false } } }} />\n\n// or\n\n<GridToolbarExport excelOptions={{ escapeFormulas: false }} />\n```"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Clipboard",
+      "introduction": [
+        "Clipboard\n\nThe clipboard export allows you to copy the content of the Data Grid to the clipboard.\nFor more information, check the [Clipboard copy](/x/react-data-grid/clipboard/#clipboard-copy) docs."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "apiRef",
+      "introduction": [
+        "apiRef\n\nThe grid exposes a set of methods that enables all of these features using the imperative `apiRef`. To know more about how to use it, check the [API Object](/x/react-data-grid/api-object/) section.\n\n:::warning\nOnly use this API as the last option. Give preference to the props to control the Data Grid.\n:::"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "CSV",
+          "introduction": [
+            "CSV"
+          ],
+          "code_path": [
+            "CsvExportApiNoSnap.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Print",
+          "introduction": [
+            "Print"
+          ],
+          "code_path": [
+            "PrintExportApiNoSnap.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Excel [<span class=\"plan-premium\"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')",
+          "introduction": [
+            "Excel [<span class=\"plan-premium\"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')"
+          ],
+          "code_path": [
+            "ExcelExportApiNoSnap.js"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "API",
+      "introduction": [
+        "API\n\n- [GridCsvExportOptions](/x/api/data-grid/grid-csv-export-options/)\n- [GridPrintExportOptions](/x/api/data-grid/grid-print-export-options/)\n- [GridExcelExportOptions](/x/api/data-grid/grid-excel-export-options/)\n- [DataGrid](/x/api/data-grid/data-grid/)\n- [DataGridPro](/x/api/data-grid/data-grid-pro/)\n- [DataGridPremium](/x/api/data-grid/data-grid-premium/)"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    }
+  ]
+}

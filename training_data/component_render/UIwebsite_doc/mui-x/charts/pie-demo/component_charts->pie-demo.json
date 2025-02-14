@@ -1,0 +1,71 @@
+{
+  "name": "charts->pie-demo",
+  "introduction": [
+    "# Charts - Pie demonstration\n\n<p class=\"description\">This page groups demonstration using pie charts.</p>"
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "TwoLevelPieChart",
+      "introduction": [
+        "TwoLevelPieChart"
+      ],
+      "code_path": [
+        "TwoLevelPieChart.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "StraightAnglePieChart",
+      "introduction": [
+        "StraightAnglePieChart"
+      ],
+      "code_path": [
+        "StraightAnglePieChart.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "TwoSimplePieChart",
+      "introduction": [
+        "TwoSimplePieChart"
+      ],
+      "code_path": [
+        "TwoSimplePieChart.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "PieChartWithCustomizedLabel",
+      "introduction": [
+        "PieChartWithCustomizedLabel"
+      ],
+      "code_path": [
+        "PieChartWithCustomizedLabel.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "PieChartWithPaddingAngle",
+      "introduction": [
+        "PieChartWithPaddingAngle"
+      ],
+      "code_path": [
+        "PieChartWithPaddingAngle.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "PieChartWithCenterLabel",
+      "introduction": [
+        "PieChartWithCenterLabel"
+      ],
+      "code_path": [
+        "PieChartWithCenterLabel.js"
+      ],
+      "children": []
+    }
+  ]
+}

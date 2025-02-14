@@ -1,0 +1,142 @@
+{
+  "name": "migration-data-grid-v7",
+  "introduction": [
+    "# Migration from v7 to v8\n\n<p class=\"description\">This guide describes the changes needed to migrate the Data Grid from v7 to v8.</p>"
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Introduction",
+      "introduction": [
+        "Introduction\n\nThis is a reference guide for upgrading `@mui/x-data-grid` from v7 to v8."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Start using the new release",
+      "introduction": [
+        "Start using the new release\n\nIn `package.json`, change the version of the Data Grid package to `next`.\n\n```diff\n-\"@mui/x-data-grid\": \"^7.0.0\",\n+\"@mui/x-data-grid\": \"next\",\n\n-\"@mui/x-data-grid-pro\": \"^7.0.0\",\n+\"@mui/x-data-grid-pro\": \"next\",\n\n-\"@mui/x-data-grid-premium\": \"^7.0.0\",\n+\"@mui/x-data-grid-premium\": \"next\",\n```\n\nUsing `next` ensures that it will always use the latest v8 pre-release version, but you can also use a fixed version, like `8.0.0-alpha.0`."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Breaking changes",
+      "introduction": [
+        "Breaking changes\n\nSince v8 is a major release, it contains some changes that affect the public API.\nThese changes were done for consistency, improve stability and make room for new features.\nBelow are described the steps you need to make to migrate from v7 to v8."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Props",
+          "introduction": [
+            "Props\n\n- Passing additional props (like `data-*`, `aria-*`) directly on the Data Grid component is no longer supported. To pass the props, use `slotProps`:\n  - For the `.root` element, use `slotProps.root`\n  - For the `.main` element (the one with `role=\"grid\"`), use `slotProps.main`"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Selection",
+          "introduction": [
+            "Selection\n\n- The default value of the `rowSelectionPropagation` prop has been changed to `{ parents: true, descendants: true }` which means that the selection will be propagated to the parents and descendants by default.\n  To revert to the previous behavior, pass `rowSelectionPropagation={{ parents: false, descendants: false }}`.\n- The prop `indeterminateCheckboxAction` has been removed. Clicking on an indeterminate checkbox \"selects\" the unselected descendants.\n- The \"Select all\" checkbox would now be checked when all the selectable rows are selected, ignoring rows that are not selectable because of the `isRowSelectable` prop."
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Changes to the public API",
+          "introduction": [
+            "Changes to the public API\n\n- The `rowPositionsDebounceMs` prop was removed.\n- The `apiRef.current.resize()` method was removed.\n- The `<GridOverlays />` component is not exported anymore.\n- The `sanitizeFilterItemValue()` utility is not exported anymore.\n- `gridRowsDataRowIdToIdLookupSelector` was removed. Use `gridRowsLookupSelector` in combination with `getRowId()` API method instead.\n\n  ```diff\n  -const idToIdLookup = gridRowsDataRowIdToIdLookupSelector(apiRef);\n  -const rowId = idToIdLookup[id];\n  +const rowsLookup = gridRowsLookupSelector(apiRef);\n  +const rowId = apiRef.current.getRowId(rowsLookup[id]);\n  ```\n\n- The feature row spanning is now stable.\n\n  ```diff\n   <DataGrid\n  -  unstable_rowSpanning\n  +  rowSpanning\n   />\n  ```"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Localization",
+          "introduction": [
+            "Localization\n\n- If `estimatedRowCount` is used, the text provided to the [Table Pagination](/material-ui/api/table-pagination/) component from the Material UI library is updated and requires additional translations. Check the example at the end of [Index-based pagination section](/x/react-data-grid/pagination/#index-based-pagination)."
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Accessibility",
+          "introduction": [
+            "Accessibility\n\n- The Grid is more aligned with the WAI-ARIA authoring practices and sets the `role` attribute to `treegrid` if the Data Grid is used with row grouping feature."
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "State",
+          "introduction": [
+            "State\n\n- The selectors signature has been updated due to the support of arguments in the selectors. Pass `undefined` as `arguments` if the selector doesn't use any arguments.\n\n  ```diff\n  -mySelector(state, instanceId)\n  +mySelector(state, arguments, instanceId)\n  ```\n\n- The `useGridSelector` signature has been updated due to the introduction of arguments parameter in the selectors. Pass `undefined` as `arguments` if the selector doesn't use any arguments.\n\n  ```diff\n  -const output = useGridSelector(apiRef, selector, equals);\n  +const output = useGridSelector(apiRef, selector, arguments, equals);\n  ```"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Other exports",
+          "introduction": [
+            "Other exports\n\n- `ariaV8` experimental flag is removed. It's now the default behavior."
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Filtering",
+          "introduction": [
+            "Filtering\n\n- The clear button in header filter cells has moved to the header filter menu. Use `slotProps={{ headerFilterCell: { showClearIcon: true } }}` to restore the clear button in the cell.\n\n<!-- ### Editing\n\nTBD"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "CSS classes and styling",
+          "introduction": [
+            "CSS classes and styling\n\nTBD"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Changes to slots",
+          "introduction": [
+            "Changes to slots\n\nTBD -->"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        }
+      ]
+    }
+  ]
+}

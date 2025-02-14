@@ -1,0 +1,175 @@
+{
+  "name": "tooltips",
+  "introduction": [
+    "# Tooltip\n\n<p class=\"description\">Tooltips display informative text when users hover over, focus on, or tap an element.</p>\n\nWhen activated, Tooltips display a text label identifying an element, such as a description of its function."
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Basic tooltip",
+      "introduction": [
+        "Basic tooltip"
+      ],
+      "code_path": [
+        "BasicTooltip.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Positioned tooltips",
+      "introduction": [
+        "Positioned tooltips\n\nThe `Tooltip` has 12 **placement** choices.\nThey don't have directional arrows; instead, they rely on motion emanating from the source to convey direction."
+      ],
+      "code_path": [
+        "PositionedTooltips.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Customization",
+      "introduction": [
+        "Customization\n\nHere are some examples of customizing the component.\nYou can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/)."
+      ],
+      "code_path": [
+        "CustomizedTooltips.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Arrow tooltips",
+      "introduction": [
+        "Arrow tooltips\n\nYou can use the `arrow` prop to give your tooltip an arrow indicating which element it refers to."
+      ],
+      "code_path": [
+        "ArrowTooltips.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Distance from anchor",
+      "introduction": [
+        "Distance from anchor\n\nTo adjust the distance between the tooltip and its anchor, you can use the `slotProps` prop to modify the [offset](https://popper.js.org/docs/v2/modifiers/offset/) of the popper.",
+        "Alternatively, you can use the `slotProps` prop to customize the margin of the popper."
+      ],
+      "code_path": [
+        "TooltipOffset.js",
+        "TooltipMargin.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Custom child element",
+      "introduction": [
+        "Custom child element\n\nThe tooltip needs to apply DOM event listeners to its child element.\nIf the child is a custom React element, you need to make sure that it spreads its props to the underlying DOM element.\n\n```jsx\nconst MyComponent = React.forwardRef(function MyComponent(props, ref) {\n  //  Spread the props to the underlying DOM element.\n  return (\n    <div {...props} ref={ref}>\n      Bin\n    </div>\n  );\n});\n\n// ...\n\n<Tooltip title=\"Delete\">\n  <MyComponent />\n</Tooltip>;\n```\n\nIf using a class component as a child, you'll also need to ensure that the ref is forwarded to the underlying DOM element. (A ref to the class component itself will not work.)\n\n```jsx\nclass MyComponent extends React.Component {\n  render() {\n    const { innerRef, ...props } = this.props;\n    //  Spread the props to the underlying DOM element.\n    return (\n      <div {...props} ref={innerRef}>\n        Bin\n      </div>\n    );\n  }\n}\n\n// Wrap MyComponent to forward the ref as expected by Tooltip\nconst WrappedMyComponent = React.forwardRef(function WrappedMyComponent(props, ref) {\n  return <MyComponent {...props} innerRef={ref} />;\n});\n\n// ...\n\n<Tooltip title=\"Delete\">\n  <WrappedMyComponent />\n</Tooltip>;\n```"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Triggers",
+      "introduction": [
+        "Triggers\n\nYou can define the types of events that cause a tooltip to show.\n\nThe touch action requires a long press due to the `enterTouchDelay` prop being set to `700`ms by default."
+      ],
+      "code_path": [
+        "TriggersTooltips.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Controlled tooltips",
+      "introduction": [
+        "Controlled tooltips\n\nYou can use the `open`, `onOpen` and `onClose` props to control the behavior of the tooltip."
+      ],
+      "code_path": [
+        "ControlledTooltips.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Variable width",
+      "introduction": [
+        "Variable width\n\nThe `Tooltip` wraps long text by default to make it readable."
+      ],
+      "code_path": [
+        "VariableWidth.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Interactive",
+      "introduction": [
+        "Interactive\n\nTooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)).\nIt won't close when the user hovers over the tooltip before the `leaveDelay` is expired.\nYou can disable this behavior (thus failing the success criterion which is required to reach level AA) by passing `disableInteractive`."
+      ],
+      "code_path": [
+        "NonInteractiveTooltips.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Disabled elements",
+      "introduction": [
+        "Disabled elements\n\nBy default disabled elements like `<button>` do not trigger user interactions so a `Tooltip` will not activate on normal events like hover. To accommodate disabled elements, add a simple wrapper element, such as a `span`.\n\n:::warning\nIn order to work with Safari, you need at least one display block or flex item below the tooltip wrapper.\n:::",
+        ":::warning\nIf you're not wrapping a Material UI component that inherits from `ButtonBase`, for instance, a native `<button>` element, you should also add the CSS property _pointer-events: none;_ to your element when disabled:\n:::\n\n```jsx\n<Tooltip title=\"You don't have permission to do this\">\n  <span>\n    <button disabled={disabled} style={disabled ? { pointerEvents: 'none' } : {}}>\n      A disabled button\n    </button>\n  </span>\n</Tooltip>\n```"
+      ],
+      "code_path": [
+        "DisabledTooltips.js",
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Transitions",
+      "introduction": [
+        "Transitions\n\nUse a different transition."
+      ],
+      "code_path": [
+        "TransitionsTooltips.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Follow cursor",
+      "introduction": [
+        "Follow cursor\n\nYou can enable the tooltip to follow the cursor by setting `followCursor={true}`."
+      ],
+      "code_path": [
+        "FollowCursorTooltips.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Virtual element",
+      "introduction": [
+        "Virtual element\n\nIn the event you need to implement a custom placement, you can use the `anchorEl` prop:\nThe value of the `anchorEl` prop can be a reference to a fake DOM element.\nYou need to create an object shaped like the [`VirtualElement`](https://popper.js.org/docs/v2/virtual-elements/)."
+      ],
+      "code_path": [
+        "AnchorElTooltips.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Showing and hiding",
+      "introduction": [
+        "Showing and hiding\n\nThe tooltip is normally shown immediately when the user's mouse hovers over the element, and hides immediately when the user's mouse leaves. A delay in showing or hiding the tooltip can be added through the `enterDelay` and `leaveDelay` props.\n\nOn mobile, the tooltip is displayed when the user longpresses the element and hides after a delay of 1500ms. You can disable this feature with the `disableTouchListener` prop."
+      ],
+      "code_path": [
+        "DelayTooltips.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Accessibility",
+      "introduction": [
+        "Accessibility\n\n(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/)\n\nBy default, the tooltip only labels its child element.\nThis is notably different from `title` which can either label **or** describe its child depending on whether the child already has a label.\nFor example, in:\n\n```html\n<button title=\"some more information\">A button</button>\n```\n\nthe `title` acts as an accessible description.\nIf you want the tooltip to act as an accessible description you can pass `describeChild`.\nNote that you shouldn't use `describeChild` if the tooltip provides the only visual label. Otherwise, the child would have no accessible name and the tooltip would violate [success criterion 2.5.3 in WCAG 2.1](https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html)."
+      ],
+      "code_path": [
+        "AccessibilityTooltips.js"
+      ],
+      "children": []
+    }
+  ]
+}

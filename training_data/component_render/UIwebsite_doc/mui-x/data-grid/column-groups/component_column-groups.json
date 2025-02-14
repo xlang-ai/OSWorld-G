@@ -1,0 +1,91 @@
+{
+  "name": "column-groups",
+  "introduction": [
+    "# Data Grid - Column groups\n\n<p class=\"description\">Group your columns.</p>\n\nGrouping columns allows you to have a multi-level hierarchy of columns in your header."
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Define column groups",
+      "introduction": [
+        "Define column groups\n\nYou can define column groups with the `columnGroupingModel` prop.\nThis prop receives an array of column groups.\n\nA column group is defined by at least two properties:\n\n- `groupId`: a string used to identify the group\n- `children`: an array containing the children of the group\n\nThe `children` attribute can contain two types of objects:\n\n- leafs with type `{ field: string }`, which add the column with the corresponding `field` to this group.\n- other column groups which allows you to have nested groups.\n\n:::warning\nA column can only be associated with one group.\n:::\n\n```jsx\n<DataGrid\n  columnGroupingModel={[\n    {\n      groupId: 'internal data',\n      children: [{ field: 'id' }],\n    },\n    {\n      groupId: 'character',\n      children: [\n        {\n          groupId: 'naming',\n          children: [{ field: 'lastName' }, { field: 'firstName' }],\n        },\n        { field: 'age' },\n      ],\n    },\n  ]}\n/>\n```"
+      ],
+      "code_path": [
+        "BasicGroupingDemo.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Customize column group",
+      "introduction": [
+        "Customize column group\n\nIn addition to the required `groupId` and `children`, you can use the following optional properties to customize a column group:\n\n- `headerName`: the string displayed as the column's name (instead of `groupId`).\n- `description`: a text for the tooltip.\n- `headerClassName`: a CSS class for styling customization.\n- `renderHeaderGroup`: a function returning custom React component."
+      ],
+      "code_path": [
+        "CustomizationDemo.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Group header height",
+      "introduction": [
+        "Group header height\n\nBy default, column group headers are the same height as [column headers](/x/react-data-grid/column-header/#header-height). This will be the default 56 pixels or a custom value set with the `columnHeaderHeight` prop.\n\nThe `columnGroupHeaderHeight` prop can be used to size column group headers independently of column headers."
+      ],
+      "code_path": [
+        "GroupHeaderHeight.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Column reordering [<span class=\"plan-pro\"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')",
+      "introduction": [
+        "Column reordering [<span class=\"plan-pro\"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')\n\nBy default, the columns that are part of a group cannot be dragged to outside their group.\nYou can customize this behavior on specific groups by setting `freeReordering: true` in a column group object.\n\nIn the example below, the `Full name` column group can be divided, but not other column groups."
+      ],
+      "code_path": [
+        "BreakingGroupDemo.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Collapsible column groups",
+      "introduction": [
+        "Collapsible column groups\n\nThe demo below uses [`renderHeaderGroup`](/x/react-data-grid/column-groups/#customize-column-group) to add a button to collapse/expand the column group."
+      ],
+      "code_path": [
+        "CollapsibleColumnGroups.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Manage group visibility 🚧",
+      "introduction": [
+        "Manage group visibility 🚧\n\nThe column group should allow to switch between an extended/collapsed view which hide/show some columns.\n\n:::warning\nThis feature isn't implemented yet. It's coming.\n\n👍 Upvote [issue #6651](https://github.com/mui/mui-x/issues/6651) if you want to see it land faster.\n\nDon't hesitate to leave a comment on the same issue to influence what gets built. Especially if you already have a use case for this component, or if you are facing a pain point with your current solution.\n:::"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Column group ordering [<span class=\"plan-pro\"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')🚧",
+      "introduction": [
+        "Column group ordering [<span class=\"plan-pro\"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')🚧\n\nUsers could drag and drop group header to move all the group children at once, [like they can already do it with normal columns](/x/react-data-grid/column-ordering/).\n\n:::warning\nThis feature isn't implemented yet. It's coming.\n\n👍 Upvote [issue #9448](https://github.com/mui/mui-x/issues/9448) if you want to see it land faster.\n\nDon't hesitate to leave a comment on the same issue to influence what gets built. Especially if you already have a use case for this component, or if you are facing a pain point with your current solution.\n:::"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "API",
+      "introduction": [
+        "API\n\n- [DataGrid](/x/api/data-grid/data-grid/)\n- [DataGridPro](/x/api/data-grid/data-grid-pro/)\n- [DataGridPremium](/x/api/data-grid/data-grid-premium/)"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    }
+  ]
+}

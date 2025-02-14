@@ -1,0 +1,74 @@
+{
+  "name": "sparkline",
+  "introduction": [
+    "# Charts - Sparkline\n\n<p class=\"description\">Sparkline charts can provide an overview of data trends.</p>"
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Basics",
+      "introduction": [
+        "Basics\n\nA sparkline is a small chart drawn without axes or coordinates, that presents the general shape of a variation in a simplified way.\nThe `<SparkLineChart />` requires only the `data` props which is an array of numbers.\nYou can also switch from line to a bar plot with `plotType=\"bar\"`."
+      ],
+      "code_path": [
+        "BasicSparkLine.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Line customization",
+      "introduction": [
+        "Line customization\n\nYou can fill the area below the sparkline curve with the `area` prop.\nTo modify the curve interpolation, use the `curve` prop. Read the full documentation for curves in the [line charts page](/x/react-charts/lines/#interpolation)."
+      ],
+      "code_path": [
+        "AreaSparkLine.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Interaction",
+      "introduction": [
+        "Interaction\n\nCompared to line and bar charts, the sparkline has some additional props to simplify interaction configuration.\nYou can use `showTooltip` and `showHighlight` to display the default tooltip and highlight in your sparkline.\n\nThose are helpers.\nIf you need more advanced customization, you can provide custom props for `tooltip` and `highlight` as described in the [Tooltip page](/x/react-charts/tooltip/)."
+      ],
+      "code_path": [
+        "BasicSparkLineCustomization.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Axis management",
+      "introduction": [
+        "Axis management"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "X-axis data",
+          "introduction": [
+            "X-axis data\n\nBy default, the sparkline assigns `xAxis` values as an ascending integer sequence starting from 0 (0, 1, 2,...). These values are, in this case, hidden in the tooltip.\nYou can override this behavior if your data are not evenly distributed, or if you need to label them.\n\nTo do so, use the `xAxis` prop.\nNotice that sparkline does not manage multiple axes, so `xAxis` prop takes an axis configuration object.\nWhereas most of the other charts expect an array of axis configuration objects.\n\n```jsx\n<SparkLineChart data={[1, 4, 2, 5, 7, 2, 4, 6]} xAxis={{ scaleType, data }} />\n```"
+          ],
+          "code_path": [
+            "CustomAxis.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Y-axis range",
+          "introduction": [
+            "Y-axis range\n\nYou can fix the y-range of the sparkline by providing `min`/`max` values to the `yAxis` configuration.\n\nThe following demo shows two sparklines, one with small and another with large values.\nThe first row has the default y-axis values, while on the second row a fixed range from `0` to `100` has been set.",
+            "You can adjust the y-axis range of a sparkline relatively to its data by using the `domainLimit` option in the `yAxis` configuration.\nSee the [axis docs page](/x/react-charts/axis/#relative-axis-subdomain) for more information.\n\nThe demo below shows different ways to set the y-axis range.\nThey always display the same data, going from -15 to 92, but with different `domainLimit` settings."
+          ],
+          "code_path": [
+            "CustomYAxis.js",
+            "CustomDomainYAxis.js"
+          ],
+          "children": []
+        }
+      ]
+    }
+  ]
+}

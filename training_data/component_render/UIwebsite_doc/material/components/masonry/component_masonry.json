@@ -1,0 +1,85 @@
+{
+  "name": "masonry",
+  "introduction": [
+    "# Masonry\n\n<p class=\"description\">Masonry lays out contents of varying dimensions as blocks of the same width and different height with configurable gaps.</p>\n\nMasonry maintains a list of content blocks with a consistent width but different height.\nThe contents are ordered by row.\nIf a row is already filled with the specified number of columns, the next item starts another row, and it is added to the shortest column in order to optimize the use of space."
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Basic masonry",
+      "introduction": [
+        "Basic masonry\n\nA simple example of a `Masonry`. `Masonry` is a container for one or more items. It can receive any element including `<div />` and `<img />`."
+      ],
+      "code_path": [
+        "BasicMasonry.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Image masonry",
+      "introduction": [
+        "Image masonry\n\nThis example demonstrates the use of `Masonry` for images. `Masonry` orders its children by row.\nIf you'd like to order images by column, check out [ImageList](/material-ui/react-image-list/#masonry-image-list)."
+      ],
+      "code_path": [
+        "ImageMasonry.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Items with variable height",
+      "introduction": [
+        "Items with variable height\n\nThis example demonstrates the use of `Masonry` for items with variable height.\nItems can move to other columns in order to abide by the rule that items are always added to the shortest column and hence optimize the use of space."
+      ],
+      "code_path": [
+        "MasonryWithVariableHeightItems.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Columns",
+      "introduction": [
+        "Columns\n\nThis example demonstrates the use of the `columns` to configure the number of columns of a `Masonry`.",
+        "`columns` accepts responsive values:"
+      ],
+      "code_path": [
+        "FixedColumns.js",
+        "ResponsiveColumns.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Spacing",
+      "introduction": [
+        "Spacing\n\nThis example demonstrates the use of the `spacing` to configure the spacing between items.\nIt is important to note that the value provided to the `spacing` prop is multiplied by the theme's spacing field.",
+        "`spacing` accepts responsive values:"
+      ],
+      "code_path": [
+        "FixedSpacing.js",
+        "ResponsiveSpacing.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Sequential",
+      "introduction": [
+        "Sequential\n\nThis example demonstrates the use of the `sequential` to configure the sequential order.\nWith `sequential` enabled, items are added in order from left to right rather than adding to the shortest column."
+      ],
+      "code_path": [
+        "Sequential.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Server-side rendering",
+      "introduction": [
+        "Server-side rendering\n\nThis example demonstrates the use of the `defaultHeight`, `defaultColumns` and `defaultSpacing`, which are used to\nsupport server-side rendering.\n\n:::info\n`defaultHeight` should be large enough to render all rows. Also, it is worth mentioning that items are not added to the shortest column in case of server-side rendering.\n:::"
+      ],
+      "code_path": [
+        "SSRMasonry.js"
+      ],
+      "children": []
+    }
+  ]
+}

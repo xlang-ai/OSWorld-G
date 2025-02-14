@@ -1,0 +1,217 @@
+{
+  "name": "axis",
+  "introduction": [
+    "# Charts - Axis\n\n<p class=\"description\">Axis provides associate values to element positions.</p>\n\nAxes are used in the following charts: `<LineChart />`, `<BarChart />`, `<ScatterChart />`."
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Defining axis",
+      "introduction": [
+        "Defining axis\n\nLike your data, axis definition plays a central role in the chart rendering.\nIt's responsible for the mapping between your data and element positions.\n\nYou can define custom axes by using `xAxis` and `yAxis` props.\nThose props expect an array of objects.\n\nHere is a demonstration with two lines with the same data.\nBut one uses a linear, and the other a log axis.\nEach axis definition is identified by its property `id`.\nThen each series specifies the axis they use with the `xAxisId` and `yAxisId` properties.",
+        ":::info\nThe management of those ids is for advanced use cases, such as charts with multiple axes.\nOr customized axes.\n\nIf you do not provide a `xAxisId` or `yAxisId`, the series will use the first axis defined.\n\nThat's why in most of the demonstrations with single x and y axis you will not see definitions of axis `id`, `xAxisId`, or `yAxisId`.\nThose demonstrations use the defaultized values.\n:::"
+      ],
+      "code_path": [
+        "ScaleExample.js",
+        null
+      ],
+      "children": [
+        {
+          "name": "Axis type",
+          "introduction": [
+            "Axis type\n\nThe axis type is specified by its property `scaleType` which expect one of the following values:\n\n- `'band'`: Split the axis in equal band. Mostly used for bar charts.\n- `'point'`: Split the axis in equally spaced points. Mostly used for line charts on categories.\n- `'linear'`, `'log'`, `'sqrt'`: Map numerical values to the space available for the chart. `'linear'` is the default behavior.\n- `'time'`, `'utc'`: Map JavaScript `Date()` object to the space available for the chart."
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Axis data",
+          "introduction": [
+            "Axis data\n\nThe axis definition object also includes a `data` property.\nWhich expects an array of value coherent with the `scaleType`:\n\n- For `'linear'`, `'log'`, or `'sqrt'` it should contain numerical values\n- For `'time'` or `'utc'` it should contain `Date()` objects\n- For `'band'` or `'point'` it can contain `string`, or numerical values\n\nSome series types also require specific axis attributes:\n\n- line plots require an `xAxis` to have `data` provided\n- bar plots require an `xAxis` with `scaleType=\"band\"` and some `data` provided."
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Axis formatter",
+          "introduction": [
+            "Axis formatter\n\nAxis data can be displayed in the axes ticks and the tooltip.\nTo modify how data is displayed use the `valueFormatter` property.\n\nThe second argument of `valueFormatter` provides some rendering context for advanced use cases.\n\nIn the next demo, `valueFormatter` is used to shorten months and introduce a breaking space for ticks only.\nTo distinguish tick and tooltip, it uses the `context.location`."
+          ],
+          "code_path": [
+            "FormatterDemoNoSnap.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Axis sub domain",
+          "introduction": [
+            "Axis sub domain\n\nBy default, the axis domain is computed such that all your data is visible.\nTo show a specific range of values, you can provide properties `min` and/or `max` to the axis definition.\n\n```js\nxAxis={[\n  {\n    min: 10,\n    max: 50,\n  },\n]}\n```"
+          ],
+          "code_path": [
+            "MinMaxExample.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Relative axis subdomain",
+          "introduction": [
+            "Relative axis subdomain\n\nYou can adjust the axis range relatively to its data by using the `domainLimit` option.\nIt can take 3 different values:\n\n- `\"nice\"` Rounds the domain at human friendly values. It's the default behavior.\n- `\"strict\"` Sets the domain to the min/max value to display.\n- `([minValue, maxValue]) => [min, max]` Receives the calculated extremums as parameters, and should return the axis domain.\n\nThe demo below shows different ways to set the y-axis range.\nThey always display the same data, going from -15 to 92, but with different `domainLimit` settings."
+          ],
+          "code_path": [
+            "CustomDomainYAxis.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Axis direction",
+          "introduction": [
+            "Axis direction\n\nBy default, the axes' directions are left to right and bottom to top.\nYou can change this behavior with the property `reverse`."
+          ],
+          "code_path": [
+            "ReverseExampleNoSnap.js"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Grid",
+      "introduction": [
+        "Grid\n\nYou can add a grid in the background of the cartesian chart with the `grid` prop.\n\nIt accepts an object with `vertical` and `horizontal` properties.\nSetting those properties to `true` will display the grid lines.\n\nIf you use composition you can pass those properties to the `<ChartsGrid />` component.\n\n```jsx\n<BarChart grid={{ vertical: true }}>\n\n<ChartContainer>\n  <ChartsGrid vertical >\n</ChartContainer>\n```"
+      ],
+      "code_path": [
+        "GridDemo.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Tick position",
+      "introduction": [
+        "Tick position"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Automatic tick position",
+          "introduction": [
+            "Automatic tick position\n\nYou can customize the number of ticks with the property `tickNumber`.\n\n:::info\nThis number is not the exact number of ticks displayed.\n\nThanks to d3, ticks are placed to be human-readable.\nFor example, ticks for time axes will be placed on special values (years, days, half-days, ...).\n\nIf you set `tickNumber=5` but there are only 4 years to display in the axis, the component might choose to render ticks on the 4 years, instead of putting 5 ticks on some months.\n:::\n\nAs a helper, you can also provide `tickMinStep` and `tickMaxStep` which will compute `tickNumber` such that the step between two ticks respect those min/max values.\n\nHere the top axis has a `tickMinStep` of half a day, and the bottom axis a `tickMinStep` of a full day."
+          ],
+          "code_path": [
+            "TickNumber.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Fixed tick positions",
+          "introduction": [
+            "Fixed tick positions\n\nIf you want more control over the tick position, you can use the `tickInterval` property.\n\nThis property accepts an array of values.\nTicks will be placed at those values.\n\nFor axis with scale type `'point'`, the `tickInterval` property can be a filtering function of the type `(value, index) => boolean`.\n\nIn the next demo, both axes are with `scaleType='point'`.\nThe top axis displays the default behavior.\nIt shows a tick for each point.\nThe bottom axis uses a filtering function to only display a tick at the beginning of a day."
+          ],
+          "code_path": [
+            "TickPosition.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Filtering ticks label",
+          "introduction": [
+            "Filtering ticks label\n\nYou can display labels only on a subset of ticks with the `tickLabelInterval` property.\nIt's a filtering function in the `(value, index) => boolean` form.\n\nFor example `tickLabelInterval: (value, index) => index % 2 === 0` will show the label every two ticks.\n\n:::warning\nThe `value` and `index` arguments are those of the ticks, not the axis data.\n:::\n\nBy default, ticks are filtered such that their labels do not overlap.\nYou can override this behavior with `tickLabelInterval: () => true` which forces showing the tick label for each tick.\n\nIn this example, the top axis is a reference for the default behavior.\nNotice that tick labels do not overflow.\n\nAt the bottom, you can see one tick for the beginning and the middle of the day but the tick label is only displayed for the beginning of the day."
+          ],
+          "code_path": [
+            "TickLabelPosition.js"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Axis customization",
+      "introduction": [
+        "Axis customization\n\nYou can further customize the axis rendering besides the axis definition."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Fixing overflow issues",
+          "introduction": [
+            "Fixing overflow issues\n\nIf your tick labels are too long, they can either overflow the SVG or overlap with the axis label.\nResolving this can be achieved in two ways:\n\n- Increase the space between the SVG border and the axis by setting the [margin props](/x/react-charts/styling/#placement).\n- Modify the axis label position by:\n  - Using the axis configuration `labelStyle.transform`.\n  - Applying CSS transform to the class name `axisClasses.label`.\n\nIn the following demo, the margin is modified to provide more space to the x and y axes.\nThe x-axis label placement is based on the axis configuration, and the y-axis is placed using a CSS selector."
+          ],
+          "code_path": [
+            "MarginAndLabelPosition.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Position",
+          "introduction": [
+            "Position\n\nCharts components provide 4 props: `topAxis`, `rightAxis`, `bottomAxis`, and `leftAxis` allowing to define the 4 axes of the chart.\nThose props can accept three type of value:\n\n- `null` to not display the axis\n- `string` which should correspond to the id of a `xAxis` for top and bottom. Or to the id of a `yAxis` for left and right.\n- `object` which will be passed as props to `<XAxis />` or `<YAxis />`. It allows to specify which axis should be represent with the `axisId` property, and to customize the design of the axis.\n\nThe demo below uses `leftAxis={null}` to remove the left axis, and `rightAxis={{}}` to set a right axis without overriding the default y-axis configuration."
+          ],
+          "code_path": [
+            "ModifyAxisPosition.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Hiding axis",
+          "introduction": [
+            "Hiding axis\n\nTo hide an axis, set it to `null`.\nFor example `leftAxis={null}` hides the left axis."
+          ],
+          "code_path": [
+            "HidingAxis.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Rendering",
+          "introduction": [
+            "Rendering\n\nAxes rendering can be further customized. Below is an interactive demonstration of the axis props."
+          ],
+          "code_path": [
+            "AxisCustomizationNoSnap.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Text customization",
+          "introduction": [
+            "Text customization\n\nTo customize the text elements (ticks label and the axis label) use the `tickLabelStyle` and `labelStyle` properties of the axis configuration."
+          ],
+          "code_path": [
+            "AxisTextCustomizationNoSnap.js"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Composition",
+      "introduction": [
+        "Composition\n\nIf you are using composition, you have to provide the axis settings in the `<ChartContainer />` by using `xAxis` and `yAxis` props.\n\nIt will provide all the scaling properties to its children, and allows you to use `<XAxis/>` and `<YAxis/>` components as children.\nThose components require an `axisId` prop to link them to an axis you defined in the `<ChartContainer />`.\n\nYou can choose their position with `position` props which accept `'top'`/`'bottom'` for `<XAxis />` and `'left'`/`'right'` for `<YAxis />`.\nOther props are similar to the ones defined in the [previous section](/x/react-charts/axis/#rendering)."
+      ],
+      "code_path": [
+        "AxisWithComposition.js"
+      ],
+      "children": [
+        {
+          "name": "Reference line",
+          "introduction": [
+            "Reference line\n\nThe `<ChartsReferenceLine />` component add a reference line to the charts.\nYou can provide an `x` or `y` prop to get a vertical or horizontal line respectively at this value.\n\nYou can add a `label` to this reference line.\nIt can be placed with `labelAlign` prop which accepts `'start'`, `'middle'`, and `'end'` values.\nElements can be styled with `lineStyle` and `labelStyle` props."
+          ],
+          "code_path": [
+            "ReferenceLine.js"
+          ],
+          "children": []
+        }
+      ]
+    }
+  ]
+}

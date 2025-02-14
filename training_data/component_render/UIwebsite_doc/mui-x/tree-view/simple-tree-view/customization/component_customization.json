@@ -1,0 +1,103 @@
+{
+  "name": "customization",
+  "introduction": [
+    "# Simple Tree View - Customization\n\n<p class=\"description\">Learn how to customize the Simple Tree View component.</p>\n\n:::success\nSee [Common concepts—Slots and subcomponents](/x/common-concepts/custom-components/) to learn how to use slots.\n:::"
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Basics",
+      "introduction": [
+        "Basics"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Custom icons",
+          "introduction": [
+            "Custom icons\n\nUse the `collapseIcon` slot, the `expandIcon` slot and the `defaultEndIcon` prop to customize the Tree View icons.\nThe demo below shows how to add icons using both an existing icon library, such as [Material Icons](/material-ui/material-icons/), and creating an icon from scratch using Material UI's [SVG Icon component](/material-ui/icons/#svgicon)."
+          ],
+          "code_path": [
+            "CustomIcons.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Custom toggle animations",
+          "introduction": [
+            "Custom toggle animations\n\nUse the `groupTransition` slot on the Tree Item to pass a component that handles your animation.\n\nThe demo below is animated using Material UI's [Collapse](/material-ui/transitions/#collapse) component together with the [react-spring](https://www.react-spring.dev/) library."
+          ],
+          "code_path": [
+            "CustomAnimation.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Custom styling",
+          "introduction": [
+            "Custom styling\n\nUse `treeItemClasses` to target internal elements of the Tree Item component and change their styles."
+          ],
+          "code_path": [
+            "CustomStyling.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Custom Tree Item",
+          "introduction": [
+            "Custom Tree Item\n\nYou can use the Tree Item's customization API to build new layouts and manage behaviors.\n\nLearn more about the anatomy of the Tree Items and the customization utilities provided on the [Tree Item Customization page](/x/react-tree-view/tree-item-customization/)."
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Headless API",
+          "introduction": [
+            "Headless API\n\nUse the `useTreeItem` hook to create your own component.\nThe demo below shows how to add an avatar and custom typography elements."
+          ],
+          "code_path": [
+            "HeadlessAPI.js"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Common examples",
+      "introduction": [
+        "Common examples"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Connection border",
+          "introduction": [
+            "Connection border\n\nTarget the `treeItemClasses.groupTransition` class to add connection borders between the Tree View items."
+          ],
+          "code_path": [
+            "BorderedTreeView.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Gmail clone",
+          "introduction": [
+            "Gmail clone\n\nGoogle's Gmail side nav is potentially one of the web's most famous tree view components.\nThe demo below shows how to replicate it.\n\nThe Gmail sidebar is one of the most well known examples of a tree view.\nThe demo below shows how to recreate it with the Tree View component:"
+          ],
+          "code_path": [
+            "GmailTreeView.js"
+          ],
+          "children": []
+        }
+      ]
+    }
+  ]
+}

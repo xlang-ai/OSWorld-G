@@ -1,0 +1,10 @@
+<StyledDataGrid
+  checkboxSelection
+  paginationModel={paginationModel}
+  onPaginationModelChange={setPaginationModel}
+  pageSizeOptions={[PAGE_SIZE]}
+  slots={{
+    pagination: CustomPagination,
+  }}
+  {...data}
+/>

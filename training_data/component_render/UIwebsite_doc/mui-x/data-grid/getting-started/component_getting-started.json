@@ -1,0 +1,124 @@
+{
+  "name": "getting-started",
+  "introduction": [
+    "# Data Grid - Getting started\n\n<p class=\"description\">Get started with the last React Data Grid you will need. Install the package, configure the columns, provide rows, and you are set.</p>"
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Installation",
+      "introduction": [
+        "Installation\n\nUsing your favorite package manager, install `@mui/x-data-grid-pro` or `@mui/x-data-grid-premium` for the commercial version, or `@mui/x-data-grid` for the free community version.\n\n<!-- #default-branch-switch -->\n\n{{\"component\": \"modules/components/DataGridInstallationInstructions.js\"}}\n\nThe Data Grid package has a peer dependency on `@mui/material`.\nIf you are not already using it in your project, you can install it with:\n\n<codeblock storageKey=\"package-manager\">\n\n```bash npm\nnpm install @mui/material @emotion/react @emotion/styled\n```\n\n```bash pnpm\npnpm add @mui/material @emotion/react @emotion/styled\n```\n\n```bash yarn\nyarn add @mui/material @emotion/react @emotion/styled\n```\n\n</codeblock>\n\n<!-- #react-peer-version -->\n\nPlease note that [react](https://www.npmjs.com/package/react) and [react-dom](https://www.npmjs.com/package/react-dom) are peer dependencies too:\n\n```json\n\"peerDependencies\": {\n  \"react\": \"^17.0.0 || ^18.0.0 || ^19.0.0\",\n  \"react-dom\": \"^17.0.0 || ^18.0.0 || ^19.0.0\"\n},\n```"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Style engine",
+          "introduction": [
+            "Style engine\n\nMaterial UI is using [Emotion](https://emotion.sh/docs/introduction) as a styling engine by default. If you want to use [`styled-components`](https://styled-components.com/) instead, run:\n\n<codeblock storageKey=\"package-manager\">\n\n```bash npm\nnpm install @mui/styled-engine-sc styled-components\n```\n\n```bash pnpm\npnpm add @mui/styled-engine-sc styled-components\n```\n\n```bash yarn\nyarn add @mui/styled-engine-sc styled-components\n```\n\n</codeblock>\n\n:::info\nTake a look at the [Styled Components guide](/material-ui/integrations/styled-components/) for more information about how to configure `styled-components` as the style engine.\n:::"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Quickstart",
+      "introduction": [
+        "Quickstart\n\nFirst, you have to import the component as below.\nTo avoid name conflicts the component is named Data Grid Pro for the full-featured enterprise grid, and Data Grid for the free community version.\n\n```js\nimport { DataGrid } from '@mui/x-data-grid';\n```"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Define rows",
+          "introduction": [
+            "Define rows\n\nRows are key-value pair objects, mapping column names as keys with their values.\nYou should also provide an `id` property on each row to allow delta updates and better performance.\n\nHere is an example\n\n```js\nconst rows: GridRowsProp = [\n  { id: 1, col1: 'Hello', col2: 'World' },\n  { id: 2, col1: 'DataGridPro', col2: 'is Awesome' },\n  { id: 3, col1: 'MUI', col2: 'is Amazing' },\n];\n```"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Define columns",
+          "introduction": [
+            "Define columns\n\nComparable to rows, columns are objects defined with a set of attributes of the `GridColDef` interface.\nThey are mapped to the rows through their `field` property.\n\n```tsx\nconst columns: GridColDef[] = [\n  { field: 'col1', headerName: 'Column 1', width: 150 },\n  { field: 'col2', headerName: 'Column 2', width: 150 },\n];\n```\n\nYou can import `GridColDef` to see all column properties."
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Demo",
+          "introduction": [
+            "Demo\n\nPutting it together, this is all you need to get started, as you can see in this live and interactive demo:\n\n```tsx\nimport * as React from 'react';\nimport { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';\n\nconst rows: GridRowsProp = [\n  { id: 1, col1: 'Hello', col2: 'World' },\n  { id: 2, col1: 'DataGridPro', col2: 'is Awesome' },\n  { id: 3, col1: 'MUI', col2: 'is Amazing' },\n];\n\nconst columns: GridColDef[] = [\n  { field: 'col1', headerName: 'Column 1', width: 150 },\n  { field: 'col2', headerName: 'Column 2', width: 150 },\n];\n\nexport default function App() {\n  return (\n    <div style={{ height: 300, width: '100%' }}>\n      <DataGrid rows={rows} columns={columns} />\n    </div>\n  );\n}\n```"
+          ],
+          "code_path": [
+            "Codesandbox.js"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "TypeScript",
+      "introduction": [
+        "TypeScript\n\nIn order to benefit from the [CSS overrides](/material-ui/customization/theme-components/#theme-style-overrides) and [default prop customization](/material-ui/customization/theme-components/#theme-default-props) with the theme, TypeScript users need to import the following types.\nInternally, it uses module augmentation to extend the default theme structure.\n\n```tsx\nimport type {} from '@mui/x-data-grid/themeAugmentation';\nimport type {} from '@mui/x-data-grid-pro/themeAugmentation';\nimport type {} from '@mui/x-data-grid-premium/themeAugmentation';\n\nconst theme = createTheme({\n  components: {\n    // Use `MuiDataGrid` on DataGrid, DataGridPro and DataGridPremium\n    MuiDataGrid: {\n      styleOverrides: {\n        root: {\n          backgroundColor: 'red',\n        },\n      },\n    },\n  },\n});\n```"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Licenses",
+      "introduction": [
+        "Licenses\n\nWhile our Core libraries are entirely licensed under MIT, MUI X serves a part of its components under a commercial license.\nPlease pay attention to the license."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Plans",
+          "introduction": [
+            "Plans\n\nThe component comes [in different plans](https://mui.com/pricing/):\n\n- **Community** Plan: [`@mui/x-data-grid`](https://www.npmjs.com/package/@mui/x-data-grid), published under the [MIT license](https://www.tldrlegal.com/license/mit-license) and [free forever](https://mui-org.notion.site/Stewardship-542a2226043d4f4a96dfb429d16cf5bd).\n- **Pro** Plan: [`@mui/x-data-grid-pro`](https://www.npmjs.com/package/@mui/x-data-grid-pro) published under a [Commercial license](https://mui.com/legal/mui-x-eula/).\n- **Premium** Plan: [`@mui/x-data-grid-premium`](https://www.npmjs.com/package/@mui/x-data-grid-premium) published under a [Commercial license](https://mui.com/legal/mui-x-eula/).\n\nYou can find more information about the plans in [the Licensing page](/x/introduction/licensing/)."
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Feature comparison",
+          "introduction": [
+            "Feature comparison\n\nThe following table summarizes the features available in the community Data Grid and enterprise Data Grid Pro components.\nAll the features of the community version are available in the enterprise one.\nThe enterprise components come in two plans: Pro and Premium.\n\n| Features                                                                               | Community | Pro [<span class=\"plan-pro\"></span>](/x/introduction/licensing/#pro-plan 'Pro plan') | Premium [<span class=\"plan-premium\"></span>](/x/introduction/licensing/#premium-plan 'Premium plan') |\n| :- | :-: | :-----: |\n| **Column**                                                                             |           |                                                                                      |                                                                                                      |\n| [Column groups](/x/react-data-grid/column-groups/)                                     |    ✅     |                                          ✅                                          |                                                  ✅                                                  |\n| [Column spanning](/x/react-data-grid/column-spanning/)                                 |    ✅     |                                          ✅                                          |                                                  ✅                                                  |\n| [Column resizing](/x/react-data-grid/column-dimensions/#resizing)                      |    ✅     |                                          ✅                                          |                                                  ✅                                                  |\n| [Column autosizing](/x/react-data-grid/column-dimensions/#autosizing)                  |    ✅     |                                          ✅                                          |                                                  ✅                                                  |\n| [Column reorder](/x/react-data-grid/column-ordering/)                                  |    ❌     |                                          ✅                                          |                                                  ✅                                                  |\n| [Column pinning](/x/react-data-grid/column-pinning/)                                   |    ❌     |                                          ✅                                          |                                                  ✅                                                  |\n| **Row**                                                                                |           |                                                                                      |                                                                                                      |\n| [Row height](/x/react-data-grid/row-height/)                                           |    ✅     |                                          ✅                                          |                                                  ✅                                                  |\n| [Row spanning](/x/react-data-grid/row-spanning/)                                       |    ✅     |                                          ✅                                          |                                                  ✅                                                  |\n| [Row reordering](/x/react-data-grid/row-ordering/)                                     |    ❌     |                                          ✅                                          |                                                  ✅                                                  |\n| [Row pinning](/x/react-data-grid/row-pinning/)                                         |    ❌     |                                          ✅                                          |                                                  ✅                                                  |\n| **Selection**                                                                          |           |                                                                                      |                                                                                                      |\n| [Single row selection](/x/react-data-grid/row-selection/#single-row-selection)         |    ✅     |                                          ✅                                          |                                                  ✅                                                  |\n| [Checkbox selection](/x/react-data-grid/row-selection/#checkbox-selection)             |    ✅     |                                          ✅                                          |                                                  ✅                                                  |\n| [Multiple row selection](/x/react-data-grid/row-selection/#multiple-row-selection)     |    ❌     |                                          ✅                                          |                                                  ✅                                                  |\n| [Cell range selection](/x/react-data-grid/cell-selection/)                             |    ❌     |                                          ❌                                          |                                                  ✅                                                  |\n| **Filtering**                                                                          |           |                                                                                      |                                                                                                      |\n| [Quick filter](/x/react-data-grid/filtering/quick-filter/)                             |    ✅     |                                          ✅                                          |                                                  ✅                                                  |\n| [Column filters](/x/react-data-grid/filtering/#single-and-multi-filters)               |    ✅     |                                          ✅                                          |                                                  ✅                                                  |\n| [Multi-column filtering](/x/react-data-grid/filtering/multi-filters/)                  |    ❌     |                                          ✅                                          |                                                  ✅                                                  |\n| [Header filtering](/x/react-data-grid/filtering/header-filters/)                       |    ❌     |                                          ✅                                          |                                                  ✅                                                  |\n| **Sorting**                                                                            |           |                                                                                      |                                                                                                      |\n| [Column sorting](/x/react-data-grid/sorting/)                                          |    ✅     |                                          ✅                                          |                                                  ✅                                                  |\n| [Multi-column sorting](/x/react-data-grid/sorting/#multi-sorting)                      |    ❌     |                                          ✅                                          |                                                  ✅                                                  |\n| **Pagination**                                                                         |           |                                                                                      |                                                                                                      |\n| [Pagination](/x/react-data-grid/pagination/)                                           |    ✅     |                                          ✅                                          |                                                  ✅                                                  |\n| [Pagination > 100 rows per page](/x/react-data-grid/pagination/#size-of-the-page)      |    ❌     |                                          ✅                                          |                                                  ✅                                                  |\n| **Editing**                                                                            |           |                                                                                      |                                                                                                      |\n| [Row editing](/x/react-data-grid/editing/#row-editing)                                 |    ✅     |                                          ✅                                          |                                                  ✅                                                  |\n| [Cell editing](/x/react-data-grid/editing/)                                            |    ✅     |                                          ✅                                          |                                                  ✅                                                  |\n| **Import & export**                                                                    |           |                                                                                      |                                                                                                      |\n| [CSV export](/x/react-data-grid/export/#csv-export)                                    |    ✅     |                                          ✅                                          |                                                  ✅                                                  |\n| [Print](/x/react-data-grid/export/#print-export)                                       |    ✅     |                                          ✅                                          |                                                  ✅                                                  |\n| [Clipboard copy](/x/react-data-grid/clipboard/#clipboard-copy)                         |    ✅     |                                          ✅                                          |                                                  ✅                                                  |\n| [Clipboard paste](/x/react-data-grid/clipboard/#clipboard-paste)                       |    ❌     |                                          ❌                                          |                                                  ✅                                                  |\n| [Excel export](/x/react-data-grid/export/#excel-export)                                |    ❌     |                                          ❌                                          |                                                  ✅                                                  |\n| **Rendering**                                                                          |           |                                                                                      |                                                                                                      |\n| [Customizable components](/x/react-data-grid/components/)                              |    ✅     |                                          ✅                                          |                                                  ✅                                                  |\n| [Column virtualization](/x/react-data-grid/virtualization/#column-virtualization)      |    ✅     |                                          ✅                                          |                                                  ✅                                                  |\n| [Row virtualization > 100 rows](/x/react-data-grid/virtualization/#row-virtualization) |    ❌     |                                          ✅                                          |                                                  ✅                                                  |\n| **Group & Pivot**                                                                      |           |                                                                                      |                                                                                                      |\n| [Tree data](/x/react-data-grid/tree-data/)                                             |    ❌     |                                          ✅                                          |                                                  ✅                                                  |\n| [Master detail](/x/react-data-grid/master-detail/)                                     |    ❌     |                                          ✅                                          |                                                  ✅                                                  |\n| [Row grouping](/x/react-data-grid/row-grouping/)                                       |    ❌     |                                          ❌                                          |                                                  ✅                                                  |\n| [Aggregation](/x/react-data-grid/aggregation/)                                         |    ❌     |                                          ❌                                          |                                                  ✅                                                  |\n| [Pivoting](/x/react-data-grid/pivoting/)                                               |    ❌     |                                          ❌                                          |                                                  🚧                                                  |\n| **Misc**                                                                               |           |                                                                                      |                                                                                                      |\n| [Accessibility](/x/react-data-grid/accessibility/)                                     |    ✅     |                                          ✅                                          |                                                  ✅                                                  |\n| [Keyboard navigation](/x/react-data-grid/accessibility/#keyboard-navigation)           |    ✅     |                                          ✅                                          |                                                  ✅                                                  |\n| [Localization](/x/react-data-grid/localization/)                                       |    ✅     |                                          ✅                                          |                                                  ✅                                                  |"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "API",
+      "introduction": [
+        "API\n\n- [DataGrid](/x/api/data-grid/data-grid/)\n- [DataGridPro](/x/api/data-grid/data-grid-pro/)\n- [DataGridPremium](/x/api/data-grid/data-grid-premium/)"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    }
+  ]
+}

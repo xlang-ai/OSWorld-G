@@ -1,0 +1,63 @@
+{
+  "name": "highlighting",
+  "introduction": [
+    "# Charts - Highlighting\n\n<p class=\"description\">Highlighting data offers quick visual feedback for chart users.</p>\n\nIt can be used to emphasize a specific data point or series, or to fade out the rest of the chart.\nAnd it can be controlled by the user or synchronized across multiple charts."
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Highlighting",
+      "introduction": [
+        "Highlighting"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Highlighting axis",
+          "introduction": [
+            "Highlighting axis\n\nYou can highlight data based on mouse position.\nBy default, those highlights are lines, but it can also be a vertical band if your x-axis use `scaleType: 'band'`.\n\nOn the chart, to customize this behavior, you can use:\n\n```jsx\naxisHighlight={{\n  x: 'line', // Or 'none', or 'band'\n  y: 'line', // Or 'none'\n}}\n```"
+          ],
+          "code_path": [
+            "BandHighlight.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Highlighting series",
+          "introduction": [
+            "Highlighting series\n\nIn parallel with the tooltip, you can highlight and fade elements.\n\nThis kind of interaction is controlled by series properties `highlightScope` which contains two options:\n\n- `highlighted` Indicates which item to highlight. Its value can be\n  - `'none'` Do nothing (default one).\n  - `'item'` Only highlight the item itself.\n  - `'series'` Highlight all items of the series.\n- `faded` Indicates which item to fade (if they are not already highlighted). Its value can be\n  - `'none'` Do nothing (default one).\n  - `'series'` Fade all the items of the series.\n  - `'global'` Fade all the items of the chart."
+          ],
+          "code_path": [
+            "ElementHighlights.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Controlled highlight",
+          "introduction": [
+            "Controlled highlight\n\nThe highlight can be controlled by the user when they set `highlightedItem` and `onHighlightChange`.\n\nYou can set the `highlightedItem` value based on inputs, and sync it when the user hover over an item themselves."
+          ],
+          "code_path": [
+            "ControlledHighlight.js"
+          ],
+          "children": [
+            {
+              "name": "Synchronizing highlights",
+              "introduction": [
+                "Synchronizing highlights\n\nHaving a controlled highlight allows you to control it in multiple charts at the same time.\nYou need to ensure that the `series` has the same `ids` and the data is in the same order."
+              ],
+              "code_path": [
+                "SyncHighlight.js"
+              ],
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

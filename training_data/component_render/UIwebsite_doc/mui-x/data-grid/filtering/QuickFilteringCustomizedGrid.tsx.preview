@@ -1,0 +1,16 @@
+<DataGrid
+  {...data}
+  loading={loading}
+  columns={columns}
+  initialState={{
+    ...data.initialState,
+    filter: {
+      ...data.initialState?.filter,
+      filterModel: {
+        items: [],
+        quickFilterLogicOperator: GridLogicOperator.Or,
+      },
+    },
+  }}
+  slots={{ toolbar: QuickSearchToolbar }}
+/>

@@ -1,0 +1,7 @@
+<DataGrid
+  slots={{
+    noRowsOverlay: CustomNoRowsOverlay,
+  }}
+  {...data}
+  rows={[]}
+/>

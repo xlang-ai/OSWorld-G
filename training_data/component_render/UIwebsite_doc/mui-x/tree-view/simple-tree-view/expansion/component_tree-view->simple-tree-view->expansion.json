@@ -1,0 +1,64 @@
+{
+  "name": "tree-view->simple-tree-view->expansion",
+  "introduction": [
+    "# Simple Tree View - Expansion\n\n<p class=\"description\">Learn how to handle expanding and collapsing Tree View items.</p>"
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Controlled expansion",
+      "introduction": [
+        "Controlled expansion\n\nUse the `expandedItems` prop to control the expanded items.\nYou can also use the `onExpandedItemsChange` prop to listen to changes in the expanded items and update the prop accordingly.",
+        ":::info\n\n- The expansion is **controlled** when its parent manages it by providing a `expandedItems` prop.\n- The expansion is **uncontrolled** when it is managed by the component's own internal state. This state can be initialized using the `defaultExpandedItems` prop.\n\nLearn more about the _Controlled and uncontrolled_ pattern in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).\n:::"
+      ],
+      "code_path": [
+        "ControlledExpansion.js",
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Track item expansion change",
+      "introduction": [
+        "Track item expansion change\n\nUse the `onItemExpansionToggle` prop to trigger an action upon an item being expanded."
+      ],
+      "code_path": [
+        "TrackItemExpansionToggle.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Limit expansion to icon container",
+      "introduction": [
+        "Limit expansion to icon container\n\nYou can use the `expansionTrigger` prop to decide if the expansion interaction should be triggered by clicking on the icon container instead of the whole Tree Item content."
+      ],
+      "code_path": [
+        "IconExpansionTreeView.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Imperative API",
+      "introduction": [
+        "Imperative API\n\n:::success\nTo use the `apiRef` object, you need to initialize it using the `useTreeViewApiRef` hook as follows:\n\n```tsx\nconst apiRef = useTreeViewApiRef();\n\nreturn <SimpleTreeView apiRef={apiRef}>{children}</SimpleTreeView>;\n```\n\nWhen your component first renders, `apiRef` will be `undefined`.\nAfter this initial render, `apiRef` holds methods to interact imperatively with the Tree View.\n:::"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Change an item expansion",
+          "introduction": [
+            "Change an item expansion\n\nUse the `setItemExpansion` API method to change the expansion of an item.\n\n```ts\napiRef.current.setItemExpansion(\n  // The DOM event that triggered the change\n  event,\n  // The id of the item to expand or collapse\n  itemId,\n  // If `true` the item will be expanded\n  // If `false` the item will be collapsed\n  isExpanded,\n);\n```"
+          ],
+          "code_path": [
+            "ApiMethodSetItemExpansion.js"
+          ],
+          "children": []
+        }
+      ]
+    }
+  ]
+}

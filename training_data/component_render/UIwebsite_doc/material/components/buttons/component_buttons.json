@@ -1,0 +1,224 @@
+{
+  "name": "buttons",
+  "introduction": [
+    "# Button\n\n<p class=\"description\">Buttons allow users to take actions, and make choices, with a single tap.</p>\n\nButtons communicate actions that users can take. They are typically placed throughout your UI, in places like:\n\n- Modal windows\n- Forms\n- Cards\n- Toolbars"
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Basic button",
+      "introduction": [
+        "Basic button\n\nThe `Button` comes with three variants: text (default), contained, and outlined."
+      ],
+      "code_path": [
+        "BasicButtons.js"
+      ],
+      "children": [
+        {
+          "name": "Text button",
+          "introduction": [
+            "Text button\n\n[Text buttons](https://m2.material.io/components/buttons#text-button)\nare typically used for less-pronounced actions, including those located: in dialogs, in cards.\nIn cards, text buttons help maintain an emphasis on card content."
+          ],
+          "code_path": [
+            "TextButtons.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Contained button",
+          "introduction": [
+            "Contained button\n\n[Contained buttons](https://m2.material.io/components/buttons#contained-button)\nare high-emphasis, distinguished by their use of elevation and fill.\nThey contain actions that are primary to your app.",
+            "You can remove the elevation with the `disableElevation` prop."
+          ],
+          "code_path": [
+            "ContainedButtons.js",
+            "DisableElevation.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Outlined button",
+          "introduction": [
+            "Outlined button\n\n[Outlined buttons](https://m2.material.io/components/buttons#outlined-button) are medium-emphasis buttons.\nThey contain actions that are important but aren't the primary action in an app.\n\nOutlined buttons are also a lower emphasis alternative to contained buttons,\nor a higher emphasis alternative to text buttons."
+          ],
+          "code_path": [
+            "OutlinedButtons.js"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Handling clicks",
+      "introduction": [
+        "Handling clicks\n\nAll components accept an `onClick` handler that is applied to the root DOM element.\n\n```jsx\n<Button\n  onClick={() => {\n    alert('clicked');\n  }}\n>\n  Click me\n</Button>\n```\n\nNote that the documentation [avoids](/material-ui/guides/api/#native-properties) mentioning native props (there are a lot) in the API section of the components."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Color",
+      "introduction": [
+        "Color",
+        "In addition to using the default button colors, you can add custom ones, or disable any you don't need. See the [Adding new colors](/material-ui/customization/palette/#custom-colors) examples for more info."
+      ],
+      "code_path": [
+        "ColorButtons.js",
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Sizes",
+      "introduction": [
+        "Sizes\n\nFor larger or smaller buttons, use the `size` prop."
+      ],
+      "code_path": [
+        "ButtonSizes.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Buttons with icons and label",
+      "introduction": [
+        "Buttons with icons and label\n\nSometimes you might want to have icons for certain buttons to enhance the UX of the application as we recognize logos more easily than plain text. For example, if you have a delete button you can label it with a dustbin icon."
+      ],
+      "code_path": [
+        "IconLabelButtons.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Icon button",
+      "introduction": [
+        "Icon button\n\nIcon buttons are commonly found in app bars and toolbars.\n\nIcons are also appropriate for toggle buttons that allow a single choice to be selected or\ndeselected, such as adding or removing a star to an item."
+      ],
+      "code_path": [
+        "IconButtons.js"
+      ],
+      "children": [
+        {
+          "name": "Sizes",
+          "introduction": [
+            "Sizes\n\nFor larger or smaller icon buttons, use the `size` prop."
+          ],
+          "code_path": [
+            "IconButtonSizes.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Colors",
+          "introduction": [
+            "Colors\n\nUse `color` prop to apply theme color palette to component."
+          ],
+          "code_path": [
+            "IconButtonColors.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Loading",
+          "introduction": [
+            "Loading\n\nStarting from v6.4.0, use `loading` prop to set icon buttons in a loading state and disable interactions."
+          ],
+          "code_path": [
+            "LoadingIconButton.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Badge",
+          "introduction": [
+            "Badge\n\nYou can use the [`Badge`](/material-ui/react-badge/) component to add a badge to an `IconButton`."
+          ],
+          "code_path": [
+            "IconButtonWithBadge.js"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "File upload",
+      "introduction": [
+        "File upload\n\nTo create a file upload button, turn the button into a label using `component=\"label\"` and then create a visually-hidden input with type `file`."
+      ],
+      "code_path": [
+        "InputFileUpload.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Loading",
+      "introduction": [
+        "Loading\n\nStarting from v6.4.0, use the `loading` prop to set buttons in a loading state and disable interactions.",
+        "Toggle the loading switch to see the transition between the different states.",
+        ":::warning\nWhen the `loading` prop is set to `boolean`, the loading wrapper is always present in the DOM to prevent a [Google Translation Crash](https://github.com/mui/material-ui/issues/27853).\n\nThe `loading` value should always be `null` or `boolean`. The pattern below is not recommended as it can cause the Google Translation crash:\n\n```jsx\n<Button {...(isFetching && { loading: true })}> // ❌ Don't do this\n```\n\n:::"
+      ],
+      "code_path": [
+        "LoadingButtons.js",
+        "LoadingButtonsTransition.js",
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Customization",
+      "introduction": [
+        "Customization\n\nHere are some examples of customizing the component.\nYou can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).",
+        "🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/?path=/docs/button-introduction--docs)."
+      ],
+      "code_path": [
+        "CustomizedButtons.js",
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Complex button",
+      "introduction": [
+        "Complex button\n\nThe Text Buttons, Contained Buttons, Floating Action Buttons and Icon Buttons are built on top of the same component: the `ButtonBase`.\nYou can take advantage of this lower-level component to build custom interactions."
+      ],
+      "code_path": [
+        "ButtonBaseDemo.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Third-party routing library",
+      "introduction": [
+        "Third-party routing library\n\nOne frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server.\nThe `ButtonBase` component provides the `component` prop to handle this use case.\nHere is a [more detailed guide](/material-ui/integrations/routing/#button)."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    },
+    {
+      "name": "Limitations",
+      "introduction": [
+        "Limitations"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Cursor not-allowed",
+          "introduction": [
+            "Cursor not-allowed\n\nThe ButtonBase component sets `pointer-events: none;` on disabled buttons, which prevents the appearance of a disabled cursor.\n\nIf you wish to use `not-allowed`, you have two options:\n\n1. **CSS only**. You can remove the pointer-events style on the disabled state of the `<button>` element:\n\n```css\n.MuiButtonBase-root:disabled {\n  cursor: not-allowed;\n  pointer-events: auto;\n}\n```\n\nHowever:\n\n- You should add `pointer-events: none;` back when you need to display [tooltips on disabled elements](/material-ui/react-tooltip/#disabled-elements).\n- The cursor won't change if you render something other than a button element, for instance, a link `<a>` element.\n\n2. **DOM change**. You can wrap the button:\n\n```jsx\n<span style={{ cursor: 'not-allowed' }}>\n  <Button component={Link} disabled>\n    disabled\n  </Button>\n</span>\n```\n\nThis has the advantage of supporting any element, for instance, a link `<a>` element."
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        }
+      ]
+    }
+  ]
+}

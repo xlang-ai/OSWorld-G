@@ -1,0 +1,83 @@
+{
+  "name": "box",
+  "introduction": [
+    "<!-- This page's content is duplicated (with some product-specific details) across the Material UI, Joy UI, and MUI System docs. Any changes should be applied to all three pages at the same time. -->\n\n# Box\n\n<p class=\"description\">The Box component is a generic, theme-aware container with access to CSS utilities from MUI System.</p>"
+  ],
+  "code_path": [
+    null
+  ],
+  "children": [
+    {
+      "name": "Introduction",
+      "introduction": [
+        "Introduction\n\nThe Box component is a generic container for grouping other components.\nIt's a fundamental building block when working with Material UI—you can think of it as a `<div>` with extra built-in features, like access to your app's theme and the [`sx` prop](/system/getting-started/the-sx-prop/)."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Usage",
+          "introduction": [
+            "Usage\n\nThe Box component differs from other containers available in Material UI in that its usage is intended to be multipurpose and open-ended, just like a `<div>`.\nComponents like [Container](/material-ui/react-container/), [Stack](/material-ui/react-stack/) and [Paper](/material-ui/react-paper/), by contrast, feature usage-specific props that make them ideal for certain use cases: Container for main layout orientation, Stack for one-dimensional layouts, and Paper for elevated surfaces."
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Basics",
+      "introduction": [
+        "Basics\n\n```jsx\nimport Box from '@mui/material/Box';\n```\n\nThe Box component renders as a `<div>` by default, but you can swap in any other valid HTML tag or React component using the `component` prop.\nThe demo below replaces the `<div>` with a `<section>` element:"
+      ],
+      "code_path": [
+        "BoxBasic.js"
+      ],
+      "children": []
+    },
+    {
+      "name": "Customization",
+      "introduction": [
+        "Customization"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "With the sx prop",
+          "introduction": [
+            "With the sx prop\n\nUse the [`sx` prop](/system/getting-started/the-sx-prop/) to quickly customize any Box instance using a superset of CSS that has access to all the style functions and theme-aware properties exposed in the MUI System package.\nThe demo below shows how to apply colors from the theme using this prop:"
+          ],
+          "code_path": [
+            "BoxSx.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "With MUI System props",
+          "introduction": [
+            "With MUI System props\n\n:::info\nSystem props are deprecated and will be removed in the next major release. Please use the `sx` prop instead.\n\n```diff\n- <Box mt={2} />\n+ <Box sx={{ mt: 2 }} />\n```\n\n:::"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Anatomy",
+      "introduction": [
+        "Anatomy\n\nThe Box component is composed of a single root `<div>` element:\n\n```html\n<div className=\"MuiBox-root\">\n  <!-- contents of the Box -->\n</div>\n```"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": []
+    }
+  ]
+}
