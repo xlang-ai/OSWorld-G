@@ -31,6 +31,15 @@ Requirements:
 7. Each interaction should be completed in a single step. Do not combine multiple steps or targets in one action (e.g., you cannot click multiple buttons in one action).
 8. Pay close attention to fine-grained operations.
 9. Be mindful of the impact of each action. For instance, if you want to select a word, drag or double-click the word. Simply clicking a word without a link may not have any effect.
+10. Describe your action in various aspects including
+  1. Function-based description: Focuses on the action’s purpose or effect.
+    Example: "Click the close button", "Click the submit button".
+  2. Index-based description: Refers to the item’s position in a list or menu.
+    Example: "Click the 3rd item in the menu", "Select the 2nd checkbox".
+  3. Visual-based description: Uses color, shape, or location to identify the element.
+    Example: "Click the red button at the bottom-right", "Click the blue link at the top".
+  4. Contextual description: Describes based on surrounding elements or context.
+    Example: "Click the button next to the text field", "Select the option in the 'Settings' menu".
 
 Output Format:
 {{
