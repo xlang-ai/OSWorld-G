@@ -21,7 +21,11 @@ playwright install
 
 ## Script Run:
 
-We initialize our script in port_init.py.
+First of all, run `run_ubuntu_trial.sh` in `training_data/component_render` on one of your vms, then check 
+1. whether folders named by component type(e.g. "autocomplete", "slider") are created in `OSWorld-G/training_data/component_render/data` 
+2. whether grounding files are created in `OSWorld-G/training_data/component_render/data/{component_type}/grounding`.
+
+If everything goes well, continue generating:
 
 For vm1-vm3: run `run_ubuntu_0.sh` in `training_data/component_render`.
 

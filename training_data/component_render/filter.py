@@ -52,6 +52,7 @@ async def visual_filter(
         cropped_image = image.crop((left, top, right, bottom))
 
         # You can save or process the cropped image as needed
+        os.makedirs("cropped_image", exist_ok=True)
         cropped_image_path = f"cropped_image/cropped_image_{time.time()}.png"
         cropped_image.save(cropped_image_path)
         # print(f"cropped_image: {cropped_image_path}")
