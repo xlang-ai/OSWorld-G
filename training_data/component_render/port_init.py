@@ -12,6 +12,18 @@ def create_run_script(port, components, scenario_count):
     print(f"Created/Updated {script_filename}")
 
 
+def create_tmux_run_script(port_dict, scenario_count):
+    """创建或更新 run_{port}.sh 文件"""
+    script_content = ""
+    for port, components in port_dict.items():
+        script_content += f"tmux new-session -d -s session_{port} 'python main.py --port {port} --components {components} --scenario_count {scenario_count}'\n"
+    script_filename = f"run.sh"
+
+    with open(script_filename, "w") as script_file:
+        script_file.write(script_content)
+    print(f"Created/Updated {script_filename}")
+
+
 def create_react_app_folder(port):
     """创建 react-app-{port} 文件夹"""
     folder_name = f"react-app-{port}"
@@ -27,29 +39,30 @@ def create_react_app_folder(port):
 def main():
     # 定义可变参数
     port_dict = {
-        # "3000": "dialogs",
-        # "3001": "table",
-        # "3002": "alert",
-        # "3003": "bottom-navigation",
-        # "3004": "chips",
-        # "3005": "menus",
-        # "3006": "resizable-draggable-text-box",
-        # "3007": "slider",
-        # "3008": "drawers",
-        "3000": "app-bar",
-        "3001": "autocomplete",
+        "3000": "alert",
+        "3001": "bottom-navigation",
         "3002": "checkboxes",
-        "3003": "lists",
-        "3004": "pagination",
-        "3005": "rating",
-        "3006": "selectable-text",
-        "3007": "snackbars",
+        "3003": "drawers",
+        "3004": "menus",
+        "3005": "slider",
+        "3006": "table",
+        "3007": "tabs",
+        # "3000": "app-bar",
+        # "3001": "chips",
+        # "3002": "dialogs",
+        # "3003": "lists",
+        # "3004": "rating",
+        # "3005": "snackbars speed-dial",
+        # "3006": "steppers switches",
+        # "3007": "toggle-button transfer-list",
     }
-    scenario_count = 50  # 可变参数
+    scenario_count = 20  # 可变参数(50/主机数)
 
     for port, component in port_dict.items():
         create_run_script(port, component, scenario_count)
         create_react_app_folder(port)
+
+    create_tmux_run_script(port_dict, scenario_count)
 
 
 if __name__ == "__main__":

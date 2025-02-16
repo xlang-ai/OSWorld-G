@@ -188,8 +188,27 @@ class DataGenerator:
             await self.refresh_page()
 
             # 获取组件位置信息
-            await self.page.wait_for_selector(".App", state="visible", timeout=6000)
+            await self.page.wait_for_selector(".App", state="attached", timeout=6000)
             position = await self.page.evaluate(JS_EVAL_POSITION)
+            # for element in position["elements"]:
+            #     element["position"]["x_left"] = round(
+            #         element["position"]["x_left"] / self.screensize["width"], 4
+            #     )
+            #     element["position"]["y_top"] = round(
+            #         element["position"]["y_top"] / self.screensize["height"], 4
+            #     )
+            #     element["position"]["x_right"] = round(
+            #         element["position"]["x_right"] / self.screensize["width"], 4
+            #     )
+            #     element["position"]["y_bottom"] = round(
+            #         element["position"]["y_bottom"] / self.screensize["height"], 4
+            #     )
+            #     element["position"]["x_center"] = round(
+            #         element["position"]["x_center"] / self.screensize["width"], 4
+            #     )
+            #     element["position"]["y_center"] = round(
+            #         element["position"]["y_center"] / self.screensize["height"], 4
+            #     )
 
             if position:
                 # 捕获截图
@@ -278,13 +297,6 @@ async def main():
     os.makedirs("data", exist_ok=True)
 
     component_desc = None
-    # component_name = None
-    # screenshot_path = None
-    # annotated_component_path = None
-    # annotated_action_paths = None
-    # position = None
-    # action_intent_list = None
-    # action_detail_list = None
     base_path_dict = {
         "material": "UIwebsite_doc/material/components",
         "mui-x": "UIwebsite_doc/mui-x",
@@ -443,10 +455,10 @@ async def main():
                             await generate_action_data(
                                 component_desc=component_desc,
                                 component_name=component_name,
-                                component_root_name=component_root_name,
                                 raw_component_path=screenshot_path,
                                 annotated_component_path=annotated_component_path,
                                 position=position,
+                                component_code=component_code,
                             )
                         )
 
@@ -501,10 +513,10 @@ async def main():
 
                         # 定义一个包装函数，方便传递参数
                         async def process_grounding_task(action_detail):
-                            new_dict = await process_grounding(
+                            new_dict_list = await process_grounding(
                                 action_detail, generator.screensize
                             )
-                            return new_dict
+                            return new_dict_list
 
                         # 使用 asyncio.create_task 创建并行任务
                         # TODO： unique类型的并不需要处理
@@ -515,8 +527,9 @@ async def main():
 
                         # 等待所有任务完成并收集结果
                         for task in tasks:
-                            new_dict = await task  # 等待每个任务的结果
-                            grounding_dict_list.extend(new_dict)
+                            new_dict_list = await task  # 等待每个任务的结果
+                            if new_dict_list is not None:
+                                grounding_dict_list.extend(new_dict_list)
 
                         logger.info(
                             f"process grounding & inst filter to {len(grounding_dict_list)}"
@@ -530,6 +543,10 @@ async def main():
 
                         # 7.3 grounding annotate
                         # 定义一个包装函数，方便传递参数
+                        logger.info(
+                            f"grounding_dict_before_annotate: {grounding_dict_list}"
+                        )
+
                         def annotate_grounding_task(grounding_index, grounding_dict):
                             return annotate_grounding(
                                 component_root_dir,
@@ -556,13 +573,21 @@ async def main():
                             # 收集结果
                             grounding_dict_list = []
                             for future in futures:
-                                grounding_dict_list.append(future.result())
+                                grounding_dict = future.result()
+                                if grounding_dict is not None:
+                                    grounding_dict_list.append(grounding_dict)
+
+                        logger.info(
+                            f"grounding_dict_after_annotate: {grounding_dict_list}"
+                        )
 
                         # 7.4 visual filter
                         old_len = len(grounding_dict_list)
                         true_len = 0
 
                         # 定义一个包装函数，方便传递参数
+                        logger.info(f"start to visual filter {grounding_dict_list}")
+
                         async def visual_filter_task(grounding_dict):
                             new_dict = await visual_filter(grounding_dict)
                             return new_dict
@@ -577,7 +602,8 @@ async def main():
                         # 等待所有任务完成并收集结果
                         for task in tasks:
                             new_dict = await task  # 等待每个任务的结果
-                            grounding_dict_list.append(new_dict)
+                            if new_dict is not None:
+                                grounding_dict_list.append(new_dict)
                             if new_dict["is_correct"]:
                                 true_len += 1
 
@@ -586,6 +612,7 @@ async def main():
                         for grounding_index, grounding_dict in enumerate(
                             grounding_dict_list
                         ):
+                            print("grounding_dict:", str(grounding_dict))
                             if grounding_dict["is_correct"]:
                                 with open(
                                     os.path.join(
@@ -693,9 +720,17 @@ async def main():
                 # TODO: 循环，每次循环生成1个scenario！
                 code_queue = asyncio.Queue()
 
+                with open("component_constraint.json", "r") as file:
+                    component_constraint = json.load(file)
                 # 创建并启动生产者线程
+                print(
+                    "component_constraint: ",
+                    component_constraint.get(component_root_name, "None"),
+                )
                 task1 = asyncio.create_task(
                     scenario_generation_worker(
+                        component_root_name,
+                        component_constraint.get(component_root_name, "None"),
                         component_code,
                         prev_generated_code_list,
                         args.scenario_count,

@@ -1,10 +1,12 @@
 import os
 import re
 import json
+import time
+import shutil
 from typing import Dict
 from PIL import Image
 
-app_root_dir = "/Users/nickyang/Desktop/Research/HKUNLP/OSWorld-G/training_data/component_render/data/20250128_filtered_v1/data"
+app_root_dir = "data"
 
 app_dir_list = os.listdir(app_root_dir)
 
@@ -17,7 +19,28 @@ for app_dir in app_dir_list:
         app_root_dir,
         app_dir,
     )
-    if app_dir == ".DS_Store" or not os.path.isdir(app_dir_path):
+    # if app_dir == ".DS_Store" or not os.path.isdir(app_dir_path):
+    if app_dir not in [
+        "alert",
+        "app-bar",
+        "bottom-navigation",
+        "chips",
+        "checkboxes",
+        "dialogs",
+        "drawers",
+        "lists",
+        "menus",
+        "rating",
+        "slider",
+        "snackbars",
+        "speed-dial",
+        "steppers",
+        "switches",
+        "table",
+        "tabs",
+        "toggle-button",
+        "transfer-list",
+    ]:
         continue
     print(app_dir_path)
     grounding_old_path = os.path.join(app_dir_path, "grounding")
@@ -34,7 +57,6 @@ for app_dir in app_dir_list:
             screenshot_path = old_data["screenshot_path"]
             with Image.open(
                 os.path.join(
-                    "/Users/nickyang/Desktop/Research/HKUNLP/OSWorld-G/training_data/component_render/data/20250128_filtered_v1",
                     screenshot_path,
                 )
             ) as img:
@@ -60,18 +82,32 @@ for app_dir in app_dir_list:
                         wrong_click_pattern, r"pyautogui.click(\1)", filtered_action
                     )
                 # 2. 转换为相对坐标
-                coord_pattern = (
+                coord_pattern_0 = (
                     r"^pyautogui\.(\w+)\(([-+]?\d*\.?\d+),\s*([-+]?\d*\.?\d+)(.*)$"
                 )
-                coord_match = re.match(coord_pattern, filtered_action)
-                if coord_match:
-                    action = coord_match.group(1)  # 动作名称
-                    num1 = float(coord_match.group(2))  # 数1
-                    num2 = float(coord_match.group(3))  # 数2
+                coord_pattern_1 = (
+                    r"^pyautogui\.(\w+)\(\(([-+]?\d*\.?\d+),\s*([-+]?\d*\.?\d+)(.*)$"
+                )
+                coord_match_0 = re.match(coord_pattern_0, filtered_action)
+                coord_match_1 = re.match(coord_pattern_1, filtered_action)
+                if coord_match_0:
+                    action = coord_match_0.group(1)  # 动作名称
+                    num1 = float(coord_match_0.group(2))  # 数1
+                    num2 = float(coord_match_0.group(3))  # 数2
                     rel_num1 = round(num1 / width, 4)
                     rel_num2 = round(num2 / height, 4)
-                    rest = coord_match.group(4)  # 后面的内容
+                    rest = coord_match_0.group(4)  # 后面的内容
                     filtered_action = f"pyautogui.{action}({rel_num1}, {rel_num2}{rest}"
+                if coord_match_1:
+                    action = coord_match_1.group(1)  # 动作名称
+                    num1 = float(coord_match_1.group(2))  # 数1
+                    num2 = float(coord_match_1.group(3))  # 数2
+                    rel_num1 = round(num1 / width, 4)
+                    rel_num2 = round(num2 / height, 4)
+                    rest = coord_match_1.group(4)  # 后面的内容
+                    filtered_action = (
+                        f"pyautogui.{action}(({rel_num1}, {rel_num2}{rest}"
+                    )
                 final_actions_list.append(filtered_action)
 
             action_lines_list.extend(final_actions_list)
@@ -119,11 +155,8 @@ for app_dir in app_dir_list:
                     },
                 ],
             }
-            # with open(new_file_path, "w") as file:
-            #     file.write(final_format)
-            # data_list.append(final_format)
             data_list.append(final_data)
-            # print(f"{old_file} done")
+            print(1)
         except Exception as e:
             print(f"{old_file} error: {e}")
 with open(os.path.join(app_root_dir, "grounding_data.jsonl"), "w") as file:
@@ -154,13 +187,56 @@ click_pattern = r"^pyautogui\.click\(([-+]?\d+(\.\d+)?),\s*([-+]?\d+(\.\d+)?)\)$
 non_matching_strings = [
     line
     for line in action_lines_list
-    # if "doubleClick" in line and not re.match(doubleClick_pattern, line)
-    # if "dragTo" in line and re.match(dragTo_pattern, line)
-    # if "moveTo" in line and re.match(moveTo_pattern, line)
-    if "click" in line and not re.match(click_pattern, line)
+    if ("doubleClick" in line and not re.match(doubleClick_pattern, line))
+    or ("dragTo" in line and not re.match(dragTo_pattern, line))
+    or ("moveTo" in line and not re.match(moveTo_pattern, line))
+    or ("click" in line and not re.match(click_pattern, line))
 ]
 print(non_matching_strings)
 
 
 # 输出结果
 print(pyautogui_types)
+
+# 将结果复制到新文件夹
+
+new_dir = os.path.join(f"final_{time.time()}")
+os.makedirs(new_dir, exist_ok=True)
+os.makedirs(os.path.join(new_dir, "data"), exist_ok=True)
+
+new_jsonl_path = os.path.join(new_dir, "grounding_data.jsonl")
+
+shutil.copy(os.path.join(app_root_dir, "grounding_data.jsonl"), new_jsonl_path)
+
+for app_dir in app_dir_list:
+    app_dir_path = os.path.join(
+        app_root_dir,
+        app_dir,
+    )
+    # if app_dir == ".DS_Store" or not os.path.isdir(app_dir_path):
+    if app_dir in [
+        "alert",
+        "app-bar",
+        "bottom-navigation",
+        "chips",
+        "checkboxes",
+        "dialogs",
+        "drawers",
+        "lists",
+        "menus",
+        "rating",
+        "slider",
+        "snackbars",
+        "speed-dial",
+        "steppers",
+        "switches",
+        "table",
+        "tabs",
+        "toggle-button",
+        "transfer-list",
+    ]:
+        os.makedirs(os.path.join(new_dir, "data", app_dir), exist_ok=True)
+        shutil.copytree(
+            os.path.join(app_dir_path, "other_screenshot"),
+            os.path.join(new_dir, "data", app_dir, "other_screenshot"),
+        )

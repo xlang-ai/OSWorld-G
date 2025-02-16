@@ -8,7 +8,7 @@ def sample_images_from_grounding_screenshots(base_dir, sample_dir, num_samples=1
     os.makedirs(sample_dir, exist_ok=True)
 
     # 遍历每个子文件夹
-    for batch_folder in ["20250212_GPT_1", "20250212_GPT_2", "20250213_GPT_3"]:
+    for batch_folder in ["20250215_GPT_4"]:
         batch_dir = os.path.join(base_dir, batch_folder)
         for subdir, _, _ in os.walk(batch_dir):
             grounding_screenshot_dir = os.path.join(subdir, "grounding_screenshot")
@@ -37,7 +37,6 @@ def sample_images_from_grounding_screenshots(base_dir, sample_dir, num_samples=1
                     print(f"Copied {src_path} to {dst_path}")
 
 
-# /Users/nickyang/Desktop/Research/HKUNLP/OSWorld-G/training_data/component_render/data/20250212_GPT_1
 # 使用示例
 base_directory = os.path.join("..", "data")  # 替换为您的基础目录
 sample_directory = os.path.join("..", "sample")  # 目标目录

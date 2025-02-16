@@ -62,18 +62,26 @@ class InstFilter(BaseModel):
 
 
 async def generate_action_detail(args) -> ActionDetail:
-    i, action_intent, component_desc, component_name, position, base64_raw_image = args
+    (
+        i,
+        action_intent,
+        component_desc,
+        component_name,
+        position,
+        base64_raw_image,
+        component_code,
+    ) = args
     prompt = ACTION_DETAIL_PROMPT.format(
-        # component_desc=component_desc,
         component_name=component_name,
         position=position,
         action_intent=action_intent,
         fine_grained_examples="",
+        component_code=component_code,
     )
 
     try:
         response = await client.beta.chat.completions.parse(
-            model="gpt-4o-2024-08-06",
+            model="gpt-4o-2024-11-20",
             messages=[
                 {
                     "role": "user",
@@ -106,21 +114,21 @@ async def generate_action_detail(args) -> ActionDetail:
 async def generate_action_data(
     component_desc,
     component_name,
-    component_root_name,
     raw_component_path,
     annotated_component_path,
     position,
+    component_code,
 ):
     base64_raw_image = encode_image(raw_component_path)
     base64_annotated_image = encode_image(annotated_component_path)
     prompt = ACTION_INTENT_PROMPT.format(
-        # component_desc=component_desc,
         component_name=component_name,
+        component_code=component_code,
     )
     # action intent generation
     logger.info("generating action intent")
     response = await client.beta.chat.completions.parse(
-        model="gpt-4o-2024-08-06",
+        model="gpt-4o-2024-11-20",
         messages=[
             {
                 "role": "user",
@@ -144,11 +152,11 @@ async def generate_action_data(
         file.write(f"completion_action_intent:\n{response.usage.completion_tokens}\n")
 
     action_intent_list = response.choices[0].message.parsed.action_intent_list
-    with open("fine_grained.json", "r") as file:
-        fine_grained_examples = json.load(file)
-        if component_root_name in fine_grained_examples:
-            action_intent_list.extend(fine_grained_examples[component_root_name])
-            logger.info(f"fine grained examples added for {component_root_name}")
+    # with open("fine_grained.json", "r") as file:
+    #     fine_grained_examples = json.load(file)
+    #     if component_root_name in fine_grained_examples:
+    #         action_intent_list.extend(fine_grained_examples[component_root_name])
+    #         logger.info(f"fine grained examples added for {component_root_name}")
 
     # 主处理函数
     action_detail_list = []
@@ -165,6 +173,7 @@ async def generate_action_data(
             component_name,
             position,
             base64_raw_image,
+            component_code,
         )
         for i, action_intent in enumerate(action_intent_list)
     ]
@@ -238,7 +247,7 @@ async def process_grounding(action_detail: Dict, screensize: Dict) -> str:
             num_choices = {
                 param: int(
                     min(
-                        1.6 * math.sqrt(len(param_values[param])),
+                        4 * math.sqrt(len(param_values[param])),
                         len(param_values[param]),
                     )
                 )
@@ -291,14 +300,14 @@ async def process_grounding(action_detail: Dict, screensize: Dict) -> str:
             param_names = action_detail.action_params
             param_intervals = action_detail.action_continuous_interval
 
-            # Sample 3 values from each interval
+            # Sample 10 values from each interval
             sampled_values = {}
             for param_name in param_names:
                 intervals = param_intervals[param_name]
                 param_samples = []
                 for start, end in intervals:
-                    # Sample 3 random values from this interval
-                    samples = [int(random.uniform(start, end)) for _ in range(6)]
+                    # Sample 10 random values from this interval
+                    samples = [int(random.uniform(start, end)) for _ in range(10)]
                     param_samples.extend(samples)
                 sampled_values[param_name] = param_samples
 
@@ -420,14 +429,17 @@ async def process_grounding(action_detail: Dict, screensize: Dict) -> str:
                 temp_path = temp_file.name
 
             output = os.popen(f"{sys.executable} {temp_path}").read()
-            coords_list = re.findall(r"click\((\d+\.?\d*),\s*(\d+\.?\d*)\)", output)
+            coords_list = re.findall(
+                r"\((\d+\.?\d*),\s*(\d+\.?\d*)", output
+            ) or re.findall(r"\(\((\d+\.?\d*),\s*(\d+\.?\d*)", output)
 
             def round_float(match):
                 rounded_value = round(float(match.group()), 2)
                 return f"{rounded_value:.2f}"
 
             output = re.sub(r"\d+\.\d+", round_float, output)
-            grounding_pairs.append((raw_pair[0], output))
+            if "scroll" not in output:
+                grounding_pairs.append((raw_pair[0], output))
 
             os.remove(temp_path)
 
@@ -440,6 +452,12 @@ async def process_grounding(action_detail: Dict, screensize: Dict) -> str:
                 inst_filter_result = await inst_filter(pair)
                 if not inst_filter_result:
                     return []
+                coords_list = re.findall(
+                    r"\((\d+\.?\d*),\s*(\d+\.?\d*)", pair[1]
+                ) or re.findall(r"\(\((\d+\.?\d*),\s*(\d+\.?\d*)", pair[1])
+                # for coords in coords_list:
+                print("coords: ", coords_list)
+                coords_in_range = True
                 for coords in coords_list:
                     if (
                         float(coords[0]) < 0
@@ -448,14 +466,15 @@ async def process_grounding(action_detail: Dict, screensize: Dict) -> str:
                         or float(coords[1]) > screensize["height"]
                     ):
                         logger.info(f"coords {coords} out of range")
-                        continue
-                grounding_dicts.append(
-                    {
-                        "instruction": pair[0],
-                        "action": pair[1],
-                        "coords_list": coords_list,
-                    }
-                )
+                        coords_in_range = False
+                if coords_in_range == True:
+                    grounding_dicts.append(
+                        {
+                            "instruction": pair[0],
+                            "action": pair[1],
+                            "coords_list": coords_list,
+                        }
+                    )
         logger.info(f"inst filter {len(grounding_dicts)} out of {len(grounding_pairs)}")
         return grounding_dicts
     except Exception as e:
@@ -479,7 +498,10 @@ def annotate_grounding(
     draw = ImageDraw.Draw(img)
 
     # Extract coordinates from pyautogui action
-    coords_list = re.findall(r"\((\d+\.?\d*),\s*(\d+\.?\d*)", grounding_dict["action"])
+    coords_list = re.findall(
+        r"\((\d+\.?\d*),\s*(\d+\.?\d*)", grounding_dict["action"]
+    ) or re.findall(r"\(\((\d+\.?\d*),\s*(\d+\.?\d*)", grounding_dict["action"])
+
     if coords_list:
         for coords in coords_list:
             x, y = float(coords[0]), float(coords[1])
@@ -537,6 +559,9 @@ def annotate_grounding(
             "coords_list": grounding_dict["coords_list"],
         }
         return new_grounding_dict
+    else:
+        logger.info(f"No coordinates found in action {grounding_dict['action']}")
+        return None
 
 
 def remove_repetition(grounding_dict_list):
@@ -551,7 +576,7 @@ def remove_repetition(grounding_dict_list):
 
 
 # 测试代码
-if __name__ == "__main__":
+async def main():
     action_detail_list = [
         {
             "thought_process": "1. Key UI points: Identified the positions of project titles. Each project is visually separated by dividers.\n2. All items are visible in the screenshot, allowing interaction.\n3. Discrete selection of project titles is possible as they represent distinct options for user interaction.\n4. Parameters: List of project titles.\n5. Coordinates are determined from center positions of the components representing project titles.",
@@ -563,66 +588,66 @@ if __name__ == "__main__":
                 # "dick": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
             },
             "action_continuous_interval": {},
-            "action_code": 'import pyautogui\n\ndef action(title):\n    positions = {\n        "Project Alpha": (640, 173.875),\n        "Innovator Award 2022": (639.9921875, 345.890625),\n        "Global Outreach": (640, 517.90625),\n    }\n    if title in positions:\n        pyautogui.click(positions[title])',
+            "action_code": 'import pyautogui\n\ndef action(title):\n    positions = {\n        "Project Alpha": (640, 173.875),\n        "Innovator Award 2022": (639.9921875, 2345.890625),\n        "Global Outreach": (640, 2517.90625),\n    }\n    if title in positions:\n        pyautogui.click(positions[title])',
         },
-        {
-            "thought_process": "The action intent is to \"Select project descriptions\" within a non-interactive UI section. Given the static nature and lack of interactive elements or selectors, there\u2019s no executable action in terms of interaction (e.g., clicks or selection), so the action space type is set to 'none'.",
-            "action_space_type": "none",
-            "action_desc": "",
-            "action_params": [],
-            "action_discrete_values": None,
-            "action_continuous_interval": None,
-            "action_code": "",
-        },
-        {
-            "thought_process": "The intent is to click on the highlight buttons in the 'PortfolioHighlights'. Three highlight buttons are available: Highlight 1, Highlight 2, and Highlight 3. Each is associated with a specific project or award card. Because clicking different parts of the same highlight button does not constitute different actions, each highlight button represents a unique action opportunity. Their positions are identified based on the provided position data.",
-            "action_space_type": "discrete",
-            "action_desc": "Click on the highlight button for <highlight_number>",
-            "action_params": ["highlight_number"],
-            "action_discrete_values": {
-                "highlight_number": ["Highlight 1", "Highlight 2", "Highlight 3"]
-            },
-            "action_continuous_interval": {},
-            "action_code": 'def action(highlight_number):\n    positions = {\n        "Highlight 1": (640, 221),\n        "Highlight 2": (640, 393),\n        "Highlight 3": (640, 565),\n    }\n    x, y = positions[highlight_number]\n    pyautogui.click(x, y)',
-        },
-        {
-            "thought_process": "\n1. The action intent is to select individual letters from project initials.\n2. Identify the positions of the initials 'P', 'I', and 'G', which are identifiable from the metadata as part of the avatars.\n3. These initials are positioned in the components and clicking on these can simulate the action intent.\n4. Based on this, a discrete action space is appropriate as we are selecting from the specified initials.\n5. The initials are located at:\n   - 'P' at (459.84, 173.875)\n   - 'I' at (436.72, 345.89)\n   - 'G' at (499.25, 517.90625)\n6. Coordinates are calculated based on the center of the avatar positions for efficient clicking.",
-            "action_space_type": "discrete",
-            "action_desc": "Select initial <initial> from the project initials",
-            "action_params": ["initial"],
-            "action_discrete_values": {"initial": ["P", "I", "G"]},
-            "action_continuous_interval": {},
-            "action_code": 'def action(initial):\n    positions = {\n        "P": (459.84, 173.875),\n        "I": (436.72, 345.89),\n        "G": (499.25, 517.90625)\n    }\n    x, y = positions[initial]\n    pyautogui.click(x, y)',
-        },
-        {
-            "thought_process": "The action intent is to highlight and copy text. The component description allows for interaction with text elements. The text blocks representing 'Project Alpha', 'Innovator Award 2022', and 'Global Outreach' are potential candidates for this action. Each block can have its content selected and copied using specific mouse drag and copy operations. \n\n1. Determine key points for each section to initiate and end the drag operation for highlighting text.\n2. For each highlight, consider the text content as distinct and selectable.\n\n- For 'Project Alpha': Start at 'P' (x=439, y=153), end at the end of text (x=840, y=193).\n- For 'Innovator Award 2022': Start at 'I' (x=416, y=325), end at the end of text (x=863, y=365).\n- For 'Global Outreach': Start at 'G' (x=479, y=497), end at the end of text (x=800, y=537).",
-            "action_space_type": "discrete",
-            "action_desc": "Highlight and copy text from <text_section>",
-            "action_params": ["text_section"],
-            "action_discrete_values": {
-                "text_section": [
-                    "Project Alpha",
-                    "Innovator Award 2022",
-                    "Global Outreach",
-                ]
-            },
-            "action_continuous_interval": None,
-            "action_code": 'import pyautogui\nimport pyperclip\n\ntext_positions = {\n    "Project Alpha": ((439, 153), (840, 193)),\n    "Innovator Award 2022": ((416, 325), (863, 365)),\n    "Global Outreach": ((479, 497), (800, 537))\n}\n\ndef action(text_section):\n    start_pos, end_pos = text_positions[text_section]\n    pyautogui.moveTo(start_pos[0], start_pos[1])\n    pyautogui.dragTo(end_pos[0], end_pos[1], duration=0.2)\n    pyautogui.hotkey(\'ctrl\', \'c\')\n    copied_text = pyperclip.paste()  # The copied text can be used further\n    return copied_text\n',
-        },
-        {
-            "thought_process": "The action intent is to 'Select and copy sections of text'. This involves a manual selection action within the specified text boundaries. The component in the screenshot shows multiple sections that can be interacted with by selecting text. The appropriate interaction would be to click and hold to start text selection and drag to the end of the desired section. Given that this can be done for multiple text sections, we identify this as a continuous action space, considering the coordinates allow infinite selections within the range.",
-            "action_space_type": "continuous",
-            "action_desc": "Select text from <start_x>,<start_y> to <end_x>,<end_y> and copy it.",
-            "action_params": ["start_x", "start_y", "end_x", "end_y"],
-            "action_discrete_values": {},
-            "action_continuous_interval": {
-                "start_x": [[216.0, 1064.0]],
-                "start_y": [[20.0, 685.921875]],
-                "end_x": [[216.0, 1064.0]],
-                "end_y": [[20.0, 685.921875]],
-            },
-            "action_code": "import pyautogui\n\ndef action(start_x, start_y, end_x, end_y):\n    # Click and drag to select text\n    pyautogui.moveTo(start_x, start_y)\n    pyautogui.mouseDown()\n    pyautogui.moveTo(end_x, end_y)\n    pyautogui.mouseUp()\n    # Perform copy operation (Ctrl+C)\n    pyautogui.hotkey('ctrl', 'c')",
-        },
+        # {
+        #     "thought_process": "The action intent is to \"Select project descriptions\" within a non-interactive UI section. Given the static nature and lack of interactive elements or selectors, there\u2019s no executable action in terms of interaction (e.g., clicks or selection), so the action space type is set to 'none'.",
+        #     "action_space_type": "none",
+        #     "action_desc": "",
+        #     "action_params": [],
+        #     "action_discrete_values": None,
+        #     "action_continuous_interval": None,
+        #     "action_code": "",
+        # },
+        # {
+        #     "thought_process": "The intent is to click on the highlight buttons in the 'PortfolioHighlights'. Three highlight buttons are available: Highlight 1, Highlight 2, and Highlight 3. Each is associated with a specific project or award card. Because clicking different parts of the same highlight button does not constitute different actions, each highlight button represents a unique action opportunity. Their positions are identified based on the provided position data.",
+        #     "action_space_type": "discrete",
+        #     "action_desc": "Click on the highlight button for <highlight_number>",
+        #     "action_params": ["highlight_number"],
+        #     "action_discrete_values": {
+        #         "highlight_number": ["Highlight 1", "Highlight 2", "Highlight 3"]
+        #     },
+        #     "action_continuous_interval": {},
+        #     "action_code": 'def action(highlight_number):\n    positions = {\n        "Highlight 1": (640, 221),\n        "Highlight 2": (640, 393),\n        "Highlight 3": (640, 565),\n    }\n    x, y = positions[highlight_number]\n    pyautogui.click(x, y)',
+        # },
+        # {
+        #     "thought_process": "\n1. The action intent is to select individual letters from project initials.\n2. Identify the positions of the initials 'P', 'I', and 'G', which are identifiable from the metadata as part of the avatars.\n3. These initials are positioned in the components and clicking on these can simulate the action intent.\n4. Based on this, a discrete action space is appropriate as we are selecting from the specified initials.\n5. The initials are located at:\n   - 'P' at (459.84, 173.875)\n   - 'I' at (436.72, 345.89)\n   - 'G' at (499.25, 517.90625)\n6. Coordinates are calculated based on the center of the avatar positions for efficient clicking.",
+        #     "action_space_type": "discrete",
+        #     "action_desc": "Select initial <initial> from the project initials",
+        #     "action_params": ["initial"],
+        #     "action_discrete_values": {"initial": ["P", "I", "G"]},
+        #     "action_continuous_interval": {},
+        #     "action_code": 'def action(initial):\n    positions = {\n        "P": (459.84, 173.875),\n        "I": (436.72, 345.89),\n        "G": (499.25, 517.90625)\n    }\n    x, y = positions[initial]\n    pyautogui.click(x, y)',
+        # },
+        # {
+        #     "thought_process": "The action intent is to highlight and copy text. The component description allows for interaction with text elements. The text blocks representing 'Project Alpha', 'Innovator Award 2022', and 'Global Outreach' are potential candidates for this action. Each block can have its content selected and copied using specific mouse drag and copy operations. \n\n1. Determine key points for each section to initiate and end the drag operation for highlighting text.\n2. For each highlight, consider the text content as distinct and selectable.\n\n- For 'Project Alpha': Start at 'P' (x=439, y=153), end at the end of text (x=840, y=193).\n- For 'Innovator Award 2022': Start at 'I' (x=416, y=325), end at the end of text (x=863, y=365).\n- For 'Global Outreach': Start at 'G' (x=479, y=497), end at the end of text (x=800, y=537).",
+        #     "action_space_type": "discrete",
+        #     "action_desc": "Highlight and copy text from <text_section>",
+        #     "action_params": ["text_section"],
+        #     "action_discrete_values": {
+        #         "text_section": [
+        #             "Project Alpha",
+        #             "Innovator Award 2022",
+        #             "Global Outreach",
+        #         ]
+        #     },
+        #     "action_continuous_interval": None,
+        #     "action_code": 'import pyautogui\nimport pyperclip\n\ntext_positions = {\n    "Project Alpha": ((439, 153), (840, 193)),\n    "Innovator Award 2022": ((416, 325), (863, 365)),\n    "Global Outreach": ((479, 497), (800, 537))\n}\n\ndef action(text_section):\n    start_pos, end_pos = text_positions[text_section]\n    pyautogui.moveTo(start_pos[0], start_pos[1])\n    pyautogui.dragTo(end_pos[0], end_pos[1], duration=0.2)\n    pyautogui.hotkey(\'ctrl\', \'c\')\n    copied_text = pyperclip.paste()  # The copied text can be used further\n    return copied_text\n',
+        # },
+        # {
+        #     "thought_process": "The action intent is to 'Select and copy sections of text'. This involves a manual selection action within the specified text boundaries. The component in the screenshot shows multiple sections that can be interacted with by selecting text. The appropriate interaction would be to click and hold to start text selection and drag to the end of the desired section. Given that this can be done for multiple text sections, we identify this as a continuous action space, considering the coordinates allow infinite selections within the range.",
+        #     "action_space_type": "continuous",
+        #     "action_desc": "Select text from <start_x>,<start_y> to <end_x>,<end_y> and copy it.",
+        #     "action_params": ["start_x", "start_y", "end_x", "end_y"],
+        #     "action_discrete_values": {},
+        #     "action_continuous_interval": {
+        #         "start_x": [[216.0, 1064.0]],
+        #         "start_y": [[20.0, 685.921875]],
+        #         "end_x": [[216.0, 1064.0]],
+        #         "end_y": [[20.0, 685.921875]],
+        #     },
+        #     "action_code": "import pyautogui\n\ndef action(start_x, start_y, end_x, end_y):\n    # Click and drag to select text\n    pyautogui.moveTo(start_x, start_y)\n    pyautogui.mouseDown()\n    pyautogui.moveTo(end_x, end_y)\n    pyautogui.mouseUp()\n    # Perform copy operation (Ctrl+C)\n    pyautogui.hotkey('ctrl', 'c')",
+        # },
     ]
 
     for detail_dict in action_detail_list:
@@ -636,11 +661,16 @@ if __name__ == "__main__":
             action_continuous_interval=detail_dict["action_continuous_interval"],
             action_code=detail_dict["action_code"],
         )
-        result = process_grounding(
-            "dir",
-            "component_name",
+        result = await process_grounding(
+            # "dir",
+            # "component_name",
             action_detail,
-            "/Users/nickyang/Desktop/Research/HKUNLP/OSWorld-G/training_data/component_render/data/dialogs/other_screenshot/original/FestivalLineupDemo_1737725581.38117.png",
-            1,
+            {"height": 1080, "width": 1920},
+            # "/Users/nickyang/Desktop/Research/HKUNLP/OSWorld-G/training_data/component_render/data/dialogs/other_screenshot/original/FestivalLineupDemo_1737725581.38117.png",
+            # 1,
         )
         print("process_grounding_dict", result)
+
+
+if __name__ == "__main__":
+    asyncio.run(main())

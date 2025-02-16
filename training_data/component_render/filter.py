@@ -7,7 +7,7 @@ from render_prompts import VISUAL_FILTER_PROMPT
 from api import client, claude
 from utils import encode_image
 from logger import logger
-from typing import Dict
+from typing import Dict, List
 from pydantic import BaseModel
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
@@ -18,36 +18,28 @@ class FilterResult(BaseModel):
     thought_process: str
     is_correct: bool
     correct_instruction: str
+    # more_instructions: List[str]
 
 
 async def visual_filter(
     grounding_dict: Dict, grounding_screenshot_dir: str | None = None
 ):
-    # logger.info(f"start filter grounding {str(grounding_dict)}")
+    logger.info(f"start filter grounding {str(grounding_dict)}")
     instruction = grounding_dict["instruction"]
     try:
         # crop要做异常排查
 
-        # if process in a different folder, then we need this
-        # new_annotated_path = os.path.join(
-        #     grounding_screenshot_dir,
-        #     os.path.basename(grounding_dict["annotated_grounding_path"]),
-        # )
         new_annotated_path = grounding_dict["annotated_grounding_path"]
-        # new_original_path = os.path.join(
-        #     original_screenshot_dir,
-        #     os.path.basename(grounding_dict["screenshot_path"]),
-        # )
-        # or grounding_dict["annotated_grounding_path"]
 
         # Extract coordinates from the action string
-        coords = re.search(r"\((\d+\.?\d*),\s*(\d+\.?\d*)\)", grounding_dict["action"])
+
+        coords = re.search(
+            r"\((\d+\.?\d*),\s*(\d+\.?\d*)", grounding_dict["action"]
+        ) or re.findall(r"\(\((\d+\.?\d*),\s*(\d+\.?\d*)", grounding_dict["action"])
         x, y = float(coords.group(1)), float(coords.group(2))
 
         # Open the image [try]
         image = Image.open(new_annotated_path)
-        # image = Image.open(new_annotated_path)
-        # image = Image.open(grounding_dict["screenshot_path"])
 
         # Define the cropping box (width 500, centered around (x, y))
         box_width = 500
@@ -108,13 +100,25 @@ async def visual_filter(
             ]
         )
         response = await client.beta.chat.completions.parse(
-            model="gpt-4o-2024-08-06",
+            model="gpt-4o-2024-11-20",
             messages=messages,
             temperature=0,
             response_format=FilterResult,
         )
-        logger.info("Visual Filter Done")
         original_filter_result = response.choices[0].message.parsed
+        logger.info(f"Visual Filter Done, result: {original_filter_result.is_correct}")
+        # if original_filter_result.is_correct:
+        #     for more_instruction in original_filter_result.more_instructions:
+        #         new_grounding_dict_list.append(
+        #             {
+        #                 "instruction": more_instruction,
+        #                 "action": grounding_dict["action"],
+        #                 "coords_list": grounding_dict["coords_list"],
+        #                 "thought_process": original_filter_result.thought_process,
+        #                 "is_correct": original_filter_result.is_correct,
+        #                 "correct_instruction": original_filter_result.correct_instruction,
+        #             }
+        #         )
         new_grounding_dict = {
             **grounding_dict,
             "thought_process": original_filter_result.thought_process,
@@ -155,21 +159,13 @@ def process_file(
     # - false: false
     # - unknown: grounding
     filter_result = visual_filter(data, grounding_screenshot_dir)
-    # print(
-    #     os.path.join(
-    #         grounding_screenshot_dir, os.path.basename(data["annotated_grounding_path"])
-    #     )
-    # )
-    # print(filter_result)
     data["thought_process"] = filter_result.thought_process
     data["correct_instruction"] = filter_result.correct_instruction
     data["is_correct"] = filter_result.is_correct
     with open(os.path.join(data_dir, data_file), "w") as f:
         json.dump(data, f, indent=4)
-    # print(f"")
     if filter_result.is_correct:
         shutil.copy(
-            # data["annotated_grounding_path"],
             os.path.join(
                 grounding_screenshot_dir,
                 os.path.basename(data["annotated_grounding_path"]),

@@ -7,7 +7,7 @@ import requests
 from concurrent.futures import ThreadPoolExecutor
 from typing import Dict, List, Union, Callable
 from queue import Queue
-from api import claude, client, bedrock_claude
+from api import claude, client
 from logger import logger
 from openai import OpenAI
 from pydantic import BaseModel
@@ -37,17 +37,24 @@ class StyleCodeResponse(BaseModel):
 
 
 async def _generate_single_scenario_openai(
-    base_component_code, generated_codes, system_prompt
+    component_root_name,
+    component_constraint,
+    base_component_code,
+    generated_codes,
+    system_prompt,
 ) -> str:
     """单个样式生成的任务函数"""
 
     scenario_prompt = generate_new_scenario_component_prompt(
-        original_code=base_component_code, generated_codes=generated_codes
+        component_root_name=component_root_name,
+        component_constraint=component_constraint,
+        original_code=base_component_code,
+        generated_codes=generated_codes,
     )
 
     try:
         response = await client.beta.chat.completions.parse(
-            model="gpt-4o-2024-08-06",
+            model="gpt-4o-2024-11-20",
             messages=[
                 {
                     "role": "system",
@@ -81,6 +88,11 @@ async def _generate_single_scenario_openai(
             # 在最后添加 "}"
             lines.append("}")
 
+        # 检查第一行和最后一行是否是```jsx，```
+        if lines[0].strip() == "```jsx" and lines[-1].strip() == "```":
+            # 去除第一行和最后一行的 ```jsx ```
+            lines = lines[1:-1]
+
         # 将修改后的行重新合并成一个字符串
         new_style_code = "\n".join(lines)
         return codecs.decode(new_style_code, "unicode_escape")
@@ -90,14 +102,20 @@ async def _generate_single_scenario_openai(
 
 
 def _generate_single_scenario_claude(
-    base_component_code, generated_codes, system_prompt
+    component_root_name,
+    component_constraint,
+    base_component_code,
+    generated_codes,
+    system_prompt,
 ) -> str:
 
     scenario_prompt = generate_new_scenario_component_prompt(
-        original_code=base_component_code, generated_codes=generated_codes
+        component_root_name=component_root_name,
+        original_code=base_component_code,
+        generated_codes=generated_codes,
     )
 
-    # url = "https://api2.aigcbest.top/v1/chat/completions"
+    url = "https://api2.aigcbest.top/v1/chat/completions"
 
     payload = {
         "model": "claude-3-5-sonnet-20241022",
@@ -113,27 +131,27 @@ def _generate_single_scenario_claude(
         ],
     }
 
-    # headers = {
-    #     "Accept": "application/json",
-    #     "Authorization": f"Bearer {os.environ.get('CLAUDE_API_KEY')}",
-    #     "Content-Type": "application/json",
-    # }
+    headers = {
+        "Accept": "application/json",
+        "Authorization": f"Bearer {os.environ.get('CLAUDE_API_KEY')}",
+        "Content-Type": "application/json",
+    }
 
     try:
-        # response = requests.request("POST", url, headers=headers, json=payload)
-        response = bedrock_claude.messages.create(
-            model="anthropic.claude-3-5-sonnet-20241022-v2:0",
-            max_tokens=4000,
-            messages=[
-                {
-                    "role": "user",
-                    "content": [
-                        {"type": "text", "text": system_prompt},
-                        {"type": "text", "text": scenario_prompt},
-                    ],
-                }
-            ],
-        )
+        response = requests.request("POST", url, headers=headers, json=payload)
+        # response = bedrock_claude.messages.create(
+        #     model="anthropic.claude-3-5-sonnet-20241022-v2:0",
+        #     max_tokens=4000,
+        #     messages=[
+        #         {
+        #             "role": "user",
+        #             "content": [
+        #                 {"type": "text", "text": system_prompt},
+        #                 {"type": "text", "text": scenario_prompt},
+        #             ],
+        #         }
+        #     ],
+        # )
         response = json.loads(response.content)
         logger.info(f"response: {response}")
 
@@ -172,6 +190,8 @@ def _generate_single_scenario_claude(
 
 
 async def scenario_generation_worker(
+    component_root_name: str,
+    component_constraint: str,
     base_component_code: str,
     prev_generated_code_list: List[str],
     n: int,
@@ -187,6 +207,8 @@ async def scenario_generation_worker(
 
             while new_generated_code is None:
                 new_generated_code = await _generate_single_scenario_openai(
+                    component_root_name,
+                    component_constraint,
                     base_component_code,
                     prev_generated_code_list[-6:],
                     SYSTEM_PROMPT_FOR_STYLE_AUGMENTATION,
@@ -247,7 +269,7 @@ async def style_augmentation(
     #     ],
     # )
     response = await client.beta.chat.completions.parse(
-        model="gpt-4o-2024-08-06",
+        model="gpt-4o-2024-11-20",
         messages=[
             {
                 "role": "system",
@@ -298,7 +320,7 @@ async def style_augmentation(
     #     #     ],
     #     # )
     #     response = client.beta.chat.completions.parse(
-    #         model="gpt-4o-2024-08-06",
+    #         model="gpt-4o-2024-11-20",
     #         messages=[
     #             {
     #                 "role": "system",

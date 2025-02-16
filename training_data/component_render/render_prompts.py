@@ -17,17 +17,20 @@ ACTION_INTENT_PROMPT = """You are an assistant with deep knowledge of UI compone
 
 Input:
 - Component name: {component_name}
+- Component code: {component_code}
 - Screenshot: showing component's current state and properties
 
 
 Requirements:
-1. Return an empty list if you see an error message like "Compiled with problems" on the screen or the screen is blocked by red error messages.
-2. Consider all possible interactions and give more emphasis on actions that are more related to the component: {component_name}.
-3. Make sure all interactions align with the actual usage of the components. Check screenshot to make sure the action is possible, your action intent should interact with what is visually observable.
-4. Group similar actions together, don't include action intents that are too similar or repetitive.
-5. Propose action on BOTH interactive elements and non-interactive elements(such as text, image, etc. You can click on text to select it or select part of it, you can click on image to select it or click part of it).
-6. The interaction should be completed in ONE step, don't include multiple steps or multiple targets in one action(e.g. you cannot click multiple buttons in one action).
-7. You need to pay particular attention to fine-grained operations.
+1. Return an empty list if an error message like "Compiled with problems" appears on the screen or if the screen is obstructed by red error messages.
+2. When considering all possible interactions, focus more on actions directly related to the component: {component_name}.
+3. Carefully read the component code to understand its functionality and interaction logic.
+4. Ensure all interactions align with the actual usage of the components. Verify the action's feasibility by reviewing the screenshot, and ensure your intended actions are consistent with what is visually observable on the screen.
+5. Group similar actions together and avoid including overly repetitive or redundant action intents.
+6. Propose actions for both interactive and non-interactive elements (such as text, images, etc.). You can double-click on text, drag parts of text, or click on images, for example.
+7. Each interaction should be completed in a single step. Do not combine multiple steps or targets in one action (e.g., you cannot click multiple buttons in one action).
+8. Pay close attention to fine-grained operations.
+9. Be mindful of the impact of each action. For instance, if you want to select a word, drag or double-click the word. Simply clicking a word without a link may not have any effect.
 
 Output Format:
 {{
@@ -36,16 +39,6 @@ Output Format:
         "<category_2>",
         "<category_3>",
         "<category_4>"...
-    ]
-}}
-
-Example for a Checkbox Group:
-{{
-    "action_intent_list": [
-        "Single selection",
-        "Select all",
-        "Deselect all",
-        "Deselect single item"
     ]
 }}
 
@@ -59,13 +52,25 @@ Example for a FloatingActionButtonZoom Group:
 }}
 """
 
+# Example for a Checkbox Group:
+# {{
+#     "action_intent_list": [
+#         "Single selection",
+#         "Select all",
+#         "Deselect all",
+#         "Deselect single item"
+#     ]
+# }}
+
+
 ACTION_DETAIL_PROMPT = """ You're an UI Component Interaction Generator. You're given a component's name, screenshot, and position data. You need to generate 3 different interactions for the component.
 
-## Input Format
+## Input
 1. **Component Name**, The name of the UI component: {component_name}
 2. **Screenshot**, An image showing the component's current state.
 3. **Action Intent**, A possible user interaction intent category for the component: {action_intent}
 4. **Position Data**, JSON object containing the positions of all elements: {position}
+5. **Component code**, The code of this component:{component_code}
 
 
 ## Generate Action
@@ -73,7 +78,7 @@ Based on the action space type and action intent, generate appropriate action sp
 
 1. **Thought Process** (`thought_process`)
    - Recall the action intent
-   - Think if this action intent is executable in the current state of the component
+   - Think if this action intent is executable in the current state of the component, think if this actions brings the expected interaction effect based on the component code.
    - If not, set action space type to "none" and generate empty action_desc and action_code.
    - If yes, give corresponding action description for the action intent
     - Identify key UI points that remain constant, for example:
@@ -525,7 +530,10 @@ SYSTEM_PROMPT_FOR_STYLE_AUGMENTATION = """You are an assistant familiar with the
 
 
 def generate_new_scenario_component_prompt(
-    original_code: str, generated_codes: list[str] = None
+    component_root_name: str,
+    component_constraint: str,
+    original_code: str,
+    generated_codes: list[str] = None,
 ) -> str:
     base_template = """
 <UI Component Code>
@@ -539,7 +547,7 @@ Please come up with a real application scenario for this type of component based
 
 0. The component should be different from the generated blocks in appearance and functionality.
 
-1. The core functionality must remain consistent with the original component. Based on this, you can design new application scenarios and styles. {uniqueness_constraint}
+1. The core functionality must remain consistent with the original component {component_root_name}. Based on this, you can design new application scenarios and styles. For {component_root_name}, there is certain constraint: {component_constraint}
 
 2. Please add some new subcomponents that are commonly found in modern UI design and are related to component functionality. These subcomponents should prioritize the use of images for display, and text can be used when necessary.
 
@@ -558,6 +566,8 @@ Please come up with a real application scenario for this type of component based
 9. Default Element States: For elements like dialogs, backdrops, autocompletes, etc., their panels are usually closed by default. Please modify the code to ensure these elements are open by default (e.g., change useState(false) to useState(true) where necessary).
 
 10. Keep key characteristics of original components, for example, the grid of tables, the feasibility of getting positions of every letters/characters in texts. For tables, keep the large amount of cells.For tables, keep the large amount of cells.For tables, keep the large amount of cells.
+
+Remember your generated component should include {component_root_name} or be {component_root_name}.
 
 Please respond in JSON format directly. You should not add any other text or comments.
 {{
@@ -590,6 +600,8 @@ Please respond in JSON format directly. You should not add any other text or com
     # 填充模板并返回完整prompt
     return base_template.format(
         original_code=original_code,
+        component_root_name=component_root_name,
+        component_constraint=component_constraint,
         generated_blocks=generated_blocks,
         generated_reference=generated_reference,
         uniqueness_constraint=uniqueness_constraint,
@@ -777,7 +789,8 @@ You're a smart and precise GUI Interaction Assistant. You will be provided with 
 ---
 
 ### **4. Target Match Verification:**  
-- **Check if the Interaction Target is Visible:** Verify if the element or text being clicked is clearly visible in the screenshot.  
+- **Check if the Interaction Target is Visible:** Verify if the element, text or position being clicked is clearly visible in the screenshot. If the instruction means to click on a position corresponding to a certain value on the slider, but the slider does not have visible scales or a range, then such an instruction should also be filtered out.
+
 - **Compare Instruction with Target:** Evaluate whether the **instruction target** matches the identified GUI element. The instruction is considered aligned if its target clearly corresponds to the element at the green dot's position.
 
 ---
@@ -787,6 +800,7 @@ You're a smart and precise GUI Interaction Assistant. You will be provided with 
   - For **button-like elements**, the click should ideally be at the center of the element.  
   - For **text-like elements**, the click should be at the center of the specific word, phrase, or paragraph mentioned in the instruction.
   - For **other kinds fo elements**, the clicking position should be considered correct if it aligns the usage of this element. For example, for slider, the clicking position should be on the slider, at the position corresponding to the value mentioned in the instruction. For resizable textbox, we may drag on the corner of it to resize it.
+  - Please note that if the position where the target element is clicked is covered by other elements, the click is also considered invalid.
 
 ---
 
@@ -797,6 +811,7 @@ Provide the output in the following format:
 	"thought_process": "Provide your reasoning and detailed observations here.",
 	"is_correct": "Return true or false here.",
 	"correct_instruction": "If is_correct is false, provide the correct instruction here. Otherwise, omit this field."
+  "more_instructions": ["Provide up to 3 more instructions that also describe the correct interaction here."]
 }}
 ```  
 
@@ -826,3 +841,32 @@ INST_FILTER_PROMPT = """
 - multiple_steps: [True/False](Does the instruction involve more than one action or step?)
 
 """
+
+# If `true`, provide 0-3 additional instructions that describe the correct interaction in `more_instructions`. These additional instructions should focus on the following aspects:
+
+# 1. **Paraphrase the instruction**: Reword the original instruction to express the same intent in a different manner, while maintaining the same outcome.
+#    *Example:*
+#    Original: "Click the 'Submit' button."
+#    Paraphrased: "Press the 'Submit' button to proceed."
+
+# 2. **Describe the interaction with relative location**: Include instructions that describe the interaction in terms of its position relative to other elements. This could be a directional reference or a comparison to another visual element on the screen.
+#    *Example:*
+#    "Click the button to the right of the red 'Alert' button."
+#    "Press the button located just below the 'Home' icon."
+
+# 3. **Describe the interaction with ordinal numbers**: Specify the exact location of the item by its ordinal number (e.g., first, second, third, etc.) within a list or menu.
+#    *Example:*
+#    "Click the second button in the list from top to bottom."
+#    "Select the third option in the dropdown menu."
+
+# 4. **Describe the action in terms of its context or behavior**: Explain the interaction based on its purpose or behavior within the system, especially when the button or element has a specific function.
+#    *Example:*
+#    "Click the 'Download' button to start the file download."
+#    "Press the 'Cancel' button to exit without saving changes."
+
+# 5. **Use visual cues or descriptions of appearance**: Describe the element’s appearance (e.g., color, shape, size) to help the user recognize it.
+#    *Example:*
+#    "Click the blue 'Next' button at the bottom of the screen."
+#    "Tap the large green button that says 'Confirm'."
+
+# MAKE SURE every instruction in `more_instructions` is a accurate, correct, valid instruction that can be used to interact with the GUI. If there's no more accurate, correct, valid instructions, please omit this field.
