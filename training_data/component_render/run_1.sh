@@ -1,0 +1,8 @@
+tmux new-session -d -s session_3000 'python main.py --port 3000 --components app-bar --scenario_count 20'
+tmux new-session -d -s session_3001 'python main.py --port 3001 --components chips --scenario_count 20'
+tmux new-session -d -s session_3002 'python main.py --port 3002 --components dialogs --scenario_count 20'
+tmux new-session -d -s session_3003 'python main.py --port 3003 --components lists --scenario_count 20'
+tmux new-session -d -s session_3004 'python main.py --port 3004 --components rating --scenario_count 20'
+tmux new-session -d -s session_3005 'python main.py --port 3005 --components snackbars speed-dial --scenario_count 20'
+tmux new-session -d -s session_3006 'python main.py --port 3006 --components steppers switches --scenario_count 20'
+tmux new-session -d -s session_3007 'python main.py --port 3007 --components toggle-button transfer-list --scenario_count 20'
