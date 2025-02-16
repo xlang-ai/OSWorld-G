@@ -39,27 +39,27 @@ def create_react_app_folder(port):
 def main():
     # 定义可变参数
     port_dict = {
-        "3000": "alert",
-        "3001": "bottom-navigation",
-        "3002": "checkboxes",
-        "3003": "drawers",
-        "3004": "menus",
-        "3005": "slider",
-        "3006": "table",
-        "3007": "tabs",
-        # "3000": "app-bar",
-        # "3001": "chips",
-        # "3002": "dialogs",
-        # "3003": "lists",
-        # "3004": "rating",
-        # "3005": "snackbars speed-dial",
-        # "3006": "steppers switches",
-        # "3007": "toggle-button transfer-list",
+        # "3000": "alert",
+        # "3001": "bottom-navigation",
+        # "3002": "checkboxes",
+        # "3003": "drawers",
+        # "3004": "menus",
+        # "3005": "slider",
+        # "3006": "table",
+        # "3007": "tabs",
+        "3000": "app-bar",
+        "3001": "chips",
+        "3002": "dialogs",
+        "3003": "lists",
+        "3004": "rating",
+        "3005": "snackbars speed-dial",
+        "3006": "steppers switches",
+        "3007": "toggle-button transfer-list",
     }
     scenario_count = 20  # 可变参数(50/主机数)
 
     for port, component in port_dict.items():
-        create_run_script(port, component, scenario_count)
+        # create_run_script(port, component, scenario_count)
         create_react_app_folder(port)
 
     create_tmux_run_script(port_dict, scenario_count)
