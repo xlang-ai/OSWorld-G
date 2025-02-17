@@ -2,11 +2,11 @@
 
 # 定义文件夹的路径
 start_index=3000
-end_index=3007
+end_index=3047
 
 # 循环遍历每个文件夹
 for i in $(seq $start_index $end_index); do
-    folder="react-app-$i"
+    folder="react-app-dir/react-app-$i"
     
     # 检查文件夹是否存在
     if [ -d "$folder" ]; then

@@ -95,7 +95,7 @@ class DataGenerator:
             return None
 
     async def initialize_react_app(self):
-        app_dir = Path(f"./react-app-{self.port}")
+        app_dir = Path(f"react-app-dir/react-app-{self.port}")
         app_dir.mkdir(parents=True, exist_ok=True)
 
         # Start the React development server
@@ -158,7 +158,7 @@ class DataGenerator:
         """刷新React应用并分析组件"""
         try:
             # 创建必要的目录
-            app_dir = Path(f"./react-app-{self.port}")
+            app_dir = Path(f"react-app-dir/react-app-{self.port}")
             app_dir.mkdir(parents=True, exist_ok=True)
 
             # 首先重置 App.js 到初始状态
@@ -293,7 +293,7 @@ def process_component_tree(component_tree):
 async def main():
     generator = DataGenerator(args.port)
 
-    app_dir = Path(f"./react-app-{args.port}")
+    app_dir = Path(f"react-app-dir/react-app-{args.port}")
     os.makedirs("data", exist_ok=True)
 
     component_desc = None
@@ -702,7 +702,7 @@ async def main():
                         )
                     finally:
                         src_path = (
-                            Path(f"./react-app-{args.port}/src/components")
+                            Path(f"react-app-dir/react-app-{args.port}/src/components")
                             / f"{component_name}.js"
                         )
                         # shutil.copy(

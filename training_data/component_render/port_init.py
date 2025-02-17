@@ -26,8 +26,8 @@ def create_tmux_run_script(port_dict, scenario_count):
 
 def create_react_app_folder(port):
     """创建 react-app-{port} 文件夹"""
-    folder_name = f"react-app-{port}"
-    source_folder = "react-app-3000"
+    folder_name = f"react-app-dir/react-app-{port}"
+    source_folder = "react-app-dir/react-app-3000"
 
     if not os.path.exists(folder_name):
         shutil.copytree(source_folder, folder_name)
