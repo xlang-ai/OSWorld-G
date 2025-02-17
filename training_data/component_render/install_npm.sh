@@ -4,9 +4,9 @@
 start_index=3000
 end_index=3047
 
-# 循环遍历每个文件夹
-for i in $(seq $start_index $end_index); do
-    folder="react-app-dir/react-app-$i"
+# 定义一个函数来执行npm安装
+install_npm() {
+    folder="react-app-dir/react-app-$1"
     
     # 检查文件夹是否存在
     if [ -d "$folder" ]; then
@@ -17,6 +17,14 @@ for i in $(seq $start_index $end_index); do
     else
         echo "Directory $folder does not exist."
     fi
+}
+
+# 循环遍历每个文件夹并并行执行
+for i in $(seq $start_index $end_index); do
+    install_npm $i &  # 将每个安装过程放到后台
 done
+
+# 等待所有后台进程完成
+wait
 
 echo "All npm installs completed."
