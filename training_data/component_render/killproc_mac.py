@@ -35,12 +35,5 @@ def kill_port(port):
 
 
 if __name__ == "__main__":
-    kill_port(3000)
-    kill_port(3001)
-    kill_port(3002)
-    kill_port(3003)
-    kill_port(3004)
-    # kill_port(3005)
-    # kill_port(3006)
-    # kill_port(3007)
-    # kill_port(3008)
+    for i in range(3000, 3048):
+        kill_port(i)

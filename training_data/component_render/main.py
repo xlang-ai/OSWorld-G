@@ -4,6 +4,7 @@ import json
 import os
 import re
 import shutil
+import psutil
 import subprocess
 import time
 import argparse
@@ -43,6 +44,10 @@ parser.add_argument("--scenario_count", type=int, required=True)
 args = parser.parse_args()
 # print("components: ", args.components)
 
+os.environ["HTTP_PROXY"] = "http://127.0.0.1:7890"
+os.environ["HTTPS_PROXY"] = "http://127.0.0.1:7890"
+os.environ["BROWSER"] = "none"
+
 
 class ComponentCode(BaseModel):
     component_code: str
@@ -59,7 +64,16 @@ class DataGenerator:
         """Initialize browser and page"""
         if not self.browser:
             playwright = await async_playwright().start()
-            self.browser = await playwright.chromium.launch(headless=True)
+            self.browser = await playwright.chromium.launch(
+                headless=True,
+                args=[
+                    "--no-startup-window",
+                    "--headless",
+                    "--disable-gpu",
+                    "--no-sandbox",
+                    "--disable-dev-shm-usage",
+                ],
+            )
             self.page = await self.browser.new_page()
             # Set viewport size to 1920x1080
             await self.page.set_viewport_size({"width": 1920, "height": 1080})
@@ -103,7 +117,7 @@ class DataGenerator:
             logger.info("Starting React development server...")
             log_dir = Path("./logs")
             log_dir.mkdir(parents=True, exist_ok=True)
-            log_file = Path(log_dir) / "react_app.log"
+            log_file = Path(log_dir) / f"react_app_{self.port}.log"
 
             # 确保React应用已经初始化
             if not (app_dir / "package.json").exists():
@@ -126,7 +140,7 @@ class DataGenerator:
                 f.write(app_js_content)
 
             # 启动服务器
-            with open(log_file, "w") as f:
+            with open(log_file, "a") as f:
                 self.process = subprocess.Popen(
                     f"PORT={self.port} npm start",
                     shell=True,
@@ -135,6 +149,12 @@ class DataGenerator:
                     stdout=f,
                     stderr=f,
                 )
+
+            # # 读取输出并记录到日志
+            # for line in react_process.stdout:
+            #     line = line.decode('utf-8').strip()
+            #     if line:
+            #         logger.info(line)
             logger.info("React app started")
             # 等待服务器启动
             time.sleep(8)  # 增加等待时间确保服务器完全启动
@@ -250,15 +270,27 @@ class DataGenerator:
     async def restart_react_server(self):
         """重启 React 开发服务器"""
         logger.info("Restarting React development server...")
+
         if self.page:
+            # 清理 cookies 和 storage
             await self.page.context.clear_cookies()
             await self.page.evaluate("window.localStorage.clear()")
             await self.page.evaluate("window.sessionStorage.clear()")
 
         # 终止现有的服务器进程
-        if hasattr(self, "process"):
-            self.process.terminate()
-            self.process.wait()
+        await self.terminate_process_on_port(self.port)
+
+        # 删除 Webpack 缓存和日志，避免 ESLint 报错
+        eslint_cache_path = os.path.expanduser("~/.eslintcache")
+        if os.path.exists(eslint_cache_path):
+            logger.info(f"Deleting ESLint cache at {eslint_cache_path}...")
+            shutil.rmtree(eslint_cache_path)
+
+        # 清理 Webpack 缓存
+        webpack_cache_dir = os.path.join(os.getcwd(), "node_modules", ".cache")
+        if os.path.exists(webpack_cache_dir):
+            logger.info(f"Deleting Webpack cache at {webpack_cache_dir}...")
+            shutil.rmtree(webpack_cache_dir)
 
         # 重新启动服务器
         await self.initialize_react_app()
@@ -266,6 +298,33 @@ class DataGenerator:
         # 等待服务器启动
         await asyncio.sleep(10)
         await self.refresh_page()
+
+    async def terminate_process_on_port(self, port: int):
+        """终止占用指定端口的进程"""
+        logger.info(f"Terminating process occupying port {port}...")
+        for proc in psutil.process_iter(attrs=["pid", "name"]):  # 移除 connections 先
+            try:
+                # 确保该进程有 'connections' 属性
+                connections = proc.net_connections()  # 使用函数调用来获取 connections
+                for conn in connections:
+                    if conn.laddr.port == port:
+                        logger.info(
+                            f"Found process {proc.info['name']} with PID {proc.info['pid']} occupying port {port}"
+                        )
+                        # 发送终止信号
+                        proc.terminate()
+                        proc.wait(timeout=3)  # 等待进程结束
+                        logger.info(
+                            f"Process with PID {proc.info['pid']} terminated successfully."
+                        )
+                        break
+            except (
+                psutil.NoSuchProcess,
+                psutil.AccessDenied,
+                psutil.ZombieProcess,
+                psutil.Error,
+            ):
+                pass
 
 
 def process_component_tree(component_tree):
@@ -754,7 +813,8 @@ async def main():
                     json.dump(stats, f, indent=4)
     except Exception as e:
         logger.error(f"Serious error encountered: {e}")
-        await generator.restart_react_server()
+        # 这可能并不需要！
+        # await generator.restart_react_server()
 
 
 if __name__ == "__main__":

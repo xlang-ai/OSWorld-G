@@ -156,11 +156,11 @@ for app_dir in app_dir_list:
                 ],
             }
             data_list.append(final_data)
-            print(1)
         except Exception as e:
             print(f"{old_file} error: {e}")
 with open(os.path.join(app_root_dir, "grounding_data.jsonl"), "w") as file:
     pass
+print(len(data_list))
 for data in data_list:
     with open(os.path.join(app_root_dir, "grounding_data.jsonl"), "a") as file:
         json.dump(data, file)

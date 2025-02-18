@@ -4,7 +4,7 @@ import json
 import time
 import shutil
 from render_prompts import VISUAL_FILTER_PROMPT
-from api import client, claude
+from api import client, claude, call_with_retry
 from utils import encode_image
 from logger import logger
 from typing import Dict, List
@@ -100,11 +100,12 @@ async def visual_filter(
                 }
             ]
         )
-        response = await client.beta.chat.completions.parse(
-            model="gpt-4o-2024-11-20",
-            messages=messages,
-            temperature=0,
-            response_format=FilterResult,
+        response = await call_with_retry(
+            client,
+            "gpt-4o-2024-11-20",
+            messages,
+            0,
+            FilterResult,
         )
         original_filter_result = response.choices[0].message.parsed
         logger.info(f"Visual Filter Done, result: {original_filter_result.is_correct}")
