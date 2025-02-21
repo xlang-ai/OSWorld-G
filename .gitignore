@@ -229,3 +229,5 @@ react-app-3006/
 react-app-3007/
 react-app-3008/
 sample/
+
+component_generation/doc/**/*.jsonl
