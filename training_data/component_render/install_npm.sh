@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# 定义文件夹的路径
+# 定义文件夹的路径 TODO: change it to actual port range
 start_index=3000
 end_index=3047
 

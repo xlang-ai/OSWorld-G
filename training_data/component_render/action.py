@@ -13,7 +13,7 @@ from itertools import product
 from typing import Callable, Dict, List, Literal, Optional, Tuple, Union
 
 from anthropic import Anthropic
-from api import claude, client
+from api import claude, client, call_with_retry
 from logger import logger
 from openai import OpenAI
 from PIL import Image, ImageDraw, ImageFont
@@ -80,9 +80,10 @@ async def generate_action_detail(args) -> ActionDetail:
     )
 
     try:
-        response = await client.beta.chat.completions.parse(
-            model="gpt-4o-2024-11-20",
-            messages=[
+        response = await call_with_retry(
+            client,
+            "gpt-4o-2024-11-20",
+            [
                 {
                     "role": "user",
                     "content": [
@@ -96,8 +97,8 @@ async def generate_action_detail(args) -> ActionDetail:
                     ],
                 }
             ],
-            temperature=0.3,
-            response_format=ActionDetail,
+            0.3,
+            ActionDetail,
         )
         with open("token_cost.txt", "a") as file:
             file.write(f"prompt_action_detail:\n{response.usage.prompt_tokens}\n")
@@ -127,9 +128,10 @@ async def generate_action_data(
     )
     # action intent generation
     logger.info("generating action intent")
-    response = await client.beta.chat.completions.parse(
-        model="gpt-4o-2024-11-20",
-        messages=[
+    response = await call_with_retry(
+        client,
+        "gpt-4o-2024-11-20",
+        [
             {
                 "role": "user",
                 "content": [
@@ -143,8 +145,8 @@ async def generate_action_data(
                 ],
             }
         ],
-        temperature=0.6,
-        response_format=ActionIntentList,
+        0.6,
+        ActionIntentList,
     )
     # logger.info(f"action intent response{response}")
     with open("token_cost.txt", "a") as file:
@@ -202,24 +204,30 @@ async def inst_filter(pair: tuple):
     prompt = INST_FILTER_PROMPT.format(
         instruction=pair[0],
     )
-    response = await client.beta.chat.completions.parse(
-        model="gpt-4o-mini",
-        messages=[
-            {"role": "user", "content": prompt},
-        ],
-        temperature=0,
-        response_format=InstFilter,
-    )
-    filter_result = response.choices[0].message.parsed
-    if (
-        filter_result.ambiguity == False
-        and filter_result.multiple_targets == False
-        and filter_result.non_vision_reference == False
-        and filter_result.multiple_steps == False
-    ):
-        return True
-    logger.info(f"inst {pair[0]} is filtered")
-    return False
+    try:
+        response = await call_with_retry(
+            client,
+            "gpt-4o-mini",
+            [
+                {"role": "user", "content": prompt},
+            ],
+            0,
+            InstFilter,
+        )
+
+        filter_result = response.choices[0].message.parsed
+        if (
+            filter_result.ambiguity == False
+            and filter_result.multiple_targets == False
+            and filter_result.non_vision_reference == False
+            and filter_result.multiple_steps == False
+        ):
+            return True
+        logger.info(f"inst {pair[0]} is filtered")
+        return False
+    except Exception as e:
+        logger.error(f"Error generating action intent: {str(e)}")
+        return False
 
 
 async def process_grounding(action_detail: Dict, screensize: Dict) -> str:
@@ -492,7 +500,7 @@ def annotate_grounding(
 ):
     # Try to load a font, fallback to default if not found
     try:
-        font = ImageFont.truetype("Arial.ttf", 16)
+        font = ImageFont.truetype("arial.ttf", 14)
     except:
         font = ImageFont.load_default()
 

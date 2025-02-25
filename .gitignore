@@ -146,11 +146,8 @@ dmypy.json
 # data
 **/data/**/*
 !**/utils/data/**/*
-<<<<<<< HEAD
-=======
 /layout_crawling/systhesis/processed_data/**/*
 
->>>>>>> 176db72db90cd3fbe4c29db385ea85a5a8ae5433
 
 # tmp files
 **/tmp/**/*
@@ -223,3 +220,6 @@ token_cost.txt
 success.txt
 
 sample/
+
+component_generation/doc/**/*.jsonl
+component_generation/doc/**/*.png
