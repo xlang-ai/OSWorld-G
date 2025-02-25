@@ -491,7 +491,10 @@ def annotate_grounding(
     j: int,
 ):
     # Try to load a font, fallback to default if not found
-    font = ImageFont.truetype("Arial.ttf", 16)
+    try:
+        font = ImageFont.truetype("Arial.ttf", 16)
+    except:
+        font = ImageFont.load_default()
 
     # Load a fresh copy of the image for each pair
     img = Image.open(screenshot_path)
