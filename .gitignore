@@ -201,7 +201,7 @@ vmware_vm_data
 
 /OSWorld-G-test
 
-/secret_keys
+secret_keys/
 /instructions
 
 /images_agn
@@ -222,10 +222,4 @@ logs/
 token_cost.txt
 success.txt
 
-react-app-3003/
-react-app-3004/
-react-app-3005/
-react-app-3006/
-react-app-3007/
-react-app-3008/
 sample/
