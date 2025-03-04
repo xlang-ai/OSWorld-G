@@ -223,9 +223,9 @@ class FigmaExporter:
 
 def main():
     # 设置访问令牌和文件信息
-    access_token = "figd_TmftK8znoD35IZJPjMEKKgozHviTOKFam0LlbF7e"
-    file_key = "AS1kkyewsUwui44PzFFPhx"
-    output_dir = "data/Amazon-UI-Design-(Community)"
+    access_token = "figd_HhRcM4w71MD3RydhCJ86LwQL5EZdgVFIDEpNkEXy"
+    file_key = "Flc0McAMvN4fsJmBLKk2Hg"
+    output_dir = "data/Real-Estate-App-UI-Kit-(Community)"
     
     exporter = FigmaExporter(access_token)
     

@@ -218,3 +218,13 @@ logs/
 
 token_cost.txt
 success.txt
+
+layout_crawling/systhesis/figma500k
+layout_crawling/systhesis/processed_data_v2
+layout_crawling/systhesis/cropped_data
+layout_crawling/systhesis/cropped_data_v2
+layout_crawling/systhesis/cropped_data_v4
+layout_crawling/systhesis/processed_data
+layout_crawling/figma_export
+icon2k/*.png
+images
