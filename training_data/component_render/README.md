@@ -1,32 +1,34 @@
 # Component rendering
 
-## Component and action description generation
-Run `python desc_gen.py` to generate the component and action descriptions. Descriptions are saved in `component_action_list.json`.
+We plan to use 6 virtual machines.
 
-## Component code generation
-Run `python render.py` to generate the component code and action code. 
+## npm install
 
-You can observe components in `localhost:3000`.
+run `install_npm.sh` in `training_data/component_render`.
 
-Screenshot of components, components with bbox, components with action annotation can be found in `/screenshot`
+## environment
 
-Full information of a component-action pair can be found in `data.jsonl`.
+run
+```
+pip install -r requirements.txt
+```
+in `training_data/component_render`.
 
-## Fonts and Styles:
+Then run
+```
+playwright install
+```
 
-Go to `training_data/component_render/react-app` and run `npm install` to install the dependencies.
+## Script Run:
 
-## Possible Types:
-slider menus drawers checkboxes rating
+First of all, run `run_ubuntu_trial.sh` in `training_data/component_render` on one of your vms, then check 
+1. whether folders named by component type(e.g. "autocomplete", "slider") are created in `OSWorld-G/training_data/component_render/data` 
+2. whether grounding files are created in `OSWorld-G/training_data/component_render/data/{component_type}/grounding`.
 
-bottom-navigation pagination table selectable-text resizable-draggable-text-box
+After that, run `final_format.py` in `training_data/component_render` to reformat the data. You'll see a folder named `final_{time}`, this is the desired folder. Send the folder in each vm to Junlin, he will check whether the data is correct and fine.
 
-chips lists alert dialogs snackbars app-bar
+If everything's fine, run `run_ubuntu_all.sh` in `training_data/component_render` on one of your vms, then check
+1. whether folders named by component type(e.g. "autocomplete", "slider") are created in `OSWorld-G/training_data/component_render/data` 
+2. whether grounding files are created in `OSWorld-G/training_data/component_render/data/{component_type}/grounding`.
 
-
-transfer-list
-toggle-buttons
-switch
-speed-dial
-stepper
-tabs
+Finally, run `final_format.py` in `training_data/component_render` to reformat the data. You'll see a folder named `final_{time}`, this is the desired folder. Send the folder in each vm to Junlin, he will do the final processing.

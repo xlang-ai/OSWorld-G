@@ -3,11 +3,11 @@ import re
 import json
 import time
 import shutil
-from render_prompts import FILTER_PROMPT
-from api import client, claude
+from render_prompts import VISUAL_FILTER_PROMPT
+from api import client, claude, call_with_retry
 from utils import encode_image
 from logger import logger
-from typing import Dict
+from typing import Dict, List
 from pydantic import BaseModel
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
@@ -18,35 +18,28 @@ class FilterResult(BaseModel):
     thought_process: str
     is_correct: bool
     correct_instruction: str
+    # more_instructions: List[str]
 
 
-def filter_grounding(
-    grounding_data: Dict, grounding_screenshot_dir: str, original_screenshot_dir
+async def visual_filter(
+    grounding_dict: Dict, grounding_screenshot_dir: str | None = None
 ):
+    logger.info(f"start filter grounding {str(grounding_dict)}")
+    instruction = grounding_dict["instruction"]
     try:
         # crop要做异常排查
-        logger.info("start filter grounding")
-        instruction = grounding_data["instruction"]
 
-        # if process in a different folder, then we need this
-        new_annotated_path = os.path.join(
-            grounding_screenshot_dir,
-            os.path.basename(grounding_data["annotated_image_path"]),
-        )
-        new_original_path = os.path.join(
-            original_screenshot_dir,
-            os.path.basename(grounding_data["screenshot_path"]),
-        )
-        # or grounding_data["annotated_image_path"]
+        new_annotated_path = grounding_dict["annotated_grounding_path"]
 
         # Extract coordinates from the action string
-        coords = re.search(r"\((\d+\.?\d*),\s*(\d+\.?\d*)\)", grounding_data["action"])
+
+        coords = re.search(
+            r"\((\d+\.?\d*),\s*(\d+\.?\d*)", grounding_dict["action"]
+        ) or re.findall(r"\(\((\d+\.?\d*),\s*(\d+\.?\d*)", grounding_dict["action"])
         x, y = float(coords.group(1)), float(coords.group(2))
 
         # Open the image [try]
         image = Image.open(new_annotated_path)
-        # image = Image.open(new_annotated_path)
-        # image = Image.open(grounding_data["screenshot_path"])
 
         # Define the cropping box (width 500, centered around (x, y))
         box_width = 500
@@ -59,6 +52,7 @@ def filter_grounding(
         cropped_image = image.crop((left, top, right, bottom))
 
         # You can save or process the cropped image as needed
+        os.makedirs("cropped_image", exist_ok=True)
         cropped_image_path = f"cropped_image/cropped_image_{time.time()}.png"
         cropped_image.save(cropped_image_path)
         # print(f"cropped_image: {cropped_image_path}")
@@ -68,7 +62,7 @@ def filter_grounding(
         os.remove(cropped_image_path)
         # Continue with the rest of your processing
         screenshot_encoded = encode_image(new_annotated_path)
-        prompt = FILTER_PROMPT.format(instruction=instruction)
+        prompt = VISUAL_FILTER_PROMPT.format(instruction=instruction)
         messages = (
             [
                 {
@@ -88,7 +82,6 @@ def filter_grounding(
                             },
                         },
                     ],
-                    "temperature": 0.2,
                 }
             ]
             if cropped_image_encoded != None
@@ -104,17 +97,37 @@ def filter_grounding(
                             },
                         },
                     ],
-                    "temperature": 0.2,
                 }
             ]
         )
-        response = client.beta.chat.completions.parse(
-            model="gpt-4o-2024-08-06",
-            messages=messages,
-            response_format=FilterResult,
+        response = await call_with_retry(
+            client,
+            "gpt-4o-2024-11-20",
+            messages,
+            0,
+            FilterResult,
         )
-        logger.info("Action Filter Done")
-        return response.choices[0].message.parsed
+        original_filter_result = response.choices[0].message.parsed
+        logger.info(f"Visual Filter Done, result: {original_filter_result.is_correct}")
+        # if original_filter_result.is_correct:
+        #     for more_instruction in original_filter_result.more_instructions:
+        #         new_grounding_dict_list.append(
+        #             {
+        #                 "instruction": more_instruction,
+        #                 "action": grounding_dict["action"],
+        #                 "coords_list": grounding_dict["coords_list"],
+        #                 "thought_process": original_filter_result.thought_process,
+        #                 "is_correct": original_filter_result.is_correct,
+        #                 "correct_instruction": original_filter_result.correct_instruction,
+        #             }
+        #         )
+        new_grounding_dict = {
+            **grounding_dict,
+            "thought_process": original_filter_result.thought_process,
+            "is_correct": original_filter_result.is_correct,
+            "correct_instruction": original_filter_result.correct_instruction,
+        }
+        return new_grounding_dict
     except Exception as e:
         logger.error(
             f"Error filtering action {instruction} in {new_annotated_path}: {str(e)}"
@@ -122,7 +135,14 @@ def filter_grounding(
         exception_result = FilterResult(
             thought_process="None.", is_correct=False, correct_instruction="None"
         )
-        return exception_result
+        new_grounding_dict = {
+            **grounding_dict,
+            "thought_process": exception_result.thought_process,
+            "is_correct": exception_result.is_correct,
+            "correct_instruction": exception_result.correct_instruction,
+        }
+
+        return new_grounding_dict
 
 
 def process_file(
@@ -140,31 +160,21 @@ def process_file(
     # - true: grounding true
     # - false: false
     # - unknown: grounding
-    filter_result = filter_grounding(
-        data, grounding_screenshot_dir, original_screenshot_dir
-    )
-    # print(
-    #     os.path.join(
-    #         grounding_screenshot_dir, os.path.basename(data["annotated_image_path"])
-    #     )
-    # )
-    # print(filter_result)
+    filter_result = visual_filter(data, grounding_screenshot_dir)
     data["thought_process"] = filter_result.thought_process
     data["correct_instruction"] = filter_result.correct_instruction
     data["is_correct"] = filter_result.is_correct
     with open(os.path.join(data_dir, data_file), "w") as f:
         json.dump(data, f, indent=4)
-    # print(f"")
     if filter_result.is_correct:
         shutil.copy(
-            # data["annotated_image_path"],
             os.path.join(
                 grounding_screenshot_dir,
-                os.path.basename(data["annotated_image_path"]),
+                os.path.basename(data["annotated_grounding_path"]),
             ),
             os.path.join(
                 screenshot_true_dir,
-                os.path.basename(data["annotated_image_path"]),
+                os.path.basename(data["annotated_grounding_path"]),
             ),
         )
         return 1
@@ -172,18 +182,18 @@ def process_file(
         if os.path.exists(
             os.path.join(
                 grounding_screenshot_dir,
-                os.path.basename(data["annotated_image_path"]),
+                os.path.basename(data["annotated_grounding_path"]),
             )
         ):
             shutil.copy(
-                # data["annotated_image_path"],
+                # data["annotated_grounding_path"],
                 os.path.join(
                     grounding_screenshot_dir,
-                    os.path.basename(data["annotated_image_path"]),
+                    os.path.basename(data["annotated_grounding_path"]),
                 ),
                 os.path.join(
                     screenshot_false_dir,
-                    os.path.basename(data["annotated_image_path"]),
+                    os.path.basename(data["annotated_grounding_path"]),
                 ),
             )
 
@@ -192,7 +202,7 @@ def process_file(
             os.remove(
                 os.path.join(
                     grounding_screenshot_dir,
-                    os.path.basename(data["annotated_image_path"]),
+                    os.path.basename(data["annotated_grounding_path"]),
                 )
             )
         # 删grounding data

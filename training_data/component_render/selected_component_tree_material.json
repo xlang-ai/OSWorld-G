@@ -1,19 +1,250 @@
 {
   "components": [
     {
-      "name": "selectable-text",
-      "introduction": "A text component with lots of text that can be easily selected by users",
-      "code_path": ["SelectableText.js"]
-    },
-    {
-      "name": "resizable-draggable-text-box",
-      "introduction": "A text box that is draggable like ones in PPT",
-      "code_path": ["PPTTextBox.js"]
-    },
-    {
-      "name": "table",
-      "introduction": "A table with grid",
-      "code_path": ["GridTable.js"]
+      "name": "tabs",
+      "introduction": [
+        "# Tabs\n\n<p class=\"description\">Tabs make it easy to explore and switch between different views.</p>\n\nTabs organize and allow navigation between groups of content that are related and at the same level of hierarchy."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Introduction",
+          "introduction": [
+            "Introduction\n\nTabs are implemented using a collection of related components:\n\n- `<Tab />` - the tab element itself. Clicking on a tab displays its corresponding panel.\n- `<Tabs />` - the container that houses the tabs. Responsible for handling focus and keyboard navigation between tabs."
+          ],
+          "code_path": [
+            "BasicTabs.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Basics",
+          "introduction": [
+            "Basics\n\n```jsx\nimport Tabs from '@mui/material/Tabs';\nimport Tab from '@mui/material/Tab';\n```"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Experimental API",
+          "introduction": [
+            "Experimental API\n\n`@mui/lab` offers utility components that inject props to implement accessible tabs\nfollowing [WAI-ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/):\n\n- `<TabList />` - the container that houses the tabs. Responsible for handling focus and keyboard navigation between tabs.\n- `<TabPanel />` - the card that hosts the content associated with a tab.\n- `<TabContext />` - the top-level component that wraps the Tab List and Tab Panel components."
+          ],
+          "code_path": [
+            "LabTabs.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Wrapped labels",
+          "introduction": [
+            "Wrapped labels\n\nLong labels will automatically wrap on tabs.\nIf the label is too long for the tab, it will overflow, and the text will not be visible."
+          ],
+          "code_path": [
+            "TabsWrappedLabel.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Colored tab",
+          "introduction": [
+            "Colored tab"
+          ],
+          "code_path": [
+            "ColorTabs.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Disabled tab",
+          "introduction": [
+            "Disabled tab\n\nA tab can be disabled by setting the `disabled` prop."
+          ],
+          "code_path": [
+            "DisabledTabs.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Fixed tabs",
+          "introduction": [
+            "Fixed tabs\n\nFixed tabs should be used with a limited number of tabs, and when a consistent placement will aid muscle memory."
+          ],
+          "code_path": [
+            null
+          ],
+          "children": [
+            {
+              "name": "Full width",
+              "introduction": [
+                "Full width\n\nThe `variant=\"fullWidth\"` prop should be used for smaller views."
+              ],
+              "code_path": [
+                "FullWidthTabs.js"
+              ],
+              "children": []
+            },
+            {
+              "name": "Centered",
+              "introduction": [
+                "Centered\n\nThe `centered` prop should be used for larger views."
+              ],
+              "code_path": [
+                "CenteredTabs.js"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Scrollable tabs",
+          "introduction": [
+            "Scrollable tabs"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": [
+            {
+              "name": "Automatic scroll buttons",
+              "introduction": [
+                "Automatic scroll buttons\n\nUse the `variant=\"scrollable\"` and `scrollButtons=\"auto\"` props to display left and right scroll buttons on desktop that are hidden on mobile:"
+              ],
+              "code_path": [
+                "ScrollableTabsButtonAuto.js"
+              ],
+              "children": []
+            },
+            {
+              "name": "Forced scroll buttons",
+              "introduction": [
+                "Forced scroll buttons\n\nApply `scrollButtons={true}` and the `allowScrollButtonsMobile` prop to display the left and right scroll buttons on all viewports:",
+                "If you want to make sure the buttons are always visible, you should customize the opacity.\n\n```css\n.MuiTabs-scrollButtons.Mui-disabled {\n  opacity: 0.3;\n}\n```"
+              ],
+              "code_path": [
+                "ScrollableTabsButtonForce.js",
+                "ScrollableTabsButtonVisible.js"
+              ],
+              "children": []
+            },
+            {
+              "name": "Prevent scroll buttons",
+              "introduction": [
+                "Prevent scroll buttons\n\nLeft and right scroll buttons are never be presented with `scrollButtons={false}`.\nAll scrolling must be initiated through user agent scrolling mechanisms (for example left/right swipe, shift mouse wheel, etc.)"
+              ],
+              "code_path": [
+                "ScrollableTabsButtonPrevent.js"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Customization",
+          "introduction": [
+            "Customization\n\nHere is an example of customizing the component.\nYou can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).",
+            "🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/?path=/docs/tabs-introduction--docs)."
+          ],
+          "code_path": [
+            "CustomizedTabs.js",
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Vertical tabs",
+          "introduction": [
+            "Vertical tabs\n\nTo make vertical tabs instead of default horizontal ones, there is `orientation=\"vertical\"`:",
+            "Note that you can restore the scrollbar with `visibleScrollbar`."
+          ],
+          "code_path": [
+            "VerticalTabs.js",
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Nav tabs",
+          "introduction": [
+            "Nav tabs\n\nBy default, tabs use a `button` element, but you can provide your custom tag or component. Here's an example of implementing tabbed navigation:"
+          ],
+          "code_path": [
+            "NavTabs.js"
+          ],
+          "children": [
+            {
+              "name": "Third-party routing library",
+              "introduction": [
+                "Third-party routing library\n\nOne frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server.\nThe `Tab` component provides the `component` prop to handle this use case.\nHere is a [more detailed guide](/material-ui/integrations/routing/#tabs)."
+              ],
+              "code_path": [
+                null
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Icon tabs",
+          "introduction": [
+            "Icon tabs\n\nTab labels may be either all icons or all text.",
+            ""
+          ],
+          "code_path": [
+            "IconTabs.js",
+            "IconLabelTabs.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Icon position",
+          "introduction": [
+            "Icon position\n\nBy default, the icon is positioned at the `top` of a tab. Other supported positions are `start`, `end`, `bottom`."
+          ],
+          "code_path": [
+            "IconPositionTabs.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Accessibility",
+          "introduction": [
+            "Accessibility\n\n(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/tabs/)\n\nThe following steps are needed in order to provide necessary information for assistive technologies:\n\n1. Label `Tabs` via `aria-label` or `aria-labelledby`.\n2. `Tab`s need to be connected to their\n   corresponding `[role=\"tabpanel\"]` by setting the correct `id`, `aria-controls` and `aria-labelledby`.\n\nAn example for the current implementation can be found in the demos on this page. We've also published [an experimental API](#experimental-api) in `@mui/lab` that does not require\nextra work."
+          ],
+          "code_path": [
+            null
+          ],
+          "children": [
+            {
+              "name": "Keyboard navigation",
+              "introduction": [
+                "Keyboard navigation\n\nThe components implement keyboard navigation using the \"manual activation\" behavior.\nIf you want to switch to the \"selection automatically follows focus\" behavior you have to pass `selectionFollowsFocus` to the `Tabs` component.\nThe WAI-ARIA authoring practices have a detailed guide on [how to decide when to make selection automatically follow focus](https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#x6-4-deciding-when-to-make-selection-automatically-follow-focus)."
+              ],
+              "code_path": [
+                null
+              ],
+              "children": [
+                {
+                  "name": "Demo",
+                  "introduction": [
+                    "Demo\n\nThe following two demos only differ in their keyboard navigation behavior.\nFocus a tab and navigate with arrow keys to notice the difference, for example <kbd class=\"key\">Arrow Left</kbd>.\n\n```jsx\n/* Tabs where selection follows focus */\n<Tabs selectionFollowsFocus />\n```",
+                    "```jsx\n/* Tabs where each tab needs to be selected manually */\n<Tabs />\n```"
+                  ],
+                  "code_path": [
+                    "AccessibleTabs1.js",
+                    "AccessibleTabs2.js"
+                  ],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
       "name": "bottom-navigation",
@@ -319,6 +550,543 @@
               "children": []
             }
           ]
+        }
+      ]
+    },
+    {
+      "name": "switches",
+      "introduction": [
+        "# Switch\n\n<p class=\"description\">Switches toggle the state of a single setting on or off.</p>\n\nSwitches are the preferred way to adjust settings on mobile.\nThe option that the switch controls, as well as the state it's in,\nshould be made clear from the corresponding inline label."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Basic switches",
+          "introduction": [
+            "Basic switches"
+          ],
+          "code_path": [
+            "BasicSwitches.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Label",
+          "introduction": [
+            "Label\n\nYou can provide a label to the `Switch` thanks to the `FormControlLabel` component."
+          ],
+          "code_path": [
+            "SwitchLabels.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Size",
+          "introduction": [
+            "Size\n\nUse the `size` prop to change the size of the switch."
+          ],
+          "code_path": [
+            "SwitchesSize.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Color",
+          "introduction": [
+            "Color"
+          ],
+          "code_path": [
+            "ColorSwitches.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Controlled",
+          "introduction": [
+            "Controlled\n\nYou can control the switch with the `checked` and `onChange` props:"
+          ],
+          "code_path": [
+            "ControlledSwitches.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Switches with FormGroup",
+          "introduction": [
+            "Switches with FormGroup\n\n`FormGroup` is a helpful wrapper used to group selection controls components that provides an easier API.\nHowever, you are encouraged to use [Checkboxes](/material-ui/react-checkbox/) instead if multiple related controls are required. (See: [When to use](#when-to-use))."
+          ],
+          "code_path": [
+            "SwitchesGroup.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Customization",
+          "introduction": [
+            "Customization\n\nHere are some examples of customizing the component.\nYou can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).",
+            "🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/?path=/docs/switch-introduction--docs)."
+          ],
+          "code_path": [
+            "CustomizedSwitches.js",
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Label placement",
+          "introduction": [
+            "Label placement\n\nYou can change the placement of the label:"
+          ],
+          "code_path": [
+            "FormControlLabelPosition.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "When to use",
+          "introduction": [
+            "When to use\n\n- [Checkboxes vs. Switches](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Accessibility",
+          "introduction": [
+            "Accessibility\n\n- It will render an element with the `checkbox` role not `switch` role since this\n  role isn't widely supported yet. Please test first if assistive technology of your\n  target audience supports this role properly. Then you can change the role with\n  `<Switch inputProps={{ role: 'switch' }}>`\n- All form controls should have labels, and this includes radio buttons, checkboxes, and switches. In most cases, this is done by using the `<label>` element ([FormControlLabel](/material-ui/api/form-control-label/)).\n- When a label can't be used, it's necessary to add an attribute directly to the input component.\n  In this case, you can apply the additional attribute (for example `aria-label`, `aria-labelledby`, `title`) via the `inputProps` prop.\n\n```jsx\n<Switch value=\"checkedA\" inputProps={{ 'aria-label': 'Switch A' }} />\n```"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "autocomplete",
+      "introduction": [
+        "# Autocomplete\n\n<p class=\"description\">The autocomplete is a normal text input enhanced by a panel of suggested options.</p>\n\nThe widget is useful for setting the value of a single-line textbox in one of two types of scenarios:\n\n1. The value for the textbox must be chosen from a predefined set of allowed values, for example a location field must contain a valid location name: [combo box](#combo-box).\n2. The textbox may contain any arbitrary value, but it is advantageous to suggest possible values to the user, for example a search field may suggest similar or previous searches to save the user time: [free solo](#free-solo).\n\nIt's meant to be an improved version of the \"react-select\" and \"downshift\" packages."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Combo box",
+          "introduction": [
+            "Combo box\n\nThe value must be chosen from a predefined set of allowed values."
+          ],
+          "code_path": [
+            "ComboBox.js"
+          ],
+          "children": [
+            {
+              "name": "Options structure",
+              "introduction": [
+                "Options structure\n\nBy default, the component accepts the following options structures:\n\n```ts\ninterface AutocompleteOption {\n  label: string;\n}\n// or\ntype AutocompleteOption = string;\n```\n\nfor instance:\n\n```js\nconst options = [\n  { label: 'The Godfather', id: 1 },\n  { label: 'Pulp Fiction', id: 2 },\n];\n// or\nconst options = ['The Godfather', 'Pulp Fiction'];\n```\n\nHowever, you can use different structures by providing a `getOptionLabel` prop.\n\nIf your options are objects, you must provide the `isOptionEqualToValue` prop to ensure correct selection and highlighting. By default, it uses strict equality to compare options with the current value."
+              ],
+              "code_path": [
+                null
+              ],
+              "children": []
+            },
+            {
+              "name": "Playground",
+              "introduction": [
+                "Playground\n\nEach of the following examples demonstrates one feature of the Autocomplete component."
+              ],
+              "code_path": [
+                "Playground.js"
+              ],
+              "children": []
+            },
+            {
+              "name": "Country select",
+              "introduction": [
+                "Country select\n\nChoose one of the 248 countries."
+              ],
+              "code_path": [
+                "CountrySelect.js"
+              ],
+              "children": []
+            },
+            {
+              "name": "Controlled states",
+              "introduction": [
+                "Controlled states\n\nThe component has two states that can be controlled:\n\n1. the \"value\" state with the `value`/`onChange` props combination. This state represents the value selected by the user, for instance when pressing <kbd class=\"key\">Enter</kbd>.\n2. the \"input value\" state with the `inputValue`/`onInputChange` props combination. This state represents the value displayed in the textbox.\n\nThese two states are isolated, and should be controlled independently.\n\n:::info\n\n- A component is **controlled** when it's managed by its parent using props.\n- A component is **uncontrolled** when it's managed by its own local state.\n\nLearn more about controlled and uncontrolled components in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).\n:::",
+                ":::warning\n\nIf you control the `value`, make sure it's referentially stable between renders.\nIn other words, the reference to the value shouldn't change if the value itself doesn't change.\n\n```tsx\n// ⚠️ BAD\nreturn <Autocomplete multiple value={allValues.filter((v) => v.selected)} />;\n\n// 👍 GOOD\nconst selectedValues = React.useMemo(\n  () => allValues.filter((v) => v.selected),\n  [allValues],\n);\nreturn <Autocomplete multiple value={selectedValues} />;\n```\n\nIn the first example, `allValues.filter` is called and returns **a new array** every render.\nThe fix includes memoizing the value, so it changes only when needed.\n:::"
+              ],
+              "code_path": [
+                "ControllableStates.js",
+                null
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Free solo",
+          "introduction": [
+            "Free solo\n\nSet `freeSolo` to true so the textbox can contain any arbitrary value."
+          ],
+          "code_path": [
+            null
+          ],
+          "children": [
+            {
+              "name": "Search input",
+              "introduction": [
+                "Search input\n\nThe prop is designed to cover the primary use case of a **search input** with suggestions, for example Google search or react-autowhatever.",
+                ":::warning\nBe careful when using the free solo mode with non-string options, as it may cause type mismatch.\n\nThe value created by typing into the textbox is always a string, regardless of the type of the options.\n:::"
+              ],
+              "code_path": [
+                "FreeSolo.js",
+                null
+              ],
+              "children": []
+            },
+            {
+              "name": "Creatable",
+              "introduction": [
+                "Creatable\n\nIf you intend to use this mode for a [combo box](#combo-box) like experience (an enhanced version of a select element) we recommend setting:\n\n- `selectOnFocus` to help the user clear the selected value.\n- `clearOnBlur` to help the user enter a new value.\n- `handleHomeEndKeys` to move focus inside the popup with the <kbd class=\"key\">Home</kbd> and <kbd class=\"key\">End</kbd> keys.\n- A last option, for instance: `Add \"YOUR SEARCH\"`.",
+                "You could also display a dialog when the user wants to add a new value."
+              ],
+              "code_path": [
+                "FreeSoloCreateOption.js",
+                "FreeSoloCreateOptionDialog.js"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Grouped",
+          "introduction": [
+            "Grouped\n\nYou can group the options with the `groupBy` prop.\nIf you do so, make sure that the options are also sorted with the same dimension that they are grouped by,\notherwise, you will notice duplicate headers.",
+            "To control how the groups are rendered, provide a custom `renderGroup` prop.\nThis is a function that accepts an object with two fields:\n\n- `group`—a string representing a group name\n- `children`—a collection of list items that belong to the group\n\nThe following demo shows how to use this prop to define custom markup and override the styles of the default groups:"
+          ],
+          "code_path": [
+            "Grouped.js",
+            "RenderGroup.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Disabled options",
+          "introduction": [
+            "Disabled options"
+          ],
+          "code_path": [
+            "DisabledOptions.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "`useAutocomplete`",
+          "introduction": [
+            "`useAutocomplete`\n\nFor advanced customization use cases, a headless `useAutocomplete()` hook is exposed.\nIt accepts almost the same options as the Autocomplete component minus all the props\nrelated to the rendering of JSX.\nThe Autocomplete component is built on this hook.\n\n```tsx\nimport { useAutocomplete } from '@mui/base/useAutocomplete';\n```\n\nThe `useAutocomplete` hook is also reexported from @mui/material for convenience and backward compatibility.\n\n```tsx\nimport useAutocomplete from '@mui/material/useAutocomplete';\n```\n\n- 📦 [4.6 kB gzipped](https://bundlephobia.com/package/@mui/material)."
+          ],
+          "code_path": [
+            "UseAutocomplete.js"
+          ],
+          "children": [
+            {
+              "name": "Customized hook",
+              "introduction": [
+                "Customized hook",
+                "Head to the [customization](#customization) section for an example with the `Autocomplete` component instead of the hook."
+              ],
+              "code_path": [
+                "CustomizedHook.js",
+                null
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Asynchronous requests",
+          "introduction": [
+            "Asynchronous requests\n\nThe component supports two different asynchronous use-cases:\n\n- [Load on open](#load-on-open): it waits for the component to be interacted with to load the options.\n- [Search as you type](#search-as-you-type): a new request is made for each keystroke."
+          ],
+          "code_path": [
+            null
+          ],
+          "children": [
+            {
+              "name": "Load on open",
+              "introduction": [
+                "Load on open\n\nIt displays a progress state as long as the network request is pending."
+              ],
+              "code_path": [
+                "Asynchronous.js"
+              ],
+              "children": []
+            },
+            {
+              "name": "Search as you type",
+              "introduction": [
+                "Search as you type\n\nIf your logic is fetching new options on each keystroke and using the current value of the textbox\nto filter on the server, you may want to consider throttling requests.\n\nAdditionally, you will need to disable the built-in filtering of the `Autocomplete` component by\noverriding the `filterOptions` prop:\n\n```jsx\n<Autocomplete filterOptions={(x) => x} />\n```"
+              ],
+              "code_path": [
+                null
+              ],
+              "children": []
+            },
+            {
+              "name": "Google Maps place",
+              "introduction": [
+                "Google Maps place\n\nA customized UI for Google Maps Places Autocomplete.\nFor this demo, we need to load the [Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/overview) and [Google Places](https://developers.google.com/maps/documentation/places/web-service/overview) API.\n\n:::info\nThe following demo relies on [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight), a small (1 kB) utility for highlighting text in autosuggest and autocomplete components.\n:::",
+                ":::error\nBefore you can start using the Google Maps JavaScript API and Places API, you need to get your own [API key](https://developers.google.com/maps/documentation/javascript/get-api-key).\n:::"
+              ],
+              "code_path": [
+                "GoogleMaps.js",
+                null
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Multiple values",
+          "introduction": [
+            "Multiple values\n\nAlso known as tags, the user is allowed to enter more than one value."
+          ],
+          "code_path": [
+            "Tags.js"
+          ],
+          "children": [
+            {
+              "name": "Fixed options",
+              "introduction": [
+                "Fixed options\n\nIn the event that you need to lock certain tags so that they can't be removed, you can set the chips disabled."
+              ],
+              "code_path": [
+                "FixedTags.js"
+              ],
+              "children": []
+            },
+            {
+              "name": "Checkboxes",
+              "introduction": [
+                "Checkboxes"
+              ],
+              "code_path": [
+                "CheckboxesTags.js"
+              ],
+              "children": []
+            },
+            {
+              "name": "Limit tags",
+              "introduction": [
+                "Limit tags\n\nYou can use the `limitTags` prop to limit the number of displayed options when not focused."
+              ],
+              "code_path": [
+                "LimitTags.js"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Sizes",
+          "introduction": [
+            "Sizes\n\nFancy smaller inputs? Use the `size` prop."
+          ],
+          "code_path": [
+            "Sizes.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Customization",
+          "introduction": [
+            "Customization"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": [
+            {
+              "name": "Custom input",
+              "introduction": [
+                "Custom input\n\nThe `renderInput` prop allows you to customize the rendered input.\nThe first argument of this render prop contains props that you need to forward.\nPay specific attention to the `ref` and `inputProps` keys.\n\n:::warning\nIf you're using a custom input component inside the Autocomplete, make sure that you forward the ref to the underlying DOM element.\n:::"
+              ],
+              "code_path": [
+                "CustomInputAutocomplete.js"
+              ],
+              "children": []
+            },
+            {
+              "name": "Globally Customized Options",
+              "introduction": [
+                "Globally Customized Options\n\nTo globally customize the Autocomplete options for all components in your app,\nyou can use the [theme default props](/material-ui/customization/theme-components/#theme-default-props) and set the `renderOption` property in the `defaultProps` key.\nThe `renderOption` property takes the `ownerState` as the fourth parameter, which includes props and internal component state.\nTo display the label, you can use the `getOptionLabel` prop from the `ownerState`.\nThis approach enables different options for each Autocomplete component while keeping the options styling consistent."
+              ],
+              "code_path": [
+                "GloballyCustomizedOptions.js"
+              ],
+              "children": []
+            },
+            {
+              "name": "GitHub's picker",
+              "introduction": [
+                "GitHub's picker\n\nThis demo reproduces GitHub's label picker:",
+                "Head to the [Customized hook](#customized-hook) section for a customization example with the `useAutocomplete` hook instead of the component."
+              ],
+              "code_path": [
+                "GitHubLabel.js",
+                null
+              ],
+              "children": []
+            },
+            {
+              "name": "Hint",
+              "introduction": [
+                "Hint\n\nThe following demo shows how to add a hint feature to the Autocomplete:"
+              ],
+              "code_path": [
+                "AutocompleteHint.js"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Highlights",
+          "introduction": [
+            "Highlights\n\nThe following demo relies on [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight), a small (1 kB) utility for highlighting text in autosuggest and autocomplete components."
+          ],
+          "code_path": [
+            "Highlights.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Custom filter",
+          "introduction": [
+            "Custom filter\n\nThe component exposes a factory to create a filter method that can be provided to the `filterOptions` prop.\nYou can use it to change the default option filter behavior.\n\n```js\nimport { createFilterOptions } from '@mui/material/Autocomplete';\n```"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": [
+            {
+              "name": "`createFilterOptions(config) => filterOptions`",
+              "introduction": [
+                "`createFilterOptions(config) => filterOptions`"
+              ],
+              "code_path": [
+                null
+              ],
+              "children": [
+                {
+                  "name": "Arguments",
+                  "introduction": [
+                    "Arguments\n\n1. `config` (_object_ [optional]):\n\n- `config.ignoreAccents` (_bool_ [optional]): Defaults to `true`. Remove diacritics.\n- `config.ignoreCase` (_bool_ [optional]): Defaults to `true`. Lowercase everything.\n- `config.limit` (_number_ [optional]): Default to null. Limit the number of suggested options to be shown. For example, if `config.limit` is `100`, only the first `100` matching options are shown. It can be useful if a lot of options match and virtualization wasn't set up.\n- `config.matchFrom` (_'any' | 'start'_ [optional]): Defaults to `'any'`.\n- `config.stringify` (_func_ [optional]): Controls how an option is converted into a string so that it can be matched against the input text fragment.\n- `config.trim` (_bool_ [optional]): Defaults to `false`. Remove trailing spaces."
+                  ],
+                  "code_path": [
+                    null
+                  ],
+                  "children": []
+                },
+                {
+                  "name": "Returns",
+                  "introduction": [
+                    "Returns\n\n`filterOptions`: the returned filter method can be provided directly to the `filterOptions` prop of the `Autocomplete` component, or the parameter of the same name for the hook.\n\nIn the following demo, the options need to start with the query prefix:\n\n```jsx\nconst filterOptions = createFilterOptions({\n  matchFrom: 'start',\n  stringify: (option) => option.title,\n});\n\n<Autocomplete filterOptions={filterOptions} />;\n```"
+                  ],
+                  "code_path": [
+                    "Filter.js"
+                  ],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "name": "Advanced",
+              "introduction": [
+                "Advanced\n\nFor richer filtering mechanisms, like fuzzy matching, it's recommended to look at [match-sorter](https://github.com/kentcdodds/match-sorter). For instance:\n\n```jsx\nimport { matchSorter } from 'match-sorter';\n\nconst filterOptions = (options, { inputValue }) => matchSorter(options, inputValue);\n\n<Autocomplete filterOptions={filterOptions} />;\n```"
+              ],
+              "code_path": [
+                null
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Virtualization",
+          "introduction": [
+            "Virtualization\n\nSearch within 10,000 randomly generated options. The list is virtualized thanks to [react-window](https://github.com/bvaughn/react-window)."
+          ],
+          "code_path": [
+            "Virtualize.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Events",
+          "introduction": [
+            "Events\n\nIf you would like to prevent the default key handler behavior, you can set the event's `defaultMuiPrevented` property to `true`:\n\n```jsx\n<Autocomplete\n  onKeyDown={(event) => {\n    if (event.key === 'Enter') {\n      // Prevent's default 'Enter' behavior.\n      event.defaultMuiPrevented = true;\n      // your handler code\n    }\n  }}\n/>\n```"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Limitations",
+          "introduction": [
+            "Limitations"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": [
+            {
+              "name": "autocomplete/autofill",
+              "introduction": [
+                "autocomplete/autofill\n\nBrowsers have heuristics to help the user fill in form inputs.\nHowever, this can harm the UX of the component.\n\nBy default, the component disables the input **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete=\"off\"` attribute.\nGoogle Chrome does not currently support this attribute setting ([Issue 41239842](https://issues.chromium.org/issues/41239842)).\nA possible workaround is to remove the `id` to have the component generate a random one.\n\nIn addition to remembering past entered values, the browser might also propose **autofill** suggestions (saved login, address, or payment details).\nIn the event you want the avoid autofill, you can try the following:\n\n- Name the input without leaking any information the browser can use. For example `id=\"field1\"` instead of `id=\"country\"`. If you leave the id empty, the component uses a random id.\n- Set `autoComplete=\"new-password\"` (some browsers will suggest a strong password for inputs with this attribute setting):\n\n  ```jsx\n  <TextField\n    {...params}\n    inputProps={{\n      ...params.inputProps,\n      autoComplete: 'new-password',\n    }}\n  />\n  ```\n\nRead [the guide on MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Practical_implementation_guides/Turning_off_form_autocompletion) for more details."
+              ],
+              "code_path": [
+                null
+              ],
+              "children": []
+            },
+            {
+              "name": "iOS VoiceOver",
+              "introduction": [
+                "iOS VoiceOver\n\nVoiceOver on iOS Safari doesn't support the `aria-owns` attribute very well.\nYou can work around the issue with the `disablePortal` prop."
+              ],
+              "code_path": [
+                null
+              ],
+              "children": []
+            },
+            {
+              "name": "ListboxComponent",
+              "introduction": [
+                "ListboxComponent\n\nIf you provide a custom `ListboxComponent` prop, you need to make sure that the intended scroll container has the `role` attribute set to `listbox`. This ensures the correct behavior of the scroll, for example when using the keyboard to navigate."
+              ],
+              "code_path": [
+                null
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Accessibility",
+          "introduction": [
+            "Accessibility\n\n(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/)\n\nWe encourage the usage of a label for the textbox.\nThe component implements the WAI-ARIA authoring practices."
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
         }
       ]
     },
@@ -1042,6 +1810,119 @@
       ]
     },
     {
+      "name": "speed-dial",
+      "introduction": [
+        "# Speed Dial\n\n<p class=\"description\">When pressed, a floating action button can display three to six related actions in the form of a Speed Dial.</p>\n\nIf more than six actions are needed, something other than a FAB should be used to present them."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Basic speed dial",
+          "introduction": [
+            "Basic speed dial\n\nThe floating action button can display related actions."
+          ],
+          "code_path": [
+            "BasicSpeedDial.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Playground",
+          "introduction": [
+            "Playground"
+          ],
+          "code_path": [
+            "PlaygroundSpeedDial.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Controlled speed dial",
+          "introduction": [
+            "Controlled speed dial\n\nThe open state of the component can be controlled with the `open`/`onOpen`/`onClose` props."
+          ],
+          "code_path": [
+            "ControlledOpenSpeedDial.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Custom close icon",
+          "introduction": [
+            "Custom close icon\n\nYou can provide an alternate icon for the closed and open states using the `icon` and `openIcon` props\nof the `SpeedDialIcon` component."
+          ],
+          "code_path": [
+            "OpenIconSpeedDial.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Persistent action tooltips",
+          "introduction": [
+            "Persistent action tooltips\n\nThe SpeedDialActions tooltips can be displayed persistently so that users don't have to long-press to see the tooltip on touch devices.\n\nIt is enabled here across all devices for demo purposes, but in production it could use the `isTouch` logic to conditionally set the prop."
+          ],
+          "code_path": [
+            "SpeedDialTooltipOpen.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Accessibility",
+          "introduction": [
+            "Accessibility"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": [
+            {
+              "name": "ARIA",
+              "introduction": [
+                "ARIA"
+              ],
+              "code_path": [
+                null
+              ],
+              "children": [
+                {
+                  "name": "Required",
+                  "introduction": [
+                    "Required\n\n- You should provide an `ariaLabel` for the speed dial component.\n- You should provide a `tooltipTitle` for each speed dial action."
+                  ],
+                  "code_path": [
+                    null
+                  ],
+                  "children": []
+                },
+                {
+                  "name": "Provided",
+                  "introduction": [
+                    "Provided\n\n- The Fab has `aria-haspopup`, `aria-expanded` and `aria-controls` attributes.\n- The speed dial actions container has `role=\"menu\"` and `aria-orientation` set according to the direction.\n- The speed dial actions have `role=\"menuitem\"`, and an `aria-describedby` attribute that references the associated tooltip."
+                  ],
+                  "code_path": [
+                    null
+                  ],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "name": "Keyboard",
+              "introduction": [
+                "Keyboard\n\n- The speed dial opens on focus.\n- The Space and Enter keys trigger the selected speed dial action, and toggle the speed dial open state.\n- The cursor keys move focus to the next or previous speed dial action. (Note that any cursor direction can be used initially to open the speed dial. This enables the expected behavior for the actual or perceived orientation of the speed dial, for example for a screen reader user who perceives the speed dial as a drop-down menu.)\n- The Escape key closes the speed dial and, if a speed dial action was focused, returns focus to the Fab."
+              ],
+              "code_path": [
+                null
+              ],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "slider",
       "introduction": [
         "# Slider\n\n<p class=\"description\">Sliders allow users to make selections from a range of values.</p>\n\nSliders reflect a range of values along a bar, from which users may select a single value. They are ideal for adjusting settings such as volume, brightness, or applying image filters."
@@ -1483,6 +2364,47 @@
       ]
     },
     {
+      "name": "transfer-list",
+      "introduction": [
+        "# Transfer List\n\n<p class=\"description\">A Transfer List (or \"shuttle\") enables the user to move one or more list items between lists.</p>"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Basic transfer list",
+          "introduction": [
+            "Basic transfer list\n\nFor completeness, this example includes buttons for \"move all\", but not every transfer list needs these."
+          ],
+          "code_path": [
+            "TransferList.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Enhanced transfer list",
+          "introduction": [
+            "Enhanced transfer list\n\nThis example exchanges the \"move all\" buttons for a \"select all / select none\" checkbox and adds a counter."
+          ],
+          "code_path": [
+            "SelectAllTransferList.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Limitations",
+          "introduction": [
+            "Limitations\n\nThe component comes with a couple of limitations:\n\n- It only works on desktop.\n  If you have a limited amount of options to select, prefer the [Autocomplete](/material-ui/react-autocomplete/#multiple-values) component.\n  If mobile support is important for you, have a look at [#27579](https://github.com/mui/material-ui/issues/27579).\n- There are no high-level components exported from npm. The demos are based on composition.\n  If this is important for you, have a look at [#27579](https://github.com/mui/material-ui/issues/27579)."
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
       "name": "checkboxes",
       "introduction": [
         "# Checkbox\n\n<p class=\"description\">Checkboxes allow the user to select one or more items from a set.</p>\n\nCheckboxes can be used to turn an option on or off.\n\nIf you have multiple options appearing in a list,\nyou can preserve space by using checkboxes instead of on/off switches.\nIf you have a single option, avoid using a checkbox and use an on/off switch instead."
@@ -1609,6 +2531,179 @@
           "name": "Accessibility",
           "introduction": [
             "Accessibility\n\n(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/)\n\n- All form controls should have labels, and this includes radio buttons, checkboxes, and switches. In most cases, this is done by using the `<label>` element ([FormControlLabel](/material-ui/api/form-control-label/)).\n- When a label can't be used, it's necessary to add an attribute directly to the input component.\n  In this case, you can apply the additional attribute (for example `aria-label`, `aria-labelledby`, `title`) via the `inputProps` prop.\n\n```jsx\n<Checkbox\n  value=\"checkedA\"\n  inputProps={{\n    'aria-label': 'Checkbox A',\n  }}\n/>\n```"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "table",
+      "introduction": [
+        "# Table\n\n<p class=\"description\">Tables display sets of data. They can be fully customized.</p>\n\nTables display information in a way that's easy to scan, so that users can look for patterns and insights. They can be embedded in primary content, such as cards. They can include:\n\n- A corresponding visualization\n- Navigation\n- Tools to query and manipulate data"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Introduction",
+          "introduction": [
+            "Introduction\n\nTables are implemented using a collection of related components:\n\n- `<TableContainer />`: A wrapper that provides horizontally scrolling behavior for the `<Table />` component.\n- `<Table />`: The main component for the table element. Renders as a `<table>` by default.\n- `<TableHead />`: The container for the header row(s) of `<Table />`. Renders as a `<thead>` by default.\n- `<TableBody />`: The container for the body rows of `<Table />`. Renders as a `<tbody>` by default.\n- `<TableRow />`: A row in a table. Can be used in `<TableHead />`, `<TableBody />`, or `<TableFooter />`. Renders as a `<tr>` by default.\n- `<TableCell />`: A cell in a table. Can be used in `<TableRow />` . Renders as a `<th>` in `<TableHead />` and `<td>` in `<TableBody />` by default.\n- `<TableFooter />`: An optional container for the footer row(s) of the table. Renders as a `<tfoot>` by default.\n- `<TablePagination />`: A component that provides controls for paginating table data. See the ['Sorting & selecting' example](#sorting-amp-selecting) and ['Custom Table Pagination Action' example](#custom-pagination-actions).\n- `<TableSortLabel />`: A component used to display sorting controls for column headers, allowing users to sort data in ascending or descending order. See the ['Sorting & selecting' example](#sorting-amp-selecting)."
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Basic table",
+          "introduction": [
+            "Basic table\n\nA simple example with no frills."
+          ],
+          "code_path": [
+            "BasicTable.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Data table",
+          "introduction": [
+            "Data table\n\nThe `Table` component has a close mapping to the native `<table>` elements.\nThis constraint makes building rich data tables challenging.\n\nThe [`DataGrid` component](/x/react-data-grid/) is designed for use-cases that are focused on handling large amounts of tabular data.\nWhile it comes with a more rigid structure, in exchange, you gain more powerful features."
+          ],
+          "code_path": [
+            "DataTable.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Dense table",
+          "introduction": [
+            "Dense table\n\nA simple example of a dense table with no frills."
+          ],
+          "code_path": [
+            "DenseTable.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Sorting & selecting",
+          "introduction": [
+            "Sorting & selecting\n\nThis example demonstrates the use of `Checkbox` and clickable rows for selection, with a custom `Toolbar`. It uses the `TableSortLabel` component to help style column headings.\n\nThe Table has been given a fixed width to demonstrate horizontal scrolling. In order to prevent the pagination controls from scrolling, the TablePagination component is used outside of the Table. (The ['Custom Table Pagination Action' example](#custom-pagination-actions) below shows the pagination within the TableFooter.)"
+          ],
+          "code_path": [
+            "EnhancedTable.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Customization",
+          "introduction": [
+            "Customization\n\nHere is an example of customizing the component.\nYou can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/)."
+          ],
+          "code_path": [
+            "CustomizedTables.js"
+          ],
+          "children": [
+            {
+              "name": "Custom pagination options",
+              "introduction": [
+                "Custom pagination options\n\nIt's possible to customize the options shown in the \"Rows per page\" select using the `rowsPerPageOptions` prop.\nYou should either provide an array of:\n\n- **numbers**, each number will be used for the option's label and value.\n\n  ```jsx\n  <TablePagination rowsPerPageOptions={[10, 50]} />\n  ```\n\n- **objects**, the `value` and `label` keys will be used respectively for the value and label of the option (useful for language strings such as 'All').\n\n  ```jsx\n  <TablePagination rowsPerPageOptions={[10, 50, { value: -1, label: 'All' }]} />\n  ```"
+              ],
+              "code_path": [
+                null
+              ],
+              "children": []
+            },
+            {
+              "name": "Custom pagination actions",
+              "introduction": [
+                "Custom pagination actions\n\nThe `ActionsComponent` prop of the `TablePagination` component allows the implementation of custom actions."
+              ],
+              "code_path": [
+                "CustomPaginationActionsTable.js"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Sticky header",
+          "introduction": [
+            "Sticky header\n\nHere is an example of a table with scrollable rows and fixed column headers.\nIt leverages the `stickyHeader` prop."
+          ],
+          "code_path": [
+            "StickyHeadTable.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Column grouping",
+          "introduction": [
+            "Column grouping\n\nYou can group column headers by rendering multiple table rows inside a table head:\n\n```jsx\n<TableHead>\n  <TableRow />\n  <TableRow />\n</TableHead>\n```"
+          ],
+          "code_path": [
+            "ColumnGroupingTable.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Collapsible table",
+          "introduction": [
+            "Collapsible table\n\nAn example of a table with expandable rows, revealing more information.\nIt utilizes the [`Collapse`](/material-ui/api/collapse/) component."
+          ],
+          "code_path": [
+            "CollapsibleTable.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Spanning table",
+          "introduction": [
+            "Spanning table\n\nA simple example with spanning rows & columns."
+          ],
+          "code_path": [
+            "SpanningTable.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Virtualized table",
+          "introduction": [
+            "Virtualized table\n\nIn the following example, we demonstrate how to use [react-virtuoso](https://github.com/petyosi/react-virtuoso) with the `Table` component.\nIt renders 200 rows and can easily handle more.\nVirtualization helps with performance issues."
+          ],
+          "code_path": [
+            "ReactVirtualizedTable.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Accessibility",
+          "introduction": [
+            "Accessibility\n\n(WAI tutorial: <https://www.w3.org/WAI/tutorials/tables/>)"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": [
+            {
+              "name": "Caption",
+              "introduction": [
+                "Caption\n\nA caption functions like a heading for a table. Most screen readers announce the content of captions. Captions help users to find a table and understand what it's about and decide if they want to read it."
+              ],
+              "code_path": [
+                "AccessibleTable.js"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Unstyled",
+          "introduction": [
+            "Unstyled\n\nIf you would like to use an unstyled Table, you can use the primitive HTML elements and enhance the table with the TablePaginationUnstyled component.\nSee the demos in the [unstyled table pagination docs](/base-ui/react-table-pagination/)"
           ],
           "code_path": [
             null
@@ -1997,6 +3092,160 @@
       ]
     },
     {
+      "name": "steppers",
+      "introduction": [
+        "# Stepper\n\n<p class=\"description\">Steppers convey progress through numbered steps. It provides a wizard-like workflow.</p>\n\nSteppers display progress through a sequence of logical and numbered steps. They may also be used for navigation.\nSteppers may display a transient feedback message after a step is saved.\n\n- **Types of Steps**: Editable, Non-editable, Mobile, Optional\n- **Types of Steppers**: Horizontal, Vertical, Linear, Non-linear\n\n\n\n:::info\nThis component is no longer documented in the [Material Design guidelines](https://m2.material.io/), but Material UI will continue to support it.\n:::"
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Introduction",
+          "introduction": [
+            "Introduction\n\nThe Stepper component displays progress through a sequence of logical and numbered steps.\nIt supports horizontal and vertical orientation for desktop and mobile viewports.\n\nSteppers are implemented using a collection of related components:\n\n- Stepper: the container for the steps.\n- Step: an individual step in the sequence.\n- Step Label: a label for a Step.\n- Step Content: optional content for a Step.\n- Step Button: optional button for a Step.\n- Step Icon: optional icon for a Step.\n- Step Connector: optional customized connector between Steps."
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Basics",
+          "introduction": [
+            "Basics\n\n```jsx\nimport Stepper from '@mui/material/Stepper';\nimport Step from '@mui/material/Step';\nimport StepLabel from '@mui/material/StepLabel';\n```"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": []
+        },
+        {
+          "name": "Horizontal stepper",
+          "introduction": [
+            "Horizontal stepper\n\nHorizontal steppers are ideal when the contents of one step depend on an earlier step.\n\nAvoid using long step names in horizontal steppers."
+          ],
+          "code_path": [
+            null
+          ],
+          "children": [
+            {
+              "name": "Linear",
+              "introduction": [
+                "Linear\n\nA linear stepper allows the user to complete the steps in sequence.\n\nThe `Stepper` can be controlled by passing the current step index (zero-based) as the `activeStep` prop. `Stepper` orientation is set using the `orientation` prop.\n\nThis example also shows the use of an optional step by placing the `optional` prop on the second `Step` component. Note that it's up to you to manage when an optional step is skipped. Once you've determined this for a particular step you must set `completed={false}` to signify that even though the active step index has gone beyond the optional step, it's not actually complete."
+              ],
+              "code_path": [
+                "HorizontalLinearStepper.js"
+              ],
+              "children": []
+            },
+            {
+              "name": "Non-linear",
+              "introduction": [
+                "Non-linear\n\nNon-linear steppers allow the user to enter a multi-step flow at any point.\n\nThis example is similar to the regular horizontal stepper, except steps are no longer automatically set to `disabled={true}` based on the `activeStep` prop.\n\nThe use of the `StepButton` here demonstrates clickable step labels, as well as setting the `completed`\nflag. However because steps can be accessed in a non-linear fashion, it's up to your own implementation to\ndetermine when all steps are completed (or even if they need to be completed)."
+              ],
+              "code_path": [
+                "HorizontalNonLinearStepper.js"
+              ],
+              "children": []
+            },
+            {
+              "name": "Alternative label",
+              "introduction": [
+                "Alternative label\n\nLabels can be placed below the step icon by setting the `alternativeLabel` prop on the `Stepper` component."
+              ],
+              "code_path": [
+                "HorizontalLinearAlternativeLabelStepper.js"
+              ],
+              "children": []
+            },
+            {
+              "name": "Error step",
+              "introduction": [
+                "Error step"
+              ],
+              "code_path": [
+                "HorizontalStepperWithError.js"
+              ],
+              "children": []
+            },
+            {
+              "name": "Customized horizontal stepper",
+              "introduction": [
+                "Customized horizontal stepper\n\nHere is an example of customizing the component.\nYou can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/)."
+              ],
+              "code_path": [
+                "CustomizedSteppers.js"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Vertical stepper",
+          "introduction": [
+            "Vertical stepper\n\nVertical steppers are designed for narrow screen sizes. They are ideal for mobile. All the features of the horizontal stepper can be implemented."
+          ],
+          "code_path": [
+            "VerticalLinearStepper.js"
+          ],
+          "children": [
+            {
+              "name": "Performance",
+              "introduction": [
+                "Performance\n\nThe content of a step is unmounted when closed.\nIf you need to make the content available to search engines or render expensive component trees inside your modal while optimizing for interaction responsiveness it might be a good idea to keep the step mounted with:\n\n```jsx\n<StepContent TransitionProps={{ unmountOnExit: false }} />\n```"
+              ],
+              "code_path": [
+                null
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Mobile stepper",
+          "introduction": [
+            "Mobile stepper\n\nThis component implements a compact stepper suitable for a mobile device. It has more limited functionality than the vertical stepper. See [mobile steps](https://m1.material.io/components/steppers.html#steppers-types-of-steps) for its inspiration.\n\nThe mobile stepper supports three variants to display progress through the available steps: text, dots, and progress."
+          ],
+          "code_path": [
+            null
+          ],
+          "children": [
+            {
+              "name": "Text",
+              "introduction": [
+                "Text\n\nThe current step and total number of steps are displayed as text."
+              ],
+              "code_path": [
+                "TextMobileStepper.js"
+              ],
+              "children": []
+            },
+            {
+              "name": "Dots",
+              "introduction": [
+                "Dots\n\nUse dots when the number of steps is small."
+              ],
+              "code_path": [
+                "DotsMobileStepper.js"
+              ],
+              "children": []
+            },
+            {
+              "name": "Progress",
+              "introduction": [
+                "Progress\n\nUse a progress bar when there are many steps, or if there are steps that need to be inserted during the process (based on responses to earlier steps)."
+              ],
+              "code_path": [
+                "ProgressMobileStepper.js"
+              ],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "drawers",
       "introduction": [
         "# Drawer\n\n<p class=\"description\">The navigation drawers (or \"sidebars\") provide ergonomic access to destinations in a site or app functionality such as switching accounts.</p>\n\nA navigation drawer can either be permanently on-screen or controlled by a navigation menu icon.\n\n[Side sheets](https://m2.material.io/components/sheets-side) are supplementary surfaces primarily used on tablet and desktop."
@@ -2139,6 +3388,128 @@
               ],
               "code_path": [
                 "../app-bar/DashboardLayoutBasic.js"
+              ],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "toggle-button",
+      "introduction": [
+        "# Toggle Button\n\n<p class=\"description\">A Toggle Button can be used to group related options.</p>\n\nTo emphasize groups of related Toggle buttons,\na group should share a common container.\nThe `ToggleButtonGroup` controls the selected state of its child buttons when given its own `value` prop."
+      ],
+      "code_path": [
+        null
+      ],
+      "children": [
+        {
+          "name": "Exclusive selection",
+          "introduction": [
+            "Exclusive selection\n\nWith exclusive selection, selecting one option deselects any other.\n\nIn this example, text justification toggle buttons present options for left, center, right, and fully justified text (disabled), with only one item available for selection at a time.\n\n**Note**: Exclusive selection does not enforce that a button must be active. For that effect see [enforce value set](#enforce-value-set)."
+          ],
+          "code_path": [
+            "ToggleButtons.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Multiple selection",
+          "introduction": [
+            "Multiple selection\n\nMultiple selection allows for logically-grouped options, like bold, italic, and underline, to have multiple options selected."
+          ],
+          "code_path": [
+            "ToggleButtonsMultiple.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Size",
+          "introduction": [
+            "Size\n\nFor larger or smaller buttons, use the `size` prop."
+          ],
+          "code_path": [
+            "ToggleButtonSizes.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Color",
+          "introduction": [
+            "Color"
+          ],
+          "code_path": [
+            "ColorToggleButton.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Vertical buttons",
+          "introduction": [
+            "Vertical buttons\n\nThe buttons can be stacked vertically with the `orientation` prop set to \"vertical\"."
+          ],
+          "code_path": [
+            "VerticalToggleButtons.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Enforce value set",
+          "introduction": [
+            "Enforce value set\n\nIf you want to enforce that at least one button must be active, you can adapt your handleChange function.\n\n```jsx\nconst handleAlignment = (event, newAlignment) => {\n  if (newAlignment !== null) {\n    setAlignment(newAlignment);\n  }\n};\n\nconst handleDevices = (event, newDevices) => {\n  if (newDevices.length) {\n    setDevices(newDevices);\n  }\n};\n```"
+          ],
+          "code_path": [
+            "ToggleButtonNotEmpty.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Standalone toggle button",
+          "introduction": [
+            "Standalone toggle button"
+          ],
+          "code_path": [
+            "StandaloneToggleButton.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Customization",
+          "introduction": [
+            "Customization\n\nHere is an example of customizing the component.\nYou can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/)."
+          ],
+          "code_path": [
+            "CustomizedDividers.js"
+          ],
+          "children": []
+        },
+        {
+          "name": "Accessibility",
+          "introduction": [
+            "Accessibility"
+          ],
+          "code_path": [
+            null
+          ],
+          "children": [
+            {
+              "name": "ARIA",
+              "introduction": [
+                "ARIA\n\n- ToggleButtonGroup has `role=\"group\"`. You should provide an accessible label with `aria-label=\"label\"`, `aria-labelledby=\"id\"` or `<label>`.\n- ToggleButton sets `aria-pressed=\"<bool>\"` according to the button state. You should label each button with `aria-label`."
+              ],
+              "code_path": [
+                null
+              ],
+              "children": []
+            },
+            {
+              "name": "Keyboard",
+              "introduction": [
+                "Keyboard\n\nAt present, toggle buttons are in DOM order. Navigate between them with the tab key. The button behavior follows standard keyboard semantics."
+              ],
+              "code_path": [
+                null
               ],
               "children": []
             }

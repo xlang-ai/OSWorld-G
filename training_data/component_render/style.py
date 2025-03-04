@@ -1,11 +1,12 @@
 import codecs
 import json
 import os
+import requests
 
 # import anthropic
 from concurrent.futures import ThreadPoolExecutor
-from typing import Dict, List, Union
-
+from typing import Dict, List, Union, Callable
+from queue import Queue
 from api import claude, client
 from logger import logger
 from openai import OpenAI
@@ -35,17 +36,25 @@ class StyleCodeResponse(BaseModel):
     style_code: str
 
 
-def _generate_single_scenario(args) -> str:
+async def _generate_single_scenario_openai(
+    component_root_name,
+    component_constraint,
+    base_component_code,
+    generated_codes,
+    system_prompt,
+) -> str:
     """单个样式生成的任务函数"""
-    base_component_code, generated_codes, system_prompt = args
 
     scenario_prompt = generate_new_scenario_component_prompt(
-        original_code=base_component_code, generated_codes=generated_codes
+        component_root_name=component_root_name,
+        component_constraint=component_constraint,
+        original_code=base_component_code,
+        generated_codes=generated_codes,
     )
 
     try:
-        response = client.beta.chat.completions.parse(
-            model="gpt-4o-2024-08-06",
+        response = await client.beta.chat.completions.parse(
+            model="gpt-4o-2024-11-20",
             messages=[
                 {
                     "role": "system",
@@ -58,34 +67,53 @@ def _generate_single_scenario(args) -> str:
                     "content": [
                         {"type": "text", "text": scenario_prompt},
                     ],
-                    "temperature": 0.6,
                 },
             ],
+            temperature=1,
             response_format=ScenarioAugmentationResponse,
         )
+        # logger.info(f"response:{response}")
         with open("token_cost.txt", "a") as file:
             file.write(f"prompt_gen_scenario:\n{response.usage.prompt_tokens}\n")
             file.write(
                 f"completion_gen_scenario:\n{response.usage.completion_tokens}\n"
             )
-
         json_response = response.choices[0].message.parsed
-        return json_response.new_style_code
+        new_style_code = json_response.new_style_code
+        # print(new_style_code)
+        lines = new_style_code.split("\n")
+
+        # 检查最后一行是否是 ");"
+        if lines[-1].strip() == ");":
+            # 在最后添加 "}"
+            lines.append("}")
+
+        # 检查第一行和最后一行是否是```jsx，```
+        if lines[0].strip() == "```jsx" and lines[-1].strip() == "```":
+            # 去除第一行和最后一行的 ```jsx ```
+            lines = lines[1:-1]
+
+        # 将修改后的行重新合并成一个字符串
+        new_style_code = "\n".join(lines)
+        return codecs.decode(new_style_code, "unicode_escape")
     except Exception as e:
         logger.error(f"Error generating style: {str(e)}")
         return None
 
 
-def _generate_single_scenario_claude(args) -> str:
-    base_component_code, generated_codes, system_prompt = args
+def _generate_single_scenario_claude(
+    component_root_name,
+    component_constraint,
+    base_component_code,
+    generated_codes,
+    system_prompt,
+) -> str:
 
     scenario_prompt = generate_new_scenario_component_prompt(
-        original_code=base_component_code, generated_codes=generated_codes
+        component_root_name=component_root_name,
+        original_code=base_component_code,
+        generated_codes=generated_codes,
     )
-
-    import json
-
-    import requests
 
     url = "https://api2.aigcbest.top/v1/chat/completions"
 
@@ -111,14 +139,27 @@ def _generate_single_scenario_claude(args) -> str:
 
     try:
         response = requests.request("POST", url, headers=headers, json=payload)
-        print("response:", response.text)
-        response = json.loads(response.text)
+        # response = bedrock_claude.messages.create(
+        #     model="anthropic.claude-3-5-sonnet-20241022-v2:0",
+        #     max_tokens=4000,
+        #     messages=[
+        #         {
+        #             "role": "user",
+        #             "content": [
+        #                 {"type": "text", "text": system_prompt},
+        #                 {"type": "text", "text": scenario_prompt},
+        #             ],
+        #         }
+        #     ],
+        # )
+        response = json.loads(response.content)
+        logger.info(f"response: {response}")
 
-        with open("token_cost.txt", "a") as file:
-            file.write(f"prompt_gen_scenario:\n{response['usage']['prompt_tokens']}\n")
-            file.write(
-                f"completion_gen_scenario:\n{response['usage']['completion_tokens']}\n"
-            )
+        # with open("token_cost.txt", "a") as file:
+        #     file.write(f"prompt_gen_scenario:\n{response['usage']['prompt_tokens']}\n")
+        #     file.write(
+        #         f"completion_gen_scenario:\n{response['usage']['completion_tokens']}\n"
+        #     )
 
         json_response = response["choices"][0]["message"]["content"]
         # print(json_response + "\n\n\n")
@@ -132,40 +173,84 @@ def _generate_single_scenario_claude(args) -> str:
         if not code_match:
             raise ValueError("No new_style_code found in the response")
         new_style_code = code_match.group(1)
+        # print(new_style_code)
+        lines = new_style_code.split("\n")
+
+        # 检查最后一行是否是 ");"
+        if lines[-1] == "  );":
+            # 在最后添加 "}"
+            lines.append("}")
+
+        # 将修改后的行重新合并成一个字符串
+        new_style_code = "\n".join(lines)
         return codecs.decode(new_style_code, "unicode_escape")
     except Exception as e:
         logger.error(f"Error generating style: {str(e)}")
         return None
 
 
-def scenario_augmentation(base_component_code: str, n: int) -> List[str]:
-    generated_code_list = []
+async def scenario_generation_worker(
+    component_root_name: str,
+    component_constraint: str,
+    base_component_code: str,
+    prev_generated_code_list: List[str],
+    n: int,
+    queue: Queue,
+) -> None:
+    """生产者：负责生成代码并放入队列"""
+    generated_count = 0
 
-    # 准备任务参数
-    tasks = [
-        (
-            base_component_code,
-            generated_code_list.copy(),
-            SYSTEM_PROMPT_FOR_STYLE_AUGMENTATION,
-        )
-        for _ in range(n)
-    ]
+    try:
+        for _ in range(n):
+            logger.info(f"Start to generate {generated_count}th style")
+            new_generated_code = None
 
-    # 使用ThreadPoolExecutor并行处理
-    with ThreadPoolExecutor(max_workers=min(n, 4)) as executor:
-        # results = list(executor.map(_generate_single_scenario, tasks))
-        results = list(executor.map(_generate_single_scenario_claude, tasks))
+            while new_generated_code is None:
+                new_generated_code = await _generate_single_scenario_openai(
+                    component_root_name,
+                    component_constraint,
+                    base_component_code,
+                    prev_generated_code_list[-6:],
+                    SYSTEM_PROMPT_FOR_STYLE_AUGMENTATION,
+                )
 
-    # 过滤掉None值并返回结果
-    generated_code_list = [code for code in results if code is not None]
+            prev_generated_code_list.append(new_generated_code)
+            await queue.put(new_generated_code)
+            generated_count += 1
 
-    logger.info(
-        f"Scenario augmentation finished, generated {len(generated_code_list)} codes"
-    )
-    return generated_code_list
+        logger.info(f"Generation completed. Total generated: {generated_count}")
+    finally:
+        # 放入结束标记
+        await queue.put("end")
 
 
-def style_augmentation(
+# def scenario_augmentation(
+#     base_component_code: str, prev_generated_code_list: List, n: int
+# ) -> List[str]:
+#     new_generated_code_list = []
+
+#     # NOTE: 为了避免重复，恐怕不能并行
+#     for _ in range(n):
+#         logger.info(
+#             f"Start to generate {_}th style, {len(new_generated_code_list)} already generated"
+#         )
+#         new_generated_code = None
+#         while new_generated_code is None:
+#             # new_generated_code = _generate_single_scenario_claude(
+#             new_generated_code = _generate_single_scenario_openai(
+#                 base_component_code,
+#                 (prev_generated_code_list + new_generated_code_list.copy())[-10:],
+#                 SYSTEM_PROMPT_FOR_STYLE_AUGMENTATION,
+#             )
+#         new_generated_code_list.append(new_generated_code)
+
+#     logger.info(
+#         f"Scenario augmentation finished, generated {len(new_generated_code_list)} codes"
+#     )
+#     return new_generated_code_list
+
+
+async def style_augmentation(
     scenario_component_code, n=1
 ) -> Dict[str, Union[str, List[str]]]:
     style_prompt = STYLE_TEMPLATE_GENERATE_PROMPT.format(
@@ -183,8 +268,8 @@ def style_augmentation(
     #         }
     #     ],
     # )
-    response = client.beta.chat.completions.parse(
-        model="gpt-4o-2024-08-06",
+    response = await client.beta.chat.completions.parse(
+        model="gpt-4o-2024-11-20",
         messages=[
             {
                 "role": "system",
@@ -197,9 +282,9 @@ def style_augmentation(
                 "content": [
                     {"type": "text", "text": style_prompt},
                 ],
-                "temperature": 0.6,
             },
         ],
+        temperature=0.6,
         response_format=StyleAugmentationResponse,
     )
     with open("token_cost.txt", "a") as file:
@@ -212,7 +297,7 @@ def style_augmentation(
         json_response.component_prop_nesting,
     )
 
-    logger.info(f"COMPONENT PROP NESTING: {component_prop_nesting}")
+    # logger.info(f"COMPONENT PROP NESTING: {component_prop_nesting}")
 
     # style_code_list = []
     styled_component_prop_nesting_list = [component_prop_nesting]
@@ -235,7 +320,7 @@ def style_augmentation(
     #     #     ],
     #     # )
     #     response = client.beta.chat.completions.parse(
-    #         model="gpt-4o-2024-08-06",
+    #         model="gpt-4o-2024-11-20",
     #         messages=[
     #             {
     #                 "role": "system",
@@ -248,9 +333,9 @@ def style_augmentation(
     #                 "content": [
     #                     {"type": "text", "text": style_code_prompt},
     #                 ],
-    #                 "temperature": 0.6,
     #             },
     #         ],
+    #         temperature = 0.6,
     #         response_format=StyleCodeResponse,
     #     )
 

@@ -1,25 +1,15 @@
-# import '@fontsource/roboto/300.css';
-# import '@fontsource/roboto/400.css';
-# import '@fontsource/roboto/500.css';
-# import '@fontsource/roboto/700.css';
 JS_WITH_COMPONENT = r"""
 import React from 'react';
 import './App.css';
 import {component_name} from './components/{component_name}';
+import RandomContainer from './components/RandomContainer';
 
 function App() {{
   return (
     <div className="App">
-      <div className="container" style={{{{
-        maxWidth: '800px',
-        margin: '20px auto',
-        padding: '24px',
-        backgroundColor: '#ffffff',
-        borderRadius: '8px',
-        overflow: 'visible', // 确保内容不会被裁剪
-    }}}}>
+      <RandomContainer>
         <{component_name} />
-      </div>
+      </RandomContainer>
     </div>
   );
 }}
@@ -30,20 +20,14 @@ export default App;
 JS_WITHOUT_COMPONENT = r"""
 import React from 'react';
 import './App.css';
+import RandomContainer from './components/RandomContainer';
 
 function App() {
   return (
     <div className="App">
-      <div className="container" style={{
-        maxWidth: '800px',
-        margin: '20px auto',
-        padding: '24px',
-        backgroundColor: '#ffffff',
-        borderRadius: '8px',
-        overflow: 'visible', // 确保内容不会被裁剪
-        }}>
+      <RandomContainer>
         <h1>Hello, World</h1>
-      </div>
+      </RandomContainer>
     </div>
   );
 }
@@ -142,6 +126,7 @@ JS_EVAL_POSITION = """() => {
                 return {
                     attributes: getElementAttributes(element),
                     text: element.textContent.trim(),
+                    isInteractive: interactiveElements.includes(element),
                     position: {
                         x_left: rect.left + window.scrollX,
                         y_top: rect.top + window.scrollY,
