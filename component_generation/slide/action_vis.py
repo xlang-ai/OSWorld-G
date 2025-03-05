@@ -2,6 +2,7 @@ import os
 import json
 import random
 import re
+import textwrap  # 用于文本换行
 from PIL import Image, ImageDraw, ImageFont
 
 jsonl_file = "data_desktop_fullscreen.jsonl"
@@ -58,10 +59,27 @@ def action_vis():
 
             # 添加文本
             text = f"{vis_instruction}\n->{vis_action_code}".replace("\n", " ")
-            font = ImageFont.load_default()  # 使用默认字体
-            text_bbox = draw.textbbox((0, 0), text, font=font)
-            text_width = text_bbox[2] - text_bbox[0]
-            text_height = text_bbox[3] - text_bbox[1]
+
+            # 加载字体
+            try:
+                font = ImageFont.truetype(
+                    "/System/Library/Fonts/Supplemental/Arial Black.ttf", 24
+                )
+            except Exception as e:
+                print(e)
+                font = ImageFont.load_default()
+
+            # 设置每行的最大字符数（根据字体大小和图像宽度动态调整）
+            max_width = image.width - 20  # 最大宽度（留出边距）
+            max_chars_per_line = max_width // font.size  # 每行最大字符数
+
+            # 使用 textwrap 自动换行
+            wrapped_text = textwrap.fill(text, width=max_chars_per_line)
+
+            # 计算换行后的文本边界框
+            text_bbox = draw.textbbox((0, 0), wrapped_text, font=font)
+            text_width = text_bbox[2] - text_bbox[0]  # 文本宽度
+            text_height = text_bbox[3] - text_bbox[1]  # 文本高度
 
             # 设置文本框的位置（左下角）
             padding = 10  # 内边距
@@ -70,18 +88,19 @@ def action_vis():
             box_x1 = box_x0 + text_width + 2 * padding  # 文本框右下角 x 坐标
             box_y1 = box_y0 + text_height + 2 * padding  # 文本框右下角 y 坐标
 
-            # 绘制白底黑字的文本框
+            # 绘制文本框
             draw.rectangle(
-                [(box_x0, box_y0), (box_x1, box_y1)],
-                fill="white",  # 背景颜色
-                outline="black",  # 边框颜色
+                (box_x0, box_y0, box_x1, box_y1), fill="white", outline="black"
             )
+
+            # 绘制文本
             draw.text(
-                (box_x0 + padding, box_y0 + padding),  # 文本位置
-                text,
-                fill="black",  # 文本颜色
+                (box_x0 + padding, box_y0 + padding),
+                wrapped_text,
                 font=font,
+                fill="black",
             )
+
             # 保存或显示图像
             output_path = f"sample/action_{i}.png"
             image.save(output_path)

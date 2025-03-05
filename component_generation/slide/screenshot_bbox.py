@@ -41,8 +41,8 @@ def draw_bboxes(image_path, bbox_data, output_path):
 
 
 # 使用示例
-# for dir_name in os.listdir("original_screenpair"):
-for dir_name in ["sorter5"]:
+for dir_name in os.listdir("original_screenpair"):
+    # for dir_name in ["sorter5"]:
     bbox_json_file = f"original_screenpair/{dir_name}/ppt_a11y_tree_{dir_name}.json"  # 替换为你的 bbox.json 文件路径
     screenshot_path = f"original_screenpair/{dir_name}/screenshot_{dir_name}.png"  # 替换为你的截图文件路径
     output_image_path = f"original_screenpair/{dir_name}/bboxes_screenshot_{dir_name}.png"  # 输出带有边界框的图片路径

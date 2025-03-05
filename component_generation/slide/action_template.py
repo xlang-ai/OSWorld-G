@@ -245,7 +245,7 @@ def create_drag_action(
         else:
             instruction = f"Resize the bounding box which {feature}, by dragging the handle on the {corner_name} side of the bounding box to the {x_trend} by  {abs(dx)}"
             instruction_list = instruction_reformat_gen(instruction, screenshot_path)
-        action = f"pyautogui.moveTo({round(corner_x, 4)}, {round(corner_y, 4)})\npyautogui.dragTo({round(dx, 4)}, 0.0000, duration=0.5)"  # 拖拽到目标位置
+        action = f"pyautogui.moveTo({round(corner_x, 4)}, {round(corner_y, 4)})\npyautogui.drag({round(dx, 4)}, 0.0000, duration=0.5)"  # 拖拽到目标位置
     elif corner_name in ["top", "bottom"]:
         if feature is None:
             feature = "<feature_to_be_completed>"
@@ -256,7 +256,7 @@ def create_drag_action(
         else:
             instruction = f"Resize the bounding box which {feature}, by dragging the handle on the {corner_name} side of the bounding box {y_trend} by {abs(dy)}"
             instruction_list = instruction_reformat_gen(instruction, screenshot_path)
-        action = f"pyautogui.moveTo({round(corner_x, 4)}, {round(corner_y, 4)})\npyautogui.dragTo(0.0000, {round(dy, 4)}, duration=0.5)"  # 拖拽到目标位置
+        action = f"pyautogui.moveTo({round(corner_x, 4)}, {round(corner_y, 4)})\npyautogui.drag(0.0000, {round(dy, 4)}, duration=0.5)"  # 拖拽到目标位置
     else:
         if feature is None:
             feature = "<feature_to_be_completed>"
@@ -267,7 +267,7 @@ def create_drag_action(
         else:
             instruction = f"Resize the bounding box which {feature}, by dragging the handle on the {corner_name} side of the bounding box {y_trend} by {abs(dy)} and to the {x_trend} by {abs(dx)}."
             instruction_list = instruction_reformat_gen(instruction, screenshot_path)
-        action = f"pyautogui.moveTo({round(corner_x, 4)}, {round(corner_y, 4)})\npyautogui.dragTo({round(dx, 4)}, {round(dy, 4)}, duration=0.5)"  # 拖拽到目标位置
+        action = f"pyautogui.moveTo({round(corner_x, 4)}, {round(corner_y, 4)})\npyautogui.drag({round(dx, 4)}, {round(dy, 4)}, duration=0.5)"  # 拖拽到目标位置
     for instruction in instruction_list:
         data_list.append(base_template(screenshot_path, instruction, action))
     # print("create_drag_action done")
@@ -361,7 +361,7 @@ def create_do_rotate_action(
         instruction_list = instruction_reformat_gen(instruction, screenshot_path)
     dx = round(random.randint(-100, 100) / screensize[0], 4)
     dy = round(random.randint(-100, 100) / screensize[0], 4)
-    action = f"pyautogui.moveTo({round(center_x, 4)}, {round(center_y, 4)})\npyautogui.dragTo({round(dx, 4)}, {round(dy, 4)}, duration=0.5)"  # 拖拽到目标位置
+    action = f"pyautogui.moveTo({round(center_x, 4)}, {round(center_y, 4)})\npyautogui.drag({round(dx, 4)}, {round(dy, 4)}, duration=0.5)"  # 拖拽到目标位置
     for instruction in instruction_list:
         data_list.append(base_template(screenshot_path, instruction, action))
     with lock:
