@@ -2,12 +2,13 @@ import codecs
 import json
 import os
 import requests
+import asyncio
 
 # import anthropic
 from concurrent.futures import ThreadPoolExecutor
 from typing import Dict, List, Union, Callable
 from queue import Queue
-from api import claude, client
+from api import claude, client, call_with_retry
 from logger import logger
 from openai import OpenAI
 from pydantic import BaseModel
@@ -18,6 +19,9 @@ from render_prompts import (
     generate_new_scenario_component_prompt,
 )
 from utils import encode_image
+
+os.environ["HTTP_PROXY"] = "http://127.0.0.1:7890"
+os.environ["HTTPS_PROXY"] = "http://127.0.0.1:7890"
 
 
 class ScenarioAugmentationResponse(BaseModel):
@@ -44,7 +48,6 @@ async def _generate_single_scenario_openai(
     system_prompt,
 ) -> str:
     """单个样式生成的任务函数"""
-
     scenario_prompt = generate_new_scenario_component_prompt(
         component_root_name=component_root_name,
         component_constraint=component_constraint,
@@ -53,24 +56,19 @@ async def _generate_single_scenario_openai(
     )
 
     try:
-        response = await client.beta.chat.completions.parse(
-            model="gpt-4o-2024-11-20",
-            messages=[
-                {
-                    "role": "system",
-                    "content": [
-                        {"type": "text", "text": system_prompt},
-                    ],
-                },
+        response = await call_with_retry(
+            client,
+            "gpt-4o-2024-11-20",
+            [
                 {
                     "role": "user",
                     "content": [
-                        {"type": "text", "text": scenario_prompt},
+                        {"type": "text", "text": system_prompt + scenario_prompt},
                     ],
                 },
             ],
-            temperature=1,
-            response_format=ScenarioAugmentationResponse,
+            1,
+            ScenarioAugmentationResponse,
         )
         # logger.info(f"response:{response}")
         with open("token_cost.txt", "a") as file:
@@ -352,5 +350,9 @@ async def style_augmentation(
     }
 
 
+async def main():
+    await _generate_single_scenario_openai("", "", "Hello world!", [], "")
+
+
 if __name__ == "__main__":
-    print(_generate_single_scenario_claude(("Hello world!", [], "")))
+    asyncio.run(main())
