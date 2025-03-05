@@ -17,7 +17,15 @@ from action import (
     remove_repetition,
     annotate_grounding,
 )
-from javascripts import JS_EVAL_POSITION, JS_WITH_COMPONENT, JS_WITHOUT_COMPONENT
+from action_bbox import (
+    generate_action_data_with_bbox,
+)
+from javascripts import (
+    JS_EVAL_POSITION,
+    JS_EVAL_TREE,
+    JS_WITH_COMPONENT,
+    JS_WITHOUT_COMPONENT,
+)
 from logger import logger
 from playwright.async_api import async_playwright
 from pydantic import BaseModel
@@ -169,7 +177,6 @@ class DataGenerator:
             raise
 
     async def refresh_react_app(
-        # self, component_code, style_code, component_name, screenshot_folder, style_index
         self,
         component_code,
         component_name,
@@ -209,33 +216,13 @@ class DataGenerator:
 
             # 获取组件位置信息
             await self.page.wait_for_selector(".App", state="attached", timeout=6000)
-            position = await self.page.evaluate(JS_EVAL_POSITION)
-            # for element in position["elements"]:
-            #     element["position"]["x_left"] = round(
-            #         element["position"]["x_left"] / self.screensize["width"], 4
-            #     )
-            #     element["position"]["y_top"] = round(
-            #         element["position"]["y_top"] / self.screensize["height"], 4
-            #     )
-            #     element["position"]["x_right"] = round(
-            #         element["position"]["x_right"] / self.screensize["width"], 4
-            #     )
-            #     element["position"]["y_bottom"] = round(
-            #         element["position"]["y_bottom"] / self.screensize["height"], 4
-            #     )
-            #     element["position"]["x_center"] = round(
-            #         element["position"]["x_center"] / self.screensize["width"], 4
-            #     )
-            #     element["position"]["y_center"] = round(
-            #         element["position"]["y_center"] / self.screensize["height"], 4
-            #     )
+            # position = await self.page.evaluate(JS_EVAL_POSITION)
+            position = await self.page.evaluate(JS_EVAL_TREE)
 
             if position:
                 # 捕获截图
                 # TODO: 去除在不同位置出现多次的text，避免歧义
-                # for i in range(len(position["elements"])):
-                #     for j in range
-                # position["elements"]
+                print(position)
                 screenshot_path = await self.capture_screenshot(
                     screenshot_folder,
                     component_name,
@@ -510,15 +497,24 @@ async def main():
                         # TODO： 修改生成逻辑，基于bbox生成
                         # TODO：unique action会很多，这种直接生成pyautogui.xxx(position)即可
                         logger.info(f"Generating action data")
+                        # action_intent_list, action_detail_list = (
+                        #     await generate_action_data(
+                        #         component_desc=component_desc,
+                        #         component_name=component_name,
+                        #         raw_component_path=screenshot_path,
+                        #         annotated_component_path=annotated_component_path,
+                        #         position=position,
+                        #         component_code=component_code,
+                        #     )
+                        # )
                         action_intent_list, action_detail_list = (
-                            await generate_action_data(
-                                component_desc=component_desc,
+                            [],
+                            await generate_action_data_with_bbox(
                                 component_name=component_name,
-                                raw_component_path=screenshot_path,
-                                annotated_component_path=annotated_component_path,
-                                position=position,
                                 component_code=component_code,
-                            )
+                                raw_component_path=screenshot_path,
+                                position=position,
+                            ),
                         )
 
                         # STEP 6: 保存raw数据到json文件

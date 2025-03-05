@@ -1,16 +1,122 @@
-COMPONENT_PROMPT = """Create a single React component that implements: {component_desc}
+visual_description_templates = [
+    "This {element_type} element can be described as follows:\n\nVisual Description: {visual_description}",
+    "The visual appearance of this {element_type} is as follows:\n\nVisual Description: {visual_description}",
+    "Let me describe the visual characteristics of this {element_type}:\n{visual_description}",
+    "Here's what this {element_type} looks like:\n{visual_description}",
+    "Visual appearance details of the {element_type}:\n{visual_description}",
+    "The {element_type}'s visual characteristics are as follows:\n{visual_description}",
+    "Visually, this {element_type} can be described as:\n{visual_description}",
+    "Looking at this {element_type}, we can observe:\n{visual_description}",
+    "The visual attributes of this {element_type} are:\n{visual_description}",
+    "Visual features of the {element_type}:\n{visual_description}",
+    "Here's a detailed visual description of the {element_type}:\n{visual_description}",
+    "The {element_type}'s appearance can be described as:\n{visual_description}",
+]
 
-Rules:
-1. Only provide the component's JavaScript code
-2. No CSS imports, and MUI is the only library allowed
-3. Component must be a functional component
-4. Export the component as default
+position_information_templates = [
+    "The position of this {element_type} can be described as:\n{position_information}",
+    "Location details of the {element_type}:\n{position_information}",
+    "This {element_type} is positioned as follows:\n{position_information}",
+    "Regarding the {element_type}'s position:\n{position_information}",
+    "The spatial layout of this {element_type}:\n{position_information}",
+    "In terms of the {element_type}'s positioning:\n{position_information}",
+    "The {element_type}'s location can be described as:\n{position_information}",
+    "Spatial context of the {element_type}:\n{position_information}",
+    "Here's where the {element_type} is located:\n{position_information}",
+    "The {element_type}'s placement in the interface:\n{position_information}",
+    "Positional details of the {element_type}:\n{position_information}",
+    "Location and arrangement of this {element_type}:\n{position_information}",
+]
 
-Format your response as JSON:
-{{
-    "component_code": "<the React component code>"
-}}
+element_function_templates = [
+    "The functionality of this {element_type}:\n{element_function}",
+    "This {element_type} serves the following purpose:\n{element_function}",
+    "The {element_type}'s intended function:\n{element_function}",
+    "How this {element_type} works:\n{element_function}",
+    "Functional description of the {element_type}:\n{element_function}",
+    "This {element_type}'s purpose and usage:\n{element_function}",
+    "The role of this {element_type}:\n{element_function}",
+    "Regarding the {element_type}'s functionality:\n{element_function}",
+    "What this {element_type} does:\n{element_function}",
+    "Usage and purpose of this {element_type}:\n{element_function}",
+    "Functional capabilities of the {element_type}:\n{element_function}",
+    "This {element_type} allows users to:\n{element_function}",
+]
 
+DESC_INST_SYS_PROMPT = """
+You are analyzing an application layout image where a specific UI element is highlighted in red bounding box. You'll receive both the full layout image and a cropped image of the highlighted element.
+And you will also receive a context image, which is the region of the full image that contains the red bounding box highlighting the element.
+Remembet, the target element may not be completely visible, it may be hidden or truncated, you need to consider this and use it in "Element completeness" session.
+
+As an experienced designer, provide a clear description of this element that would help developers, designers, and general users locate and understand it without relying on any highlighting.
+You CAN find the distinctive features of the element, describe the relationship between the element and other distinct elements, etc. Be creative, and find the most effective way to describe the element.
+
+Please, analyze the following aspects:
+
+### 1. Visual Description
+Describe the element's visual characteristics, including:
+- Geometric composition
+- Colors and styling
+- Visual context within the interface
+- Any notable design patterns or features
+
+### 2. Position Information
+Explain the element's location in relation to:
+- Overall screen placement (e.g., top-right corner)
+- Surrounding UI components
+- Parent containers or groups
+- Position within lists, tables, or other structured layouts
+
+### 3. Element Function
+Detail the element's purpose and interaction methods:
+- Primary functionality
+- Expected user interactions
+- Resulting actions or behaviors
+- Common use cases
+
+### 4. Element Type
+Identify the specific UI component type, such as:
+- Button
+- Text input
+- Dropdown menu
+- Checkbox
+- Toggle switch
+- Scrollbar
+- Other standard UI elements
+
+### 5. Element Completeness Analysis(element_completeness_analysis)
+Assess whether the element is complete, give your analysis process in element_completeness_analysis and give the final answer in element_completeness_result:
+- If 
+    - it is partially truncated or part of a larger component(which happens often), 
+    - or the image doesn't align well with your description(image shows element A but description mentions element B),
+    - or the element is partially hidden by other elements, 
+    - or the element is not visible at all,
+    - or the bounding box consists of more than one elements,
+    please, answer False in Element Completeness Result(element_completeness_result)
+- If it is absolutely, fully visible, answer True in Element Completeness Result(element_completeness_result)
+
+Additional Context:
+You'll receive a metadata called element information: A dict containing information including the role, title, value, identifier, description, help, path of this element. The MAY OR MAY NOT be useful for your analysis.
+   
+Keep descriptions concise and focused.
+
+Important: 
+**NEVER** reference any highlighting or bounded areas in your description.
+Make every sentence to the point and concise, don't use vague words like "specific area" and "certain region", etc.
+Again, the user should be able to find the element even without the bounding box, you need to find the distinctive features of the element, describe the relationship between the element and other distinct elements, etc. Among the five analytical aspects, EACH ONE must be UNIQUE, ensuring that users can uniquely identify our target element based on any single aspect alone. 
+For multiple elements of the same type, you need to pay special attention to describing the characteristics of each element compared to other elements of the same type.
+Grasp the info that you seen, if you know the title, say the title, if you know the user name, say the user name, if you find some distinctive text, say the text.
+"""
+
+DESC_INST_USER_PROMPT = """
+The bounded image, cropped image and context image are provided in the following prompt.
+The element information of the elements is:
+{bbox}
+"""
+
+DESC2ACTION_PROMPT = """
+As an expert in UI component functionality, your task is to analyze the detailed descriptio of an UI element which is provided in input and convert it into a clear and executable action. 
+The description of this element is: {description}".
 """
 
 ACTION_INTENT_PROMPT = """You are an assistant with deep knowledge of UI component functionality. Your task is to analyze a component's current state and generate a comprehensive list of possible user interactions, grouped by similar action types.
@@ -60,17 +166,6 @@ Example for a FloatingActionButtonZoom Group:
     ]
 }}
 """
-
-# Example for a Checkbox Group:
-# {{
-#     "action_intent_list": [
-#         "Single selection",
-#         "Select all",
-#         "Deselect all",
-#         "Deselect single item"
-#     ]
-# }}
-
 
 ACTION_DETAIL_PROMPT = """ You're an UI Component Interaction Generator. You're given a component's name, screenshot, and position data. You need to generate 3 different interactions for the component.
 

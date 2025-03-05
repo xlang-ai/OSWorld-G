@@ -1,6 +1,6 @@
-import ast
+# TODO: add bbox-based action
+
 import datetime
-import json
 import math
 import os
 import sys
@@ -8,21 +8,17 @@ import random
 import re
 import tempfile
 import asyncio
-from concurrent.futures import ThreadPoolExecutor, as_completed
 from itertools import product
-from typing import Callable, Dict, List, Literal, Optional, Tuple, Union
+from typing import Dict, List, Literal, Optional, Union
 
-from anthropic import Anthropic
-from api import claude, client, call_with_retry
+from api import client, call_with_retry
 from logger import logger
-from openai import OpenAI
 from PIL import Image, ImageDraw, ImageFont
 
 # from anthropic import Anthropic
 from pydantic import BaseModel
 from render_prompts import (
     ACTION_DETAIL_PROMPT,
-    ACTION_GROUNDING_PROMPT,
     ACTION_INTENT_PROMPT,
     INST_FILTER_PROMPT,
 )
@@ -601,64 +597,6 @@ async def main():
             "action_continuous_interval": {},
             "action_code": 'import pyautogui\n\ndef action(title):\n    positions = {\n        "Project Alpha": (640, 173.875),\n        "Innovator Award 2022": (639.9921875, 2345.890625),\n        "Global Outreach": (640, 2517.90625),\n    }\n    if title in positions:\n        pyautogui.click(positions[title])',
         },
-        # {
-        #     "thought_process": "The action intent is to \"Select project descriptions\" within a non-interactive UI section. Given the static nature and lack of interactive elements or selectors, there\u2019s no executable action in terms of interaction (e.g., clicks or selection), so the action space type is set to 'none'.",
-        #     "action_space_type": "none",
-        #     "action_desc": "",
-        #     "action_params": [],
-        #     "action_discrete_values": None,
-        #     "action_continuous_interval": None,
-        #     "action_code": "",
-        # },
-        # {
-        #     "thought_process": "The intent is to click on the highlight buttons in the 'PortfolioHighlights'. Three highlight buttons are available: Highlight 1, Highlight 2, and Highlight 3. Each is associated with a specific project or award card. Because clicking different parts of the same highlight button does not constitute different actions, each highlight button represents a unique action opportunity. Their positions are identified based on the provided position data.",
-        #     "action_space_type": "discrete",
-        #     "action_desc": "Click on the highlight button for <highlight_number>",
-        #     "action_params": ["highlight_number"],
-        #     "action_discrete_values": {
-        #         "highlight_number": ["Highlight 1", "Highlight 2", "Highlight 3"]
-        #     },
-        #     "action_continuous_interval": {},
-        #     "action_code": 'def action(highlight_number):\n    positions = {\n        "Highlight 1": (640, 221),\n        "Highlight 2": (640, 393),\n        "Highlight 3": (640, 565),\n    }\n    x, y = positions[highlight_number]\n    pyautogui.click(x, y)',
-        # },
-        # {
-        #     "thought_process": "\n1. The action intent is to select individual letters from project initials.\n2. Identify the positions of the initials 'P', 'I', and 'G', which are identifiable from the metadata as part of the avatars.\n3. These initials are positioned in the components and clicking on these can simulate the action intent.\n4. Based on this, a discrete action space is appropriate as we are selecting from the specified initials.\n5. The initials are located at:\n   - 'P' at (459.84, 173.875)\n   - 'I' at (436.72, 345.89)\n   - 'G' at (499.25, 517.90625)\n6. Coordinates are calculated based on the center of the avatar positions for efficient clicking.",
-        #     "action_space_type": "discrete",
-        #     "action_desc": "Select initial <initial> from the project initials",
-        #     "action_params": ["initial"],
-        #     "action_discrete_values": {"initial": ["P", "I", "G"]},
-        #     "action_continuous_interval": {},
-        #     "action_code": 'def action(initial):\n    positions = {\n        "P": (459.84, 173.875),\n        "I": (436.72, 345.89),\n        "G": (499.25, 517.90625)\n    }\n    x, y = positions[initial]\n    pyautogui.click(x, y)',
-        # },
-        # {
-        #     "thought_process": "The action intent is to highlight and copy text. The component description allows for interaction with text elements. The text blocks representing 'Project Alpha', 'Innovator Award 2022', and 'Global Outreach' are potential candidates for this action. Each block can have its content selected and copied using specific mouse drag and copy operations. \n\n1. Determine key points for each section to initiate and end the drag operation for highlighting text.\n2. For each highlight, consider the text content as distinct and selectable.\n\n- For 'Project Alpha': Start at 'P' (x=439, y=153), end at the end of text (x=840, y=193).\n- For 'Innovator Award 2022': Start at 'I' (x=416, y=325), end at the end of text (x=863, y=365).\n- For 'Global Outreach': Start at 'G' (x=479, y=497), end at the end of text (x=800, y=537).",
-        #     "action_space_type": "discrete",
-        #     "action_desc": "Highlight and copy text from <text_section>",
-        #     "action_params": ["text_section"],
-        #     "action_discrete_values": {
-        #         "text_section": [
-        #             "Project Alpha",
-        #             "Innovator Award 2022",
-        #             "Global Outreach",
-        #         ]
-        #     },
-        #     "action_continuous_interval": None,
-        #     "action_code": 'import pyautogui\nimport pyperclip\n\ntext_positions = {\n    "Project Alpha": ((439, 153), (840, 193)),\n    "Innovator Award 2022": ((416, 325), (863, 365)),\n    "Global Outreach": ((479, 497), (800, 537))\n}\n\ndef action(text_section):\n    start_pos, end_pos = text_positions[text_section]\n    pyautogui.moveTo(start_pos[0], start_pos[1])\n    pyautogui.dragTo(end_pos[0], end_pos[1], duration=0.2)\n    pyautogui.hotkey(\'ctrl\', \'c\')\n    copied_text = pyperclip.paste()  # The copied text can be used further\n    return copied_text\n',
-        # },
-        # {
-        #     "thought_process": "The action intent is to 'Select and copy sections of text'. This involves a manual selection action within the specified text boundaries. The component in the screenshot shows multiple sections that can be interacted with by selecting text. The appropriate interaction would be to click and hold to start text selection and drag to the end of the desired section. Given that this can be done for multiple text sections, we identify this as a continuous action space, considering the coordinates allow infinite selections within the range.",
-        #     "action_space_type": "continuous",
-        #     "action_desc": "Select text from <start_x>,<start_y> to <end_x>,<end_y> and copy it.",
-        #     "action_params": ["start_x", "start_y", "end_x", "end_y"],
-        #     "action_discrete_values": {},
-        #     "action_continuous_interval": {
-        #         "start_x": [[216.0, 1064.0]],
-        #         "start_y": [[20.0, 685.921875]],
-        #         "end_x": [[216.0, 1064.0]],
-        #         "end_y": [[20.0, 685.921875]],
-        #     },
-        #     "action_code": "import pyautogui\n\ndef action(start_x, start_y, end_x, end_y):\n    # Click and drag to select text\n    pyautogui.moveTo(start_x, start_y)\n    pyautogui.mouseDown()\n    pyautogui.moveTo(end_x, end_y)\n    pyautogui.mouseUp()\n    # Perform copy operation (Ctrl+C)\n    pyautogui.hotkey('ctrl', 'c')",
-        # },
     ]
 
     for detail_dict in action_detail_list:
