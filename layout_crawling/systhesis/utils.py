@@ -1,6 +1,8 @@
 import json
 import cv2
 from pathlib import Path
+import numpy as np
+import hashlib
 
 def get_element_positions(node, hierarchy, positions=None, frame_x=None, frame_y=None, frame_width=None, frame_height=None):
     if positions is None:
@@ -34,7 +36,7 @@ def get_element_positions(node, hierarchy, positions=None, frame_x=None, frame_y
         is_inside_frame = True  # 如果是最顶层frame，则认为是在内部
     
     if all(key in node for key in ['id', 'name', 'type']):
-        if (node.get('type') == 'FRAME') and is_inside_frame:
+        if (node.get('type') == 'FRAME' or node.get('type') == 'INSTANCE') and is_inside_frame:
             positions.append({
                 'id': node['id'],
                 'name': node['name'],
@@ -47,7 +49,7 @@ def get_element_positions(node, hierarchy, positions=None, frame_x=None, frame_y
                 },
                 'hierarchy': hierarchy
             })
-    
+        
     if 'children' in node:
         for child in node['children']:
             new_hierarchy = hierarchy + [node['name']]
@@ -61,14 +63,36 @@ def visualize_elements(image_path, data, output_dir):
     if img is None:
         raise ValueError(f"Could not load image from {image_path}")
 
-    image_name = image_path.split('/')[-1]
-    image_name = image_name.split('.')[0]
-
     canvas = img.copy()
     pos = data['position']
-    x, y = int(pos['x']), int(pos['y'])
-    w, h = int(pos['width']), int(pos['height'])
+
+    x = max(0, int(pos['x']))
+    y = max(0, int(pos['y']))
+    w = int(pos['width'])
+    h = int(pos['height'])
     
+    # 确保不超出图像边界
+    x2 = min(canvas.shape[1], x + w)
+    y2 = min(canvas.shape[0], y + h)
+    
+    # 重新计算实际的宽度和高度
+    w = x2 - x
+    h = y2 - y
+    
+    if w <= 0 or h <= 0:
+        raise ValueError(f"Invalid dimensions for element {data['name']}: width={w}, height={h}")
+        
+    cropped_image = canvas[y:y2, x:x2]
+    
+    output_dir = Path(output_dir)
+    cropped_dir = output_dir / "cropped_images"
+    cropped_dir.mkdir(parents=True, exist_ok=True)
+
+    # use id for hash
+    # hash_id = hashlib.md5(str(data['id']).encode()).hexdigest()
+    # cv2.imwrite(str(cropped_dir / f"{hash_id}.png"), cropped_image)
+    cv2.imwrite(str(cropped_dir / f"{data['processed_image_name']}"), cropped_image)
+
     # 画红色矩形
     cv2.rectangle(canvas, (x, y), (x + w, y + h), (0, 0, 255), 2)
     
@@ -93,13 +117,13 @@ def visualize_elements(image_path, data, output_dir):
     #                 -1)
     
     # # 添加文本
-    # cv2.putText(canvas, label, (text_x, text_y), font, font_scale, (0, 0, 255), thickness)
-    
+    # cv2.putText(canvas, label, (text_x, text_y), font, font_scale, (0, 0, 255), thickness
+
     # 确保输出目录存在
     output_dir = Path(output_dir)  # 确保 output_dir 是 Path 对象
     vis_images_dir = output_dir / "vis_images"
     vis_images_dir.mkdir(parents=True, exist_ok=True)  # 创建目录（如果不存在）
     
     # 构建输出路径
-    output_path = vis_images_dir / f"{image_name}_{data['id']}.png"
+    output_path = vis_images_dir / f"{data['processed_image_name']}"
     cv2.imwrite(str(output_path), canvas)

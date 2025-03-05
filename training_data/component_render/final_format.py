@@ -115,27 +115,6 @@ for app_dir in app_dir_list:
             # 将过滤后的行重新组合成一个字符串
             filtered_actions_string = "\n".join(final_actions_list)
             action = filtered_actions_string.rstrip("\n")
-            final_format = f"""
-    {{
-        "image": "{screenshot_path}",
-        "conversations": [
-            {{
-                "from": "system",
-                "value": "You are a GUI automation agent. Given a screenshot and a natural language instruction, you need to output a single-step pyautogui command to perform the requested action. The output should be in the format: pyautogui.command(parameters). If the requested action cannot be performed (e.g. target element not visible in screenshot, or action not possible), output: <none>. "
-            }},
-            {{
-                "from": "human",
-                "value": "<image>\nPlease generate the next move according to the UI screenshot and instruction.\n\nInstruction: {instruction}"
-            }},
-            {{
-                "from": "gpt",
-                "value": "{action}",
-                "recipient": "os",
-                "end_turn": true
-            }}
-        ]
-    }}
-    """
             final_data = {
                 "image": screenshot_path,
                 "conversations": [

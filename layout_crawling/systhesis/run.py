@@ -32,7 +32,11 @@ def extract_data(input_dir, output_dir):
 
             hash_file_name = hashlib.sha256(json_path.encode()).hexdigest()
             for element in element_positions:
-                element['image_name'] = hash_file_name + ".png"
+                element['original_image_name'] = hash_file_name + ".png"
+
+                # use the id for the hash
+                hash_id = hashlib.md5(str(element['id']).encode()).hexdigest()
+                element['processed_image_name'] = hash_id + ".png"
 
             # copy the png file to the output_dir
             original_png_path = os.path.join(parent_dir, f"{json_file_name}.png")
@@ -72,8 +76,8 @@ def visualize_data(input_dir, output_dir):
     with open(os.path.join(input_dir, "layout2k.jsonl"), "r", encoding="utf-8") as f:
         data = [json.loads(line) for line in f]
     
-    with ThreadPoolExecutor(max_workers=32) as executor:
-        image_paths = [os.path.join(input_dir, "raw_images", d['image_name']) for d in data]
+    with ThreadPoolExecutor(max_workers=128) as executor:
+        image_paths = [os.path.join(input_dir, "raw_images", d['original_image_name']) for d in data]
         futures = []
         
         # 使用tqdm创建进度条
