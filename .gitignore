@@ -463,3 +463,6 @@ images/*.png
 
 component_generation/doc/**/*.jsonl
 component_generation/doc/**/*.png
+
+component_generation/slide/office-app
+component_generation/slide/slide_v1_17k

@@ -26,11 +26,6 @@ class A11yInspector {
         let description: String?
         let help: String?
         let frame: CGRect
-        // let isEnabled: Bool
-        // let isFocused: Bool
-        // let isSelected: Bool
-        // let actions: [String]
-        // let attributes: [String: String]
         let path: String
         let children: [ElementInfo]
     }    
@@ -83,22 +78,7 @@ class A11yInspector {
         var actionNames: CFArray?
         AXUIElementCopyAttributeNames(element, &attributeNames)
         AXUIElementCopyActionNames(element, &actionNames)
-        
-        // 解析属性和动作
-        // var attributes: [String: String] = [:]
-        // if let attrArray = attributeNames as? [String] {
-        //     for attrName in attrArray {
-        //         var attrValue: CFTypeRef?
-        //         if AXUIElementCopyAttributeValue(element, attrName as CFString, &attrValue) == .success {
-        //             if let stringValue = attrValue as? String {
-        //                 attributes[attrName] = stringValue
-        //             } else if let numberValue = attrValue as? NSNumber {
-        //                 attributes[attrName] = numberValue.stringValue
-        //             }
-        //         }
-        //     }
-        // }
-        
+                
         // 获取可用的动作
         var actions: [String] = []
         if let actArray = actionNames as? [String] {
@@ -129,11 +109,6 @@ class A11yInspector {
             description: description as? String,
             help: help as? String,
             frame: frame,
-            // isEnabled: (enabled as? Bool) ?? false,
-            // isFocused: (focused as? Bool) ?? false,
-            // isSelected: (selected as? Bool) ?? false,
-            // actions: actions,
-            // attributes: attributes,
             path: displayPath,
             children: childrenInfo
         )
@@ -191,7 +166,7 @@ class A11yInspector {
 }
 
 // 使用示例
-let dir_name = "sorter5"
+let dir_name = "tab6"
 
 // 创建目录
 let fileManager = FileManager.default
