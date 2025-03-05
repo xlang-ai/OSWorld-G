@@ -21,10 +21,10 @@
         "tailwindcss": "^3.4.0"
     },
     "scripts": {
-        "start": "react-scripts start",
-        "build": "react-scripts build",
-        "test": "react-scripts test",
-        "eject": "react-scripts eject"
+        "start": "BROWSER=none react-scripts start",
+        "build": "BROWSER=none react-scripts build",
+        "test": "BROWSER=none react-scripts test",
+        "eject": "BROWSER=none react-scripts eject"
     },
     "eslintConfig": {
         "extends": [

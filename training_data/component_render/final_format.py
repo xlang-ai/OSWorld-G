@@ -216,6 +216,6 @@ for app_dir in app_dir_list:
     ]:
         os.makedirs(os.path.join(new_dir, "data", app_dir), exist_ok=True)
         shutil.copytree(
-            os.path.join(app_dir_path, "other_screenshot"),
-            os.path.join(new_dir, "data", app_dir, "other_screenshot"),
+            os.path.join(app_dir_path, "other_screenshot", "original"),
+            os.path.join(new_dir, "data", app_dir, "other_screenshot", "original"),
         )
