@@ -443,6 +443,7 @@ stats.json
 iter-0
 
 data/
+data_v1_130k/
 logs/
 
 token_cost.txt
