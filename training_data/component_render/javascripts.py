@@ -98,7 +98,6 @@ JS_EVAL_TREE = """() => {
         return attributes;
     };
 
-    // 递归收集元素信息及其子元素
     const getElementInfo = (element) => {
         try {
             const rect = element.getBoundingClientRect();
@@ -110,20 +109,29 @@ JS_EVAL_TREE = """() => {
                 text: element.textContent.trim(),
                 isInteractive: interactiveElements.includes(element),
                 position: {
-                    x_left: rect.left + window.scrollX,
-                    y_top: rect.top + window.scrollY,
-                    x_right: rect.left + window.scrollX + rect.width,
-                    y_bottom: rect.top + window.scrollY + rect.height,
+                    x_1: rect.left + window.scrollX,
+                    y_1: rect.top + window.scrollY,
+                    x_2: rect.left + window.scrollX + rect.width,
+                    y_2: rect.top + window.scrollY + rect.height,
                     x_center: rect.left + window.scrollX + rect.width / 2,
                     y_center: rect.top + window.scrollY + rect.height / 2,
                 },
                 children: [], // 初始化子节点数组
             };
 
+            // 使用 TreeWalker 获取所有子节点
+            const walker = document.createTreeWalker(
+                element,
+                NodeFilter.SHOW_ELEMENT,
+                null,
+                false
+            );
+
             // 递归处理子元素
-            for (const child of element.children) {
-                if (isVisible(child)) {
-                    const childInfo = getElementInfo(child);
+            let childNode;
+            while (childNode = walker.nextNode()) {
+                if (childNode !== element && isVisible(childNode)) { // 排除当前元素自身
+                    const childInfo = getElementInfo(childNode);
                     if (childInfo) {
                         elementInfo.children.push(childInfo);
                     }
@@ -136,7 +144,7 @@ JS_EVAL_TREE = """() => {
             return null;
         }
     };
-
+    
     // 从根组件开始递归构建树结构
     return getElementInfo(component);
 }

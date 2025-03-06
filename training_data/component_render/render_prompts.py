@@ -44,9 +44,13 @@ element_function_templates = [
 ]
 
 DESC_INST_SYS_PROMPT = """
-You are analyzing an application layout image where a specific UI element is highlighted in red bounding box. You'll receive both the full layout image and a cropped image of the highlighted element.
-And you will also receive a context image, which is the region of the full image that contains the red bounding box highlighting the element.
-Remembet, the target element may not be completely visible, it may be hidden or truncated, you need to consider this and use it in "Element completeness" session.
+You are analyzing an application layout image where a specific UI element is highlighted in red bounding box, with the center of the box marked with a red dot.
+
+You'll receive both the full layout image and a cropped image of the highlighted element. And you will also receive a context image, which is the region of the full image that contains the red bounding box highlighting the element and the red dot marking the center of the box.
+
+You will also receive tree-like position information in JSON format, which helps you better understand the position of the element in the layout.
+
+Remember, the target element may not be completely visible, it may be hidden or truncated, you need to consider this and use it in "Element completeness" session.
 
 As an experienced designer, provide a clear description of this element that would help developers, designers, and general users locate and understand it without relying on any highlighting.
 You CAN find the distinctive features of the element, describe the relationship between the element and other distinct elements, etc. Be creative, and find the most effective way to describe the element.
@@ -61,11 +65,12 @@ Describe the element's visual characteristics, including:
 - Any notable design patterns or features
 
 ### 2. Position Information
-Explain the element's location in relation to:
-- Overall screen placement (e.g., top-right corner)
-- Surrounding UI components
-- Parent containers or groups
-- Position within lists, tables, or other structured layouts
+Describe the element’s location with respect to:
+Numbering parallel elements: If the element is one of multiple similar elements (e.g., rating stars, buttons, or list items), you must specify its exact position among them. For rating buttons, explicitly state which star (or other rating icon) this element represents. Use the provided position information, including the bounding box (bbox) and parent-child structure to determine its position relative to its siblings.
+Overall screen placement: Specify its position on the screen (e.g., top-right corner).
+Surrounding UI components: Identify adjacent or related UI elements.
+Parent containers or groups: Indicate which parent element or group it belongs to.
+Position within structured layouts: If the element is part of a list, table, or grid, specify its order or location.
 
 ### 3. Element Function
 Detail the element's purpose and interaction methods:
@@ -84,7 +89,16 @@ Identify the specific UI component type, such as:
 - Scrollbar
 - Other standard UI elements
 
-### 5. Element Completeness Analysis(element_completeness_analysis)
+### 5. Possible Action
+Identify the list of specific actions that can be performed on THE CENTER of this element, which is marked with red dot, such as:
+- click the star to rate it
+- doubleClick the element the select the element
+- rightClick the box to open a context menu
+- drag this element to another location
+- hover on this element
+- write something
+
+### 6. Element Completeness Analysis(element_completeness_analysis)
 Assess whether the element is complete, give your analysis process in element_completeness_analysis and give the final answer in element_completeness_result:
 - If 
     - it is partially truncated or part of a larger component(which happens often), 
@@ -101,7 +115,7 @@ You'll receive a metadata called element information: A dict containing informat
 Keep descriptions concise and focused.
 
 Important: 
-**NEVER** reference any highlighting or bounded areas in your description.
+**NEVER** reference any highlighting or bounded areas in your description. Check the cropped image for the original look of the component. Sometimes a checkbox is wrapped by a red bounding box, but the checkbox itself is not red, which you can see in the cropped image.
 Make every sentence to the point and concise, don't use vague words like "specific area" and "certain region", etc.
 Again, the user should be able to find the element even without the bounding box, you need to find the distinctive features of the element, describe the relationship between the element and other distinct elements, etc. Among the five analytical aspects, EACH ONE must be UNIQUE, ensuring that users can uniquely identify our target element based on any single aspect alone. 
 For multiple elements of the same type, you need to pay special attention to describing the characteristics of each element compared to other elements of the same type.
@@ -110,13 +124,70 @@ Grasp the info that you seen, if you know the title, say the title, if you know 
 
 DESC_INST_USER_PROMPT = """
 The bounded image, cropped image and context image are provided in the following prompt.
-The element information of the elements is:
+
+The target element is:
 {bbox}
+
+The parent element of the target element, along with the children of this parent element are:
+{parent_bbox}
+
+Use parent element and its children to determine the relative position of the target element.
 """
 
-DESC2ACTION_PROMPT = """
-As an expert in UI component functionality, your task is to analyze the detailed descriptio of an UI element which is provided in input and convert it into a clear and executable action. 
-The description of this element is: {description}".
+DESC2ACTION_SYS_PROMPT = """
+## Task
+Generate precise action descriptions and corresponding code for UI elements based on provided details.
+
+## Input Information
+You will be provided with:
+1. **Detailed Element Description** - Visual and functional details of a specific UI element
+2. **Brief Action Description** - A short description of the action to perform
+3. **Center Point Coordinates** - The exact x,y coordinates of the target element's center
+
+## Your Outputs
+
+### 1. Action Description
+Create a clear, specific action description that:
+- Uniquely identifies the target element using details from the element description
+- Incorporates the brief action description
+- Is concise yet unambiguous
+
+### 2. Action Code
+Generate executable code following this exact grammar:
+
+```python
+pyautogui.click(center_x, center_y)
+pyautogui.doubleClick(center_x, center_y)
+pyautogui.rightClick(center_x, center_y)
+pyautogui.moveTo(center_x, center_y)
+pyautogui.dragTo(center_x, center_y)
+pyautogui.drag(dx, dy)
+pyautogui.write("text")
+```
+
+Where:
+- `center_x` and `center_y` are the provided coordinates
+- `dx` and `dy` are float/int values for drag distance
+- `text` is a string for text input actions
+
+## Requirements
+- Ensure the action description uniquely identifies the element
+- Use only the provided PyAutoGUI functions with exact syntax
+- Match the action type to the element's functionality
+- Use only the provided center point coordinates for targeting
+"""
+
+DESC2ACTION_USER_PROMPT = """
+The element description, action type, center point of the bounding box are provided in the following prompt.
+
+Element Description:
+{element_desc}
+
+Action Brief Description:
+{action_brief_desc}
+
+Center Point of the Bounding Box:
+{center_point}
 """
 
 ACTION_INTENT_PROMPT = """You are an assistant with deep knowledge of UI component functionality. Your task is to analyze a component's current state and generate a comprehensive list of possible user interactions, grouped by similar action types.

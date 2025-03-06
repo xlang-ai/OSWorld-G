@@ -134,6 +134,10 @@ class DataGenerator:
                     "npx create-react-app .", shell=True, cwd=str(app_dir), check=True
                 )
 
+            # 安装依赖
+            # logger.info("Installing dependencies...")
+            # subprocess.run("npm install", shell=True, cwd=str(app_dir), check=True)
+
             # 设置环境变量
             env = os.environ.copy()
 
@@ -155,6 +159,10 @@ class DataGenerator:
                 )
 
             # # 读取输出并记录到日志
+            # for line in react_process.stdout:
+            #     line = line.decode('utf-8').strip()
+            #     if line:
+            #         logger.info(line)
             logger.info("React app started")
             # 等待服务器启动
             time.sleep(8)  # 增加等待时间确保服务器完全启动
@@ -214,8 +222,7 @@ class DataGenerator:
             if position:
                 # 捕获截图
                 # TODO: 去除在不同位置出现多次的text，避免歧义
-                with open(f"position_example_{time.time()}.json", "w") as file:
-                    json.dump(position, file, indent=4)
+                print(position)
                 screenshot_path = await self.capture_screenshot(
                     screenshot_folder,
                     component_name,

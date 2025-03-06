@@ -1,10 +1,27 @@
-# TODO: the desc_inst prompts 1625
-# TODO: get desc_inst into it 1640
-# TODO: test 1655
-# TODO: the action_inst prompts 1730
-# TODO: get action_inst into it 1745
-# TODO: run--饭前或者饭后
+# TODO: the desc_inst prompts 1625 v
+# TODO: get desc_inst into it 1640 v
+# TODO: test 1655 v
+# (debug以及纠结要怎么分类获取动作 花了一些时间)
+# TODO: 在rating和slider上测试目前的pipeline（center bbox）
+# TODO: bbox-based action debug--准确性。目前的问题在于，1. 3种信息中的任意两种不一定可以完全确定元素 2. 转成action之后不严谨，漏很多信息
+# 解决超时问题--加超时跳出 done
+# 1解决方案：添加信息 done
+# 2解决方案：paraphrase，信息全 done
+# 点击中心 done
+# 动作类型是一种scale方向，组件描述也是一种scale方向 done
+# 先分开scale，再拼成动作。第二步mini就可以了，甚至不需要图片 done
+# 一把出了--action类型和action done
+
+# bbox的问题：方位感很烂
+# TODO: star 点不准？...把parental bbox喂给它？有没有deterministic方法？--1515 对比一下有无bbox
+# bbox no parent： 2个没说明星的位置 8/10
+# bbox with parent and prompt better: 9/10，问题：有的没说位置，有的位置说错。
+# bbox with target and parent apart: 10/10, 有一个对应的字不对
+# 在其它组件上再试验一下--switch--done
+# TODO: the action_inst prompts 1540
+# TODO: get action_inst into it 1600
 # TODO: 层次化树还是同级的节点？ 最好可能是层次化，但层数限制
+
 import os
 import json
 import time
@@ -26,14 +43,17 @@ from render_prompts import (
     element_function_templates,
     DESC_INST_SYS_PROMPT,
     DESC_INST_USER_PROMPT,
-    DESC2ACTION_PROMPT,
+    DESC2ACTION_SYS_PROMPT,
+    DESC2ACTION_USER_PROMPT,
     # ACTION_INST_SYS_PROMPT,
     # ACTION_INST_USER_PROMPT,
 )
 
 lock = threading.Lock()
 
-output_file_path = "data_desktop_fullscreen.jsonl"
+THREAD_TIMEOUT = 60
+
+jsonl_file_path = "data_desktop_fullscreen.jsonl"
 
 # Two kinds of action
 # interact with the whole bbox
@@ -45,6 +65,7 @@ class InstGen(BaseModel):
     position_information: str
     element_function: str
     element_type: str
+    possible_actions: List[str]
     element_completeness_analysis: str
     element_completeness_result: bool
 
@@ -61,12 +82,13 @@ class ActionDetail(BaseModel):
 
 class Desc2Action(BaseModel):
     action_desc: str
-    action_type: Literal["click", "doubleClick", "rightClick", "moveTo"]
+    action_code: str
 
 
-def base_template(screenshot_path, instruction, action):
+def base_template(element_desc, screenshot_path, instruction, action):
     action = action.replace("<none>", "")
     return {
+        "element_desc": element_desc,
         "image": screenshot_path,
         "conversations": [
             {
@@ -87,51 +109,121 @@ def base_template(screenshot_path, instruction, action):
     }
 
 
+def location_ok(result_item, screenshot):
+    if (
+        result_item["position"]["x_2"] - result_item["position"]["x_1"]
+        > (screenshot.width / 2)
+        or result_item["position"]["y_2"] - result_item["position"]["y_1"]
+        > (screenshot.height / 2)
+        or result_item["position"]["x_2"] - result_item["position"]["x_1"] <= 0
+        or result_item["position"]["y_2"] - result_item["position"]["y_1"] <= 0
+        or result_item["position"]["x_1"] <= 0
+        or result_item["position"]["y_1"] <= 0
+        or result_item["position"]["x_2"] >= screenshot.width
+        or result_item["position"]["y_2"] >= screenshot.height
+    ):
+        return False
+    return True
+
+
 # 递归获取所有的 bbox
-def extract_bboxes(data, screenshot, bboxes=None):
-    if bboxes is None:
-        bboxes = []
-    # bboxes=[]--函数的默认参数只在定义的时候被求值一次！ 所有的调用共用一个默认的列表
-    # 获取当前元素的 frame
-    if "frame" in data:
-        frame = data["frame"]
-        x, y = frame[0]
-        width, height = frame[1]
-        x, y = 2 * x / screenshot.width, 2 * y / screenshot.height
-        width, height = 2 * width / screenshot.width, 2 * height / screenshot.height
-        bboxes.append(
-            {
-                "x1": x,
-                "x2": x + width,
-                "y1": y,
-                "y2": y + height,
-                "role": data.get("role", ""),
-                "title": data.get("title", ""),
-                "value": data.get("value", ""),
-                "identifier": data.get("identifier", ""),
-                "description": data.get("description", ""),
-                "help": data.get("help", ""),
-                "path": data.get("path", ""),
+def extract_bboxes(data, screenshot):
+    """
+    递归遍历树结构，提取每个节点并保留其 1 级 children。
+    """
+    result = []
+
+    def traverse(node, parent_info):
+        # 提取当前节点的信息，并保留 1 级 children 增加大小限定
+        node_info = {
+            "attributes": node.get("attributes", {}),
+            "text": node.get("text", ""),
+            "isInteractive": node.get("isInteractive", False),
+            "position": node.get("position", {}),
+            "children": [],
+            "parent": parent_info,
+        }
+
+        # 添加 1 级 children 增加去重 增加大小限定
+        original_children_list = node.get("children", [])
+        for index, child in enumerate(original_children_list):
+            child_info = {
+                "attributes": child.get("attributes", {}),
+                "text": child.get("text", ""),
+                "isInteractive": child.get("isInteractive", False),
+                "position": child.get("position", {}),
             }
-        )
 
-    # 如果有子元素，递归处理
-    if "children" in data:
-        for child in data["children"]:
-            extract_bboxes(child, screenshot, bboxes)
+            repetition = False
+            for prev_child in original_children_list[:index]:
+                if prev_child["position"] == child["position"]:
+                    repetition = True
+            if repetition:
+                continue
 
-    return bboxes
+            node_info["children"].append(child_info)
+
+        # 将当前节点信息添加到结果中
+        result.append(node_info)
+
+        # 递归遍历子节点
+        for index, child in enumerate(original_children_list):
+
+            repetition = False
+            for prev_child in original_children_list[:index]:
+                if prev_child["position"] == child["position"]:
+                    repetition = True
+            if repetition:
+                continue
+
+            traverse(child, {k: v for k, v in node_info.items() if k != "parent"})
+
+    # 从根节点开始遍历
+    traverse(data, {})
+
+    # remove repetition
+    # remove box too big
+    final_result = []
+    for index, result_item in enumerate(result):
+        if location_ok(result_item, screenshot) is False:
+            continue
+        repetition = False
+        for prev_item in result[:index]:
+            if result_item["position"] == prev_item["position"]:
+                repetition = True
+        if repetition:
+            continue
+        final_result.append(result_item)
+    return final_result
 
 
 def crop_image(image_path, bbox):
     with Image.open(image_path) as image:
         cropped_image = image.crop(
             (
-                bbox["x1"] * image.width,
-                bbox["y1"] * image.height,
-                bbox["x2"] * image.width,
-                bbox["y2"] * image.height,
+                bbox["position"]["x_1"],
+                bbox["position"]["y_1"],
+                bbox["position"]["x_2"],
+                bbox["position"]["y_2"],
             )
+        )
+        # 获取图片中心点坐标
+        center_x = cropped_image.width / 2
+        center_y = cropped_image.height / 2
+
+        # 创建 ImageDraw 对象
+        draw = ImageDraw.Draw(cropped_image)
+
+        # 在中心点画一个小圆点（红色）
+        point_radius = 2
+        draw.ellipse(
+            [
+                center_x - point_radius,
+                center_y - point_radius,
+                center_x + point_radius,
+                center_y + point_radius,
+            ],
+            fill="red",
         )
         return cropped_image
 
@@ -142,15 +234,35 @@ def annotate_image(image_path, bbox):
         draw = ImageDraw.Draw(image)
 
         # 计算矩形框的坐标
-        left = bbox["x1"] * image.width
-        top = bbox["y1"] * image.height
-        right = bbox["x2"] * image.width
-        bottom = bbox["y2"] * image.height
+        left = bbox["position"]["x_1"]
+        top = bbox["position"]["y_1"]
+        right = bbox["position"]["x_2"]
+        bottom = bbox["position"]["y_2"]
 
         # 在图像上绘制红色矩形框
         draw.rectangle(
             [left, top, right, bottom], outline="red", width=2
         )  # width可以调整矩形框的线宽
+        # draw text with the bbox position
+        # draw.text(
+        #     (left, top),
+        #     f"{bbox['position']['x_1']}, {bbox['position']['y_1']}, {bbox['position']['x_2']}, {bbox['position']['y_2']}",
+        #     fill="red",
+        # )
+
+        center_x = (left + right) / 2
+        center_y = (top + bottom) / 2
+        # 在中心点画一个小圆点（红色）
+        point_radius = 2
+        draw.ellipse(
+            [
+                center_x - point_radius,
+                center_y - point_radius,
+                center_x + point_radius,
+                center_y + point_radius,
+            ],
+            fill="red",
+        )
 
         return image  # 返回带有矩形框的图像
 
@@ -161,18 +273,33 @@ def context_image(image_path, bbox):
         draw = ImageDraw.Draw(image)
 
         # 计算矩形框的坐标
-        left = bbox["x1"] * image.width
-        top = bbox["y1"] * image.height
-        right = bbox["x2"] * image.width
-        bottom = bbox["y2"] * image.height
+        left = bbox["position"]["x_1"]
+        top = bbox["position"]["y_1"]
+        right = bbox["position"]["x_2"]
+        bottom = bbox["position"]["y_2"]
 
         # 在图像上绘制红色矩形框
         draw.rectangle(
             [left, top, right, bottom], outline="red", width=2
         )  # width可以调整矩形框的线宽
 
-        center_x = (bbox["x1"] + bbox["x2"]) * image.width / 2  # 计算矩形框的中心点
-        center_y = (bbox["y1"] + bbox["y2"]) * image.height / 2
+        center_x = (
+            bbox["position"]["x_1"] + bbox["position"]["x_2"]
+        ) / 2  # 计算矩形框的中心点
+        center_y = (bbox["position"]["y_1"] + bbox["position"]["y_2"]) / 2
+
+        # 在中心点画一个小圆点（红色）
+        point_radius = 2
+        draw.ellipse(
+            [
+                center_x - point_radius,
+                center_y - point_radius,
+                center_x + point_radius,
+                center_y + point_radius,
+            ],
+            fill="red",
+        )
+
         image = image.crop(
             (
                 max(center_x - 400, 0),
@@ -214,162 +341,247 @@ async def generate_instructions(bbox, original_image_path):
         with open(context_image_path, "rb") as f:
             base64_contexted_image = base64.b64encode(f.read()).decode("utf-8")
 
-        bbox_locationless = {
-            k: v
-            for k, v in bbox.items()
-            if k != "x1" and k != "x2" and k != "y1" and k != "y2"
-        }
-        print("BBOX: \n", str(bbox_locationless))
-
-        # 1. desc-based action
-        sys_prompt = DESC_INST_SYS_PROMPT.format(bbox=bbox_locationless)
-        user_prompt = DESC_INST_USER_PROMPT.format(bbox=bbox_locationless)
-
-        response = await client.beta.chat.completions.parse(
-            model="gpt-4o-2024-11-20",
-            messages=[
-                {"role": "system", "content": sys_prompt},
-                {
-                    "role": "user",
-                    "content": [
-                        {"type": "text", "text": user_prompt},
-                        {
-                            "type": "image_url",
-                            "image_url": {
-                                "url": f"data:image/jpeg;base64,{base64_annotated_image}",
-                            },
-                        },
-                        {
-                            "type": "image_url",
-                            "image_url": {
-                                "url": f"data:image/jpeg;base64,{base64_cropped_image}",
-                            },
-                        },
-                        {
-                            "type": "image_url",
-                            "image_url": {
-                                "url": f"data:image/jpeg;base64,{base64_contexted_image}",
-                            },
-                        },
-                    ],
-                },
-            ],
-            temperature=0.8,
-            response_format=InstGen,
-        )
-
-        visual_description = response.choices[0].message.parsed.visual_description
-        position_information = response.choices[0].message.parsed.position_information
-        element_function = response.choices[0].message.parsed.element_function
-        element_type = response.choices[0].message.parsed.element_type.rstrip(".")
-        element_completeness_analysis = response.choices[
-            0
-        ].message.parsed.element_completeness_analysis
-        element_completeness_result = response.choices[
-            0
-        ].message.parsed.element_completeness_result
-        print("VISUAL_DESCRIPTION: \n", visual_description)
-        print("POSITION_INFORMATION: \n", position_information)
-        print("ELEMENT_FUNCTION: \n", element_function)
-        print("ELEMENT_TYPE: \n", element_type)
-        print("ELEMENT_COMPLETENESS_ANALYSIS: \n", element_completeness_analysis)
-        print("ELEMENT_COMPLETENESS_RESULT: \n", element_completeness_result)
-
-        false_context_image_path = ""
-        if element_completeness_result == False:
-            os.makedirs("false_context_image_desktop", exist_ok=True)
-            false_context_image_path = (
-                f"false_context_image_desktop/context_element_{time.time()}.png"
+        if bbox["children"] == []:
+            # 1. desc-based action--target is the bbox center， action type can be diverse [unique]--only for no children!
+            sys_prompt = DESC_INST_SYS_PROMPT
+            user_prompt = DESC_INST_USER_PROMPT.format(
+                bbox={k: v for k, v in bbox.items() if k != "parent"},
+                parent_bbox=bbox["parent"],
             )
-            contexted_image.save(false_context_image_path)
 
-        with open("response.txt", "a") as f:
-            f.write(false_context_image_path)
-            f.write("\n")
-            f.write(str(response.choices[0].message.parsed))
-            f.write("\n")
-
-        if element_completeness_result:
-            # 从0到11中随机生成两个不同的整数
-            random_ints = random.sample(range(0, 12), 3)  # range(0, 12) 生成0到11的整数
-            for index, random_int in enumerate(random_ints):
-                prompt = DESC2ACTION_PROMPT.format(
-                    instruction=(
-                        visual_description_templates[random_int].format(
-                            visual_description=visual_description,
-                            element_type=element_type,
-                        )
-                        + position_information_templates[random_int].format(
-                            position_information=position_information,
-                            element_type=element_type,
-                        )
-                        if index == 0
-                        else (
-                            position_information_templates[random_int].format(
-                                position_information=position_information,
-                                element_type=element_type,
-                            )
-                            + element_function_templates[random_int].format(
-                                element_function=element_function,
-                                element_type=element_type,
-                            )
-                            if index == 1
-                            else element_function_templates[random_int].format(
-                                element_function=element_function,
-                                element_type=element_type,
-                            )
-                            + visual_description_templates[random_int].format(
-                                visual_description=visual_description,
-                                element_type=element_type,
-                            )
-                        )
-                    ),
-                )
-                try:
-                    response = await call_with_retry(
-                        client,
-                        "gpt-4o-mini",
-                        [
-                            {"role": "user", "content": prompt},
+            response = await client.beta.chat.completions.parse(
+                model="gpt-4o-2024-11-20",
+                messages=[
+                    {"role": "system", "content": sys_prompt},
+                    {
+                        "role": "user",
+                        "content": [
+                            {"type": "text", "text": user_prompt},
+                            {
+                                "type": "image_url",
+                                "image_url": {
+                                    "url": f"data:image/jpeg;base64,{base64_annotated_image}",
+                                },
+                            },
+                            {
+                                "type": "image_url",
+                                "image_url": {
+                                    "url": f"data:image/jpeg;base64,{base64_cropped_image}",
+                                },
+                            },
+                            {
+                                "type": "image_url",
+                                "image_url": {
+                                    "url": f"data:image/jpeg;base64,{base64_contexted_image}",
+                                },
+                            },
                         ],
-                        0,
-                        Desc2Action,
+                    },
+                ],
+                temperature=0.8,
+                response_format=InstGen,
+            )
+
+            visual_description = response.choices[0].message.parsed.visual_description
+            position_information = response.choices[
+                0
+            ].message.parsed.position_information
+            element_function = response.choices[0].message.parsed.element_function
+            element_type = response.choices[0].message.parsed.element_type.rstrip(".")
+            possible_actions = response.choices[0].message.parsed.possible_actions
+            element_completeness_analysis = response.choices[
+                0
+            ].message.parsed.element_completeness_analysis
+            element_completeness_result = response.choices[
+                0
+            ].message.parsed.element_completeness_result
+
+            false_context_image_path = ""
+            if element_completeness_result == False:
+                os.makedirs("false_context_image_desktop", exist_ok=True)
+                false_context_image_path = (
+                    f"false_context_image_desktop/context_element_{time.time()}.png"
+                )
+                contexted_image.save(false_context_image_path)
+
+            with open("response.txt", "a") as f:
+                f.write(false_context_image_path)
+                f.write("\n")
+                f.write(str(response.choices[0].message.parsed))
+                f.write("\n")
+
+            if element_completeness_result:
+                # 从0到11中随机生成两个不同的整数
+                random_int = random.sample(range(0, 12), 1)[
+                    0
+                ]  # range(0, 12) 生成0到11的整数
+                element_desc = (
+                    visual_description_templates[random_int].format(
+                        visual_description=visual_description,
+                        element_type=element_type,
                     )
-                    action_desc = response.choices[0].message.parsed.action_desc
-                    action_type = response.choices[0].message.parsed.action_type
-                    action_detail_list.append(
-                        ActionDetail(
-                            thought_process="",
-                            action_space_type="unique",
-                            action_desc=action_desc,
-                            action_params=[],
-                            action_discrete_values=None,
-                            action_continuous_interval=None,
-                            action_code=f"pyautogui.{action_type}({(bbox['x1']+bbox['x2'])/2}, {(bbox['y1']+bbox['y2'])/2})",
+                    + position_information_templates[random_int].format(
+                        position_information=position_information,
+                        element_type=element_type,
+                    )
+                    + element_function_templates[random_int].format(
+                        element_function=element_function,
+                        element_type=element_type,
+                    )
+                )
+                center_point = {
+                    "x_center": bbox["position"]["x_center"],
+                    "y_center": bbox["position"]["y_center"],
+                }
+                for possible_action in possible_actions:
+                    sys_prompt = DESC2ACTION_SYS_PROMPT.format(
+                        element_desc=element_desc,
+                        action_brief_desc=possible_action,
+                        center_point=center_point,
+                    )
+                    user_prompt = DESC2ACTION_USER_PROMPT.format(
+                        element_desc=element_desc,
+                        action_brief_desc=possible_action,
+                        center_point=center_point,
+                    )
+                    try:
+                        response = await call_with_retry(
+                            client,
+                            "gpt-4o-mini",
+                            [
+                                {"role": "system", "content": sys_prompt},
+                                {
+                                    "role": "user",
+                                    "content": [
+                                        {"type": "text", "text": user_prompt},
+                                        # {
+                                        #     "type": "image_url",
+                                        #     "image_url": {
+                                        #         "url": f"data:image/jpeg;base64,{base64_annotated_image}",
+                                        #     },
+                                        # },
+                                        # {
+                                        #     "type": "image_url",
+                                        #     "image_url": {
+                                        #         "url": f"data:image/jpeg;base64,{base64_cropped_image}",
+                                        #     },
+                                        # },
+                                        # {
+                                        #     "type": "image_url",
+                                        #     "image_url": {
+                                        #         "url": f"data:image/jpeg;base64,{base64_contexted_image}",
+                                        #     },
+                                        # },
+                                    ],
+                                },
+                            ],
+                            0.5,
+                            Desc2Action,
                         )
-                    )
-                except Exception as e:
-                    logger.error(f"Error turning desc into action: {str(e)}")
-        # 2. fine-grained action TODO
+                        action_desc = response.choices[0].message.parsed.action_desc
+                        action_code = response.choices[0].message.parsed.action_code
+                        print(f"action: {action_desc}, code: {action_code}")
+                        action_detail_list.append(
+                            {
+                                "element_desc": element_desc,
+                                "screenshot_path": original_image_path,
+                                "action_desc": action_desc,
+                                "action_code": action_code,
+                            }
+                        )
+                        with lock:
+                            with open(jsonl_file_path, "a") as f:
+                                f.write(
+                                    json.dumps(
+                                        {
+                                            "element_desc": element_desc,
+                                            "screenshot_path": original_image_path,
+                                            "action_desc": action_desc,
+                                            "action_code": action_code,
+                                        }
+                                    )
+                                    + "\n"
+                                )
+
+                    except Exception as e:
+                        logger.error(f"Error turning desc into action: {str(e)}")
+            # 2. fine-grained action TODO--target isn't the bbox of the center, but the certain loc of the bbox. inst can be diverse, too[continuous]
+            sys_prompt = DESC_INST_SYS_PROMPT
+            user_prompt = DESC_INST_USER_PROMPT.format(
+                bbox={k: v for k, v in bbox.items() if k != "parent"},
+                parent_bbox=bbox["parent"],
+            )
+
+            response = await client.beta.chat.completions.parse(
+                model="gpt-4o-2024-11-20",
+                messages=[
+                    {"role": "system", "content": sys_prompt},
+                    {
+                        "role": "user",
+                        "content": [
+                            {"type": "text", "text": user_prompt},
+                            {
+                                "type": "image_url",
+                                "image_url": {
+                                    "url": f"data:image/jpeg;base64,{base64_annotated_image}",
+                                },
+                            },
+                            {
+                                "type": "image_url",
+                                "image_url": {
+                                    "url": f"data:image/jpeg;base64,{base64_cropped_image}",
+                                },
+                            },
+                            {
+                                "type": "image_url",
+                                "image_url": {
+                                    "url": f"data:image/jpeg;base64,{base64_contexted_image}",
+                                },
+                            },
+                        ],
+                    },
+                ],
+                temperature=0.8,
+                response_format=InstGen,
+            )
+
     except Exception as e:
         logger.error(f"Error generate action: {str(e)}")
     finally:
         return action_detail_list
 
 
+async def generate_instructions_with_timeout(
+    bbox, original_image_path, timeout_seconds=THREAD_TIMEOUT
+):
+    try:
+        # 使用asyncio.wait_for设置超时
+        result = await asyncio.wait_for(
+            generate_instructions(bbox, original_image_path), timeout=timeout_seconds
+        )
+        return result
+    except asyncio.TimeoutError:
+        logger.error(f"generate_instructions超时，已超过{timeout_seconds}秒")
+        return []
+    except Exception as e:
+        logger.error(f"generate_instructions_with_timeout发生错误: {str(e)}")
+        return []
+
+
 # 主函数：提取 bbox，裁剪图片，生成指令
 def generate_action_data_with_bbox(position_info, screenshot_path):
+    action_detail_list = []
 
     screenshot = Image.open(screenshot_path)
+    print("width: ", str(screenshot.width), "height: ", screenshot.height)
 
     bbox_data = position_info
 
     bboxes = extract_bboxes(bbox_data, screenshot)
+    with open("bboxes.jsonl", "w") as f:
+        for bbox in bboxes:
+            f.write(json.dumps(bbox) + "\n")
     print(len(bboxes))
-
-    role_set = set()
-
-    data_num = 0
 
     futures = []
 
@@ -378,56 +590,52 @@ def generate_action_data_with_bbox(position_info, screenshot_path):
 
         # 提交所有的任务
         for _, bbox in enumerate(bboxes):
-            role_set.add(bbox["role"])
-            if (
-                # bbox["role"]
-                # in [
-                #     "AXSlider",
-                #     "AXGroup",
-                #     "AXScrollBar",
-                #     "AXStaticText",
-                #     "AXButton",
-                #     "AXRadioButton",
-                #     "AXCell",
-                #     "AXMenuButton",
-                #     "AXCheckBox",
-                #     # "AXWindow"
-                # ]
-                # and
-                bbox["x1"] > 0
-                and bbox["y1"] > 0
-                and bbox["x2"] < screenshot.width
-                and bbox["y2"] < screenshot.height
-                and bbox["x2"] - bbox["x1"] > 0
-                and bbox["y2"] - bbox["y1"] > 0
-            ):
-                # 提交任务并添加到 futures 列表
-                futures.append(
-                    executor.submit(generate_instructions, bbox, screenshot_path)
-                )
-                # data_num += 3
+            # 将 async 函数包装为可在线程池中运行的任务
+            future = executor.submit(
+                asyncio.run,  # 使用 asyncio.run 运行 async 函数
+                generate_instructions_with_timeout(
+                    bbox, screenshot_path
+                ),  # 调用 async 函数
+            )
+            futures.append(future)
+
         # 使用 as_completed 收集结果
         for future in concurrent.futures.as_completed(futures):
             try:
                 result = future.result()  # 捕获任务的结果
+                action_detail_list.extend(result)
+            except concurrent.futures.TimeoutError:
+                print("A thread exceeded the timeout and was terminated.")
             except Exception as e:
                 print(f"Error occurred: {e}")  # 捕获并打印错误
 
-    # return in action detail format
+    return [], action_detail_list
 
 
 # 使用示例
 async def main():
-    total_data_num = 0
-    for dir_name in os.listdir("original_screenpair"):
-        # for dir_name in ["sorter2"]:
-        print(f"Processing {dir_name}")
-        json_file = f"/home2/jlyang/OSWorld-G/training_data/component_render/position_example.json"  # 替换为你的 bbox.json 文件路径
-        screenshot_path = f"/home2/jlyang/OSWorld-G/training_data/component_render/screenshot_example.png"  # 替换为你的截图文件路径
-        # output_image_path = f"original_screenpair/{dir_name}/bboxes_screenshot_{dir_name}.png"  # 输出带有边界框的图片路径
-        # 执行处理
-        total_data_num += generate_action_data_with_bbox(json_file, screenshot_path)
-    print("total_data_num: ", total_data_num)
+    json_file = f"position_example.json"  # 替换为你的 bbox.json 文件路径
+    screenshot_path = f"screenshot_example.png"  # 替换为你的截图文件路径
+    with open(json_file, "r") as f:
+        bbox_data = json.load(f)
+    # output_image_path = f"original_screenpair/{dir_name}/bboxes_screenshot_{dir_name}.png"  # 输出带有边界框的图片路径
+    # 执行处理
+    _, action_detail_list = generate_action_data_with_bbox(bbox_data, screenshot_path)
+    with open("action_detail_list.json", "w") as f:
+        json.dump(
+            [
+                base_template(
+                    action_detail["element_desc"],
+                    action_detail["screenshot_path"],
+                    action_detail["action_desc"],
+                    action_detail["action_code"],
+                )
+                for action_detail in action_detail_list
+            ],
+            f,
+            indent=4,
+        )
+    print("length of action list: ", len(action_detail_list))
 
 
 if __name__ == "__main__":

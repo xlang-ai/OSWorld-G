@@ -40,6 +40,7 @@ async def call_with_retry(client, model, messages, temperature, response_format)
             )
             return response  # 成功获取响应后返回
         except Exception as e:  # 捕获连接错误或超时
+            print(e)
             retries += 1
             logger.error(f"connection error, retry...  {retries} time")
             if retries >= MAX_RETRIES:
