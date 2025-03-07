@@ -1,5 +1,11 @@
+# python main_bbox.py --port 3001 --components slider --scenario_count 2 > logs/session_3001_output.txt 2>&1
+# python main_bbox.py --port 3002 --components switches --scenario_count 2 > logs/session_3002_output.txt 2>&1
+# python main_bbox.py --port 3003 --components autocomplete --scenario_count 2 > logs/session_3003_output.txt 2>&1
+# TODO: add code re-write if it is wrong
+# TODO: 添加更多的组件库
 import asyncio
 import datetime
+import platform
 import json
 import os
 import re
@@ -11,17 +17,12 @@ import argparse
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 
-from action import (
-    generate_action_data,
-    process_grounding,
-    remove_repetition,
-    annotate_grounding,
-)
 from action_bbox import (
     generate_action_data_with_bbox,
+    process_grounding,
+    annotate_grounding,
 )
 from javascripts import (
-    JS_EVAL_POSITION,
     JS_EVAL_TREE,
     JS_WITH_COMPONENT,
     JS_WITHOUT_COMPONENT,
@@ -213,9 +214,8 @@ class DataGenerator:
 
             if position:
                 # 捕获截图
-                # TODO: 去除在不同位置出现多次的text，避免歧义
-                with open(f"position_example_{time.time()}.json", "w") as file:
-                    json.dump(position, file, indent=4)
+                # with open("position.json", "w") as f:
+                #     json.dump(position, f, indent=4)
                 screenshot_path = await self.capture_screenshot(
                     screenshot_folder,
                     component_name,
@@ -280,31 +280,142 @@ class DataGenerator:
         await self.refresh_page()
 
     async def terminate_process_on_port(self, port: int):
-        """终止占用指定端口的进程"""
-        logger.info(f"Terminating process occupying port {port}...")
-        for proc in psutil.process_iter(attrs=["pid", "name"]):  # 移除 connections 先
+        """终止占用指定端口的进程
+
+        根据系统类型(macOS或Ubuntu)采用不同的实现方式来终止占用指定端口的进程
+        """
+
+        system = platform.system()
+        logger.info(f"Terminating process occupying port {port} on {system}...")
+
+        if system == "Darwin":  # macOS
             try:
-                # 确保该进程有 'connections' 属性
-                connections = proc.net_connections()  # 使用函数调用来获取 connections
-                for conn in connections:
-                    if conn.laddr.port == port:
+                # 使用 lsof 命令获取占用端口的进程ID
+                cmd = f"lsof -i :{port} -t"
+                process = await asyncio.create_subprocess_shell(
+                    cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+                )
+                stdout, stderr = await process.communicate()
+
+                if stdout:
+                    pids = [int(pid) for pid in stdout.decode().strip().split("\n")]
+                    for pid in pids:
+                        try:
+                            proc = psutil.Process(pid)
+                            logger.info(
+                                f"Found process {proc.name()} with PID {pid} occupying port {port}"
+                            )
+                            proc.terminate()
+                            gone, alive = psutil.wait_procs([proc], timeout=3)
+                            if alive:
+                                logger.warning(
+                                    f"Process {pid} did not terminate, attempting to kill"
+                                )
+                                proc.kill()
+                            logger.info(
+                                f"Process with PID {pid} terminated successfully"
+                            )
+                        except psutil.NoSuchProcess:
+                            logger.warning(f"Process {pid} no longer exists")
+                        except Exception as e:
+                            logger.error(f"Error terminating process {pid}: {e}")
+                else:
+                    logger.info(f"No process found occupying port {port}")
+
+            except Exception as e:
+                logger.error(f"Error in macOS implementation: {e}")
+
+        elif system == "Linux":  # Ubuntu is a Linux distribution
+            try:
+                # 首先尝试使用 ss 命令（现代Linux系统推荐）
+                cmd = f"ss -lptn 'sport = :{port}'"
+                process = await asyncio.create_subprocess_shell(
+                    cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+                )
+                stdout, stderr = await process.communicate()
+
+                pids = []
+                if stdout:
+                    lines = stdout.decode().strip().split("\n")
+                    for line in lines[1:]:  # 跳过标题行
+                        if "pid=" in line:
+                            pid_part = line.split("pid=")[1].split(",")[0]
+                            try:
+                                pids.append(int(pid_part))
+                            except ValueError:
+                                pass
+
+                # 如果ss命令未找到任何进程，尝试使用netstat（旧系统兼容）
+                if not pids:
+                    cmd = f"netstat -tlnp | grep :{port}"
+                    process = await asyncio.create_subprocess_shell(
+                        cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+                    )
+                    stdout, stderr = await process.communicate()
+
+                    if stdout:
+                        lines = stdout.decode().strip().split("\n")
+                        for line in lines:
+                            if "/" in line:
+                                pid_part = line.split()[-1].split("/")[0]
+                                try:
+                                    pids.append(int(pid_part))
+                                except ValueError:
+                                    pass
+
+                # 终止找到的进程
+                for pid in pids:
+                    try:
+                        proc = psutil.Process(pid)
                         logger.info(
-                            f"Found process {proc.info['name']} with PID {proc.info['pid']} occupying port {port}"
+                            f"Found process {proc.name()} with PID {pid} occupying port {port}"
                         )
-                        # 发送终止信号
                         proc.terminate()
-                        proc.wait(timeout=3)  # 等待进程结束
-                        logger.info(
-                            f"Process with PID {proc.info['pid']} terminated successfully."
-                        )
-                        break
-            except (
-                psutil.NoSuchProcess,
-                psutil.AccessDenied,
-                psutil.ZombieProcess,
-                psutil.Error,
-            ):
-                pass
+                        gone, alive = psutil.wait_procs([proc], timeout=3)
+                        if alive:
+                            logger.warning(
+                                f"Process {pid} did not terminate, attempting to kill"
+                            )
+                            proc.kill()
+                        logger.info(f"Process with PID {pid} terminated successfully")
+                    except psutil.NoSuchProcess:
+                        logger.warning(f"Process {pid} no longer exists")
+                    except Exception as e:
+                        logger.error(f"Error terminating process {pid}: {e}")
+
+                if not pids:
+                    logger.info(f"No process found occupying port {port}")
+
+            except Exception as e:
+                logger.error(f"Error in Linux implementation: {e}")
+
+        else:
+            # 回退到原始的psutil实现（适用于Windows或其他系统）
+            try:
+                for proc in psutil.process_iter(attrs=["pid", "name"]):
+                    try:
+                        connections = proc.net_connections()
+                        for conn in connections:
+                            if hasattr(conn, "laddr") and conn.laddr.port == port:
+                                logger.info(
+                                    f"Found process {proc.info['name']} with PID {proc.info['pid']} occupying port {port}"
+                                )
+                                proc.terminate()
+                                proc.wait(timeout=3)
+                                logger.info(
+                                    f"Process with PID {proc.info['pid']} terminated successfully"
+                                )
+                                return
+                    except (
+                        psutil.NoSuchProcess,
+                        psutil.AccessDenied,
+                        psutil.ZombieProcess,
+                        psutil.Error,
+                    ):
+                        continue
+                logger.info(f"No process found occupying port {port}")
+            except Exception as e:
+                logger.error(f"Error in generic implementation: {e}")
 
 
 def process_component_tree(component_tree):
@@ -452,7 +563,6 @@ async def main():
                     logger.info(f"Start to process scenario {scenario_index}")
                     component_code = scenario_augmentation_code
                     component_code_path = ""
-
                     try:
                         # STEP 2: 提取组件名称&创建组件
                         logger.info(f"Extracting component name")
@@ -476,14 +586,14 @@ async def main():
                         logger.info(f"React app created and started")
 
                         # STEP 4: 在截图中标注组件位置信息
-                        logger.info(f"Annotating component screenshot")
-                        annotated_component_path = await annotate_screenshot_component(
-                            component_name,
-                            position,
-                            screenshot_path,
-                            screenshot_folder,
-                        )
-                        logger.info(f"Annotated component screenshot")
+                        # logger.info(f"Annotating component screenshot")
+                        # annotated_component_path = await annotate_screenshot_component(
+                        #     component_name,
+                        #     position,
+                        #     screenshot_path,
+                        #     screenshot_folder,
+                        # )
+                        # logger.info(f"Annotated component screenshot")
 
                         annotated_action_paths = []
                         # STEP 5: 生成动作数据
@@ -502,14 +612,12 @@ async def main():
                         # )
                         action_intent_list, action_detail_list = (
                             [],
-                            await generate_action_data_with_bbox(
-                                component_name=component_name,
-                                component_code=component_code,
-                                raw_component_path=screenshot_path,
-                                position=position,
+                            generate_action_data_with_bbox(
+                                # component_code=component_code,
+                                position,
+                                screenshot_path,
                             ),
                         )
-
                         # STEP 6: 保存raw数据到json文件
                         component_num += 1
                         action_num += len(annotated_action_paths)
@@ -532,9 +640,9 @@ async def main():
                                             / f"{component_name}.js"
                                         ),
                                         "screenshot_path": str(screenshot_path),
-                                        "annotated_component_path": str(
-                                            annotated_component_path
-                                        ),
+                                        # "annotated_component_path": str(
+                                        #     annotated_component_path
+                                        # ),
                                         "annotated_action_path": [
                                             str(annotated_action_path)
                                             for annotated_action_path in annotated_action_paths
@@ -583,13 +691,7 @@ async def main():
                             f"process grounding & inst filter to {len(grounding_dict_list)}"
                         )
 
-                        # 7.2 remove repetition
-                        old_len = len(grounding_dict_list)
-                        grounding_dict_list = remove_repetition(grounding_dict_list)
-                        new_len = len(grounding_dict_list)
-                        logger.info(f"remove repetition from {old_len} to {new_len}")
-
-                        # 7.3 grounding annotate
+                        # 7.2 grounding annotate
                         # 定义一个包装函数，方便传递参数
                         logger.info(
                             f"grounding_dict_before_annotate: {grounding_dict_list}"
@@ -629,39 +731,40 @@ async def main():
                             f"grounding_dict_after_annotate: {grounding_dict_list}"
                         )
 
-                        # 7.4 visual filter
-                        old_len = len(grounding_dict_list)
-                        true_len = 0
+                        # # 7.3 visual filter
+                        # old_len = len(grounding_dict_list)
+                        # true_len = 0
 
-                        # 定义一个包装函数，方便传递参数
-                        logger.info(f"start to visual filter {grounding_dict_list}")
+                        # # 定义一个包装函数，方便传递参数
+                        # logger.info(f"start to visual filter {grounding_dict_list}")
 
-                        async def visual_filter_task(grounding_dict):
-                            new_dict = await visual_filter(grounding_dict)
-                            return new_dict
+                        # async def visual_filter_task(grounding_dict):
+                        #     new_dict = await visual_filter(grounding_dict)
+                        #     return new_dict
 
-                        # 使用 asyncio.create_task 创建并行任务
-                        tasks = [
-                            asyncio.create_task(visual_filter_task(grounding_dict))
-                            for grounding_dict in grounding_dict_list
-                        ]
+                        # # 使用 asyncio.create_task 创建并行任务
+                        # tasks = [
+                        #     asyncio.create_task(visual_filter_task(grounding_dict))
+                        #     for grounding_dict in grounding_dict_list
+                        # ]
 
-                        grounding_dict_list = []
-                        # 等待所有任务完成并收集结果
-                        for task in tasks:
-                            new_dict = await task  # 等待每个任务的结果
-                            if new_dict is not None:
-                                grounding_dict_list.append(new_dict)
-                            if new_dict["is_correct"]:
-                                true_len += 1
+                        # grounding_dict_list = []
+                        # # 等待所有任务完成并收集结果
+                        # for task in tasks:
+                        #     new_dict = await task  # 等待每个任务的结果
+                        #     if new_dict is not None:
+                        #         grounding_dict_list.append(new_dict)
+                        #     if new_dict["is_correct"]:
+                        #         true_len += 1
 
-                        logger.info(f"visual filter from {old_len} to {true_len}")
+                        # logger.info(f"visual filter from {old_len} to {true_len}")
 
                         for grounding_index, grounding_dict in enumerate(
                             grounding_dict_list
                         ):
                             print("grounding_dict:", str(grounding_dict))
-                            if grounding_dict["is_correct"]:
+                            # if grounding_dict["is_correct"]:
+                            if True:
                                 with open(
                                     os.path.join(
                                         component_root_dir,
@@ -753,13 +856,6 @@ async def main():
                             Path(f"react-app-dir/react-app-{args.port}/src/components")
                             / f"{component_name}.js"
                         )
-                        # shutil.copy(
-                        #     src_path,
-                        #     os.path.join(
-                        #         "code_for_check",
-                        #         os.path.basename(src_path),
-                        #     ),
-                        # )
 
                         shutil.move(src_path, component_code_path)
                         await generator.restart_react_server()

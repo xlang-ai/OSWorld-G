@@ -11,18 +11,14 @@ import argparse
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 
-from action import (
+from action_no_bbox import (
     generate_action_data,
     process_grounding,
     remove_repetition,
     annotate_grounding,
 )
-from action_bbox import (
-    generate_action_data_with_bbox,
-)
 from javascripts import (
     JS_EVAL_POSITION,
-    JS_EVAL_TREE,
     JS_WITH_COMPONENT,
     JS_WITHOUT_COMPONENT,
 )
@@ -216,8 +212,7 @@ class DataGenerator:
 
             # 获取组件位置信息
             await self.page.wait_for_selector(".App", state="attached", timeout=6000)
-            # position = await self.page.evaluate(JS_EVAL_POSITION)
-            position = await self.page.evaluate(JS_EVAL_TREE)
+            position = await self.page.evaluate(JS_EVAL_POSITION)
 
             if position:
                 # 捕获截图
@@ -497,24 +492,15 @@ async def main():
                         # TODO： 修改生成逻辑，基于bbox生成
                         # TODO：unique action会很多，这种直接生成pyautogui.xxx(position)即可
                         logger.info(f"Generating action data")
-                        # action_intent_list, action_detail_list = (
-                        #     await generate_action_data(
-                        #         component_desc=component_desc,
-                        #         component_name=component_name,
-                        #         raw_component_path=screenshot_path,
-                        #         annotated_component_path=annotated_component_path,
-                        #         position=position,
-                        #         component_code=component_code,
-                        #     )
-                        # )
                         action_intent_list, action_detail_list = (
-                            [],
-                            await generate_action_data_with_bbox(
+                            await generate_action_data(
+                                component_desc=component_desc,
                                 component_name=component_name,
-                                component_code=component_code,
                                 raw_component_path=screenshot_path,
+                                annotated_component_path=annotated_component_path,
                                 position=position,
-                            ),
+                                component_code=component_code,
+                            )
                         )
 
                         # STEP 6: 保存raw数据到json文件

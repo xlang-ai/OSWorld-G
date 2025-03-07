@@ -108,6 +108,7 @@ JS_EVAL_TREE = """() => {
                 attributes: getElementAttributes(element),
                 text: element.textContent.trim(),
                 isInteractive: interactiveElements.includes(element),
+                isVisible: isVisible(element),
                 position: {
                     x_1: rect.left + window.scrollX,
                     y_1: rect.top + window.scrollY,
@@ -130,7 +131,7 @@ JS_EVAL_TREE = """() => {
             // 递归处理子元素
             let childNode;
             while (childNode = walker.nextNode()) {
-                if (childNode !== element && isVisible(childNode)) { // 排除当前元素自身
+                if (childNode !== element) { // 排除当前元素自身
                     const childInfo = getElementInfo(childNode);
                     if (childInfo) {
                         elementInfo.children.push(childInfo);

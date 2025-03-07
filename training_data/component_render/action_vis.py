@@ -15,7 +15,7 @@ def action_vis():
         action_list = json.load(f)
 
     # 随机采样 10 个 action
-    sampled_action_list = random.sample(action_list, min(10, len(action_list)))
+    sampled_action_list = random.sample(action_list, min(15, len(action_list)))
 
     # 遍历每个采样的 action
     for i, sampled_action in enumerate(sampled_action_list):

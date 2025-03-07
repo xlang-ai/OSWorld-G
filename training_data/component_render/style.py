@@ -1,6 +1,7 @@
 import codecs
 import json
 import os
+import re
 import requests
 import asyncio
 
@@ -78,7 +79,58 @@ async def _generate_single_scenario_openai(
             )
         json_response = response.choices[0].message.parsed
         new_style_code = json_response.new_style_code
-        # print(new_style_code)
+
+        # import check
+        with open("import_list.json", "r") as file:
+            import_list = json.load(file)
+
+        lucide_line = [
+            line for line in new_style_code.split("\n") if "lucide-react" in line
+        ][0]
+        logger.info(lucide_line)
+        # 使用正则表达式提取花括号中的所有项
+        pattern = r"{(.*?)}"
+        matches = re.search(pattern, lucide_line)
+
+        if matches:
+            # 分割并去除空格
+            imported_items = [item.strip() for item in matches.group(1).split(",")]
+
+            # 检查每个引用项
+            for item in imported_items:
+                if item not in import_list:
+                    logger.info(f"wrong import: {item}")
+                    response = await call_with_retry(
+                        client,
+                        "gpt-4o-2024-11-20",
+                        [
+                            {
+                                "role": "user",
+                                "content": [
+                                    {
+                                        "type": "text",
+                                        "text": system_prompt
+                                        + scenario_prompt
+                                        + "\nPlease, be careful with your import."
+                                        + f"{item} is not in the import list of lucide-react.",
+                                    },
+                                ],
+                            },
+                        ],
+                        1,
+                        ScenarioAugmentationResponse,
+                    )
+                    with open("token_cost.txt", "a") as file:
+                        file.write(
+                            f"prompt_gen_scenario:\n{response.usage.prompt_tokens}\n"
+                        )
+                        file.write(
+                            f"completion_gen_scenario:\n{response.usage.completion_tokens}\n"
+                        )
+                    json_response = response.choices[0].message.parsed
+                    new_style_code = json_response.new_style_code
+
+        # format check
         lines = new_style_code.split("\n")
 
         # 检查最后一行是否是 ");"
@@ -151,7 +203,7 @@ def _generate_single_scenario_claude(
         #     ],
         # )
         response = json.loads(response.content)
-        logger.info(f"response: {response}")
+        # logger.info(f"response: {response}")
 
         # with open("token_cost.txt", "a") as file:
         #     file.write(f"prompt_gen_scenario:\n{response['usage']['prompt_tokens']}\n")
@@ -160,7 +212,6 @@ def _generate_single_scenario_claude(
         #     )
 
         json_response = response["choices"][0]["message"]["content"]
-        # print(json_response + "\n\n\n")
 
         # 直接从响应中提取 new_style_code
         import re
@@ -171,7 +222,6 @@ def _generate_single_scenario_claude(
         if not code_match:
             raise ValueError("No new_style_code found in the response")
         new_style_code = code_match.group(1)
-        # print(new_style_code)
         lines = new_style_code.split("\n")
 
         # 检查最后一行是否是 ");"
@@ -222,32 +272,6 @@ async def scenario_generation_worker(
         await queue.put("end")
 
 
-# def scenario_augmentation(
-#     base_component_code: str, prev_generated_code_list: List, n: int
-# ) -> List[str]:
-#     new_generated_code_list = []
-
-#     # NOTE: 为了避免重复，恐怕不能并行
-#     for _ in range(n):
-#         logger.info(
-#             f"Start to generate {_}th style, {len(new_generated_code_list)} already generated"
-#         )
-#         new_generated_code = None
-#         while new_generated_code is None:
-#             # new_generated_code = _generate_single_scenario_claude(
-#             new_generated_code = _generate_single_scenario_openai(
-#                 base_component_code,
-#                 (prev_generated_code_list + new_generated_code_list.copy())[-10:],
-#                 SYSTEM_PROMPT_FOR_STYLE_AUGMENTATION,
-#             )
-#         new_generated_code_list.append(new_generated_code)
-
-#     logger.info(
-#         f"Scenario augmentation finished, generated {len(new_generated_code_list)} codes"
-#     )
-#     return new_generated_code_list
-
-
 async def style_augmentation(
     scenario_component_code, n=1
 ) -> Dict[str, Union[str, List[str]]]:
@@ -266,9 +290,10 @@ async def style_augmentation(
     #         }
     #     ],
     # )
-    response = await client.beta.chat.completions.parse(
-        model="gpt-4o-2024-11-20",
-        messages=[
+    response = await call_with_retry(
+        client,
+        "gpt-4o-2024-11-20",
+        [
             {
                 "role": "system",
                 "content": [
@@ -282,8 +307,8 @@ async def style_augmentation(
                 ],
             },
         ],
-        temperature=0.6,
-        response_format=StyleAugmentationResponse,
+        0.6,
+        StyleAugmentationResponse,
     )
     with open("token_cost.txt", "a") as file:
         file.write(f"prompt_style_aug:\n{response.usage.prompt_tokens}\n")
@@ -351,7 +376,33 @@ async def style_augmentation(
 
 
 async def main():
-    await _generate_single_scenario_openai("", "", "Hello world!", [], "")
+    await _generate_single_scenario_openai(
+        "slider",
+        "",
+        """import * as React from 'react';
+import Box from '@mui/material/Box';
+import Slider from '@mui/material/Slider';
+
+function valuetext(value) {
+  return `${value}°C`;
+}
+
+export default function ColorSlider() {
+  return (
+    <Box sx={{ width: 300 }}>
+      <Slider
+        aria-label="Temperature"
+        defaultValue={30}
+        getAriaValueText={valuetext}
+        color="secondary"
+      />
+    </Box>
+  );
+}
+""",
+        [],
+        SYSTEM_PROMPT_FOR_STYLE_AUGMENTATION,
+    )
 
 
 if __name__ == "__main__":

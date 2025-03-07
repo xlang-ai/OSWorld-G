@@ -106,6 +106,7 @@ Assess whether the element is complete, give your analysis process in element_co
     - or the element is partially hidden by other elements, 
     - or the element is not visible at all,
     - or the bounding box consists of more than one elements,
+    - or the bounding box does not fit tightly around the target element, with significant padding between them
     please, answer False in Element Completeness Result(element_completeness_result)
 - If it is absolutely, fully visible, answer True in Element Completeness Result(element_completeness_result)
 
@@ -188,6 +189,166 @@ Action Brief Description:
 
 Center Point of the Bounding Box:
 {center_point}
+"""
+
+FINE_ACTION_INST_SYS_PROMPT = """
+You're an UI Component Interaction Generator. You need to fugure out whether the target element has a continuous action space, and generate action function if the action space is continuous.
+
+You'll receive both the full layout image and a cropped image of the highlighted element. And you will also receive a context image, which is the region of the full image that contains the red bounding box highlighting the element and the red dot marking the center of the box.
+
+You will also receive tree-like position information in JSON format, which helps you better understand the position of the element in the layout.
+
+Remember, the target element may not be completely visible, it may be hidden or truncated, you need to consider this and use it in "Element completeness" session.
+
+## Generate Action
+Based on the action space type and action intent, generate appropriate action specifications of action intent. The action should contain:
+
+1. Element Completeness Analysis(element_completeness_analysis)
+Assess whether the element is complete, give your analysis process in `element_completeness_analysis` and give the final answer in `element_completeness_result`:
+- If 
+    - it is partially truncated or part of a larger component(which happens often), 
+    - or the image doesn't align well with your description(image shows element A but description mentions element B),
+    - or the element is partially hidden by other elements, 
+    - or the element is not visible at all,
+    - or the bounding box consists of more than one elements,
+    please, answer False in Element Completeness Result(element_completeness_result)
+- If it is absolutely, fully visible, answer True in Element Completeness Result(element_completeness_result)
+
+If `element_completeness_result` is False, you should not generate following aspects:
+
+    - Action Description
+    - Action Code
+    - Action Space Type
+    - Action Continuous Interval
+    - Action Discrete Values
+    - Action Parameters
+    - Thought Process
+Return None for all of them.
+
+2. **Determine Whether the action space is continuous** (`is_continuous`)
+Analyze and determine the whether there are infinite possible meaningful actions within a range for this Element (In most cases the action space isn't continuous! Example of continuous action space: dragging a slider to any position). Output True/False for this aspect.
+
+3. **Thought Process** (`thought_process`)
+    - If the action space is continuous, give corresponding action description for the action
+    - Identify key UI points that remain constant, for example:
+        * Component endpoints (for sliders)
+        * Center positions (for buttons)
+        * Control points (for resizable elements)
+    - Document points using format: `x_name, y_name = x, y`
+    - Explain calculation logic
+    - Identify and explain parameters from action description
+
+4. **Action Description** (`action_desc`)
+   - Describe what the action does, which serves as the instantiation/implementation of the action intent.
+   - Should not describe actions that require prior interactions.
+   - The description should be clear enough
+   - Use `<param_name>` format for variable parameters
+
+5. **Action Params** (`action_params`)
+   - List of all parameter names for the action
+
+6. **Action Continuous Interval** (`action_continuous_interval`)
+   - List of interval for all possible parameter values for continuous action spaces, not {{}} only when action_space_type is "continuous".
+   - Use a dictionary to represent the interval, with the key as the parameter name(e.g. "volume") and the value as the list of intervals(e.g. [(0, 30), (60, 100)]). The interval should be a tuple of two numbers, representing the lower and upper bounds of the interval. Most of the time, one interval is enough, but more than one interval is possible.
+
+7. **Action Code** (`action_code`)
+   - Function name must be `action`
+   - Define constant coordinates first
+   - Use PyAutoGUI only
+   - For discrete or continuous action spaces: Implement variable parameters using `<param_name>` format
+   - Use singleclick action whenever possible and suitable.
+
+## Examples
+
+### Example 1: Volume Slider
+**Input:**
+- Component Name: "A volume slider"
+- Screenshot: An image showing the volume slider
+- Action Intent: "Set volume"
+- Position: 
+```
+{{
+  "elements": [
+    {{
+      "attributes": {{
+        "style": "width: 200px; margin: 20px;"
+      }},
+      "text": "Volume: 50%",
+      "isInteractive": false,
+      "position": {{  
+        "x_left": 20,
+        "y_top": 20,
+        "x_right": 220,
+        "y_bottom": 70,
+        "x_center": 120,
+        "y_center": 45,
+      }}
+    }},
+    {{
+      "attributes": {{
+        "min": "0",
+        "max": "100",
+        "type": "range",
+        "value": "50",
+        "style": "width: 100%;"
+      }},
+      "text": "",
+      "isInteractive": true,
+      "position": {{
+        "x_left": 22,
+        "y_top": 22,
+        "x_right": 222,
+        "y_bottom": 38,
+        "x_center": 122,
+        "y_center": 30,
+      }}
+    }},
+    {{
+      "attributes": {{
+        "style": "text-align: center; margin-top: 10px;"
+      }},
+      "text": "Volume: 50%",
+      "isInteractive": false,
+      "position": {{
+        "x_left": 20,
+        "y_top": 51,
+        "x_right": 220,
+        "y_bottom": 69,
+        "x_center": 120,
+        "y_center": 60,
+      }}
+    }}
+  ]
+}}
+```
+**Output:**
+```json
+{{
+    "action_space_type": "continuous",
+    "action_desc": "Set volume to <volume>%",
+    "thought_process": "
+        - Identified slider endpoints: (22,30) and (222,30)
+                - Volume parameter determines click position
+                - Linear interpolation between endpoints based on volume",
+    "action_params": ["volume"],
+    "action_discrete_values": {{}},
+    "action_continuous_interval": {{"volume": [(0, 100)]}},
+    "action_code": "
+        def action(volume):
+            x_0, y_0 = 22, 30  # Left endpoint
+            x_1, y_1 = 222, 30  # Right endpoint
+            x = x_0 + (x_1 - x_0) * (volume / 100)
+            pyautogui.click(x, y_0)"
+}}
+```
+
+"""
+
+FINE_ACTION_INST_USER_PROMPT = """
+The bounded image, cropped image and context image are provided in the following prompt.
+
+The target element's bounding box is:
+{bbox}
 """
 
 ACTION_INTENT_PROMPT = """You are an assistant with deep knowledge of UI component functionality. Your task is to analyze a component's current state and generate a comprehensive list of possible user interactions, grouped by similar action types.
@@ -743,6 +904,8 @@ Please come up with a real application scenario for this type of component based
 10. Keep key characteristics of original components, for example, the grid of tables, the feasibility of getting positions of every letters/characters in texts. For tables, keep the large amount of cells.For tables, keep the large amount of cells.For tables, keep the large amount of cells.
 
 Remember your generated component should include {component_root_name} or be {component_root_name}.
+
+Pay attention to your import, make sure every import is correct.
 
 Please respond in JSON format directly. You should not add any other text or comments.
 {{
