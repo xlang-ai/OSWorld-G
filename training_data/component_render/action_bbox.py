@@ -13,7 +13,7 @@ import threading
 import concurrent.futures
 from typing import List, Optional, Union, Dict, Literal
 from PIL import Image, ImageDraw, ImageFont
-from api import client, call_with_retry
+from api import client, call_with_retry_openai
 from openai import OpenAI
 from pydantic import BaseModel
 
@@ -352,7 +352,7 @@ async def generate_instructions(bbox, original_image_path):
                 parent_bbox=bbox["parent"],
             )
 
-            response = await call_with_retry(
+            response = await call_with_retry_openai(
                 client,
                 "gpt-4o-2024-11-20",
                 [
@@ -411,70 +411,72 @@ async def generate_instructions(bbox, original_image_path):
 
             if element_completeness_result:
                 # 从0到11中随机生成两个不同的整数
-                random_int = random.sample(range(0, 12), 1)[
-                    0
-                ]  # range(0, 12) 生成0到11的整数
-                element_desc = (
-                    visual_description_templates[random_int].format(
-                        visual_description=visual_description,
-                        element_type=element_type,
-                    )
-                    + position_information_templates[random_int].format(
-                        position_information=position_information,
-                        element_type=element_type,
-                    )
-                    + element_function_templates[random_int].format(
-                        element_function=element_function,
-                        element_type=element_type,
-                    )
-                )
-                center_point = {
-                    "x_center": bbox["position"]["x_center"],
-                    "y_center": bbox["position"]["y_center"],
-                }
-                for possible_action in possible_actions:
-                    sys_prompt = DESC2ACTION_SYS_PROMPT.format(
-                        element_desc=element_desc,
-                        action_brief_desc=possible_action,
-                        center_point=center_point,
-                    )
-                    user_prompt = DESC2ACTION_USER_PROMPT.format(
-                        element_desc=element_desc,
-                        action_brief_desc=possible_action,
-                        center_point=center_point,
-                    )
-                    try:
-                        response = await call_with_retry(
-                            client,
-                            "gpt-4o-mini",
-                            [
-                                {"role": "system", "content": sys_prompt},
-                                {
-                                    "role": "user",
-                                    "content": [
-                                        {"type": "text", "text": user_prompt},
-                                    ],
-                                },
-                            ],
-                            0.5,
-                            Desc2Action,
+                random_ints = random.sample(range(0, 12), 2)
+                for index, random_int in enumerate(random_ints):
+                    element_desc = (
+                        visual_description_templates[random_int].format(
+                            visual_description=visual_description,
+                            element_type=element_type,
                         )
-                        action_desc = response.choices[0].message.parsed.action_desc
-                        action_code = response.choices[0].message.parsed.action_code
-                        print(f"action: {action_desc}, code: {action_code}")
-                        new_action_detail = ActionDetail(
-                            thought_process="",
-                            action_space_type="unique",
-                            action_desc=action_desc,
-                            action_params=[],
-                            action_discrete_values=None,
-                            action_continuous_interval=None,
-                            action_code=action_code,
+                        + position_information_templates[random_int].format(
+                            position_information=position_information,
+                            element_type=element_type,
                         )
-                        action_detail_list.append(new_action_detail)
+                        if index == 0 else element_function_templates[random_int].format(
+                            element_function=element_function,
+                            element_type=element_type,
+                        )+ position_information_templates[random_int].format(
+                            position_information=position_information,
+                            element_type=element_type,
+                        )
+                    )
+                    center_point = {
+                        "x_center": bbox["position"]["x_center"],
+                        "y_center": bbox["position"]["y_center"],
+                    }
+                    for possible_action in possible_actions:
+                        sys_prompt = DESC2ACTION_SYS_PROMPT.format(
+                            element_desc=element_desc,
+                            action_brief_desc=possible_action,
+                            center_point=center_point,
+                        )
+                        user_prompt = DESC2ACTION_USER_PROMPT.format(
+                            element_desc=element_desc,
+                            action_brief_desc=possible_action,
+                            center_point=center_point,
+                        )
+                        try:
+                            response = await call_with_retry_openai(
+                                client,
+                                "gpt-4o-mini",
+                                [
+                                    {"role": "system", "content": sys_prompt},
+                                    {
+                                        "role": "user",
+                                        "content": [
+                                            {"type": "text", "text": user_prompt},
+                                        ],
+                                    },
+                                ],
+                                0.5,
+                                Desc2Action,
+                            )
+                            action_desc = response.choices[0].message.parsed.action_desc
+                            action_code = response.choices[0].message.parsed.action_code
+                            print(f"action: {action_desc}, code: {action_code}")
+                            new_action_detail = ActionDetail(
+                                thought_process="",
+                                action_space_type="unique",
+                                action_desc=action_desc,
+                                action_params=[],
+                                action_discrete_values=None,
+                                action_continuous_interval=None,
+                                action_code=action_code,
+                            )
+                            action_detail_list.append(new_action_detail)
 
-                    except Exception as e:
-                        logger.error(f"Error turning desc into action: {str(e)}")
+                        except Exception as e:
+                            logger.error(f"Error turning desc into action: {str(e)}")
                 # 2. fine-grained action TODO--target isn't the bbox of the center, but the certain loc of the bbox. inst can be diverse, too[continuous]
                 sys_prompt = FINE_ACTION_INST_SYS_PROMPT
                 user_prompt = FINE_ACTION_INST_USER_PROMPT.format(
@@ -482,7 +484,7 @@ async def generate_instructions(bbox, original_image_path):
                     parent_bbox=bbox["parent"],
                 )
 
-                response = await call_with_retry(
+                response = await call_with_retry_openai(
                     client,
                     "gpt-4o-2024-11-20",
                     [

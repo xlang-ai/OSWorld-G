@@ -6,12 +6,10 @@ import requests
 import asyncio
 
 # import anthropic
-from concurrent.futures import ThreadPoolExecutor
-from typing import Dict, List, Union, Callable
+from typing import Dict, List, Union
 from queue import Queue
-from api import claude, client, call_with_retry
+from api import claude, client, call_with_retry_openai, call_with_retry_claude
 from logger import logger
-from openai import OpenAI
 from pydantic import BaseModel
 from render_prompts import (
     STYLE_CODE_GENERATE_PROMPT,
@@ -57,7 +55,7 @@ async def _generate_single_scenario_openai(
     )
 
     try:
-        response = await call_with_retry(
+        response = await call_with_retry_openai(
             client,
             "gpt-4o-2024-11-20",
             [
@@ -72,11 +70,11 @@ async def _generate_single_scenario_openai(
             ScenarioAugmentationResponse,
         )
         # logger.info(f"response:{response}")
-        with open("token_cost.txt", "a") as file:
-            file.write(f"prompt_gen_scenario:\n{response.usage.prompt_tokens}\n")
-            file.write(
-                f"completion_gen_scenario:\n{response.usage.completion_tokens}\n"
-            )
+        # with open("token_cost.txt", "a") as file:
+        #     file.write(f"prompt_gen_scenario:\n{response.usage.prompt_tokens}\n")
+        #     file.write(
+        #         f"completion_gen_scenario:\n{response.usage.completion_tokens}\n"
+        #     )
         json_response = response.choices[0].message.parsed
         new_style_code = json_response.new_style_code
 
@@ -100,7 +98,7 @@ async def _generate_single_scenario_openai(
             for item in imported_items:
                 if item not in import_list:
                     logger.info(f"wrong import: {item}")
-                    response = await call_with_retry(
+                    response = await call_with_retry_openai(
                         client,
                         "gpt-4o-2024-11-20",
                         [
@@ -120,13 +118,13 @@ async def _generate_single_scenario_openai(
                         1,
                         ScenarioAugmentationResponse,
                     )
-                    with open("token_cost.txt", "a") as file:
-                        file.write(
-                            f"prompt_gen_scenario:\n{response.usage.prompt_tokens}\n"
-                        )
-                        file.write(
-                            f"completion_gen_scenario:\n{response.usage.completion_tokens}\n"
-                        )
+                    # with open("token_cost.txt", "a") as file:
+                    #     file.write(
+                    #         f"prompt_gen_scenario:\n{response.usage.prompt_tokens}\n"
+                    #     )
+                    #     file.write(
+                    #         f"completion_gen_scenario:\n{response.usage.completion_tokens}\n"
+                    #     )
                     json_response = response.choices[0].message.parsed
                     new_style_code = json_response.new_style_code
 
@@ -151,7 +149,7 @@ async def _generate_single_scenario_openai(
         return None
 
 
-def _generate_single_scenario_claude(
+async def _generate_single_scenario_claude(
     component_root_name,
     component_constraint,
     base_component_code,
@@ -161,60 +159,53 @@ def _generate_single_scenario_claude(
 
     scenario_prompt = generate_new_scenario_component_prompt(
         component_root_name=component_root_name,
+        component_constraint=component_constraint,
         original_code=base_component_code,
         generated_codes=generated_codes,
     )
 
-    url = "https://api2.aigcbest.top/v1/chat/completions"
+    # url = "https://api2.aigcbest.top/v1/chat/completions"
 
-    payload = {
-        "model": "claude-3-5-sonnet-20241022",
-        "max_tokens": 4000,
-        "messages": [
-            {
-                "role": "user",
-                "content": [
-                    {"type": "text", "text": system_prompt},
-                    {"type": "text", "text": scenario_prompt},
-                ],
-            }
-        ],
-    }
+    # payload = {
+    #     "model": "claude-3-5-sonnet-20241022",
+    #     "max_tokens": 4000,
+    #     "messages": [
+    #         {
+    #             "role": "user",
+    #             "content": [
+    #                 {"type": "text", "text": system_prompt},
+    #                 {"type": "text", "text": scenario_prompt},
+    #             ],
+    #         }
+    #     ],
+    # }
 
-    headers = {
-        "Accept": "application/json",
-        "Authorization": f"Bearer {os.environ.get('CLAUDE_API_KEY')}",
-        "Content-Type": "application/json",
-    }
+    # headers = {
+    #     "Accept": "application/json",
+    #     "Authorization": f"Bearer {os.environ.get('CLAUDE_API_KEY')}",
+    #     "Content-Type": "application/json",
+    # }
 
     try:
-        response = requests.request("POST", url, headers=headers, json=payload)
-        # response = bedrock_claude.messages.create(
-        #     model="anthropic.claude-3-5-sonnet-20241022-v2:0",
-        #     max_tokens=4000,
-        #     messages=[
-        #         {
-        #             "role": "user",
-        #             "content": [
-        #                 {"type": "text", "text": system_prompt},
-        #                 {"type": "text", "text": scenario_prompt},
-        #             ],
-        #         }
-        #     ],
-        # )
+        # response = requests.request("POST", url, headers=headers, json=payload)
+        response = await call_with_retry_claude(
+            "claude-3-7-sonnet-20250219",
+            [
+                {
+                    "role": "user",
+                    "content": [
+                        {"type": "text", "text": system_prompt},
+                        {"type": "text", "text": scenario_prompt},
+                    ],
+                }
+            ],
+            1,
+        )
         response = json.loads(response.content)
-        # logger.info(f"response: {response}")
-
-        # with open("token_cost.txt", "a") as file:
-        #     file.write(f"prompt_gen_scenario:\n{response['usage']['prompt_tokens']}\n")
-        #     file.write(
-        #         f"completion_gen_scenario:\n{response['usage']['completion_tokens']}\n"
-        #     )
-
         json_response = response["choices"][0]["message"]["content"]
 
         # 直接从响应中提取 new_style_code
-        import re
+
 
         code_match = re.search(
             r'"new_style_code"\s*:\s*"((?:[^"\\]|\\.|\\n)*)"', json_response, re.DOTALL
@@ -222,12 +213,64 @@ def _generate_single_scenario_claude(
         if not code_match:
             raise ValueError("No new_style_code found in the response")
         new_style_code = code_match.group(1)
+
+        # import check
+        with open("import_list.json", "r") as file:
+            import_list = json.load(file)
+
+        lucide_line = [
+            line for line in new_style_code.split("\n") if "lucide-react" in line
+        ][0]
+        logger.info(lucide_line)
+        # 使用正则表达式提取花括号中的所有项
+        pattern = r"{(.*?)}"
+        matches = re.search(pattern, lucide_line)
+
+        if matches:
+            # 分割并去除空格
+            imported_items = [item.strip() for item in matches.group(1).split(",")]
+
+            # 检查每个引用项
+            for item in imported_items:
+                if item not in import_list:
+                    logger.info(f"wrong import: {item}")
+                    response = await call_with_retry_claude(
+                        "claude-3-7-sonnet-20250219",
+                        [
+                            {
+                                "role": "user",
+                                "content": [
+                                    {"type": "text", "text": system_prompt},
+                                    {"type": "text", "text": scenario_prompt},
+                                ],
+                            }
+                        ],
+                        1,
+                    )
+                    response = json.loads(response.content)
+                    json_response = response["choices"][0]["message"]["content"]
+
+                    # 直接从响应中提取 new_style_code
+
+                    code_match = re.search(
+                        r'"new_style_code"\s*:\s*"((?:[^"\\]|\\.|\\n)*)"', json_response, re.DOTALL
+                    )
+                    if not code_match:
+                        raise ValueError("No new_style_code found in the response")
+                    new_style_code = code_match.group(1)
+
+        # format check
         lines = new_style_code.split("\n")
 
         # 检查最后一行是否是 ");"
         if lines[-1] == "  );":
             # 在最后添加 "}"
             lines.append("}")
+
+        # 检查第一行和最后一行是否是```jsx，```
+        if lines[0].strip() == "```jsx" and lines[-1].strip() == "```":
+            # 去除第一行和最后一行的 ```jsx ```
+            lines = lines[1:-1]
 
         # 将修改后的行重新合并成一个字符串
         new_style_code = "\n".join(lines)
@@ -244,6 +287,7 @@ async def scenario_generation_worker(
     prev_generated_code_list: List[str],
     n: int,
     queue: Queue,
+    api_type: str
 ) -> None:
     """生产者：负责生成代码并放入队列"""
     generated_count = 0
@@ -254,13 +298,24 @@ async def scenario_generation_worker(
             new_generated_code = None
 
             while new_generated_code is None:
-                new_generated_code = await _generate_single_scenario_openai(
-                    component_root_name,
-                    component_constraint,
-                    base_component_code,
-                    prev_generated_code_list[-6:],
-                    SYSTEM_PROMPT_FOR_STYLE_AUGMENTATION,
-                )
+                if api_type == "openai":
+                    new_generated_code = await _generate_single_scenario_openai(
+                        component_root_name,
+                        component_constraint,
+                        base_component_code,
+                        prev_generated_code_list[-6:],
+                        SYSTEM_PROMPT_FOR_STYLE_AUGMENTATION,
+                    )
+                elif api_type == "claude":
+                    new_generated_code = await _generate_single_scenario_claude(
+                        component_root_name,
+                        component_constraint,
+                        base_component_code,
+                        prev_generated_code_list[-6:],
+                        SYSTEM_PROMPT_FOR_STYLE_AUGMENTATION,
+                    )
+                else:
+                    logger.error("Wrong API Type")
 
             prev_generated_code_list.append(new_generated_code)
             await queue.put(new_generated_code)
@@ -290,7 +345,7 @@ async def style_augmentation(
     #         }
     #     ],
     # )
-    response = await call_with_retry(
+    response = await call_with_retry_openai(
         client,
         "gpt-4o-2024-11-20",
         [
@@ -376,7 +431,7 @@ async def style_augmentation(
 
 
 async def main():
-    await _generate_single_scenario_openai(
+    claude_code = await _generate_single_scenario_claude(
         "slider",
         "",
         """import * as React from 'react';
@@ -403,6 +458,8 @@ export default function ColorSlider() {
         [],
         SYSTEM_PROMPT_FOR_STYLE_AUGMENTATION,
     )
+
+    print(f"CLAUDE_CODE: {str(claude_code)}")
 
 
 if __name__ == "__main__":

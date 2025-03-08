@@ -1,8 +1,13 @@
 # python main_bbox.py --port 3001 --components slider --scenario_count 2 > logs/session_3001_output.txt 2>&1
 # python main_bbox.py --port 3002 --components switches --scenario_count 2 > logs/session_3002_output.txt 2>&1
 # python main_bbox.py --port 3003 --components autocomplete --scenario_count 2 > logs/session_3003_output.txt 2>&1
-# TODO: add code re-write if it is wrong
-# TODO: 添加更多的组件库
+# TODO: add code re-write if it is wrong v
+
+# TODO: instructoin*2 v
+# TODO: test robustness
+# TODO: 添加更多的组件库 40min 1. gitpull 2. fetch code, 不需要readme的文本结构，扁平化处理 3. 整合到main_bbox里面， 组件库的名称应当作为一个参数
+# TODO: call_with_retry_openai for visual_filter
+
 import asyncio
 import datetime
 import platform
@@ -30,7 +35,6 @@ from javascripts import (
 from logger import logger
 from playwright.async_api import async_playwright
 from pydantic import BaseModel
-from screenshot_annotate import annotate_screenshot_component
 from style import scenario_generation_worker
 from filter import visual_filter
 
@@ -50,6 +54,7 @@ parser.add_argument(
     help="A list of strings separated by space.",
 )
 parser.add_argument("--scenario_count", type=int, required=True)
+parser.add_argument("--api_type", type=str, required=True)
 args = parser.parse_args()
 # print("components: ", args.components)
 
@@ -600,16 +605,6 @@ async def main():
                         # TODO： 修改生成逻辑，基于bbox生成
                         # TODO：unique action会很多，这种直接生成pyautogui.xxx(position)即可
                         logger.info(f"Generating action data")
-                        # action_intent_list, action_detail_list = (
-                        #     await generate_action_data(
-                        #         component_desc=component_desc,
-                        #         component_name=component_name,
-                        #         raw_component_path=screenshot_path,
-                        #         annotated_component_path=annotated_component_path,
-                        #         position=position,
-                        #         component_code=component_code,
-                        #     )
-                        # )
                         action_intent_list, action_detail_list = (
                             [],
                             generate_action_data_with_bbox(
@@ -640,9 +635,6 @@ async def main():
                                             / f"{component_name}.js"
                                         ),
                                         "screenshot_path": str(screenshot_path),
-                                        # "annotated_component_path": str(
-                                        #     annotated_component_path
-                                        # ),
                                         "annotated_action_path": [
                                             str(annotated_action_path)
                                             for annotated_action_path in annotated_action_paths
@@ -675,7 +667,6 @@ async def main():
                             return new_dict_list
 
                         # 使用 asyncio.create_task 创建并行任务
-                        # TODO： unique类型的并不需要处理
                         tasks = [
                             asyncio.create_task(process_grounding_task(action_detail))
                             for action_detail in action_detail_list
@@ -732,32 +723,32 @@ async def main():
                         )
 
                         # # 7.3 visual filter
-                        # old_len = len(grounding_dict_list)
-                        # true_len = 0
+                        old_len = len(grounding_dict_list)
+                        true_len = 0
 
-                        # # 定义一个包装函数，方便传递参数
-                        # logger.info(f"start to visual filter {grounding_dict_list}")
+                        # 定义一个包装函数，方便传递参数
+                        logger.info(f"start to visual filter {grounding_dict_list}")
 
-                        # async def visual_filter_task(grounding_dict):
-                        #     new_dict = await visual_filter(grounding_dict)
-                        #     return new_dict
+                        async def visual_filter_task(grounding_dict):
+                            new_dict = await visual_filter(grounding_dict)
+                            return new_dict
 
-                        # # 使用 asyncio.create_task 创建并行任务
-                        # tasks = [
-                        #     asyncio.create_task(visual_filter_task(grounding_dict))
-                        #     for grounding_dict in grounding_dict_list
-                        # ]
+                        # 使用 asyncio.create_task 创建并行任务
+                        tasks = [
+                            asyncio.create_task(visual_filter_task(grounding_dict))
+                            for grounding_dict in grounding_dict_list
+                        ]
 
-                        # grounding_dict_list = []
-                        # # 等待所有任务完成并收集结果
-                        # for task in tasks:
-                        #     new_dict = await task  # 等待每个任务的结果
-                        #     if new_dict is not None:
-                        #         grounding_dict_list.append(new_dict)
-                        #     if new_dict["is_correct"]:
-                        #         true_len += 1
+                        grounding_dict_list = []
+                        # 等待所有任务完成并收集结果
+                        for task in tasks:
+                            new_dict = await task  # 等待每个任务的结果
+                            if new_dict is not None:
+                                grounding_dict_list.append(new_dict)
+                            if new_dict["is_correct"]:
+                                true_len += 1
 
-                        # logger.info(f"visual filter from {old_len} to {true_len}")
+                        logger.info(f"visual filter from {old_len} to {true_len}")
 
                         for grounding_index, grounding_dict in enumerate(
                             grounding_dict_list
@@ -879,6 +870,7 @@ async def main():
                         prev_generated_code_list,
                         args.scenario_count,
                         code_queue,
+                        args.api_type
                     )
                 )
                 task2 = asyncio.create_task(process_queue(code_queue))

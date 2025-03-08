@@ -4,7 +4,7 @@ import json
 import time
 import shutil
 from render_prompts import VISUAL_FILTER_PROMPT
-from api import client, claude, call_with_retry
+from api import client, claude, call_with_retry_openai
 from utils import encode_image
 from logger import logger
 from typing import Dict, List
@@ -100,7 +100,7 @@ async def visual_filter(
                 }
             ]
         )
-        response = await call_with_retry(
+        response = await call_with_retry_openai(
             client,
             "gpt-4o-2024-11-20",
             messages,
@@ -109,18 +109,6 @@ async def visual_filter(
         )
         original_filter_result = response.choices[0].message.parsed
         logger.info(f"Visual Filter Done, result: {original_filter_result.is_correct}")
-        # if original_filter_result.is_correct:
-        #     for more_instruction in original_filter_result.more_instructions:
-        #         new_grounding_dict_list.append(
-        #             {
-        #                 "instruction": more_instruction,
-        #                 "action": grounding_dict["action"],
-        #                 "coords_list": grounding_dict["coords_list"],
-        #                 "thought_process": original_filter_result.thought_process,
-        #                 "is_correct": original_filter_result.is_correct,
-        #                 "correct_instruction": original_filter_result.correct_instruction,
-        #             }
-        #         )
         new_grounding_dict = {
             **grounding_dict,
             "thought_process": original_filter_result.thought_process,
@@ -231,12 +219,12 @@ if __name__ == "__main__":
         "app-bar",
     ]
     for name in name_list:
-        data_dir = f"/Users/nickyang/Desktop/Research/HKUNLP/OSWorld-G/training_data/component_render/data/20250125_v0/{name}/grounding"
-        grounding_screenshot_dir = f"/Users/nickyang/Desktop/Research/HKUNLP/OSWorld-G/training_data/component_render/data/20250125_v0/{name}/grounding_screenshot"
-        original_screenshot_dir = f"/Users/nickyang/Desktop/Research/HKUNLP/OSWorld-G/training_data/component_render/data/20250125_v0/{name}/other_screenshot/original"
+        data_dir = f""
+        grounding_screenshot_dir = f""
+        original_screenshot_dir = f""
 
-        screenshot_true_dir = f"/Users/nickyang/Desktop/Research/HKUNLP/OSWorld-G/training_data/component_render/data/20250125_v0/{name}/grounding_true_screenshot"
-        screenshot_false_dir = f"/Users/nickyang/Desktop/Research/HKUNLP/OSWorld-G/training_data/component_render/data/20250125_v0/{name}/grounding_false_screenshot"
+        screenshot_true_dir = f""
+        screenshot_false_dir = f""
         os.makedirs(screenshot_true_dir, exist_ok=True)
         os.makedirs(screenshot_false_dir, exist_ok=True)
         data_file_list = os.listdir(data_dir)

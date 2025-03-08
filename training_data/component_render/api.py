@@ -1,4 +1,7 @@
 import os
+import json
+from anthropic import AnthropicBedrock
+import boto3
 import asyncio
 import anthropic
 from aiohttp import ClientError
@@ -21,13 +24,26 @@ claude = anthropic.Anthropic()
 MAX_RETRIES = 5  # 最多重试次数
 RETRY_DELAY = 3  # 每次重试之间的延迟（秒）
 
+bedrock = boto3.client(service_name="bedrock", region_name="us-west-2")
+
+try:
+    response = bedrock.list_foundation_models(byProvider="anthropic")
+    print("Available models:")
+    for summary in response["modelSummaries"]:
+        print(f"- {summary['modelId']}")
+except Exception as e:
+    print(f"Error listing models: {e}")
+
+bedrock_claude = AnthropicBedrock(
+    aws_region="us-west-2",
+)
 
 class ScenarioAugmentationResponse(BaseModel):
     thoughts: str
     new_style_code: str
 
 
-async def call_with_retry(client, model, messages, temperature, response_format):
+async def call_with_retry_openai(client, model, messages, temperature, response_format):
     retries = 0
     while retries < MAX_RETRIES:
         try:
@@ -48,10 +64,33 @@ async def call_with_retry(client, model, messages, temperature, response_format)
                 raise e  # 达到最大重试次数时抛出异常
             await asyncio.sleep(RETRY_DELAY)  # 等待后再重试
 
+async def call_with_retry_claude(model, messages, temperature):
+    retries = 0
+    while retries < MAX_RETRIES:
+        try:
+                # 调用你的 API 函数
+            response = bedrock_claude.messages.create(
+                model=model,
+                max_tokens=4000,
+                messages=messages,
+                temperature=temperature
+            )
+            response = json.loads(response.content)
+            # print(f"response: {response}")
+            return response  # 成功获取响应后返回
+        except Exception as e:  # 捕获连接错误或超时
+            print(e)
+            retries += 1
+            logger.error(f"connection error, retry...  {retries} time")
+            if retries >= MAX_RETRIES:
+                logger.error("maximum retry times, quit")
+                raise e  # 达到最大重试次数时抛出异常
+            await asyncio.sleep(RETRY_DELAY)  # 等待后再重试
+
 
 async def main():
     try:
-        await call_with_retry(
+        await call_with_retry_claude(
             client,
             "gpt-4o-2024-11-20",
             [
