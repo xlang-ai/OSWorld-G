@@ -1,0 +1,3112 @@
+{
+    "ant-design": {
+        "tabs": [
+            "position.tsx",
+            "size.tsx",
+            "custom-indicator.tsx",
+            "animated.tsx",
+            "card-top.tsx",
+            "card.tsx",
+            "icon.tsx",
+            "editable-card.tsx",
+            "extra.tsx",
+            "component-token.tsx",
+            "nest.tsx",
+            "centered.tsx",
+            "disabled.tsx",
+            "custom-tab-bar-node.tsx",
+            "basic.tsx",
+            "slide.tsx",
+            "custom-tab-bar.tsx",
+            "custom-add-trigger.tsx"
+        ],
+        "tree": [
+            "big-data.tsx",
+            "basic-controlled.tsx",
+            "drag-debug.tsx",
+            "search.tsx",
+            "customized-icon.tsx",
+            "directory-debug.tsx",
+            "draggable.tsx",
+            "directory.tsx",
+            "component-token.tsx",
+            "dynamic.tsx",
+            "switcher-icon.tsx",
+            "basic.tsx",
+            "block-node.tsx",
+            "line.tsx",
+            "multiple-line.tsx",
+            "virtual-scroll.tsx"
+        ],
+        "tree-select": [
+            "maxCountNoEffect.tsx",
+            "variant.tsx",
+            "async.tsx",
+            "maxCount.tsx",
+            "checkable.tsx",
+            "component-token.tsx",
+            "render-panel.tsx",
+            "treeData.tsx",
+            "placement.tsx",
+            "multiple.tsx",
+            "status.tsx",
+            "suffix.tsx",
+            "basic.tsx",
+            "treeLine.tsx"
+        ],
+        "rate": [
+            "clear.tsx",
+            "character-function.tsx",
+            "half.tsx",
+            "component-token.tsx",
+            "disabled.tsx",
+            "character.tsx",
+            "basic.tsx",
+            "text.tsx"
+        ],
+        "dropdown": [
+            "arrow-center.tsx",
+            "sub-menu.tsx",
+            "custom-dropdown.tsx",
+            "event.tsx",
+            "arrow.tsx",
+            "dropdown-button.tsx",
+            "trigger.tsx",
+            "menu-full.tsx",
+            "extra.tsx",
+            "render-panel.tsx",
+            "selectable.tsx",
+            "placement.tsx",
+            "icon-debug.tsx",
+            "item.tsx",
+            "sub-menu-debug.tsx",
+            "loading.tsx",
+            "basic.tsx",
+            "overlay-open.tsx",
+            "context-menu.tsx"
+        ],
+        "drawer": [
+            "multi-level-drawer.tsx",
+            "size.tsx",
+            "scroll-debug.tsx",
+            "no-mask.tsx",
+            "basic-right.tsx",
+            "render-in-current.tsx",
+            "_semantic.tsx",
+            "extra.tsx",
+            "config-provider.tsx",
+            "component-token.tsx",
+            "form-in-drawer.tsx",
+            "render-panel.tsx",
+            "classNames.tsx",
+            "placement.tsx",
+            "user-profile.tsx",
+            "loading.tsx"
+        ],
+        "pagination": [
+            "jump.tsx",
+            "controlled.tsx",
+            "all.tsx",
+            "wireframe.tsx",
+            "align.tsx",
+            "component-token.tsx",
+            "mini.tsx",
+            "simple.tsx",
+            "total.tsx",
+            "basic.tsx",
+            "changer.tsx",
+            "itemRender.tsx",
+            "more.tsx"
+        ],
+        "form": [
+            "validate-trigger.tsx",
+            "validate-scroll-to-field.tsx",
+            "complex-form-control.tsx",
+            "size.tsx",
+            "control-hooks.tsx",
+            "dynamic-rule.tsx",
+            "layout-multiple.tsx",
+            "warning-only.tsx",
+            "disabled-input-debug.tsx",
+            "login.tsx",
+            "getValueProps-normalize.tsx",
+            "dynamic-form-items.tsx",
+            "layout-can-wrap.tsx",
+            "dynamic-form-items-no-style.tsx",
+            "variant.tsx",
+            "register.tsx",
+            "dynamic-form-items-complex.tsx",
+            "validate-other.tsx",
+            "custom-feedback-icons.tsx",
+            "label-debug.tsx",
+            "inline-login.tsx",
+            "form-item-path.tsx",
+            "without-form-create.tsx",
+            "component-token.tsx",
+            "validate-static.tsx",
+            "validate-only.tsx",
+            "form-dependencies.tsx",
+            "advanced-search.tsx",
+            "nest-messages.tsx",
+            "ref-item.tsx",
+            "layout.tsx",
+            "col-24-debug.tsx",
+            "disabled.tsx",
+            "basic.tsx",
+            "form-in-modal.tsx",
+            "required-mark.tsx",
+            "form-context.tsx",
+            "useWatch.tsx",
+            "global-state.tsx",
+            "time-related-controls.tsx",
+            "customized-form-controls.tsx",
+            "dynamic-form-item.tsx"
+        ],
+        "tooltip": [
+            "shift.tsx",
+            "arrow.tsx",
+            "wrap-custom-component.tsx",
+            "disabled-children.tsx",
+            "arrow-point-at-center.tsx",
+            "debug.tsx",
+            "_semantic.tsx",
+            "destroy-tooltip-on-hide.tsx",
+            "render-panel.tsx",
+            "placement.tsx",
+            "colorful.tsx",
+            "disabled.tsx",
+            "basic.tsx",
+            "auto-adjust-overflow.tsx"
+        ],
+        "result": [
+            "403.tsx",
+            "warning.tsx",
+            "info.tsx",
+            "404.tsx",
+            "500.tsx",
+            "component-token.tsx",
+            "success.tsx",
+            "error.tsx",
+            "customIcon.tsx"
+        ],
+        "calendar": [
+            "card.tsx",
+            "week.tsx",
+            "notice-calendar.tsx",
+            "component-token.tsx",
+            "customize-header.tsx",
+            "basic.tsx",
+            "lunar.tsx",
+            "select.tsx"
+        ],
+        "radio": [
+            "radiogroup-options.tsx",
+            "size.tsx",
+            "radiogroup-block.tsx",
+            "radiobutton-solid.tsx",
+            "wireframe.tsx",
+            "component-token.tsx",
+            "radiogroup-with-name.tsx",
+            "radiobutton.tsx",
+            "disabled.tsx",
+            "badge.tsx",
+            "basic.tsx",
+            "debug-upload.tsx",
+            "radiogroup.tsx",
+            "radiogroup-more.tsx"
+        ],
+        "card": [
+            "inner.tsx",
+            "flexible-content.tsx",
+            "tabs.tsx",
+            "in-column.tsx",
+            "meta.tsx",
+            "_semantic.tsx",
+            "component-token.tsx",
+            "simple.tsx",
+            "loading.tsx",
+            "basic.tsx",
+            "border-less.tsx",
+            "grid-card.tsx"
+        ],
+        "app": [
+            "config.tsx",
+            "basic.tsx"
+        ],
+        "empty": [
+            "_semantic.tsx",
+            "config-provider.tsx",
+            "customize.tsx",
+            "description.tsx",
+            "simple.tsx",
+            "basic.tsx"
+        ],
+        "input-number": [
+            "size.tsx",
+            "keyboard.tsx",
+            "focus.tsx",
+            "addon.tsx",
+            "presuffix.tsx",
+            "formatter.tsx",
+            "variant.tsx",
+            "filled-debug.tsx",
+            "render-panel.tsx",
+            "debug-token.tsx",
+            "disabled.tsx",
+            "change-on-wheel.tsx",
+            "digit.tsx",
+            "status.tsx",
+            "basic.tsx",
+            "controls.tsx",
+            "out-of-range.tsx"
+        ],
+        "auto-complete": [
+            "allowClear.tsx",
+            "custom.tsx",
+            "form-debug.tsx",
+            "non-case-sensitive.tsx",
+            "certain-category.tsx",
+            "variant.tsx",
+            "AutoComplete-and-Select.tsx",
+            "render-panel.tsx",
+            "options.tsx",
+            "status.tsx",
+            "basic.tsx",
+            "uncertain-category.tsx"
+        ],
+        "progress": [
+            "steps.tsx",
+            "size.tsx",
+            "circle-steps.tsx",
+            "dashboard.tsx",
+            "segment.tsx",
+            "circle-mini.tsx",
+            "circle.tsx",
+            "gradient-line.tsx",
+            "component-token.tsx",
+            "dynamic.tsx",
+            "circle-micro.tsx",
+            "linecap.tsx",
+            "line-mini.tsx",
+            "format.tsx",
+            "info-position.tsx",
+            "line.tsx"
+        ],
+        "time-picker": [
+            "size.tsx",
+            "colored-popup.tsx",
+            "change-on-scroll.tsx",
+            "hide-column.tsx",
+            "12hours.tsx",
+            "addon.tsx",
+            "need-confirm.tsx",
+            "value.tsx",
+            "variant.tsx",
+            "interval-options.tsx",
+            "render-panel.tsx",
+            "disabled.tsx",
+            "status.tsx",
+            "suffix.tsx",
+            "basic.tsx",
+            "range-picker.tsx"
+        ],
+        "input": [
+            "group.tsx",
+            "allowClear.tsx",
+            "size.tsx",
+            "search-input.tsx",
+            "focus.tsx",
+            "autosize-textarea.tsx",
+            "addon.tsx",
+            "presuffix.tsx",
+            "show-count.tsx",
+            "textarea-resize.tsx",
+            "variant.tsx",
+            "advance-count.tsx",
+            "tooltip.tsx",
+            "otp.tsx",
+            "align.tsx",
+            "component-token.tsx",
+            "password-input.tsx",
+            "filled-debug.tsx",
+            "compact-style.tsx",
+            "_semantic_input.tsx",
+            "search-input-loading.tsx",
+            "status.tsx",
+            "borderless-debug.tsx",
+            "debug-addon.tsx",
+            "_semantic_textarea.tsx",
+            "basic.tsx",
+            "textarea.tsx"
+        ],
+        "notification": [
+            "with-icon.tsx",
+            "custom-style.tsx",
+            "hooks.tsx",
+            "update.tsx",
+            "custom-icon.tsx",
+            "stack.tsx",
+            "with-btn.tsx",
+            "render-panel.tsx",
+            "placement.tsx",
+            "show-with-progress.tsx",
+            "basic.tsx",
+            "duration.tsx"
+        ],
+        "alert": [
+            "action.tsx",
+            "banner.tsx",
+            "error-boundary.tsx",
+            "icon.tsx",
+            "custom-icon.tsx",
+            "description.tsx",
+            "component-token.tsx",
+            "basic.tsx",
+            "style.tsx",
+            "closable.tsx",
+            "smooth-closed.tsx",
+            "loop-banner.tsx"
+        ],
+        "popconfirm": [
+            "promise.tsx",
+            "icon.tsx",
+            "shift.tsx",
+            "_semantic.tsx",
+            "async.tsx",
+            "wireframe.tsx",
+            "dynamic-trigger.tsx",
+            "render-panel.tsx",
+            "placement.tsx",
+            "basic.tsx",
+            "locale.tsx"
+        ],
+        "skeleton": [
+            "element.tsx",
+            "children.tsx",
+            "list.tsx",
+            "complex.tsx",
+            "componentToken.tsx",
+            "basic.tsx",
+            "active.tsx"
+        ],
+        "layout": [
+            "custom-trigger.tsx",
+            "custom-trigger-debug.tsx",
+            "top-side-2.tsx",
+            "side.tsx",
+            "top-side.tsx",
+            "component-token.tsx",
+            "top.tsx",
+            "fixed-sider.tsx",
+            "basic.tsx",
+            "fixed.tsx",
+            "responsive.tsx"
+        ],
+        "segmented": [
+            "custom.tsx",
+            "size.tsx",
+            "with-icon.tsx",
+            "controlled.tsx",
+            "controlled-two.tsx",
+            "shape.tsx",
+            "vertical.tsx",
+            "icon-only.tsx",
+            "componentToken.tsx",
+            "dynamic.tsx",
+            "block.tsx",
+            "disabled.tsx",
+            "basic.tsx",
+            "with-name.tsx",
+            "size-consistent.tsx"
+        ],
+        "cascader": [
+            "change-on-select.tsx",
+            "size.tsx",
+            "custom-render.tsx",
+            "custom-dropdown.tsx",
+            "custom-trigger.tsx",
+            "search.tsx",
+            "variant.tsx",
+            "fields-name.tsx",
+            "showCheckedStrategy.tsx",
+            "component-token.tsx",
+            "render-panel.tsx",
+            "panel.tsx",
+            "placement.tsx",
+            "multiple.tsx",
+            "status.tsx",
+            "suffix.tsx",
+            "basic.tsx",
+            "lazy.tsx",
+            "disabled-option.tsx",
+            "hover.tsx",
+            "default-value.tsx"
+        ],
+        "checkbox": [
+            "group.tsx",
+            "debug-line.tsx",
+            "controller.tsx",
+            "debug-disable-popover.tsx",
+            "check-all.tsx",
+            "custom-line-width.tsx",
+            "layout.tsx",
+            "disabled.tsx",
+            "basic.tsx"
+        ],
+        "transfer": [
+            "table-transfer.tsx",
+            "tree-transfer.tsx",
+            "custom-select-all-labels.tsx",
+            "oneWay.tsx",
+            "large-data.tsx",
+            "search.tsx",
+            "component-token.tsx",
+            "status.tsx",
+            "basic.tsx",
+            "custom-item.tsx",
+            "advanced.tsx"
+        ],
+        "splitter": [
+            "group.tsx",
+            "size.tsx",
+            "debug.tsx",
+            "vertical.tsx",
+            "control.tsx",
+            "multiple.tsx",
+            "nested-in-tabs.tsx",
+            "lazy.tsx",
+            "collapsible.tsx"
+        ],
+        "descriptions": [
+            "size.tsx",
+            "border.tsx",
+            "padding.tsx",
+            "vertical.tsx",
+            "_semantic.tsx",
+            "component-token.tsx",
+            "block.tsx",
+            "vertical-border.tsx",
+            "jsx.tsx",
+            "basic.tsx",
+            "style.tsx",
+            "text.tsx",
+            "responsive.tsx"
+        ],
+        "slider": [
+            "editable.tsx",
+            "tip-formatter.tsx",
+            "show-tooltip.tsx",
+            "event.tsx",
+            "vertical.tsx",
+            "_semantic.tsx",
+            "icon-slider.tsx",
+            "reverse.tsx",
+            "component-token.tsx",
+            "multiple.tsx",
+            "draggableTrack.tsx",
+            "basic.tsx",
+            "input-number.tsx",
+            "mark.tsx"
+        ],
+        "message": [
+            "custom-style.tsx",
+            "hooks.tsx",
+            "info.tsx",
+            "update.tsx",
+            "component-token.tsx",
+            "render-panel.tsx",
+            "other.tsx",
+            "loading.tsx",
+            "thenable.tsx",
+            "duration.tsx"
+        ],
+        "mentions": [
+            "allowClear.tsx",
+            "autoSize.tsx",
+            "prefix.tsx",
+            "variant.tsx",
+            "async.tsx",
+            "readonly.tsx",
+            "component-token.tsx",
+            "render-panel.tsx",
+            "placement.tsx",
+            "status.tsx",
+            "basic.tsx",
+            "form.tsx"
+        ],
+        "collapse": [
+            "custom.tsx",
+            "size.tsx",
+            "mix.tsx",
+            "ghost.tsx",
+            "noarrow.tsx",
+            "borderless.tsx",
+            "_semantic.tsx",
+            "accordion.tsx",
+            "extra.tsx",
+            "component-token.tsx",
+            "basic.tsx",
+            "collapsible.tsx"
+        ],
+        "back-top": [
+            "custom.tsx",
+            "basic.tsx"
+        ],
+        "spin": [
+            "size.tsx",
+            "custom-indicator.tsx",
+            "nested.tsx",
+            "delayAndDebounce.tsx",
+            "fullscreen.tsx",
+            "basic.tsx",
+            "percent.tsx",
+            "tip.tsx"
+        ],
+        "carousel": [
+            "position.tsx",
+            "fade.tsx",
+            "arrows.tsx",
+            "component-token.tsx",
+            "dot-duration.tsx",
+            "basic.tsx",
+            "autoplay.tsx"
+        ],
+        "image": [
+            "nested.tsx",
+            "preview-group-top-progress.tsx",
+            "previewSrc.tsx",
+            "imageRender.tsx",
+            "controlled-preview.tsx",
+            "component-token.tsx",
+            "preview-imgInfo.tsx",
+            "placeholder.tsx",
+            "toolbarRender.tsx",
+            "preview-mask.tsx",
+            "preview-group-visible.tsx",
+            "basic.tsx",
+            "fallback.tsx",
+            "preview-group.tsx"
+        ],
+        "qr-code": [
+            "type.tsx",
+            "download.tsx",
+            "customColor.tsx",
+            "Popover.tsx",
+            "customStatusRender.tsx",
+            "icon.tsx",
+            "errorlevel.tsx",
+            "base.tsx",
+            "status.tsx",
+            "customSize.tsx"
+        ],
+        "config-provider": [
+            "size.tsx",
+            "direction.tsx",
+            "warning.tsx",
+            "useConfig.tsx",
+            "prefixCls.tsx",
+            "holderRender.tsx",
+            "theme.tsx",
+            "wave.tsx",
+            "locale.tsx"
+        ],
+        "popover": [
+            "shift.tsx",
+            "arrow.tsx",
+            "arrow-point-at-center.tsx",
+            "hover-with-click.tsx",
+            "triggerType.tsx",
+            "control.tsx",
+            "_semantic.tsx",
+            "wireframe.tsx",
+            "component-token.tsx",
+            "render-panel.tsx",
+            "placement.tsx",
+            "basic.tsx"
+        ],
+        "watermark": [
+            "custom.tsx",
+            "multi-line.tsx",
+            "portal.tsx",
+            "basic.tsx",
+            "image.tsx"
+        ],
+        "button": [
+            "color-variant.tsx",
+            "linear-gradient.tsx",
+            "size.tsx",
+            "debug-block.tsx",
+            "icon.tsx",
+            "ghost.tsx",
+            "_semantic.tsx",
+            "debug-color-variant.tsx",
+            "component-token.tsx",
+            "chinese-space.tsx",
+            "block.tsx",
+            "multiple.tsx",
+            "disabled.tsx",
+            "loading.tsx",
+            "basic.tsx",
+            "debug-icon.tsx",
+            "icon-position.tsx",
+            "danger.tsx",
+            "chinese-chars-loading.tsx",
+            "legacy-group.tsx"
+        ],
+        "steps": [
+            "nav.tsx",
+            "progress-dot.tsx",
+            "customized-progress-dot.tsx",
+            "progress.tsx",
+            "icon.tsx",
+            "clickable.tsx",
+            "step-next.tsx",
+            "progress-dot-small.tsx",
+            "vertical.tsx",
+            "wireframe.tsx",
+            "vertical-small.tsx",
+            "small-size.tsx",
+            "inline.tsx",
+            "component-token.tsx",
+            "error.tsx",
+            "steps-in-steps.tsx",
+            "simple.tsx",
+            "progress-debug.tsx",
+            "label-placement.tsx"
+        ],
+        "date-picker": [
+            "size.tsx",
+            "mode.tsx",
+            "time.tsx",
+            "allow-empty.tsx",
+            "disabled-date.tsx",
+            "multiple-debug.tsx",
+            "buddhist-era.tsx",
+            "variant.tsx",
+            "start-end.tsx",
+            "component-token.tsx",
+            "filled-debug.tsx",
+            "render-panel.tsx",
+            "placement.tsx",
+            "date-range.tsx",
+            "switchable.tsx",
+            "multiple.tsx",
+            "disabled.tsx",
+            "components.tsx",
+            "status.tsx",
+            "suffix.tsx",
+            "basic.tsx",
+            "mask.tsx",
+            "cell-render.tsx",
+            "select-in-range.tsx",
+            "format.tsx",
+            "extra-footer.tsx",
+            "range-picker.tsx",
+            "needConfirm.tsx",
+            "preset-ranges.tsx"
+        ],
+        "table": [
+            "row-selection.tsx",
+            "narrow.tsx",
+            "edit-row.tsx",
+            "size.tsx",
+            "bordered.tsx",
+            "expand.tsx",
+            "ajax.tsx",
+            "row-selection-debug.tsx",
+            "fixed-columns-header.tsx",
+            "filter-search.tsx",
+            "pagination.tsx",
+            "multiple-sorter.tsx",
+            "hidden-columns.tsx",
+            "virtual-list.tsx",
+            "tree-data.tsx",
+            "resizable-column.tsx",
+            "dynamic-settings.tsx",
+            "fixed-columns.tsx",
+            "fixed-header.tsx",
+            "row-selection-and-operation.tsx",
+            "fixed-gapped-columns.tsx",
+            "grouping-columns.tsx",
+            "custom-filter-panel.tsx",
+            "nested-table.tsx",
+            "edit-cell.tsx",
+            "drag-sorting-handler.tsx",
+            "colspan-rowspan.tsx",
+            "reset-filter.tsx",
+            "sticky.tsx",
+            "tree-table-ellipsis.tsx",
+            "component-token.tsx",
+            "ellipsis.tsx",
+            "head.tsx",
+            "ellipsis-custom-tooltip.tsx",
+            "order-column.tsx",
+            "filter-in-tree.tsx",
+            "custom-empty.tsx",
+            "jsx.tsx",
+            "row-selection-custom-debug.tsx",
+            "basic.tsx",
+            "nest-table-border-debug.tsx",
+            "row-selection-custom.tsx",
+            "drag-column-sorting.tsx",
+            "tree-table-preserveSelectedRowKeys.tsx",
+            "drag-sorting.tsx",
+            "summary.tsx",
+            "responsive.tsx",
+            "selections-debug.tsx"
+        ],
+        "list": [
+            "pagination.tsx",
+            "virtual-list.tsx",
+            "loadmore.tsx",
+            "grid.tsx",
+            "infinite-load.tsx",
+            "vertical.tsx",
+            "_semantic.tsx",
+            "grid-test.tsx",
+            "component-token.tsx",
+            "simple.tsx",
+            "basic.tsx",
+            "responsive.tsx"
+        ],
+        "divider": [
+            "horizontal.tsx",
+            "variant.tsx",
+            "vertical.tsx",
+            "component-token.tsx",
+            "plain.tsx",
+            "customize-style.tsx",
+            "with-text.tsx"
+        ],
+        "menu": [
+            "extra-style.tsx",
+            "horizontal.tsx",
+            "inline-collapsed.tsx",
+            "vertical.tsx",
+            "theme.tsx",
+            "inline.tsx",
+            "component-token.tsx",
+            "sider-current.tsx",
+            "submenu-theme.tsx",
+            "menu-v4.tsx",
+            "style-debug.tsx",
+            "horizontal-dark.tsx",
+            "switch-mode.tsx"
+        ],
+        "avatar": [
+            "group.tsx",
+            "type.tsx",
+            "component-token.tsx",
+            "dynamic.tsx",
+            "badge.tsx",
+            "toggle-debug.tsx",
+            "basic.tsx",
+            "fallback.tsx",
+            "responsive.tsx"
+        ],
+        "typography": [
+            "editable.tsx",
+            "title.tsx",
+            "componentToken-debug.tsx",
+            "paragraph-debug.tsx",
+            "ellipsis-debug.tsx",
+            "copyable.tsx",
+            "ellipsis-middle.tsx",
+            "ellipsis.tsx",
+            "suffix.tsx",
+            "basic.tsx",
+            "text.tsx",
+            "ellipsis-controlled.tsx"
+        ],
+        "switch": [
+            "size.tsx",
+            "component-token.tsx",
+            "disabled.tsx",
+            "loading.tsx",
+            "basic.tsx",
+            "text.tsx"
+        ],
+        "tour": [
+            "indicator.tsx",
+            "render-panel.tsx",
+            "placement.tsx",
+            "gap.tsx",
+            "basic.tsx",
+            "mask.tsx",
+            "non-modal.tsx"
+        ],
+        "anchor": [
+            "static.tsx",
+            "horizontal.tsx",
+            "customizeHighlight.tsx",
+            "legacy-anchor.tsx",
+            "component-token.tsx",
+            "onChange.tsx",
+            "replace.tsx",
+            "basic.tsx",
+            "onClick.tsx",
+            "targetOffset.tsx"
+        ],
+        "select": [
+            "size.tsx",
+            "big-data.tsx",
+            "custom-tag-render.tsx",
+            "placement-debug.tsx",
+            "search-filter-option.tsx",
+            "select-users.tsx",
+            "custom-label-render.tsx",
+            "search.tsx",
+            "variant.tsx",
+            "debug.tsx",
+            "hide-selected.tsx",
+            "optgroup.tsx",
+            "search-sort.tsx",
+            "search-box.tsx",
+            "maxCount.tsx",
+            "option-label-center.tsx",
+            "tags.tsx",
+            "coordinate.tsx",
+            "component-token.tsx",
+            "filled-debug.tsx",
+            "render-panel.tsx",
+            "debug-flip-shift.tsx",
+            "placement.tsx",
+            "multiple.tsx",
+            "status.tsx",
+            "suffix.tsx",
+            "automatic-tokenization.tsx",
+            "basic.tsx",
+            "label-in-value.tsx",
+            "option-render.tsx",
+            "custom-dropdown-menu.tsx",
+            "responsive.tsx"
+        ],
+        "statistic": [
+            "animated.tsx",
+            "card.tsx",
+            "unit.tsx",
+            "countdown.tsx",
+            "component-token.tsx",
+            "basic.tsx"
+        ],
+        "breadcrumb": [
+            "separator-component.tsx",
+            "withIcon.tsx",
+            "withParams.tsx",
+            "component-token.tsx",
+            "basic.tsx",
+            "separator.tsx",
+            "overlay.tsx",
+            "debug-routes.tsx"
+        ],
+        "icon": [
+            "custom.tsx",
+            "iconfont.tsx",
+            "basic.tsx",
+            "scriptUrl.tsx",
+            "two-tone.tsx"
+        ],
+        "modal": [
+            "position.tsx",
+            "dark.tsx",
+            "nested.tsx",
+            "width.tsx",
+            "hooks.tsx",
+            "confirm-router.tsx",
+            "_semantic.tsx",
+            "async.tsx",
+            "wireframe.tsx",
+            "footer.tsx",
+            "component-token.tsx",
+            "manual.tsx",
+            "render-panel.tsx",
+            "classNames.tsx",
+            "footer-render.tsx",
+            "confirm.tsx",
+            "loading.tsx",
+            "basic.tsx",
+            "locale.tsx",
+            "static-info.tsx",
+            "modal-render.tsx",
+            "button-props.tsx",
+            "custom-mouse-position.tsx"
+        ],
+        "space": [
+            "compact-buttons.tsx",
+            "size.tsx",
+            "compact-debug.tsx",
+            "compact-button-vertical.tsx",
+            "debug.tsx",
+            "vertical.tsx",
+            "_semantic.tsx",
+            "compact.tsx",
+            "align.tsx",
+            "gap-in-line.tsx",
+            "base.tsx",
+            "wrap.tsx",
+            "compact-nested.tsx",
+            "split.tsx"
+        ],
+        "color-picker": [
+            "allowClear.tsx",
+            "text-render.tsx",
+            "size.tsx",
+            "controlled.tsx",
+            "trigger-event.tsx",
+            "trigger.tsx",
+            "base.tsx",
+            "disabled-alpha.tsx",
+            "presets.tsx",
+            "panel-render.tsx",
+            "disabled.tsx",
+            "pure-panel.tsx",
+            "line-gradient.tsx",
+            "format.tsx"
+        ],
+        "timeline": [
+            "custom.tsx",
+            "alternate.tsx",
+            "label.tsx",
+            "wireframe.tsx",
+            "component-token.tsx",
+            "color.tsx",
+            "basic.tsx",
+            "pending.tsx",
+            "right.tsx"
+        ],
+        "flex": [
+            "debug.tsx",
+            "align.tsx",
+            "combination.tsx",
+            "wrap.tsx",
+            "gap.tsx",
+            "basic.tsx"
+        ],
+        "tag": [
+            "icon.tsx",
+            "control.tsx",
+            "borderless.tsx",
+            "draggable.tsx",
+            "animation.tsx",
+            "checkable.tsx",
+            "customize.tsx",
+            "component-token.tsx",
+            "colorful.tsx",
+            "borderlessLayout.tsx",
+            "status.tsx",
+            "colorful-inverse.tsx",
+            "basic.tsx"
+        ],
+        "float-button": [
+            "group.tsx",
+            "type.tsx",
+            "controlled.tsx",
+            "shape.tsx",
+            "tooltip.tsx",
+            "description.tsx",
+            "render-panel.tsx",
+            "placement.tsx",
+            "group-menu.tsx",
+            "badge-debug.tsx",
+            "badge.tsx",
+            "basic.tsx",
+            "back-top.tsx"
+        ],
+        "affix": [
+            "debug.tsx",
+            "target.tsx",
+            "basic.tsx",
+            "on-change.tsx"
+        ],
+        "upload": [
+            "preview-file.tsx",
+            "debug-disabled.tsx",
+            "transform-file.tsx",
+            "upload-custom-action-icon.tsx",
+            "picture-card.tsx",
+            "drag.tsx",
+            "picture-style.tsx",
+            "upload-manually.tsx",
+            "directory.tsx",
+            "upload-with-aliyun-oss.tsx",
+            "component-token.tsx",
+            "defaultFileList.tsx",
+            "fileList.tsx",
+            "avatar.tsx",
+            "upload-png-only.tsx",
+            "file-type.tsx",
+            "crop-image.tsx",
+            "basic.tsx",
+            "picture-circle.tsx",
+            "customize-progress-bar.tsx",
+            "drag-sorting.tsx",
+            "max-count.tsx"
+        ],
+        "grid": [
+            "responsive-flex.tsx",
+            "useBreakpoint.tsx",
+            "flex-stretch.tsx",
+            "flex.tsx",
+            "sort.tsx",
+            "playground.tsx",
+            "offset.tsx",
+            "gutter.tsx",
+            "flex-order.tsx",
+            "responsive-more.tsx",
+            "basic.tsx",
+            "flex-align.tsx",
+            "responsive.tsx"
+        ],
+        "badge": [
+            "size.tsx",
+            "title.tsx",
+            "dot.tsx",
+            "link.tsx",
+            "mix.tsx",
+            "overflow.tsx",
+            "ribbon-debug.tsx",
+            "change.tsx",
+            "_semantic.tsx",
+            "component-token.tsx",
+            "colorful.tsx",
+            "offset.tsx",
+            "colorful-with-count-debug.tsx",
+            "ribbon.tsx",
+            "status.tsx",
+            "basic.tsx",
+            "no-wrapper.tsx"
+        ]
+    },
+    "material": {
+        "paper": [
+            "Elevation.tsx",
+            "Variants.tsx",
+            "SimplePaper.tsx",
+            "SquareCorners.tsx"
+        ],
+        "tabs": [
+            "IconTabs.tsx",
+            "ScrollableTabsButtonAuto.tsx",
+            "ScrollableTabsButtonVisible.tsx",
+            "DisabledTabs.tsx",
+            "ScrollableTabsButtonForce.tsx",
+            "BasicTabs.tsx",
+            "NavTabs.tsx",
+            "TabsWrappedLabel.tsx",
+            "IconPositionTabs.tsx",
+            "FullWidthTabs.tsx",
+            "CenteredTabs.tsx",
+            "VerticalTabs.tsx",
+            "IconLabelTabs.tsx",
+            "AccessibleTabs2.tsx",
+            "AccessibleTabs1.tsx",
+            "CustomizedTabs.tsx",
+            "ScrollableTabsButtonPrevent.tsx",
+            "ColorTabs.tsx",
+            "LabTabs.tsx"
+        ],
+        "bottom-navigation": [
+            "FixedBottomNavigation.tsx",
+            "LabelBottomNavigation.tsx",
+            "SimpleBottomNavigation.tsx"
+        ],
+        "use-media-query": [
+            "JavaScriptMedia.tsx",
+            "ServerSide.tsx",
+            "UseWidth.tsx",
+            "SimpleMediaQuery.tsx",
+            "ThemeHelper.tsx"
+        ],
+        "popper": [
+            "PopperPopupState.tsx",
+            "PositionedPopper.tsx",
+            "SpringPopper.tsx",
+            "SimplePopper.tsx",
+            "VirtualElementPopper.tsx",
+            "TransitionsPopper.tsx"
+        ],
+        "pagination": [
+            "CustomIcons.tsx",
+            "PaginationRanges.tsx",
+            "PaginationButtons.tsx",
+            "TablePaginationDemo.tsx",
+            "UsePagination.tsx",
+            "PaginationControlled.tsx",
+            "PaginationRounded.tsx",
+            "PaginationSize.tsx",
+            "PaginationOutlined.tsx",
+            "PaginationLink.tsx",
+            "BasicPagination.tsx"
+        ],
+        "about-the-lab": [],
+        "portal": [
+            "SimplePortal.tsx"
+        ],
+        "box": [
+            "BoxSx.tsx",
+            "BoxBasic.tsx"
+        ],
+        "rating": [
+            "HalfRating.tsx",
+            "RatingSize.tsx",
+            "HoverRating.tsx",
+            "TextRating.tsx",
+            "BasicRating.tsx",
+            "RadioGroupRating.tsx",
+            "CustomizedRating.tsx"
+        ],
+        "backdrop": [
+            "SimpleBackdrop.tsx"
+        ],
+        "switches": [
+            "FormControlLabelPosition.tsx",
+            "BasicSwitches.tsx",
+            "CustomizedSwitches.tsx",
+            "SwitchLabels.tsx",
+            "SwitchesGroup.tsx",
+            "ColorSwitches.tsx",
+            "ControlledSwitches.tsx",
+            "SwitchesSize.tsx"
+        ],
+        "buttons": [
+            "IconLabelButtons.tsx",
+            "DisableElevation.tsx",
+            "TextButtons.tsx",
+            "InputFileUpload.tsx",
+            "ButtonBaseDemo.tsx",
+            "OutlinedButtons.tsx",
+            "ContainedButtons.tsx",
+            "LoadingButtonsTransition.tsx",
+            "IconButtonWithBadge.tsx",
+            "IconButtonColors.tsx",
+            "BasicButtons.tsx",
+            "IconButtonSizes.tsx",
+            "ButtonSizes.tsx",
+            "CustomizedButtons.tsx",
+            "LoadingIconButton.tsx",
+            "LoadingButtons.tsx",
+            "IconButtons.tsx",
+            "ColorButtons.tsx"
+        ],
+        "autocomplete": [
+            "ControllableStates.tsx",
+            "UseAutocomplete.tsx",
+            "DisabledOptions.tsx",
+            "CountrySelect.tsx",
+            "Asynchronous.tsx",
+            "GoogleMaps.tsx",
+            "RenderGroup.tsx",
+            "LimitTags.tsx",
+            "Grouped.tsx",
+            "ComboBox.tsx",
+            "FreeSoloCreateOptionDialog.tsx",
+            "Tags.tsx",
+            "Filter.tsx",
+            "Playground.tsx",
+            "AutocompleteHint.tsx",
+            "FixedTags.tsx",
+            "Virtualize.tsx",
+            "GloballyCustomizedOptions.tsx",
+            "FreeSolo.tsx",
+            "CustomInputAutocomplete.tsx",
+            "Sizes.tsx",
+            "CheckboxesTags.tsx",
+            "Highlights.tsx",
+            "FreeSoloCreateOption.tsx",
+            "GitHubLabel.tsx",
+            "CustomizedHook.tsx"
+        ],
+        "progress": [
+            "DelayingAppearance.tsx",
+            "LinearColor.tsx",
+            "CircularColor.tsx",
+            "CircularIntegration.tsx",
+            "CircularIndeterminate.tsx",
+            "LinearBuffer.tsx",
+            "CircularWithValueLabel.tsx",
+            "LinearIndeterminate.tsx",
+            "CustomizedProgressBars.tsx",
+            "LinearDeterminate.tsx",
+            "CircularDeterminate.tsx",
+            "CircularSize.tsx",
+            "LinearWithValueLabel.tsx",
+            "CircularUnderLoad.tsx"
+        ],
+        "no-ssr": [
+            "SimpleNoSsr.tsx",
+            "FrameDeferring.tsx"
+        ],
+        "text-fields": [
+            "MultilineTextFields.tsx",
+            "CustomizedInputBase.tsx",
+            "InputSuffixShrink.tsx",
+            "HelperTextMisaligned.tsx",
+            "ComposedTextField.tsx",
+            "TextFieldHiddenLabel.tsx",
+            "FormattedInputs.tsx",
+            "TextFieldSizes.tsx",
+            "FormPropsTextFields.tsx",
+            "CustomizedInputsStyleOverrides.tsx",
+            "UseFormControl.tsx",
+            "Inputs.tsx",
+            "BasicTextFields.tsx",
+            "CustomizedInputsStyled.tsx",
+            "ValidationTextFields.tsx",
+            "InputWithIcon.tsx",
+            "HelperTextAligned.tsx",
+            "StateTextFields.tsx",
+            "SelectTextFields.tsx",
+            "FullWidthTextField.tsx",
+            "InputAdornments.tsx",
+            "ColorTextFields.tsx",
+            "LayoutTextFields.tsx"
+        ],
+        "lists": [
+            "AlignItemsList.tsx",
+            "PinnedSubheaderList.tsx",
+            "GutterlessList.tsx",
+            "BasicList.tsx",
+            "SwitchListSecondary.tsx",
+            "VirtualizedList.tsx",
+            "FolderList.tsx",
+            "SelectedListItem.tsx",
+            "InteractiveList.tsx",
+            "NestedList.tsx",
+            "InsetList.tsx",
+            "CheckboxList.tsx",
+            "CustomizedList.tsx",
+            "CheckboxListSecondary.tsx"
+        ],
+        "click-away-listener": [
+            "ClickAway.tsx",
+            "PortalClickAway.tsx",
+            "LeadingClickAway.tsx"
+        ],
+        "chips": [
+            "ColorChips.tsx",
+            "ClickableLinkChips.tsx",
+            "ClickableAndDeletableChips.tsx",
+            "DeletableChips.tsx",
+            "AvatarChips.tsx",
+            "ClickableChips.tsx",
+            "IconChips.tsx",
+            "SizesChips.tsx",
+            "CustomDeleteIconChips.tsx",
+            "ChipsArray.tsx",
+            "MultilineChips.tsx",
+            "BasicChips.tsx"
+        ],
+        "alert": [
+            "ActionAlerts.tsx",
+            "BasicAlerts.tsx",
+            "ColorAlerts.tsx",
+            "IconAlerts.tsx",
+            "FilledAlerts.tsx",
+            "TransitionAlerts.tsx",
+            "DescriptionAlerts.tsx",
+            "SimpleAlert.tsx",
+            "OutlinedAlerts.tsx"
+        ],
+        "accordion": [
+            "AccordionExpandIcon.tsx",
+            "AccordionUsage.tsx",
+            "AccordionTransition.tsx",
+            "ControlledAccordions.tsx",
+            "AccordionExpandDefault.tsx",
+            "CustomizedAccordions.tsx",
+            "DisabledAccordion.tsx"
+        ],
+        "snackbars": [
+            "TransitionsSnackbar.tsx",
+            "AutohideSnackbar.tsx",
+            "LongTextSnackbar.tsx",
+            "PositionedSnackbar.tsx",
+            "IntegrationNotistack.tsx",
+            "DirectionSnackbar.tsx",
+            "CustomizedSnackbars.tsx",
+            "ToolpadNotificationsNoSnap.tsx",
+            "FabIntegrationSnackbar.tsx",
+            "ConsecutiveSnackbars.tsx",
+            "SimpleSnackbar.tsx"
+        ],
+        "skeleton": [
+            "SkeletonChildren.tsx",
+            "SkeletonColor.tsx",
+            "Animations.tsx",
+            "Facebook.tsx",
+            "Variants.tsx",
+            "YouTube.tsx",
+            "SkeletonTypography.tsx"
+        ],
+        "material-icons": [],
+        "cards": [
+            "MediaControlCard.tsx",
+            "ImgMediaCard.tsx",
+            "BasicCard.tsx",
+            "MediaCard.tsx",
+            "ActionAreaCard.tsx",
+            "RecipeReviewCard.tsx",
+            "OutlinedCard.tsx",
+            "MultiActionAreaCard.tsx",
+            "SelectActionCard.tsx"
+        ],
+        "selects": [
+            "MultipleSelectNative.tsx",
+            "SelectVariants.tsx",
+            "MultipleSelect.tsx",
+            "DialogSelect.tsx",
+            "SelectSmall.tsx",
+            "MultipleSelectChip.tsx",
+            "MultipleSelectCheckmarks.tsx",
+            "ControlledOpenSelect.tsx",
+            "MultipleSelectPlaceholder.tsx",
+            "SelectAutoWidth.tsx",
+            "CustomizedSelects.tsx",
+            "SelectLabels.tsx",
+            "BasicSelect.tsx",
+            "NativeSelectDemo.tsx",
+            "GroupedSelect.tsx",
+            "SelectOtherProps.tsx"
+        ],
+        "dividers": [
+            "DividerVariants.tsx",
+            "ListDividers.tsx",
+            "VerticalDividers.tsx",
+            "FlexDivider.tsx",
+            "IntroDivider.tsx",
+            "DividerText.tsx",
+            "VerticalDividerMiddle.tsx"
+        ],
+        "speed-dial": [
+            "SpeedDialTooltipOpen.tsx",
+            "BasicSpeedDial.tsx",
+            "PlaygroundSpeedDial.tsx",
+            "OpenIconSpeedDial.tsx",
+            "ControlledOpenSpeedDial.tsx"
+        ],
+        "masonry": [
+            "BasicMasonry.tsx",
+            "SSRMasonry.tsx",
+            "ResponsiveSpacing.tsx",
+            "MasonryWithVariableHeightItems.tsx",
+            "ResponsiveColumns.tsx",
+            "FixedSpacing.tsx",
+            "Sequential.tsx",
+            "FixedColumns.tsx",
+            "ImageMasonry.tsx"
+        ],
+        "slider": [
+            "CustomizedSlider.tsx",
+            "SliderSizes.tsx",
+            "TrackFalseSlider.tsx",
+            "ContinuousSlider.tsx",
+            "NonLinearSlider.tsx",
+            "ColorSlider.tsx",
+            "VerticalSlider.tsx",
+            "MinimumDistanceSlider.tsx",
+            "DiscreteSlider.tsx",
+            "CustomMarks.tsx",
+            "DiscreteSliderMarks.tsx",
+            "TrackInvertedSlider.tsx",
+            "RangeSlider.tsx",
+            "DiscreteSliderValues.tsx",
+            "DiscreteSliderSteps.tsx",
+            "InputSlider.tsx",
+            "DiscreteSliderLabel.tsx",
+            "MusicPlayerSlider.tsx"
+        ],
+        "app-bar": [
+            "BackToTop.tsx",
+            "EnableColorOnDarkAppBar.tsx",
+            "PrimarySearchAppBar.tsx",
+            "ElevateAppBar.tsx",
+            "SearchAppBar.tsx",
+            "DrawerAppBar.tsx",
+            "DenseAppBar.tsx",
+            "ProminentAppBar.tsx",
+            "ButtonAppBar.tsx",
+            "ResponsiveAppBar.tsx",
+            "MenuAppBar.tsx",
+            "BottomAppBar.tsx",
+            "DashboardLayoutBasic.tsx",
+            "HideAppBar.tsx"
+        ],
+        "transfer-list": [
+            "SelectAllTransferList.tsx",
+            "TransferList.tsx"
+        ],
+        "popover": [
+            "VirtualElementPopover.tsx",
+            "BasicPopover.tsx",
+            "MouseHoverPopover.tsx",
+            "PopoverPopupState.tsx"
+        ],
+        "checkboxes": [
+            "IndeterminateCheckbox.tsx",
+            "IconCheckboxes.tsx",
+            "CheckboxesGroup.tsx",
+            "Checkboxes.tsx",
+            "FormControlLabelPosition.tsx",
+            "ColorCheckboxes.tsx",
+            "ControlledCheckbox.tsx",
+            "CustomizedCheckbox.tsx",
+            "CheckboxLabels.tsx",
+            "SizeCheckboxes.tsx"
+        ],
+        "container": [
+            "SimpleContainer.tsx",
+            "FixedContainer.tsx"
+        ],
+        "table": [
+            "ColumnGroupingTable.tsx",
+            "CustomPaginationActionsTable.tsx",
+            "BasicTable.tsx",
+            "CustomizedTables.tsx",
+            "CollapsibleTable.tsx",
+            "DataTable.tsx",
+            "EnhancedTable.tsx",
+            "SpanningTable.tsx",
+            "AccessibleTable.tsx",
+            "ReactVirtualizedTable.tsx",
+            "DenseTable.tsx",
+            "StickyHeadTable.tsx"
+        ],
+        "links": [
+            "UnderlineLink.tsx",
+            "Links.tsx",
+            "ButtonLink.tsx"
+        ],
+        "icons": [
+            "SvgIconsColor.tsx",
+            "SvgIconsSize.tsx",
+            "FontAwesomeIcon.tsx",
+            "SvgMaterialIcons.tsx",
+            "TwoToneIcons.tsx",
+            "Icons.tsx",
+            "FontAwesomeIconSize.tsx",
+            "SvgIconChildren.tsx",
+            "FontAwesomeSvgIconDemo.tsx",
+            "CreateSvgIcon.tsx"
+        ],
+        "floating-action-button": [
+            "FloatingActionButtonExtendedSize.tsx",
+            "FloatingActionButtonZoom.tsx",
+            "FloatingActionButtonSize.tsx",
+            "FloatingActionButtons.tsx"
+        ],
+        "typography": [
+            "TypographyTheme.tsx",
+            "Types.tsx"
+        ],
+        "menus": [
+            "GroupedMenu.tsx",
+            "FadeMenu.tsx",
+            "CustomizedMenus.tsx",
+            "MenuListComposition.tsx",
+            "MenuPopupState.tsx",
+            "ContextMenu.tsx",
+            "IconMenu.tsx",
+            "PositionedMenu.tsx",
+            "DenseMenu.tsx",
+            "SimpleListMenu.tsx",
+            "AccountMenu.tsx",
+            "BasicMenu.tsx",
+            "LongMenu.tsx",
+            "TypographyMenu.tsx"
+        ],
+        "dialogs": [
+            "FullScreenDialog.tsx",
+            "DraggableDialog.tsx",
+            "AlertDialog.tsx",
+            "ScrollDialog.tsx",
+            "ToolpadDialogsNoSnap.tsx",
+            "FormDialog.tsx",
+            "ResponsiveDialog.tsx",
+            "ConfirmationDialog.tsx",
+            "CookiesBanner.tsx",
+            "SimpleDialogDemo.tsx",
+            "MaxWidthDialog.tsx",
+            "CustomizedDialogs.tsx",
+            "AlertDialogSlide.tsx"
+        ],
+        "image-list": [
+            "StandardImageList.tsx",
+            "MasonryImageList.tsx",
+            "CustomImageList.tsx",
+            "TitlebarImageList.tsx",
+            "QuiltedImageList.tsx",
+            "WovenImageList.tsx",
+            "TitlebarBelowMasonryImageList.tsx",
+            "TitlebarBelowImageList.tsx"
+        ],
+        "stack": [
+            "InteractiveStack.tsx",
+            "BasicStack.tsx",
+            "DividerStack.tsx",
+            "ResponsiveStack.tsx",
+            "ZeroWidthStack.tsx",
+            "FlexboxGapStack.tsx",
+            "DirectionStack.tsx"
+        ],
+        "transitions": [
+            "SimpleSlide.tsx",
+            "SimpleFade.tsx",
+            "SlideFromContainer.tsx",
+            "SimpleGrow.tsx",
+            "SimpleCollapse.tsx",
+            "SimpleZoom.tsx",
+            "TransitionGroupExample.tsx"
+        ],
+        "avatars": [
+            "BackgroundLetterAvatars.tsx",
+            "CustomSurplusAvatars.tsx",
+            "BadgeAvatars.tsx",
+            "ImageAvatars.tsx",
+            "LetterAvatars.tsx",
+            "Spacing.tsx",
+            "FallbackAvatars.tsx",
+            "GroupAvatars.tsx",
+            "TotalAvatars.tsx",
+            "SizeAvatars.tsx",
+            "IconAvatars.tsx",
+            "VariantAvatars.tsx"
+        ],
+        "modal": [
+            "BasicModal.tsx",
+            "NestedModal.tsx",
+            "SpringModal.tsx",
+            "ServerModal.tsx",
+            "TransitionsModal.tsx",
+            "KeepMountedModal.tsx"
+        ],
+        "steppers": [
+            "TextMobileStepper.tsx",
+            "HorizontalStepperWithError.tsx",
+            "HorizontalLinearStepper.tsx",
+            "ProgressMobileStepper.tsx",
+            "HorizontalNonLinearStepper.tsx",
+            "VerticalLinearStepper.tsx",
+            "DotsMobileStepper.tsx",
+            "CustomizedSteppers.tsx",
+            "HorizontalLinearAlternativeLabelStepper.tsx"
+        ],
+        "drawers": [
+            "SwipeableEdgeDrawer.tsx",
+            "PersistentDrawerLeft.tsx",
+            "MiniDrawer.tsx",
+            "AnchorTemporaryDrawer.tsx",
+            "PersistentDrawerRight.tsx",
+            "ClippedDrawer.tsx",
+            "ResponsiveDrawer.tsx",
+            "TemporaryDrawer.tsx",
+            "PermanentDrawerLeft.tsx",
+            "SwipeableTemporaryDrawer.tsx",
+            "PermanentDrawerRight.tsx"
+        ],
+        "timeline": [
+            "OppositeContentTimeline.tsx",
+            "AlternateReverseTimeline.tsx",
+            "NoOppositeContent.tsx",
+            "OutlinedTimeline.tsx",
+            "LeftAlignedTimeline.tsx",
+            "ColorsTimeline.tsx",
+            "AlternateTimeline.tsx",
+            "CustomizedTimeline.tsx",
+            "RightAlignedTimeline.tsx",
+            "LeftPositionedTimeline.tsx",
+            "BasicTimeline.tsx"
+        ],
+        "tooltips": [
+            "AnchorElTooltips.tsx",
+            "TooltipMargin.tsx",
+            "VariableWidth.tsx",
+            "CustomizedTooltips.tsx",
+            "DisabledTooltips.tsx",
+            "ArrowTooltips.tsx",
+            "NonInteractiveTooltips.tsx",
+            "BasicTooltip.tsx",
+            "TooltipOffset.tsx",
+            "AccessibilityTooltips.tsx",
+            "TriggersTooltips.tsx",
+            "TransitionsTooltips.tsx",
+            "ControlledTooltips.tsx",
+            "PositionedTooltips.tsx",
+            "DelayTooltips.tsx",
+            "FollowCursorTooltips.tsx"
+        ],
+        "breadcrumbs": [
+            "ActiveLastBreadcrumb.tsx",
+            "PageContainerBasic.tsx",
+            "CondensedWithMenu.tsx",
+            "RouterBreadcrumbs.tsx",
+            "IconBreadcrumbs.tsx",
+            "CustomizedBreadcrumbs.tsx",
+            "CustomSeparator.tsx",
+            "BasicBreadcrumbs.tsx",
+            "CollapsedBreadcrumbs.tsx"
+        ],
+        "badges": [
+            "SimpleBadge.tsx",
+            "DotBadge.tsx",
+            "AccessibleBadges.tsx",
+            "ShowZeroBadge.tsx",
+            "BadgeMax.tsx",
+            "BadgeVisibility.tsx",
+            "BadgeOverlap.tsx",
+            "CustomizedBadges.tsx",
+            "ColorBadge.tsx"
+        ],
+        "css-baseline": [],
+        "textarea-autosize": [
+            "EmptyTextarea.tsx",
+            "MinHeightTextarea.tsx",
+            "MaxHeightTextarea.tsx"
+        ],
+        "toggle-button": [
+            "ToggleButtonsMultiple.tsx",
+            "CustomizedDividers.tsx",
+            "ToggleButtonSizes.tsx",
+            "ToggleButtonNotEmpty.tsx",
+            "StandaloneToggleButton.tsx",
+            "ColorToggleButton.tsx",
+            "ToggleButtons.tsx",
+            "VerticalToggleButtons.tsx"
+        ],
+        "grid-legacy": [
+            "FullWidthGrid.tsx",
+            "AutoGridNoWrap.tsx",
+            "SpacingGrid.tsx",
+            "BasicGrid.tsx",
+            "AutoGrid.tsx",
+            "ComplexGrid.tsx",
+            "RowAndColumnSpacing.tsx",
+            "NestedGrid.tsx",
+            "CSSGrid.tsx",
+            "InteractiveGrid.tsx",
+            "VariableWidthGrid.tsx",
+            "ColumnsGrid.tsx",
+            "ResponsiveGrid.tsx"
+        ],
+        "radio-buttons": [
+            "RowRadioButtonsGroup.tsx",
+            "RadioButtons.tsx",
+            "SizeRadioButtons.tsx",
+            "ColorRadioButtons.tsx",
+            "RadioButtonsGroup.tsx",
+            "UseRadioGroup.tsx",
+            "FormControlLabelPlacement.tsx",
+            "ErrorRadios.tsx",
+            "CustomizedRadios.tsx",
+            "ControlledRadioButtonsGroup.tsx"
+        ],
+        "button-group": [
+            "DisableElevation.tsx",
+            "BasicButtonGroup.tsx",
+            "SplitButton.tsx",
+            "LoadingButtonGroup.tsx",
+            "GroupSizesColors.tsx",
+            "GroupOrientation.tsx",
+            "VariantButtonGroup.tsx"
+        ],
+        "grid": [
+            "FullWidthGrid.tsx",
+            "SpacingGrid.tsx",
+            "BasicGrid.tsx",
+            "AutoGrid.tsx",
+            "FullBorderedGrid.tsx",
+            "RowAndColumnSpacing.tsx",
+            "NestedGrid.tsx",
+            "InteractiveGrid.tsx",
+            "OffsetGrid.tsx",
+            "NestedGridColumns.tsx",
+            "HalfBorderedGrid.tsx",
+            "VariableWidthGrid.tsx",
+            "ColumnLayoutInsideGrid.tsx",
+            "ColumnsGrid.tsx",
+            "ResponsiveGrid.tsx",
+            "CenteredElementGrid.tsx"
+        ]
+    },
+    "mantine": {
+        "EmailBanner": [
+            "EmailBanner.tsx"
+        ],
+        "UsersTable": [
+            "UsersTable.tsx"
+        ],
+        "TaskCard": [
+            "TaskCard.tsx"
+        ],
+        "CardGradient": [
+            "CardGradient.tsx"
+        ],
+        "InputValidation": [
+            "InputValidation.tsx"
+        ],
+        "NavbarLinksGroup": [
+            "NavbarLinksGroup.tsx"
+        ],
+        "ButtonMenu": [
+            "ButtonMenu.tsx"
+        ],
+        "ProgressCardColored": [
+            "ProgressCardColored.tsx"
+        ],
+        "ActionToggle": [
+            "ActionToggle.tsx"
+        ],
+        "SwitchesCard": [
+            "SwitchesCard.tsx"
+        ],
+        "NavbarNested": [
+            "Logo.tsx",
+            "NavbarNested.tsx"
+        ],
+        "TableReviews": [
+            "TableReviews.tsx"
+        ],
+        "ImageActionBanner": [
+            "ImageActionBanner.tsx"
+        ],
+        "NavbarSegmented": [
+            "NavbarSegmented.tsx"
+        ],
+        "CookiesBanner": [
+            "CookiesBanner.tsx"
+        ],
+        "NotFoundImage": [
+            "NotFoundImage.tsx"
+        ],
+        "StatsRing": [
+            "StatsRing.tsx"
+        ],
+        "TableScrollArea": [
+            "TableScrollArea.tsx"
+        ],
+        "HeaderMegaMenu": [
+            "HeaderMegaMenu.tsx"
+        ],
+        "ArticleCardFooter": [
+            "ArticleCardFooter.tsx"
+        ],
+        "NavbarSimpleColored": [
+            "NavbarSimpleColored.tsx"
+        ],
+        "ServerError": [
+            "ServerError.tsx"
+        ],
+        "TableSelection": [
+            "TableSelection.tsx"
+        ],
+        "CommentSimple": [
+            "CommentSimple.tsx"
+        ],
+        "StatsGrid": [
+            "StatsGrid.tsx"
+        ],
+        "StatsGridIcons": [
+            "StatsGridIcons.tsx"
+        ],
+        "UserInfoIcons": [
+            "UserInfoIcons.tsx"
+        ],
+        "ArticleCardImage": [
+            "ArticleCardImage.tsx"
+        ],
+        "HeroTitle": [
+            "HeroTitle.tsx"
+        ],
+        "FooterSimple": [
+            "FooterSimple.tsx"
+        ],
+        "LanguagePicker": [
+            "LanguagePicker.tsx"
+        ],
+        "ContainedInputs": [
+            "ContainedInputs.tsx"
+        ],
+        "FloatingLabelInput": [
+            "FloatingLabelInput.tsx"
+        ],
+        "FeaturesAsymmetrical": [
+            "FeaturesAsymmetrical.tsx"
+        ],
+        "ForgotPassword": [
+            "ForgotPassword.tsx"
+        ],
+        "ImageCheckboxes": [
+            "ImageCheckboxes.tsx"
+        ],
+        "FooterLinks": [
+            "FooterLinks.tsx"
+        ],
+        "DoubleHeader": [
+            "DoubleHeader.tsx"
+        ],
+        "HeroImageBackground": [
+            "HeroImageBackground.tsx"
+        ],
+        "UsersStack": [
+            "UsersStack.tsx"
+        ],
+        "ForgotPasswordInput": [
+            "ForgotPasswordInput.tsx"
+        ],
+        "NotFoundTitle": [
+            "NotFoundTitle.tsx"
+        ],
+        "NavbarSearch": [
+            "NavbarSearch.tsx"
+        ],
+        "GradientSegmentedControl": [
+            "GradientSegmentedControl.tsx"
+        ],
+        "UsersRolesTable": [
+            "UsersRolesTable.tsx"
+        ],
+        "SliderWhite": [
+            "SliderWhite.tsx"
+        ],
+        "ProgressCard": [
+            "ProgressCard.tsx"
+        ],
+        "FeaturesCard": [
+            "FeaturesCard.tsx"
+        ],
+        "HeaderMenu": [
+            "HeaderMenu.tsx"
+        ],
+        "ButtonCopy": [
+            "ButtonCopy.tsx"
+        ],
+        "AuthenticationForm": [
+            "TwitterButton.tsx",
+            "AuthenticationForm.tsx",
+            "GoogleButton.tsx"
+        ],
+        "StatsGroup": [
+            "StatsGroup.tsx"
+        ],
+        "LeadGrid": [
+            "LeadGrid.tsx"
+        ],
+        "CardsCarousel": [
+            "CardsCarousel.tsx"
+        ],
+        "FooterCentered": [
+            "FooterCentered.tsx"
+        ],
+        "AutocompleteLoading": [
+            "AutocompleteLoading.tsx"
+        ],
+        "NavbarMinimalColored": [
+            "NavbarMinimalColored.tsx"
+        ],
+        "HeaderSearch": [
+            "HeaderSearch.tsx"
+        ],
+        "ActionsGrid": [
+            "ActionsGrid.tsx"
+        ],
+        "SocialButtons": [
+            "SocialButtons.tsx",
+            "FacebookIcon.tsx",
+            "GoogleIcon.tsx"
+        ],
+        "HeaderSimple": [
+            "HeaderSimple.tsx"
+        ],
+        "FaqWithHeader": [
+            "FaqWithHeader.tsx",
+            "ContactIcons.tsx"
+        ],
+        "Subgrid": [
+            "Subgrid.tsx"
+        ],
+        "NothingFoundBackground": [
+            "NothingFoundBackground.tsx",
+            "Illustration.tsx"
+        ],
+        "TableSort": [
+            "TableSort.tsx"
+        ],
+        "SliderMarks": [
+            "SliderMarks.tsx"
+        ],
+        "FeaturesImages": [
+            "FeaturesImages.tsx"
+        ],
+        "ImageCard": [
+            "ImageCard.tsx"
+        ],
+        "FeaturesCards": [
+            "FeaturesCards.tsx"
+        ],
+        "SliderIcon": [
+            "SliderIcon.tsx"
+        ],
+        "FaqWithBg": [
+            "FaqWithBg.tsx"
+        ],
+        "BadgeCard": [
+            "BadgeCard.tsx"
+        ],
+        "UserMenu": [
+            "UserMenu.tsx"
+        ],
+        "CardWithStats": [
+            "CardWithStats.tsx"
+        ],
+        "UserButton": [
+            "UserButton.tsx"
+        ],
+        "ArticleCard": [
+            "ArticleCard.tsx"
+        ],
+        "SliderHover": [
+            "SliderHover.tsx"
+        ],
+        "DndListHandle": [
+            "DndListHandle.tsx"
+        ],
+        "CommentHtml": [
+            "CommentHtml.tsx"
+        ],
+        "NavbarMinimal": [
+            "NavbarMinimal.tsx"
+        ],
+        "ContactUs": [
+            "ContactIcons.tsx",
+            "ContactUs.tsx"
+        ],
+        "NavbarSimple": [
+            "NavbarSimple.tsx"
+        ],
+        "StatsSegments": [
+            "StatsSegments.tsx"
+        ],
+        "GetInTouchSimple": [
+            "GetInTouchSimple.tsx"
+        ],
+        "CarouselCard": [
+            "CarouselCard.tsx"
+        ],
+        "DoubleNavbar": [
+            "DoubleNavbar.tsx"
+        ],
+        "PasswordStrength": [
+            "PasswordStrength.tsx"
+        ],
+        "CheckboxCard": [
+            "CheckboxCard.tsx"
+        ],
+        "HeroText": [
+            "Dots.tsx",
+            "HeroText.tsx"
+        ],
+        "SplitButton": [
+            "SplitButton.tsx"
+        ],
+        "AuthenticationTitle": [
+            "AuthenticationTitle.tsx"
+        ],
+        "HeroContentLeft": [
+            "HeroContentLeft.tsx"
+        ],
+        "StatsRingCard": [
+            "StatsRingCard.tsx"
+        ],
+        "HeroBullets": [
+            "HeroBullets.tsx"
+        ],
+        "FeaturesGrid": [
+            "FeaturesGrid.tsx"
+        ],
+        "TableOfContents": [
+            "TableOfContents.tsx"
+        ],
+        "ServerOverload": [
+            "ServerOverload.tsx",
+            "Illustration.tsx"
+        ],
+        "CustomSwitch": [
+            "CustomSwitch.tsx"
+        ],
+        "TableOfContentsFloating": [
+            "TableOfContentsFloating.tsx"
+        ],
+        "GetInTouch": [
+            "ContactIcons.tsx",
+            "GetInTouch.tsx"
+        ],
+        "DropzoneButton": [
+            "DropzoneButton.tsx"
+        ],
+        "UserCardImage": [
+            "UserCardImage.tsx"
+        ],
+        "HeroImageRight": [
+            "HeroImageRight.tsx"
+        ],
+        "FooterSocial": [
+            "FooterSocial.tsx"
+        ],
+        "HeaderTabs": [
+            "HeaderTabs.tsx"
+        ],
+        "InputTooltip": [
+            "InputTooltip.tsx"
+        ],
+        "InputWithButton": [
+            "InputWithButton.tsx"
+        ],
+        "ButtonProgress": [
+            "ButtonProgress.tsx"
+        ],
+        "StatsControls": [
+            "StatsControls.tsx"
+        ],
+        "ArticlesCardsGrid": [
+            "ArticlesCardsGrid.tsx"
+        ],
+        "SliderLabel": [
+            "SliderLabel.tsx"
+        ],
+        "ArticleCardVertical": [
+            "ArticleCardVertical.tsx"
+        ],
+        "DndList": [
+            "DndList.tsx"
+        ],
+        "FaqWithImage": [
+            "FaqWithImage.tsx"
+        ],
+        "FeaturesTitle": [
+            "FeaturesTitle.tsx"
+        ],
+        "GridAsymmetrical": [
+            "GridAsymmetrical.tsx"
+        ],
+        "CurrencyInput": [
+            "CurrencyInput.tsx"
+        ],
+        "DndTable": [
+            "DndTable.tsx"
+        ],
+        "StatsCard": [
+            "StatsCard.tsx"
+        ],
+        "AuthenticationImage": [
+            "AuthenticationImage.tsx"
+        ],
+        "UserInfoAction": [
+            "UserInfoAction.tsx"
+        ],
+        "FaqSimple": [
+            "FaqSimple.tsx"
+        ],
+        "SliderInput": [
+            "SliderInput.tsx"
+        ]
+    },
+    "chakra": {
+        "tabs": [
+            "tabs-with-links.tsx",
+            "tabs-size-table.tsx",
+            "tabs-with-vertical.tsx",
+            "tabs-lazy-mounted.tsx",
+            "tabs-with-fitted.tsx",
+            "tabs-controlled.tsx",
+            "tabs-with-disabled-tab.tsx",
+            "tabs-nested.tsx",
+            "tabs-with-manual-activation.tsx",
+            "tabs-with-animation.tsx",
+            "tabs-with-variants.tsx",
+            "tabs-with-indicator.tsx",
+            "tabs-basic.tsx",
+            "tabs-variant-table.tsx",
+            "tabs-with-dynamic-add.tsx",
+            "tabs-with-store.tsx"
+        ],
+        "kbd": [
+            "kbd-variant-table.tsx",
+            "kbd-within-text.tsx",
+            "kbd-with-variants.tsx",
+            "kbd-function-keys.tsx",
+            "kbd-with-combinations.tsx",
+            "kbd-with-sizes.tsx",
+            "kbd-basic.tsx",
+            "kbd-size-table.tsx"
+        ],
+        "toaster": [
+            "toaster-lifecycle.tsx",
+            "toaster-with-update.tsx",
+            "toaster-pause-and-play.tsx",
+            "toaster-with-action.tsx",
+            "toaster-with-external-close.tsx",
+            "toaster-static.tsx",
+            "toaster-basic.tsx",
+            "toaster-persistent.tsx",
+            "toaster-with-status.tsx",
+            "toaster-with-promise.tsx",
+            "toaster-with-duration.tsx"
+        ],
+        "visually": [
+            "visually-hidden-basic.tsx",
+            "visually-hidden-with-input.tsx"
+        ],
+        "drawer": [
+            "drawer-with-offset.tsx",
+            "drawer-with-sizes.tsx",
+            "drawer-basic.tsx",
+            "drawer-with-custom-container.tsx",
+            "drawer-with-context.tsx",
+            "drawer-controlled.tsx",
+            "drawer-with-header-actions.tsx",
+            "drawer-with-initial-focus.tsx",
+            "drawer-with-placement.tsx"
+        ],
+        "pagination": [
+            "pagination-with-count-text.tsx",
+            "pagination-with-content.tsx",
+            "pagination-basic.tsx",
+            "pagination-with-sibling-count.tsx",
+            "pagination-with-variants.tsx",
+            "pagination-as-link.tsx",
+            "pagination-with-sizes.tsx",
+            "pagination-compact.tsx",
+            "pagination-controlled.tsx",
+            "pagination-attached.tsx"
+        ],
+        "tooltip": [
+            "tooltip-with-placement.tsx",
+            "tooltip-with-disabled.tsx",
+            "tooltip-with-custom-bg.tsx",
+            "tooltip-controlled.tsx",
+            "tooltip-with-checkbox.tsx",
+            "tooltip-without-snippet.tsx",
+            "tooltip-controlled-multiple.tsx",
+            "tooltip-with-store.tsx",
+            "tooltip-with-tab.tsx",
+            "tooltip-with-menu-trigger.tsx",
+            "tooltip-with-menu-item.tsx",
+            "tooltip-with-interactive.tsx",
+            "tooltip-with-dialog.tsx",
+            "tooltip-with-delay.tsx",
+            "tooltip-with-arrow.tsx",
+            "tooltip-with-avatar.tsx",
+            "tooltip-multiple.tsx",
+            "tooltip-with-offset.tsx",
+            "tooltip-basic.tsx",
+            "tooltip-with-switch.tsx"
+        ],
+        "password": [
+            "password-input-basic.tsx",
+            "password-input-controlled.tsx",
+            "password-input-with-sizes.tsx",
+            "password-input-with-strength-indicator.tsx",
+            "password-input-with-hook-form.tsx",
+            "password-input-controlled-visibility.tsx"
+        ],
+        "pin": [
+            "pin-input-alphanumeric.tsx",
+            "pin-input-with-sizes.tsx",
+            "pin-input-with-mask.tsx",
+            "pin-input-without-snippet.tsx",
+            "pin-input-with-hook-form.tsx",
+            "pin-input-controlled.tsx",
+            "pin-input-count.tsx",
+            "pin-input-with-otp.tsx",
+            "pin-input-with-field.tsx",
+            "pin-input-with-placeholder.tsx",
+            "pin-input-basic.tsx",
+            "pin-input-attached.tsx",
+            "pin-input-with-store.tsx"
+        ],
+        "hover": [
+            "hover-card-controlled.tsx",
+            "hover-card-basic.tsx",
+            "hover-card-with-placement.tsx",
+            "hover-card-with-delay.tsx",
+            "hover-card-in-dialog.tsx"
+        ],
+        "portal": [
+            "portal-with-container.tsx",
+            "portal-with-iframe.tsx",
+            "portal-basic.tsx"
+        ],
+        "box": [
+            "box-with-hide-below.tsx",
+            "box-basic.tsx",
+            "box-with-border.tsx",
+            "box-with-hide-from.tsx",
+            "box-with-shadow.tsx",
+            "box-with-as-prop.tsx",
+            "box-with-shorthand.tsx",
+            "box-property-card.tsx",
+            "box-with-pseudo-props.tsx"
+        ],
+        "rating": [
+            "rating-with-hook-form.tsx",
+            "rating-size-table.tsx",
+            "rating-with-sizes.tsx",
+            "rating-controlled.tsx",
+            "rating-basic.tsx",
+            "rating-with-readonly.tsx",
+            "rating-with-label.tsx",
+            "rating-emoji.tsx",
+            "rating-in-testimonial.tsx",
+            "rating-with-custom-icon.tsx",
+            "rating-closed-component.tsx",
+            "rating-with-half.tsx",
+            "rating-with-colors.tsx",
+            "rating-with-store.tsx"
+        ],
+        "locale": [
+            "locale-provider-basic.tsx"
+        ],
+        "radio": [
+            "radio-closed-component.tsx",
+            "radio-card-with-colors.tsx",
+            "radio-controlled.tsx",
+            "radio-with-variants.tsx",
+            "radio-card-without-indicator-vertical.tsx",
+            "radio-card-basic.tsx",
+            "radio-card-closed-component.tsx",
+            "radio-basic.tsx",
+            "radio-card-with-icon.tsx",
+            "radio-card-with-sizes.tsx",
+            "radio-variant-table.tsx",
+            "radio-with-sizes.tsx",
+            "radio-size-table.tsx",
+            "radio-card-composition.tsx",
+            "radio-card-centered.tsx",
+            "radio-with-hook-form.tsx",
+            "radio-with-colors.tsx",
+            "radio-card-without-indicator.tsx",
+            "radio-card-with-addon.tsx",
+            "radio-card-with-custom-indicator.tsx",
+            "radio-card-with-variants.tsx",
+            "radio-card-with-description.tsx",
+            "radio-disabled.tsx"
+        ],
+        "card": [
+            "card-with-variants.tsx",
+            "card-basic.tsx",
+            "card-variant-table.tsx",
+            "card-with-image.tsx",
+            "card-with-avatar.tsx",
+            "card-horizontal.tsx",
+            "card-with-sizes.tsx",
+            "card-with-form.tsx",
+            "card-size-table.tsx"
+        ],
+        "radiomark": [
+            "radiomark-basic.tsx",
+            "radiomark-variants.tsx"
+        ],
+        "close": [
+            "close-button-with-custom-icon.tsx",
+            "close-button-with-variants.tsx",
+            "close-button-with-sizes.tsx",
+            "close-button-basic.tsx"
+        ],
+        "empty": [
+            "empty-state-sizes.tsx",
+            "empty-state-basic.tsx",
+            "empty-state-with-list.tsx",
+            "empty-state-with-action.tsx",
+            "empty-state-closed-component.tsx"
+        ],
+        "native": [
+            "native-select-closed-component.tsx",
+            "native-select-with-invalid.tsx",
+            "native-select-with-invalid-root.tsx",
+            "native-select-with-sizes.tsx",
+            "native-select-with-disabled.tsx",
+            "native-select-basic.tsx",
+            "native-select-with-hook-form.tsx",
+            "native-select-with-variants.tsx",
+            "native-select-controlled.tsx"
+        ],
+        "checkmark": [
+            "checkmark-basic.tsx",
+            "checkmark-states.tsx"
+        ],
+        "progress": [
+            "progress-with-sizes.tsx",
+            "progress-with-variants.tsx",
+            "progress-circle-with-round-cap.tsx",
+            "progress-circle-basic.tsx",
+            "progress-circle-with-range-color.tsx",
+            "progress-size-table.tsx",
+            "progress-closed-component.tsx",
+            "progress-circle-indeterminate.tsx",
+            "progress-circle-with-sizes.tsx",
+            "progress-circle-with-colors.tsx",
+            "progress-basic.tsx",
+            "progress-variant-table.tsx",
+            "progress-circle-with-value-text.tsx",
+            "progress-with-animated-stripes.tsx",
+            "progress-with-inline-label.tsx",
+            "progress-with-colors.tsx",
+            "progress-with-label.tsx",
+            "progress-indeterminate.tsx",
+            "progress-with-label-info.tsx",
+            "progress-circle-closed-component.tsx",
+            "progress-circle-with-thickness.tsx",
+            "progress-composition.tsx",
+            "progress-with-stripes.tsx"
+        ],
+        "file": [
+            "file-upload-with-input.tsx",
+            "file-upload-accepted-files.tsx",
+            "file-upload-in-dialog.tsx",
+            "file-upload-basic.tsx",
+            "file-upload-multiple.tsx",
+            "file-upload-media-capture.tsx",
+            "file-upload-with-hook-form.tsx",
+            "file-upload-directory.tsx",
+            "file-upload-with-paste-event.tsx",
+            "file-upload-with-input-clear.tsx",
+            "file-upload-with-dropzone.tsx",
+            "file-upload-with-store.tsx"
+        ],
+        "highlight": [
+            "highlight-basic.tsx",
+            "highlight-search-query.tsx",
+            "highlight-multiple.tsx",
+            "highlight-with-squiggle.tsx",
+            "highlight-with-custom-style.tsx"
+        ],
+        "input": [
+            "input-with-disabled.tsx",
+            "input-with-field.tsx",
+            "input-with-hook-form.tsx",
+            "input-variant-table.tsx",
+            "input-with-variants.tsx",
+            "input-with-left-element.tsx",
+            "input-with-addon.tsx",
+            "input-with-error-text.tsx",
+            "input-with-mask.tsx",
+            "input-with-invalid.tsx",
+            "input-with-helper-text.tsx",
+            "input-with-sizes.tsx",
+            "input-with-placeholder-style.tsx",
+            "input-size-table.tsx",
+            "input-with-floating-label.tsx",
+            "input-basic.tsx",
+            "input-with-focus-error-color.tsx",
+            "input-with-left-and-right-element.tsx"
+        ],
+        "group": [
+            "group-with-grow.tsx",
+            "group-with-button.tsx",
+            "group-with-attached.tsx",
+            "group-basic.tsx"
+        ],
+        "alert": [
+            "alert-closed-component.tsx",
+            "alert-with-customization.tsx",
+            "alert-variant-table.tsx",
+            "alert-with-variants.tsx",
+            "alert-with-color-palette-override.tsx",
+            "alert-with-custom-icon.tsx",
+            "alert-with-close-button.tsx",
+            "alert-with-status.tsx",
+            "alert-with-buttons.tsx",
+            "alert-basic.tsx",
+            "alert-with-description.tsx",
+            "alert-size-table.tsx",
+            "alert-with-spinner.tsx"
+        ],
+        "accordion": [
+            "accordion-with-actions.tsx",
+            "accordion-with-avatar.tsx",
+            "accordion-with-multiple.tsx",
+            "accordion-with-subtext.tsx",
+            "accordion-variant-table.tsx",
+            "accordion-size-table.tsx",
+            "accordion-with-icon.tsx",
+            "accordion-sizes.tsx",
+            "accordion-basic.tsx",
+            "accordion-controlled.tsx",
+            "accordion-variants.tsx",
+            "accordion-with-disabled-item.tsx"
+        ],
+        "skeleton": [
+            "skeleton-basic.tsx",
+            "skeleton-for-feed.tsx",
+            "skeleton-with-children.tsx",
+            "skeleton-with-start-end-color.tsx",
+            "skeleton-with-loaded.tsx",
+            "skeleton-with-variants.tsx",
+            "skeleton-for-text.tsx"
+        ],
+        "segmented": [
+            "segmented-control-with-hook-form.tsx",
+            "segmented-control-basic.tsx",
+            "segmented-control-with-disabled-item.tsx",
+            "segmented-control-in-card.tsx",
+            "segmented-control-with-icon.tsx",
+            "segmented-control-controlled.tsx",
+            "segmented-control-with-disabled.tsx",
+            "segmented-control-with-sizes.tsx"
+        ],
+        "separator": [
+            "separator-with-label.tsx",
+            "separator-basic.tsx",
+            "separator-vertical.tsx",
+            "separator-with-responsive-orientation.tsx",
+            "separator-with-sizes.tsx",
+            "separator-with-variants.tsx"
+        ],
+        "center": [
+            "center-basic.tsx",
+            "center-with-icons.tsx",
+            "center-with-absolute.tsx",
+            "center-with-inline.tsx",
+            "center-with-square.tsx",
+            "center-with-circle.tsx"
+        ],
+        "heading": [
+            "heading-basic.tsx",
+            "heading-with-composition.tsx",
+            "heading-with-as-prop.tsx",
+            "heading-with-sizes.tsx",
+            "heading-with-weights.tsx",
+            "heading-with-gradient.tsx",
+            "heading-with-highlight.tsx"
+        ],
+        "color": [
+            "color-mode-icon-button.tsx",
+            "color-mode-value.tsx",
+            "color-picker-with-save-swatch.tsx",
+            "color-picker-controlled.tsx",
+            "color-swatch-with-badge.tsx",
+            "color-picker-trigger-only.tsx",
+            "color-swatch-with-sizes.tsx",
+            "color-picker-close-on-swatch-click.tsx",
+            "color-picker-change-end.tsx",
+            "color-picker-inline.tsx",
+            "color-picker-with-trigger-in-input.tsx",
+            "color-picker-with-sizes.tsx",
+            "color-picker-with-swatch-and-input.tsx",
+            "color-mode-basic.tsx",
+            "color-picker-with-store.tsx",
+            "color-picker-input-only.tsx",
+            "color-picker-with-format.tsx",
+            "color-picker-with-readonly.tsx",
+            "color-swatch-with-alpha.tsx",
+            "color-picker-channel-slider-only.tsx",
+            "color-mode-forced.tsx",
+            "color-swatch-palette.tsx",
+            "color-picker-with-swatches-and-trigger.tsx",
+            "color-swatch-basic.tsx",
+            "color-picker-with-disabled.tsx",
+            "color-picker-swatch-only.tsx",
+            "color-mode-value-fallback.tsx",
+            "color-swatch-with-transparent.tsx",
+            "color-picker-with-fit-content.tsx",
+            "color-picker-basic.tsx",
+            "color-swatch-mixed.tsx",
+            "color-picker-with-hook-form.tsx",
+            "color-picker-with-swatches.tsx",
+            "color-picker-with-variants.tsx",
+            "color-picker-with-channel-input.tsx"
+        ],
+        "show": [
+            "show-with-fallback.tsx",
+            "show-basic.tsx",
+            "show-with-render-prop.tsx"
+        ],
+        "em": [
+            "em-basic.tsx"
+        ],
+        "checkbox": [
+            "checkbox-card-with-addon.tsx",
+            "checkbox-with-description.tsx",
+            "checkbox-with-form.tsx",
+            "checkbox-with-sizes.tsx",
+            "checkbox-card-disabled.tsx",
+            "checkbox-card-closed-component.tsx",
+            "checkbox-indeterminate.tsx",
+            "checkbox-card-with-group.tsx",
+            "checkbox-size-table.tsx",
+            "checkbox-with-hook-form.tsx",
+            "checkbox-with-group-hook-form.tsx",
+            "checkbox-controlled.tsx",
+            "checkbox-basic.tsx",
+            "checkbox-card-basic.tsx",
+            "checkbox-card-no-indicator.tsx",
+            "checkbox-with-variants.tsx",
+            "checkbox-with-indeterminate.tsx",
+            "checkbox-card-with-icon.tsx",
+            "checkbox-card-with-states.tsx",
+            "checkbox-closed-component.tsx",
+            "checkbox-with-colors.tsx",
+            "checkbox-card-with-description.tsx",
+            "checkbox-card-variant-table.tsx",
+            "checkbox-with-states.tsx",
+            "checkbox-with-label-position.tsx",
+            "checkbox-with-store.tsx",
+            "checkbox-with-group.tsx",
+            "checkbox-card-size-table.tsx",
+            "checkbox-card-with-variants.tsx",
+            "checkbox-with-link.tsx",
+            "checkbox-with-custom-icon.tsx",
+            "checkbox-card-with-sizes.tsx",
+            "checkbox-variant-table.tsx"
+        ],
+        "mark": [
+            "mark-basic.tsx",
+            "mark-with-variants.tsx"
+        ],
+        "code": [
+            "code-with-colors.tsx",
+            "code-size-table.tsx",
+            "code-with-sizes.tsx",
+            "code-basic.tsx",
+            "code-with-variants.tsx",
+            "code-variant-table.tsx"
+        ],
+        "slider": [
+            "slider-with-label.tsx",
+            "slider-vertical.tsx",
+            "slider-with-step.tsx",
+            "slider-with-marks-vertical.tsx",
+            "slider-with-dragging-indicator.tsx",
+            "slider-customization.tsx",
+            "slider-with-value-text.tsx",
+            "slider-with-store.tsx",
+            "slider-with-colors.tsx",
+            "slider-with-marks-and-label.tsx",
+            "slider-size-table.tsx",
+            "slider-variant-table.tsx",
+            "slider-with-thumb-alignment.tsx",
+            "slider-change-end.tsx",
+            "slider-basic.tsx",
+            "slider-with-sizes.tsx",
+            "slider-with-marks.tsx",
+            "slider-controlled.tsx",
+            "slider-with-hook-form.tsx",
+            "slider-with-multiple-thumbs.tsx",
+            "slider-with-variants.tsx",
+            "slider-disabled.tsx",
+            "slider-prevent-overlap.tsx",
+            "slider-closed-component.tsx"
+        ],
+        "spinner": [
+            "spinner-with-sizes.tsx",
+            "spinner-custom-color.tsx",
+            "spinner-with-colors.tsx",
+            "spinner-size-table.tsx",
+            "spinner-basic.tsx",
+            "spinner-with-custom-speed.tsx",
+            "spinner-with-track-color.tsx",
+            "spinner-with-overlay.tsx",
+            "spinner-with-label.tsx",
+            "spinner-with-custom-thickness.tsx"
+        ],
+        "status": [
+            "status-with-sizes.tsx",
+            "status-size-table.tsx",
+            "status-basic.tsx",
+            "status-closed-component.tsx",
+            "status-with-label.tsx"
+        ],
+        "qr": [
+            "qr-code-with-export-with-logo.tsx",
+            "qr-code-with-sizes.tsx",
+            "qr-code-closed-component.tsx",
+            "qr-code-basic.tsx",
+            "qr-code-with-input.tsx",
+            "qr-code-with-store.tsx",
+            "qr-code-with-fill.tsx",
+            "qr-code-with-export.tsx",
+            "qr-code-with-overlay.tsx",
+            "qr-code-with-spinner.tsx",
+            "qr-code-with-error-level.tsx"
+        ],
+        "field": [
+            "field-with-native-select.tsx",
+            "field-horizontal.tsx",
+            "field-closed-component.tsx",
+            "field-basic.tsx",
+            "field-with-textarea.tsx",
+            "field-with-required.tsx",
+            "field-with-error-text.tsx",
+            "field-with-helper-text.tsx",
+            "field-with-optional.tsx",
+            "field-with-disabled.tsx"
+        ],
+        "bleed": [
+            "bleed-vertical.tsx",
+            "bleed-with-direction.tsx",
+            "bleed-basic.tsx"
+        ],
+        "simple": [
+            "simple-grid-with-autofit.tsx",
+            "simple-grid-with-row-and-col-gap.tsx",
+            "simple-grid-with-col-span.tsx",
+            "simple-grid-with-columns.tsx",
+            "simple-grid-basic.tsx"
+        ],
+        "image": [
+            "image-with-height.tsx",
+            "image-circular.tsx",
+            "image-with-fit.tsx",
+            "image-with-aspect-ratio.tsx",
+            "image-basic.tsx",
+            "image-with-html-height.tsx"
+        ],
+        "number": [
+            "number-input-with-hook-form.tsx",
+            "number-input-with-invalid.tsx",
+            "number-input-with-field.tsx",
+            "number-input-with-stepper.tsx",
+            "number-input-with-min-max.tsx",
+            "number-input-with-format-options.tsx",
+            "number-input-with-sizes.tsx",
+            "number-input-with-scrubber.tsx",
+            "number-input-with-element.tsx",
+            "number-input-with-disabled.tsx",
+            "number-input-closed-component.tsx",
+            "number-input-with-mouse-wheel.tsx",
+            "number-input-basic.tsx",
+            "number-input-with-step.tsx",
+            "number-input-controlled.tsx"
+        ],
+        "toggle": [
+            "toggle-with-indicator.tsx",
+            "toggle-controlled.tsx",
+            "toggle-basic.tsx",
+            "toggle-tip-info-tip.tsx",
+            "toggle-tip-basic.tsx"
+        ],
+        "dialog": [
+            "dialog-with-final-focus.tsx",
+            "dialog-with-datalist.tsx",
+            "dialog-with-store.tsx",
+            "dialog-with-context.tsx",
+            "dialog-nested.tsx",
+            "dialog-with-initial-focus.tsx",
+            "dialog-controlled.tsx",
+            "dialog-with-cover.tsx",
+            "dialog-with-close-outside.tsx",
+            "dialog-with-placement.tsx",
+            "dialog-with-motion-preset.tsx",
+            "dialog-with-role.tsx",
+            "dialog-basic.tsx",
+            "dialog-with-inside-scroll.tsx",
+            "dialog-with-fullscreen.tsx",
+            "dialog-with-outside-scroll.tsx",
+            "dialog-with-sizes.tsx"
+        ],
+        "popover": [
+            "popover-controlled.tsx",
+            "popover-with-same-width.tsx",
+            "popover-basic.tsx",
+            "popover-size-table.tsx",
+            "popover-with-custom-bg.tsx",
+            "popover-with-placement.tsx",
+            "popover-with-sizes.tsx",
+            "popover-nested.tsx",
+            "popover-with-offset.tsx",
+            "popover-with-initial-focus.tsx",
+            "popover-with-form.tsx",
+            "popover-lazy-mounted.tsx"
+        ],
+        "container": [
+            "container-with-fluid.tsx",
+            "container-with-sizes.tsx",
+            "container-basic.tsx"
+        ],
+        "action": [
+            "action-bar-basic.tsx",
+            "action-bar-with-dialog.tsx",
+            "action-bar-with-close-trigger.tsx"
+        ],
+        "wrap": [
+            "wrap-with-row-column-gap.tsx",
+            "wrap-basic.tsx",
+            "wrap-with-justify.tsx",
+            "wrap-with-gap.tsx",
+            "wrap-with-align.tsx",
+            "wrap-responsive.tsx"
+        ],
+        "presence": [
+            "presence-lazy-mount.tsx",
+            "presence-slide-fade.tsx",
+            "presence-unmount-on-exit.tsx",
+            "presence-scale-fade.tsx",
+            "presence-slide.tsx",
+            "presence-fade.tsx"
+        ],
+        "textarea": [
+            "textarea-with-error-text.tsx",
+            "textarea-with-resize.tsx",
+            "textarea-with-helper-text.tsx",
+            "textarea-size-table.tsx",
+            "textarea-basic.tsx",
+            "textarea-with-hook-form.tsx",
+            "textarea-with-sizes.tsx",
+            "textarea-variant-table.tsx",
+            "textarea-with-form.tsx",
+            "textarea-with-autoresize-max-rows.tsx",
+            "textarea-with-field.tsx",
+            "textarea-with-variants.tsx",
+            "textarea-with-autoresize.tsx"
+        ],
+        "button": [
+            "button-with-group.tsx",
+            "button-with-variants.tsx",
+            "button-with-responsive-size.tsx",
+            "button-variant-table.tsx",
+            "button-with-style-override.tsx",
+            "button-with-group-flushed.tsx",
+            "button-with-spinner-placement.tsx",
+            "button-with-disabled.tsx",
+            "button-with-disabled-link.tsx",
+            "button-with-radius.tsx",
+            "button-with-custom-spinner.tsx",
+            "button-with-loading-toggle.tsx",
+            "button-icons.tsx",
+            "button-as-link.tsx",
+            "button-with-menu.tsx",
+            "button-with-icon-composition.tsx",
+            "button-with-loading.tsx",
+            "button-with-icons.tsx",
+            "button-with-sizes.tsx",
+            "button-with-colors.tsx",
+            "button-basic.tsx",
+            "button-size-table.tsx"
+        ],
+        "steps": [
+            "steps-with-sizes.tsx",
+            "steps-size-table.tsx",
+            "steps-vertical.tsx",
+            "steps-with-description.tsx",
+            "steps-controlled.tsx",
+            "steps-with-colors.tsx",
+            "steps-with-icon.tsx",
+            "steps-basic.tsx",
+            "steps-with-variants.tsx",
+            "steps-variant-table.tsx",
+            "steps-with-store.tsx",
+            "steps-with-lines.tsx"
+        ],
+        "stat": [
+            "stat-with-format-options.tsx",
+            "stat-basic.tsx",
+            "stat-with-progress-bar.tsx",
+            "stat-with-icon.tsx",
+            "stat-with-group.tsx",
+            "stat-with-value-unit.tsx",
+            "stat-with-info-tip.tsx",
+            "stat-with-indicator.tsx",
+            "stat-closed-component.tsx",
+            "stat-with-trend.tsx"
+        ],
+        "link": [
+            "link-overlay-basic.tsx",
+            "link-with-external.tsx",
+            "link-overlay-article.tsx",
+            "link-within-text.tsx",
+            "link-with-variants.tsx",
+            "link-basic.tsx",
+            "link-variant-table.tsx"
+        ],
+        "theme": [
+            "theme-nested.tsx",
+            "theme-basic.tsx",
+            "theme-with-portalled.tsx"
+        ],
+        "table": [
+            "table-with-sizes.tsx",
+            "table-with-interactive.tsx",
+            "table-size-table.tsx",
+            "table-with-overflow.tsx",
+            "table-with-pagination.tsx",
+            "table-basic.tsx",
+            "table-with-sticky-column.tsx",
+            "table-with-variants.tsx",
+            "table-variant-table.tsx",
+            "table-with-sticky-header.tsx",
+            "table-with-column-border.tsx",
+            "table-with-column-group.tsx",
+            "table-with-selection.tsx",
+            "table-with-selection-action-bar.tsx",
+            "table-with-striped.tsx"
+        ],
+        "editable": [
+            "editable-with-double-click.tsx",
+            "editable-disabled.tsx",
+            "editable-with-controls.tsx",
+            "editable-controlled.tsx",
+            "editable-with-textarea.tsx",
+            "editable-basic.tsx",
+            "editable-with-final-focus.tsx",
+            "editable-with-store.tsx",
+            "editable-with-custom-component.tsx"
+        ],
+        "loader": [
+            "loader-with-badge.tsx",
+            "loader-with-overlay.tsx",
+            "loader-basic.tsx"
+        ],
+        "blockquote": [
+            "blockquote-basic.tsx",
+            "blockquote-with-cite.tsx",
+            "blockquote-with-custom-icon.tsx",
+            "blockquote-closed-component.tsx",
+            "blockquote-with-avatar.tsx",
+            "blockquote-with-variants.tsx",
+            "blockquote-with-icon.tsx",
+            "blockquote-with-colors.tsx",
+            "blockquote-variant-table.tsx",
+            "blockquote-with-justify.tsx"
+        ],
+        "collapsible": [
+            "collapsible-basic.tsx",
+            "collapsible-lazy-mounted.tsx"
+        ],
+        "float": [
+            "float-with-offset.tsx",
+            "float-with-avatar.tsx",
+            "float-with-placements.tsx",
+            "float-with-offset-x.tsx",
+            "float-with-offset-y.tsx",
+            "float-basic.tsx"
+        ],
+        "list": [
+            "list-ordered.tsx",
+            "list-nested.tsx",
+            "list-with-marker-style.tsx",
+            "list-basic.tsx",
+            "list-with-icon.tsx"
+        ],
+        "menu": [
+            "menu-with-submenu.tsx",
+            "menu-with-placement.tsx",
+            "menu-with-group-dynamic.tsx",
+            "menu-with-group.tsx",
+            "menu-with-submenu-dynamic.tsx",
+            "menu-with-icon-and-command.tsx",
+            "menu-with-radio-items.tsx",
+            "menu-with-context-trigger.tsx",
+            "menu-within-dialog.tsx",
+            "menu-with-command.tsx",
+            "menu-with-anchor-rect.tsx",
+            "menu-with-danger-item.tsx",
+            "menu-with-hide-when-detached.tsx",
+            "menu-with-mixed-layout.tsx",
+            "menu-with-links.tsx",
+            "menu-basic.tsx",
+            "menu-with-checkbox-items.tsx"
+        ],
+        "avatar": [
+            "avatar-with-store.tsx",
+            "avatar-with-group.tsx",
+            "avatar-with-shape.tsx",
+            "avatar-persona.tsx",
+            "avatar-with-overflow.tsx",
+            "avatar-closed-component.tsx",
+            "avatar-with-fallback.tsx",
+            "avatar-basic.tsx",
+            "avatar-with-variants.tsx",
+            "avatar-group-with-stacking.tsx",
+            "avatar-with-colors.tsx",
+            "avatar-with-ring.tsx",
+            "avatar-variant-table.tsx",
+            "avatar-with-random-color.tsx",
+            "avatar-with-sizes.tsx",
+            "avatar-with-badge.tsx",
+            "avatar-size-table.tsx"
+        ],
+        "fieldset": [
+            "fieldset-with-invalid.tsx",
+            "fieldset-with-disabled.tsx",
+            "fieldset-basic.tsx"
+        ],
+        "for": [
+            "for-with-object.tsx",
+            "for-basic.tsx",
+            "for-with-fallback.tsx"
+        ],
+        "switch": [
+            "switch-with-thumb-indicator.tsx",
+            "switch-with-invalid.tsx",
+            "switch-with-track-indicator.tsx",
+            "switch-with-hook-form.tsx",
+            "switch-controlled.tsx",
+            "switch-with-tooltip.tsx",
+            "switch-with-variants.tsx",
+            "switch-size-table.tsx",
+            "switch-basic.tsx",
+            "switch-with-colors.tsx",
+            "switch-variant-table.tsx",
+            "switch-closed-component.tsx",
+            "switch-with-disabled.tsx",
+            "switch-with-sizes.tsx"
+        ],
+        "format": [
+            "format-byte-with-locale.tsx",
+            "format-number-with-unit.tsx",
+            "format-number-with-locale.tsx",
+            "format-number-with-currency.tsx",
+            "format-byte-sizes.tsx",
+            "format-number-with-percentage.tsx",
+            "format-byte-basic.tsx",
+            "format-byte-with-unit.tsx",
+            "format-number-with-compact.tsx",
+            "format-byte-with-unit-display.tsx",
+            "format-number-basic.tsx"
+        ],
+        "aspect": [
+            "aspect-ratio-basic.tsx",
+            "aspect-ratio-with-video.tsx",
+            "aspect-ratio-with-image.tsx",
+            "aspect-ratio-with-map.tsx",
+            "aspect-ratio-responsive.tsx"
+        ],
+        "text": [
+            "text-with-sizes.tsx",
+            "text-with-line-clamp.tsx",
+            "text-with-as-prop.tsx",
+            "text-basic.tsx",
+            "text-with-truncate.tsx",
+            "text-with-weights.tsx"
+        ],
+        "select": [
+            "select-with-invalid.tsx",
+            "select-with-multiple.tsx",
+            "select-with-disabled.tsx",
+            "select-with-positioning.tsx",
+            "select-with-hook-form.tsx",
+            "select-in-dialog.tsx",
+            "select-with-sizes.tsx",
+            "select-controlled.tsx",
+            "select-basic.tsx",
+            "select-with-variants.tsx",
+            "select-with-overflow.tsx",
+            "select-with-option-group.tsx",
+            "select-with-clear.tsx",
+            "select-with-native-form.tsx",
+            "select-async-loading.tsx",
+            "select-with-disabled-option.tsx",
+            "select-with-avatar.tsx",
+            "select-in-popover.tsx"
+        ],
+        "stack": [
+            "stack-with-responsive-direction.tsx",
+            "stack-with-hstack.tsx",
+            "stack-basic.tsx",
+            "stack-with-vstack.tsx",
+            "stack-horizontal.tsx",
+            "stack-with-responsive-separator.tsx",
+            "stack-with-custom-separator.tsx",
+            "stack-with-separator.tsx"
+        ],
+        "breadcrumb": [
+            "breadcrumb-with-separator.tsx",
+            "breadcrumb-with-icon.tsx",
+            "breadcrumb-with-sizes.tsx",
+            "breadcrumb-size-table.tsx",
+            "breadcrumb-basic.tsx",
+            "breadcrumb-with-variants.tsx",
+            "breadcrumb-with-menu.tsx",
+            "breadcrumb-closed-component.tsx",
+            "breadcrumb-variant-table.tsx",
+            "breadcrumb-with-ellipsis.tsx"
+        ],
+        "icon": [
+            "icon-basic.tsx",
+            "icon-with-custom-svg.tsx",
+            "icon-button-rounded.tsx",
+            "icon-with-as-prop.tsx",
+            "icon-button-with-variants.tsx",
+            "icon-button-with-colors.tsx",
+            "icon-with-react-icon.tsx",
+            "icon-button-basic.tsx",
+            "icon-button-with-sizes.tsx",
+            "icon-with-create-icon.tsx",
+            "icon-with-sizes.tsx"
+        ],
+        "prose": [
+            "prose-with-table.tsx",
+            "prose-with-sizes.tsx",
+            "prose-sink.tsx",
+            "prose-with-react-markdown.tsx",
+            "prose-with-blockquote.tsx",
+            "prose-with-list.tsx",
+            "prose-basic.tsx"
+        ],
+        "data": [
+            "data-list-with-separator.tsx",
+            "data-list-closed-component.tsx",
+            "data-list-with-info.tsx",
+            "data-list-with-sizes.tsx",
+            "data-list-size-table.tsx",
+            "data-list-with-variants.tsx",
+            "data-list-vertical.tsx",
+            "data-list-basic.tsx"
+        ],
+        "timeline": [
+            "timeline-composition.tsx",
+            "timeline-alternating.tsx",
+            "timeline-with-content-before.tsx",
+            "timeline-basic.tsx",
+            "timeline-with-sizes.tsx",
+            "timeline-with-variants.tsx"
+        ],
+        "flex": [
+            "flex-with-auto-margin.tsx",
+            "flex-with-justify.tsx",
+            "flex-basic.tsx",
+            "flex-with-wrap.tsx",
+            "flex-with-direction.tsx",
+            "flex-with-align.tsx",
+            "flex-with-order.tsx"
+        ],
+        "tag": [
+            "tag-variant-table.tsx",
+            "tag-size-table.tsx",
+            "tag-with-colors.tsx",
+            "tag-closed-component.tsx",
+            "tag-with-variants.tsx",
+            "tag-with-sizes.tsx",
+            "tag-with-close.tsx",
+            "tag-basic.tsx",
+            "tag-with-icon.tsx",
+            "tag-with-overflow.tsx",
+            "tag-with-avatar.tsx",
+            "tag-as-button.tsx"
+        ],
+        "grid": [
+            "grid-with-col-span.tsx",
+            "grid-with-template-areas.tsx",
+            "grid-spanning-columns.tsx",
+            "grid-basic.tsx"
+        ],
+        "badge": [
+            "badge-with-group.tsx",
+            "badge-with-context.tsx",
+            "badge-with-variants.tsx",
+            "badge-with-colors.tsx",
+            "badge-basic.tsx",
+            "badge-variant-table.tsx",
+            "badge-with-icon.tsx",
+            "badge-with-sizes.tsx",
+            "badge-size-table.tsx"
+        ],
+        "clipboard": [
+            "clipboard-without-snippet.tsx",
+            "clipboard-basic.tsx",
+            "clipboard-with-button.tsx",
+            "clipboard-with-input.tsx",
+            "clipboard-with-link.tsx",
+            "clipboard-with-timeout.tsx"
+        ]
+    }
+}

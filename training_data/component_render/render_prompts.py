@@ -98,17 +98,25 @@ Identify the list of specific actions that can be performed on THE CENTER of thi
 - hover on this element
 - write something
 
-### 6. Element Completeness Analysis(element_completeness_analysis)
-Assess whether the element is complete, give your analysis process in element_completeness_analysis and give the final answer in element_completeness_result:
-- If 
-    - it is partially truncated or part of a larger component(which happens often), 
-    - or the image doesn't align well with your description(image shows element A but description mentions element B),
-    - or the element is partially hidden by other elements, 
-    - or the element is not visible at all,
-    - or the bounding box consists of more than one elements,
-    - or the bounding box does not fit tightly around the target element, with significant padding between them
-    please, answer False in Element Completeness Result(element_completeness_result)
-- If it is absolutely, fully visible, answer True in Element Completeness Result(element_completeness_result)
+### 6. Element Complete Visibility Analysis (`element_complete_visibility_analysis`)
+Assess whether the element is completely visible, give your analysis process in `element_complete_visibility_analysis` and give the final answer in `element_complete_visibility_result`:
+
+- If the element is not fully visible for any of these reasons:
+  - It is partially truncated or part of a larger component (which happens often)
+  - The image doesn't align well with your description (image shows element A but description mentions element B)
+  - The element is partially hidden by other elements
+  - The element is not visible at all
+  - The bounding box does not fit tightly around the target element, with significant padding between them
+  Then answer False in Element Visibility Result (`element_complete_visibility_result`)
+
+- If the element is absolutely, fully visible, answer True in Element Visibility Result (`element_complete_visibility_result`)
+
+### 7. Element Atomicity Analysis (element_atomicity_analysis)
+Assess whether the element represents a single cohesive component, give your analysis in `element_atomicity_analysis` and give the final answer in `element_atomicity_result`:
+
+- If the bounding box contains multiple distinct elements that should be considered separate (rather than a single cohesive component), answer False in Element Atomicity Result (`element_atomicity_result`)
+
+- If the element represents a single cohesive component (not multiple independent elements grouped together), answer True in Element Atomicity Result (`element_atomicity_result`)
 
 Additional Context:
 You'll receive a metadata called element information: A dict containing information including the role, title, value, identifier, description, help, path of this element. The MAY OR MAY NOT be useful for your analysis.
@@ -226,6 +234,7 @@ If `element_completeness_result` is False, you should not generate following asp
 Return None for all of them.
 
 2. **Determine Whether the action space is continuous** (`is_continuous`)
+ALL SLIDERS have continuous action space!!!
 Analyze and determine the whether there are infinite possible meaningful actions within a range for this Element (In most cases the action space isn't continuous! Example of continuous action space: dragging a slider to any position). Output True/False for this aspect.
 
 3. **Thought Process** (`thought_process`)
@@ -869,7 +878,8 @@ def generate_new_scenario_component_prompt(
     component_root_name: str,
     component_constraint: str,
     original_code: str,
-    generated_codes: list[str] = None,
+    generated_codes: list[str],
+    lib_name: str,
 ) -> str:
     base_template = """
 <UI Component Code>
@@ -885,7 +895,7 @@ Please come up with a real application scenario for this type of component based
 
 1. The core functionality must remain consistent with the original component {component_root_name}. Based on this, you can design new application scenarios and styles. For {component_root_name}, there is certain constraint: {component_constraint}
 
-2. Please add some new subcomponents that are commonly found in modern UI design and are related to component functionality. These subcomponents should prioritize the use of images for display, and text can be used when necessary.
+2. Please add some new subcomponents that are commonly found in modern UI design and are related to component functionality. These subcomponents should prioritize the use of images for display, and text can be used when necessary. If the original component is simple, you should add MORE SUBCOMPONENTS of LAYOUTS to make it realistic and complex.
 
 3. Focus on components with interactive attributes that provide a rich interactive experience. Avoid overly simple layouts or components.
 
@@ -895,17 +905,21 @@ Please come up with a real application scenario for this type of component based
 
 6. Design Aesthetic: Authenticity is key. The component should resemble real-world components that users interact with daily. Pay close attention to style parameters, such as spacing, font sizes, button interactions, and overall layout. Make sure the design is consistent with what we typically use in modern, functional UI components.
 
-7. Library to use: You can use tailwind css classes and lucide-react classes to handle visual styles. Make sure the classes you use are real and not fake. No Image Imports: Since we don’t have image data, avoid importing images. 
+7. Library to use: You are recommended to use tailwind css classes and lucide-react classes to handle visual styles. Ensure both code accuracy and aesthetic component design. Make sure the classes you use are real and not fake. No Image Imports: Since we don't have image data, avoid importing images. 
 
-8. Output Accuracy: MAKE SURE that "new_style_code" is a complete React component code that obey js grammar. Ensure your code is correct!
+8. Output Accuracy: MAKE SURE that "new_style_code" is a complete React component code that obey tsx grammar. Ensure your code is correct!
 
 9. Default Element States: For elements like dialogs, backdrops, autocompletes, etc., their panels are usually closed by default. Please modify the code to ensure these elements are open by default (e.g., change useState(false) to useState(true) where necessary).
 
-10. Keep key characteristics of original components, for example, the grid of tables, the feasibility of getting positions of every letters/characters in texts. For tables, keep the large amount of cells.For tables, keep the large amount of cells.For tables, keep the large amount of cells.
+10. Keep key characteristics of original components, for example, the grid of tables, the feasibility of getting positions of every letters/characters in texts.
+
+11. The original UI component code may have some bugs, you should not keep them.
 
 Remember your generated component should include {component_root_name} or be {component_root_name}.
 
 Pay attention to your import, make sure every import is correct.
+
+Remember: Do not name your component 'App' as it conflicts with the main App.js file that imports it.
 
 Please respond in JSON format directly. You should not add any other text or comments.
 {{
@@ -1106,7 +1120,9 @@ Output Format:
 """
 
 VISUAL_FILTER_PROMPT = """
-You're a smart and precise GUI Interaction Assistant. You will be provided with a screenshot that includes a green circle, with a green dot inside the circle indicating the exact position where the user performed an action. Additionally, you will be given a cropped version of the screenshot that focuses on the green dot and circle to help you better observe the action location. Along with the screenshot, you will receive an **instruction** describing the user's intended action. Your task is as follows:  
+You're a smart and precise GUI Interaction Assistant. You will be provided with a screenshot that includes a green circle, with a green dot inside the circle indicating the exact position where the user performed an action. Additionally, you will be given a cropped version of the screenshot that focuses on the green dot and circle to help you better observe the action location. 
+Along with the screenshot, you will receive an **instruction** describing the user's intended action. You need to verify whether this instruction corresponds to the position marked by the green dot in the screenshot.
+In detail, Your task is as follows:  
 
 ---
 
@@ -1118,6 +1134,7 @@ You're a smart and precise GUI Interaction Assistant. You will be provided with 
 ### **2. Element Identification:**  
 - Identify the GUI element at the position marked by the green dot within the green circle.  
 - Provide a description of the element, including its type (e.g., button, text, input field), label, or associated functionality.  
+- If the element is a slider, then the instruction is correct, you don't need to verify, return `true` in is_correct.
 
 ---
 
@@ -1156,6 +1173,7 @@ Provide the output in the following format:
 - **Return `true`** if:  
   - The target element matches the instruction.  
   - The click position is accurate.  
+  - The target element is a slider.
 
 - **Return `false`** if:  
   - The instruction does not align with the target element.  
