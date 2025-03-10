@@ -47,6 +47,7 @@ async def _generate_single_scenario_openai(
     base_component_code,
     generated_codes,
     system_prompt,
+    lib_name,
 ) -> str:
     """单个样式生成的任务函数"""
     scenario_prompt = generate_new_scenario_component_prompt(
@@ -54,6 +55,7 @@ async def _generate_single_scenario_openai(
         component_constraint=component_constraint,
         original_code=base_component_code,
         generated_codes=generated_codes,
+        lib_name=lib_name,
     )
 
     try:
@@ -84,13 +86,14 @@ async def _generate_single_scenario_openai(
         with open("import_list.json", "r") as file:
             import_list = json.load(file)
 
-        lucide_line = [
-            line for line in new_style_code.split("\n") if "lucide-react" in line
-        ][0]
-        logger.info(lucide_line)
-        # 使用正则表达式提取花括号中的所有项
-        pattern = r"{(.*?)}"
-        matches = re.search(pattern, lucide_line)
+        if "lucide-react" in new_style_code:
+            lucide_line = [
+                line for line in new_style_code.split("\n") if "lucide-react" in line
+            ][0]
+            logger.info(lucide_line)
+            # 使用正则表达式提取花括号中的所有项
+            pattern = r"{(.*?)}"
+            matches = re.search(pattern, lucide_line)
 
         if matches:
             # 分割并去除空格
@@ -157,12 +160,15 @@ def _generate_single_scenario_claude(
     base_component_code,
     generated_codes,
     system_prompt,
+    lib_name,
 ) -> str:
 
     scenario_prompt = generate_new_scenario_component_prompt(
         component_root_name=component_root_name,
+        component_constraint=component_constraint,
         original_code=base_component_code,
         generated_codes=generated_codes,
+        lib_name=lib_name,
     )
 
     url = "https://api2.aigcbest.top/v1/chat/completions"
@@ -244,6 +250,7 @@ async def scenario_generation_worker(
     prev_generated_code_list: List[str],
     n: int,
     queue: Queue,
+    lib_name: str,
 ) -> None:
     """生产者：负责生成代码并放入队列"""
     generated_count = 0
@@ -260,6 +267,7 @@ async def scenario_generation_worker(
                     base_component_code,
                     prev_generated_code_list[-6:],
                     SYSTEM_PROMPT_FOR_STYLE_AUGMENTATION,
+                    lib_name,
                 )
 
             prev_generated_code_list.append(new_generated_code)
