@@ -1,3 +1,5 @@
+# TODO: key: claude
+
 import asyncio
 import datetime
 import platform
@@ -26,7 +28,6 @@ from javascripts import (
 from logger import logger
 from playwright.async_api import async_playwright
 from pydantic import BaseModel
-from screenshot_annotate import annotate_screenshot_component
 from style import scenario_generation_worker
 from filter import visual_filter
 
@@ -53,6 +54,7 @@ parser.add_argument(
     action="store_true",  # 使用 store_true 使其成为布尔标志
     help="Enable sampling mode",  # 添加帮助说明
 )
+parser.add_argument("--api_type", type=str, default="openai", required=True)
 args = parser.parse_args()
 # print("components: ", args.components)
 
@@ -859,6 +861,7 @@ async def main():
                         args.scenario_count,
                         code_queue,
                         args.lib_name,
+                        args.api_type,
                     )
                 )
                 task2 = asyncio.create_task(process_queue(code_queue))

@@ -1,15 +1,41 @@
 # Component rendering
 
-We plan to use 6 virtual machines.
+## install node.js and npm
+run
+```
+node -v
+npm -v
+```
+to check whether node.js and npm is installed
+
+if not, run
+```
+sudo apt update
+sudo apt install nodejs npm
+```
+and check again whether node.js and npm is installed 
 
 ## npm install
 
 run `install_npm.sh` in `training_data/component_render`.
+Check your disk space--one react frontend requires approximately 600 MB dick space and running them may cost approximately 900 MB memory.
+
+## secret keys
+Add a folder named `secret_keys` under `training_data/component_render`.
+
+If you use openai's api:
+Add a file named `secret_key_openai.txt` under `training_data/component_render/secret_keys`
+
+If you use claude's bedrock:
+- Export AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_SESSION_TOKEN
+- Try to run `python style.py` to see if claude's key work. If it works, it should output a right code of a UI component. 
 
 ## environment
 
 run
 ```
+conda create -n component python=3.9
+conda activate component
 pip install -r requirements.txt
 ```
 in `training_data/component_render`.
@@ -17,6 +43,20 @@ in `training_data/component_render`.
 Then run
 ```
 playwright install
+```
+
+If you encounter messages like:
+...
+Host system is missing dependencies to run browsers. ║
+║ Please install them with the following command:      ║
+║                                                      ║
+║     sudo playwright install-deps
+...
+
+you can run
+```
+npm install playwright
+npx playwright install-deps
 ```
 
 ## Script Run:
