@@ -1,8 +1,3 @@
-# python main_bbox.py --port 3001 --components slider --scenario_count 2 > logs/session_3001_output.txt 2>&1
-# python main_bbox.py --port 3002 --components switches --scenario_count 2 > logs/session_3002_output.txt 2>&1
-# python main_bbox.py --port 3003 --components autocomplete --scenario_count 2 > logs/session_3003_output.txt 2>&1
-# TODO: add code re-write if it is wrong
-# TODO: 添加更多的组件库
 import asyncio
 import datetime
 import platform
@@ -11,6 +6,7 @@ import os
 import re
 import shutil
 import psutil
+import traceback
 import subprocess
 import time
 import argparse
@@ -43,13 +39,20 @@ parser = argparse.ArgumentParser(description="Process an image and draw text on 
 
 # 添加参数
 parser.add_argument("--port", type=int, required=True)
+parser.add_argument("--lib_name", type=str, required=True)
 parser.add_argument(
     "--components",
     nargs="+",  # 表示接受一个或多个字符串
-    required=True,  # 设置为必填参数
-    help="A list of strings separated by space.",
+    required=False,  # 设置为非必填参数
+    default=["all"],  # 默认值为 ["all"]
+    help="A list of strings separated by space. Default is 'all'.",
 )
 parser.add_argument("--scenario_count", type=int, required=True)
+parser.add_argument(
+    "--sample",
+    action="store_true",  # 使用 store_true 使其成为布尔标志
+    help="Enable sampling mode",  # 添加帮助说明
+)
 args = parser.parse_args()
 # print("components: ", args.components)
 
@@ -191,7 +194,7 @@ class DataGenerator:
 
             # 然后写入新的组件文件
             component_js_path = (
-                Path(app_dir) / "src" / "components" / f"{component_name}.js"
+                Path(app_dir) / "src" / "components" / f"{component_name}.tsx"
             )
             with open(component_js_path, "w", encoding="utf-8", newline="\n") as f:
                 f.write(component_code)
@@ -441,6 +444,7 @@ def process_component_tree(component_tree):
 
 
 async def main():
+    start_time = time.time()
     generator = DataGenerator(args.port)
 
     app_dir = Path(f"react-app-dir/react-app-{args.port}")
@@ -448,29 +452,25 @@ async def main():
 
     component_desc = None
     base_path_dict = {
-        "material": "UIwebsite_doc/material/components",
-        "mui-x": "UIwebsite_doc/mui-x",
+        "material": "UIwebsite_doc/material",
+        "ant-design": "UIwebsite_doc/ant-design",
+        "chakra": "UIwebsite_doc/chakra",
+        "mantine": "UIwebsite_doc/mantine",
     }
 
-    with open("component_tree_mui-x.json", "r") as f:
-        # 读取整个文件内容
-        content = json.load(f)
-        component_tree_list = content["components"]
-    with open("selected_component_tree_material.json", "r") as f:
-        # 读取整个文件内容
-        content = json.load(f)
-        component_tree_list.extend(content["components"])
-
-    stats = {}
-
-    select_component_tree_list = [
-        component_tree
-        for component_tree in component_tree_list
-        if component_tree["name"] in args.components
-    ]
-    logger.info(
-        f"Processing {len(select_component_tree_list)} components at the beginning"
+    with open("component_tree.json", "r") as file:
+        component_tree_all = json.load(file)
+    component_tree_lib = component_tree_all[args.lib_name]
+    component_list = (
+        args.components
+        if args.components != ["all"]
+        else os.listdir(base_path_dict[args.lib_name])
     )
+    logger.info(f"Processing {len(component_list)} components")
+    select_component_dict = {
+        component: component_tree_lib[component] for component in component_list
+    }
+    logger.info(f"Processing {len(select_component_dict)} components at the beginning")
     with open("success.txt", "w") as file:
         pass
 
@@ -479,24 +479,26 @@ async def main():
 
     os.makedirs(Path(app_dir) / "src" / "components", exist_ok=True)
     await generator.initialize_react_app()
-    # 初始化浏览器
     await generator.initialize_browser()
+    done_dict = {}
+    os.makedirs("done_info", exist_ok=True)
+    done_file_path = os.path.join("done_info", f"{args.port}_done.json")
+    if not os.path.exists(done_file_path) or os.path.getsize(done_file_path) == 0:
+        with open(done_file_path, "w") as f:
+            json.dump({}, f)
+    else:
+        with open(done_file_path, "r") as f:
+            done_dict = json.load(f)
     try:
-        for component_index in range(len(select_component_tree_list)):
-            with open("token_cost.txt", "a") as file:
-                file.write(f"{select_component_tree_list[component_index]['name']}\n")
-            if "tree-view" in select_component_tree_list[component_index]["name"]:
-                lib_name = "mui-x"
-            else:
-                lib_name = "material"
+        for (
+            component_root_name,
+            component_code_file_list,
+        ) in select_component_dict.items():
             component_num = 0
             action_num = 0
-            component_node_list = process_component_tree(
-                select_component_tree_list[component_index]
-            )
-            component_root_name = select_component_tree_list[component_index]["name"]
             component_root_dir = os.path.join(
                 "data",
+                args.lib_name,
                 component_root_name,
             )
             os.makedirs(component_root_dir, exist_ok=True)
@@ -518,15 +520,23 @@ async def main():
             grounding_false_screenshot_folder.mkdir(parents=True, exist_ok=True)
             component_root_path = str(Path(*component_root_name.split("->")))
             prev_generated_code_list = []
-            for node_index, component_node in enumerate(component_node_list):
+            if args.sample:
+                component_code_file_list = component_code_file_list[:1]
+                logger.info("Only sample one component for each category")
+            for node_index, component_code_file in enumerate(component_code_file_list):
+                if component_root_name not in done_dict:
+                    done_dict[component_root_name] = []
+                if component_code_file in done_dict[component_root_name]:
+                    logger.info("This component has been processed")
+                    continue
                 logger.info(
-                    f"Start to process component: {node_index} / {len(component_node_list)} --- {component_node['code_path']}"
+                    f"Start to process component {component_code_file}: {node_index} / {len(component_code_file_list)}"
                 )
-                component_desc = component_node["introduction"]
+                # component_desc = component_code["introduction"]
                 base_component_code_path = os.path.join(
-                    base_path_dict[lib_name],
+                    base_path_dict[args.lib_name],
                     component_root_path,
-                    component_node["code_path"],
+                    component_code_file,
                 )
                 component_code = None
                 with open(base_component_code_path, "r") as f:
@@ -547,8 +557,9 @@ async def main():
                                 processed_index, item, component_num, action_num
                             )  # 异步处理代码
                         except Exception as e:
+                            tb = traceback.format_exc()
                             logger.error(
-                                f"Error processing code {processed_index}: {e}"
+                                f"Error processing code {processed_index}: {e}\nStack trace:\n{tb}"
                             )
                         finally:
                             queue.task_done()  # 标记任务完成
@@ -562,18 +573,19 @@ async def main():
                 ):
                     logger.info(f"Start to process scenario {scenario_index}")
                     component_code = scenario_augmentation_code
+                    # You can change component_code to some existed code for debugging
                     component_code_path = ""
                     try:
                         # STEP 2: 提取组件名称&创建组件
                         logger.info(f"Extracting component name")
                         component_name = generator.extract_export_name(component_code)
                         logger.info(
-                            f"Scenario {scenario_index} of component {node_index} / {len(component_node_list)}: {component_name}"
+                            f"Scenario {scenario_index} of component {component_root_name} {node_index} / {len(component_code_file_list)}: {component_name}"
                         )
                         component_code_path = str(
                             Path(f"{component_root_dir}")
                             / "component_code"
-                            / f"{component_name}_{datetime.datetime.now().strftime('%m-%d %H:%M')}.js"
+                            / f"{component_name}_{datetime.datetime.now().strftime('%m-%d %H:%M')}.tsx"
                         )
                         # STEP 3: 创建并启动React应用，渲染组件，进行截图，并获取组件位置信息
                         # TODO： bbox要精简
@@ -585,40 +597,19 @@ async def main():
                         )
                         logger.info(f"React app created and started")
 
-                        # STEP 4: 在截图中标注组件位置信息
-                        # logger.info(f"Annotating component screenshot")
-                        # annotated_component_path = await annotate_screenshot_component(
-                        #     component_name,
-                        #     position,
-                        #     screenshot_path,
-                        #     screenshot_folder,
-                        # )
-                        # logger.info(f"Annotated component screenshot")
-
                         annotated_action_paths = []
-                        # STEP 5: 生成动作数据
+                        # STEP 4: 生成动作数据
                         # TODO： 修改生成逻辑，基于bbox生成
                         # TODO：unique action会很多，这种直接生成pyautogui.xxx(position)即可
                         logger.info(f"Generating action data")
-                        # action_intent_list, action_detail_list = (
-                        #     await generate_action_data(
-                        #         component_desc=component_desc,
-                        #         component_name=component_name,
-                        #         raw_component_path=screenshot_path,
-                        #         annotated_component_path=annotated_component_path,
-                        #         position=position,
-                        #         component_code=component_code,
-                        #     )
-                        # )
                         action_intent_list, action_detail_list = (
                             [],
                             generate_action_data_with_bbox(
-                                # component_code=component_code,
                                 position,
                                 screenshot_path,
                             ),
                         )
-                        # STEP 6: 保存raw数据到json文件
+                        # STEP 5: 保存raw数据到json文件
                         component_num += 1
                         action_num += len(annotated_action_paths)
                         os.makedirs(os.path.dirname(component_code_path), exist_ok=True)
@@ -637,12 +628,9 @@ async def main():
                                         "component_name": component_name,
                                         "component_code_path": str(
                                             Path("./component_code")
-                                            / f"{component_name}.js"
+                                            / f"{component_name}.tsx"
                                         ),
                                         "screenshot_path": str(screenshot_path),
-                                        # "annotated_component_path": str(
-                                        #     annotated_component_path
-                                        # ),
                                         "annotated_action_path": [
                                             str(annotated_action_path)
                                             for annotated_action_path in annotated_action_paths
@@ -662,9 +650,9 @@ async def main():
                                 )
                                 + "\n"
                             )
-                        # STEP 7: 保存grounding数据到json
+                        # STEP 6: 保存grounding数据到json
 
-                        # 7.1 process data into grounding format with inst filter
+                        # 6.1 process data into grounding format with inst filter
                         grounding_dict_list = []
 
                         # 定义一个包装函数，方便传递参数
@@ -675,7 +663,6 @@ async def main():
                             return new_dict_list
 
                         # 使用 asyncio.create_task 创建并行任务
-                        # TODO： unique类型的并不需要处理
                         tasks = [
                             asyncio.create_task(process_grounding_task(action_detail))
                             for action_detail in action_detail_list
@@ -691,7 +678,7 @@ async def main():
                             f"process grounding & inst filter to {len(grounding_dict_list)}"
                         )
 
-                        # 7.2 grounding annotate
+                        # 6.2 grounding annotate
                         # 定义一个包装函数，方便传递参数
                         logger.info(
                             f"grounding_dict_before_annotate: {grounding_dict_list}"
@@ -731,40 +718,39 @@ async def main():
                             f"grounding_dict_after_annotate: {grounding_dict_list}"
                         )
 
-                        # # 7.3 visual filter
-                        # old_len = len(grounding_dict_list)
-                        # true_len = 0
+                        # 6.3 visual filter TODO： do we need this? Yes
+                        old_len = len(grounding_dict_list)
+                        true_len = 0
 
-                        # # 定义一个包装函数，方便传递参数
-                        # logger.info(f"start to visual filter {grounding_dict_list}")
+                        # 定义一个包装函数，方便传递参数
+                        logger.info(f"start to visual filter {grounding_dict_list}")
 
-                        # async def visual_filter_task(grounding_dict):
-                        #     new_dict = await visual_filter(grounding_dict)
-                        #     return new_dict
+                        async def visual_filter_task(grounding_dict):
+                            new_dict = await visual_filter(grounding_dict)
+                            return new_dict
 
-                        # # 使用 asyncio.create_task 创建并行任务
-                        # tasks = [
-                        #     asyncio.create_task(visual_filter_task(grounding_dict))
-                        #     for grounding_dict in grounding_dict_list
-                        # ]
+                        # 使用 asyncio.create_task 创建并行任务
+                        tasks = [
+                            asyncio.create_task(visual_filter_task(grounding_dict))
+                            for grounding_dict in grounding_dict_list
+                        ]
 
-                        # grounding_dict_list = []
-                        # # 等待所有任务完成并收集结果
-                        # for task in tasks:
-                        #     new_dict = await task  # 等待每个任务的结果
-                        #     if new_dict is not None:
-                        #         grounding_dict_list.append(new_dict)
-                        #     if new_dict["is_correct"]:
-                        #         true_len += 1
+                        grounding_dict_list = []
+                        # 等待所有任务完成并收集结果
+                        for task in tasks:
+                            new_dict = await task  # 等待每个任务的结果
+                            if new_dict is not None:
+                                grounding_dict_list.append(new_dict)
+                            if new_dict["is_correct"]:
+                                true_len += 1
 
-                        # logger.info(f"visual filter from {old_len} to {true_len}")
+                        logger.info(f"visual filter from {old_len} to {true_len}")
 
                         for grounding_index, grounding_dict in enumerate(
                             grounding_dict_list
                         ):
-                            print("grounding_dict:", str(grounding_dict))
-                            # if grounding_dict["is_correct"]:
-                            if True:
+                            if grounding_dict["is_correct"]:
+                                # if True:
                                 with open(
                                     os.path.join(
                                         component_root_dir,
@@ -838,30 +824,23 @@ async def main():
                                     ),
                                 )
 
-                                # TODO: 先看filter结果，之后再考虑删的事情
                                 # 删grounding screenshot
                                 os.remove(grounding_dict["annotated_grounding_path"])
 
-                        with open("success.txt", "a") as file:
-                            file.write(
-                                f"{component_root_name}--{component_node['name']}\n"
-                            )
                     except Exception as e:
                         logger.error(
-                            f"Error processing component {component_node['name']}: {e}",
+                            f"Error processing component {component_name} in category {component_root_name}: {e}",
                             exc_info=True,  # 这会自动添加完整的堆栈跟踪
                         )
                     finally:
                         src_path = (
                             Path(f"react-app-dir/react-app-{args.port}/src/components")
-                            / f"{component_name}.js"
+                            / f"{component_name}.tsx"
                         )
 
                         shutil.move(src_path, component_code_path)
                         await generator.restart_react_server()
 
-                ### 进行数据扩增。分为两步，第一步根据应用场景扩增新风格的数据。第二步为数据添加css样式模版，方便进一步扩增。
-                # TODO: 循环，每次循环生成1个scenario！
                 code_queue = asyncio.Queue()
 
                 with open("component_constraint.json", "r") as file:
@@ -879,27 +858,29 @@ async def main():
                         prev_generated_code_list,
                         args.scenario_count,
                         code_queue,
+                        args.lib_name,
                     )
                 )
                 task2 = asyncio.create_task(process_queue(code_queue))
 
-                # for debug
                 await task1
                 await task2
 
-                stats[component_root_name] = {
-                    "component_num": component_num,
-                    "action_num": action_num,
-                }
-                logger.info(
-                    f"{component_root_name} stats: {stats[component_root_name]}"
-                )
-                with open("stats.json", "w") as f:
-                    json.dump(stats, f, indent=4)
+                with open(done_file_path, "r") as f:
+                    done_dict = json.load(f)
+                if component_root_name not in done_dict:
+                    done_dict[component_root_name] = []
+                done_dict[component_root_name].append(component_code_file)
+                with open(done_file_path, "w") as f:
+                    json.dump(done_dict, f)
+
     except Exception as e:
         logger.error(f"Serious error encountered: {e}")
         # 这可能并不需要！
         # await generator.restart_react_server()
+    finally:
+        end_time = time.time()
+        logger.info(f"Total time taken: {end_time - start_time} seconds")
 
 
 if __name__ == "__main__":
