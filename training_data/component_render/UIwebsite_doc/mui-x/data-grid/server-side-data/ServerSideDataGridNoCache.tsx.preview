@@ -1,8 +1,0 @@
-<DataGridPro
-  initialState={initialStateWithPagination}
-  columns={columns}
-  unstable_dataSource={dataSource}
-  unstable_dataSourceCache={null}
-  pagination
-  pageSizeOptions={pageSizeOptions}
-/>

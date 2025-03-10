@@ -1,0 +1,46 @@
+.wrapper {
+  padding-top: 80px;
+  padding-bottom: 50px;
+}
+
+.item {
+  display: flex;
+}
+
+.itemIcon {
+  padding: var(--mantine-spacing-xs);
+  margin-right: var(--mantine-spacing-md);
+}
+
+.itemTitle {
+  margin-bottom: calc(var(--mantine-spacing-xs) / 2);
+}
+
+.supTitle {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: var(--mantine-font-size-sm);
+  color: var(--mantine-color-blue-light-color);
+  letter-spacing: 0.5px;
+}
+
+.title {
+  line-height: 1;
+  text-align: center;
+  margin-top: var(--mantine-spacing-xl);
+}
+
+.description {
+  text-align: center;
+  margin-top: var(--mantine-spacing-xs);
+}
+
+.highlight {
+  background-color: var(--mantine-color-blue-light);
+  padding: 5px;
+  padding-top: 0;
+  border-radius: var(--mantine-radius-sm);
+  display: inline-block;
+  color: light-dark(inherit, var(--mantine-color-white));
+}

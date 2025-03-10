@@ -1,1 +1,0 @@
-<DataGridPro columns={columns} pinnedRows={pinnedRows} rows={rows} />

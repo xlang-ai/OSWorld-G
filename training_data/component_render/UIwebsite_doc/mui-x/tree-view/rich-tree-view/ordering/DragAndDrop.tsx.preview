@@ -1,8 +1,0 @@
-<RichTreeViewPro
-  items={ITEMS}
-  itemsReordering
-  defaultExpandedItems={['grid', 'pickers']}
-  experimentalFeatures={{
-    itemsReordering: true,
-  }}
-/>

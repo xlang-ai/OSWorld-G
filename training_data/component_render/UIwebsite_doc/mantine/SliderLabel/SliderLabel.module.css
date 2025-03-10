@@ -1,0 +1,19 @@
+.label {
+  top: 0;
+  height: 28px;
+  line-height: 28px;
+  width: 34px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  background-color: transparent;
+}
+
+.thumb {
+  background-color: var(--mantine-color-blue-6);
+  height: 28px;
+  width: 34px;
+  border: none;
+}

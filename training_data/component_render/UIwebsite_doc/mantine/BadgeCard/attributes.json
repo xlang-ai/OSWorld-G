@@ -1,0 +1,10 @@
+{
+  "title": "Card with badges",
+  "category": "app-cards",
+  "withColor": true,
+  "dimmed": true,
+  "canvas": {
+    "center": true,
+    "maxWidth": 370
+  }
+}

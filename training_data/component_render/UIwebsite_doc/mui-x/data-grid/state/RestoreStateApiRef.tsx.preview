@@ -1,7 +1,0 @@
-<DataGridPro
-  slots={{ toolbar: CustomToolbar }}
-  loading={loading}
-  apiRef={apiRef}
-  pagination
-  {...data}
-/>

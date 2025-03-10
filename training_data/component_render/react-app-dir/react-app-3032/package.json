@@ -8,6 +8,7 @@
         "@types/react": "^19.0.7",
         "@types/react-dom": "^19.0.3",
         "@types/react-router-dom": "^5.3.3",
+        "antd": "^5.24.3",
         "headlessui": "^0.0.0",
         "lucide-react": "^0.473.0",
         "react": "^19.0.0",
