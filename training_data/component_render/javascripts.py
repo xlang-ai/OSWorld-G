@@ -1,7 +1,7 @@
 JS_WITH_COMPONENT = r"""
 import React from 'react';
 import './App.css';
-import {component_name} from './components/{component_name}';
+import {component_name} from './components/{component_name}.tsx';
 import RandomContainer from './components/RandomContainer';
 
 function App() {{

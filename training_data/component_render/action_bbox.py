@@ -34,7 +34,7 @@ lock = threading.Lock()
 
 THREAD_TIMEOUT = 60
 
-jsonl_file_path = "data_desktop_fullscreen.jsonl"
+# jsonl_file_path = "data_desktop_fullscreen.jsonl"
 
 # Two kinds of action
 # interact with the whole bbox
@@ -428,13 +428,13 @@ async def generate_instructions(bbox, original_image_path):
                 f"ELEMENT ATOMICITY ANALYSIS: {str(element_atomicity_analysis)}"
             )
 
-            false_context_image_path = ""
+            # false_context_image_path = ""
 
-            with open("response.txt", "a") as f:
-                f.write(false_context_image_path)
-                f.write("\n")
-                f.write(str(response.choices[0].message.parsed))
-                f.write("\n")
+            # with open("response.txt", "a") as f:
+            #     f.write(false_context_image_path)
+            #     f.write("\n")
+            #     f.write(str(response.choices[0].message.parsed))
+            #     f.write("\n")
 
             if element_complete_visibility_result and element_atomicity_result:
                 # 从0到11中随机生成两个不同的整数
@@ -449,10 +449,12 @@ async def generate_instructions(bbox, original_image_path):
                             position_information=position_information,
                             element_type=element_type,
                         )
-                        if index == 0 else element_function_templates[random_int].format(
+                        if index == 0
+                        else element_function_templates[random_int].format(
                             element_function=element_function,
                             element_type=element_type,
-                        )+ position_information_templates[random_int].format(
+                        )
+                        + position_information_templates[random_int].format(
                             position_information=position_information,
                             element_type=element_type,
                         )
@@ -592,9 +594,9 @@ def generate_action_data_with_bbox(position_info, screenshot_path):
     bbox_data = position_info
 
     bboxes = extract_bboxes(bbox_data, screenshot)
-    with open("bboxes.jsonl", "w") as f:
-        for bbox in bboxes:
-            f.write(json.dumps(bbox) + "\n")
+    # with open("bboxes.jsonl", "w") as f:
+    #     for bbox in bboxes:
+    #         f.write(json.dumps(bbox) + "\n")
     logger.info(f"extracted {len(bboxes)} bboxes")
 
     futures = []
