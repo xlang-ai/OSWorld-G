@@ -47,8 +47,10 @@ class InstGen(BaseModel):
     element_function: str
     element_type: str
     possible_actions: List[str]
-    element_completeness_analysis: str
-    element_completeness_result: bool
+    element_complete_visibility_analysis: str
+    element_complete_visibility_result: bool
+    element_atomicity_analysis: str
+    element_atomicity_result: bool
 
 
 class ActionDetail(BaseModel):
@@ -192,12 +194,14 @@ def extract_bboxes(data, screenshot):
     final_result = []
     for index, result_item in enumerate(result):
         if location_ok(result_item, screenshot) is False:
+            # logger.info("location not ok")
             continue
         repetition = False
         for prev_item in result[:index]:
             if result_item["position"] == prev_item["position"]:
                 repetition = True
         if repetition:
+            # logger.info("repetitive bbox")
             continue
         final_result.append(result_item)
     return final_result
@@ -314,6 +318,7 @@ def context_image(image_path, bbox):
 # 调用 GPT-4 API 获取指令
 async def generate_instructions(bbox, original_image_path):
     try:
+        logger.info("start generate instructions")
         action_detail_list = []
 
         cropped_image = crop_image(original_image_path, bbox)
@@ -344,7 +349,9 @@ async def generate_instructions(bbox, original_image_path):
         os.remove(annotated_image_path)
         os.remove(context_image_path)
 
-        if bbox["children"] == []:
+        # if bbox["children"] == []: Sometimes, valid bbox has children(which are all invalid)
+        if True:
+            # logger.info("no children")
             # 1. desc-based action--target is the bbox center， action type can be diverse [unique]--only for no children!
             sys_prompt = DESC_INST_SYS_PROMPT
             user_prompt = DESC_INST_USER_PROMPT.format(
@@ -392,14 +399,34 @@ async def generate_instructions(bbox, original_image_path):
             ].message.parsed.position_information
             element_function = response.choices[0].message.parsed.element_function
             element_type = response.choices[0].message.parsed.element_type.rstrip(".")
-            possible_actions = response.choices[0].message.parsed.possible_actions
-            element_completeness_result = response.choices[
+            possible_actions = [
+                random.choice(response.choices[0].message.parsed.possible_actions)
+            ]  # same action repeat many times so we randomly take one
+            element_complete_visibility_analysis = response.choices[
                 0
-            ].message.parsed.element_completeness_result
-            logger.info(f"VISUAL DESCIRPTION: \n{visual_description}")
-            logger.info(f"POSITION INFORMATION: \n{position_information}")
-            logger.info(f"ELEMENT FUNCTION: \n{element_function}")
-            logger.info(f"ELEMENT COMPLETENESS: \n{str(element_completeness_result)}")
+            ].message.parsed.element_complete_visibility_analysis
+            element_complete_visibility_result = response.choices[
+                0
+            ].message.parsed.element_complete_visibility_result
+            element_atomicity_analysis = response.choices[
+                0
+            ].message.parsed.element_atomicity_analysis
+            element_atomicity_result = response.choices[
+                0
+            ].message.parsed.element_atomicity_result
+            # logger.info(f"VISUAL DESCIRPTION: \n{visual_description}")
+            # logger.info(f"POSITION INFORMATION: \n{position_information}")
+            # logger.info(f"ELEMENT FUNCTION: \n{element_function}")
+            logger.info(
+                f"ELEMENT COMPLETE VISIBILITY RESULT: {str(element_complete_visibility_result)}"
+            )
+            logger.info(
+                f"ELEMENT COMPLETE VISIBILITY ANALYSIS: {str(element_complete_visibility_analysis)}"
+            )
+            logger.info(f"ELEMENT ATOMICITY RESULT: {str(element_atomicity_result)}")
+            logger.info(
+                f"ELEMENT ATOMICITY ANALYSIS: {str(element_atomicity_analysis)}"
+            )
 
             false_context_image_path = ""
 
@@ -409,7 +436,7 @@ async def generate_instructions(bbox, original_image_path):
                 f.write(str(response.choices[0].message.parsed))
                 f.write("\n")
 
-            if element_completeness_result:
+            if element_complete_visibility_result and element_atomicity_result:
                 # 从0到11中随机生成两个不同的整数
                 random_int = random.sample(range(0, 12), 1)[
                     0
@@ -558,7 +585,7 @@ def generate_action_data_with_bbox(position_info, screenshot_path):
     action_detail_list = []
 
     screenshot = Image.open(screenshot_path)
-    print("width: ", str(screenshot.width), "height: ", screenshot.height)
+    # print("width: ", str(screenshot.width), "height: ", screenshot.height)
 
     bbox_data = position_info
 
@@ -778,7 +805,7 @@ async def process_grounding(action_detail: Dict, screensize: Dict) -> str:
                     r"\((\d+\.?\d*),\s*(\d+\.?\d*)", pair[1]
                 ) or re.findall(r"\(\((\d+\.?\d*),\s*(\d+\.?\d*)", pair[1])
                 # for coords in coords_list:
-                print("coords: ", coords_list)
+                # print("coords: ", coords_list)
                 coords_in_range = True
                 for coords in coords_list:
                     if (
