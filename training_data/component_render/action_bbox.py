@@ -492,7 +492,7 @@ async def generate_instructions(bbox, original_image_path):
                             )
                             action_desc = response.choices[0].message.parsed.action_desc
                             action_code = response.choices[0].message.parsed.action_code
-                            print(f"action: {action_desc}, code: {action_code}")
+                            logger.info(f"action: {action_desc}, code: {action_code}")
                             new_action_detail = ActionDetail(
                                 thought_process="",
                                 action_space_type="unique",
@@ -911,6 +911,7 @@ def annotate_grounding(
         new_grounding_dict = {
             "instruction": grounding_dict["instruction"],
             "action": grounding_dict["action"],
+            "screenshot_path": screenshot_path,
             "annotated_grounding_path": output_path,
             "coords_list": grounding_dict["coords_list"],
         }

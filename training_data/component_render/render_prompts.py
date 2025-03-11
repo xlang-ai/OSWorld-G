@@ -243,9 +243,11 @@ Analyze and determine the whether there are infinite possible meaningful actions
         * Component endpoints (for sliders)
         * Center positions (for buttons)
         * Control points (for resizable elements)
+    - Continuous actions' value ranges aren't necessarily 0-100; they could also be -10-40 (temperature), 0-24 hours (time), etc. You need to determine these value ranges based on the screenshot and position information.
     - Document points using format: `x_name, y_name = x, y`
     - Explain calculation logic
     - Identify and explain parameters from action description
+    - The action must be completed in one step! Actions like "Set the startand end values of the sliders to 15 and 12 respectively." is not a valid action.
 
 4. **Action Description** (`action_desc`)
    - Describe what the action does, which serves as the instantiation/implementation of the action intent.
@@ -349,6 +351,90 @@ Analyze and determine the whether there are infinite possible meaningful actions
             x = x_0 + (x_1 - x_0) * (volume / 100)
             pyautogui.click(x, y_0)"
 }}
+```
+
+### Example 2: Temperature Slider
+**Input:**
+- Component Name: "A temperature slider"
+- Screenshot: An image showing the temperature slider
+- Action Intent: "Set temperature"
+- Position: 
+```
+{
+  "elements": [
+    {
+      "attributes": {
+        "style": "width: 250px; margin: 20px;"
+      },
+      "text": "Temperature: 20°C",
+      "isInteractive": false,
+      "position": {  
+        "x_left": 25,
+        "y_top": 25,
+        "x_right": 275,
+        "y_bottom": 75,
+        "x_center": 150,
+        "y_center": 50,
+      }
+    },
+    {
+      "attributes": {
+        "min": "-10",
+        "max": "40",
+        "type": "range",
+        "value": "20",
+        "style": "width: 100%;"
+      },
+      "text": "",
+      "isInteractive": true,
+      "position": {
+        "x_left": 27,
+        "y_top": 27,
+        "x_right": 277,
+        "y_bottom": 43,
+        "x_center": 152,
+        "y_center": 35,
+      }
+    },
+    {
+      "attributes": {
+        "style": "display: flex; justify-content: space-between; margin-top: 5px;"
+      },
+      "text": "-10°C                                                   40°C",
+      "isInteractive": false,
+      "position": {
+        "x_left": 25,
+        "y_top": 56,
+        "x_right": 275,
+        "y_bottom": 74,
+        "x_center": 150,
+        "y_center": 65,
+      }
+    }
+  ]
+}
+```
+**Output:**
+```json
+{
+    "action_space_type": "continuous",
+    "action_desc": "Set temperature to <temperature>°C",
+    "thought_process": "
+        - Identified slider endpoints: (27,35) and (277,35)
+        - Range is from -10°C to 40°C (not 0-100)
+        - Temperature parameter determines click position
+        - Linear interpolation between endpoints based on temperature value",
+    "action_params": ["temperature"],
+    "action_discrete_values": {},
+    "action_continuous_interval": {"temperature": [(-10, 40)]},
+    "action_code": "
+        def action(temperature):
+            x_0, y_0 = 27, 35  # Left endpoint
+            x_1, y_1 = 277, 35  # Right endpoint
+            # Map temperature from range -10 to 40 to position
+            x = x_0 + (x_1 - x_0) * ((temperature - (-10)) / (40 - (-10)))
+            pyautogui.click(x, y_0)"
+}
 ```
 
 """
@@ -1120,7 +1206,10 @@ Output Format:
 """
 
 VISUAL_FILTER_PROMPT = """
-You're a smart and precise GUI Interaction Assistant. You will be provided with a screenshot that includes a green circle, with a green dot inside the circle indicating the exact position where the user performed an action. Additionally, you will be given a cropped version of the screenshot that focuses on the green dot and circle to help you better observe the action location. 
+You're a smart and precise GUI Interaction Assistant. 
+You will be provided with a screenshot that includes a green circle, with a green dot inside the circle indicating the exact position where the user performed an action. 
+Additionally, you will be given a cropped version of the screenshot that including the green dot and circle to help you better observe the action location. 
+You'll also be given a cropped version of the screenshot without the green dot and the circle to help you see the original view of the component
 Along with the screenshot, you will receive an **instruction** describing the user's intended action. You need to verify whether this instruction corresponds to the position marked by the green dot in the screenshot.
 In detail, Your task is as follows:  
 
@@ -1159,7 +1248,7 @@ In detail, Your task is as follows:
 
 ---
 
-### **6. Output Your Judgment:**  
+### **6. Output Your Judgment:**  app_dir_path
 Provide the output in the following format:  
 ```json
 {{
@@ -1169,6 +1258,8 @@ Provide the output in the following format:
   "more_instructions": ["Provide up to 3 more instructions that also describe the correct interaction here."]
 }}
 ```  
+
+The green dot and The green circle surrounding the green dot is not part of the component; they serve solely as markers indicating the interaction position. If an instruction states, "click the green circle," but no actual component features a green circle—only our marker (green dot and green circle)—then the instruction is incorrect.
 
 - **Return `true`** if:  
   - The target element matches the instruction.  

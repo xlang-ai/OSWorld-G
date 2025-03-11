@@ -28,8 +28,9 @@ async def visual_filter(
     instruction = grounding_dict["instruction"]
     try:
         # crop要做异常排查
-
+        screenshot_path = grounding_dict["screenshot_path"]
         new_annotated_path = grounding_dict["annotated_grounding_path"]
+        marked_screenshot_encoded = encode_image(new_annotated_path)
 
         # Extract coordinates from the action string
 
@@ -49,19 +50,27 @@ async def visual_filter(
         bottom = min(image.height, y + box_width // 2)
 
         # Crop the image using the calculated box
-        cropped_image = image.crop((left, top, right, bottom))
+        cropped_marked_image = image.crop((left, top, right, bottom))
 
         # You can save or process the cropped image as needed
-        os.makedirs("cropped_image", exist_ok=True)
-        cropped_image_path = f"cropped_image/cropped_image_{time.time()}.png"
-        cropped_image.save(cropped_image_path)
-        # print(f"cropped_image: {cropped_image_path}")
+        os.makedirs("cropped_marked_image", exist_ok=True)
+        cropped_marked_image_path = (
+            f"cropped_marked_image/cropped_marked_image_{time.time()}.png"
+        )
+        cropped_marked_image.save(cropped_marked_image_path)
+        cropped_marked_image_encoded = encode_image(cropped_marked_image_path)
+        os.remove(cropped_marked_image_path)
 
-        # Optionally, you could encode the cropped image here if needed:
-        cropped_image_encoded = encode_image(cropped_image_path)
-        os.remove(cropped_image_path)
-        # Continue with the rest of your processing
-        screenshot_encoded = encode_image(new_annotated_path)
+        image = Image.open(screenshot_path)
+        cropped_original_image = image.crop((left, top, right, bottom))
+        os.makedirs("cropped_original_image", exist_ok=True)
+        cropped_original_image_path = (
+            f"cropped_original_image/cropped_original_image_{time.time()}.png"
+        )
+        cropped_original_image.save(cropped_original_image_path)
+        cropped_original_image_encoded = encode_image(cropped_original_image_path)
+        os.remove(cropped_original_image_path)
+
         prompt = VISUAL_FILTER_PROMPT.format(instruction=instruction)
         messages = (
             [
@@ -72,19 +81,26 @@ async def visual_filter(
                         {
                             "type": "image_url",
                             "image_url": {
-                                "url": f"data:image/jpeg;base64,{screenshot_encoded}",
+                                "url": f"data:image/jpeg;base64,{marked_screenshot_encoded}",
                             },
                         },
                         {
                             "type": "image_url",
                             "image_url": {
-                                "url": f"data:image/jpeg;base64,{cropped_image_encoded}",
+                                "url": f"data:image/jpeg;base64,{cropped_marked_image_encoded}",
+                            },
+                        },
+                        {
+                            "type": "image_url",
+                            "image_url": {
+                                "url": f"data:image/jpeg;base64,{cropped_original_image_encoded}",
                             },
                         },
                     ],
                 }
             ]
-            if cropped_image_encoded != None
+            if cropped_marked_image_encoded != None
+            and cropped_original_image_encoded != None
             else [
                 {
                     "role": "user",
@@ -93,7 +109,7 @@ async def visual_filter(
                         {
                             "type": "image_url",
                             "image_url": {
-                                "url": f"data:image/jpeg;base64,{screenshot_encoded}",
+                                "url": f"data:image/jpeg;base64,{marked_screenshot_encoded}",
                             },
                         },
                     ],

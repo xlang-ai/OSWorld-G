@@ -93,45 +93,52 @@ async def _generate_single_scenario_openai(
             pattern = r"{(.*?)}"
             matches = re.search(pattern, lucide_line)
 
-        if matches:
-            # 分割并去除空格
-            imported_items = [item.strip() for item in matches.group(1).split(",")]
+            if matches:
+                # 分割并去除空格
+                imported_items = [item.strip() for item in matches.group(1).split(",")]
 
-            # 检查每个引用项
-            for item in imported_items:
-                if item not in import_list:
-                    logger.info(f"wrong import: {item}")
-                    response = await call_with_retry_openai(
-                        client,
-                        "gpt-4o-2024-11-20",
-                        [
-                            {
-                                "role": "user",
-                                "content": [
-                                    {
-                                        "type": "text",
-                                        "text": system_prompt
-                                        + scenario_prompt
-                                        + "\nPlease, be careful with your import."
-                                        + f"{item} is not in the import list of lucide-react.",
-                                    },
-                                ],
-                            },
-                        ],
-                        1,
-                        ScenarioAugmentationResponse,
-                    )
-                    # with open("token_cost.txt", "a") as file:
-                    #     file.write(
-                    #         f"prompt_gen_scenario:\n{response.usage.prompt_tokens}\n"
-                    #     )
-                    #     file.write(
-                    #         f"completion_gen_scenario:\n{response.usage.completion_tokens}\n"
-                    #     )
-                    json_response = response.choices[0].message.parsed
-                    new_style_code = json_response.new_style_code
+                # 检查每个引用项
+                for item in imported_items:
+                    if item not in import_list:
+                        logger.info(f"wrong import: {item}")
+                        response = await call_with_retry_openai(
+                            client,
+                            "gpt-4o-2024-11-20",
+                            [
+                                {
+                                    "role": "user",
+                                    "content": [
+                                        {
+                                            "type": "text",
+                                            "text": system_prompt
+                                            + scenario_prompt
+                                            + "\nPlease, be careful with your import."
+                                            + f"{item} is not in the import list of lucide-react.",
+                                        },
+                                    ],
+                                },
+                            ],
+                            1,
+                            ScenarioAugmentationResponse,
+                        )
+                        json_response = response.choices[0].message.parsed
+                        new_style_code = json_response.new_style_code
 
         # format check
+        # 1. 检查是否存在 export function
+        pattern = r"export\s+function\s+"
+        match = re.search(pattern, new_style_code)
+
+        if match:
+            print(f"Found 'export function' pattern at position {match.start()}")
+            # 替换为 export default function
+            new_style_code = re.sub(
+                pattern, "export default function ", new_style_code, count=1
+            )
+            print("Successfully converted to 'export default function'")
+        else:
+            print("No 'export function' pattern found in the code")
+
         lines = new_style_code.split("\n")
 
         # 检查最后一行是否是 ");"
@@ -140,8 +147,12 @@ async def _generate_single_scenario_openai(
             lines.append("}")
 
         # 检查第一行和最后一行是否是```jsx，```
-        if lines[0].strip() == "```jsx" and lines[-1].strip() == "```":
-            # 去除第一行和最后一行的 ```jsx ```
+        if (
+            lines[0].strip() == "```tsx"
+            or lines[0].strip() == "```jsx"
+            or lines[0].strip() == "```js"
+        ) and lines[-1].strip() == "```":
+            # 去除第一行和最后一行的 ```tsx ```
             lines = lines[1:-1]
 
         # 将修改后的行重新合并成一个字符串
@@ -221,64 +232,83 @@ async def _generate_single_scenario_claude(
         # import check
         with open("import_list.json", "r") as file:
             import_list = json.load(file)
+        if "lucide-react" in new_style_code:
 
-        lucide_line = [
-            line for line in new_style_code.split("\n") if "lucide-react" in line
-        ][0]
-        logger.info(lucide_line)
-        # 使用正则表达式提取花括号中的所有项
-        pattern = r"{(.*?)}"
-        matches = re.search(pattern, lucide_line)
+            lucide_line = [
+                line for line in new_style_code.split("\n") if "lucide-react" in line
+            ][0]
+            logger.info(lucide_line)
+            # 使用正则表达式提取花括号中的所有项
+            pattern = r"{(.*?)}"
+            matches = re.search(pattern, lucide_line)
 
-        if matches:
-            # 分割并去除空格
-            imported_items = [item.strip() for item in matches.group(1).split(",")]
+            if matches:
+                # 分割并去除空格
+                imported_items = [item.strip() for item in matches.group(1).split(",")]
 
-            # 检查每个引用项
-            for item in imported_items:
-                if item not in import_list:
-                    logger.info(f"wrong import: {item}")
-                    response = await call_with_retry_claude(
-                        "claude-3-7-sonnet-20250219",
-                        [
-                            {
-                                "role": "user",
-                                "content": [
-                                    {"type": "text", "text": system_prompt},
-                                    {"type": "text", "text": scenario_prompt},
-                                ],
-                            }
-                        ],
-                        1,
-                    )
-                    response = json.loads(response.content)
-                    json_response = response["choices"][0]["message"]["content"]
+                # 检查每个引用项
+                for item in imported_items:
+                    if item not in import_list:
+                        logger.info(f"wrong import: {item}")
+                        response = await call_with_retry_claude(
+                            "claude-3-7-sonnet-20250219",
+                            [
+                                {
+                                    "role": "user",
+                                    "content": [
+                                        {"type": "text", "text": system_prompt},
+                                        {"type": "text", "text": scenario_prompt},
+                                    ],
+                                }
+                            ],
+                            1,
+                        )
+                        response = json.loads(response.content)
+                        json_response = response["choices"][0]["message"]["content"]
 
-                    # 直接从响应中提取 new_style_code
+                        # 直接从响应中提取 new_style_code
 
-                    code_match = re.search(
-                        r'"new_style_code"\s*:\s*"((?:[^"\\]|\\.|\\n)*)"',
-                        json_response,
-                        re.DOTALL,
-                    )
-                    if not code_match:
-                        raise ValueError("No new_style_code found in the response")
-                    new_style_code = code_match.group(1)
+                        code_match = re.search(
+                            r'"new_style_code"\s*:\s*"((?:[^"\\]|\\.|\\n)*)"',
+                            json_response,
+                            re.DOTALL,
+                        )
+                        if not code_match:
+                            raise ValueError("No new_style_code found in the response")
+                        new_style_code = code_match.group(1)
 
         # format check
+        # 1. 检查是否存在 export function
+        pattern = r"export\s+function\s+"
+        match = re.search(pattern, new_style_code)
+
+        if match:
+            print(f"Found 'export function' pattern at position {match.start()}")
+            # 替换为 export default function
+            new_style_code = re.sub(
+                pattern, "export default function ", new_style_code, count=1
+            )
+            print("Successfully converted to 'export default function'")
+        else:
+            print("No 'export function' pattern found in the code")
+
         lines = new_style_code.split("\n")
 
-        # 检查最后一行是否是 ");"
+        # 2. 检查最后一行是否是 ");"
         if lines[-1] == "  );":
             # 在最后添加 "}"
             lines.append("}")
 
-        # 检查第一行和最后一行是否是```jsx，```
-        if lines[0].strip() == "```jsx" and lines[-1].strip() == "```":
-            # 去除第一行和最后一行的 ```jsx ```
+        # 3. 检查第一行和最后一行是否是```tsx，```
+        if (
+            lines[0].strip() == "```tsx"
+            or lines[0].strip() == "```jsx"
+            or lines[0].strip() == "```js"
+        ) and lines[-1].strip() == "```":
+            # 去除第一行和最后一行的 ```tsx ```
             lines = lines[1:-1]
 
-        # 将修改后的行重新合并成一个字符串
+        # 4. 将修改后的行重新合并成一个字符串
         new_style_code = "\n".join(lines)
         return codecs.decode(new_style_code, "unicode_escape")
     except Exception as e:

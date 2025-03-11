@@ -1,5 +1,3 @@
-# TODO: key: claude
-
 import asyncio
 import datetime
 import platform
@@ -54,7 +52,7 @@ parser.add_argument(
     action="store_true",  # 使用 store_true 使其成为布尔标志
     help="Enable sampling mode",  # 添加帮助说明
 )
-parser.add_argument("--api_type", type=str, default="openai", required=True)
+parser.add_argument("--api_type", type=str, default="openai", required=False)
 args = parser.parse_args()
 # print("components: ", args.components)
 
@@ -111,13 +109,14 @@ class DataGenerator:
             logger.warning("No page available to refresh")
 
     def extract_export_name(self, input_string):
-        # Regular expression to match 'export default <ComponentName>'
-        # 方案1：使用命名捕获组
-        pattern = r"export\s+default\s+(?:function\s+(?P<name1>\w+)\s*\(|(?P<name2>[a-zA-Z0-9_]+);)"
+        # Regular expression to match all export patterns
+        pattern = r"export\s+(?:default\s+)?(?:function\s+(?P<name1>\w+)\s*\(|(?:const\s+)?(?P<name2>[a-zA-Z0-9_]+)\s*(?::|;|\s*=\s*(?:\(\)|\w+))|default\s+(?P<name3>\w+))"
         match = re.search(pattern, input_string)
         if match:
-            # 获取匹配到的名称（两个组中非None的那个）
-            function_name = match.group("name1") or match.group("name2")
+            # 获取匹配到的名称（三个组中非None的那个）
+            function_name = (
+                match.group("name1") or match.group("name2") or match.group("name3")
+            )
             return function_name
         else:
             return None
@@ -466,7 +465,12 @@ async def main():
     component_list = (
         args.components
         if args.components != ["all"]
-        else os.listdir(base_path_dict[args.lib_name])
+        else [
+            component
+            for component in os.listdir(base_path_dict[args.lib_name])
+            if component != ".DS_Store"
+            and os.path.isdir(os.path.join(base_path_dict[args.lib_name], component))
+        ]
     )
     logger.info(f"Processing {len(component_list)} components")
     select_component_dict = {
@@ -547,6 +551,7 @@ async def main():
                 async def process_queue(queue):
                     """消费者：异步从队列中获取代码并处理"""
                     processed_index = 0
+                    result_list = []
                     while True:
                         item = await queue.get()
                         if item == "end":  # 检查结束标记（可以用None作为退出信号）
@@ -555,17 +560,23 @@ async def main():
 
                         # 异步处理队列中的任务
                         try:
-                            await process_scenario_code(
+                            result = await process_scenario_code(
                                 processed_index, item, component_num, action_num
                             )  # 异步处理代码
+                            result_list.append(result)
                         except Exception as e:
                             tb = traceback.format_exc()
                             logger.error(
                                 f"Error processing code {processed_index}: {e}\nStack trace:\n{tb}"
                             )
+                            result_list.append(False)
                         finally:
                             queue.task_done()  # 标记任务完成
                             processed_index += 1
+                            logger.info(f"Processed result: {str(result_list)}")
+                            if result_list.count(True) >= result_list.count(False):
+                                return True
+                            return False
 
                 async def process_scenario_code(
                     scenario_index,
@@ -575,6 +586,7 @@ async def main():
                 ):
                     logger.info(f"Start to process scenario {scenario_index}")
                     component_code = scenario_augmentation_code
+                    # component_code = "666"
                     # You can change component_code to some existed code for debugging
                     component_code_path = ""
                     try:
@@ -828,13 +840,6 @@ async def main():
 
                                 # 删grounding screenshot
                                 os.remove(grounding_dict["annotated_grounding_path"])
-
-                    except Exception as e:
-                        logger.error(
-                            f"Error processing component {component_name} in category {component_root_name}: {e}",
-                            exc_info=True,  # 这会自动添加完整的堆栈跟踪
-                        )
-                    finally:
                         src_path = (
                             Path(f"react-app-dir/react-app-{args.port}/src/components")
                             / f"{component_name}.tsx"
@@ -842,6 +847,21 @@ async def main():
 
                         shutil.move(src_path, component_code_path)
                         await generator.restart_react_server()
+                        return True
+
+                    except Exception as e:
+                        logger.error(
+                            f"Error processing component {component_name} in category {component_root_name}: {e}",
+                            exc_info=True,  # 这会自动添加完整的堆栈跟踪
+                        )
+                        src_path = (
+                            Path(f"react-app-dir/react-app-{args.port}/src/components")
+                            / f"{component_name}.tsx"
+                        )
+
+                        shutil.move(src_path, component_code_path)
+                        await generator.restart_react_server()
+                        return False
 
                 code_queue = asyncio.Queue()
 
@@ -867,15 +887,26 @@ async def main():
                 task2 = asyncio.create_task(process_queue(code_queue))
 
                 await task1
-                await task2
+                process_result = await task2
 
-                with open(done_file_path, "r") as f:
-                    done_dict = json.load(f)
-                if component_root_name not in done_dict:
-                    done_dict[component_root_name] = []
-                done_dict[component_root_name].append(component_code_file)
-                with open(done_file_path, "w") as f:
-                    json.dump(done_dict, f)
+                logger.info(f"Process result: {process_result}")
+                logger.info(
+                    f"Produce png num: {len(os.listdir(f'{component_root_dir}/grounding_screenshot'))}"
+                )
+
+                if (
+                    process_result
+                    and len(os.listdir(f"{component_root_dir}/grounding_screenshot"))
+                    > 0
+                ):
+                    # 超过半数的code成功处理
+                    with open(done_file_path, "r") as f:
+                        done_dict = json.load(f)
+                    if component_root_name not in done_dict:
+                        done_dict[component_root_name] = []
+                    done_dict[component_root_name].append(component_code_file)
+                    with open(done_file_path, "w") as f:
+                        json.dump(done_dict, f)
 
     except Exception as e:
         logger.error(f"Serious error encountered: {e}")

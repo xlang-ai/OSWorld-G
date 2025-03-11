@@ -466,3 +466,12 @@ component_generation/doc/**/*.png
 
 component_generation/slide/office-app
 component_generation/slide/slide_v1_17k
+
+done_info/
+annotated_image_desktop/
+annotated_image_desktop_all/
+annotated_image_desktop_only_visible/
+false_context_image_desktop/
+context_image_desktop/
+cropped_image/
+data_history/
