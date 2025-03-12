@@ -10,8 +10,8 @@ from pydantic import BaseModel
 from logger import logger
 
 # Setup proxy and API key TODO You may not need this
-os.environ["HTTP_PROXY"] = "http://127.0.0.1:7890"
-os.environ["HTTPS_PROXY"] = "http://127.0.0.1:7890"
+# os.environ["HTTP_PROXY"] = "http://127.0.0.1:7890"
+# os.environ["HTTPS_PROXY"] = "http://127.0.0.1:7890"
 with open("secret_keys/secret_key_openai.txt", "r") as f:
     openai_api_key = f.read()
 with open("secret_keys/secret_key_claude.txt", "r") as f:
@@ -24,7 +24,7 @@ claude = anthropic.Anthropic()
 MAX_RETRIES = 5  # 最多重试次数
 RETRY_DELAY = 3  # 每次重试之间的延迟（秒）
 
-bedrock = boto3.client(service_name="bedrock", region_name="us-west-2")
+bedrock = boto3.client("bedrock-runtime", region_name="us-east-1")
 
 # try:
 #     response = bedrock.list_foundation_models(byProvider="anthropic")
@@ -33,11 +33,6 @@ bedrock = boto3.client(service_name="bedrock", region_name="us-west-2")
 #         print(f"- {summary['modelId']}")
 # except Exception as e:
 #     print(f"Error listing models: {e}")
-
-bedrock_claude = AnthropicBedrock(
-    aws_region="us-west-2",
-)
-
 
 class ScenarioAugmentationResponse(BaseModel):
     thoughts: str
@@ -66,17 +61,29 @@ async def call_with_retry_openai(client, model, messages, temperature, response_
             await asyncio.sleep(RETRY_DELAY)  # 等待后再重试
 
 
-async def call_with_retry_claude(model, messages, temperature):
+async def call_with_retry_claude(model, prompt, temperature):
     retries = 0
     while retries < MAX_RETRIES:
         try:
             # 调用你的 API 函数
-            response = bedrock_claude.messages.create(
-                model=model, max_tokens=4000, messages=messages, temperature=temperature
+            MODEL_ID = model
+            message_list = [
+                {
+                    "role": "user",
+                    "content": [
+                        {"text": prompt},
+                    ],
+                }
+            ]
+
+            response = bedrock.converse(
+                modelId=MODEL_ID,
+                messages=message_list,
             )
-            response = json.loads(response.content)
+            response = response["output"]["message"]["content"][0]["text"]
+            print(response)
             # print(f"response: {response}")
-            return response  # 成功获取响应后返回
+            return response
         except Exception as e:  # 捕获连接错误或超时
             print(e)
             retries += 1

@@ -90,8 +90,8 @@ class DataGenerator:
             # Set viewport size to 1920x1080
             await self.page.set_viewport_size({"width": 1920, "height": 1080})
 
-            await self.page.goto(f"http://localhost:{self.port}")
-            logger.info("Browser initialized")
+            await self.page.goto(f"http://localhost:{self.port}", timeout=60000)
+            logger.info("Browser initialized",)
 
     async def refresh_page(self):
         """Refresh the React application page"""
@@ -918,4 +918,6 @@ async def main():
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    # asyncio.run(main())
+    generator = DataGenerator(args.port)
+    generator.initialize_browser()

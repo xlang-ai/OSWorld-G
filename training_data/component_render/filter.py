@@ -22,7 +22,7 @@ class FilterResult(BaseModel):
 
 
 async def visual_filter(
-    grounding_dict: Dict, grounding_screenshot_dir: str | None = None
+    grounding_dict: Dict
 ):
     logger.info(f"start filter grounding {str(grounding_dict)}")
     instruction = grounding_dict["instruction"]
@@ -164,7 +164,7 @@ def process_file(
     # - true: grounding true
     # - false: false
     # - unknown: grounding
-    filter_result = visual_filter(data, grounding_screenshot_dir)
+    filter_result = visual_filter(data)
     data["thought_process"] = filter_result.thought_process
     data["correct_instruction"] = filter_result.correct_instruction
     data["is_correct"] = filter_result.is_correct

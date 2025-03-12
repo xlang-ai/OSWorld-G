@@ -179,48 +179,13 @@ async def _generate_single_scenario_claude(
         generated_codes=generated_codes,
         lib_name=lib_name,
     )
-
-    # url = "https://api2.aigcbest.top/v1/chat/completions"
-
-    # payload = {
-    #     "model": "claude-3-5-sonnet-20241022",
-    #     "max_tokens": 4000,
-    #     "messages": [
-    #         {
-    #             "role": "user",
-    #             "content": [
-    #                 {"type": "text", "text": system_prompt},
-    #                 {"type": "text", "text": scenario_prompt},
-    #             ],
-    #         }
-    #     ],
-    # }
-
-    # headers = {
-    #     "Accept": "application/json",
-    #     "Authorization": f"Bearer {os.environ.get('CLAUDE_API_KEY')}",
-    #     "Content-Type": "application/json",
-    # }
-
     try:
-        # response = requests.request("POST", url, headers=headers, json=payload)
         response = await call_with_retry_claude(
-            "claude-3-7-sonnet-20250219",
-            [
-                {
-                    "role": "user",
-                    "content": [
-                        {"type": "text", "text": system_prompt},
-                        {"type": "text", "text": scenario_prompt},
-                    ],
-                }
-            ],
+            "anthropic.claude-3-5-sonnet-20240620-v1:0",
+            # "anthropic.claude-3-7-sonnet-20250219-v1:0",
+            (system_prompt + scenario_prompt),
             1,
         )
-        response = json.loads(response.content)
-        json_response = response["choices"][0]["message"]["content"]
-
-        # 直接从响应中提取 new_style_code
 
         code_match = re.search(
             r'"new_style_code"\s*:\s*"((?:[^"\\]|\\.|\\n)*)"', json_response, re.DOTALL
@@ -496,6 +461,7 @@ export default function ColorSlider() {
 """,
         [],
         SYSTEM_PROMPT_FOR_STYLE_AUGMENTATION,
+        "material"
     )
 
     print(f"CLAUDE_CODE: {str(claude_code)}")
