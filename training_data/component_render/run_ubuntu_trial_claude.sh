@@ -1,4 +1,12 @@
 #!/bin/bash
+chmod +x credentials.sh
+
+while true; do
+    ./credentials.sh
+    sleep 3600
+done &
+
+CREDENTIAL_PID=$!
 
 tmux new-session -d -s session_3001 'xvfb-run -a python main_bbox.py --port 3001 --lib_name material --scenario_count 1 --sample --api_type claude > logs/session_3001_output.txt 2>&1'
 tmux new-session -d -s session_3002 'xvfb-run -a python main_bbox.py --port 3002 --lib_name material --scenario_count 1 --sample --api_type claude > logs/session_3002_output.txt 2>&1'
@@ -37,5 +45,7 @@ tmux new-session -d -s session_3032 'xvfb-run -a python main_bbox.py --port 3032
 tmux list-sessions -F '#{session_name}' | while read session; do
     tmux wait-for "$session"
 done
+
+kill $CREDENTIAL_PID
 
 echo 'All tasks completed'
