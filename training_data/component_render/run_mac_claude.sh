@@ -32,3 +32,6 @@ python main_bbox.py --port 3031 --lib_name ant-design --scenario_count 2 --api_t
 python main_bbox.py --port 3032 --lib_name ant-design --scenario_count 2 --api_type claude > logs/session_3032_output.txt 2>&1 &
 
 # pkill -f "python main_bbox.py"
+wait
+
+echo "All tasks completed"

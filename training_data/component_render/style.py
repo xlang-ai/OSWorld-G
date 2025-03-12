@@ -19,9 +19,6 @@ from render_prompts import (
 )
 from utils import encode_image
 
-os.environ["HTTP_PROXY"] = "http://127.0.0.1:7890"
-os.environ["HTTPS_PROXY"] = "http://127.0.0.1:7890"
-
 
 class ScenarioAugmentationResponse(BaseModel):
     thoughts: str
@@ -496,6 +493,7 @@ export default function ColorSlider() {
 """,
         [],
         SYSTEM_PROMPT_FOR_STYLE_AUGMENTATION,
+        "material",
     )
 
     print(f"CLAUDE_CODE: {str(claude_code)}")

@@ -36,7 +36,7 @@ Add a file named `secret_key_openai.txt` under `training_data/component_render/s
 
 If you use claude's bedrock:
 - Export AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_SESSION_TOKEN
-- Try to run `python style.py` to see if claude's key work. If it works, it should output a right code of a UI component. 
+- Change `credentials.sh`'s content to your script's content
 
 ## environment
 
@@ -69,12 +69,20 @@ npx playwright install-deps
 
 ## Script Run:
 
+STEP 0: First of all, try to run python style.py to see if claude bedrock works well. If it works, you will see output contains codes of UI component.
+
 ### For Ubuntu
+
 STEP 1: First of all, run `run_ubuntu_trial_claude.sh` in `training_data/component_render` on your computer. After 10mins, run the first python code in `check.ipynb`(#Count). The output will include these two lines:
 Total PNG files across all grounding_screenshot folders: ...
 Total false PNG files across all grounding_false_screenshot folders: ...
 
 If the Total PNG files across all grounding_screenshot folders is around **4000**, then it is fine. If the number of Total PNG files across all grounding_screenshot is too small, connect Junlin and he'll fix it.
+
+To end all tmux session, you can use:
+```bash
+tmux kill-server
+```
 
 STEP 2: After that, run `final_format.py` in `training_data/component_render` to reformat the data. You'll see a folder named `final_{time}`, this is the desired folder. Send the folder in each vm to Junlin, he will check whether the data is correct and fine.
 

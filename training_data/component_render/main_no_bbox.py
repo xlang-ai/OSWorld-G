@@ -48,8 +48,6 @@ parser.add_argument("--scenario_count", type=int, required=True)
 args = parser.parse_args()
 # print("components: ", args.components)
 
-os.environ["HTTP_PROXY"] = "http://127.0.0.1:7890"
-os.environ["HTTPS_PROXY"] = "http://127.0.0.1:7890"
 os.environ["BROWSER"] = "none"
 
 
