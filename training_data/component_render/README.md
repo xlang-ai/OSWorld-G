@@ -17,10 +17,20 @@ npm -v
 to check whether node.js and npm is installed
 
 if not, run
-```
+<!-- ```
 sudo apt update
 sudo apt install nodejs npm
+``` -->
 ```
+(sudo) apt update
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
+source ~/.bashrc
+nvm --version
+nvm install --lts
+```
+
+Make sure the glibc version(if you use ubuntu) is above or equal to 2.28. Otherwise it may be difficult to run node.js and npm well.
+
 and check again whether node.js and npm is installed 
 
 ## npm install
