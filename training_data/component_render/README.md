@@ -77,6 +77,16 @@ npm install playwright
 npx playwright install-deps
 ```
 
+Then run
+```
+xvfb-run --help
+```
+to check whether xvfb is installed. If not, run
+```
+sudo apt update
+sudo apt install xvfb
+```
+
 ## Script Run:
 
 STEP 0: First of all, try to run python style.py to see if claude bedrock works well. If it works, you will see output contains codes of UI component.
