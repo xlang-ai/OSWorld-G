@@ -177,9 +177,8 @@ async def _generate_single_scenario_claude(
         lib_name=lib_name,
     )
     try:
-        response = await call_with_retry_claude(
-            "anthropic.claude-3-5-sonnet-20240620-v1:0",
-            # "anthropic.claude-3-7-sonnet-20250219-v1:0",
+        json_response = await call_with_retry_claude(
+            "anthropic.claude-3-5-sonnet-20241022-v2:0",
             (system_prompt + scenario_prompt),
             1,
         )
@@ -213,16 +212,8 @@ async def _generate_single_scenario_claude(
                     if item not in import_list:
                         logger.info(f"wrong import: {item}")
                         response = await call_with_retry_claude(
-                            "claude-3-7-sonnet-20250219",
-                            [
-                                {
-                                    "role": "user",
-                                    "content": [
-                                        {"type": "text", "text": system_prompt},
-                                        {"type": "text", "text": scenario_prompt},
-                                    ],
-                                }
-                            ],
+                            "anthropic.claude-3-5-sonnet-20241022-v2:0",
+                            (system_prompt + scenario_prompt),
                             1,
                         )
                         response = json.loads(response.content)

@@ -991,7 +991,7 @@ Please come up with a real application scenario for this type of component based
 
 6. Design Aesthetic: Authenticity is key. The component should resemble real-world components that users interact with daily. Pay close attention to style parameters, such as spacing, font sizes, button interactions, and overall layout. Make sure the design is consistent with what we typically use in modern, functional UI components.
 
-7. Library to use: You are recommended to use tailwind css classes and lucide-react classes to handle visual styles. Ensure both code accuracy and aesthetic component design. Make sure the classes you use are real and not fake. No Image Imports: Since we don't have image data, avoid importing images. 
+7. Library to use: You are recommended to use tailwind css classes and lucide-react classes to handle visual styles. Ensure aesthetic component design as well as code accuracy. Make sure the classes you use are real and not fake. No Image Imports: Since we don't have image data, avoid importing images. 
 
 8. Output Accuracy: MAKE SURE that "new_style_code" is a complete React component code that obey tsx grammar. Ensure your code is correct!
 

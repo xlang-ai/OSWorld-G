@@ -10,8 +10,8 @@ from pydantic import BaseModel
 from logger import logger
 
 # Setup proxy and API key TODO You may not need this
-# os.environ["HTTP_PROXY"] = "http://127.0.0.1:7890"
-# os.environ["HTTPS_PROXY"] = "http://127.0.0.1:7890"
+# os.environ["HTTP_PROXY"] = "http://127.0.0.1:8890"
+# os.environ["HTTPS_PROXY"] = "http://127.0.0.1:8890"
 with open("secret_keys/secret_key_openai.txt", "r") as f:
     openai_api_key = f.read()
 with open("secret_keys/secret_key_claude.txt", "r") as f:
@@ -24,7 +24,7 @@ claude = anthropic.Anthropic()
 MAX_RETRIES = 5  # 最多重试次数
 RETRY_DELAY = 3  # 每次重试之间的延迟（秒）
 
-bedrock = boto3.client("bedrock-runtime", region_name="us-east-1")
+bedrock = boto3.client("bedrock-runtime", region_name="us-west-2")
 
 # try:
 #     response = bedrock.list_foundation_models(byProvider="anthropic")
@@ -33,6 +33,7 @@ bedrock = boto3.client("bedrock-runtime", region_name="us-east-1")
 #         print(f"- {summary['modelId']}")
 # except Exception as e:
 #     print(f"Error listing models: {e}")
+
 
 class ScenarioAugmentationResponse(BaseModel):
     thoughts: str
