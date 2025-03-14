@@ -55,7 +55,6 @@ parser.add_argument(
 )
 parser.add_argument("--api_type", type=str, default="openai", required=False)
 args = parser.parse_args()
-# print("components: ", args.components)
 
 os.environ["BROWSER"] = "none"
 
@@ -494,41 +493,39 @@ async def main():
     else:
         with open(done_file_path, "r") as f:
             done_dict = json.load(f)
-    try:
-        for (
+    for (
+        component_root_name,
+        component_code_file_list,
+    ) in select_component_dict.items():
+        component_num = 0
+        action_num = 0
+        component_root_dir = os.path.join(
+            "data",
+            args.lib_name,
             component_root_name,
-            component_code_file_list,
-        ) in select_component_dict.items():
-            component_num = 0
-            action_num = 0
-            component_root_dir = os.path.join(
-                "data",
-                args.lib_name,
-                component_root_name,
-            )
-            os.makedirs(component_root_dir, exist_ok=True)
-            os.makedirs(Path(component_root_dir) / "raw", exist_ok=True)
-            os.makedirs(Path(component_root_dir) / "grounding", exist_ok=True)
-            os.makedirs(Path(component_root_dir) / "grounding_false", exist_ok=True)
-            os.makedirs(f"{component_root_dir}/grounding_screenshot", exist_ok=True)
-            os.makedirs(
-                f"{component_root_dir}/grounding_false_screenshot", exist_ok=True
-            )
-            os.makedirs(f"{component_root_dir}/component_code", exist_ok=True)
+        )
+        os.makedirs(component_root_dir, exist_ok=True)
+        os.makedirs(Path(component_root_dir) / "raw", exist_ok=True)
+        os.makedirs(Path(component_root_dir) / "grounding", exist_ok=True)
+        os.makedirs(Path(component_root_dir) / "grounding_false", exist_ok=True)
+        os.makedirs(f"{component_root_dir}/grounding_screenshot", exist_ok=True)
+        os.makedirs(f"{component_root_dir}/grounding_false_screenshot", exist_ok=True)
+        os.makedirs(f"{component_root_dir}/component_code", exist_ok=True)
 
-            # 创建screenshots文件夹
-            screenshot_folder = Path(f"{component_root_dir}/other_screenshot")
-            screenshot_folder.mkdir(parents=True, exist_ok=True)
-            grounding_false_screenshot_folder = Path(
-                f"{component_root_dir}/grounding_false_screenshot"
-            )
-            grounding_false_screenshot_folder.mkdir(parents=True, exist_ok=True)
-            component_root_path = str(Path(*component_root_name.split("->")))
-            prev_generated_code_list = []
-            if args.sample:
-                component_code_file_list = component_code_file_list[:1]
-                logger.info("Only sample one component for each category")
-            for node_index, component_code_file in enumerate(component_code_file_list):
+        # 创建screenshots文件夹
+        screenshot_folder = Path(f"{component_root_dir}/other_screenshot")
+        screenshot_folder.mkdir(parents=True, exist_ok=True)
+        grounding_false_screenshot_folder = Path(
+            f"{component_root_dir}/grounding_false_screenshot"
+        )
+        grounding_false_screenshot_folder.mkdir(parents=True, exist_ok=True)
+        component_root_path = str(Path(*component_root_name.split("->")))
+        prev_generated_code_list = []
+        if args.sample:
+            component_code_file_list = component_code_file_list[:1]
+            logger.info("Only sample one component for each category")
+        for node_index, component_code_file in enumerate(component_code_file_list):
+            try:
                 if component_root_name not in done_dict:
                     done_dict[component_root_name] = []
                 if component_code_file in done_dict[component_root_name]:
@@ -693,10 +690,6 @@ async def main():
 
                         # 6.2 grounding annotate
                         # 定义一个包装函数，方便传递参数
-                        logger.info(
-                            f"grounding_dict_before_annotate: {grounding_dict_list}"
-                        )
-
                         def annotate_grounding_task(grounding_index, grounding_dict):
                             return annotate_grounding(
                                 component_root_dir,
@@ -727,16 +720,9 @@ async def main():
                                 if grounding_dict is not None:
                                     grounding_dict_list.append(grounding_dict)
 
-                        logger.info(
-                            f"grounding_dict_after_annotate: {grounding_dict_list}"
-                        )
-
                         # 6.3 visual filter TODO： do we need this? Yes
                         old_len = len(grounding_dict_list)
                         true_len = 0
-
-                        # 定义一个包装函数，方便传递参数
-                        logger.info(f"start to visual filter {grounding_dict_list}")
 
                         async def visual_filter_task(grounding_dict):
                             new_dict = await visual_filter(grounding_dict)
@@ -867,7 +853,7 @@ async def main():
                 with open("component_constraint.json", "r") as file:
                     component_constraint = json.load(file)
                 # 创建并启动生产者线程
-                print(
+                logger.info(
                     "component_constraint: ",
                     component_constraint.get(component_root_name, "None"),
                 )
@@ -907,13 +893,12 @@ async def main():
                     with open(done_file_path, "w") as f:
                         json.dump(done_dict, f)
 
-    except Exception as e:
-        logger.error(f"Serious error encountered: {e}")
+            except Exception as e:
+                logger.error(f"Serious error encountered: {e}")
         # 这可能并不需要！
         # await generator.restart_react_server()
-    finally:
-        end_time = time.time()
-        logger.info(f"Total time taken: {end_time - start_time} seconds")
+    end_time = time.time()
+    logger.info(f"Total time taken: {end_time - start_time} seconds")
 
 
 if __name__ == "__main__":
