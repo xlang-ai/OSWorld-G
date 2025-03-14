@@ -5,7 +5,7 @@ import boto3
 import asyncio
 import anthropic
 from aiohttp import ClientError
-from openai import AsyncOpenAI
+from openai import AsyncOpenAI, RateLimitError, OpenAIError
 from pydantic import BaseModel
 from logger import logger
 
@@ -44,18 +44,45 @@ async def call_with_retry_openai(client, model, messages, temperature, response_
     retries = 0
     while retries < MAX_RETRIES:
         try:
-            # 调用你的 API 函数
-            response = await client.beta.chat.completions.parse(
-                model=model,
-                messages=messages,
-                temperature=temperature,
-                response_format=response_format,
+            # 使用 asyncio.wait_for 设置超时时间
+            response = await asyncio.wait_for(
+                client.beta.chat.completions.parse(
+                    model=model,
+                    messages=messages,
+                    temperature=temperature,
+                    response_format=response_format,
+                ),
+                timeout=30.0,  # 设置超时时间为60秒
             )
             return response  # 成功获取响应后返回
-        except Exception as e:  # 捕获连接错误或超时
-            print(e)
+
+        except asyncio.TimeoutError:
+            logger.error("Request timed out after 60 seconds, retrying...")
             retries += 1
-            logger.error(f"connection error, retry...  {retries} time")
+            if retries >= MAX_RETRIES:
+                logger.error("maximum retry times, quit")
+                raise  # 达到最大重试次数时抛出异常
+            await asyncio.sleep(RETRY_DELAY)  # 等待后再重试
+
+        except RateLimitError as e:
+            logger.error(f"Retry because of rate limit: {e}")
+            retries += 1
+            if retries >= MAX_RETRIES:
+                logger.error("maximum retry times, quit")
+                raise  # 达到最大重试次数时抛出异常
+            await asyncio.sleep(RETRY_DELAY)  # 等待后再重试
+
+        except OpenAIError as e:
+            logger.error(f"OpenAI Error: {e}")
+            retries += 1
+            if retries >= MAX_RETRIES:
+                logger.error("maximum retry times, quit")
+                raise  # 达到最大重试次数时抛出异常
+            await asyncio.sleep(RETRY_DELAY)  # 等待后再重试
+
+        except Exception as e:  # 捕获其他异常
+            logger.error(f"Unexpected error: {e}")
+            retries += 1
             if retries >= MAX_RETRIES:
                 logger.error("maximum retry times, quit")
                 raise e  # 达到最大重试次数时抛出异常

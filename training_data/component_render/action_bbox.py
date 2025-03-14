@@ -417,16 +417,16 @@ async def generate_instructions(bbox, original_image_path):
             # logger.info(f"VISUAL DESCIRPTION: \n{visual_description}")
             # logger.info(f"POSITION INFORMATION: \n{position_information}")
             # logger.info(f"ELEMENT FUNCTION: \n{element_function}")
-            logger.info(
-                f"ELEMENT COMPLETE VISIBILITY RESULT: {str(element_complete_visibility_result)}"
-            )
-            logger.info(
-                f"ELEMENT COMPLETE VISIBILITY ANALYSIS: {str(element_complete_visibility_analysis)}"
-            )
-            logger.info(f"ELEMENT ATOMICITY RESULT: {str(element_atomicity_result)}")
-            logger.info(
-                f"ELEMENT ATOMICITY ANALYSIS: {str(element_atomicity_analysis)}"
-            )
+            # logger.info(
+            #     f"ELEMENT COMPLETE VISIBILITY RESULT: {str(element_complete_visibility_result)}"
+            # )
+            # logger.info(
+            #     f"ELEMENT COMPLETE VISIBILITY ANALYSIS: {str(element_complete_visibility_analysis)}"
+            # )
+            # logger.info(f"ELEMENT ATOMICITY RESULT: {str(element_atomicity_result)}")
+            # logger.info(
+            #     f"ELEMENT ATOMICITY ANALYSIS: {str(element_atomicity_analysis)}"
+            # )
 
             # false_context_image_path = ""
 
@@ -492,7 +492,6 @@ async def generate_instructions(bbox, original_image_path):
                             )
                             action_desc = response.choices[0].message.parsed.action_desc
                             action_code = response.choices[0].message.parsed.action_code
-                            logger.info(f"action: {action_desc}, code: {action_code}")
                             new_action_detail = ActionDetail(
                                 thought_process="",
                                 action_space_type="unique",
@@ -589,14 +588,10 @@ def generate_action_data_with_bbox(position_info, screenshot_path):
     action_detail_list = []
 
     screenshot = Image.open(screenshot_path)
-    # print("width: ", str(screenshot.width), "height: ", screenshot.height)
 
     bbox_data = position_info
 
     bboxes = extract_bboxes(bbox_data, screenshot)
-    # with open("bboxes.jsonl", "w") as f:
-    #     for bbox in bboxes:
-    #         f.write(json.dumps(bbox) + "\n")
     logger.info(f"extracted {len(bboxes)} bboxes")
 
     futures = []
@@ -621,9 +616,9 @@ def generate_action_data_with_bbox(position_info, screenshot_path):
                 result = future.result()  # 捕获任务的结果
                 action_detail_list.extend(result)
             except concurrent.futures.TimeoutError:
-                print("A thread exceeded the timeout and was terminated.")
+                logger.error("A thread exceeded the timeout and was terminated.")
             except Exception as e:
-                print(f"Error occurred: {e}")  # 捕获并打印错误
+                logger.error(f"Error occurred: {e}")  # 捕获并打印错误
 
     return action_detail_list
 
@@ -796,20 +791,12 @@ async def process_grounding(action_detail: Dict, screensize: Dict) -> str:
 
             os.remove(temp_path)
 
-        # logger.info(f"Generated pairs: {str(grounding_pairs)}")
-
         # Process each pair individually
         if grounding_pairs:
             for _, pair in enumerate(grounding_pairs):
-                # filter pair
-                # inst_filter_result = await inst_filter(pair)
-                # if not inst_filter_result:
-                #     return []
                 coords_list = re.findall(
                     r"\((\d+\.?\d*),\s*(\d+\.?\d*)", pair[1]
                 ) or re.findall(r"\(\((\d+\.?\d*),\s*(\d+\.?\d*)", pair[1])
-                # for coords in coords_list:
-                # print("coords: ", coords_list)
                 coords_in_range = True
                 for coords in coords_list:
                     if (
@@ -828,7 +815,7 @@ async def process_grounding(action_detail: Dict, screensize: Dict) -> str:
                             "coords_list": coords_list,
                         }
                     )
-        logger.info(f"inst filter {len(grounding_dicts)} out of {len(grounding_pairs)}")
+        # logger.info(f"inst filter {len(grounding_dicts)} out of {len(grounding_pairs)}")
         return grounding_dicts
     except Exception as e:
         logger.error(f"Error processing action {action_detail.action_desc}: {e}")
@@ -944,7 +931,7 @@ async def main():
             f,
             indent=4,
         )
-    print("length of action list: ", len(action_detail_list))
+    logger.info("length of action list: ", len(action_detail_list))
 
 
 if __name__ == "__main__":

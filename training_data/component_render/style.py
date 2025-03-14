@@ -68,12 +68,6 @@ async def _generate_single_scenario_openai(
             1,
             ScenarioAugmentationResponse,
         )
-        # logger.info(f"response:{response}")
-        # with open("token_cost.txt", "a") as file:
-        #     file.write(f"prompt_gen_scenario:\n{response.usage.prompt_tokens}\n")
-        #     file.write(
-        #         f"completion_gen_scenario:\n{response.usage.completion_tokens}\n"
-        #     )
         json_response = response.choices[0].message.parsed
         new_style_code = json_response.new_style_code
 
@@ -127,14 +121,12 @@ async def _generate_single_scenario_openai(
         match = re.search(pattern, new_style_code)
 
         if match:
-            print(f"Found 'export function' pattern at position {match.start()}")
             # 替换为 export default function
             new_style_code = re.sub(
                 pattern, "export default function ", new_style_code, count=1
             )
-            print("Successfully converted to 'export default function'")
         else:
-            print("No 'export function' pattern found in the code")
+            logger.info("No 'export function' pattern found in the code")
 
         lines = new_style_code.split("\n")
 
@@ -236,14 +228,12 @@ async def _generate_single_scenario_claude(
         match = re.search(pattern, new_style_code)
 
         if match:
-            print(f"Found 'export function' pattern at position {match.start()}")
             # 替换为 export default function
             new_style_code = re.sub(
                 pattern, "export default function ", new_style_code, count=1
             )
-            print("Successfully converted to 'export default function'")
         else:
-            print("No 'export function' pattern found in the code")
+            logger.info("No 'export function' pattern found in the code")
 
         lines = new_style_code.split("\n")
 
@@ -451,8 +441,6 @@ export default function ColorSlider() {
         SYSTEM_PROMPT_FOR_STYLE_AUGMENTATION,
         "material",
     )
-
-    print(f"CLAUDE_CODE: {str(claude_code)}")
 
 
 if __name__ == "__main__":
