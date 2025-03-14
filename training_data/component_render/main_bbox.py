@@ -854,8 +854,7 @@ async def main():
                     component_constraint = json.load(file)
                 # 创建并启动生产者线程
                 logger.info(
-                    "component_constraint: ",
-                    component_constraint.get(component_root_name, "None"),
+                    f"component_constraint: {str(component_constraint.get(component_root_name, 'None'))}"
                 )
                 task1 = asyncio.create_task(
                     scenario_generation_worker(
