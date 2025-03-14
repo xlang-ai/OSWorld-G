@@ -53,9 +53,8 @@ async def call_with_retry_openai(client, model, messages, temperature, response_
             )
             return response  # 成功获取响应后返回
         except Exception as e:  # 捕获连接错误或超时
-            print(e)
             retries += 1
-            logger.error(f"connection error, retry...  {retries} time")
+            logger.error(f"Exception: {e}, retry...  {retries} time")
             if retries >= MAX_RETRIES:
                 logger.error("maximum retry times, quit")
                 raise e  # 达到最大重试次数时抛出异常
@@ -86,9 +85,8 @@ async def call_with_retry_claude(model, prompt, temperature):
             # print(f"response: {response}")
             return response
         except Exception as e:  # 捕获连接错误或超时
-            print(e)
             retries += 1
-            logger.error(f"connection error, retry...  {retries} time")
+            logger.error(f"Exception: {e}, retry...  {retries} time")
             if retries >= MAX_RETRIES:
                 logger.error("maximum retry times, quit")
                 raise e  # 达到最大重试次数时抛出异常
