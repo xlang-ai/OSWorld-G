@@ -575,7 +575,7 @@ async def main():
                     try:
                         # STEP 2: 提取组件名称&创建组件
                         logger.info(f"Extracting component name")
-                        print(component_code)
+                        # print(component_code)
                         component_name = generator.extract_export_name(component_code)
                         logger.info(
                             f"Scenario {scenario_index} of component {component_root_name} {node_index} / {len(component_code_file_list)}: {component_name}"
