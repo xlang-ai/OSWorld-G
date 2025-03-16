@@ -829,8 +829,8 @@ async def main():
                             Path(f"react-app-dir/react-app-{args.port}/src/components")
                             / f"{component_name}.tsx"
                         )
-
-                        shutil.move(src_path, component_code_path)
+                        if src_path.exists():
+                            shutil.move(src_path, component_code_path)
                         await generator.restart_react_server()
                         return True
 
@@ -843,8 +843,8 @@ async def main():
                             Path(f"react-app-dir/react-app-{args.port}/src/components")
                             / f"{component_name}.tsx"
                         )
-
-                        shutil.move(src_path, component_code_path)
+                        if src_path.exists():
+                            shutil.move(src_path, component_code_path)
                         await generator.restart_react_server()
                         return False
 

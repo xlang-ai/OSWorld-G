@@ -209,18 +209,18 @@ async def _generate_single_scenario_claude(
                             1,
                         )
                         response = json.loads(response.content)
-                        json_response = response["choices"][0]["message"]["content"]
+                        new_style_code = response["new_style_code"]
 
                         # 直接从响应中提取 new_style_code
 
-                        code_match = re.search(
-                            r'"new_style_code"\s*:\s*"((?:[^"\\]|\\.|\\n)*)"',
-                            json_response,
-                            re.DOTALL,
-                        )
-                        if not code_match:
-                            raise ValueError("No new_style_code found in the response")
-                        new_style_code = code_match.group(1)
+                        # code_match = re.search(
+                        #     r'"new_style_code"\s*:\s*"((?:[^"\\]|\\.|\\n)*)"',
+                        #     json_response,
+                        #     re.DOTALL,
+                        # )
+                        # if not code_match:
+                        #     raise ValueError("No new_style_code found in the response")
+                        # new_style_code = code_match.group(1)
 
         # format check
         # 1. 检查是否存在 export function
@@ -441,6 +441,7 @@ export default function ColorSlider() {
         SYSTEM_PROMPT_FOR_STYLE_AUGMENTATION,
         "material",
     )
+    logger.info(f"NEW STYLE CODE: {claude_code}")
 
 
 if __name__ == "__main__":
