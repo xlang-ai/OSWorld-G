@@ -1,3 +1,4 @@
+#!/bin/bash
 tmux new-session -d -s session_3001 'xvfb-run -a python main_bbox.py --port 3001 --lib_name material --scenario_count 3 > logs/session_3001_output.txt 2>&1'
 tmux new-session -d -s session_3002 'xvfb-run -a python main_bbox.py --port 3002 --lib_name material --scenario_count 3 > logs/session_3002_output.txt 2>&1'
 tmux new-session -d -s session_3003 'xvfb-run -a python main_bbox.py --port 3003 --lib_name material --scenario_count 3 > logs/session_3003_output.txt 2>&1'
@@ -52,5 +53,9 @@ tmux list-sessions -F '#{session_name}' | while read session; do
     tmux wait-for "$session"
 done
 
+<<<<<<< HEAD
+=======
+# kill $CREDENTIAL_PID
+>>>>>>> 81e3e0a324663f93e52af83ccc33f117fca8473a
 
 echo 'All tasks completed'

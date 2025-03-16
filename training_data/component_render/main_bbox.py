@@ -3,6 +3,7 @@ import datetime
 import platform
 import json
 import os
+import sys
 import re
 import shutil
 import psutil
@@ -29,7 +30,7 @@ from pydantic import BaseModel
 from style import scenario_generation_worker
 from filter import visual_filter
 
-# from usage import usage
+sys.path.append(".")
 
 MAX_WORKERS = 5
 
@@ -568,7 +569,7 @@ async def main():
                         finally:
                             queue.task_done()  # 标记任务完成
                             processed_index += 1
-                            logger.info(f"Processed result: {str(result_list)}")
+                            logger.info(f"Process result list: {str(result_list)}")
                             if result_list.count(True) >= result_list.count(False):
                                 return True
                             return False
@@ -853,8 +854,7 @@ async def main():
                     component_constraint = json.load(file)
                 # 创建并启动生产者线程
                 logger.info(
-                    "component_constraint: ",
-                    component_constraint.get(component_root_name, "None"),
+                    f"component_constraint: {str(component_constraint.get(component_root_name, 'None'))}"
                 )
                 task1 = asyncio.create_task(
                     scenario_generation_worker(

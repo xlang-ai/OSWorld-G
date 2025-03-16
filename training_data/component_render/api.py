@@ -45,24 +45,38 @@ async def call_with_retry_openai(client, model, messages, temperature, response_
     while retries < MAX_RETRIES:
         try:
             # 使用 asyncio.wait_for 设置超时时间
-            response = await asyncio.wait_for(
-                client.beta.chat.completions.parse(
-                    model=model,
-                    messages=messages,
-                    temperature=temperature,
-                    response_format=response_format,
-                ),
-                timeout=30.0,  # 设置超时时间为60秒
+            # response = await asyncio.wait_for(
+            #     client.beta.chat.completions.parse(
+            #         model=model,
+            #         messages=messages,
+            #         temperature=temperature,
+            #         response_format=response_format,
+            #     ),
+            #     timeout=30.0,  # 设置超时时间为60秒
+            # )
+            response = await client.beta.chat.completions.parse(
+                model=model,
+                messages=messages,
+                temperature=temperature,
+                response_format=response_format,
             )
             return response  # 成功获取响应后返回
 
-        except asyncio.TimeoutError:
-            logger.error("Request timed out after 60 seconds, retrying...")
+        except BaseException as e:  # 捕获其他异常
+            logger.error(f"Unexpected error: {e}")
             retries += 1
             if retries >= MAX_RETRIES:
                 logger.error("maximum retry times, quit")
-                raise  # 达到最大重试次数时抛出异常
+                raise e  # 达到最大重试次数时抛出异常
             await asyncio.sleep(RETRY_DELAY)  # 等待后再重试
+
+        # except asyncio.TimeoutError:
+        #     logger.error("Request timed out after 60 seconds, retrying...")
+        #     retries += 1
+        #     if retries >= MAX_RETRIES:
+        #         logger.error("maximum retry times, quit")
+        #         raise  # 达到最大重试次数时抛出异常
+        #     await asyncio.sleep(RETRY_DELAY)  # 等待后再重试
 
         except RateLimitError as e:
             logger.error(f"Retry because of rate limit: {e}")
@@ -78,14 +92,6 @@ async def call_with_retry_openai(client, model, messages, temperature, response_
             if retries >= MAX_RETRIES:
                 logger.error("maximum retry times, quit")
                 raise  # 达到最大重试次数时抛出异常
-            await asyncio.sleep(RETRY_DELAY)  # 等待后再重试
-
-        except Exception as e:  # 捕获其他异常
-            logger.error(f"Unexpected error: {e}")
-            retries += 1
-            if retries >= MAX_RETRIES:
-                logger.error("maximum retry times, quit")
-                raise e  # 达到最大重试次数时抛出异常
             await asyncio.sleep(RETRY_DELAY)  # 等待后再重试
 
 
@@ -113,9 +119,8 @@ async def call_with_retry_claude(model, prompt, temperature):
             # print(f"response: {response}")
             return response
         except Exception as e:  # 捕获连接错误或超时
-            print(e)
             retries += 1
-            logger.error(f"connection error, retry...  {retries} time")
+            logger.error(f"Exception: {e}, retry...  {retries} time")
             if retries >= MAX_RETRIES:
                 logger.error("maximum retry times, quit")
                 raise e  # 达到最大重试次数时抛出异常
