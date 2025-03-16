@@ -11,7 +11,8 @@ import asyncio
 from itertools import product
 from typing import Dict, List, Literal, Optional, Union
 
-from api import client, call_with_retry_openai
+# from api import client, call_with_retry_openai
+from api import call_with_retry_openai
 from logger import logger
 from PIL import Image, ImageDraw, ImageFont
 
@@ -77,7 +78,7 @@ async def generate_action_detail(args) -> ActionDetail:
 
     try:
         response = await call_with_retry_openai(
-            client,
+            # client,
             "gpt-4o-2024-11-20",
             [
                 {
@@ -125,7 +126,7 @@ async def generate_action_data(
     # action intent generation
     logger.info("generating action intent")
     response = await call_with_retry_openai(
-        client,
+        # client,
         "gpt-4o-2024-11-20",
         [
             {
@@ -202,7 +203,7 @@ async def inst_filter(pair: tuple):
     )
     try:
         response = await call_with_retry_openai(
-            client,
+            # client,
             "gpt-4o-mini",
             [
                 {"role": "user", "content": prompt},

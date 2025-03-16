@@ -1,8 +1,10 @@
 import os
+import time
 import json
 from anthropic import AnthropicBedrock
 import boto3
 import asyncio
+import requests
 import anthropic
 from aiohttp import ClientError
 from openai import AsyncOpenAI, RateLimitError, OpenAIError
@@ -18,7 +20,30 @@ with open("secret_keys/secret_key_claude.txt", "r") as f:
     claude_api_key = f.read()
 os.environ["OPENAI_API_KEY"] = openai_api_key
 os.environ["CLAUDE_API_KEY"] = claude_api_key
-client = AsyncOpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+# client = AsyncOpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+from concurrent.futures import ThreadPoolExecutor
+
+
+def call_openai(model, messages, temperature, response_format):
+    try:
+        response = requests.post(
+            "https://api.openai.com/v1/chat/completions",
+            headers={"Authorization": f"Bearer {os.environ.get('OPENAI_API_KEY')}"},
+            json={
+                "model": model,
+                "messages": messages,
+                "temperature": temperature,
+                "response_format": response_format,
+            },
+            timeout=30.0,
+        )
+        response.raise_for_status()
+        return response.json()
+    except requests.exceptions.RequestException as e:
+        logger.error(f"Request failed: {e}")
+        raise
+
+
 claude = anthropic.Anthropic()
 
 MAX_RETRIES = 5  # 最多重试次数
@@ -40,59 +65,58 @@ class ScenarioAugmentationResponse(BaseModel):
     new_style_code: str
 
 
-async def call_with_retry_openai(client, model, messages, temperature, response_format):
+MAX_THREADS = 10  # 设置最大线程数为 10
+
+
+def call_with_retry_openai(model, messages, temperature, response_format):
     retries = 0
     while retries < MAX_RETRIES:
         try:
-            # 使用 asyncio.wait_for 设置超时时间
-            # response = await asyncio.wait_for(
-            #     client.beta.chat.completions.parse(
-            #         model=model,
-            #         messages=messages,
-            #         temperature=temperature,
-            #         response_format=response_format,
-            #     ),
-            #     timeout=30.0,  # 设置超时时间为60秒
-            # )
-            response = await client.beta.chat.completions.parse(
-                model=model,
-                messages=messages,
-                temperature=temperature,
-                response_format=response_format,
-            )
-            return response  # 成功获取响应后返回
-
-        except BaseException as e:  # 捕获其他异常
+            with ThreadPoolExecutor(
+                max_workers=MAX_THREADS, thread_name_prefix="OpenAI_Worker"
+            ) as executor:
+                future = executor.submit(
+                    call_openai, model, messages, temperature, response_format
+                )
+                return future.result()
+        except Exception as e:
             logger.error(f"Unexpected error: {e}")
             retries += 1
             if retries >= MAX_RETRIES:
-                logger.error("maximum retry times, quit")
-                raise e  # 达到最大重试次数时抛出异常
-            await asyncio.sleep(RETRY_DELAY)  # 等待后再重试
+                logger.error("Maximum retry times reached, quitting.")
+                raise
+            time.sleep(RETRY_DELAY)
 
-        # except asyncio.TimeoutError:
-        #     logger.error("Request timed out after 60 seconds, retrying...")
-        #     retries += 1
-        #     if retries >= MAX_RETRIES:
-        #         logger.error("maximum retry times, quit")
-        #         raise  # 达到最大重试次数时抛出异常
-        #     await asyncio.sleep(RETRY_DELAY)  # 等待后再重试
 
-        except RateLimitError as e:
-            logger.error(f"Retry because of rate limit: {e}")
-            retries += 1
-            if retries >= MAX_RETRIES:
-                logger.error("maximum retry times, quit")
-                raise  # 达到最大重试次数时抛出异常
-            await asyncio.sleep(RETRY_DELAY)  # 等待后再重试
+# async def call_with_retry_openai(client, model, messages, temperature, response_format):
+#     retries = 0
+#     while retries < MAX_RETRIES:
+#         try:
+#             # 使用 asyncio.wait_for 设置超时时间
+#             # response = await asyncio.wait_for(
+#             #     client.beta.chat.completions.parse(
+#             #         model=model,
+#             #         messages=messages,
+#             #         temperature=temperature,
+#             #         response_format=response_format,
+#             #     ),
+#             #     timeout=30.0,  # 设置超时时间为60秒
+#             # )
+#             response = await client.beta.chat.completions.parse(
+#                 model=model,
+#                 messages=messages,
+#                 temperature=temperature,
+#                 response_format=response_format,
+#             )
+#             return response  # 成功获取响应后返回
 
-        except OpenAIError as e:
-            logger.error(f"OpenAI Error: {e}")
-            retries += 1
-            if retries >= MAX_RETRIES:
-                logger.error("maximum retry times, quit")
-                raise  # 达到最大重试次数时抛出异常
-            await asyncio.sleep(RETRY_DELAY)  # 等待后再重试
+#         except BaseException as e:  # 捕获其他异常
+#             logger.error(f"Unexpected error: {e}")
+#             retries += 1
+#             if retries >= MAX_RETRIES:
+#                 logger.error("maximum retry times, quit")
+#                 raise e  # 达到最大重试次数时抛出异常
+#             await asyncio.sleep(RETRY_DELAY)  # 等待后再重试
 
 
 async def call_with_retry_claude(model, prompt, temperature):
@@ -130,7 +154,6 @@ async def call_with_retry_claude(model, prompt, temperature):
 async def main():
     try:
         await call_with_retry_claude(
-            client,
             "gpt-4o-2024-11-20",
             [
                 {

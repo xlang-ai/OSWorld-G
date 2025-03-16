@@ -4,7 +4,7 @@ import json
 import time
 import shutil
 from render_prompts import VISUAL_FILTER_PROMPT
-from api import client, claude, call_with_retry_openai
+from api import call_with_retry_openai
 from utils import encode_image
 from logger import logger
 from typing import Dict, List
@@ -21,9 +21,7 @@ class FilterResult(BaseModel):
     # more_instructions: List[str]
 
 
-async def visual_filter(
-    grounding_dict: Dict
-):
+async def visual_filter(grounding_dict: Dict):
     logger.info(f"start filter grounding {str(grounding_dict)}")
     instruction = grounding_dict["instruction"]
     try:
@@ -117,7 +115,7 @@ async def visual_filter(
             ]
         )
         response = await call_with_retry_openai(
-            client,
+            # client,
             "gpt-4o-2024-11-20",
             messages,
             0,

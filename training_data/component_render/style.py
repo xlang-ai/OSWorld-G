@@ -8,7 +8,9 @@ import asyncio
 # import anthropic
 from typing import Dict, List, Union
 from queue import Queue
-from api import claude, client, call_with_retry_openai, call_with_retry_claude
+
+# from api import claude, client, call_with_retry_openai, call_with_retry_claude
+from api import call_with_retry_openai, call_with_retry_claude
 from logger import logger
 from pydantic import BaseModel
 from render_prompts import (
@@ -55,7 +57,7 @@ async def _generate_single_scenario_openai(
 
     try:
         response = await call_with_retry_openai(
-            client,
+            # client,
             "gpt-4o-2024-11-20",
             [
                 {
@@ -93,7 +95,7 @@ async def _generate_single_scenario_openai(
                     if item not in import_list:
                         logger.info(f"wrong import: {item}")
                         response = await call_with_retry_openai(
-                            client,
+                            # client,
                             "gpt-4o-2024-11-20",
                             [
                                 {
@@ -328,7 +330,7 @@ async def style_augmentation(
     #     ],
     # )
     response = await call_with_retry_openai(
-        client,
+        # client,
         "gpt-4o-2024-11-20",
         [
             {
