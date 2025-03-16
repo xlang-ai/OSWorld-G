@@ -172,18 +172,19 @@ async def _generate_single_scenario_claude(
         lib_name=lib_name,
     )
     try:
-        json_response = await call_with_retry_claude(
+        response = await call_with_retry_claude(
             "anthropic.claude-3-5-sonnet-20241022-v2:0",
             (system_prompt + scenario_prompt),
             1,
         )
-
-        code_match = re.search(
-            r'"new_style_code"\s*:\s*"((?:[^"\\]|\\.|\\n)*)"', json_response, re.DOTALL
-        )
-        if not code_match:
-            raise ValueError("No new_style_code found in the response")
-        new_style_code = code_match.group(1)
+        response = json.loads(response)
+        new_style_code = response["new_style_code"]
+        # code_match = re.search(
+        #     r'"new_style_code"\s*:\s*"((?:[^"\\]|\\.|\\n)*)"', json_response, re.DOTALL
+        # )
+        # if not code_match:
+        #     raise ValueError("No new_style_code found in the response")
+        # new_style_code = code_match.group(1)
 
         # import check
         with open("import_list.json", "r") as file:
@@ -211,7 +212,7 @@ async def _generate_single_scenario_claude(
                             (system_prompt + scenario_prompt),
                             1,
                         )
-                        response = json.loads(response.content)
+                        response = json.loads(response)
                         new_style_code = response["new_style_code"]
 
                         # 直接从响应中提取 new_style_code

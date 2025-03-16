@@ -171,7 +171,7 @@ async def main():
             1,
             ScenarioAugmentationResponse,
         )
-        print(response)
+        # print(response)
     except Exception as e:
         print(f"exception! {e}")
 

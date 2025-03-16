@@ -160,7 +160,7 @@ class DataGenerator:
             # # 读取输出并记录到日志
             logger.info("React app started")
             # 等待服务器启动
-            time.sleep(8)  # 增加等待时间确保服务器完全启动
+            time.sleep(15)  # 增加等待时间确保服务器完全启动
 
             return
 
