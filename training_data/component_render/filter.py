@@ -4,7 +4,7 @@ import json
 import time
 import shutil
 from render_prompts import VISUAL_FILTER_PROMPT
-from api import call_with_retry_openai
+from api import client, call_with_retry_openai
 from utils import encode_image
 from logger import logger
 from typing import Dict, List
@@ -115,7 +115,7 @@ async def visual_filter(grounding_dict: Dict):
             ]
         )
         response = await call_with_retry_openai(
-            # client,
+            client,
             "gpt-4o-2024-11-20",
             messages,
             0,

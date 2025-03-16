@@ -14,8 +14,9 @@ import concurrent.futures
 from typing import List, Optional, Union, Dict, Literal
 from PIL import Image, ImageDraw, ImageFont
 
-# from api import client, call_with_retry_openai
-from api import call_with_retry_openai
+from api import client, call_with_retry_openai
+
+# from api import call_with_retry_openai
 from openai import OpenAI
 from pydantic import BaseModel
 
@@ -362,7 +363,8 @@ async def generate_instructions(bbox, original_image_path):
             )
 
             response = await call_with_retry_openai(
-                # client,
+                # response = call_with_retry_openai(
+                client,
                 "gpt-4o-2024-11-20",
                 [
                     {"role": "system", "content": sys_prompt},
@@ -478,7 +480,8 @@ async def generate_instructions(bbox, original_image_path):
                         )
                         try:
                             response = await call_with_retry_openai(
-                                # client,
+                                # response = call_with_retry_openai(
+                                client,
                                 "gpt-4o-mini",
                                 [
                                     {"role": "system", "content": sys_prompt},
@@ -515,7 +518,8 @@ async def generate_instructions(bbox, original_image_path):
                 )
 
                 response = await call_with_retry_openai(
-                    # client,
+                    # response = call_with_retry_openai(
+                    client,
                     "gpt-4o-2024-11-20",
                     [
                         {"role": "system", "content": sys_prompt},
