@@ -10,13 +10,12 @@ import tempfile
 import datetime
 from itertools import product
 import threading
-import concurrent.futures
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import List, Optional, Union, Dict, Literal
 from PIL import Image, ImageDraw, ImageFont
 
 from api import client, call_with_retry_openai
 
-# from api import call_with_retry_openai
 from openai import OpenAI
 from pydantic import BaseModel
 
@@ -319,7 +318,7 @@ def context_image(image_path, bbox):
 
 
 # 调用 GPT-4 API 获取指令
-async def generate_instructions(bbox, original_image_path):
+def generate_instructions(bbox, original_image_path):
     try:
         logger.info("start generate instructions")
         action_detail_list = []
@@ -362,8 +361,7 @@ async def generate_instructions(bbox, original_image_path):
                 parent_bbox=bbox["parent"],
             )
 
-            response = await call_with_retry_openai(
-                # response = call_with_retry_openai(
+            response = call_with_retry_openai(
                 client,
                 "gpt-4o-2024-11-20",
                 [
@@ -479,8 +477,7 @@ async def generate_instructions(bbox, original_image_path):
                             center_point=center_point,
                         )
                         try:
-                            response = await call_with_retry_openai(
-                                # response = call_with_retry_openai(
+                            response = call_with_retry_openai(
                                 client,
                                 "gpt-4o-mini",
                                 [
@@ -517,8 +514,7 @@ async def generate_instructions(bbox, original_image_path):
                     parent_bbox=bbox["parent"],
                 )
 
-                response = await call_with_retry_openai(
-                    # response = call_with_retry_openai(
+                response = call_with_retry_openai(
                     client,
                     "gpt-4o-2024-11-20",
                     [
@@ -572,21 +568,25 @@ async def generate_instructions(bbox, original_image_path):
         return action_detail_list
 
 
-async def generate_instructions_with_timeout(
-    bbox, original_image_path, timeout_seconds=THREAD_TIMEOUT
-):
-    try:
-        # 使用asyncio.wait_for设置超时
-        result = await asyncio.wait_for(
-            generate_instructions(bbox, original_image_path), timeout=timeout_seconds
-        )
-        return result
-    except asyncio.TimeoutError:
-        logger.error(f"generate_instructions timeout，{timeout_seconds} secs")
-        return []
-    except Exception as e:
-        logger.error(f"generate_instructions_with_timeout error: {str(e)}")
-        return []
+# async def generate_instructions_with_timeout(
+#     bbox, original_image_path, timeout_seconds=THREAD_TIMEOUT
+# ):
+#     try:
+#         # 使用asyncio.wait_for设置超时
+#         result = await asyncio.wait_for(
+#             generate_instructions(bbox, original_image_path), timeout=timeout_seconds
+#         )
+#         return result
+#     except asyncio.TimeoutError:
+#         logger.error(f"generate_instructions timeout，{timeout_seconds} secs")
+#         return []
+#     except Exception as e:
+#         logger.error(f"generate_instructions_with_timeout error: {str(e)}")
+#         return []
+
+
+def task_generate_instructions(bbox, original_image_path):
+    return generate_instructions(bbox, original_image_path)
 
 
 # 主函数：提取 bbox，裁剪图片，生成指令
@@ -602,34 +602,22 @@ def generate_action_data_with_bbox(position_info, screenshot_path):
 
     futures = []
 
-    # 使用 ThreadPoolExecutor 并发处理任务
-    with concurrent.futures.ThreadPoolExecutor(max_workers=20) as executor:
-
-        # 提交所有的任务
-        for _, bbox in enumerate(bboxes):
-            # 将 async 函数包装为可在线程池中运行的任务
-            future = executor.submit(
-                asyncio.run,  # 使用 asyncio.run 运行 async 函数
-                generate_instructions_with_timeout(
-                    bbox, screenshot_path
-                ),  # 调用 async 函数
-            )
-            futures.append(future)
-
-        # 使用 as_completed 收集结果
-        for future in concurrent.futures.as_completed(futures):
+    with ThreadPoolExecutor(max_workers=20) as executor:  # 设置最大线程数
+        futures = [
+            executor.submit(task_generate_instructions, bbox, screenshot_path)
+            for bbox in bboxes
+        ]
+        for future in as_completed(futures):
             try:
-                result = future.result()  # 捕获任务的结果
+                result = future.result()
                 action_detail_list.extend(result)
-            except concurrent.futures.TimeoutError:
-                logger.error("A thread exceeded the timeout and was terminated.")
-            except Exception as e:
-                logger.error(f"Error occurred: {e}")  # 捕获并打印错误
+            except BaseException as e:
+                logger.error(f"Error in task: {str(e)}")
 
     return action_detail_list
 
 
-async def process_grounding(action_detail: Dict, screensize: Dict) -> str:
+def process_grounding(action_detail: Dict, screensize: Dict) -> str:
     try:
         raw_pairs = []
         grounding_pairs = []
@@ -915,7 +903,7 @@ def annotate_grounding(
 
 
 # 使用示例
-async def main():
+def main():
     json_file = f"position_example_3.json"  # 替换为你的 bbox.json 文件路径
     screenshot_path = f"position_example_3.png"  # 替换为你的截图文件路径
     with open(json_file, "r") as f:
@@ -941,4 +929,4 @@ async def main():
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()

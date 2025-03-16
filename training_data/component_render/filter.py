@@ -21,7 +21,7 @@ class FilterResult(BaseModel):
     # more_instructions: List[str]
 
 
-async def visual_filter(grounding_dict: Dict):
+def visual_filter(grounding_dict: Dict):
     logger.info(f"start filter grounding {str(grounding_dict)}")
     instruction = grounding_dict["instruction"]
     try:
@@ -114,7 +114,7 @@ async def visual_filter(grounding_dict: Dict):
                 }
             ]
         )
-        response = await call_with_retry_openai(
+        response = call_with_retry_openai(
             client,
             "gpt-4o-2024-11-20",
             messages,

@@ -39,7 +39,7 @@ class StyleCodeResponse(BaseModel):
     style_code: str
 
 
-async def _generate_single_scenario_openai(
+def _generate_single_scenario_openai(
     component_root_name,
     component_constraint,
     base_component_code,
@@ -57,7 +57,7 @@ async def _generate_single_scenario_openai(
     )
 
     try:
-        response = await call_with_retry_openai(
+        response = call_with_retry_openai(
             client,
             "gpt-4o-2024-11-20",
             [
@@ -95,7 +95,7 @@ async def _generate_single_scenario_openai(
                 for item in imported_items:
                     if item not in import_list:
                         logger.info(f"wrong import: {item}")
-                        response = await call_with_retry_openai(
+                        response = call_with_retry_openai(
                             client,
                             "gpt-4o-2024-11-20",
                             [
@@ -155,7 +155,7 @@ async def _generate_single_scenario_openai(
         return None
 
 
-async def _generate_single_scenario_claude(
+def _generate_single_scenario_claude(
     component_root_name,
     component_constraint,
     base_component_code,
@@ -172,19 +172,13 @@ async def _generate_single_scenario_claude(
         lib_name=lib_name,
     )
     try:
-        response = await call_with_retry_claude(
+        response = call_with_retry_claude(
             "anthropic.claude-3-5-sonnet-20241022-v2:0",
             (system_prompt + scenario_prompt),
             1,
         )
         response = json.loads(response)
         new_style_code = response["new_style_code"]
-        # code_match = re.search(
-        #     r'"new_style_code"\s*:\s*"((?:[^"\\]|\\.|\\n)*)"', json_response, re.DOTALL
-        # )
-        # if not code_match:
-        #     raise ValueError("No new_style_code found in the response")
-        # new_style_code = code_match.group(1)
 
         # import check
         with open("import_list.json", "r") as file:
@@ -207,24 +201,13 @@ async def _generate_single_scenario_claude(
                 for item in imported_items:
                     if item not in import_list:
                         logger.info(f"wrong import: {item}")
-                        response = await call_with_retry_claude(
+                        response = call_with_retry_claude(
                             "anthropic.claude-3-5-sonnet-20241022-v2:0",
                             (system_prompt + scenario_prompt),
                             1,
                         )
                         response = json.loads(response)
                         new_style_code = response["new_style_code"]
-
-                        # 直接从响应中提取 new_style_code
-
-                        # code_match = re.search(
-                        #     r'"new_style_code"\s*:\s*"((?:[^"\\]|\\.|\\n)*)"',
-                        #     json_response,
-                        #     re.DOTALL,
-                        # )
-                        # if not code_match:
-                        #     raise ValueError("No new_style_code found in the response")
-                        # new_style_code = code_match.group(1)
 
         # format check
         # 1. 检查是否存在 export function
@@ -283,7 +266,7 @@ async def scenario_generation_worker(
 
             while new_generated_code is None:
                 if api_type == "openai":
-                    new_generated_code = await _generate_single_scenario_openai(
+                    new_generated_code = _generate_single_scenario_openai(
                         component_root_name,
                         component_constraint,
                         base_component_code,
@@ -292,7 +275,7 @@ async def scenario_generation_worker(
                         lib_name,
                     )
                 elif api_type == "claude":
-                    new_generated_code = await _generate_single_scenario_claude(
+                    new_generated_code = _generate_single_scenario_claude(
                         component_root_name,
                         component_constraint,
                         base_component_code,
@@ -313,111 +296,8 @@ async def scenario_generation_worker(
         await queue.put("end")
 
 
-async def style_augmentation(
-    scenario_component_code, n=1
-) -> Dict[str, Union[str, List[str]]]:
-    style_prompt = STYLE_TEMPLATE_GENERATE_PROMPT.format(
-        original_code=scenario_component_code
-    )
-    # response = claude.messages.create(
-    #     model="claude-3-5-sonnet-20241022",
-    #     max_tokens=4000,  # TODO
-    #     temperature=0.6,  # TODO
-    #     system=SYSTEM_PROMPT_FOR_STYLE_AUGMENTATION,
-    #     messages=[
-    #         {
-    #             "role": "user",
-    #             "content": [{"type": "text", "text": style_prompt}],
-    #         }
-    #     ],
-    # )
-    response = await call_with_retry_openai(
-        client,
-        "gpt-4o-2024-11-20",
-        [
-            {
-                "role": "system",
-                "content": [
-                    {"type": "text", "text": SYSTEM_PROMPT_FOR_STYLE_AUGMENTATION},
-                ],
-            },
-            {
-                "role": "user",
-                "content": [
-                    {"type": "text", "text": style_prompt},
-                ],
-            },
-        ],
-        0.6,
-        StyleAugmentationResponse,
-    )
-    with open("token_cost.txt", "a") as file:
-        file.write(f"prompt_style_aug:\n{response.usage.prompt_tokens}\n")
-        file.write(f"completion_style_aug:\n{response.usage.completion_tokens}\n")
-    json_response = response.choices[0].message.parsed
-    thoughts, component_code, component_prop_nesting = (
-        json_response.thoughts,
-        json_response.component_code,
-        json_response.component_prop_nesting,
-    )
-
-    # logger.info(f"COMPONENT PROP NESTING: {component_prop_nesting}")
-
-    # style_code_list = []
-    styled_component_prop_nesting_list = [component_prop_nesting]
-
-    # for i in range(n):
-    #     style_code_prompt = STYLE_CODE_GENERATE_PROMPT.format(
-    #         component_code=scenario_component_code,
-    #         component_prop_nesting=component_prop_nesting,
-    #     )
-    #     # response = claude.messages.create(
-    #     #     model="claude-3-5-sonnet-20241022",
-    #     #     max_tokens=4000,  # TODO
-    #     #     temperature=0.6,  # TODO
-    #     #     system=SYSTEM_PROMPT_FOR_STYLE_AUGMENTATION,
-    #     #     messages=[
-    #     #         {
-    #     #             "role": "user",
-    #     #             "content": [{"type": "text", "text": style_code_prompt}],
-    #     #         }
-    #     #     ],
-    #     # )
-    #     response = client.beta.chat.completions.parse(
-    #         model="gpt-4o-2024-11-20",
-    #         messages=[
-    #             {
-    #                 "role": "system",
-    #                 "content": [
-    #                     {"type": "text", "text": SYSTEM_PROMPT_FOR_STYLE_AUGMENTATION},
-    #                 ],
-    #             },
-    #             {
-    #                 "role": "user",
-    #                 "content": [
-    #                     {"type": "text", "text": style_code_prompt},
-    #                 ],
-    #             },
-    #         ],
-    #         temperature = 0.6,
-    #         response_format=StyleCodeResponse,
-    #     )
-
-    #     json_response = response.choices[0].message.parsed
-    #     thoughts, code = json_response.thoughts, json_response.style_code
-    #     style_code_list.append(code)
-
-    # logger.info(f"STYLE CODE LIST: {str(style_code_list)}")
-
-    return {
-        "component_code": component_code,
-        "component_prop_nesting": component_prop_nesting,
-        "styled_component_prop_nesting_list": styled_component_prop_nesting_list,
-    }
-
-
-async def main():
-    claude_code = await _generate_single_scenario_claude(
+def main():
+    claude_code = _generate_single_scenario_claude(
         "slider",
         "",
         """import * as React from 'react';
