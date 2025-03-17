@@ -8,7 +8,7 @@ import anthropic
 from openai import AsyncOpenAI, OpenAI
 from pydantic import BaseModel
 from logger import logger
-
+from typing import Dict, List, get_type_hints, get_origin, get_args
 
 # Setup proxy and API key TODO You may not need this
 os.environ["HTTP_PROXY"] = "http://127.0.0.1:8890"
@@ -25,7 +25,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 claude = anthropic.Anthropic()
 
-MAX_RETRIES = 5  # 最多重试次数
+MAX_RETRIES = 10  # 最多重试次数
 RETRY_DELAY = 3  # 每次重试之间的延迟（秒）
 
 bedrock = boto3.client("bedrock-runtime", region_name="us-west-2")
@@ -115,9 +115,9 @@ def pydantic_to_json_schema(model_class):
         "additionalProperties": False,
     }
 
-    # Get the annotations from the model
+    # Get the name and annotations from the model
     name = model_class.__name__
-    annotations = model_class.__annotations__
+    annotations = get_type_hints(model_class)
 
     # Map Python types to JSON schema types
     type_mapping = {
@@ -127,6 +127,8 @@ def pydantic_to_json_schema(model_class):
         bool: {"type": "boolean"},
         list: {"type": "array"},
         dict: {"type": "object"},
+        Dict: {"type": "object"},
+        List: {"type": "array"},
     }
 
     # Fill in properties and required fields
@@ -134,24 +136,74 @@ def pydantic_to_json_schema(model_class):
         # Handle basic types
         if field_type in type_mapping:
             schema["properties"][field_name] = type_mapping[field_type]
-        # Handle lists with specific item types (e.g., List[str])
-        elif hasattr(field_type, "__origin__") and field_type.__origin__ is list:
-            item_type = field_type.__args__[0]
-            if item_type in type_mapping:
-                schema["properties"][field_name] = {
-                    "type": "array",
-                    "items": type_mapping[item_type],
-                }
-            else:
-                # For complex types in lists, we'd need more logic here
-                schema["properties"][field_name] = {"type": "array"}
-        # Handle other complex types
         else:
-            # For nested models, we'd need more logic here
-            schema["properties"][field_name] = {"type": "object"}
+            # Get the origin type (e.g., list, dict, etc.)
+            origin = get_origin(field_type)
+
+            # Handle typing.List
+            if origin is list or origin is List:
+                args = get_args(field_type)
+                if args and args[0] in type_mapping:
+                    schema["properties"][field_name] = {
+                        "type": "array",
+                        "items": type_mapping[args[0]],
+                    }
+                else:
+                    # For complex types in lists
+                    schema["properties"][field_name] = {"type": "array"}
+
+            # Handle typing.Dict
+            elif origin is dict or origin is Dict:
+                args = get_args(field_type)
+                if len(args) >= 2:
+                    key_type, value_type = args[0], args[1]
+
+                    # Create a dictionary type
+                    schema["properties"][field_name] = {"type": "object"}
+
+                    # If value_type is a complex type like List[List[float]]
+                    if get_origin(value_type) is list or get_origin(value_type) is List:
+                        nested_args = get_args(value_type)
+                        if nested_args and (
+                            get_origin(nested_args[0]) is list
+                            or get_origin(nested_args[0]) is List
+                        ):
+                            inner_type = (
+                                get_args(nested_args[0])[0]
+                                if get_args(nested_args[0])
+                                else "string"
+                            )
+                            schema["properties"][field_name]["additionalProperties"] = {
+                                "type": "array",
+                                "items": {
+                                    "type": "array",
+                                    "items": type_mapping.get(
+                                        inner_type, {"type": "string"}
+                                    ),
+                                },
+                            }
+                        else:
+                            schema["properties"][field_name]["additionalProperties"] = {
+                                "type": "array",
+                                "items": (
+                                    type_mapping.get(nested_args[0], {"type": "string"})
+                                    if nested_args
+                                    else {"type": "string"}
+                                ),
+                            }
+                    else:
+                        schema["properties"][field_name]["additionalProperties"] = (
+                            type_mapping.get(value_type, {"type": "string"})
+                        )
+                else:
+                    # Generic dict
+                    schema["properties"][field_name] = {"type": "object"}
+
+            # Handle other types
+            else:
+                schema["properties"][field_name] = {"type": "string"}
 
         # Add to required fields - assuming all fields are required by default
-        # For optional fields, you'd need to check if the field is Optional
         schema["required"].append(field_name)
 
     return {
@@ -162,6 +214,7 @@ def pydantic_to_json_schema(model_class):
 
 def call_with_retry_openai(client, model, messages, temperature, response_format):
     response_format_json = pydantic_to_json_schema(response_format)
+    # print(response_format_json)
     url = "https://api.openai.com/v1/chat/completions"
     headers = {
         "Content-Type": "application/json",
@@ -177,7 +230,7 @@ def call_with_retry_openai(client, model, messages, temperature, response_format
     retries = 0
     while retries < MAX_RETRIES:
         try:
-            print(data)
+            # print(data)
             response = requests.post(url, headers=headers, json=data)
             response.raise_for_status()  # 检查请求是否成功
             resp_json = response.json()
@@ -192,7 +245,7 @@ def call_with_retry_openai(client, model, messages, temperature, response_format
             )
             return resp_obj  # 返回解析后的 JSON 响应
         except BaseException as e:
-            logger.error(f"Unexpected error: {e}")
+            logger.error(f"Unexpected error: {e}, retry for the no.{retries} time")
             retries += 1
             if retries >= MAX_RETRIES:
                 logger.error("Maximum retry times, quit")
@@ -221,7 +274,7 @@ def call_with_retry_claude(model, prompt, temperature):
                 inference_config={"temperature": temperature},
             )
             response = response["output"]["message"]["content"][0]["text"]
-            print(response)
+            # print(response)
             # print(f"response: {response}")
             return response
         except Exception as e:  # 捕获连接错误或超时

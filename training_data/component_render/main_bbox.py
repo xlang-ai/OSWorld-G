@@ -227,7 +227,7 @@ class DataGenerator:
             await self.refresh_page()
 
             # 获取组件位置信息
-            await self.page.wait_for_selector(".App", state="attached", timeout=6000)
+            await self.page.wait_for_selector(".App", state="attached", timeout=60000)
             position = await self.page.evaluate(JS_EVAL_TREE)
 
             if position:
@@ -241,6 +241,7 @@ class DataGenerator:
 
         except Exception as e:
             logger.error(f"Error in refresh_react_app: {e}")
+            logger.error(f"Corresponding code:\n {component_code}")
             raise
 
     async def restart_react_server(self):
