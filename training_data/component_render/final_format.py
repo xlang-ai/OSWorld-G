@@ -200,7 +200,7 @@ for lib_dir in lib_dir_list:
         lib_root_dir,
         lib_dir,
     )
-    if lib_dir == ".DS_Store" or not os.path.isdir(lib_dir_path):
+    if os.path.isdir(lib_dir_path):
         # if lib_dir in [
         #     "alert",
         #     "app-bar",
@@ -229,6 +229,7 @@ for lib_dir in lib_dir_list:
                 lib_dir_path,
                 component_dir,
             )
+            # print(component_dir_path)
             if component_dir == ".DS_Store" or not os.path.isdir(component_dir_path):
                 continue
             shutil.copytree(
