@@ -121,7 +121,7 @@ def visual_filter(grounding_dict: Dict):
             0,
             FilterResult,
         )
-        original_filter_result = response.choices[0].message.parsed
+        original_filter_result = response
         logger.info(f"Visual Filter Done, result: {original_filter_result.is_correct}")
         new_grounding_dict = {
             **grounding_dict,

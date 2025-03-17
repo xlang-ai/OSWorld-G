@@ -26,7 +26,7 @@ from concurrent.futures import ThreadPoolExecutor
 claude = anthropic.Anthropic()
 
 MAX_RETRIES = 10  # 最多重试次数
-RETRY_DELAY = 3  # 每次重试之间的延迟（秒）
+RETRY_DELAY = 2  # 每次重试之间的延迟（秒）
 
 bedrock = boto3.client("bedrock-runtime", region_name="us-west-2")
 

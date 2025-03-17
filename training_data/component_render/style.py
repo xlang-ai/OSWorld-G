@@ -71,8 +71,9 @@ def _generate_single_scenario_openai(
             1,
             ScenarioAugmentationResponse,
         )
-        json_response = response.choices[0].message.parsed
+        json_response = response
         new_style_code = json_response.new_style_code
+        print(new_style_code)
 
         # import check
         with open("import_list.json", "r") as file:
@@ -115,7 +116,7 @@ def _generate_single_scenario_openai(
                             1,
                             ScenarioAugmentationResponse,
                         )
-                        json_response = response.choices[0].message.parsed
+                        json_response = response
                         new_style_code = json_response.new_style_code
 
         # format check
@@ -128,8 +129,8 @@ def _generate_single_scenario_openai(
             new_style_code = re.sub(
                 pattern, "export default function ", new_style_code, count=1
             )
-        else:
-            logger.info("No 'export function' pattern found in the code")
+        # else:
+        # logger.info("No 'export function' pattern found in the code")
 
         lines = new_style_code.split("\n")
 
@@ -297,7 +298,36 @@ async def scenario_generation_worker(
 
 
 def main():
-    claude_code = _generate_single_scenario_claude(
+    #     claude_code = _generate_single_scenario_claude(
+    #         "slider",
+    #         "",
+    #         """import * as React from 'react';
+    # import Box from '@mui/material/Box';
+    # import Slider from '@mui/material/Slider';
+
+    # function valuetext(value) {
+    #   return `${value}°C`;
+    # }
+
+    # export default function ColorSlider() {
+    #   return (
+    #     <Box sx={{ width: 300 }}>
+    #       <Slider
+    #         aria-label="Temperature"
+    #         defaultValue={30}
+    #         getAriaValueText={valuetext}
+    #         color="secondary"
+    #       />
+    #     </Box>
+    #   );
+    # }
+    # """,
+    #         [],
+    #         SYSTEM_PROMPT_FOR_STYLE_AUGMENTATION,
+    #         "material",
+    #     )
+    #     logger.info(f"NEW STYLE CODE: {claude_code}")
+    openai_code = _generate_single_scenario_openai(
         "slider",
         "",
         """import * as React from 'react';
@@ -325,8 +355,8 @@ export default function ColorSlider() {
         SYSTEM_PROMPT_FOR_STYLE_AUGMENTATION,
         "material",
     )
-    logger.info(f"NEW STYLE CODE: {claude_code}")
+    logger.info(f"NEW STYLE CODE: {openai_code}")
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()
