@@ -116,7 +116,6 @@ def call_with_retry_claude(model, prompt, temperature):
                 inference_config={"temperature": temperature},
             )
             response = response["output"]["message"]["content"][0]["text"]
-            print(response)
             # print(f"response: {response}")
             return response
         except Exception as e:  # 捕获连接错误或超时
