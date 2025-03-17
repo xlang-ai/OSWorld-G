@@ -1,12 +1,14 @@
 import os
 import time
-from anthropic import AnthropicBedrock
+import json
 import boto3
+import requests
 import asyncio
 import anthropic
 from openai import AsyncOpenAI, OpenAI
 from pydantic import BaseModel
 from logger import logger
+
 
 # Setup proxy and API key TODO You may not need this
 os.environ["HTTP_PROXY"] = "http://127.0.0.1:8890"
@@ -74,23 +76,126 @@ MAX_THREADS = 10  # 设置最大线程数为 10
 #             await asyncio.sleep(RETRY_DELAY)  # 使用 await asyncio.sleep 代替 time.sleep
 
 
+# def call_with_retry_openai(client, model, messages, temperature, response_format):
+#     retries = 0
+#     while retries < MAX_RETRIES:
+#         try:
+#             response = client.beta.chat.completions.parse(
+#                 model=model,
+#                 messages=messages,
+#                 temperature=temperature,
+#                 response_format=response_format,
+#             )
+#             return response  # 成功获取响应后返回
+
+
+#         except BaseException as e:  # 捕获其他异常
+#             logger.error(f"Unexpected error: {e}")
+#             retries += 1
+#             if retries >= MAX_RETRIES:
+#                 logger.error("maximum retry times, quit")
+#                 raise e  # 达到最大重试次数时抛出异常
+#             time.sleep(RETRY_DELAY)  # 等待后再重试
+
+
+def pydantic_to_json_schema(model_class):
+    """
+    Convert a Pydantic model class to a JSON schema.
+
+    Args:
+        model_class: A Pydantic BaseModel class
+
+    Returns:
+        dict: A JSON schema representation of the model
+    """
+    schema = {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": False,
+    }
+
+    # Get the annotations from the model
+    name = model_class.__name__
+    annotations = model_class.__annotations__
+
+    # Map Python types to JSON schema types
+    type_mapping = {
+        str: {"type": "string"},
+        int: {"type": "integer"},
+        float: {"type": "number"},
+        bool: {"type": "boolean"},
+        list: {"type": "array"},
+        dict: {"type": "object"},
+    }
+
+    # Fill in properties and required fields
+    for field_name, field_type in annotations.items():
+        # Handle basic types
+        if field_type in type_mapping:
+            schema["properties"][field_name] = type_mapping[field_type]
+        # Handle lists with specific item types (e.g., List[str])
+        elif hasattr(field_type, "__origin__") and field_type.__origin__ is list:
+            item_type = field_type.__args__[0]
+            if item_type in type_mapping:
+                schema["properties"][field_name] = {
+                    "type": "array",
+                    "items": type_mapping[item_type],
+                }
+            else:
+                # For complex types in lists, we'd need more logic here
+                schema["properties"][field_name] = {"type": "array"}
+        # Handle other complex types
+        else:
+            # For nested models, we'd need more logic here
+            schema["properties"][field_name] = {"type": "object"}
+
+        # Add to required fields - assuming all fields are required by default
+        # For optional fields, you'd need to check if the field is Optional
+        schema["required"].append(field_name)
+
+    return {
+        "type": "json_schema",
+        "json_schema": {"name": name, "strict": True, "schema": schema},
+    }
+
+
 def call_with_retry_openai(client, model, messages, temperature, response_format):
+    response_format_json = pydantic_to_json_schema(response_format)
+    url = "https://api.openai.com/v1/chat/completions"
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {openai_api_key}",
+    }
+    data = {
+        "model": model,
+        "messages": messages,
+        "temperature": temperature,
+        "response_format": response_format_json,
+    }
+
     retries = 0
     while retries < MAX_RETRIES:
         try:
-            response = client.beta.chat.completions.parse(
-                model=model,
-                messages=messages,
-                temperature=temperature,
-                response_format=response_format,
-            )
-            return response  # 成功获取响应后返回
+            print(data)
+            response = requests.post(url, headers=headers, json=data)
+            response.raise_for_status()  # 检查请求是否成功
+            resp_json = response.json()
 
-        except BaseException as e:  # 捕获其他异常
+            class DictToObject:
+                def __init__(self, dictionary):
+                    for key, value in dictionary.items():
+                        setattr(self, key, value)
+
+            resp_obj = DictToObject(
+                json.loads(resp_json["choices"][0]["message"]["content"])
+            )
+            return resp_obj  # 返回解析后的 JSON 响应
+        except BaseException as e:
             logger.error(f"Unexpected error: {e}")
             retries += 1
             if retries >= MAX_RETRIES:
-                logger.error("maximum retry times, quit")
+                logger.error("Maximum retry times, quit")
                 raise e  # 达到最大重试次数时抛出异常
             time.sleep(RETRY_DELAY)  # 等待后再重试
 
@@ -130,7 +235,7 @@ def call_with_retry_claude(model, prompt, temperature):
 
 async def main():
     try:
-        response = await call_with_retry_openai(
+        response = call_with_retry_openai(
             client,
             "gpt-4o-2024-11-20",
             [
@@ -144,7 +249,7 @@ async def main():
             1,
             ScenarioAugmentationResponse,
         )
-        # print(response)
+        print(response.new_style_code)
     except Exception as e:
         print(f"exception! {e}")
 
