@@ -215,7 +215,6 @@ class DataGenerator:
             if position:
                 # 捕获截图
                 # TODO: 去除在不同位置出现多次的text，避免歧义
-                print(position)
                 screenshot_path = await self.capture_screenshot(
                     screenshot_folder,
                     component_name,
