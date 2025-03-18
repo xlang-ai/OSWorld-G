@@ -120,17 +120,25 @@ def _generate_single_scenario_openai(
                         new_style_code = json_response.new_style_code
 
         # format check
-        # 1. 检查是否存在 export function
-        pattern = r"export\s+function\s+"
-        match = re.search(pattern, new_style_code)
-
-        if match:
+        # 1.1. 检查是否存在 export function
+        pattern_1 = r"export\s+function\s+(\w+)"
+        match_1 = re.search(pattern_1, new_style_code)
+        if match_1:
             # 替换为 export default function
             new_style_code = re.sub(
-                pattern, "export default function ", new_style_code, count=1
+                pattern_1, "export default function ", new_style_code, count=1
             )
-        # else:
-        # logger.info("No 'export function' pattern found in the code")
+
+        # 1.2. 检查是否存在 export const
+        pattern_2 = r"export\s+const\s+(\w+)"
+        match_2 = re.search(pattern_2, new_style_code)
+        if match_2:
+            component_name = match_2.group(1)
+            pattern_3 = r"export\s+default\s+"
+            match_3 = re.search(pattern_3, new_style_code)
+            if not match_3:
+                # 替换为 export default function
+                new_style_code += f"\nexport default {component_name};"
 
         lines = new_style_code.split("\n")
 

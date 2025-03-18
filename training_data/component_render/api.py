@@ -30,14 +30,6 @@ RETRY_DELAY = 2  # 每次重试之间的延迟（秒）
 
 bedrock = boto3.client("bedrock-runtime", region_name="us-west-2")
 
-# try:
-#     response = bedrock.list_foundation_models(byProvider="anthropic")
-#     print("Available models:")
-#     for summary in response["modelSummaries"]:
-#         print(f"- {summary['modelId']}")
-# except Exception as e:
-#     print(f"Error listing models: {e}")
-
 
 class ScenarioAugmentationResponse(BaseModel):
     thoughts: str
@@ -45,57 +37,6 @@ class ScenarioAugmentationResponse(BaseModel):
 
 
 MAX_THREADS = 10  # 设置最大线程数为 10
-
-
-# import asyncio
-# from concurrent.futures import ThreadPoolExecutor
-
-
-# async def call_with_retry_openai(client, model, messages, temperature, response_format):
-#     retries = 0
-#     while retries < MAX_RETRIES:
-#         try:
-#             loop = asyncio.get_event_loop()
-#             # 使用 run_in_executor 将同步调用放到线程池中执行
-#             response = await loop.run_in_executor(
-#                 ThreadPoolExecutor(),
-#                 client.beta.chat.completions.parse,
-#                 model,
-#                 messages,
-#                 temperature,
-#                 response_format,
-#             )
-#             return response  # 成功获取响应后返回
-
-#         except BaseException as e:  # 捕获其他异常
-#             logger.error(f"Unexpected error: {e}")
-#             retries += 1
-#             if retries >= MAX_RETRIES:
-#                 logger.error("maximum retry times, quit")
-#                 raise e  # 达到最大重试次数时抛出异常
-#             await asyncio.sleep(RETRY_DELAY)  # 使用 await asyncio.sleep 代替 time.sleep
-
-
-# def call_with_retry_openai(client, model, messages, temperature, response_format):
-#     retries = 0
-#     while retries < MAX_RETRIES:
-#         try:
-#             response = client.beta.chat.completions.parse(
-#                 model=model,
-#                 messages=messages,
-#                 temperature=temperature,
-#                 response_format=response_format,
-#             )
-#             return response  # 成功获取响应后返回
-
-
-#         except BaseException as e:  # 捕获其他异常
-#             logger.error(f"Unexpected error: {e}")
-#             retries += 1
-#             if retries >= MAX_RETRIES:
-#                 logger.error("maximum retry times, quit")
-#                 raise e  # 达到最大重试次数时抛出异常
-#             time.sleep(RETRY_DELAY)  # 等待后再重试
 
 
 def pydantic_to_json_schema(model_class):
@@ -230,7 +171,6 @@ def call_with_retry_openai(client, model, messages, temperature, response_format
     retries = 0
     while retries < MAX_RETRIES:
         try:
-            # print(data)
             response = requests.post(url, headers=headers, json=data)
             response.raise_for_status()  # 检查请求是否成功
             resp_json = response.json()

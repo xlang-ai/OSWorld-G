@@ -200,13 +200,14 @@ class DataGenerator:
             app_dir = Path(f"react-app-dir/react-app-{self.port}")
             app_dir.mkdir(parents=True, exist_ok=True)
 
-            # 首先重置 App.js 到初始状态
+            # # 首先重置 App.js 到初始状态
             app_js_path = Path(app_dir) / "src" / "App.js"
-            with open(app_js_path, "w") as f:
-                f.write(JS_WITHOUT_COMPONENT)
+            # with open(app_js_path, "w") as f:
+            #     f.write(JS_WITHOUT_COMPONENT)
 
-            await self.refresh_page()
-            time.sleep(1)  # 等待重置生效
+            # time.sleep(1)
+            # await self.refresh_page()
+            # time.sleep(3)
 
             # 然后写入新的组件文件
             component_js_path = (
@@ -220,11 +221,9 @@ class DataGenerator:
             with open(app_js_path, "w") as f:
                 f.write(app_js_content)
 
-            # 等待文件写入完成
-            time.sleep(1)
-
-            # 刷新页面
+            time.sleep(2)
             await self.refresh_page()
+            time.sleep(4)
 
             # 获取组件位置信息
             await self.page.wait_for_selector(".App", state="attached", timeout=60000)

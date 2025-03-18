@@ -1001,6 +1001,8 @@ Please come up with a real application scenario for this type of component based
 
 11. The original UI component code may have some bugs, you should not keep them.
 
+12. Please, use `export default function <component_name> () {{...}}` grammar.
+
 Remember your generated component should include {component_root_name} or be {component_root_name}.
 
 Pay attention to your import, make sure every import is correct.
