@@ -7,13 +7,9 @@ from typing import Dict
 from PIL import Image
 
 lib_root_dir = "data"
-
 lib_dir_list = os.listdir(lib_root_dir)
-
 data_list = []
-
 action_lines_list = []
-
 for lib_dir in lib_dir_list:
     lib_dir_path = os.path.join(
         lib_root_dir,
@@ -61,7 +57,9 @@ for lib_dir in lib_dir_list:
                 with open(old_file_path, "r", encoding="utf-8") as file:
                     old_data = json.load(file)
                 instruction = old_data["instruction"]
-
+                if "hello" in instruction and "world" in instruction:
+                    print("filter")
+                    continue
                 screenshot_path = old_data["screenshot_path"]
                 with Image.open(
                     os.path.join(
@@ -71,7 +69,6 @@ for lib_dir in lib_dir_list:
                     width, height = img.size
                     if width != 1920:
                         print(width, height)
-
                 # 假设 multi_line_string 是你的多行字符串
                 filtered_actions_list = [
                     line
@@ -81,7 +78,6 @@ for lib_dir in lib_dir_list:
                 # 转换坐标并调整格式
                 final_actions_list = []
                 for filtered_action in filtered_actions_list:
-
                     # 1. 调整错误的action格式
                     wrong_click_pattern = r"^pyautogui\.click\(\((.*?)\)\)$"
                     # 替换外层括号
@@ -117,9 +113,7 @@ for lib_dir in lib_dir_list:
                             f"pyautogui.{action}(({rel_num1}, {rel_num2}{rest}"
                         )
                     final_actions_list.append(filtered_action)
-
                 action_lines_list.extend(final_actions_list)
-
                 # 将过滤后的行重新组合成一个字符串
                 filtered_actions_string = "\n".join(final_actions_list)
                 action = filtered_actions_string.rstrip("\n")
@@ -152,7 +146,6 @@ for data in data_list:
     with open(os.path.join(lib_root_dir, "grounding_data.jsonl"), "a") as file:
         json.dump(data, file)
         file.write("\n")
-
 pyautogui_types = set(
     [
         line.split(".")[1].split("(")[0]  # 获取 . 后面的部分，直到 (
@@ -160,7 +153,6 @@ pyautogui_types = set(
         if line.startswith("pyautogui")
     ]
 )
-
 # 正则表达式模式
 doubleClick_pattern = (
     r"^pyautogui\.doubleClick\(([-+]?\d+(\.\d+)?),\s*([-+]?\d+(\.\d+)?)\)$"
@@ -168,8 +160,6 @@ doubleClick_pattern = (
 dragTo_pattern = r"^pyautogui\.dragTo\(([-+]?\d+(\.\d+)?),\s*([-+]?\d+(\.\d+)?)(?:,\s*duration=([-+]?\d+(\.\d+)?))?(?:,\s*button='([^']+)')?\)$"
 moveTo_pattern = r"^pyautogui\.moveTo\(([-+]?\d+(\.\d+)?),\s*([-+]?\d+(\.\d+)?)\)$"
 click_pattern = r"^pyautogui\.click\(([-+]?\d+(\.\d+)?),\s*([-+]?\d+(\.\d+)?)\)$"
-
-
 # 找出所有不符合模式的字符串
 non_matching_strings = [
     line
@@ -180,27 +170,20 @@ non_matching_strings = [
     or ("click" in line and not re.match(click_pattern, line))
 ]
 print(non_matching_strings)
-
-
 # 输出结果
 print(pyautogui_types)
-
 # 将结果复制到新文件夹
-
 new_dir = os.path.join(f"final_{time.time()}")
 os.makedirs(new_dir, exist_ok=True)
 os.makedirs(os.path.join(new_dir, "data"), exist_ok=True)
-
 new_jsonl_path = os.path.join(new_dir, "grounding_data.jsonl")
-
 shutil.copy(os.path.join(lib_root_dir, "grounding_data.jsonl"), new_jsonl_path)
-
 for lib_dir in lib_dir_list:
     lib_dir_path = os.path.join(
         lib_root_dir,
         lib_dir,
     )
-    if lib_dir == ".DS_Store" or not os.path.isdir(lib_dir_path):
+    if os.path.isdir(lib_dir_path):
         # if lib_dir in [
         #     "alert",
         #     "app-bar",
@@ -229,9 +212,17 @@ for lib_dir in lib_dir_list:
                 lib_dir_path,
                 component_dir,
             )
+            # print(component_dir_path)
             if component_dir == ".DS_Store" or not os.path.isdir(component_dir_path):
                 continue
-            shutil.copytree(
-                os.path.join(component_dir_path, "other_screenshot", "original"),
-                os.path.join(new_dir, "data", lib_dir, "other_screenshot", "original"),
+            src_dir = os.path.join(component_dir_path, "other_screenshot", "original")
+            dst_dir = os.path.join(
+                new_dir, "data", lib_dir, component_dir, "other_screenshot", "original"
             )
+            if os.path.exists(src_dir):
+                if os.path.exists(dst_dir):
+                    shutil.rmtree(dst_dir)
+                shutil.copytree(
+                    src_dir,
+                    dst_dir,
+                )
