@@ -7,6 +7,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+
 def kill_port(port):
     """Kill all processes using the specified port on Ubuntu"""
     try:
@@ -27,7 +28,9 @@ def kill_port(port):
     except Exception as e:
         logger.error(f"Error killing process: {e}")
 
+
 if __name__ == "__main__":
     # 可以直接按范围杀死端口上的进程
     for i in range(3000, 3048):
         kill_port(i)
+    subprocess.run(f"tmux kill-server", shell=True)

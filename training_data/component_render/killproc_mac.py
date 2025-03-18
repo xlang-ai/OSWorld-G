@@ -37,3 +37,4 @@ def kill_port(port):
 if __name__ == "__main__":
     for i in range(3000, 3048):
         kill_port(i)
+    subprocess.run("pkill -f 'python main_bbox.py'", shell=True)
