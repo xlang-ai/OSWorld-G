@@ -12,6 +12,7 @@ from itertools import product
 from typing import Dict, List, Literal, Optional, Union
 
 from api import client, call_with_retry_openai
+# from api import call_with_retry_openai
 from logger import logger
 from PIL import Image, ImageDraw, ImageFont
 

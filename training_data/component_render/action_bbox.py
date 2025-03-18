@@ -10,10 +10,12 @@ import tempfile
 import datetime
 from itertools import product
 import threading
-import concurrent.futures
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import List, Optional, Union, Dict, Literal
 from PIL import Image, ImageDraw, ImageFont
+
 from api import client, call_with_retry_openai
+
 from openai import OpenAI
 from pydantic import BaseModel
 
@@ -57,9 +59,9 @@ class ActionDetail(BaseModel):
     thought_process: str
     action_space_type: Literal["none", "unique", "discrete", "continuous"]
     action_desc: str
-    action_params: List[str]
-    action_discrete_values: Optional[Dict[str, List[Union[str, int, float]]]] = None
-    action_continuous_interval: Optional[Dict[str, List[List[float]]]] = None
+    action_param: Optional[str] = None
+    action_discrete_values: Optional[List[Union[str, int, float]]] = None
+    action_continuous_interval: Optional[List[float]] = None
     action_code: str
 
 
@@ -68,12 +70,21 @@ class Desc2Action(BaseModel):
     action_code: str
 
 
+# class FineAction(BaseModel):
+#     is_continuous: bool
+#     thought_process: str
+#     action_desc: str
+#     action_param: List[str]
+#     action_continuous_interval: Dict[str, List[List[float]]]
+#     action_code: str
+
+
 class FineAction(BaseModel):
     is_continuous: bool
     thought_process: str
     action_desc: str
-    action_params: List[str]
-    action_continuous_interval: Optional[Dict[str, List[List[float]]]] = None
+    action_param: str
+    action_continuous_interval: List[float]
     action_code: str
 
 
@@ -316,7 +327,7 @@ def context_image(image_path, bbox):
 
 
 # 调用 GPT-4 API 获取指令
-async def generate_instructions(bbox, original_image_path):
+def generate_instructions(bbox, original_image_path):
     try:
         logger.info("start generate instructions")
         action_detail_list = []
@@ -358,8 +369,8 @@ async def generate_instructions(bbox, original_image_path):
                 bbox={k: v for k, v in bbox.items() if k != "parent"},
                 parent_bbox=bbox["parent"],
             )
-
-            response = await call_with_retry_openai(
+            # logger.info("desc")
+            response = call_with_retry_openai(
                 client,
                 "gpt-4o-2024-11-20",
                 [
@@ -393,27 +404,21 @@ async def generate_instructions(bbox, original_image_path):
                 InstGen,
             )
 
-            visual_description = response.choices[0].message.parsed.visual_description
-            position_information = response.choices[
-                0
-            ].message.parsed.position_information
-            element_function = response.choices[0].message.parsed.element_function
-            element_type = response.choices[0].message.parsed.element_type.rstrip(".")
+            visual_description = response.visual_description
+            position_information = response.position_information
+            element_function = response.element_function
+            element_type = response.element_type.rstrip(".")
             possible_actions = [
-                random.choice(response.choices[0].message.parsed.possible_actions)
+                random.choice(response.possible_actions)
             ]  # same action repeat many times so we randomly take one
-            element_complete_visibility_analysis = response.choices[
-                0
-            ].message.parsed.element_complete_visibility_analysis
-            element_complete_visibility_result = response.choices[
-                0
-            ].message.parsed.element_complete_visibility_result
-            element_atomicity_analysis = response.choices[
-                0
-            ].message.parsed.element_atomicity_analysis
-            element_atomicity_result = response.choices[
-                0
-            ].message.parsed.element_atomicity_result
+            element_complete_visibility_analysis = (
+                response.element_complete_visibility_analysis
+            )
+            element_complete_visibility_result = (
+                response.element_complete_visibility_result
+            )
+            element_atomicity_analysis = response.element_atomicity_analysis
+            element_atomicity_result = response.element_atomicity_result
             # logger.info(f"VISUAL DESCIRPTION: \n{visual_description}")
             # logger.info(f"POSITION INFORMATION: \n{position_information}")
             # logger.info(f"ELEMENT FUNCTION: \n{element_function}")
@@ -427,14 +432,6 @@ async def generate_instructions(bbox, original_image_path):
             # logger.info(
             #     f"ELEMENT ATOMICITY ANALYSIS: {str(element_atomicity_analysis)}"
             # )
-
-            # false_context_image_path = ""
-
-            # with open("response.txt", "a") as f:
-            #     f.write(false_context_image_path)
-            #     f.write("\n")
-            #     f.write(str(response.choices[0].message.parsed))
-            #     f.write("\n")
 
             if element_complete_visibility_result and element_atomicity_result:
                 # 从0到11中随机生成两个不同的整数
@@ -475,7 +472,9 @@ async def generate_instructions(bbox, original_image_path):
                             center_point=center_point,
                         )
                         try:
-                            response = await call_with_retry_openai(
+                            pass
+                            logger.info("d2a")
+                            response = call_with_retry_openai(
                                 client,
                                 "gpt-4o-mini",
                                 [
@@ -490,13 +489,13 @@ async def generate_instructions(bbox, original_image_path):
                                 0.5,
                                 Desc2Action,
                             )
-                            action_desc = response.choices[0].message.parsed.action_desc
-                            action_code = response.choices[0].message.parsed.action_code
+                            action_desc = response.action_desc
+                            action_code = response.action_code
                             new_action_detail = ActionDetail(
                                 thought_process="",
                                 action_space_type="unique",
                                 action_desc=action_desc,
-                                action_params=[],
+                                action_param=None,
                                 action_discrete_values=None,
                                 action_continuous_interval=None,
                                 action_code=action_code,
@@ -505,60 +504,61 @@ async def generate_instructions(bbox, original_image_path):
 
                         except Exception as e:
                             logger.error(f"Error turning desc into action: {str(e)}")
-                # 2. fine-grained action TODO--target isn't the bbox of the center, but the certain loc of the bbox. inst can be diverse, too[continuous]
-                sys_prompt = FINE_ACTION_INST_SYS_PROMPT
-                user_prompt = FINE_ACTION_INST_USER_PROMPT.format(
-                    bbox={k: v for k, v in bbox.items() if k != "parent"},
-                    parent_bbox=bbox["parent"],
+            # 2. fine-grained action TODO--target isn't the bbox of the center, but the certain loc of the bbox. inst can be diverse, too[continuous]
+            sys_prompt = FINE_ACTION_INST_SYS_PROMPT
+            user_prompt = FINE_ACTION_INST_USER_PROMPT.format(
+                bbox={k: v for k, v in bbox.items() if k != "parent"},
+                parent_bbox=bbox["parent"],
+            )
+            # logger.info("fine")
+            response = call_with_retry_openai(
+                client,
+                "gpt-4o-2024-11-20",
+                [
+                    {"role": "system", "content": sys_prompt},
+                    {
+                        "role": "user",
+                        "content": [
+                            {"type": "text", "text": user_prompt},
+                            {
+                                "type": "image_url",
+                                "image_url": {
+                                    "url": f"data:image/jpeg;base64,{base64_annotated_image}",
+                                },
+                            },
+                            {
+                                "type": "image_url",
+                                "image_url": {
+                                    "url": f"data:image/jpeg;base64,{base64_cropped_image}",
+                                },
+                            },
+                            {
+                                "type": "image_url",
+                                "image_url": {
+                                    "url": f"data:image/jpeg;base64,{base64_contexted_image}",
+                                },
+                            },
+                        ],
+                    },
+                ],
+                0.8,
+                FineAction,
+            )
+            parsed_response = response
+            logger.info("CONTINUOUS ANALYSIS DONE")
+            if parsed_response.is_continuous:
+                logger.info("HAS CONTINUOUS ACTION")
+                new_action_detail = ActionDetail(
+                    thought_process=parsed_response.thought_process,
+                    action_space_type="continuous",
+                    action_desc=parsed_response.action_desc,
+                    action_param=parsed_response.action_param,
+                    action_discrete_values=None,
+                    action_continuous_interval=parsed_response.action_continuous_interval,
+                    action_code=parsed_response.action_code,
                 )
-
-                response = await call_with_retry_openai(
-                    client,
-                    "gpt-4o-2024-11-20",
-                    [
-                        {"role": "system", "content": sys_prompt},
-                        {
-                            "role": "user",
-                            "content": [
-                                {"type": "text", "text": user_prompt},
-                                {
-                                    "type": "image_url",
-                                    "image_url": {
-                                        "url": f"data:image/jpeg;base64,{base64_annotated_image}",
-                                    },
-                                },
-                                {
-                                    "type": "image_url",
-                                    "image_url": {
-                                        "url": f"data:image/jpeg;base64,{base64_cropped_image}",
-                                    },
-                                },
-                                {
-                                    "type": "image_url",
-                                    "image_url": {
-                                        "url": f"data:image/jpeg;base64,{base64_contexted_image}",
-                                    },
-                                },
-                            ],
-                        },
-                    ],
-                    0.8,
-                    FineAction,
-                )
-                parsed_response = response.choices[0].message.parsed
-                logger.info("CONTINUOUS ANALYSIS DONE")
-                if parsed_response.is_continuous:
-                    logger.info("HAS CONTINUOUS ACTION")
-                    new_action_detail = ActionDetail(
-                        thought_process=parsed_response.thought_process,
-                        action_space_type="continuous",
-                        action_desc=parsed_response.action_desc,
-                        action_params=parsed_response.action_params,
-                        action_discrete_values=None,
-                        action_continuous_interval=parsed_response.action_continuous_interval,
-                        action_code=parsed_response.action_code,
-                    )
-                    action_detail_list.append(new_action_detail)
+                action_detail_list.append(new_action_detail)
+                logger.info(f"continuous: {new_action_detail}")
 
     except Exception as e:
         logger.error(f"Error generate action: {str(e)}")
@@ -566,21 +566,8 @@ async def generate_instructions(bbox, original_image_path):
         return action_detail_list
 
 
-async def generate_instructions_with_timeout(
-    bbox, original_image_path, timeout_seconds=THREAD_TIMEOUT
-):
-    try:
-        # 使用asyncio.wait_for设置超时
-        result = await asyncio.wait_for(
-            generate_instructions(bbox, original_image_path), timeout=timeout_seconds
-        )
-        return result
-    except asyncio.TimeoutError:
-        logger.error(f"generate_instructions timeout，{timeout_seconds} secs")
-        return []
-    except Exception as e:
-        logger.error(f"generate_instructions_with_timeout error: {str(e)}")
-        return []
+def task_generate_instructions(bbox, original_image_path):
+    return generate_instructions(bbox, original_image_path)
 
 
 # 主函数：提取 bbox，裁剪图片，生成指令
@@ -596,34 +583,22 @@ def generate_action_data_with_bbox(position_info, screenshot_path):
 
     futures = []
 
-    # 使用 ThreadPoolExecutor 并发处理任务
-    with concurrent.futures.ThreadPoolExecutor(max_workers=20) as executor:
-
-        # 提交所有的任务
-        for _, bbox in enumerate(bboxes):
-            # 将 async 函数包装为可在线程池中运行的任务
-            future = executor.submit(
-                asyncio.run,  # 使用 asyncio.run 运行 async 函数
-                generate_instructions_with_timeout(
-                    bbox, screenshot_path
-                ),  # 调用 async 函数
-            )
-            futures.append(future)
-
-        # 使用 as_completed 收集结果
-        for future in concurrent.futures.as_completed(futures):
+    with ThreadPoolExecutor(max_workers=20) as executor:  # 设置最大线程数
+        futures = [
+            executor.submit(task_generate_instructions, bbox, screenshot_path)
+            for bbox in bboxes
+        ]
+        for future in as_completed(futures):
             try:
-                result = future.result()  # 捕获任务的结果
+                result = future.result()
                 action_detail_list.extend(result)
-            except concurrent.futures.TimeoutError:
-                logger.error("A thread exceeded the timeout and was terminated.")
-            except Exception as e:
-                logger.error(f"Error occurred: {e}")  # 捕获并打印错误
+            except BaseException as e:
+                logger.error(f"Error in task: {str(e)}")
 
     return action_detail_list
 
 
-async def process_grounding(action_detail: Dict, screensize: Dict) -> str:
+def process_grounding(action_detail: Dict, screensize: Dict) -> str:
     try:
         raw_pairs = []
         grounding_pairs = []
@@ -645,45 +620,49 @@ async def process_grounding(action_detail: Dict, screensize: Dict) -> str:
                     "import pyautogui\n" + action_detail.action_code
                 )
             # Get parameter names and their intervals
-            param_names = action_detail.action_params
-            param_intervals = action_detail.action_continuous_interval
+            param_name = action_detail.action_param
+            param_interval = action_detail.action_continuous_interval
 
             # Sample 10 values from each interval
-            sampled_values = {}
-            for param_name in param_names:
-                intervals = param_intervals[param_name]
-                param_samples = []
-                for start, end in intervals:
-                    # Sample 10 random values from this interval
-                    samples = [int(random.uniform(start, end)) for _ in range(10)]
-                    param_samples.extend(samples)
-                sampled_values[param_name] = param_samples
+            param_samples = []
+            # Sample 10 random values from this interval
+            samples = [
+                int(random.uniform(param_interval[0], param_interval[1]))
+                for _ in range(10)
+            ]
+            param_samples.extend(samples)
 
-            param_combinations = product(
-                *[sampled_values[param] for param in param_names]
-            )
+            # param_combinations = product(
+            #     *[sampled_values[param] for param in param_name]
+            # )
 
-            for param_combo in param_combinations:
-                # Create parameter dictionary
-                param_dict = dict(zip(param_names, param_combo))
+            # for param_combo in param_combinations:
+            # Create parameter dictionary
 
-                # Replace parameters in action description
-                inst = action_detail.action_desc
-                for param_name, param_value in param_dict.items():
-                    if f"<{param_name}>" not in inst:
-                        logger.info(
-                            f"Parameter {param_name} not found in action description"
-                        )
-                        return []
-                    inst = inst.replace(f"<{param_name}>", str(param_value))
+            # Replace parameters in action description
+            inst = action_detail.action_desc
+            # print(f"repr: param_name: {f'<{param_name}>'}, inst: {repr(inst)}")
+            # print(
+            #     f"utf8: param_name: {param_name.encode('utf-8')}, inst: {inst.encode('utf-8')}"
+            # )
+            # print(f"type: param_name: {type(f'<{param_name}>')}, inst: {type(inst)}")
+
+            if f"<{param_name}>" not in inst:
+                # if inst.find(f"<{param_name}>") == -1:
+                logger.info(f"Parameter {param_name} not found in action description")
+                return []
+
+            for param_value in param_samples:
+                inst = inst.replace(f"<{param_name}>", str(param_value))
 
                 # Create code with main block and action call
                 code = action_detail.action_code
 
                 # Add main block with action call
-                param_str = ", ".join(
-                    f'"{value}"' if isinstance(value, str) else f"{value}"
-                    for value in param_combo
+                param_str = (
+                    f'"{param_value}"'
+                    if isinstance(param_value, str)
+                    else f"{param_value}"
                 )
 
                 if "def" in action_detail.action_code:
@@ -909,7 +888,7 @@ def annotate_grounding(
 
 
 # 使用示例
-async def main():
+def main():
     json_file = f"position_example_3.json"  # 替换为你的 bbox.json 文件路径
     screenshot_path = f"position_example_3.png"  # 替换为你的截图文件路径
     with open(json_file, "r") as f:
@@ -917,6 +896,12 @@ async def main():
     # output_image_path = f"original_screenpair/{dir_name}/bboxes_screenshot_{dir_name}.png"  # 输出带有边界框的图片路径
     # 执行处理
     action_detail_list = generate_action_data_with_bbox(bbox_data, screenshot_path)
+    for action_detail in action_detail_list:
+        grounding_dict = process_grounding(
+            action_detail, {"width": 1920, "height": 1080}
+        )
+        if action_detail.action_space_type == "continuous":
+            print(str(grounding_dict))
     with open("action_detail_list.json", "w") as f:
         json.dump(
             [
@@ -931,8 +916,8 @@ async def main():
             f,
             indent=4,
         )
-    logger.info("length of action list: ", len(action_detail_list))
+    logger.info(f"length of action list: {len(action_detail_list)}")
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()

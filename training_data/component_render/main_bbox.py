@@ -91,6 +91,23 @@ class DataGenerator:
             await self.page.goto(f"http://localhost:{self.port}", timeout=60000)
             logger.info("Browser initialized")
 
+    async def capture_screenshot(self, screenshot_folder, component_name):
+        # Launch Playwright browser
+        async with async_playwright() as p:
+            # Define the path to save the screenshot
+            os.makedirs(Path(screenshot_folder) / "original", exist_ok=True)
+            screenshot_path = (
+                Path(screenshot_folder)
+                / "original"
+                / f"{component_name}_{time.time()}.png"
+            )
+
+            # Take the screenshot and save it
+            await self.page.screenshot(path=screenshot_path)
+
+            # Return the path to the saved screenshot
+            return screenshot_path
+
     async def refresh_page(self):
         """Refresh the React application page"""
         logger.info("Refreshing page...")
@@ -119,7 +136,7 @@ class DataGenerator:
         else:
             return None
 
-    async def initialize_react_app(self):
+    def initialize_react_app(self):
         app_dir = Path(f"react-app-dir/react-app-{self.port}")
         app_dir.mkdir(parents=True, exist_ok=True)
 
@@ -160,7 +177,7 @@ class DataGenerator:
             # # 读取输出并记录到日志
             logger.info("React app started")
             # 等待服务器启动
-            time.sleep(8)  # 增加等待时间确保服务器完全启动
+            time.sleep(15)  # 增加等待时间确保服务器完全启动
 
             return
 
@@ -183,13 +200,14 @@ class DataGenerator:
             app_dir = Path(f"react-app-dir/react-app-{self.port}")
             app_dir.mkdir(parents=True, exist_ok=True)
 
-            # 首先重置 App.js 到初始状态
+            # # 首先重置 App.js 到初始状态
             app_js_path = Path(app_dir) / "src" / "App.js"
-            with open(app_js_path, "w") as f:
-                f.write(JS_WITHOUT_COMPONENT)
+            # with open(app_js_path, "w") as f:
+            #     f.write(JS_WITHOUT_COMPONENT)
 
-            await self.refresh_page()
-            await asyncio.sleep(1)  # 等待重置生效
+            # time.sleep(1)
+            # await self.refresh_page()
+            # time.sleep(3)
 
             # 然后写入新的组件文件
             component_js_path = (
@@ -203,21 +221,15 @@ class DataGenerator:
             with open(app_js_path, "w") as f:
                 f.write(app_js_content)
 
-            # 等待文件写入完成
-            await asyncio.sleep(1)
-
-            # 刷新页面
+            time.sleep(2)
             await self.refresh_page()
+            time.sleep(4)
 
             # 获取组件位置信息
-            await self.page.wait_for_selector(".App", state="attached", timeout=6000)
-            # position = await self.page.evaluate(JS_EVAL_POSITION)
+            await self.page.wait_for_selector(".App", state="attached", timeout=60000)
             position = await self.page.evaluate(JS_EVAL_TREE)
 
             if position:
-                # 捕获截图
-                # with open("position.json", "w") as f:
-                #     json.dump(position, f, indent=4)
                 screenshot_path = await self.capture_screenshot(
                     screenshot_folder,
                     component_name,
@@ -228,26 +240,8 @@ class DataGenerator:
 
         except Exception as e:
             logger.error(f"Error in refresh_react_app: {e}")
+            logger.error(f"Corresponding code:\n {component_code}")
             raise
-
-    async def capture_screenshot(
-        self, screenshot_folder, component_name
-    ):  # style_index
-        # Launch Playwright browser
-        async with async_playwright() as p:
-            # Define the path to save the screenshot
-            os.makedirs(Path(screenshot_folder) / "original", exist_ok=True)
-            screenshot_path = (
-                Path(screenshot_folder)
-                / "original"
-                / f"{component_name}_{time.time()}.png"
-            )
-
-            # Take the screenshot and save it
-            await self.page.screenshot(path=screenshot_path)
-
-            # Return the path to the saved screenshot
-            return screenshot_path
 
     async def restart_react_server(self):
         """重启 React 开发服务器"""
@@ -260,7 +254,7 @@ class DataGenerator:
             await self.page.evaluate("window.sessionStorage.clear()")
 
         # 终止现有的服务器进程
-        await self.terminate_process_on_port(self.port)
+        self.terminate_process_on_port(self.port)
 
         # 删除 Webpack 缓存和日志，避免 ESLint 报错
         eslint_cache_path = os.path.expanduser("~/.eslintcache")
@@ -275,13 +269,13 @@ class DataGenerator:
             shutil.rmtree(webpack_cache_dir)
 
         # 重新启动服务器
-        await self.initialize_react_app()
+        self.initialize_react_app()
 
         # 等待服务器启动
-        await asyncio.sleep(10)
+        time.sleep(10)
         await self.refresh_page()
 
-    async def terminate_process_on_port(self, port: int):
+    def terminate_process_on_port(self, port: int):
         """终止占用指定端口的进程
 
         根据系统类型(macOS或Ubuntu)采用不同的实现方式来终止占用指定端口的进程
@@ -294,13 +288,10 @@ class DataGenerator:
             try:
                 # 使用 lsof 命令获取占用端口的进程ID
                 cmd = f"lsof -i :{port} -t"
-                process = await asyncio.create_subprocess_shell(
-                    cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE
-                )
-                stdout, stderr = await process.communicate()
+                result = subprocess.run(cmd, shell=True, capture_output=True, text=True)
 
-                if stdout:
-                    pids = [int(pid) for pid in stdout.decode().strip().split("\n")]
+                if result.stdout:
+                    pids = [int(pid) for pid in result.stdout.strip().split("\n")]
                     for pid in pids:
                         try:
                             proc = psutil.Process(pid)
@@ -331,14 +322,11 @@ class DataGenerator:
             try:
                 # 首先尝试使用 ss 命令（现代Linux系统推荐）
                 cmd = f"ss -lptn 'sport = :{port}'"
-                process = await asyncio.create_subprocess_shell(
-                    cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE
-                )
-                stdout, stderr = await process.communicate()
+                result = subprocess.run(cmd, shell=True, capture_output=True, text=True)
 
                 pids = []
-                if stdout:
-                    lines = stdout.decode().strip().split("\n")
+                if result.stdout:
+                    lines = result.stdout.strip().split("\n")
                     for line in lines[1:]:  # 跳过标题行
                         if "pid=" in line:
                             pid_part = line.split("pid=")[1].split(",")[0]
@@ -350,13 +338,12 @@ class DataGenerator:
                 # 如果ss命令未找到任何进程，尝试使用netstat（旧系统兼容）
                 if not pids:
                     cmd = f"netstat -tlnp | grep :{port}"
-                    process = await asyncio.create_subprocess_shell(
-                        cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+                    result = subprocess.run(
+                        cmd, shell=True, capture_output=True, text=True
                     )
-                    stdout, stderr = await process.communicate()
 
-                    if stdout:
-                        lines = stdout.decode().strip().split("\n")
+                    if result.stdout:
+                        lines = result.stdout.strip().split("\n")
                         for line in lines:
                             if "/" in line:
                                 pid_part = line.split()[-1].split("/")[0]
@@ -482,7 +469,7 @@ async def main():
         pass
 
     os.makedirs(Path(app_dir) / "src" / "components", exist_ok=True)
-    await generator.initialize_react_app()
+    generator.initialize_react_app()
     await generator.initialize_browser()
     done_dict = {}
     os.makedirs("done_info", exist_ok=True)
@@ -549,7 +536,7 @@ async def main():
                     processed_index = 0
                     result_list = []
                     while True:
-                        item = await queue.get()
+                        item = await queue.get()  # queue.get()是异步的！
                         if item == "end":  # 检查结束标记（可以用None作为退出信号）
                             logger.info("End signal received. Stopping processing.")
                             break
@@ -588,6 +575,7 @@ async def main():
                     try:
                         # STEP 2: 提取组件名称&创建组件
                         logger.info(f"Extracting component name")
+                        # print(component_code)
                         component_name = generator.extract_export_name(component_code)
                         logger.info(
                             f"Scenario {scenario_index} of component {component_root_name} {node_index} / {len(component_code_file_list)}: {component_name}"
@@ -666,23 +654,24 @@ async def main():
                         grounding_dict_list = []
 
                         # 定义一个包装函数，方便传递参数
-                        async def process_grounding_task(action_detail):
-                            new_dict_list = await process_grounding(
+                        def process_grounding_task(action_detail):
+                            new_dict_list = process_grounding(
                                 action_detail, generator.screensize
                             )
                             return new_dict_list
 
-                        # 使用 asyncio.create_task 创建并行任务
-                        tasks = [
-                            asyncio.create_task(process_grounding_task(action_detail))
-                            for action_detail in action_detail_list
-                        ]
+                        # 使用 ThreadPoolExecutor 创建并行任务
+                        with ThreadPoolExecutor() as executor:
+                            futures = [
+                                executor.submit(process_grounding_task, action_detail)
+                                for action_detail in action_detail_list
+                            ]
 
-                        # 等待所有任务完成并收集结果
-                        for task in tasks:
-                            new_dict_list = await task  # 等待每个任务的结果
-                            if new_dict_list is not None:
-                                grounding_dict_list.extend(new_dict_list)
+                            # 等待所有任务完成并收集结果
+                            for future in futures:
+                                new_dict_list = future.result()  # 等待每个任务的结果
+                                if new_dict_list is not None:
+                                    grounding_dict_list.extend(new_dict_list)
 
                         logger.info(
                             f"process grounding & inst filter to {len(grounding_dict_list)}"
@@ -724,25 +713,25 @@ async def main():
                         old_len = len(grounding_dict_list)
                         true_len = 0
 
-                        async def visual_filter_task(grounding_dict):
-                            new_dict = await visual_filter(grounding_dict)
+                        def visual_filter_task(grounding_dict):
+                            new_dict = visual_filter(grounding_dict)
                             return new_dict
 
-                        # 使用 asyncio.create_task 创建并行任务
-                        tasks = [
-                            asyncio.create_task(visual_filter_task(grounding_dict))
-                            for grounding_dict in grounding_dict_list
-                        ]
+                        # 使用 ThreadPoolExecutor 创建并行任务
+                        with ThreadPoolExecutor() as executor:
+                            futures = [
+                                executor.submit(visual_filter_task, grounding_dict)
+                                for grounding_dict in grounding_dict_list
+                            ]
 
-                        grounding_dict_list = []
-                        # 等待所有任务完成并收集结果
-                        for task in tasks:
-                            new_dict = await task  # 等待每个任务的结果
-                            if new_dict is not None:
-                                grounding_dict_list.append(new_dict)
-                            if new_dict["is_correct"]:
-                                true_len += 1
-
+                            grounding_dict_list = []
+                            # 等待所有任务完成并收集结果
+                            for future in futures:
+                                new_dict = future.result()  # 等待每个任务的结果
+                                if new_dict is not None:
+                                    grounding_dict_list.append(new_dict)
+                                if new_dict["is_correct"]:
+                                    true_len += 1
                         logger.info(f"visual filter from {old_len} to {true_len}")
 
                         for grounding_index, grounding_dict in enumerate(
@@ -836,12 +825,12 @@ async def main():
 
                     except Exception as e:
                         logger.error(
-                            f"Error processing component {component_name} in category {component_root_name}: {e}",
+                            f"Error processing component {component_name or None} in category {component_root_name}: {e}",
                             exc_info=True,  # 这会自动添加完整的堆栈跟踪
                         )
                         src_path = (
                             Path(f"react-app-dir/react-app-{args.port}/src/components")
-                            / f"{component_name}.tsx"
+                            / f"{component_name or None}.tsx"
                         )
                         if src_path.exists():
                             shutil.move(src_path, component_code_path)
@@ -894,13 +883,9 @@ async def main():
 
             except Exception as e:
                 logger.error(f"Serious error encountered: {e}")
-        # 这可能并不需要！
-        # await generator.restart_react_server()
     end_time = time.time()
     logger.info(f"Total time taken: {end_time - start_time} seconds")
 
 
 if __name__ == "__main__":
     asyncio.run(main())
-    # generator = DataGenerator(args.port)
-    # generator.initialize_browser()
