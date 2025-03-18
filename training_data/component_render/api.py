@@ -155,7 +155,6 @@ def pydantic_to_json_schema(model_class):
 
 def call_with_retry_openai(client, model, messages, temperature, response_format):
     response_format_json = pydantic_to_json_schema(response_format)
-    # print(response_format_json)
     url = "https://api.openai.com/v1/chat/completions"
     headers = {
         "Content-Type": "application/json",
@@ -214,8 +213,6 @@ def call_with_retry_claude(model, prompt, temperature):
                 inference_config={"temperature": temperature},
             )
             response = response["output"]["message"]["content"][0]["text"]
-            # print(response)
-            # print(f"response: {response}")
             return response
         except Exception as e:  # 捕获连接错误或超时
             retries += 1
