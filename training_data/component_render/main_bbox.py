@@ -537,6 +537,7 @@ async def main():
                     result_list = []
                     while True:
                         item = await queue.get()  # queue.get()是异步的！
+                        logger.info(f"QUEUE_LENGTH AFTER GET:{queue.qsize()}")
                         if item == "end":  # 检查结束标记（可以用None作为退出信号）
                             logger.info("End signal received. Stopping processing.")
                             break
@@ -553,13 +554,12 @@ async def main():
                                 f"Error processing code {processed_index}: {e}\nStack trace:\n{tb}"
                             )
                             result_list.append(False)
-                        finally:
-                            queue.task_done()  # 标记任务完成
-                            processed_index += 1
-                            logger.info(f"Process result list: {str(result_list)}")
-                            if result_list.count(True) >= result_list.count(False):
-                                return True
-                            return False
+                    queue.task_done()  # 标记任务完成
+                    processed_index += 1
+                    logger.info(f"Process result list: {str(result_list)}")
+                    if result_list.count(True) >= result_list.count(False):
+                        return True
+                    return False
 
                 async def process_scenario_code(
                     scenario_index,

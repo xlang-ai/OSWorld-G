@@ -297,6 +297,8 @@ async def scenario_generation_worker(
 
             prev_generated_code_list.append(new_generated_code)
             await queue.put(new_generated_code)
+            await asyncio.sleep(0)
+            logger.info(f"QUEUE_LENGTH AFTER PUT:{queue.qsize()}")
             generated_count += 1
 
         logger.info(f"Generation completed. Total generated: {generated_count}")
@@ -306,64 +308,66 @@ async def scenario_generation_worker(
 
 
 def main():
-    #     claude_code = _generate_single_scenario_claude(
-    #         "slider",
-    #         "",
-    #         """import * as React from 'react';
-    # import Box from '@mui/material/Box';
-    # import Slider from '@mui/material/Slider';
-
-    # function valuetext(value) {
-    #   return `${value}°C`;
-    # }
-
-    # export default function ColorSlider() {
-    #   return (
-    #     <Box sx={{ width: 300 }}>
-    #       <Slider
-    #         aria-label="Temperature"
-    #         defaultValue={30}
-    #         getAriaValueText={valuetext}
-    #         color="secondary"
-    #       />
-    #     </Box>
-    #   );
-    # }
-    # """,
-    #         [],
-    #         SYSTEM_PROMPT_FOR_STYLE_AUGMENTATION,
-    #         "material",
-    #     )
-    #     logger.info(f"NEW STYLE CODE: {claude_code}")
-    openai_code = _generate_single_scenario_openai(
+    claude_code = _generate_single_scenario_claude(
         "slider",
         "",
         """import * as React from 'react';
-import Box from '@mui/material/Box';
-import Slider from '@mui/material/Slider';
+    import Box from '@mui/material/Box';
+    import Slider from '@mui/material/Slider';
 
-function valuetext(value) {
-  return `${value}°C`;
-}
+    function valuetext(value) {
+      return `${value}°C`;
+    }
 
-export default function ColorSlider() {
-  return (
-    <Box sx={{ width: 300 }}>
-      <Slider
-        aria-label="Temperature"
-        defaultValue={30}
-        getAriaValueText={valuetext}
-        color="secondary"
-      />
-    </Box>
-  );
-}
-""",
+    export default function ColorSlider() {
+      return (
+        <Box sx={{ width: 300 }}>
+          <Slider
+            aria-label="Temperature"
+            defaultValue={30}
+            getAriaValueText={valuetext}
+            color="secondary"
+          />
+        </Box>
+      );
+    }
+    """,
         [],
         SYSTEM_PROMPT_FOR_STYLE_AUGMENTATION,
         "material",
     )
-    logger.info(f"NEW STYLE CODE: {openai_code}")
+    logger.info(f"NEW STYLE CODE: {claude_code}")
+
+
+#     openai_code = _generate_single_scenario_openai(
+#         "slider",
+#         "",
+#         """import * as React from 'react';
+# import Box from '@mui/material/Box';
+# import Slider from '@mui/material/Slider';
+
+# function valuetext(value) {
+#   return `${value}°C`;
+# }
+
+# export default function ColorSlider() {
+#   return (
+#     <Box sx={{ width: 300 }}>
+#       <Slider
+#         aria-label="Temperature"
+#         defaultValue={30}
+#         getAriaValueText={valuetext}
+#         color="secondary"
+#       />
+#     </Box>
+#   );
+# }
+# """,
+#         [],
+#         SYSTEM_PROMPT_FOR_STYLE_AUGMENTATION,
+#         "material",
+#     )
+#     logger.info(f"NEW STYLE CODE: {openai_code}")
 
 
 if __name__ == "__main__":
