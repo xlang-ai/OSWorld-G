@@ -196,7 +196,7 @@ class BenchmarkRunner:
 
         # for item in data['items']:
         for i, item in enumerate(data):
-            image_path = os.path.join(self.image_dir, item['img_filename'])
+            image_path = os.path.join(self.image_dir, item['image_path']) # where different with ss v2
             image = Image.open(image_path)
             
             # Get instruction and coordinates
@@ -206,11 +206,11 @@ class BenchmarkRunner:
                 'id': image_path[:-4],
                 'annotation_id': str(i), # annotation['id'] is wrong....
                 'image': image,
-                'image_path': item['img_filename'],
+                'image_path': item['image_path'], # where different with ss v2
                 'instruction': item['instruction'],
                 'image_size': [image.width, image.height],
                 'box_type': 'bbox',
-                'box_coordinates': item['bbox']
+                'box_coordinates': item['box_coordinates']
             })
 
         return flatten_data_items
