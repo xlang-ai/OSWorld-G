@@ -242,8 +242,16 @@ class BenchmarkRunner:
         instances = []
         idx = 0
         cached_results = []
+        accuracy_dict = {}
 
         for item in items:
+            instance_group = item['group']
+            instance_ui_type = item['ui_type']
+            if instance_group not in accuracy_dict:
+                accuracy_dict[instance_group] = {}
+            if instance_ui_type not in accuracy_dict[instance_group]:
+                accuracy_dict[instance_group][instance_ui_type] = {"total": 0, "correct": 0, "accuracy": 0}
+            accuracy_dict[instance_group][instance_ui_type]["total"] += 1
             instance_id = f"{item['id']}"
             if instance_id in predictions_cache:
                 cached_results.append(predictions_cache[instance_id]["response"])
@@ -286,6 +294,8 @@ class BenchmarkRunner:
         correct = 0
 
         for i, (response, item, instance) in enumerate(zip(responses, items, instances)):
+            instance_ui_type = item['ui_type']
+            instance_group = item['group']
             try:
                 predicted_coords = parse_coordinates(response)
             except Exception as e:
@@ -315,13 +325,18 @@ class BenchmarkRunner:
 
             if is_correct:
                 correct += 1
+                accuracy_dict[instance_group][instance_ui_type]["correct"] += 1
 
         accuracy = correct / total
+        for group in accuracy_dict:
+            for ui_type in accuracy_dict[group]:
+                accuracy_dict[group][ui_type]["accuracy"] = accuracy_dict[group][ui_type]["correct"] / accuracy_dict[group][ui_type]["total"]
         return {
             'total': total,
             'correct': correct,
             'accuracy': accuracy,
             'cached_predictions': len(predictions_cache),
+            'accuracy_dict': accuracy_dict
         }
 
 def start_vllm_service(ckpt_path, port, model_name):
