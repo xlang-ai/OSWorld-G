@@ -3,7 +3,7 @@ import os
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 from PIL import Image
-
+import platform
 
 # 加载 JSON 文件
 def load_json(file_path):
@@ -37,8 +37,33 @@ def display_image_with_box(image_path, box_coordinates, image_size):
 
         # 调整窗口位置
         fig_manager = plt.get_current_fig_manager()
-        fig_manager.window.setGeometry(600, 100, 1000, 750)  # 偏右显示 (x=800, y=100)
+        system = platform.system()
+        if system == 'Windows':
+            # Windows 系统设置窗口位置和大小
+            fig_manager.window.setGeometry(600, 100, 1000, 750)
 
+        elif system == 'Darwin':
+            # macOS 系统
+            try:
+                fig.set_size_inches(10, 7.5)  # 设置合适的图形大小
+                fig_manager.set_window_title("Figure (macOS)")
+                # 如果可用则设置窗口位置
+                if hasattr(fig_manager, 'window') and hasattr(fig_manager.window, 'move'):
+                    fig_manager.window.move(600, 100)
+            except Exception as e:
+                print(f"Warning: Could not set window position on macOS: {e}")
+
+        elif system == 'Linux':
+            try:
+                fig.set_size_inches(10, 7.5)
+                if hasattr(fig_manager, 'window') and hasattr(fig_manager.window, 'move'):
+                    fig_manager.window.move(600, 100)
+                elif hasattr(fig_manager, 'window') and hasattr(fig_manager.window, 'setGeometry'):
+                    fig_manager.window.setGeometry(600, 100, 1000, 750)
+                else:
+                    print("No supported method to set window position on Linux backend.")
+            except Exception as e:
+                print(f"Warning: Could not set window position on Linux: {e}")
         # 显示图片
         plt.axis("off")  # 去掉坐标轴
         plt.show(block=False)  # 非阻塞显示
@@ -81,8 +106,33 @@ def display_image_with_polygon(image_path, box_coordinates, image_size):
 
         # 调整窗口位置
         fig_manager = plt.get_current_fig_manager()
-        fig_manager.window.setGeometry(600, 100, 1000, 750)  # 偏右显示
+        system = platform.system()
+        if system == 'Windows':
+            # Windows 系统设置窗口位置和大小
+            fig_manager.window.setGeometry(600, 100, 1000, 750)
 
+        elif system == 'Darwin':
+            # macOS 系统
+            try:
+                fig.set_size_inches(10, 7.5)  # 设置合适的图形大小
+                fig_manager.set_window_title("Figure (macOS)")
+                # 如果可用则设置窗口位置
+                if hasattr(fig_manager, 'window') and hasattr(fig_manager.window, 'move'):
+                    fig_manager.window.move(600, 100)
+            except Exception as e:
+                print(f"Warning: Could not set window position on macOS: {e}")
+
+        elif system == 'Linux':
+            try:
+                fig.set_size_inches(10, 7.5)
+                if hasattr(fig_manager, 'window') and hasattr(fig_manager.window, 'move'):
+                    fig_manager.window.move(600, 100)
+                elif hasattr(fig_manager, 'window') and hasattr(fig_manager.window, 'setGeometry'):
+                    fig_manager.window.setGeometry(600, 100, 1000, 750)
+                else:
+                    print("No supported method to set window position on Linux backend.")
+            except Exception as e:
+                print(f"Warning: Could not set window position on Linux: {e}")
         # 显示图片
         plt.axis("off")  # 去掉坐标轴
         plt.show(block=False)  # 非阻塞显示
@@ -94,14 +144,20 @@ def display_image_with_polygon(image_path, box_coordinates, image_size):
 
 
 # 主交互逻辑
-def process_json_data(json_file, image_folder, start_index):
+def process_json_data(json_file, image_folder, id_list):
     data = load_json(json_file)
     modifications_count = 0  # 记录修改次数
 
-    for i, item in enumerate(data[start_index:]):
+    for i, item in enumerate(data):
+        if item["id"] not in id_list:
+            continue
         modified = 0
-        print(f"Item {i+1}/{len(data)}")
+        print(f"Item {i+1}/{len(id_list)}")
         print("Instruction:", item["instruction"])
+        print("ID:", item["id"])
+        if "<todo>" not in item["instruction"]:
+            print("Skipping item because it doesn't contain <todo>")
+            continue
 
         image_path = os.path.join(image_folder, item["image_path"])
         if not os.path.exists(image_path):
@@ -118,6 +174,7 @@ def process_json_data(json_file, image_folder, start_index):
                 image_path, item["box_coordinates"], item["image_size"]
             )
         if fig is None:
+            print(f"Error: Failed to display image {image_path}")
             continue
 
         # 获取用户输入
@@ -144,8 +201,17 @@ def process_json_data(json_file, image_folder, start_index):
 
 # 使用示例
 if __name__ == "__main__":
-    json_file_path = "annotations_v3_refined_component.json"  # TODO: change it to your annotation json file
+    json_file_path = "annotations_v5_refined_component.json"
     images_folder_path = "images"
-    start_index = 0  # TODO: change it to your start index
+    id_list = [    
+        "0FOB4CLBT2-0",
+        "0FOB4CLBT2-1",
+        "0FOB4CLBT2-2",
+        "1GTGZ3A3V8-0",
+        "1GTGZ3A3V8-1",
+        "1GTGZ3A3V8-2",
+        "1GTGZ3A3V8-3",
+        "1YJ0KGXNKU-0",
+    ] # TODO: change it to your id list
 
-    process_json_data(json_file_path, images_folder_path, start_index)
+    process_json_data(json_file_path, images_folder_path, id_list)
