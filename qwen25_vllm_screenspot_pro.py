@@ -306,7 +306,7 @@ class BenchmarkRunner:
             resized_width, resized_height = instance['resized_args']
 
             boxes_coordinate = item['bbox'][:2]
-            boxes_size = item['bbox'][2:]
+            boxes_size = [item['bbox'][2] - item['bbox'][0], item['bbox'][3] - item['bbox'][1]]
             image_size = item['img_size']
 
             # normalize predicted_coords -- 必须要有，要不没训到这个分辨率就没这能力
