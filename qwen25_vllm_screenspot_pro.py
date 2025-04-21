@@ -188,7 +188,8 @@ class BenchmarkRunner:
         self.processor = Qwen2_5_VLProcessor.from_pretrained(
             model_path
         )
-        self.processor.image_processor.max_pixels = 15000*28*28
+        # To prevent OOM
+        self.processor.image_processor.max_pixels = 15000*28*28 if self.processor.image_processor.max_pixels > 15000*28*28 else self.processor.image_processor.max_pixels
 
     def load_annotations(self):
         # List all JSON files under annotation_path
@@ -240,8 +241,6 @@ class BenchmarkRunner:
             predictions_cache = {}
 
         instances = []
-        idx = 0
-        cached_results = []
         accuracy_dict = {}
 
         for item in items:
@@ -253,9 +252,6 @@ class BenchmarkRunner:
                 accuracy_dict[instance_group][instance_ui_type] = {"total": 0, "correct": 0, "accuracy": 0}
             accuracy_dict[instance_group][instance_ui_type]["total"] += 1
             instance_id = f"{item['id']}"
-            if instance_id in predictions_cache:
-                cached_results.append(predictions_cache[instance_id])
-                continue
 
             input_image, user_query = item['image'], item['instruction']
 
@@ -281,9 +277,44 @@ class BenchmarkRunner:
             }
 
             instances.append(instance)
-            idx += 1
 
-        responses = self.model.generate_until(instances)
+        # Separate instances with and without cache
+        cached_instances = []
+        cached_responses = []
+        uncached_instances = []
+        uncached_responses = []
+        
+        for instance in instances:
+            instance_id = instance["instance_id"]
+            if instance_id in predictions_cache:
+                cached_instances.append(instance)
+                cached_responses.append(predictions_cache[instance_id])
+            else:
+                uncached_instances.append(instance)
+        
+        # Only generate responses for uncached instances
+        if uncached_instances:
+            uncached_responses = self.model.generate_until(uncached_instances)
+        
+        # Combine cached and newly generated responses in the original order
+        instances_map = {instance["instance_id"]: i for i, instance in enumerate(instances)}
+        responses = [None] * len(instances)
+        
+        # Fill in cached responses
+        for instance, response in zip(cached_instances, cached_responses):
+            idx = instances_map[instance["instance_id"]]
+            responses[idx] = response
+        
+        # Fill in newly generated responses
+        for instance, response in zip(uncached_instances, uncached_responses):
+            idx = instances_map[instance["instance_id"]]
+            responses[idx] = response
+        
+        # If we're using the cache, we only need to update it with new responses
+        if self.use_cache and uncached_instances:
+            for instance, response in zip(uncached_instances, uncached_responses):
+                predictions_cache[instance["instance_id"]] = response
+
         if self.use_cache:
             for instance, response in zip(instances, responses):
                 predictions_cache[instance["instance_id"]] = response.strip()
@@ -314,6 +345,8 @@ class BenchmarkRunner:
             predicted_coords[1] = predicted_coords[1] * image_size[1] / resized_height
             predicted_coords[2] = predicted_coords[2] * image_size[0] / resized_width
             predicted_coords[3] = predicted_coords[3] * image_size[1] / resized_height
+
+            # print("predicted_coords: ", predicted_coords, "boxes_coordinate: ", boxes_coordinate, "boxes_size: ", boxes_size, "image_size: ", image_size)
 
             is_correct = evaluator._eval(
                 predicted_coords,
@@ -414,6 +447,7 @@ if __name__ == "__main__":
         print(f"Total samples: {results['total']}")
         print(f"Correct predictions: {results['correct']}")
         print(f"Accuracy: {results['accuracy']*100:.2f}%")
+        print(f"Accuracy dict: {results['accuracy_dict']}")
 
         # Terminate VLLM service
         terminate_vllm_service(process)
