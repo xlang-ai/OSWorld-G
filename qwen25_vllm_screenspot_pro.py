@@ -254,7 +254,7 @@ class BenchmarkRunner:
             accuracy_dict[instance_group][instance_ui_type]["total"] += 1
             instance_id = f"{item['id']}"
             if instance_id in predictions_cache:
-                cached_results.append(predictions_cache[instance_id]["response"])
+                cached_results.append(predictions_cache[instance_id])
                 continue
 
             input_image, user_query = item['image'], item['instruction']
