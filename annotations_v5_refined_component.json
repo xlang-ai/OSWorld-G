@@ -4520,7 +4520,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Configure the bottom-right tab",
+    "instruction": "Click the button on the right sidebar with a square and a left-pointing triangle inside to configure the bottom-right tab",
     "box_type": "bbox",
     "box_coordinates": [
       1889.2,
@@ -4540,7 +4540,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select the color picker tool",
+    "instruction": "Select the color picker tool with a dropper icon on the top-left corner between the A and the magnifying glass",
     "box_type": "bbox",
     "box_coordinates": [
       166.44,
@@ -4561,7 +4561,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Hide the dropdown menu opened under Interface",
+    "instruction": "Click the small minus sign on the left of \"Interface\" in the left sidebar of the Preferences window",
     "box_type": "bbox",
     "box_coordinates": [
       83.21,
@@ -4581,7 +4581,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Change the theme to grey",
+    "instruction": "Choose the the \"Gray /usr/share/gimp/2.0/themes/Gray\" theme in the table of the Preferences window",
     "box_type": "bbox",
     "box_coordinates": [
       337.72,
@@ -4601,7 +4601,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Give them feedback to make the software better",
+    "instruction": "Click the \"Get involved\" button on the right of the line \"Help us make LibreOffice even better!\" on top of the document",
     "box_type": "bbox",
     "box_coordinates": [
       1716.16,
@@ -4621,7 +4621,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Print the file",
+    "instruction": "Select the printer icon without magnifying glass in the toolbar on the top-left of the window",
     "box_type": "bbox",
     "box_coordinates": [
       248.08,
@@ -4641,7 +4641,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click the place right after \"06:53:30\" and before the comma",
+    "instruction": "Click the place right after \"06:53:30\" before the comma in the middle of the document",
     "box_type": "bbox",
     "box_coordinates": [
       716.11,
@@ -4660,7 +4660,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Enter audio preferences",
+    "instruction": "Click on the Audio tab in the Preferences window",
     "box_type": "bbox",
     "box_coordinates": [
       1062.37,
@@ -4680,7 +4680,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Exit the preferences",
+    "instruction": "Click the \"X\" button on the right of Preferences to close the Preferences window",
     "box_type": "bbox",
     "box_coordinates": [
       1158.58,
@@ -5503,7 +5503,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Go to my contacts on the left side.",
+    "instruction": "Click the Contacts icon with a notebook shape on the left sidebar top-left of the window",
     "box_type": "bbox",
     "box_coordinates": [
       69.7,
@@ -5682,7 +5682,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>The end point of drag on selecting the caption of the figure displayed",
+    "instruction": "Click on the full stop \".\" after the text \"Best viewed zoomed in\" on the bottom of the figure",
     "box_type": "bbox",
     "box_coordinates": [
       897.92,
@@ -6558,7 +6558,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Enable equalizer",
+    "instruction": "Select the checkbox of Enable under the Equalizer tab in the left window",
     "box_type": "bbox",
     "box_coordinates": [
       256.62,
@@ -6701,7 +6701,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Install eFootball",
+    "instruction": "Click the Install button on the bottom-right of the \"eFootball\" tile",
     "box_type": "polygon",
     "box_coordinates": [
       961.99,
@@ -6847,7 +6847,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Click the mouth of the person in this slide",
+    "instruction": "Click the mouth of the person in the middle of the slide",
     "box_type": "polygon",
     "box_coordinates": [
       549.28,
@@ -7020,7 +7020,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Sign in for Youtube",
+    "instruction": "Click \"Sign in\" in the top-right corner of the page",
     "box_type": "polygon",
     "box_coordinates": [
       1139.24,
@@ -7121,7 +7121,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Enable Fractional Scaling for Displays",
+    "instruction": "Click the toggle switch on the right of \"Fractional Scaling\"",
     "box_type": "bbox",
     "box_coordinates": [
       498.2,
@@ -7849,7 +7849,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select \"Box List Blue\"",
+    "instruction": "Select the item \"Box List Blue\" under Styles",
     "box_type": "bbox",
     "box_coordinates": [
       741.43,
@@ -8469,7 +8469,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click the Help button above.",
+    "instruction": "Click the Help button on the top-left corner of the window",
     "box_type": "bbox",
     "box_coordinates": [
       158.45,
@@ -10168,7 +10168,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Check License",
+    "instruction": "Click the underlined \"License\" on the bottom of the active window",
     "box_type": "bbox",
     "box_coordinates": [
       814.3,
@@ -11007,7 +11007,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Click to the email address of Cindy Williams.",
+    "instruction": "Click on the email address of Cindy Williams.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11028,7 +11028,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Move the cursor to the libreoffice cell that is not empty.",
+    "instruction": "Move the cursor to the libreoffice cell that is not empty.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11047,7 +11047,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Explore the NFL website.",
+    "instruction": "Explore the NFL website.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11066,7 +11066,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the Windows Start button at the left bottom corner.",
+    "instruction": "Click on the Windows Start button at the left bottom corner.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11085,7 +11085,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Navigate to the 20th sheet of this workbook.",
+    "instruction": "Navigate to the 20th sheet of this workbook.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11104,7 +11104,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on \"Cancel\" to close the dialog box.",
+    "instruction": "Click on \"Cancel\" to close the dialog box.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11124,7 +11124,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Add middle name.",
+    "instruction": "Add middle name.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11144,7 +11144,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click to the blue background layer.",
+    "instruction": "Click the blue background layer.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11163,7 +11163,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Make the opacity of the layer higher.",
+    "instruction": "Make the opacity of the layer higher.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11182,7 +11182,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the \"x\" button to close the popup window.",
+    "instruction": "Click on the \"x\" button to close the popup window.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11202,7 +11202,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Checkbox of 'Odd Pages Left'.",
+    "instruction": "Checkbox of 'Odd Pages Left'.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11223,7 +11223,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Navigate to a specific page.",
+    "instruction": "Navigate to a specific page.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11244,7 +11244,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Navigate to page number 10.",
+    "instruction": "Navigate to page number 10.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11263,7 +11263,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Click the upload button.",
+    "instruction": "Click the upload button.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11283,7 +11283,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Click on \"Hide applications\"",
+    "instruction": "Click on \"Hide applications\"",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11303,7 +11303,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Open the file \"deng_mind2web.txt\"",
+    "instruction": "Open the file \"deng_mind2web.txt\"",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11322,7 +11322,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Edit the Min Tokenization Line Length.",
+    "instruction": "Edit the Min Tokenization Line Length.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11342,7 +11342,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select the item that says \"Dec, 2024\"",
+    "instruction": "Select the item that says \"Dec, 2024\"",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11362,7 +11362,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select the item that contains a negative number",
+    "instruction": "Select the item that contains a negative number",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11382,7 +11382,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select the item at \"I-0\"",
+    "instruction": "Select the item at \"I-0\"",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11402,7 +11402,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Switch to the libreoffice file that already opened.",
+    "instruction": "Switch to the libreoffice file that already opened.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11421,7 +11421,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Click to the /etc/ folder in the file manager.",
+    "instruction": "Click to the /etc/ folder in the file manager.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11441,7 +11441,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Navigate to another tab in the firefox browser.",
+    "instruction": "Navigate to another tab in the firefox browser.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11461,7 +11461,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Choose the pink circular button.",
+    "instruction": "Choose the pink circular button.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11482,7 +11482,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>The button below the curved angled connector with arrow icon in the right side of shape connector dropdown menu",
+    "instruction": "The button below the curved angled connector with arrow icon in the right side of shape connector dropdown menu",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11503,7 +11503,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Smiley face icon to the right of the circular shape icon in the toolbar",
+    "instruction": "Smiley face icon to the right of the circular shape icon in the toolbar",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11523,7 +11523,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Choose \"requirement.txt\" that is no larger than 100 bytes.",
+    "instruction": "Choose \"requirement.txt\" that is no larger than 100 bytes.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11543,7 +11543,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Uncheck `Read-only` option in the file properties.",
+    "instruction": "Uncheck `Read-only` option in the file properties.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11562,7 +11562,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on red button \"open\".",
+    "instruction": "Click on red button \"open\".",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11582,7 +11582,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Adjust the darkness",
+    "instruction": "Adjust the darkness",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11601,7 +11601,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Choose the option that has an orange circular icon.",
+    "instruction": "Choose the option that has an orange circular icon.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11621,7 +11621,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Make this repo private.",
+    "instruction": "Make this repo private.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11641,7 +11641,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Open recent folder",
+    "instruction": "Open recent folder",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11661,7 +11661,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Change the hour of the time to 9 AM.",
+    "instruction": "Change the hour of the time to 9 AM.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11681,7 +11681,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Change the exact time.",
+    "instruction": "Change the exact time.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11700,7 +11700,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Set color tag to pink",
+    "instruction": "Set color tag to pink",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11721,7 +11721,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Adjust the Offset X.",
+    "instruction": "Adjust the Offset X.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11740,7 +11740,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Make Columns number smaller",
+    "instruction": "Make Columns number smaller",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11760,7 +11760,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Fade the background of the slide.",
+    "instruction": "Fade the background of the slide.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11779,7 +11779,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Add \"s\" after the word \"Display\".",
+    "instruction": "Add \"s\" after the word \"Display\".",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11799,7 +11799,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on Upload button.",
+    "instruction": "Click on Upload button.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11819,7 +11819,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Move the puzzle slider upwards",
+    "instruction": "Move the puzzle slider upwards",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11839,7 +11839,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Rename the file",
+    "instruction": "Rename the file",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11858,7 +11858,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>In the dropdown panel choose the shape in the middle of the 5th row.",
+    "instruction": "In the dropdown panel choose the shape in the middle of the 5th row.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11879,7 +11879,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Navigate the video on play to 4:00.",
+    "instruction": "Navigate the video on play to 4:00.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11898,7 +11898,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click Undo button.",
+    "instruction": "Click Undo button.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11918,7 +11918,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Choose the top left picture that has a bed.",
+    "instruction": "Choose the top left picture that has a bed.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11937,7 +11937,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Sign out the Travel website.",
+    "instruction": "Sign o of the travel website.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11956,7 +11956,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Click on the \"x\" button on the top left corner of the popup window.",
+    "instruction": "Click on the \"x\" button on the top left corner of the popup window.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11976,7 +11976,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click \"OK\" to close the window.",
+    "instruction": "Click \"OK\" to close the window.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11996,7 +11996,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Delete the 10th paragraph in the document.",
+    "instruction": "Delete the 10th paragraph in the document.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -12015,7 +12015,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Enlarge and bold the title.",
+    "instruction": "Enlarge and bold the title.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -12035,7 +12035,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Proceeding that has a paper volume between 30 and 50.",
+    "instruction": "Proceeding that has a paper volume between 30 and 50.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -12055,7 +12055,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Set the Libreoffice Writer window backward to the bottom of the screen.",
+    "instruction": "Send the Libreoffice Writer window backward.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
