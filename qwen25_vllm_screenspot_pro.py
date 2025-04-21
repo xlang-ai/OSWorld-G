@@ -242,16 +242,29 @@ class BenchmarkRunner:
         instances = []
         idx = 0
         cached_results = []
-        accuracy_dict = {}
+        accuracy_dict_2x2 = {}
+        accuracy_dict_ui_type = {}
+        accuracy_dict_group = {}
 
         for item in items:
             instance_group = item['group']
             instance_ui_type = item['ui_type']
-            if instance_group not in accuracy_dict:
-                accuracy_dict[instance_group] = {}
-            if instance_ui_type not in accuracy_dict[instance_group]:
-                accuracy_dict[instance_group][instance_ui_type] = {"total": 0, "correct": 0, "accuracy": 0}
-            accuracy_dict[instance_group][instance_ui_type]["total"] += 1
+
+            # accuracy_dict_2x2
+            if instance_group not in accuracy_dict_2x2:
+                accuracy_dict_2x2[instance_group] = {}
+            if instance_ui_type not in accuracy_dict_2x2[instance_group]:
+                accuracy_dict_2x2[instance_group][instance_ui_type] = {"total": 0, "correct": 0, "accuracy": 0}
+            accuracy_dict_2x2[instance_group][instance_ui_type]["total"] += 1
+            # accuracy_dict_ui_type
+            if instance_ui_type not in accuracy_dict_ui_type:
+                accuracy_dict_ui_type[instance_ui_type] = {"total": 0, "correct": 0, "accuracy": 0}
+            accuracy_dict_ui_type[instance_ui_type]["total"] += 1
+            # accuracy_dict_group
+            if instance_group not in accuracy_dict_group:
+                accuracy_dict_group[instance_group] = {"total": 0, "correct": 0, "accuracy": 0}
+            accuracy_dict_group[instance_group]["total"] += 1
+
             instance_id = f"{item['id']}"
             if instance_id in predictions_cache:
                 cached_results.append(predictions_cache[instance_id]["response"])
@@ -325,18 +338,26 @@ class BenchmarkRunner:
 
             if is_correct:
                 correct += 1
-                accuracy_dict[instance_group][instance_ui_type]["correct"] += 1
+                accuracy_dict_2x2[instance_group][instance_ui_type]["correct"] += 1
+                accuracy_dict_ui_type[instance_ui_type]["correct"] += 1
+                accuracy_dict_group[instance_group]["correct"] += 1
 
         accuracy = correct / total
-        for group in accuracy_dict:
-            for ui_type in accuracy_dict[group]:
-                accuracy_dict[group][ui_type]["accuracy"] = accuracy_dict[group][ui_type]["correct"] / accuracy_dict[group][ui_type]["total"]
+        for group in accuracy_dict_2x2:
+            for ui_type in accuracy_dict_2x2[group]:
+                accuracy_dict_2x2[group][ui_type]["accuracy"] = accuracy_dict_2x2[group][ui_type]["correct"] / accuracy_dict_2x2[group][ui_type]["total"]
+        for ui_type in accuracy_dict_ui_type:
+            accuracy_dict_ui_type[ui_type]["accuracy"] = accuracy_dict_ui_type[ui_type]["correct"] / accuracy_dict_ui_type[ui_type]["total"]
+        for group in accuracy_dict_group:
+            accuracy_dict_group[group]["accuracy"] = accuracy_dict_group[group]["correct"] / accuracy_dict_group[group]["total"]
         return {
             'total': total,
             'correct': correct,
             'accuracy': accuracy,
             'cached_predictions': len(predictions_cache),
-            'accuracy_dict': accuracy_dict
+            'accuracy_dict_2x2': accuracy_dict_2x2,
+            'accuracy_dict_ui_type': accuracy_dict_ui_type,
+            'accuracy_dict_group': accuracy_dict_group
         }
 
 def start_vllm_service(ckpt_path, port, model_name):
