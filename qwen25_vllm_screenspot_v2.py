@@ -110,10 +110,11 @@ class Qwen25VL_OpenAI(lmms):
             tool_descs = '\n'.join([json.dumps(f, ensure_ascii=False) for f in tool_descs])
             payload["messages"].append({"role": "system", "content": [{"type": "text", "text": FN_CALL_TEMPLATE.format(tool_descs=tool_descs)}]})
 
-            # resized_width, resized_height = resized_args
-            # print(f"original_width: {input_image.width}, original_height: {input_image.height}")
-            # input_image = input_image.resize((resized_width, resized_height))
-            # print(f"resized_width: {input_image.width}, resized_height: {input_image.height}")
+            resized_width, resized_height = resized_args
+            print(f"original_width: {input_image.width}, original_height: {input_image.height}")
+            input_image = input_image.resize((resized_width, resized_height))
+            print(f"resized_width: {input_image.width}, resized_height: {input_image.height}")
+
             payload["messages"].append({
                     "role": "user", "content": [
                         {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{self.encode_image(input_image)}"}},
