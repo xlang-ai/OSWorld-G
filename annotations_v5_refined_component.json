@@ -1112,7 +1112,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the toggle button of \"Hot Corner\" to close the Hot Corner",
+    "instruction": "Click on the orange toggle button on the top-right of the \"Hot Corner\" tile to disable the Hot Corner",
     "box_type": "polygon",
     "box_coordinates": [
       1348.35,
@@ -1144,7 +1144,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the checkbox of \"Allow growing\"",
+    "instruction": "Click on the checkbox on the left of \"Allow growing\" in the left sidebar under the \"Crop\" tab",
     "box_type": "bbox",
     "box_coordinates": [
       76.9,
@@ -1164,7 +1164,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the toggle button of \"Active Screen Edges\" to close the Active Screen Edges",
+    "instruction": "Click on the orange toggle button on the right of the \"Active Screen Edges\" tile to disable Active Screen Edges",
     "box_type": "polygon",
     "box_coordinates": [
       1346.93,
@@ -1196,7 +1196,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the checkbox of \"Current layer only\"",
+    "instruction": "Click on the checkbox on the left of \"Current layer only\" in the left sidebar under \"Crop\"",
     "box_type": "bbox",
     "box_coordinates": [
       78.33,
@@ -1216,7 +1216,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click the downward arrow of autocomplete to expand the autocomplete options of \"Fixed Aspect Ratio\".",
+    "instruction": "Click the down arrow on the right of \"Fixed Aspect Ratio\" in the left sidebar under the \"Crop\" tab",
     "box_type": "bbox",
     "box_coordinates": [
       229.42,
@@ -1236,7 +1236,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Set the zoom level to maximum by click the right end of the zoom slider",
+    "instruction": "Click the right end of the slider on the buttom-right of the screen to set the zoom level to maximum",
     "box_type": "bbox",
     "box_coordinates": [
       1850.09,
@@ -1255,7 +1255,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the character of /pi",
+    "instruction": "In the dropdown menu of characters in the top toolbar, click on the /pi character under \"Favorites\"",
     "box_type": "bbox",
     "box_coordinates": [
       1104.61,
@@ -1276,7 +1276,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the character of /sigma",
+    "instruction": "In the dropdown menu of characters in the top toolbar, click on the /sigma character under \"Favorites\"",
     "box_type": "bbox",
     "box_coordinates": [
       1138.82,
@@ -1297,7 +1297,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the position at the left 1/4 of the slider",
+    "instruction": "'Click on the position at the left 1/4 of the slider in the bottom-right corner of the screen to zoom out a bit",
     "box_type": "bbox",
     "box_coordinates": [
       1780.24,
@@ -1316,7 +1316,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Set the zoom level to 100% by click the middle of the zoom slider",
+    "instruction": "Set the zoom level to 100% by clicking the middle of the slider in the bottom-right corner of the screen",
     "box_type": "bbox",
     "box_coordinates": [
       1803.05,
@@ -1335,7 +1335,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the checkbox of Split View",
+    "instruction": "Click on the checkbox on the left of Split View in the bottom-left window",
     "box_type": "bbox",
     "box_coordinates": [
       514.5,
@@ -1355,7 +1355,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Decrease the Opacity by clicking the downward arrow",
+    "instruction": "Click the down arrow on the right of \"Opacity 100.0\" in the right sidebar to decrease the opacity",
     "box_type": "bbox",
     "box_coordinates": [
       1898.55,
@@ -1375,7 +1375,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click the downward arrow of Presets' autocomplete to expand the Presets' options.",
+    "instruction": "Click the downward arrow after the textbox of Presets before the plus sign in the bottom-left window",
     "box_type": "bbox",
     "box_coordinates": [
       507.37,
@@ -1395,7 +1395,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the checkbox of blending options to deselect it",
+    "instruction": "Click on the checkbox on the left of \"Blending Options\" in the Deinterface window on the bottom left.",
     "box_type": "bbox",
     "box_coordinates": [
       242.25,
@@ -1415,7 +1415,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the question icon of the \"save\" dialog.",
+    "instruction": "Click on the question mark on the left of \"A file named...\" in the Save dialog",
     "box_type": "polygon",
     "box_coordinates": [
       735.43,
@@ -1447,7 +1447,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Confirm replacing the existing file.",
+    "instruction": "Click on \"Yes\" on the bottom-right of the Save dialog to confirm replacing.",
     "box_type": "bbox",
     "box_coordinates": [
       994.85,
@@ -1468,7 +1468,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>click on the file option right above \"videos\"",
+    "instruction": "Click on \"Templates\" above \"Videos\" in the file selector",
     "box_type": "bbox",
     "box_coordinates": [
       555.83,
@@ -1488,7 +1488,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the letter \"o\" of the word \"for\" in the slide",
+    "instruction": "Click on the letter \"o\" of the red word \"for\" in the middle of the slide",
     "box_type": "bbox",
     "box_coordinates": [
       840.91,
@@ -1507,7 +1507,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click to see the third slide.",
+    "instruction": "Click on the third slide in the left sidebar with \"3\" on the top-left of the image",
     "box_type": "bbox",
     "box_coordinates": [
       72.63,
@@ -1528,7 +1528,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the checkbox to deselect Master Objects",
+    "instruction": "Click on the checkbox on the left of \"Master Objects\" in the right sidebar to deselect it",
     "box_type": "bbox",
     "box_coordinates": [
       1643.41,
