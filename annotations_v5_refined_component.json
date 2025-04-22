@@ -6,7 +6,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click the button that including an icon of funnel on the right of the \"search settings\" bar",
+    "instruction": "Click the button that including an icon of funnel on the right of the \"search settings\" bar",
     "box_type": "bbox",
     "box_coordinates": [
       1422.9,
@@ -27,7 +27,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Unfold the drop-down bar of Auto Save settings.",
+    "instruction": "afterdelay\" and a downward arrow, in the \"Commonly Used\" panel",
     "box_type": "bbox",
     "box_coordinates": [
       989.18,
@@ -47,7 +47,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Open the debug panel",
+    "instruction": "Click the icon including a bug and a \"play\" button in the left of the VSCode window, which indicates \"debug\"",
     "box_type": "bbox",
     "box_coordinates": [
       452.05,
@@ -67,7 +67,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>I want to see the bottom of slide transition panel.",
+    "instruction": "Click the bottom part of the scroll bar of the \"Slide Transition\" panel.",
     "box_type": "bbox",
     "box_coordinates": [
       1854.94,
@@ -86,7 +86,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Star the first slide.",
+    "instruction": "Click the star-shaped icon in the bottom-left corner of the first slide in the slide preview pane.",
     "box_type": "bbox",
     "box_coordinates": [
       83.4,
@@ -105,7 +105,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Hide the left side panel",
+    "instruction": "Click the button with a leftward arrow, between the slide preview pane and slide editing area(with a big slide for edition).",
     "box_type": "bbox",
     "box_coordinates": [
       261.89,
@@ -125,7 +125,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Hide the right side panel",
+    "instruction": "Click the button with a rightward arrow, between the slide editing area(with a big slide for edition)and the slide transition area.",
     "box_type": "bbox",
     "box_coordinates": [
       1507.97,
