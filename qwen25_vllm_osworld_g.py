@@ -205,6 +205,7 @@ class BenchmarkRunner:
             flatten_data_items.append({
                 'id': image_path[:-4],
                 'annotation_id': str(i), # annotation['id'] is wrong....
+                'data_id': item['id'].replace('-', '_'),
                 'image': image,
                 'image_path': item['image_path'], # where different with ss v2
                 'instruction': item['instruction'],
@@ -233,13 +234,33 @@ class BenchmarkRunner:
         instances = []
         idx = 0
         cached_results = []
+        accuracy_dict_group = {}
+        classification_result = {}
+        with open('classification_result.json', 'r') as f:
+            classification_result = json.load(f)
 
         for item in items:
+            instance_group_list = []
             instance_id = f"{item['id']}_{item['annotation_id']}"
+            for cls_type, classification_items in classification_result["classified"].items():
+                for classification_item in classification_items:
+                    if classification_item["id"] == item["data_id"]:
+                        instance_group_list.append(cls_type)
+                        break
+            item["instance_group_list"] = instance_group_list
+            if len(instance_group_list) == 0:
+                instance_group_list.append("unclassified")
+                if "unclassified" not in accuracy_dict_group:
+                    accuracy_dict_group["unclassified"] = {"total": 0, "correct": 0, "accuracy": 0}
+                accuracy_dict_group["unclassified"]["total"] += 1
+            else:
+                for instance_group in instance_group_list:
+                    if instance_group not in accuracy_dict_group:
+                        accuracy_dict_group[instance_group] = {"total": 0, "correct": 0, "accuracy": 0}
+                    accuracy_dict_group[instance_group]["total"] += 1
             if instance_id in predictions_cache:
                 cached_results.append(predictions_cache[instance_id]["response"])
                 continue
-
             input_image, image_path, user_query = item['image'], item['image_path'], item['instruction']
 
             resized_height, resized_width = smart_resize(
@@ -313,13 +334,18 @@ class BenchmarkRunner:
 
             if is_correct:
                 correct += 1
+                for instance_group in item["instance_group_list"]:
+                    accuracy_dict_group[instance_group]["correct"] += 1
 
         accuracy = correct / total
+        for group in accuracy_dict_group:
+            accuracy_dict_group[group]["accuracy"] = f"{(accuracy_dict_group[group]['correct'] / accuracy_dict_group[group]['total'])*100:.2f}%"
         return {
             'total': total,
             'correct': correct,
             'accuracy': accuracy,
             'cached_predictions': len(predictions_cache),
+            'accuracy_dict_group': accuracy_dict_group
         }
 
 def start_vllm_service(ckpt_path, port, model_name):
@@ -397,6 +423,7 @@ if __name__ == "__main__":
         print(f"Total samples: {results['total']}")
         print(f"Correct predictions: {results['correct']}")
         print(f"Accuracy: {results['accuracy']*100:.2f}%")
+        print(f"Accuracy for each group: {results['accuracy_dict_group']}")
 
         # Terminate VLLM service
         terminate_vllm_service(process)
