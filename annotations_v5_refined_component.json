@@ -3062,7 +3062,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Reduce the posterize levels",
+    "instruction": "Click the downward arrow in the selector of posterize levels in the pop-up window at the lower left corner",
     "box_type": "bbox",
     "box_coordinates": [
       594.09,
@@ -3083,7 +3083,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Save the current settings as named preset",
+    "instruction": "Click the '+' icon beside the selector of presets in the pop-up",
     "box_type": "bbox",
     "box_coordinates": [
       544.32,
@@ -3103,7 +3103,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select the split view",
+    "instruction": "Click on t",
     "box_type": "bbox",
     "box_coordinates": [
       520.52,
@@ -3123,7 +3123,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Enter the \"Run and Debug\" sidebar",
+    "instruction": "Click the icon that consists of the shapes of a bug and a triangle in the left toolbar in the opened application",
     "box_type": "bbox",
     "box_coordinates": [
       448.3,
@@ -3143,7 +3143,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Enter the \"Source Control\" sidebar",
+    "instruction": "Click on the icon that consisting of three small circles connected by lines in a Y-shaped",
     "box_type": "bbox",
     "box_coordinates": [
       448.4,
@@ -3163,7 +3163,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Split editor right",
+    "instruction": "Click the icon consists of two parallel vertical rectangles in the editor tab bar",
     "box_type": "bbox",
     "box_coordinates": [
       1410.71,
@@ -3183,7 +3183,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Check if there is any problems in the current file",
+    "instruction": "Click on the debug status beside the \"Restricted Mode\" in the bottom of the window",
     "box_type": "bbox",
     "box_coordinates": [
       608.89,
@@ -3202,7 +3202,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Pick farthest full-transparency color",
+    "instruction": "Click on the icon of color picker beside the selector of transparency threshold in the pop-up window",
     "box_type": "bbox",
     "box_coordinates": [
       1137.4,
@@ -3222,7 +3222,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Pick nearest full-opacity color",
+    "instruction": "Click on the icon of color picker beside the selector of opacity threshold in the pop-up window",
     "box_type": "bbox",
     "box_coordinates": [
       1138.58,
@@ -3242,7 +3242,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Unselect Preview",
+    "instruction": "Click on the checkbox of \"preview\" in the pop-up window",
     "box_type": "bbox",
     "box_coordinates": [
       817.8,
@@ -3262,7 +3262,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Manage presets in the Color to Alpha Panel",
+    "instruction": "Click on the icon that resembles a square with an inward-pointing arrow beside the selector of presets in the pop-up window",
     "box_type": "bbox",
     "box_coordinates": [
       1139.8,
@@ -3282,7 +3282,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Clone Formatting",
+    "instruction": "Click on the brush-like icon in the upper toolbar",
     "box_type": "bbox",
     "box_coordinates": [
       437.54,
@@ -3302,7 +3302,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Clear Direct Formatting",
+    "instruction": "Click on the icon with letter 'A' in black with a horizontal line under",
     "box_type": "bbox",
     "box_coordinates": [
       474.1,
@@ -3322,7 +3322,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Undo input",
+    "instruction": "Click on the icon that a red curved arrow pointing to the left in the top toolbar",
     "box_type": "bbox",
     "box_coordinates": [
       511.82,
@@ -3342,7 +3342,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Skip backward to the previous media in the playlist",
+    "instruction": "Click on the icon with a double triangle icon pointing to the left in the control panel at the bottom of the screen",
     "box_type": "bbox",
     "box_coordinates": [
       116.86,
@@ -3362,7 +3362,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Toggle the video in fullscreen",
+    "instruction": "Click on the fullscreen icon that looks like four corner arrows pointing outward from the center in the control panel at the bottom of screen",
     "box_type": "bbox",
     "box_coordinates": [
       207.58,
@@ -3382,7 +3382,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click to toggle between loop all, loop one and no loop",
+    "instruction": "Click on the icon with two curved arrows forming a circular clockwise pattern in the control panel at the bottom of screen",
     "box_type": "bbox",
     "box_coordinates": [
       297,
@@ -3402,7 +3402,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Show extended settings",
+    "instruction": "Click on the icon showing three vertical sliders in the control panel at the bottom of the screen",
     "box_type": "bbox",
     "box_coordinates": [
       232.9,
@@ -3422,7 +3422,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Start from Current Slide",
+    "instruction": "Click the icon that shows a slide icon with a pause icon in the right corner of it and the icon is located in the upper toolbar",
     "box_type": "bbox",
     "box_coordinates": [
       775.47,
@@ -3442,7 +3442,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Master Slide",
+    "instruction": "Click the icon having a light blue rectangle with a blue pencil overlapping it in the upper toolbar",
     "box_type": "bbox",
     "box_coordinates": [
       702.62,
@@ -3462,7 +3462,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Insert a callout shape",
+    "instruction": "Click on the icon of a chatbox in the upper toolbar",
     "box_type": "bbox",
     "box_coordinates": [
       668.52,
@@ -3482,7 +3482,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select \"Curves and Polygons\"",
+    "instruction": "Click on the icon that has a blue pencil above a curved line in the upper toolbar",
     "box_type": "bbox",
     "box_coordinates": [
       395.82,
@@ -3502,7 +3502,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Sort the files according to the size",
+    "instruction": "Click on the 'Size' option in the pop-up window",
     "box_type": "bbox",
     "box_coordinates": [
       736.16,
@@ -3522,7 +3522,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Sort the files in descending order",
+    "instruction": "Click on the 'Name' option in the pop-up window",
     "box_type": "bbox",
     "box_coordinates": [
       239.81,
@@ -3542,7 +3542,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Sort the files according to the modified time",
+    "instruction": "Click on the 'Modified' option in the pop-up window",
     "box_type": "bbox",
     "box_coordinates": [
       805.01,
@@ -3562,7 +3562,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select the page setting in the sidebar",
+    "instruction": "Click on the icon that looks like an empty document in the to",
     "box_type": "bbox",
     "box_coordinates": [
       1863.86,
@@ -3582,7 +3582,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Check the word account",
+    "instruction": "Click on the words count at the bottom of the screen",
     "box_type": "bbox",
     "box_coordinates": [
       345.45,
@@ -3601,7 +3601,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Switch to book view",
+    "instruction": "Click on the icon that having two document icons positioned side-by-side at the bottom of the screen to switch to book view",
     "box_type": "bbox",
     "box_coordinates": [
       1699.17,
@@ -3620,7 +3620,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Choose the first recent color",
+    "instruction": "Select the white color that is shown as recently used in the panel",
     "box_type": "bbox",
     "box_coordinates": [
       819.54,
@@ -3640,7 +3640,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Choose the second recent color",
+    "instruction": "Select the blue color that is shown as recently used in the panel",
     "box_type": "bbox",
     "box_coordinates": [
       837.66,
@@ -3660,7 +3660,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select Outline",
+    "instruction": "Select the 'Outline' checkbox in the pop-up window",
     "box_type": "bbox",
     "box_coordinates": [
       1131.5,
@@ -3680,7 +3680,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Reset to default",
+    "instruction": "Click the 'Reset' button in the 'Charater' option panel",
     "box_type": "bbox",
     "box_coordinates": [
       1037.55,
@@ -3700,7 +3700,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Continue walkthroughs",
+    "instruction": "Click on the 'Get Started with VS Code' widget",
     "box_type": "bbox",
     "box_coordinates": [
       689.46,
@@ -3719,7 +3719,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Turn off the settings by clicking",
+    "instruction": "Click the 'x' button to close the opened settings on the right side of the application",
     "box_type": "bbox",
     "box_coordinates": [
       1447,
@@ -3739,7 +3739,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Enter git area",
+    "instruction": "Click on the icon that consisting of three small circles connected by lines in a Y-shaped",
     "box_type": "bbox",
     "box_coordinates": [
       462.74,
@@ -3759,7 +3759,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Try to open a new terminal",
+    "instruction": "Click on the 'Terminal' in the top menu of the application",
     "box_type": "bbox",
     "box_coordinates": [
       714.6,
@@ -3779,7 +3779,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select the blank area at C4",
+    "instruction": "Click on the C4 (third column from the left, fourth row from the top) cell in the sheet",
     "box_type": "bbox",
     "box_coordinates": [
       273.54,
@@ -3799,7 +3799,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select the blank area at U42",
+    "instruction": "Click on the U42 (21st column from the left, 42nd row from the top) in the sheet",
     "box_type": "bbox",
     "box_coordinates": [
       1750.76,
@@ -3819,7 +3819,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Open the font color dropdown menu",
+    "instruction": "Click on the downward-pointing triangle beside a button showing a capital 'A' with a red underline in the upper toolbar",
     "box_type": "bbox",
     "box_coordinates": [
       561,
@@ -3839,7 +3839,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select \"sort\" option",
+    "instruction": "Click on the icon having two orange arrows (one pointing downward and one pointing upward) in the upper toolbar",
     "box_type": "bbox",
     "box_coordinates": [
       780.1,
@@ -3859,7 +3859,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select \"AutoFilter\" option",
+    "instruction": "Click on the icon with a white filter and a red pen on it in the upper toolbar",
     "box_type": "bbox",
     "box_coordinates": [
       880.59,
@@ -3879,7 +3879,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Edit Pivot Table",
+    "instruction": "Click on the icon with a grid structure with several small squares arranged in columns on the left side and a small orange arrow extending to the right in the upper toolbar",
     "box_type": "bbox",
     "box_coordinates": [
       987.68,
@@ -3899,7 +3899,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Insert some special characters",
+    "instruction": "Click on the omega icon in the upper toolbar",
     "box_type": "bbox",
     "box_coordinates": [
       1026.3,
@@ -3919,7 +3919,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Change the cell to number format",
+    "instruction": "Click on the icon that displays the characters \"0.0\" in dark text on a light green background in the upper toolbar",
     "box_type": "bbox",
     "box_coordinates": [
       1067.5,
@@ -3939,7 +3939,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Set boarder styles",
+    "instruction": "Click on the icon that a square with an orange outline and a small gear icon in the bottom right corner of the square in the upper toolbar",
     "box_type": "bbox",
     "box_coordinates": [
       1331.6,
@@ -3959,7 +3959,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Add a new sheet",
+    "instruction": "Click the icon with a document or file with a green plus sign (+) in the bottom right corner and the icon is located at the bottom of the screen",
     "box_type": "bbox",
     "box_coordinates": [
       179.62,
@@ -3979,7 +3979,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Zoom in",
+    "instruction": "Click on the '+' in the lower right corner to increase the scale of the current sheet",
     "box_type": "bbox",
     "box_coordinates": [
       1852.69,
@@ -3998,7 +3998,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Open Gallery",
+    "instruction": "Click on the icon having two overlapping purple or pink rectangles with a small white mountain in the foreground rectangle in the toolbar at the right side of the application",
     "box_type": "bbox",
     "box_coordinates": [
       1873.25,
@@ -4018,7 +4018,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Choose the yellow font style",
+    "instruction": "Click on the style that the word \"NOTE\" is written in a light yellow font color in the pop-up window",
     "box_type": "bbox",
     "box_coordinates": [
       897.2,
@@ -4038,7 +4038,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select solid blue font style",
+    "instruction": "Click on the style that the word \"blue\" is written in a light blue font color in the pop-up window",
     "box_type": "bbox",
     "box_coordinates": [
       1081.97,
@@ -4058,7 +4058,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Choose \"favorite 2\" style",
+    "instruction": "Click on the style that \"Favorite 2\" appears in a light orange in the pop-up window",
     "box_type": "bbox",
     "box_coordinates": [
       736.07,
@@ -4078,7 +4078,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select \"x\" to exit the panel",
+    "instruction": "Click the 'x' to close the pop-up window",
     "box_type": "bbox",
     "box_coordinates": [
       1240.46,
@@ -4098,7 +4098,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select \"No. 9\"",
+    "instruction": "Click on the cell that contains the text 'No. 9'",
     "box_type": "bbox",
     "box_coordinates": [
       110.24,
@@ -4118,7 +4118,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select A9 cell",
+    "instruction": "Click on the A9 cell (first column from the left, 9th column",
     "box_type": "bbox",
     "box_coordinates": [
       110.59,
@@ -4138,7 +4138,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Accept the content in this cell",
+    "instruction": "Click on the icon with a green circular button and a white checkmark in the upper toolbar",
     "box_type": "bbox",
     "box_coordinates": [
       307.17,
@@ -4158,7 +4158,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click the cut function option",
+    "instruction": "Click on the icon that looks like scissors in the upper toolbar",
     "box_type": "bbox",
     "box_coordinates": [
       320.54,
@@ -4178,7 +4178,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Save this file by clicking.",
+    "instruction": "Click on the icon having green downward-pointing arrow towards a gray line and a small red square element visible in the upper right corner of the icon and the icon is located in the upper toolbar",
     "box_type": "bbox",
     "box_coordinates": [
       161.4,
@@ -4198,7 +4198,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Expand the font list",
+    "instruction": "Click the downward arrow of the font selection to expand the menu",
     "box_type": "bbox",
     "box_coordinates": [
       259.61,
@@ -4218,7 +4218,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Choose \"fuzzy select\" tool",
+    "instruction": "Click on the icon with gray wand with a star at the top in the left side toolbar",
     "box_type": "bbox",
     "box_coordinates": [
       209.18,
@@ -4238,7 +4238,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>I want to select a contiguous region on the basis of color",
+    "instruction": "Click on the icon with gray wand with a star at the top in the collection of image editing tools",
     "box_type": "bbox",
     "box_coordinates": [
       208.98,
@@ -4258,7 +4258,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Change Foreground Color from Black to another color",
+    "instruction": "Click on the black square having a white square to its right and smaller black and white squares below it in the left tool panel",
     "box_type": "bbox",
     "box_coordinates": [
       144.71,
@@ -4279,7 +4279,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select \"device status\"",
+    "instruction": "Click on the icon that has a white brush and an exclamation mark icon beside it and the icon is located in the left toolbar",
     "box_type": "bbox",
     "box_coordinates": [
       99.74,
@@ -4300,7 +4300,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Configure the tab on the left side, just above \"Crop\" area.",
+    "instruction": "Click on the icon with a square shape with an arrow pointing to the left direction in the left tool panel",
     "box_type": "bbox",
     "box_coordinates": [
       231.48,
@@ -4321,7 +4321,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select the brush with a hardness of 75.",
+    "instruction": "Switch the hardness of brush to the right one of the currently selected one in the right panel",
     "box_type": "bbox",
     "box_coordinates": [
       1829.48,
@@ -4340,7 +4340,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Duplicate this brush",
+    "instruction": "Click on the icon having two overlapping rectangles in the right side on the toolbar below the spacing selector",
     "box_type": "bbox",
     "box_coordinates": [
       1787.11,
@@ -4361,7 +4361,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Delete this image",
+    "instruction": "Click on the square icon that has a cross inside it and it is located at the bottom of the left tool panel",
     "box_type": "bbox",
     "box_coordinates": [
       164.4,
@@ -4381,7 +4381,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Increase the percentage of width of brush",
+    "instruction": "Click the upward arrow  beside the spacing selector to increase the spacing",
     "box_type": "bbox",
     "box_coordinates": [
       1898.82,
@@ -4400,7 +4400,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Edit this brush",
+    "instruction": "Click on the icon with several horizontal lines with a pencil across them and the icon is below the spacing selector",
     "box_type": "bbox",
     "box_coordinates": [
       1726.55,
@@ -4420,7 +4420,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Check the channels of this image",
+    "instruction": "Click on the second icon aboeve the mode selector in the right panel",
     "box_type": "bbox",
     "box_coordinates": [
       1749.52,
@@ -4440,7 +4440,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Hide the layer of this image.",
+    "instruction": "Click on the eye icon of the first image layer",
     "box_type": "bbox",
     "box_coordinates": [
       1727.2,
@@ -4460,7 +4460,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Lock the position and the size of the image",
+    "instruction": "Click on the icon with a white plus-shaped icon with extended ends below the opacity selector",
     "box_type": "bbox",
     "box_coordinates": [
       1786.77,
@@ -4480,7 +4480,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click the small image to access the layer attribute settings",
+    "instruction": "Click on the thumbnail of the first image layer on the right toolbar",
     "box_type": "bbox",
     "box_coordinates": [
       1797,
@@ -4499,7 +4499,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Change the mode of this image",
+    "instruction": "Click on the selector of Mode above the opacity option",
     "box_type": "bbox",
     "box_coordinates": [
       1726.86,
