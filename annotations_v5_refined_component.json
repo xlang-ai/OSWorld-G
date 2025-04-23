@@ -6,7 +6,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click the button that including an icon of funnel on the right of the \"search settings\" bar",
+    "instruction": "Click the button that including an icon of funnel on the right of the \"search settings\" bar",
     "box_type": "bbox",
     "box_coordinates": [
       1422.9,
@@ -27,7 +27,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Unfold the drop-down bar of Auto Save settings.",
+    "instruction": "Click the dropdown header with text \"afterdelay\" and a downward arrow, in the \"Commonly Used\" panel",
     "box_type": "bbox",
     "box_coordinates": [
       989.18,
@@ -47,7 +47,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Open the debug panel",
+    "instruction": "Click the icon including a bug and a \"play\" button in the left of the VSCode window, which indicates \"debug\"",
     "box_type": "bbox",
     "box_coordinates": [
       452.05,
@@ -67,7 +67,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>I want to see the bottom of slide transition panel.",
+    "instruction": "Click the bottom part of the scroll bar of the \"Slide Transition\" panel.",
     "box_type": "bbox",
     "box_coordinates": [
       1854.94,
@@ -86,7 +86,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Star the first slide.",
+    "instruction": "Click the star-shaped icon in the bottom-left corner of the first slide in the slide preview pane.",
     "box_type": "bbox",
     "box_coordinates": [
       83.4,
@@ -105,7 +105,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Hide the left side panel",
+    "instruction": "Click the button with a leftward arrow, between the slide preview pane and slide editing area(with a big slide for edition).",
     "box_type": "bbox",
     "box_coordinates": [
       261.89,
@@ -125,7 +125,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Hide the right side panel",
+    "instruction": "Click the button with a rightward arrow, between the slide editing area(with a big slide for edition)and the slide transition area.",
     "box_type": "bbox",
     "box_coordinates": [
       1507.97,
@@ -145,7 +145,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Adjust the right margin of the Word document paper to be wider along the ruler.",
+    "instruction": "Drag the white right margin marker on the ruler above the editing area in LibreOffice Writer to the right to widen the paper margin.",
     "box_type": "bbox",
     "box_coordinates": [
       1621.4,
@@ -164,7 +164,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Star the current chrome page.",
+    "instruction": "Click the star icon next to the address bar in the Chrome Web Store window to star the current page.",
     "box_type": "bbox",
     "box_coordinates": [
       987.52,
@@ -184,7 +184,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Expand the advanced options in the window that floats on top of all others.",
+    "instruction": "Click the black \"Advanced Options\" checkbox with a white plus icon in it, in the \"Create a New Image\" window of GIMP",
     "box_type": "bbox",
     "box_coordinates": [
       83.4,
@@ -204,7 +204,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Cancel the highlight of the picture.",
+    "instruction": "Click the black \"Highlight\" checkbox with a white cross icon in it, in the Crop section on the left sidebar of the GIMP interface.",
     "box_type": "bbox",
     "box_coordinates": [
       78.39,
@@ -224,7 +224,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Redo with mouse click",
+    "instruction": "Click the \"Undo\" button which has an icon of a curved arrow, in the bottom left corner of the GIMP window.",
     "box_type": "bbox",
     "box_coordinates": [
       128.44,
@@ -244,7 +244,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>I want to know what's under Map function.",
+    "instruction": "Hover over the \"Map\" option with a rightward arrow in the \"Colors\" menu of the GIMP application to view its submenu.",
     "box_type": "bbox",
     "box_coordinates": [
       348.63,
@@ -265,7 +265,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select the text box with words from Rain on the current slide.",
+    "instruction": "Click the text box containing the text \"I'm Rain, and I'll be sharing with you my beautiful ideas. Follow me at @reallygreatsite to learn more\" on the current slide in LibreOffice Impress.",
     "box_type": "bbox",
     "box_coordinates": [
       1129.31,
@@ -285,7 +285,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Choose the bottom color of the blue column in the background color set.",
+    "instruction": "Click the dark blue color at the bottom of the blue column(which is the ninth column) in the background color palette in the Properties sidebar of LibreOffice Impress.",
     "box_type": "bbox",
     "box_coordinates": [
       1789.88,
@@ -304,7 +304,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Increase the fifth value for the color",
+    "instruction": "Click the upward arrow in the fifth row about the variable \"C\", in the Color dialog box of GIMP.",
     "box_type": "bbox",
     "box_coordinates": [
       1196.0,
@@ -324,7 +324,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>expand the brush function",
+    "instruction": "Click the \"Brush Tool\" icon in the left toolbar of the GIMP window.",
     "box_type": "bbox",
     "box_coordinates": [
       76.73,
@@ -345,7 +345,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Lower the value for color \"G\"",
+    "instruction": "Click the downward arrow in the second row (\"G\" row) to lower the value of the \"G\" slider in the Color dialog box of GIMP.",
     "box_type": "bbox",
     "box_coordinates": [
       1196.0,
@@ -365,7 +365,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Fast forward the current video.",
+    "instruction": "Click the fast forward button which has two right-pointing triangles and a vertical line placed side by side, in the video control bar at the bottom of the video player window.",
     "box_type": "bbox",
     "box_coordinates": [
       176.81,
@@ -385,7 +385,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Expand the video to watch in full screen mode.",
+    "instruction": "Click the full-screen button which includes two arrows pointing to the upper right and lower left respectively, in the video player window.",
     "box_type": "bbox",
     "box_coordinates": [
       1669.77,
@@ -405,7 +405,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Go back to the beginning of the video.",
+    "instruction": "Click the leftmost part of the video player's control bar at the bottom of the window.",
     "box_type": "bbox",
     "box_coordinates": [
       268.56,
@@ -424,7 +424,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Close the donations notification",
+    "instruction": "Click the \"X\" button on the donations notification banner with the button \"donate\" at the top of the LibreOffice Impress window.",
     "box_type": "bbox",
     "box_coordinates": [
       1482.95,
@@ -446,7 +446,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>collapse or fold up the Character panel",
+    "instruction": "Click the downward arrow on the left of the heading \"Character\" in the Properties panel on the right sidebar of LibreOffice Impress to collapse it.",
     "box_type": "bbox",
     "box_coordinates": [
       1519.64,
@@ -466,7 +466,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Add strikethrough",
+    "instruction": "Click the \"Strikethrough\" button with a horizontal line striking through the letter \"S\" in the Properties panel under the Character section of LibreOffice Impress.",
     "box_type": "bbox",
     "box_coordinates": [
       1664.77,
@@ -486,7 +486,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Expand the non-numeric bullet point options",
+    "instruction": "Click the dropdown arrow next to the bullet point icon in the \"Lists\" section of the \"Properties\" sidebar in LibreOffice Impress.",
     "box_type": "bbox",
     "box_coordinates": [
       1563.02,
@@ -506,7 +506,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the other text box that is not selected on the current slide.",
+    "instruction": "Click on the text box labeled \"Elaborate on what you want to discuss\" in the current slide of LibreOffice Impress.",
     "box_type": "bbox",
     "box_coordinates": [
       775.67,
@@ -526,7 +526,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the other slide that has green background.",
+    "instruction": "Click on slide 4 in the Slides panel on the left sidebar of LibreOffice Impress.",
     "box_type": "bbox",
     "box_coordinates": [
       85.07,
@@ -546,7 +546,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Shift the right side panel to the Picture panel.",
+    "instruction": "Click the \"Picture\" icon consists of two overlapping images in the right sidebar of LibreOffice Impress to switch to the Picture panel.",
     "box_type": "bbox",
     "box_coordinates": [
       1876.62,
@@ -566,7 +566,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Close the Slide layout options panel.",
+    "instruction": "Click the \"Slide Layout\" button consists of a rectangle and a triangle in the toolbar of LibreOffice Impress to close the options panel.",
     "box_type": "bbox",
     "box_coordinates": [
       1269.43,
@@ -587,7 +587,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Change for another background color.",
+    "instruction": "Click the box consists of a hex color code(F8E6DA) next to 'Background' in the 'Slide' panel on the right side of the LibreOffice Impress window to select a different background color.",
     "box_type": "bbox",
     "box_coordinates": [
       1639.75,
@@ -607,7 +607,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Edit the detailed text description on this slide.",
+    "instruction": "Click the text box containing 'Elaborate on what you want to discuss' on the slide in LibreOffice Impress to edit the detailed text description.",
     "box_type": "bbox",
     "box_coordinates": [
       1059.24,
@@ -626,7 +626,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the settings of Slide properties.",
+    "instruction": "Click the \"Settings\" icon consists of a gear shape in the \"Properties\" panel on the right side of the LibreOffice Impress window.",
     "box_type": "bbox",
     "box_coordinates": [
       1851.6,
@@ -647,7 +647,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>I don't want the master background for master slide.",
+    "instruction": "Click the orange checkbox next to the text \"Master Background\" with a white tick to uncheck the \"Master Background\" option in the \"Properties\" pane on the right side of the LibreOffice Impress window.",
     "box_type": "bbox",
     "box_coordinates": [
       1641.42,
@@ -667,7 +667,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the printer icon with a magnifier",
+    "instruction": "Click the \"Print Preview\" icon with a printer and a magnifying glass in the toolbar of LibreOffice Calc.",
     "box_type": "bbox",
     "box_coordinates": [
       282.04,
@@ -687,7 +687,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click \"x\" button to close the floating window of help us make LibreOffice even better",
+    "instruction": "Click the \"x\" button in the right corner of the blue bar labeled \"Help us make LibreOffice even better!\" to close it.",
     "box_type": "bbox",
     "box_coordinates": [
       1835.83,
@@ -708,7 +708,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the 25% position of the slider",
+    "instruction": "Click on the slider in the bottom right corner of the LibreOffice Calc window, approximately 25% from the left.",
     "box_type": "bbox",
     "box_coordinates": [
       1771.69,
@@ -727,7 +727,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click the icon for underlining words",
+    "instruction": "Click the \"U\" icon in the toolbar of LibreOffice Calc to underline text.",
     "box_type": "bbox",
     "box_coordinates": [
       478.6,
@@ -747,7 +747,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Increase the magnification of the view by clicking on the right part of the magnification slider",
+    "instruction": "Click the right part of the magnification slider at the bottom right corner of the LibreOffice Calc window.",
     "box_type": "bbox",
     "box_coordinates": [
       1806.08,
@@ -766,7 +766,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Add a sheet by clicking the button on the left of \"Sheet1\"",
+    "instruction": "Click the button consists of a white sheet and a plus icon next to the \"Sheet1\" tab at the bottom of the LibreOffice Calc window to add a new sheet.",
     "box_type": "bbox",
     "box_coordinates": [
       179.53,
@@ -786,7 +786,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select the style right under the \"Accent 3\"",
+    "instruction": "Click the \"Bad\" option in the \"Apply Style\" dropdown menu of the \"Conditional Formatting for A1\" window.",
     "box_type": "bbox",
     "box_coordinates": [
       889.38,
@@ -806,7 +806,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Close the \"Indexed Color Conversion\" dialog",
+    "instruction": "Click the \"X\" button at the top right corner of the \"Indexed Color Conversion\" dialog in GIMP to close it.",
     "box_type": "polygon",
     "box_coordinates": [
       1197.26,
@@ -839,7 +839,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click the bucket fill tool",
+    "instruction": "Click the \"Bucket Fill Tool\" icon consists of an icon of a bucket pouring out paint in the left toolbar of the GIMP interface.",
     "box_type": "bbox",
     "box_coordinates": [
       219.44,
@@ -859,7 +859,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Close the current image editing window in GIMP",
+    "instruction": "Click the \"X\" button in the top-left corner of the GIMP window to close the current image editing window.",
     "box_type": "bbox",
     "box_coordinates": [
       332.05,
@@ -879,7 +879,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click the letter \"t\" in the word \"virtual\"",
+    "instruction": "Click the letter \"t\" in the word \"virtual\" in the terminal window.",
     "box_type": "bbox",
     "box_coordinates": [
       188.2,
@@ -898,7 +898,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the area to the right of \"git add .\" on the same line to edit this command.",
+    "instruction": "Click to the right of the command \"git add .\" in the terminal to edit it.",
     "box_type": "bbox",
     "box_coordinates": [
       557.26,
@@ -918,7 +918,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Close the current terminal window but don't close the terminal application",
+    "instruction": "Click the 'X' button on the right side of the right terminal tab with text \"user@user-virtual-machine: ~/projects/binder\" to close the current terminal window.",
     "box_type": "bbox",
     "box_coordinates": [
       1838.69,
@@ -938,7 +938,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the unified transform tool icon",
+    "instruction": "Click the icon with a curved arrow points from a rectangle to a trapezoid in the left toolbar of the GIMP window.",
     "box_type": "bbox",
     "box_coordinates": [
       121.09,
@@ -959,7 +959,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the magic wand icon to select the fuzzy select tool",
+    "instruction": "Click on the magic wand icon in the GIMP toolbox on the left to select the fuzzy select tool.",
     "box_type": "bbox",
     "box_coordinates": [
       217.68,
@@ -980,7 +980,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Close the Colorize dialog by click the \"x\" button",
+    "instruction": "Click the \"x\" button at the top right corner of the Colorize dialog in the GIMP window.",
     "box_type": "polygon",
     "box_coordinates": [
       591.47,
@@ -1012,7 +1012,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the Paths Tool icon",
+    "instruction": "Click the \"Paths Tool\" icon with several rectangles and circles in the toolbox on the left side of the GIMP window.",
     "box_type": "bbox",
     "box_coordinates": [
       72.63,
@@ -1033,7 +1033,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on \"Insert video or audio\" icon",
+    "instruction": "Click the \"Insert Audio or Video\" icon with a film shape in the toolbar of LibreOffice Impress.",
     "box_type": "bbox",
     "box_coordinates": [
       895.02,
@@ -1053,7 +1053,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on Ellipse icon",
+    "instruction": "Click the \"Ellipse\" icon in the toolbar of LibreOffice Impress.",
     "box_type": "bbox",
     "box_coordinates": [
       312.09,
@@ -1073,7 +1073,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on Symbol Shapes Icon",
+    "instruction": "Click the \"Symbol Shapes\" icon consists of a smiling face and a downward icon in the toolbar of LibreOffice Impress.",
     "box_type": "bbox",
     "box_coordinates": [
       535.88,
@@ -1093,7 +1093,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the letter M of the word \"Mission\" in the first line of this paragraph",
+    "instruction": "Click on the letter 'M' in the word \"Mission\" in the first line of the \"Works Cited\" section on slide 7 in LibreOffice Impress.",
     "box_type": "bbox",
     "box_coordinates": [
       738.28,
