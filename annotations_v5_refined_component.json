@@ -6,7 +6,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click the button that including an icon of funnel on the right of the \"search settings\" bar",
+    "instruction": "Click the button that including an icon of funnel on the right of the \"search settings\" bar",
     "box_type": "bbox",
     "box_coordinates": [
       1422.9,
@@ -27,7 +27,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Unfold the drop-down bar of Auto Save settings.",
+    "instruction": "Click the dropdown header with text \"afterdelay\" and a downward arrow, in the \"Commonly Used\" panel",
     "box_type": "bbox",
     "box_coordinates": [
       989.18,
@@ -47,7 +47,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Open the debug panel",
+    "instruction": "Click the icon including a bug and a \"play\" button in the left of the VSCode window, which indicates \"debug\"",
     "box_type": "bbox",
     "box_coordinates": [
       452.05,
@@ -67,7 +67,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>I want to see the bottom of slide transition panel.",
+    "instruction": "Click the bottom part of the scroll bar of the \"Slide Transition\" panel.",
     "box_type": "bbox",
     "box_coordinates": [
       1854.94,
@@ -86,7 +86,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Star the first slide.",
+    "instruction": "Click the star-shaped icon in the bottom-left corner of the first slide in the slide preview pane.",
     "box_type": "bbox",
     "box_coordinates": [
       83.4,
@@ -105,7 +105,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Hide the left side panel",
+    "instruction": "Click the button with a leftward arrow, between the slide preview pane and slide editing area(with a big slide for edition).",
     "box_type": "bbox",
     "box_coordinates": [
       261.89,
@@ -125,7 +125,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Hide the right side panel",
+    "instruction": "Click the button with a rightward arrow, between the slide editing area(with a big slide for edition)and the slide transition area.",
     "box_type": "bbox",
     "box_coordinates": [
       1507.97,
@@ -145,7 +145,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Adjust the right margin of the Word document paper to be wider along the ruler.",
+    "instruction": "Drag the white right margin marker on the ruler above the editing area in LibreOffice Writer to the right to widen the paper margin.",
     "box_type": "bbox",
     "box_coordinates": [
       1621.4,
@@ -164,7 +164,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Star the current chrome page.",
+    "instruction": "Click the star icon next to the address bar in the Chrome Web Store window to star the current page.",
     "box_type": "bbox",
     "box_coordinates": [
       987.52,
@@ -184,7 +184,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Expand the advanced options in the window that floats on top of all others.",
+    "instruction": "Click the black \"Advanced Options\" checkbox with a white plus icon in it, in the \"Create a New Image\" window of GIMP",
     "box_type": "bbox",
     "box_coordinates": [
       83.4,
@@ -204,7 +204,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Cancel the highlight of the picture.",
+    "instruction": "Click the black \"Highlight\" checkbox with a white cross icon in it, in the Crop section on the left sidebar of the GIMP interface.",
     "box_type": "bbox",
     "box_coordinates": [
       78.39,
@@ -224,7 +224,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Redo with mouse click",
+    "instruction": "Click the \"Undo\" button which has an icon of a curved arrow, in the bottom left corner of the GIMP window.",
     "box_type": "bbox",
     "box_coordinates": [
       128.44,
@@ -244,7 +244,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>I want to know what's under Map function.",
+    "instruction": "Hover over the \"Map\" option with a rightward arrow in the \"Colors\" menu of the GIMP application to view its submenu.",
     "box_type": "bbox",
     "box_coordinates": [
       348.63,
@@ -265,7 +265,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select the text box with words from Rain on the current slide.",
+    "instruction": "Click the text box containing the text \"I'm Rain, and I'll be sharing with you my beautiful ideas. Follow me at @reallygreatsite to learn more\" on the current slide in LibreOffice Impress.",
     "box_type": "bbox",
     "box_coordinates": [
       1129.31,
@@ -285,7 +285,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Choose the bottom color of the blue column in the background color set.",
+    "instruction": "Click the dark blue color at the bottom of the blue column(which is the ninth column) in the background color palette in the Properties sidebar of LibreOffice Impress.",
     "box_type": "bbox",
     "box_coordinates": [
       1789.88,
@@ -304,7 +304,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Increase the fifth value for the color",
+    "instruction": "Click the upward arrow in the fifth row about the variable \"C\", in the Color dialog box of GIMP.",
     "box_type": "bbox",
     "box_coordinates": [
       1196.0,
@@ -324,7 +324,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>expand the brush function",
+    "instruction": "Click the \"Brush Tool\" icon in the left toolbar of the GIMP window.",
     "box_type": "bbox",
     "box_coordinates": [
       76.73,
@@ -345,7 +345,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Lower the value for color \"G\"",
+    "instruction": "Click the downward arrow in the second row (\"G\" row) to lower the value of the \"G\" slider in the Color dialog box of GIMP.",
     "box_type": "bbox",
     "box_coordinates": [
       1196.0,
@@ -365,7 +365,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Fast forward the current video.",
+    "instruction": "Click the fast forward button which has two right-pointing triangles and a vertical line placed side by side, in the video control bar at the bottom of the video player window.",
     "box_type": "bbox",
     "box_coordinates": [
       176.81,
@@ -385,7 +385,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Expand the video to watch in full screen mode.",
+    "instruction": "Click the full-screen button which includes two arrows pointing to the upper right and lower left respectively, in the video player window.",
     "box_type": "bbox",
     "box_coordinates": [
       1669.77,
@@ -405,7 +405,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Go back to the beginning of the video.",
+    "instruction": "Click the leftmost part of the video player's control bar at the bottom of the window.",
     "box_type": "bbox",
     "box_coordinates": [
       268.56,
@@ -424,7 +424,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Close the donations notification",
+    "instruction": "Click the \"X\" button on the donations notification banner with the button \"donate\" at the top of the LibreOffice Impress window.",
     "box_type": "bbox",
     "box_coordinates": [
       1482.95,
@@ -446,7 +446,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>collapse or fold up the Character panel",
+    "instruction": "Click the downward arrow on the left of the heading \"Character\" in the Properties panel on the right sidebar of LibreOffice Impress to collapse it.",
     "box_type": "bbox",
     "box_coordinates": [
       1519.64,
@@ -466,7 +466,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Add strikethrough",
+    "instruction": "Click the \"Strikethrough\" button with a horizontal line striking through the letter \"S\" in the Properties panel under the Character section of LibreOffice Impress.",
     "box_type": "bbox",
     "box_coordinates": [
       1664.77,
@@ -486,7 +486,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Expand the non-numeric bullet point options",
+    "instruction": "Click the dropdown arrow next to the bullet point icon in the \"Lists\" section of the \"Properties\" sidebar in LibreOffice Impress.",
     "box_type": "bbox",
     "box_coordinates": [
       1563.02,
@@ -506,7 +506,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the other text box that is not selected on the current slide.",
+    "instruction": "Click on the text box labeled \"Elaborate on what you want to discuss\" in the current slide of LibreOffice Impress.",
     "box_type": "bbox",
     "box_coordinates": [
       775.67,
@@ -526,7 +526,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the other slide that has green background.",
+    "instruction": "Click on slide 4 in the Slides panel on the left sidebar of LibreOffice Impress.",
     "box_type": "bbox",
     "box_coordinates": [
       85.07,
@@ -546,7 +546,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Shift the right side panel to the Picture panel.",
+    "instruction": "Click the \"Picture\" icon consists of two overlapping images in the right sidebar of LibreOffice Impress to switch to the Picture panel.",
     "box_type": "bbox",
     "box_coordinates": [
       1876.62,
@@ -566,7 +566,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Close the Slide layout options panel.",
+    "instruction": "Click the \"Slide Layout\" button consists of a rectangle and a triangle in the toolbar of LibreOffice Impress to close the options panel.",
     "box_type": "bbox",
     "box_coordinates": [
       1269.43,
@@ -587,7 +587,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Change for another background color.",
+    "instruction": "Click the box consists of a hex color code(F8E6DA) next to 'Background' in the 'Slide' panel on the right side of the LibreOffice Impress window to select a different background color.",
     "box_type": "bbox",
     "box_coordinates": [
       1639.75,
@@ -607,7 +607,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Edit the detailed text description on this slide.",
+    "instruction": "Click the text box containing 'Elaborate on what you want to discuss' on the slide in LibreOffice Impress to edit the detailed text description.",
     "box_type": "bbox",
     "box_coordinates": [
       1059.24,
@@ -626,7 +626,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the settings of Slide properties.",
+    "instruction": "Click the \"Settings\" icon consists of a gear shape in the \"Properties\" panel on the right side of the LibreOffice Impress window.",
     "box_type": "bbox",
     "box_coordinates": [
       1851.6,
@@ -647,7 +647,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>I don't want the master background for master slide.",
+    "instruction": "Click the orange checkbox next to the text \"Master Background\" with a white tick to uncheck the \"Master Background\" option in the \"Properties\" pane on the right side of the LibreOffice Impress window.",
     "box_type": "bbox",
     "box_coordinates": [
       1641.42,
@@ -667,7 +667,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the printer icon with a magnifier",
+    "instruction": "Click the \"Print Preview\" icon with a printer and a magnifying glass in the toolbar of LibreOffice Calc.",
     "box_type": "bbox",
     "box_coordinates": [
       282.04,
@@ -687,7 +687,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click \"x\" button to close the floating window of help us make LibreOffice even better",
+    "instruction": "Click the \"x\" button in the right corner of the blue bar labeled \"Help us make LibreOffice even better!\" to close it.",
     "box_type": "bbox",
     "box_coordinates": [
       1835.83,
@@ -708,7 +708,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the 25% position of the slider",
+    "instruction": "Click on the slider in the bottom right corner of the LibreOffice Calc window, approximately 25% from the left.",
     "box_type": "bbox",
     "box_coordinates": [
       1771.69,
@@ -727,7 +727,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click the icon for underlining words",
+    "instruction": "Click the \"U\" icon in the toolbar of LibreOffice Calc to underline text.",
     "box_type": "bbox",
     "box_coordinates": [
       478.6,
@@ -747,7 +747,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Increase the magnification of the view by clicking on the right part of the magnification slider",
+    "instruction": "Click the right part of the magnification slider at the bottom right corner of the LibreOffice Calc window.",
     "box_type": "bbox",
     "box_coordinates": [
       1806.08,
@@ -766,7 +766,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Add a sheet by clicking the button on the left of \"Sheet1\"",
+    "instruction": "Click the button consists of a white sheet and a plus icon next to the \"Sheet1\" tab at the bottom of the LibreOffice Calc window to add a new sheet.",
     "box_type": "bbox",
     "box_coordinates": [
       179.53,
@@ -786,7 +786,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select the style right under the \"Accent 3\"",
+    "instruction": "Click the \"Bad\" option in the \"Apply Style\" dropdown menu of the \"Conditional Formatting for A1\" window.",
     "box_type": "bbox",
     "box_coordinates": [
       889.38,
@@ -806,7 +806,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Close the \"Indexed Color Conversion\" dialog",
+    "instruction": "Click the \"X\" button at the top right corner of the \"Indexed Color Conversion\" dialog in GIMP to close it.",
     "box_type": "polygon",
     "box_coordinates": [
       1197.26,
@@ -839,7 +839,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click the bucket fill tool",
+    "instruction": "Click the \"Bucket Fill Tool\" icon consists of an icon of a bucket pouring out paint in the left toolbar of the GIMP interface.",
     "box_type": "bbox",
     "box_coordinates": [
       219.44,
@@ -859,7 +859,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Close the current image editing window in GIMP",
+    "instruction": "Click the \"X\" button in the top-left corner of the GIMP window to close the current image editing window.",
     "box_type": "bbox",
     "box_coordinates": [
       332.05,
@@ -879,7 +879,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click the letter \"t\" in the word \"virtual\"",
+    "instruction": "Click the letter \"t\" in the word \"virtual\" in the terminal window.",
     "box_type": "bbox",
     "box_coordinates": [
       188.2,
@@ -898,7 +898,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the area to the right of \"git add .\" on the same line to edit this command.",
+    "instruction": "Click to the right of the command \"git add .\" in the terminal to edit it.",
     "box_type": "bbox",
     "box_coordinates": [
       557.26,
@@ -918,7 +918,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Close the current terminal window but don't close the terminal application",
+    "instruction": "Click the 'X' button on the right side of the right terminal tab with text \"user@user-virtual-machine: ~/projects/binder\" to close the current terminal window.",
     "box_type": "bbox",
     "box_coordinates": [
       1838.69,
@@ -938,7 +938,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the unified transform tool icon",
+    "instruction": "Click the icon with a curved arrow points from a rectangle to a trapezoid in the left toolbar of the GIMP window.",
     "box_type": "bbox",
     "box_coordinates": [
       121.09,
@@ -959,7 +959,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the magic wand icon to select the fuzzy select tool",
+    "instruction": "Click on the magic wand icon in the GIMP toolbox on the left to select the fuzzy select tool.",
     "box_type": "bbox",
     "box_coordinates": [
       217.68,
@@ -980,7 +980,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Close the Colorize dialog by click the \"x\" button",
+    "instruction": "Click the \"x\" button at the top right corner of the Colorize dialog in the GIMP window.",
     "box_type": "polygon",
     "box_coordinates": [
       591.47,
@@ -1012,7 +1012,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the Paths Tool icon",
+    "instruction": "Click the \"Paths Tool\" icon with several rectangles and circles in the toolbox on the left side of the GIMP window.",
     "box_type": "bbox",
     "box_coordinates": [
       72.63,
@@ -1033,7 +1033,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on \"Insert video or audio\" icon",
+    "instruction": "Click the \"Insert Audio or Video\" icon with a film shape in the toolbar of LibreOffice Impress.",
     "box_type": "bbox",
     "box_coordinates": [
       895.02,
@@ -1053,7 +1053,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on Ellipse icon",
+    "instruction": "Click the \"Ellipse\" icon in the toolbar of LibreOffice Impress.",
     "box_type": "bbox",
     "box_coordinates": [
       312.09,
@@ -1073,7 +1073,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on Symbol Shapes Icon",
+    "instruction": "Click the \"Symbol Shapes\" icon consists of a smiling face and a downward icon in the toolbar of LibreOffice Impress.",
     "box_type": "bbox",
     "box_coordinates": [
       535.88,
@@ -1093,7 +1093,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the letter M of the word \"Mission\" in the first line of this paragraph",
+    "instruction": "Click on the letter 'M' in the word \"Mission\" in the first line of the \"Works Cited\" section on slide 7 in LibreOffice Impress.",
     "box_type": "bbox",
     "box_coordinates": [
       738.28,
@@ -1112,7 +1112,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the toggle button of \"Hot Corner\" to close the Hot Corner",
+    "instruction": "Click on the orange toggle button on the top-right of the \"Hot Corner\" tile to disable the Hot Corner",
     "box_type": "polygon",
     "box_coordinates": [
       1348.35,
@@ -1144,7 +1144,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the checkbox of \"Allow growing\"",
+    "instruction": "Click on the checkbox on the left of \"Allow growing\" in the left sidebar under the \"Crop\" tab",
     "box_type": "bbox",
     "box_coordinates": [
       76.9,
@@ -1164,7 +1164,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the toggle button of \"Active Screen Edges\" to close the Active Screen Edges",
+    "instruction": "Click on the orange toggle button on the right of the \"Active Screen Edges\" tile to disable Active Screen Edges",
     "box_type": "polygon",
     "box_coordinates": [
       1346.93,
@@ -1196,7 +1196,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the checkbox of \"Current layer only\"",
+    "instruction": "Click on the checkbox on the left of \"Current layer only\" in the left sidebar under \"Crop\"",
     "box_type": "bbox",
     "box_coordinates": [
       78.33,
@@ -1216,7 +1216,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click the downward arrow of autocomplete to expand the autocomplete options of \"Fixed Aspect Ratio\".",
+    "instruction": "Click the down arrow on the right of \"Fixed Aspect Ratio\" in the left sidebar under the \"Crop\" tab",
     "box_type": "bbox",
     "box_coordinates": [
       229.42,
@@ -1236,7 +1236,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Set the zoom level to maximum by click the right end of the zoom slider",
+    "instruction": "Click the right end of the slider on the buttom-right of the screen to set the zoom level to maximum",
     "box_type": "bbox",
     "box_coordinates": [
       1850.09,
@@ -1255,7 +1255,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the character of /pi",
+    "instruction": "In the dropdown menu of characters in the top toolbar, click on the /pi character under \"Favorites\"",
     "box_type": "bbox",
     "box_coordinates": [
       1104.61,
@@ -1276,7 +1276,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the character of /sigma",
+    "instruction": "In the dropdown menu of characters in the top toolbar, click on the /sigma character under \"Favorites\"",
     "box_type": "bbox",
     "box_coordinates": [
       1138.82,
@@ -1297,7 +1297,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the position at the left 1/4 of the slider",
+    "instruction": "'Click on the position at the left 1/4 of the slider in the bottom-right corner of the screen to zoom out a bit",
     "box_type": "bbox",
     "box_coordinates": [
       1780.24,
@@ -1316,7 +1316,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Set the zoom level to 100% by click the middle of the zoom slider",
+    "instruction": "Set the zoom level to 100% by clicking the middle of the slider in the bottom-right corner of the screen",
     "box_type": "bbox",
     "box_coordinates": [
       1803.05,
@@ -1335,7 +1335,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the checkbox of Split View",
+    "instruction": "Click on the checkbox on the left of Split View in the bottom-left window",
     "box_type": "bbox",
     "box_coordinates": [
       514.5,
@@ -1355,7 +1355,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Decrease the Opacity by clicking the downward arrow",
+    "instruction": "Click the down arrow on the right of \"Opacity 100.0\" in the right sidebar to decrease the opacity",
     "box_type": "bbox",
     "box_coordinates": [
       1898.55,
@@ -1375,7 +1375,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click the downward arrow of Presets' autocomplete to expand the Presets' options.",
+    "instruction": "Click the downward arrow after the textbox of Presets before the plus sign in the bottom-left window",
     "box_type": "bbox",
     "box_coordinates": [
       507.37,
@@ -1395,7 +1395,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the checkbox of blending options to deselect it",
+    "instruction": "Click on the checkbox on the left of \"Blending Options\" in the Deinterface window on the bottom left.",
     "box_type": "bbox",
     "box_coordinates": [
       242.25,
@@ -1415,7 +1415,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the question icon of the \"save\" dialog.",
+    "instruction": "Click on the question mark on the left of \"A file named...\" in the Save dialog",
     "box_type": "polygon",
     "box_coordinates": [
       735.43,
@@ -1447,7 +1447,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Confirm replacing the existing file.",
+    "instruction": "Click on \"Yes\" on the bottom-right of the Save dialog to confirm replacing.",
     "box_type": "bbox",
     "box_coordinates": [
       994.85,
@@ -1468,7 +1468,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>click on the file option right above \"videos\"",
+    "instruction": "Click on \"Templates\" above \"Videos\" in the file selector",
     "box_type": "bbox",
     "box_coordinates": [
       555.83,
@@ -1488,7 +1488,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the letter \"o\" of the word \"for\" in the slide",
+    "instruction": "Click on the letter \"o\" of the red word \"for\" in the middle of the slide",
     "box_type": "bbox",
     "box_coordinates": [
       840.91,
@@ -1507,7 +1507,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click to see the third slide.",
+    "instruction": "Click on the third slide in the left sidebar with \"3\" on the top-left of the image",
     "box_type": "bbox",
     "box_coordinates": [
       72.63,
@@ -1528,7 +1528,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the checkbox to deselect Master Objects",
+    "instruction": "Click on the checkbox on the left of \"Master Objects\" in the right sidebar to deselect it",
     "box_type": "bbox",
     "box_coordinates": [
       1643.41,
@@ -1548,7 +1548,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the downward arrow of the \"Format\" autocomplete to select different format",
+    "instruction": "Click on the downward arrow at the right of the \"Format: User\"",
     "box_type": "bbox",
     "box_coordinates": [
       1804.48,
@@ -1568,7 +1568,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the E7 cell",
+    "instruction": "Move your mouse to the cell in the 5th column and 7th row (this cell is labeled as E7), then press the left mouse button once.",
     "box_type": "bbox",
     "box_coordinates": [
       464.61,
@@ -1588,7 +1588,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the product of row 12",
+    "instruction": "Move your mouse to the cell in the 3th column and 12th row (this cell is labeled as C12), then press the left mouse button once.",
     "box_type": "bbox",
     "box_coordinates": [
       312.09,
@@ -1608,7 +1608,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the quantity of product in 12/12/14 16:35",
+    "instruction": "Move your mouse to the cell in the 5th column and 19th row (this cell is labeled as E19), then press the left mouse button once.",
     "box_type": "bbox",
     "box_coordinates": [
       466.04,
@@ -1628,7 +1628,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click at the 80% position of the zoom slider.",
+    "instruction": "Look at the right bottom corner of your screen. Move your mouse to the zoom control bar (the horizontal or vertical line that lets you make things bigger or smaller on your screen), find the point that's about 80% of the way from the minimum end, and press the left mouse button once.",
     "box_type": "bbox",
     "box_coordinates": [
       1831.56,
@@ -1647,7 +1647,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click at the 30% position of the zoom slider.",
+    "instruction": "Move your mouse to the zoom control bar (the horizontal or vertical line that lets you make things bigger or smaller on your screen), find the point that's about 30% of the way from the minimum end, and press the left mouse button once.",
     "box_type": "bbox",
     "box_coordinates": [
       1781.67,
@@ -1666,7 +1666,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Change the character fonts by clicking the downward button of the font autocomplete.",
+    "instruction": "Look at the upper right corner of your screen and find the text \"Liberation Sans\" (this is the name of a font). To the right of this text, there's a down arrow icon (\u25bc). Move your mouse pointer to this down arrow and press the left mouse button once.",
     "box_type": "bbox",
     "box_coordinates": [
       1741.7,
@@ -1687,7 +1687,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the 70% position of the zoom slider in the bottom right corner.",
+    "instruction": "Move your mouse to the bottom right corner of your screen where you'll find a horizontal line or bar (this is the zoom slider). Find the point that's about 70% of the way from the left end to the right end of this slider, and press the left mouse button once.",
     "box_type": "bbox",
     "box_coordinates": [
       1821.58,
@@ -1706,7 +1706,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the exclamation mark of \"Big news!\"",
+    "instruction": "Click on the exclamation mark of \"Big news!\"",
     "box_type": "bbox",
     "box_coordinates": [
       688.87,
@@ -1726,7 +1726,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click the search icon button of the terminal window\"user@user-virtual-machine: ~\"",
+    "instruction": "Find the black bar at the top of your screen, above the bird logo, with the text \"user@user-virtual-machine: ~\" written on it, and click on the magnifying glass icon to the right of this text.",
     "box_type": "bbox",
     "box_coordinates": [
       785.55,
@@ -1746,7 +1746,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Close the terminal window\"user@user-virtual-machine: ~\"",
+    "instruction": "Look at the gray window that's covering part of the bird picture. At the top of this window, you'll see the text \"user@user-virtual-machine: ~\". Find the \"X\" button in the upper right corner of this window and click on it to close the window.",
     "box_type": "bbox",
     "box_coordinates": [
       951.47,
@@ -1766,7 +1766,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Increase the zoom level of this picture",
+    "instruction": "Find the bird picture that has a white border/bar above it. In the upper left corner of this white bar, you'll see \"37%\" written. To the right of this percentage, there's a magnifying glass icon. Click on this magnifying glass icon.",
     "box_type": "bbox",
     "box_coordinates": [
       376.75,
@@ -1786,7 +1786,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click the score of Kanye East",
+    "instruction": "Move your mouse to the cell where the 3rd column (the column with the red background number 3) and the 12th row intersect (this cell is labeled as C12), then click once.",
     "box_type": "bbox",
     "box_coordinates": [
       354,
@@ -1806,7 +1806,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click to select row 12",
+    "instruction": "Click on the number 12 that appears on the far left side of the screen, displayed as white text on an orange background.",
     "box_type": "bbox",
     "box_coordinates": [
       70.6,
@@ -1826,7 +1826,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click to select column F",
+    "instruction": "Look at the middle part of your screen, slightly toward the top. Find a row of letters that reads \"ABCDEFGH...\" (letters of the alphabet in sequence). Move your mouse pointer specifically to the letter 'F' in this sequence and press the left mouse button once.",
     "box_type": "bbox",
     "box_coordinates": [
       623.06,
@@ -1846,7 +1846,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the autocomplete including \"-undefined-\"",
+    "instruction": "Look at the center of your screen and find the word \"undefined\". Move your mouse pointer to this word and press the left mouse button once.",
     "box_type": "bbox",
     "box_coordinates": [
       780.42,
@@ -1867,7 +1867,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click the B21 cell",
+    "instruction": "Move your mouse to the cell in the 2th column and 21th row (this cell is labeled as B21), then press the left mouse button once.",
     "box_type": "bbox",
     "box_coordinates": [
       198.86,
@@ -1887,7 +1887,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select the row 25",
+    "instruction": "Look at the far left edge of your screen and find the number \"25\" that appears with black text on a light gray background. Move your mouse pointer to",
     "box_type": "bbox",
     "box_coordinates": [
       68.86,
@@ -1907,7 +1907,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click the second column of the 31st row.",
+    "instruction": "Move your mouse to the cell in the 2th column and 31th row (this cell is labeled as B31), then press the left mouse button once.",
     "box_type": "bbox",
     "box_coordinates": [
       304.91,
@@ -1927,7 +1927,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select the Food Bill in August 2020",
+    "instruction": "Move your mouse to the cell in the 7th column and 28th row (this cell is labeled as G28)",
     "box_type": "bbox",
     "box_coordinates": [
       936.07,
@@ -1947,7 +1947,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the lower right corner of the histogram to adjust its size.",
+    "instruction": "Look at the middle-left portion of the screen where you'll see a colorful chart with many vertical colored bars. Find the bottom right corner of this chart, where there should be a small square or dot.",
     "box_type": "bbox",
     "box_coordinates": [
       889.89,
@@ -1966,7 +1966,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select the 12th slide",
+    "instruction": "Select the 12th slide",
     "box_type": "bbox",
     "box_coordinates": [
       1168.7,
@@ -1987,7 +1987,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select Forms in Tools menu",
+    "instruction": "In the pop-up menu that appears under your mouse pointer, find the \"Forms\" item and click on it.",
     "box_type": "bbox",
     "box_coordinates": [
       458.85,
@@ -2008,7 +2008,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Reduce the amount of slides in each row",
+    "instruction": "Look at the top of your screen and find the text \"4 slides.\" To the right of these words, click the minus sign (-) button.",
     "box_type": "bbox",
     "box_coordinates": [
       1350,
@@ -2028,7 +2028,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the checkbox of Master Background",
+    "instruction": "Look at the right side of the screen and find the text \"Master Background\". To the left of this text, click the orange box with a small checkmark in it.",
     "box_type": "bbox",
     "box_coordinates": [
       1663.02,
@@ -2048,7 +2048,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the save button",
+    "instruction": "Look at the top of the screen where you see the \"File\", \"Edit\", and \"View\" menu items. Directly below these menu items, find the green icon that looks like a down arrow with a vertical line.",
     "box_type": "bbox",
     "box_coordinates": [
       166.36,
@@ -2069,7 +2069,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the I15 cell",
+    "instruction": "Move your mouse to the cell in the 9th column and 15th row (this cell is labeled as I15)",
     "box_type": "bbox",
     "box_coordinates": [
       734.24,
@@ -2089,7 +2089,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click the box under \"REVIEWER TITLE\" in the dialog box on the upper left",
+    "instruction": "Look at the upper left corner of your screen where you'll see a window. Find the text \"reviewer title\" in this window, and click on the cell/box directly below this text.",
     "box_type": "bbox",
     "box_coordinates": [
       316.88,
@@ -2109,7 +2109,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the lower right corner of cell I27",
+    "instruction": "Click on the lower right corner of cell in the 9th column and 27th row (this cell is labeled as I27)",
     "box_type": "bbox",
     "box_coordinates": [
       807.79,
@@ -2129,7 +2129,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Enlarge the dialog box on the upper left to full screen",
+    "instruction": "Look at the upper left corner of your screen where you'll see a window. Find the small square icon in the upper right corner of this window (this is the maximize button).",
     "box_type": "polygon",
     "box_coordinates": [
       638.45,
@@ -2161,7 +2161,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the 10% position of the slider",
+    "instruction": "Click on 10% of the way from the left end of the slider at the bottom-right of the screen.",
     "box_type": "bbox",
     "box_coordinates": [
       1758.8,
@@ -2180,7 +2180,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the checkbox of \"Preview\"",
+    "instruction": "Look at the bottom left corner of your screen and find the word \"Preview\". To the left of this word, there's a small square (this is likely a checkbox). Move your mouse pointer to this small square and press the left mouse button once.",
     "box_type": "bbox",
     "box_coordinates": [
       243.58,
@@ -2201,7 +2201,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Create a new fi",
+    "instruction": "Click on the \u2019New Ctrl+N'",
     "box_type": "bbox",
     "box_coordinates": [
       69.82,
@@ -2222,7 +2222,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Send this file by email",
+    "instruction": "Click on \u2019Send by Email...'",
     "box_type": "bbox",
     "box_coordinates": [
       71.24,
@@ -2243,7 +2243,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the downward arrow of the filter autocomplete",
+    "instruction": "Click on the down-arrow on the right side of the filter in the right side of the screen",
     "box_type": "bbox",
     "box_coordinates": [
       1881.57,
@@ -2264,7 +2264,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the scroll bar of System Resources panel",
+    "instruction": "Look at the left side of the screen where you'll see a window. On the right edge of this window, find the dark gray vertical bar (this is likely a scrollbar). Move your mouse pointer to this dark gray vertical bar and press the left mouse button once.",
     "box_type": "bbox",
     "box_coordinates": [
       856.05,
@@ -2283,7 +2283,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the checkbox of \"Delete cropped pixels\"",
+    "instruction": "Look at the left side of your screen and find the text \"Delete cropped pixels\". To the left of this text, click the small square (checkbox).",
     "box_type": "bbox",
     "box_coordinates": [
       76.94,
@@ -2303,7 +2303,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the icon of a rope to choose \"Free Select Tool\"",
+    "instruction": "On the top-left of the screen, click on the icon of a rope",
     "box_type": "bbox",
     "box_coordinates": [
       166.67,
@@ -2323,7 +2323,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>a fire icon (\ud83d\udd25) located on the left side toolbar/sidebar of the Thunderbird email client",
+    "instruction": "a fire icon (\ud83d\udd25) located on the left side toolbar/sidebar of the Thunderbird email client",
     "box_type": "bbox",
     "box_coordinates": [
       157.85,
@@ -2343,7 +2343,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>dropdown arrow (or downward-facing chevron) next to the \"Reply All\" button",
+    "instruction": "dropdown arrow (or downward-facing chevron) next to the \"Reply All\" button",
     "box_type": "bbox",
     "box_coordinates": [
       1490.74,
@@ -2364,7 +2364,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Display the Thunderbird menu",
+    "instruction": "Look at the top right corner of your screen and find the icon that looks like three vertical lines (\u2261).",
     "box_type": "bbox",
     "box_coordinates": [
       1828.76,
@@ -2384,7 +2384,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Drag to resize (or narrow) the leftmost folder panel in Thunderbird",
+    "instruction": "Find the vertical line that separates the leftmost panel (which shows folders like Inbox, Drafts, etc.) from the middle section that displays your email list.",
     "box_type": "bbox",
     "box_coordinates": [
       376.47,
@@ -2403,7 +2403,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Close the partially covered window",
+    "instruction": "Look at the top portion of your screen where you'll see a partially covered window displaying folder contents. Find the \"X\" icon in the upper right corner of this window (this is the close button).",
     "box_type": "polygon",
     "box_coordinates": [
       937.2,
@@ -2443,7 +2443,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Drag from here to horizontally expand the Chrome window containing GitHub towards the right",
+    "instruction": "Find the Chrome browser window that displays the GitHub website on your screen. Move your mouse pointer to the right edge (the right border) of this window.",
     "box_type": "bbox",
     "box_coordinates": [
       1274.6,
@@ -2462,7 +2462,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>In the file explorer window at the bottom layer (partially obscured), change the view to list view.",
+    "instruction": "Look at the file explorer window that's partially obscured at the bottom layer. Find the icon that shows three horizontal lines with a dot to the left of each line (this icon represents changing to list view).",
     "box_type": "bbox",
     "box_coordinates": [
       723.62,
@@ -2482,7 +2482,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Minimize the window at the bottom layer of the current screen",
+    "instruction": "Look at the top portion of your screen where you'll see a partially covered window displaying folder contents. Find the minus sign (-) icon in the upper right corner of this window (this is the minimize button).",
     "box_type": "polygon",
     "box_coordinates": [
       857.2,
@@ -2522,7 +2522,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Start from the first slide icon",
+    "instruction": "Look at the top of your screen where you'll see the toolbar with various icons. Find the icon that looks like a slide with a play symbol (\u25b6) in its bottom right corner. This icon likely represents slideshow or presentation playback functions.",
     "box_type": "bbox",
     "box_coordinates": [
       741.3,
@@ -2543,7 +2543,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Start from the current slide icon",
+    "instruction": "Look at the top of your screen and find the icon that shows a slide with a pause symbol (||) in its bottom right corner.",
     "box_type": "bbox",
     "box_coordinates": [
       776.12,
@@ -2564,7 +2564,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Rotate icon",
+    "instruction": "Look at the top of your screen and find the Rotate icon, which looks like a blue triangle with a curved double-headed arrow in the middle.",
     "box_type": "bbox",
     "box_coordinates": [
       805.46,
@@ -2585,7 +2585,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Shadow icon",
+    "instruction": "Look at the top of your screen and find the icon that looks like a white rectangle positioned above a black rectangle (two stacked rectangles).",
     "box_type": "bbox",
     "box_coordinates": [
       979.54,
@@ -2606,7 +2606,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Duplicate slide icon",
+    "instruction": "Look at the top of your screen in the toolbar area and find the icon that looks like a blue square with a white circle in the middle.",
     "box_type": "bbox",
     "box_coordinates": [
       1197.77,
@@ -2627,7 +2627,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Insert row above",
+    "instruction": "Look at the bottom of your screen and find the icon that shows a table with a green top row and a plus sign (+) in its bottom right corner. This icon represents the function to add a row above in a table",
     "box_type": "bbox",
     "box_coordinates": [
       736.2,
@@ -2648,7 +2648,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Insert column after",
+    "instruction": "Look at the bottom of your screen and find the icon that shows a table with a green rightmost column and a plus sign (+) in its bottom left corner. This icon represents the function to add a column to the right in a table.",
     "box_type": "bbox",
     "box_coordinates": [
       833.99,
@@ -2669,7 +2669,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Collapse the Properties panel by clicking on the right arrow",
+    "instruction": "Collapse the Properties panel by clicking on the right arrow at the right side of the screen.",
     "box_type": "bbox",
     "box_coordinates": [
       1510.97,
@@ -2688,7 +2688,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Drag the left border of the Properties panel to expand its width",
+    "instruction": "The vertical divider line between the main slide (showing a blonde woman with a pink background titled \"Goal Roadmap\") and the Properties panel on the right side.",
     "box_type": "bbox",
     "box_coordinates": [
       1508.5,
@@ -2708,7 +2708,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Drag the horizontal scroll bar to center the image in the viewing area",
+    "instruction": "Move your mouse pointer to the gray rectangular scroll bar at the bottom of the screen.",
     "box_type": "bbox",
     "box_coordinates": [
       678.85,
@@ -2727,7 +2727,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Highlighted option",
+    "instruction": "Click on 'Enhance' in the dropdown menu.",
     "box_type": "bbox",
     "box_coordinates": [
       446.97,
@@ -2748,7 +2748,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>show the desktop",
+    "instruction": "The light purple square on the far right edge of the screen represents another virtual desktop. This is part of the workspace switcher, allowing you to navigate between different virtual desktops on your system.",
     "box_type": "bbox",
     "box_coordinates": [
       1835.99,
@@ -2767,7 +2767,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>The fourth option",
+    "instruction": "Click on 'A3 (300 ppi)'.",
     "box_type": "bbox",
     "box_coordinates": [
       154.6,
@@ -2787,7 +2787,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>The last option in the visible range",
+    "instruction": "Click on '3840x2160 4K UHD'.",
     "box_type": "bbox",
     "box_coordinates": [
       153.94,
@@ -2807,7 +2807,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Next option in the current expanded panel",
+    "instruction": "Click on 'A1 (300 ppi)'.",
     "box_type": "bbox",
     "box_coordinates": [
       155.92,
@@ -2827,7 +2827,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>The last option under Curves and Polygons",
+    "instruction": "Find the section between \"Curve and Polygons\" and \"Connectors\" categories. In this section, locate the last icon that looks like three-quarters of a square (a square with its top-right corner missing).",
     "box_type": "bbox",
     "box_coordinates": [
       1601.16,
@@ -2847,7 +2847,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>row 2, column 4 of \"Basic Shapes\" section (if we count from left to right, top to bottom)",
+    "instruction": "row 2, column 4 of \"Basic Shapes\" section (if we count from left to right, top to bottom)",
     "box_type": "bbox",
     "box_coordinates": [
       1711.43,
@@ -2867,7 +2867,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Ring shape",
+    "instruction": "Look at the right side of the screen where you'll see a vertical toolbar with drawing tools. Find the area between the \"Basic Shapes\" and \"Symbol Shapes\" sections. Locate the icon that looks like concentric circles (circles within circles).",
     "box_type": "bbox",
     "box_coordinates": [
       1819.78,
@@ -2886,7 +2886,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Puzzle shape",
+    "instruction": "row 2, column 3 of \u201cSymbol Shapes\" section (if we count from left to right, top to bottom)",
     "box_type": "bbox",
     "box_coordinates": [
       1655.7,
@@ -2905,7 +2905,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on Gallery icon again to collapse the panel",
+    "instruction": "On the right side of the screen, click on the purple icon above 'Gallery'.",
     "box_type": "bbox",
     "box_coordinates": [
       1864.6,
@@ -2926,7 +2926,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Curved up-down arrow",
+    "instruction": "Look at the right side of the screen and find the orange circular icon that has two arrows arranged in a cycle (one arrow pointing up and one pointing down, creating a circular pattern).",
     "box_type": "bbox",
     "box_coordinates": [
       1759.4,
@@ -2945,7 +2945,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>s-line-blue",
+    "instruction": "\u001b[A",
     "box_type": "bbox",
     "box_coordinates": [
       1670.3,
@@ -2964,7 +2964,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>middle option among the chart variants for Column type charts",
+    "instruction": "middle option among the chart variants for Column type charts",
     "box_type": "bbox",
     "box_coordinates": [
       1041.9,
@@ -2983,7 +2983,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Percent stacked option",
+    "instruction": "right-most option among the chart variants for Column type charts",
     "box_type": "bbox",
     "box_coordinates": [
       1174.1,
@@ -3002,7 +3002,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Add Decimal Place for the current cell",
+    "instruction": "Look at the top portion of your screen in the toolbar area and find an icon that shows \".00\" text with a green checkmark (\u2713) below it.",
     "box_type": "bbox",
     "box_coordinates": [
       1138.56,
@@ -3022,7 +3022,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Increase indent for the current cell",
+    "instruction": "Look at the top of your screen in the toolbar area and find the icon that has multiple vertical lines with an orange element in its upper left corner and an arrow pointing to the right.",
     "box_type": "bbox",
     "box_coordinates": [
       1211.72,
@@ -3042,7 +3042,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Format the current cell as currency",
+    "instruction": "Look at the top of your screen in the toolbar area and find the icon that looks like a blue square with a white circle in the middle.",
     "box_type": "bbox",
     "box_coordinates": [
       988.38,
@@ -3062,7 +3062,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Reduce the posterize levels",
+    "instruction": "Click the downward arrow in the selector of posterize levels in the pop-up window at the lower left corner",
     "box_type": "bbox",
     "box_coordinates": [
       594.09,
@@ -3083,7 +3083,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Save the current settings as named preset",
+    "instruction": "Click the '+' icon beside the selector of presets in the pop-up",
     "box_type": "bbox",
     "box_coordinates": [
       544.32,
@@ -3103,7 +3103,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select the split view",
+    "instruction": "Click on t",
     "box_type": "bbox",
     "box_coordinates": [
       520.52,
@@ -3123,7 +3123,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Enter the \"Run and Debug\" sidebar",
+    "instruction": "Click the icon that consists of the shapes of a bug and a triangle in the left toolbar in the opened application",
     "box_type": "bbox",
     "box_coordinates": [
       448.3,
@@ -3143,7 +3143,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Enter the \"Source Control\" sidebar",
+    "instruction": "Click on the icon that consisting of three small circles connected by lines in a Y-shaped",
     "box_type": "bbox",
     "box_coordinates": [
       448.4,
@@ -3163,7 +3163,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Split editor right",
+    "instruction": "Click the icon consists of two parallel vertical rectangles in the editor tab bar",
     "box_type": "bbox",
     "box_coordinates": [
       1410.71,
@@ -3183,7 +3183,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Check if there is any problems in the current file",
+    "instruction": "Click on the debug status beside the \"Restricted Mode\" in the bottom of the window",
     "box_type": "bbox",
     "box_coordinates": [
       608.89,
@@ -3202,7 +3202,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Pick farthest full-transparency color",
+    "instruction": "Click on the icon of color picker beside the selector of transparency threshold in the pop-up window",
     "box_type": "bbox",
     "box_coordinates": [
       1137.4,
@@ -3222,7 +3222,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Pick nearest full-opacity color",
+    "instruction": "Click on the icon of color picker beside the selector of opacity threshold in the pop-up window",
     "box_type": "bbox",
     "box_coordinates": [
       1138.58,
@@ -3242,7 +3242,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Unselect Preview",
+    "instruction": "Click on the checkbox of \"preview\" in the pop-up window",
     "box_type": "bbox",
     "box_coordinates": [
       817.8,
@@ -3262,7 +3262,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Manage presets in the Color to Alpha Panel",
+    "instruction": "Click on the icon that resembles a square with an inward-pointing arrow beside the selector of presets in the pop-up window",
     "box_type": "bbox",
     "box_coordinates": [
       1139.8,
@@ -3282,7 +3282,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Clone Formatting",
+    "instruction": "Click on the brush-like icon in the upper toolbar",
     "box_type": "bbox",
     "box_coordinates": [
       437.54,
@@ -3302,7 +3302,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Clear Direct Formatting",
+    "instruction": "Click on the icon with letter 'A' in black with a horizontal line under",
     "box_type": "bbox",
     "box_coordinates": [
       474.1,
@@ -3322,7 +3322,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Undo input",
+    "instruction": "Click on the icon that a red curved arrow pointing to the left in the top toolbar",
     "box_type": "bbox",
     "box_coordinates": [
       511.82,
@@ -3342,7 +3342,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Skip backward to the previous media in the playlist",
+    "instruction": "Click on the icon with a double triangle icon pointing to the left in the control panel at the bottom of the screen",
     "box_type": "bbox",
     "box_coordinates": [
       116.86,
@@ -3362,7 +3362,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Toggle the video in fullscreen",
+    "instruction": "Click on the fullscreen icon that looks like four corner arrows pointing outward from the center in the control panel at the bottom of screen",
     "box_type": "bbox",
     "box_coordinates": [
       207.58,
@@ -3382,7 +3382,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click to toggle between loop all, loop one and no loop",
+    "instruction": "Click on the icon with two curved arrows forming a circular clockwise pattern in the control panel at the bottom of screen",
     "box_type": "bbox",
     "box_coordinates": [
       297,
@@ -3402,7 +3402,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Show extended settings",
+    "instruction": "Click on the icon showing three vertical sliders in the control panel at the bottom of the screen",
     "box_type": "bbox",
     "box_coordinates": [
       232.9,
@@ -3422,7 +3422,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Start from Current Slide",
+    "instruction": "Click the icon that shows a slide icon with a pause icon in the right corner of it and the icon is located in the upper toolbar",
     "box_type": "bbox",
     "box_coordinates": [
       775.47,
@@ -3442,7 +3442,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Master Slide",
+    "instruction": "Click the icon having a light blue rectangle with a blue pencil overlapping it in the upper toolbar",
     "box_type": "bbox",
     "box_coordinates": [
       702.62,
@@ -3462,7 +3462,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Insert a callout shape",
+    "instruction": "Click on the icon of a chatbox in the upper toolbar",
     "box_type": "bbox",
     "box_coordinates": [
       668.52,
@@ -3482,7 +3482,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select \"Curves and Polygons\"",
+    "instruction": "Click on the icon that has a blue pencil above a curved line in the upper toolbar",
     "box_type": "bbox",
     "box_coordinates": [
       395.82,
@@ -3502,7 +3502,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Sort the files according to the size",
+    "instruction": "Click on the 'Size' option in the pop-up window",
     "box_type": "bbox",
     "box_coordinates": [
       736.16,
@@ -3522,7 +3522,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Sort the files in descending order",
+    "instruction": "Click on the 'Name' option in the pop-up window",
     "box_type": "bbox",
     "box_coordinates": [
       239.81,
@@ -3542,7 +3542,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Sort the files according to the modified time",
+    "instruction": "Click on the 'Modified' option in the pop-up window",
     "box_type": "bbox",
     "box_coordinates": [
       805.01,
@@ -3562,7 +3562,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select the page setting in the sidebar",
+    "instruction": "Click on the icon that looks like an empty document in the to",
     "box_type": "bbox",
     "box_coordinates": [
       1863.86,
@@ -3582,7 +3582,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Check the word account",
+    "instruction": "Click on the words count at the bottom of the screen",
     "box_type": "bbox",
     "box_coordinates": [
       345.45,
@@ -3601,7 +3601,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Switch to book view",
+    "instruction": "Click on the icon that having two document icons positioned side-by-side at the bottom of the screen to switch to book view",
     "box_type": "bbox",
     "box_coordinates": [
       1699.17,
@@ -3620,7 +3620,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Choose the first recent color",
+    "instruction": "Select the white color that is shown as recently used in the panel",
     "box_type": "bbox",
     "box_coordinates": [
       819.54,
@@ -3640,7 +3640,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Choose the second recent color",
+    "instruction": "Select the blue color that is shown as recently used in the panel",
     "box_type": "bbox",
     "box_coordinates": [
       837.66,
@@ -3660,7 +3660,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select Outline",
+    "instruction": "Select the 'Outline' checkbox in the pop-up window",
     "box_type": "bbox",
     "box_coordinates": [
       1131.5,
@@ -3680,7 +3680,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Reset to default",
+    "instruction": "Click the 'Reset' button in the 'Charater' option panel",
     "box_type": "bbox",
     "box_coordinates": [
       1037.55,
@@ -3700,7 +3700,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Continue walkthroughs",
+    "instruction": "Click on the 'Get Started with VS Code' widget",
     "box_type": "bbox",
     "box_coordinates": [
       689.46,
@@ -3719,7 +3719,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Turn off the settings by clicking",
+    "instruction": "Click the 'x' button to close the opened settings on the right side of the application",
     "box_type": "bbox",
     "box_coordinates": [
       1447,
@@ -3739,7 +3739,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Enter git area",
+    "instruction": "Click on the icon that consisting of three small circles connected by lines in a Y-shaped",
     "box_type": "bbox",
     "box_coordinates": [
       462.74,
@@ -3759,7 +3759,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Try to open a new terminal",
+    "instruction": "Click on the 'Terminal' in the top menu of the application",
     "box_type": "bbox",
     "box_coordinates": [
       714.6,
@@ -3779,7 +3779,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select the blank area at C4",
+    "instruction": "Click on the C4 (third column from the left, fourth row from the top) cell in the sheet",
     "box_type": "bbox",
     "box_coordinates": [
       273.54,
@@ -3799,7 +3799,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select the blank area at U42",
+    "instruction": "Click on the U42 (21st column from the left, 42nd row from the top) in the sheet",
     "box_type": "bbox",
     "box_coordinates": [
       1750.76,
@@ -3819,7 +3819,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Open the font color dropdown menu",
+    "instruction": "Click on the downward-pointing triangle beside a button showing a capital 'A' with a red underline in the upper toolbar",
     "box_type": "bbox",
     "box_coordinates": [
       561,
@@ -3839,7 +3839,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select \"sort\" option",
+    "instruction": "Click on the icon having two orange arrows (one pointing downward and one pointing upward) in the upper toolbar",
     "box_type": "bbox",
     "box_coordinates": [
       780.1,
@@ -3859,7 +3859,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select \"AutoFilter\" option",
+    "instruction": "Click on the icon with a white filter and a red pen on it in the upper toolbar",
     "box_type": "bbox",
     "box_coordinates": [
       880.59,
@@ -3879,7 +3879,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Edit Pivot Table",
+    "instruction": "Click on the icon with a grid structure with several small squares arranged in columns on the left side and a small orange arrow extending to the right in the upper toolbar",
     "box_type": "bbox",
     "box_coordinates": [
       987.68,
@@ -3899,7 +3899,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Insert some special characters",
+    "instruction": "Click on the omega icon in the upper toolbar",
     "box_type": "bbox",
     "box_coordinates": [
       1026.3,
@@ -3919,7 +3919,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Change the cell to number format",
+    "instruction": "Click on the icon that displays the characters \"0.0\" in dark text on a light green background in the upper toolbar",
     "box_type": "bbox",
     "box_coordinates": [
       1067.5,
@@ -3939,7 +3939,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Set boarder styles",
+    "instruction": "Click on the icon that a square with an orange outline and a small gear icon in the bottom right corner of the square in the upper toolbar",
     "box_type": "bbox",
     "box_coordinates": [
       1331.6,
@@ -3959,7 +3959,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Add a new sheet",
+    "instruction": "Click the icon with a document or file with a green plus sign (+) in the bottom right corner and the icon is located at the bottom of the screen",
     "box_type": "bbox",
     "box_coordinates": [
       179.62,
@@ -3979,7 +3979,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Zoom in",
+    "instruction": "Click on the '+' in the lower right corner to increase the scale of the current sheet",
     "box_type": "bbox",
     "box_coordinates": [
       1852.69,
@@ -3998,7 +3998,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Open Gallery",
+    "instruction": "Click on the icon having two overlapping purple or pink rectangles with a small white mountain in the foreground rectangle in the toolbar at the right side of the application",
     "box_type": "bbox",
     "box_coordinates": [
       1873.25,
@@ -4018,7 +4018,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Choose the yellow font style",
+    "instruction": "Click on the style that the word \"NOTE\" is written in a light yellow font color in the pop-up window",
     "box_type": "bbox",
     "box_coordinates": [
       897.2,
@@ -4038,7 +4038,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select solid blue font style",
+    "instruction": "Click on the style that the word \"blue\" is written in a light blue font color in the pop-up window",
     "box_type": "bbox",
     "box_coordinates": [
       1081.97,
@@ -4058,7 +4058,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Choose \"favorite 2\" style",
+    "instruction": "Click on the style that \"Favorite 2\" appears in a light orange in the pop-up window",
     "box_type": "bbox",
     "box_coordinates": [
       736.07,
@@ -4078,7 +4078,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select \"x\" to exit the panel",
+    "instruction": "Click the 'x' to close the pop-up window",
     "box_type": "bbox",
     "box_coordinates": [
       1240.46,
@@ -4098,7 +4098,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select \"No. 9\"",
+    "instruction": "Click on the cell that contains the text 'No. 9'",
     "box_type": "bbox",
     "box_coordinates": [
       110.24,
@@ -4118,7 +4118,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select A9 cell",
+    "instruction": "Click on the A9 cell (first column from the left, 9th column",
     "box_type": "bbox",
     "box_coordinates": [
       110.59,
@@ -4138,7 +4138,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Accept the content in this cell",
+    "instruction": "Click on the icon with a green circular button and a white checkmark in the upper toolbar",
     "box_type": "bbox",
     "box_coordinates": [
       307.17,
@@ -4158,7 +4158,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click the cut function option",
+    "instruction": "Click on the icon that looks like scissors in the upper toolbar",
     "box_type": "bbox",
     "box_coordinates": [
       320.54,
@@ -4178,7 +4178,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Save this file by clicking.",
+    "instruction": "Click on the icon having green downward-pointing arrow towards a gray line and a small red square element visible in the upper right corner of the icon and the icon is located in the upper toolbar",
     "box_type": "bbox",
     "box_coordinates": [
       161.4,
@@ -4198,7 +4198,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Expand the font list",
+    "instruction": "Click the downward arrow of the font selection to expand the menu",
     "box_type": "bbox",
     "box_coordinates": [
       259.61,
@@ -4218,7 +4218,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Choose \"fuzzy select\" tool",
+    "instruction": "Click on the icon with gray wand with a star at the top in the left side toolbar",
     "box_type": "bbox",
     "box_coordinates": [
       209.18,
@@ -4238,7 +4238,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>I want to select a contiguous region on the basis of color",
+    "instruction": "Click on the icon with gray wand with a star at the top in the collection of image editing tools",
     "box_type": "bbox",
     "box_coordinates": [
       208.98,
@@ -4258,7 +4258,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Change Foreground Color from Black to another color",
+    "instruction": "Click on the black square having a white square to its right and smaller black and white squares below it in the left tool panel",
     "box_type": "bbox",
     "box_coordinates": [
       144.71,
@@ -4279,7 +4279,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select \"device status\"",
+    "instruction": "Click on the icon that has a white brush and an exclamation mark icon beside it and the icon is located in the left toolbar",
     "box_type": "bbox",
     "box_coordinates": [
       99.74,
@@ -4300,7 +4300,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Configure the tab on the left side, just above \"Crop\" area.",
+    "instruction": "Click on the icon with a square shape with an arrow pointing to the left direction in the left tool panel",
     "box_type": "bbox",
     "box_coordinates": [
       231.48,
@@ -4321,7 +4321,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select the brush with a hardness of 75.",
+    "instruction": "Switch the hardness of brush to the right one of the currently selected one in the right panel",
     "box_type": "bbox",
     "box_coordinates": [
       1829.48,
@@ -4340,7 +4340,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Duplicate this brush",
+    "instruction": "Click on the icon having two overlapping rectangles in the right side on the toolbar below the spacing selector",
     "box_type": "bbox",
     "box_coordinates": [
       1787.11,
@@ -4361,7 +4361,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Delete this image",
+    "instruction": "Click on the square icon that has a cross inside it and it is located at the bottom of the left tool panel",
     "box_type": "bbox",
     "box_coordinates": [
       164.4,
@@ -4381,7 +4381,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Increase the percentage of width of brush",
+    "instruction": "Click the upward arrow  beside the spacing selector to increase the spacing",
     "box_type": "bbox",
     "box_coordinates": [
       1898.82,
@@ -4400,7 +4400,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Edit this brush",
+    "instruction": "Click on the icon with several horizontal lines with a pencil across them and the icon is below the spacing selector",
     "box_type": "bbox",
     "box_coordinates": [
       1726.55,
@@ -4420,7 +4420,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Check the channels of this image",
+    "instruction": "Click on the second icon aboeve the mode selector in the right panel",
     "box_type": "bbox",
     "box_coordinates": [
       1749.52,
@@ -4440,7 +4440,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Hide the layer of this image.",
+    "instruction": "Click on the eye icon of the first image layer",
     "box_type": "bbox",
     "box_coordinates": [
       1727.2,
@@ -4460,7 +4460,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Lock the position and the size of the image",
+    "instruction": "Click on the icon with a white plus-shaped icon with extended ends below the opacity selector",
     "box_type": "bbox",
     "box_coordinates": [
       1786.77,
@@ -4480,7 +4480,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click the small image to access the layer attribute settings",
+    "instruction": "Click on the thumbnail of the first image layer on the right toolbar",
     "box_type": "bbox",
     "box_coordinates": [
       1797,
@@ -4499,7 +4499,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Change the mode of this image",
+    "instruction": "Click on the selector of Mode above the opacity option",
     "box_type": "bbox",
     "box_coordinates": [
       1726.86,
@@ -4520,7 +4520,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Configure the bottom-right tab",
+    "instruction": "Click the button on the right sidebar with a square and a left-pointing triangle inside to configure the bottom-right tab",
     "box_type": "bbox",
     "box_coordinates": [
       1889.2,
@@ -4540,7 +4540,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select the color picker tool",
+    "instruction": "Select the color picker tool with a dropper icon on the top-left corner between the A and the magnifying glass",
     "box_type": "bbox",
     "box_coordinates": [
       166.44,
@@ -4561,7 +4561,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Hide the dropdown menu opened under Interface",
+    "instruction": "Click the small minus sign on the left of \"Interface\" in the left sidebar of the Preferences window",
     "box_type": "bbox",
     "box_coordinates": [
       83.21,
@@ -4581,7 +4581,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Change the theme to grey",
+    "instruction": "Choose the the \"Gray /usr/share/gimp/2.0/themes/Gray\" theme in the table of the Preferences window",
     "box_type": "bbox",
     "box_coordinates": [
       337.72,
@@ -4601,7 +4601,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Give them feedback to make the software better",
+    "instruction": "Click the \"Get involved\" button on the right of the line \"Help us make LibreOffice even better!\" on top of the document",
     "box_type": "bbox",
     "box_coordinates": [
       1716.16,
@@ -4621,7 +4621,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Print the file",
+    "instruction": "Select the printer icon without magnifying glass in the toolbar on the top-left of the window",
     "box_type": "bbox",
     "box_coordinates": [
       248.08,
@@ -4641,7 +4641,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click the place right after \"06:53:30\" and before the comma",
+    "instruction": "Click the place right after \"06:53:30\" before the comma in the middle of the document",
     "box_type": "bbox",
     "box_coordinates": [
       716.11,
@@ -4660,7 +4660,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Enter audio preferences",
+    "instruction": "Click on the Audio tab in the Preferences window",
     "box_type": "bbox",
     "box_coordinates": [
       1062.37,
@@ -4680,7 +4680,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Exit the preferences",
+    "instruction": "Click the \"X\" button on the right of Preferences to close the Preferences window",
     "box_type": "bbox",
     "box_coordinates": [
       1158.58,
@@ -5503,7 +5503,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Go to my contacts on the left side.",
+    "instruction": "Click the Contacts icon with a notebook shape on the left sidebar top-left of the window",
     "box_type": "bbox",
     "box_coordinates": [
       69.7,
@@ -5682,7 +5682,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>The end point of drag on selecting the caption of the figure displayed",
+    "instruction": "Click on the full stop \".\" after the text \"Best viewed zoomed in\" on the bottom of the figure",
     "box_type": "bbox",
     "box_coordinates": [
       897.92,
@@ -6558,7 +6558,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Enable equalizer",
+    "instruction": "Select the checkbox of Enable under the Equalizer tab in the left window",
     "box_type": "bbox",
     "box_coordinates": [
       256.62,
@@ -6701,7 +6701,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Install eFootball",
+    "instruction": "Click the Install button on the bottom-right of the \"eFootball\" tile",
     "box_type": "polygon",
     "box_coordinates": [
       961.99,
@@ -6847,7 +6847,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Click the mouth of the person in this slide",
+    "instruction": "Click the mouth of the person in the middle of the slide",
     "box_type": "polygon",
     "box_coordinates": [
       549.28,
@@ -7020,7 +7020,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Sign in for Youtube",
+    "instruction": "Click \"Sign in\" in the top-right corner of the page",
     "box_type": "polygon",
     "box_coordinates": [
       1139.24,
@@ -7121,7 +7121,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Enable Fractional Scaling for Displays",
+    "instruction": "Click the toggle switch on the right of \"Fractional Scaling\"",
     "box_type": "bbox",
     "box_coordinates": [
       498.2,
@@ -7849,7 +7849,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select \"Box List Blue\"",
+    "instruction": "Select the item \"Box List Blue\" under Styles",
     "box_type": "bbox",
     "box_coordinates": [
       741.43,
@@ -8469,7 +8469,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click the Help button above.",
+    "instruction": "Click the Help button on the top-left corner of the window",
     "box_type": "bbox",
     "box_coordinates": [
       158.45,
@@ -10168,7 +10168,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Check License",
+    "instruction": "Click the underlined \"License\" on the bottom of the active window",
     "box_type": "bbox",
     "box_coordinates": [
       814.3,
@@ -11007,7 +11007,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Click to the email address of Cindy Williams.",
+    "instruction": "Click on the email address of Cindy Williams.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11028,7 +11028,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Move the cursor to the libreoffice cell that is not empty.",
+    "instruction": "Move the cursor to the libreoffice cell that is not empty.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11047,7 +11047,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Explore the NFL website.",
+    "instruction": "Explore the NFL website.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11066,7 +11066,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the Windows Start button at the left bottom corner.",
+    "instruction": "Click on the Windows Start button at the left bottom corner.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11085,7 +11085,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Navigate to the 20th sheet of this workbook.",
+    "instruction": "Navigate to the 20th sheet of this workbook.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11104,7 +11104,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on \"Cancel\" to close the dialog box.",
+    "instruction": "Click on \"Cancel\" to close the dialog box.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11124,7 +11124,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Add middle name.",
+    "instruction": "Add middle name.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11144,7 +11144,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click to the blue background layer.",
+    "instruction": "Click the blue background layer.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11163,7 +11163,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Make the opacity of the layer higher.",
+    "instruction": "Make the opacity of the layer higher.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11182,7 +11182,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on the \"x\" button to close the popup window.",
+    "instruction": "Click on the \"x\" button to close the popup window.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11202,7 +11202,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Checkbox of 'Odd Pages Left'.",
+    "instruction": "Checkbox of 'Odd Pages Left'.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11223,7 +11223,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Navigate to a specific page.",
+    "instruction": "Navigate to a specific page.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11244,7 +11244,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Navigate to page number 10.",
+    "instruction": "Navigate to page number 10.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11263,7 +11263,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Click the upload button.",
+    "instruction": "Click the upload button.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11283,7 +11283,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Click on \"Hide applications\"",
+    "instruction": "Click on \"Hide applications\"",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11303,7 +11303,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Open the file \"deng_mind2web.txt\"",
+    "instruction": "Open the file \"deng_mind2web.txt\"",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11322,7 +11322,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Edit the Min Tokenization Line Length.",
+    "instruction": "Edit the Min Tokenization Line Length.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11342,7 +11342,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select the item that says \"Dec, 2024\"",
+    "instruction": "Select the item that says \"Dec, 2024\"",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11362,7 +11362,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select the item that contains a negative number",
+    "instruction": "Select the item that contains a negative number",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11382,7 +11382,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Select the item at \"I-0\"",
+    "instruction": "Select the item at \"I-0\"",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11402,7 +11402,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Switch to the libreoffice file that already opened.",
+    "instruction": "Switch to the libreoffice file that already opened.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11421,7 +11421,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Click to the /etc/ folder in the file manager.",
+    "instruction": "Click to the /etc/ folder in the file manager.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11441,7 +11441,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Navigate to another tab in the firefox browser.",
+    "instruction": "Navigate to another tab in the firefox browser.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11461,7 +11461,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Choose the pink circular button.",
+    "instruction": "Choose the pink circular button.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11482,7 +11482,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>The button below the curved angled connector with arrow icon in the right side of shape connector dropdown menu",
+    "instruction": "The button below the curved angled connector with arrow icon in the right side of shape connector dropdown menu",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11503,7 +11503,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Smiley face icon to the right of the circular shape icon in the toolbar",
+    "instruction": "Smiley face icon to the right of the circular shape icon in the toolbar",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11523,7 +11523,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Choose \"requirement.txt\" that is no larger than 100 bytes.",
+    "instruction": "Choose \"requirement.txt\" that is no larger than 100 bytes.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11543,7 +11543,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Uncheck `Read-only` option in the file properties.",
+    "instruction": "Uncheck `Read-only` option in the file properties.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11562,7 +11562,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on red button \"open\".",
+    "instruction": "Click on red button \"open\".",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11582,7 +11582,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Adjust the darkness",
+    "instruction": "Adjust the darkness",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11601,7 +11601,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Choose the option that has an orange circular icon.",
+    "instruction": "Choose the option that has an orange circular icon.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11621,7 +11621,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Make this repo private.",
+    "instruction": "Make this repo private.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11641,7 +11641,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Open recent folder",
+    "instruction": "Open recent folder",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11661,7 +11661,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Change the hour of the time to 9 AM.",
+    "instruction": "Change the hour of the time to 9 AM.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11681,7 +11681,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Change the exact time.",
+    "instruction": "Change the exact time.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11700,7 +11700,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Set color tag to pink",
+    "instruction": "Set color tag to pink",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11721,7 +11721,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Adjust the Offset X.",
+    "instruction": "Adjust the Offset X.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11740,7 +11740,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Make Columns number smaller",
+    "instruction": "Make Columns number smaller",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11760,7 +11760,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Fade the background of the slide.",
+    "instruction": "Fade the background of the slide.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11779,7 +11779,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Add \"s\" after the word \"Display\".",
+    "instruction": "Add \"s\" after the word \"Display\".",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11799,7 +11799,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click on Upload button.",
+    "instruction": "Click on Upload button.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11819,7 +11819,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Move the puzzle slider upwards",
+    "instruction": "Move the puzzle slider upwards",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11839,7 +11839,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Rename the file",
+    "instruction": "Rename the file",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11858,7 +11858,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>In the dropdown panel choose the shape in the middle of the 5th row.",
+    "instruction": "In the dropdown panel choose the shape in the middle of the 5th row.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11879,7 +11879,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Navigate the video on play to 4:00.",
+    "instruction": "Navigate the video on play to 4:00.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11898,7 +11898,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click Undo button.",
+    "instruction": "Click Undo button.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11918,7 +11918,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Choose the top left picture that has a bed.",
+    "instruction": "Choose the top left picture that has a bed.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11937,7 +11937,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Sign out the Travel website.",
+    "instruction": "Sign o of the travel website.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11956,7 +11956,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Click on the \"x\" button on the top left corner of the popup window.",
+    "instruction": "Click on the \"x\" button on the top left corner of the popup window.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11976,7 +11976,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Click \"OK\" to close the window.",
+    "instruction": "Click \"OK\" to close the window.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -11996,7 +11996,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Delete the 10th paragraph in the document.",
+    "instruction": "Delete the 10th paragraph in the document.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -12015,7 +12015,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Enlarge and bold the title.",
+    "instruction": "Enlarge and bold the title.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -12035,7 +12035,7 @@
       1280,
       720
     ],
-    "instruction": "<todo>Proceeding that has a paper volume between 30 and 50.",
+    "instruction": "Proceeding that has a paper volume between 30 and 50.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
@@ -12055,7 +12055,7 @@
       1920,
       1080
     ],
-    "instruction": "<todo>Set the Libreoffice Writer window backward to the bottom of the screen.",
+    "instruction": "Send the Libreoffice Writer window backward.",
     "box_type": "refusal",
     "box_coordinates": [
       0,
