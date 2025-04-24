@@ -436,7 +436,9 @@ if __name__ == "__main__":
         print(f"Total samples: {results['total']}")
         print(f"Correct predictions: {results['correct']}")
         print(f"Accuracy: {results['accuracy']*100:.2f}%")
-        print(f"Accuracy dict: {results['accuracy_dict']}")
+        print(f"Accuracy dict 2x2: {results['accuracy_dict_2x2']}")
+        print(f"Accuracy dict ui_type: {results['accuracy_dict_ui_type']}")
+        print(f"Accuracy dict group: {results['accuracy_dict_group']}")
 
         # Terminate VLLM service
         terminate_vllm_service(process)
