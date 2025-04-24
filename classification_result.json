@@ -1,0 +1,5121 @@
+{
+    "classified": {
+        "text_matching": [
+            {
+                "id": "tR5gErKrt6_1",
+                "gui_type": "Radio Button, Label",
+                "instruction": "Change settings to show simple mode"
+            },
+            {
+                "id": "9W4J8yevlZ_0",
+                "gui_type": "Dropdown Menu, Label",
+                "instruction": "Select \"As Attachment\""
+            },
+            {
+                "id": "hMjkRFL62H_0",
+                "gui_type": "Button, Dialog/Modal, Label",
+                "instruction": "Allow the pop-up window"
+            },
+            {
+                "id": "i6kF2cNDtn_0",
+                "gui_type": "Button, Dialog/Modal, Label",
+                "instruction": "Click \"Replace\""
+            },
+            {
+                "id": "3Fh257K4Pd_2",
+                "gui_type": "Label, Table",
+                "instruction": "Select the item that says \\\"Dec, 2024\\\""
+            },
+            {
+                "id": "3Fh257K4Pd_3",
+                "gui_type": "Table, Label",
+                "instruction": "Select the item that contains a negative number"
+            },
+            {
+                "id": "3Fh257K4Pd_5",
+                "gui_type": "Table, Label",
+                "instruction": "Select the item at \\\"I-0\\\""
+            },
+            {
+                "id": "RxKFXF20dm_0",
+                "gui_type": "Button, Banner/Notification, Label",
+                "instruction": "Open \"Show recommendations\""
+            },
+            {
+                "id": "6t8bUw46XQ_0",
+                "gui_type": "Menu Bar, Dropdown Menu, Label",
+                "instruction": "Select \"Program Guide\""
+            },
+            {
+                "id": "a5GZt5CjGJ_0",
+                "gui_type": "Label, Button, List",
+                "instruction": "Select \"Box List Blue\""
+            },
+            {
+                "id": "a5GZt5CjGJ_1",
+                "gui_type": "Stepper, Label",
+                "instruction": "Make Columns number smaller"
+            },
+            {
+                "id": "oODH5wNXxj_0",
+                "gui_type": "Label, Image",
+                "instruction": "Click the title of the chart on the left."
+            },
+            {
+                "id": "s8szzBS40r_0",
+                "gui_type": "Button, Banner/Notification, Label",
+                "instruction": "Remove the bookmark"
+            },
+            {
+                "id": "26lutpfWbA_0",
+                "gui_type": "Button, Dialog/Modal, Label",
+                "instruction": "Accept the tracking preferences"
+            },
+            {
+                "id": "SSkeqHyDHI_0",
+                "gui_type": "Button, Dialog/Modal, Label",
+                "instruction": "Accept the cookies"
+            },
+            {
+                "id": "yXbCraFIDT_0",
+                "gui_type": "Button, Menu bar, Label",
+                "instruction": "Click the Help button above"
+            },
+            {
+                "id": "J4LybGu1qw_0",
+                "gui_type": "Button, Label, Dialog/Modal",
+                "instruction": "Consent"
+            },
+            {
+                "id": "u9BcjAUTlQ_0",
+                "gui_type": "Button, Dialog/Modal, Label",
+                "instruction": "Click \"OK\""
+            },
+            {
+                "id": "Lh7eUcFYW7_0",
+                "gui_type": "Dropdown Menu, Label, Sidebar",
+                "instruction": "Select \"Meters\""
+            },
+            {
+                "id": "mJAfD5H9gZ_0",
+                "gui_type": "Icon, Label",
+                "instruction": "Open the twitter under the email"
+            },
+            {
+                "id": "5LWu2cxt31_0",
+                "gui_type": "Label, List",
+                "instruction": "Choose \"requirement.txt\""
+            },
+            {
+                "id": "5LWu2cxt31_1",
+                "gui_type": "Label, List",
+                "instruction": "Choose \\\"requirement.txt\\\" that is no larger than 100 bytes."
+            },
+            {
+                "id": "1y0CmHiyPQ_0",
+                "gui_type": "Label, Button",
+                "instruction": "Add website"
+            },
+            {
+                "id": "1y0CmHiyPQ_1",
+                "gui_type": "Text Field/Input Box, Label",
+                "instruction": "Add middle name."
+            },
+            {
+                "id": "oAuNhTPDYZ_0",
+                "gui_type": "Button, Dialog/Modal, Label",
+                "instruction": "Enable Replacement"
+            },
+            {
+                "id": "eVSYgzYOGd_0",
+                "gui_type": "Icon, Label, Button",
+                "instruction": "Install GitLens"
+            },
+            {
+                "id": "qK3ccouEK0_0",
+                "gui_type": "Stepper, Label",
+                "instruction": "Increase JPEG compression Quality"
+            },
+            {
+                "id": "qjjUE6JMB9_0",
+                "gui_type": "List, Label, Dropdown Menu",
+                "instruction": "Choose 18 pt"
+            },
+            {
+                "id": "Sbve3LkRIP_0",
+                "gui_type": "Label, Button, Tree View",
+                "instruction": "Enter Junk Settings under Local Folders"
+            },
+            {
+                "id": "f3A04p1Sec_0",
+                "gui_type": "Label, Dropdown Menu",
+                "instruction": "Select Caveat"
+            },
+            {
+                "id": "ohiYxEdwYz_1",
+                "gui_type": "Icon, Label",
+                "instruction": "Lec powerpoint"
+            },
+            {
+                "id": "wun8PhjByw_0",
+                "gui_type": "Button, Label",
+                "instruction": "Enable Dark"
+            },
+            {
+                "id": "QNgRXBQhKu_0",
+                "gui_type": "Menu Bar, Dropdown Menu, Label",
+                "instruction": "User Tasks"
+            },
+            {
+                "id": "IJJKnL5DD9_0",
+                "gui_type": "Label, Button, Dropdown Menu",
+                "instruction": "Select 'Add Function Breakpoint'"
+            },
+            {
+                "id": "fUFbPxMJK2_0",
+                "gui_type": "Label, Button, Dropdown Menu",
+                "instruction": "Sign in to see tabs from other devices"
+            },
+            {
+                "id": "1YgyNsIUQY_0",
+                "gui_type": "Checkbox, Label",
+                "instruction": "The checkbox labeled 'Current layer only‘"
+            },
+            {
+                "id": "aB5dapCXde_0",
+                "gui_type": "Label, Dropdown Menu, Button, Menu Bar",
+                "instruction": "The menu option with the shortcut Shift+Ctrl+4"
+            },
+            {
+                "id": "aB5dapCXde_1",
+                "gui_type": "Label, Dropdown Menu, Button, Menu Bar",
+                "instruction": "The formatting option that corresponds to Shift+Ctrl+2"
+            },
+            {
+                "id": "OsnoXxdBON_0",
+                "gui_type": "Button, Label",
+                "instruction": "Clear Errors"
+            },
+            {
+                "id": "YGnsHWemJN_0",
+                "gui_type": "Label, Table",
+                "instruction": "Apr Column"
+            },
+            {
+                "id": "vcmBE8BueY_0",
+                "gui_type": "Text Field/Input Box, Label",
+                "instruction": "Modify hour part of start time"
+            },
+            {
+                "id": "vcmBE8BueY_1",
+                "gui_type": "Text Field/Input Box, Label",
+                "instruction": "Modify minute part of end time"
+            },
+            {
+                "id": "U0ppjHyHfi_0",
+                "gui_type": "Button, Label, Dialog/Modal",
+                "instruction": "Agree"
+            },
+            {
+                "id": "U0ppjHyHfi_1",
+                "gui_type": "Button, Label, Accordion/Collapsible Panel",
+                "instruction": "Feedback"
+            },
+            {
+                "id": "y3WoCWMMny_0",
+                "gui_type": "Button, Label",
+                "instruction": "Check License"
+            },
+            {
+                "id": "EJ3cQkXkJD_0",
+                "gui_type": "Button, Label, Dialog/Modal",
+                "instruction": "Retry"
+            },
+            {
+                "id": "EJ3cQkXkJD_1",
+                "gui_type": "Label, Button",
+                "instruction": "Click \\\"OK\\\" to close the window."
+            },
+            {
+                "id": "kwbF3fkXnk_0",
+                "gui_type": "Table, Label",
+                "instruction": "B13 cell"
+            },
+            {
+                "id": "kwbF3fkXnk_1",
+                "gui_type": "Table, Label",
+                "instruction": "D11"
+            },
+            {
+                "id": "kwbF3fkXnk_2",
+                "gui_type": "Table, Label",
+                "instruction": "Q35 cell"
+            },
+            {
+                "id": "E1p7kJp3uQ_0",
+                "gui_type": "Label, Text Field/Input Box",
+                "instruction": "The place to add new parameter to def respawn"
+            },
+            {
+                "id": "E1p7kJp3uQ_1",
+                "gui_type": "Label, Text Field/Input Box",
+                "instruction": "right after SNAKE SIZE, before the right clause"
+            },
+            {
+                "id": "vVlEBxIuJA_1",
+                "gui_type": "Label, Button, Dropdown Menu",
+                "instruction": "Change Orientation"
+            },
+            {
+                "id": "yQJ2YNOnuf_0",
+                "gui_type": "Label, Button, Dropdown Menu",
+                "instruction": "Manage Extensions"
+            },
+            {
+                "id": "ZNXMeuznz8_1",
+                "gui_type": "Label, Date Picker",
+                "instruction": "The next day of selected date"
+            },
+            {
+                "id": "esiHUQwNzp_0",
+                "gui_type": "Label, Text Field/Input Box",
+                "instruction": "Place the cursor before the capital 'A' in the paragraph about novel climaxes"
+            },
+            {
+                "id": "0uDXBwOIEw_0",
+                "gui_type": "Button, Label",
+                "instruction": "Keep"
+            },
+            {
+                "id": "0uDXBwOIEw_1",
+                "gui_type": "Button, Label",
+                "instruction": "Click on \\\"Cancel\\\" to close the dialog box."
+            },
+            {
+                "id": "ulmbnPhoBQ_0",
+                "gui_type": "Label, Text Field/Input Box",
+                "instruction": "The end of the last line"
+            },
+            {
+                "id": "ulmbnPhoBQ_1",
+                "gui_type": "Button, Label, Banner/Notification",
+                "instruction": "Install Python extension"
+            },
+            {
+                "id": "nPEMrT2iyl_0",
+                "gui_type": "Menu Bar, Dropdown Menu, Label",
+                "instruction": "Increase Size menu option"
+            },
+            {
+                "id": "nPEMrT2iyl_1",
+                "gui_type": "Menu Bar, Dropdown Menu, Label",
+                "instruction": "tOGGLE CASE menu option"
+            },
+            {
+                "id": "5NqxHv9Cdb_0",
+                "gui_type": "Icon, Label",
+                "instruction": "Open Audio Settings"
+            },
+            {
+                "id": "5NqxHv9Cdb_1",
+                "gui_type": "Checkbox, Label, Toggle/Menu",
+                "instruction": "Don't display the full screen mode."
+            },
+            {
+                "id": "5NqxHv9Cdb_2",
+                "gui_type": "Label",
+                "instruction": "Choose \\\"Subtitles / Codecs\\\"."
+            },
+            {
+                "id": "9ICpvdGZBC_0",
+                "gui_type": "Button, Label, Banner/Notification",
+                "instruction": "Postpone the update request"
+            },
+            {
+                "id": "9ICpvdGZBC_1",
+                "gui_type": "Label, Button",
+                "instruction": "Open recent folder"
+            },
+            {
+                "id": "ETqru32Co7_0",
+                "gui_type": "Label, Icon",
+                "instruction": "Filter extensions having 5-star rating"
+            },
+            {
+                "id": "2YBXgaVbYt_1",
+                "gui_type": "Label, Text Field/Input Box",
+                "instruction": "Edit the Min Tokenization Line Length."
+            },
+            {
+                "id": "M0KqB4heNx_0",
+                "gui_type": "Button, Label, Dropdown Menu",
+                "instruction": "Expand the selection for slide scale"
+            },
+            {
+                "id": "nIgFpJQcyc_0",
+                "gui_type": "Table, Label",
+                "instruction": "Select the entire row 16"
+            },
+            {
+                "id": "i6SZmhHk3w_0",
+                "gui_type": "Button, Label, Dialog/Modal",
+                "instruction": "Accept the cookie preferences"
+            },
+            {
+                "id": "clHADy1fZ1_0",
+                "gui_type": "Button, Label",
+                "instruction": "Close the error message"
+            },
+            {
+                "id": "clHADy1fZ1_2",
+                "gui_type": "Button, Label",
+                "instruction": "Click Undo button."
+            },
+            {
+                "id": "eqC33g4MYy_0",
+                "gui_type": "Menu Bar, Dropdown Menu, Label",
+                "instruction": "Create a new HTML document"
+            },
+            {
+                "id": "JYf6ngCswz_0",
+                "gui_type": "Button, Label",
+                "instruction": "Change the target file type of searching"
+            },
+            {
+                "id": "2giG7oqQXU_0",
+                "gui_type": "Button, Label",
+                "instruction": "Close the current panel"
+            },
+            {
+                "id": "2giG7oqQXU_1",
+                "gui_type": "Button, Label",
+                "instruction": "Click on the \\\"x\\\" button to close the popup window."
+            },
+            {
+                "id": "lXE8wTWQhO_0",
+                "gui_type": "Button, Label",
+                "instruction": "Close the error panel"
+            },
+            {
+                "id": "SdpSnXaSyh_0",
+                "gui_type": "Menu Bar, Dropdown Menu, Label",
+                "instruction": "Open the settings for bullet points"
+            },
+            {
+                "id": "0lp8IshCDB_0",
+                "gui_type": "Dropdown Menu, Label",
+                "instruction": "Check News of NFL teams"
+            },
+            {
+                "id": "KeSZ4lSKNS_0",
+                "gui_type": "Menu Bar, Dropdown Menu, Button, Label",
+                "instruction": "Exit the libreoffice writer application"
+            },
+            {
+                "id": "A7ZEJm25hP_0",
+                "gui_type": "Button, Label, Dialog/Modal",
+                "instruction": "Agree with the privacy agreement"
+            },
+            {
+                "id": "GkJJa9Qfh1_0",
+                "gui_type": "Menu Bar, Label",
+                "instruction": "Expand menu item \"File\" in the menu bar"
+            },
+            {
+                "id": "bC5RG16JsK_2",
+                "gui_type": "Text Field/Input Box, Label",
+                "instruction": "Add \\\"s\\\" after the word \\\"Display\\\"."
+            },
+            {
+                "id": "l8sf22rM6n_0",
+                "gui_type": "Label, Text Field/Input Box",
+                "instruction": "Place the text cursor immediately after the colon in the heading"
+            },
+            {
+                "id": "l8sf22rM6n_1",
+                "gui_type": "Label, Text Field/Input Box",
+                "instruction": "Position the cursor right after the period that follows 'Latin America's borders' in the middle paragraph"
+            },
+            {
+                "id": "hBrUZN5ZUo_0",
+                "gui_type": "Button, Label, Dialog/Modal",
+                "instruction": "Press and hold"
+            },
+            {
+                "id": "nqrmff6e0l_0",
+                "gui_type": "Icon, Button, Label, List",
+                "instruction": "Three-dot menu icon to the right of 'Taylor Swift - Shake It Off' entry"
+            },
+            {
+                "id": "2r2EGLJKi7_0",
+                "gui_type": "Checkbox, Dropdown Menu, Label",
+                "instruction": "Checkbox of 'Right to Left...'"
+            },
+            {
+                "id": "2r2EGLJKi7_1",
+                "gui_type": "Checkbox, Dropdown Menu, Label",
+                "instruction": "Checkbox of 'Night Mode'"
+            },
+            {
+                "id": "2r2EGLJKi7_2",
+                "gui_type": "Checkbox, Dropdown Menu, Label",
+                "instruction": "Checkbox of 'Odd Pages Left'."
+            },
+            {
+                "id": "wFt6OJ7KZU_0",
+                "gui_type": "Label, Button, Dialog/Modal",
+                "instruction": "Close the popup which said \"Clear Current Selection before New Search\""
+            },
+            {
+                "id": "J7nmwdoXTR_0",
+                "gui_type": "Text Field/Input Box, Label",
+                "instruction": "Refresh the page"
+            },
+            {
+                "id": "NpfPa5jbae_0",
+                "gui_type": "Table, Label",
+                "instruction": "Select the row where the value in column A is 42"
+            },
+            {
+                "id": "l5uw8UNl5Z_0",
+                "gui_type": "Label, Button, List",
+                "instruction": "Select All' selection"
+            },
+            {
+                "id": "624cPrSpKe_0",
+                "gui_type": "Radio Button, Label",
+                "instruction": "Checkbox of 'From file'"
+            },
+            {
+                "id": "aw9QQgeLgs_0",
+                "gui_type": "Menu Bar, Dropdown Menu, Label",
+                "instruction": "Extensions"
+            },
+            {
+                "id": "35h7FwTKtF_0",
+                "gui_type": "Dropdown Menu, Label",
+                "instruction": "Option of 'Boston Logan Intl Airport...'"
+            },
+            {
+                "id": "eWUE7CwT9p_0",
+                "gui_type": "Text Field/Input Box, Label",
+                "instruction": "Min price from price range"
+            },
+            {
+                "id": "eWUE7CwT9p_1",
+                "gui_type": "Text Field/Input Box, Label",
+                "instruction": "Max price from price range"
+            },
+            {
+                "id": "Et7qwxZ9Fq_0",
+                "gui_type": "Label, List",
+                "instruction": "Proceedings of Knowledgeable NLP."
+            },
+            {
+                "id": "Et7qwxZ9Fq_1",
+                "gui_type": "Label, List",
+                "instruction": "Proceeding that has a paper volume between 30 and 50."
+            },
+            {
+                "id": "JAjmL17PpY_0",
+                "gui_type": "Icon, Label",
+                "instruction": "Close the \"To protect your privacy, Thunderbird has blocked remote content in this message.\" remind"
+            },
+            {
+                "id": "JAjmL17PpY_1",
+                "gui_type": "Label, Icon",
+                "instruction": "Mark the email from AWS"
+            },
+            {
+                "id": "lxMx5EFQ8d_0",
+                "gui_type": "Label, Icon, Sidebar",
+                "instruction": "Check My Videos in VLC media player"
+            },
+            {
+                "id": "rHzYUQ44fB_0",
+                "gui_type": "Label",
+                "instruction": "Click TODO in this python file."
+            },
+            {
+                "id": "U4oYsSxsMu_0",
+                "gui_type": "Label, Banner/Notification, Button",
+                "instruction": "Involve in helping making LibreOffice even better"
+            },
+            {
+                "id": "GPHNywfCwH_0",
+                "gui_type": "Menu Bar, Dropdown Menu, Label",
+                "instruction": "Insert Column Break for this file"
+            },
+            {
+                "id": "mMBNkv9deo_0",
+                "gui_type": "Button, Label",
+                "instruction": "Change my delivery address to see items that ship to a different country"
+            },
+            {
+                "id": "mMBNkv9deo_1",
+                "gui_type": "Label",
+                "instruction": "Click the name of the second author of the book \"Natural Language Processing with Transformers, Revised Edition\""
+            },
+            {
+                "id": "rZEnVGu0rv_0",
+                "gui_type": "Icon, Label",
+                "instruction": "click the icon that enables us to see the password "
+            },
+            {
+                "id": "MSC2izlXwX_0",
+                "gui_type": "Label, Toggle/Switch",
+                "instruction": "Don't show apersonal folder"
+            },
+            {
+                "id": "MSC2izlXwX_1",
+                "gui_type": "Label, Button",
+                "instruction": "Choose Dark style appearance"
+            },
+            {
+                "id": "MSC2izlXwX_2",
+                "gui_type": "Label, Dropdown Menu, Button",
+                "instruction": "Try tp change the size of desktop icons"
+            },
+            {
+                "id": "nUFdoivBO8_0",
+                "gui_type": "Label, Button, Dropdown Menu",
+                "instruction": "Change the way of Hardware-accelerated decoding"
+            },
+            {
+                "id": "XBQyRfME3f_0",
+                "gui_type": "Button, Label",
+                "instruction": "Sign in for Youtube"
+            },
+            {
+                "id": "XBQyRfME3f_3",
+                "gui_type": "Icon, Button, Label",
+                "instruction": "Click more for The CRAZIEST Ending... video"
+            },
+            {
+                "id": "5EELuOrP6i_0",
+                "gui_type": "Icon, Button, Label",
+                "instruction": "Close the properties panel."
+            },
+            {
+                "id": "5EELuOrP6i_1",
+                "gui_type": "Icon, Button, Label",
+                "instruction": "Close the Slides panel."
+            },
+            {
+                "id": "yqO1Wx47wE_0",
+                "gui_type": "Slider, Label",
+                "instruction": "Increase Saturation to the max"
+            },
+            {
+                "id": "yqO1Wx47wE_1",
+                "gui_type": "Checkbox, Label",
+                "instruction": "Enable Sharpen for video effects"
+            },
+            {
+                "id": "auZZYGZtqe_0",
+                "gui_type": "Label, Dropdown Menu",
+                "instruction": "Enable Fractional Scaling for Displays"
+            },
+            {
+                "id": "auZZYGZtqe_1",
+                "gui_type": "Toggle/Switch, Label",
+                "instruction": "Check orientation for Displays"
+            },
+            {
+                "id": "RH3GxAMJ2J_0",
+                "gui_type": "Menu Bar, Dropdown Menu, Label",
+                "instruction": "Check the color theme of VSCode"
+            },
+            {
+                "id": "RH3GxAMJ2J_1",
+                "gui_type": "Menu Bar, Dropdown Menu, Label",
+                "instruction": "Check file icon theme of VSCode"
+            },
+            {
+                "id": "bm06fWt3Oy_0",
+                "gui_type": "Button, Label, Dialog/Modal",
+                "instruction": "Allow the extension Github to sign in using Github"
+            },
+            {
+                "id": "bm06fWt3Oy_1",
+                "gui_type": "Button, Label, Dialog/Modal",
+                "instruction": "Don't sign in using Github"
+            },
+            {
+                "id": "byruBm7Hpm_0",
+                "gui_type": "Tree View, Label",
+                "instruction": "Check Accessibility options for LibreOffice"
+            },
+            {
+                "id": "byruBm7Hpm_1",
+                "gui_type": "Checkbox, Label",
+                "instruction": "Don't encrypt to self when encrypting documents"
+            },
+            {
+                "id": "LdCkFpQ8JY_0",
+                "gui_type": "Button, Label",
+                "instruction": "Install eFootball"
+            },
+            {
+                "id": "LdCkFpQ8JY_1",
+                "gui_type": "Button, Icon, Label",
+                "instruction": "Check games for watch"
+            },
+            {
+                "id": "7cZKEbzsc7_0",
+                "gui_type": "Tab, Label",
+                "instruction": "Check advanced audio effects settings"
+            },
+            {
+                "id": "7cZKEbzsc7_1",
+                "gui_type": "Checkbox, Label",
+                "instruction": "Enable equalizer"
+            },
+            {
+                "id": "7cZKEbzsc7_3",
+                "gui_type": "Button, Label",
+                "instruction": "Click save to exit the panel"
+            },
+            {
+                "id": "7cZKEbzsc7_4",
+                "gui_type": "Icon, Button, Label",
+                "instruction": "Maximize the \\\"Adjustments and Effects\\\" window"
+            },
+            {
+                "id": "2UccveuycN_1",
+                "gui_type": "Button, Icon, Label, Banner/Notification",
+                "instruction": "Close the popup \"Help us make LibreOffice even better\""
+            },
+            {
+                "id": "2UccveuycN_2",
+                "gui_type": "Label, Button, Icon",
+                "instruction": "Close the green popup \\\"Help us make LibreOffice even better\\\""
+            },
+            {
+                "id": "2UccveuycN_3",
+                "gui_type": "Label, Button, Icon",
+                "instruction": "Close the popup \\\"Help us make Thunderbird even better\\\""
+            },
+            {
+                "id": "TFTjusDjPe_0",
+                "gui_type": "Dropdown Menu, Label",
+                "instruction": "Turn on sync to get your bookmarks on all your devices."
+            },
+            {
+                "id": "TFTjusDjPe_1",
+                "gui_type": "Button, Label",
+                "instruction": "Check all folders of my bookmarks"
+            },
+            {
+                "id": "X3oULz4IY6_1",
+                "gui_type": "List, Label",
+                "instruction": "Click the keybinding for Accept Next Word Of Inline Suggestion"
+            },
+            {
+                "id": "LKmqKFROXk_0",
+                "gui_type": "Button, Label, Banner/Notification",
+                "instruction": "Deal with the updates later"
+            },
+            {
+                "id": "LKmqKFROXk_1",
+                "gui_type": "Banner/Notification, Label, Button",
+                "instruction": "Download update now"
+            },
+            {
+                "id": "NS4vEYCV7u_0",
+                "gui_type": "Dropdown Menu, Label",
+                "instruction": "Turn off auto save of editors that have unsaved changes"
+            },
+            {
+                "id": "BT7yWIQyPi_0",
+                "gui_type": "Label, Banner/Notification",
+                "instruction": "Understand Delta's privacy policy"
+            },
+            {
+                "id": "BT7yWIQyPi_1",
+                "gui_type": "Button, Label",
+                "instruction": "Check the privacy policy of delta.com"
+            },
+            {
+                "id": "wWpMG3bpUD_0",
+                "gui_type": "List, Label, Button",
+                "instruction": "Restore this image from trash"
+            },
+            {
+                "id": "wWpMG3bpUD_1",
+                "gui_type": "List, Label, Button",
+                "instruction": "Set this image as wallpaper"
+            },
+            {
+                "id": "2su9HTmO8V_0",
+                "gui_type": "Label",
+                "instruction": "Navigate to the profile  page of the owner of this repository."
+            },
+            {
+                "id": "2su9HTmO8V_1",
+                "gui_type": "Button, Label",
+                "instruction": "Click the upload button."
+            },
+            {
+                "id": "2XIa0KyxIh_2",
+                "gui_type": "Label, Button",
+                "instruction": "Click on \\\"Hide applications\\\""
+            },
+            {
+                "id": "2XIa0KyxIh_3",
+                "gui_type": "Label",
+                "instruction": "Open the file \\\"deng_mind2web.txt\\\""
+            },
+            {
+                "id": "7MJ46l4hY9_0",
+                "gui_type": "Label",
+                "instruction": "Open the readme file in this repo."
+            },
+            {
+                "id": "7MJ46l4hY9_1",
+                "gui_type": "Label, Button",
+                "instruction": "Make this repo private."
+            },
+            {
+                "id": "0ombUjVVAI_0",
+                "gui_type": "Label, Stepper",
+                "instruction": "Increase the spacing."
+            },
+            {
+                "id": "Adkoq3dHbx_0",
+                "gui_type": "Icon, Label",
+                "instruction": "Show me the photo on the desktop."
+            },
+            {
+                "id": "OY8BBwumML_0",
+                "gui_type": "Label",
+                "instruction": "Open up the only file on the desktop that has the distinct file format."
+            },
+            {
+                "id": "uw2jsjXHQZ_0",
+                "gui_type": "Button, Label, List",
+                "instruction": "Open up the most recent downloaded file."
+            },
+            {
+                "id": "wvB8GQi0pR_0",
+                "gui_type": "Label",
+                "instruction": "Navigate to the Reference of  Section 1."
+            },
+            {
+                "id": "yovSxyKnIa_0",
+                "gui_type": "Label",
+                "instruction": "Put the cursor right after the  \\\"1\\\" in json to modify."
+            },
+            {
+                "id": "CFCohPPz5C_0",
+                "gui_type": "Label, Image",
+                "instruction": "The start point of drag on selecting the caption of the figure displayed"
+            },
+            {
+                "id": "CFCohPPz5C_1",
+                "gui_type": "Label, Image",
+                "instruction": "The end point of drag on selecting the caption of the figure displayed"
+            },
+            {
+                "id": "sB5X6NMZV7_0",
+                "gui_type": "Checkbox, Label",
+                "instruction": "Enable the slide number to be shown on the slides"
+            },
+            {
+                "id": "zU0WHpKAjl_0",
+                "gui_type": "Label, Icon",
+                "instruction": "Close the ad about the \"stay connected while traveling\" on the left side of the web page"
+            },
+            {
+                "id": "3MwkAVUe4d_1",
+                "gui_type": "Dropdown Menu, Icon, Label",
+                "instruction": "Expand the selection of directories"
+            },
+            {
+                "id": "3MwkAVUe4d_2",
+                "gui_type": "Label",
+                "instruction": "Select playlist format of files."
+            },
+            {
+                "id": "3MwkAVUe4d_4",
+                "gui_type": "Tree View, Label",
+                "instruction": "Click to the /etc/ folder in the file manager."
+            },
+            {
+                "id": "e9jRS50WhC_2",
+                "gui_type": "Icon, Label",
+                "instruction": "Close the opened menu"
+            },
+            {
+                "id": "DF6iNtXc3T_3",
+                "gui_type": "Label, Dropdown Menu, List",
+                "instruction": "Click to the email address of Cindy Williams."
+            },
+            {
+                "id": "o8viNr8L1u_0",
+                "gui_type": "Label",
+                "instruction": "The starting point of the drag action is when selecting the fourth row in the text file."
+            },
+            {
+                "id": "o8viNr8L1u_1",
+                "gui_type": "Label",
+                "instruction": "The endpoint of the drag action when selecting the fourth row in the text file."
+            },
+            {
+                "id": "kpEhefoX8c_0",
+                "gui_type": "Button, Label",
+                "instruction": "Add the selected folder to the bookmark in GIMP"
+            },
+            {
+                "id": "Plv7sx72z6_0",
+                "gui_type": "Label",
+                "instruction": "Change an image for verification code"
+            },
+            {
+                "id": "Plv7sx72z6_2",
+                "gui_type": "Text Field/Input Box, Label, Image",
+                "instruction": "Resolve this capcha to enter the amazon website."
+            },
+            {
+                "id": "ZYlLS6Wqmr_1",
+                "gui_type": "Checkbox, Label",
+                "instruction": "Turn off the preview function of font display."
+            },
+            {
+                "id": "rpngAhRMhE_1",
+                "gui_type": "Text Field/Input Box, Search Bar, Label",
+                "instruction": "Add \\\"s\\\" after the word \\\"extension\\\"."
+            },
+            {
+                "id": "2TeQ48aM48_0",
+                "gui_type": "Label",
+                "instruction": "The start point of drag on selecting the first command in the active terminal"
+            },
+            {
+                "id": "2TeQ48aM48_3",
+                "gui_type": "Label",
+                "instruction": "Close the terminal in the background"
+            },
+            {
+                "id": "vkfGjTZ2ZI_0",
+                "gui_type": "Label",
+                "instruction": "Click on the text that is detected with grammar error"
+            },
+            {
+                "id": "vkfGjTZ2ZI_1",
+                "gui_type": "Text Field/Input Box, Label",
+                "instruction": "Change the answer of question 3."
+            },
+            {
+                "id": "ZX1JN9R9C5_1",
+                "gui_type": "Checkbox, Label",
+                "instruction": "Click on the checkbox of \\\"Delete cropped pixels\\\""
+            },
+            {
+                "id": "I8B0XHIW8M_0",
+                "gui_type": "Label",
+                "instruction": "Click on the letter \\\"o\\\" of the word \\\"for\\\" in the slide"
+            },
+            {
+                "id": "I8B0XHIW8M_1",
+                "gui_type": "Image, Label, Pagination Control",
+                "instruction": "Click to see the third slide."
+            },
+            {
+                "id": "I8B0XHIW8M_2",
+                "gui_type": "Checkbox, Label",
+                "instruction": "Click on the checkbox to deselect Master Objects"
+            },
+            {
+                "id": "I8B0XHIW8M_3",
+                "gui_type": "Dropdown Menu, Label",
+                "instruction": "Click on the downward arrow of the \\\"Format\\\" autocomplete to select different format"
+            },
+            {
+                "id": "07JVNIBSB9_1",
+                "gui_type": "Icon, Label, Banner/Notification",
+                "instruction": "Click \\\"x\\\" button to close the floating window of help us make LibreOffice even better"
+            },
+            {
+                "id": "5NVELD6PT4_0",
+                "gui_type": "Label",
+                "instruction": "Click the letter \\\"t\\\" in the word \\\"virtual\\\""
+            },
+            {
+                "id": "5NVELD6PT4_1",
+                "gui_type": "Text Field/Input Box, Label",
+                "instruction": "Click on the area to the right of \\\"git add .\\\" on the same line to edit this command."
+            },
+            {
+                "id": "GDZVK92HHZ_1",
+                "gui_type": "Button, Label, Dialog/Modal",
+                "instruction": "Confirm replacing the existing file."
+            },
+            {
+                "id": "GDZVK92HHZ_2",
+                "gui_type": "Icon, Label",
+                "instruction": "click on the file option right above \\\"videos\\\""
+            },
+            {
+                "id": "KBF8QQ7CCW_0",
+                "gui_type": "Dropdown Menu, Icon, Label",
+                "instruction": "Change the character fonts by clicking the downward button of the font autocomplete."
+            },
+            {
+                "id": "KBF8QQ7CCW_2",
+                "gui_type": "Label, Image",
+                "instruction": "Click on the exclamation mark of \\\"Big news!\\\""
+            },
+            {
+                "id": "17VE1HC7Z9_1",
+                "gui_type": "Dropdown Menu, Label",
+                "instruction": "Select the style right under the \\\"Accent 3\\\""
+            },
+            {
+                "id": "T4LDK7SR0X_0",
+                "gui_type": "Grid, Image, Label",
+                "instruction": "Select the 12th slide"
+            },
+            {
+                "id": "T4LDK7SR0X_1",
+                "gui_type": "Menu Bar, Dropdown Menu, Label",
+                "instruction": "Select Forms in Tools menu"
+            },
+            {
+                "id": "T4LDK7SR0X_3",
+                "gui_type": "Checkbox, Label",
+                "instruction": "Click on the checkbox of Master Background"
+            },
+            {
+                "id": "X0E85ITYFJ_0",
+                "gui_type": "Dropdown Menu, Checkbox, Label",
+                "instruction": "Click on the checkbox of \\\"Preview\\\""
+            },
+            {
+                "id": "X0E85ITYFJ_1",
+                "gui_type": "Menu Bar, Dropdown Menu, Label",
+                "instruction": "Create a new file"
+            },
+            {
+                "id": "X0E85ITYFJ_2",
+                "gui_type": "Menu Bar, Dropdown Menu, Label",
+                "instruction": "Send this file by email"
+            },
+            {
+                "id": "X0E85ITYFJ_3",
+                "gui_type": "Icon, Label, Dropdown Menu",
+                "instruction": "Click on the downward arrow of the filter autocomplete"
+            },
+            {
+                "id": "FQX7O9Z3HY_0",
+                "gui_type": "Checkbox, Label",
+                "instruction": "Click on the checkbox of Split View"
+            },
+            {
+                "id": "FQX7O9Z3HY_1",
+                "gui_type": "Stepper, Label",
+                "instruction": "Decrease the Opacity by clicking the downward arrow"
+            },
+            {
+                "id": "FQX7O9Z3HY_2",
+                "gui_type": "Dropdown Menu, Label",
+                "instruction": "Click the downward arrow of Presets' autocomplete to expand the Presets' options."
+            },
+            {
+                "id": "FQX7O9Z3HY_3",
+                "gui_type": "Checkbox, Label",
+                "instruction": "Click on the checkbox of blending options to deselect it"
+            },
+            {
+                "id": "2ENZHM7E2X_0",
+                "gui_type": "Dialog/Modal, Icon, Label",
+                "instruction": "Close the \\\"Indexed Color Conversion\\\" dialog"
+            },
+            {
+                "id": "9GDGV3U5J4_3",
+                "gui_type": "Label",
+                "instruction": "Click on the letter M of the word \\\"Mission\\\" in the first line of this paragraph"
+            },
+            {
+                "id": "OMQI5J926Q_0",
+                "gui_type": "Table, Label",
+                "instruction": "Click the score of Kanye East"
+            },
+            {
+                "id": "OMQI5J926Q_1",
+                "gui_type": "Table, Label",
+                "instruction": "Click to select row 12"
+            },
+            {
+                "id": "OMQI5J926Q_2",
+                "gui_type": "Table, Label",
+                "instruction": "Click to select column F"
+            },
+            {
+                "id": "OMQI5J926Q_3",
+                "gui_type": "Dropdown Menu, Label, Dialog/Modal",
+                "instruction": "Click on the autocomplete including \\\"-undefined-\\\""
+            },
+            {
+                "id": "OMQI5J926Q_4",
+                "gui_type": "Table, Label",
+                "instruction": "Click the B21 cell"
+            },
+            {
+                "id": "R5CJC9VSAF_0",
+                "gui_type": "Label, Table",
+                "instruction": "Select the row 25"
+            },
+            {
+                "id": "R5CJC9VSAF_1",
+                "gui_type": "Table, Label",
+                "instruction": "Click the second column of the 31st row."
+            },
+            {
+                "id": "R5CJC9VSAF_2",
+                "gui_type": "Table, Label",
+                "instruction": "Select the Food Bill in August 2020"
+            },
+            {
+                "id": "IIUBVIO06D_0",
+                "gui_type": "Table, Label",
+                "instruction": "Click on the product of row 12"
+            },
+            {
+                "id": "IIUBVIO06D_1",
+                "gui_type": "Table, Label",
+                "instruction": "Click on the E7 cell"
+            },
+            {
+                "id": "IIUBVIO06D_2",
+                "gui_type": "Table, Label",
+                "instruction": "Click on the quantity of product in 12/12/14 16:35"
+            },
+            {
+                "id": "AQZO503SQJ_0",
+                "gui_type": "Toggle/Switch, Label",
+                "instruction": "Click on the toggle button of \\\"Hot Corner\\\" to close the Hot Corner"
+            },
+            {
+                "id": "AQZO503SQJ_1",
+                "gui_type": "Checkbox, Label",
+                "instruction": "Click on the checkbox of \\\"Allow growing\\\""
+            },
+            {
+                "id": "AQZO503SQJ_2",
+                "gui_type": "Toggle/Switch, Label",
+                "instruction": "Click on the toggle button of \\\"Active Screen Edges\\\" to close the Active Screen Edges"
+            },
+            {
+                "id": "AQZO503SQJ_3",
+                "gui_type": "Checkbox, Label",
+                "instruction": "Click on the checkbox of \\\"Current layer only\\\""
+            },
+            {
+                "id": "AQZO503SQJ_4",
+                "gui_type": "Dropdown Menu, Label",
+                "instruction": "Click the downward arrow of autocomplete to expand the autocomplete options of \\\"Fixed Aspect Ratio\\\"."
+            },
+            {
+                "id": "UWWK2JG13A_0",
+                "gui_type": "Label, Table",
+                "instruction": "Click on the I15 cell"
+            },
+            {
+                "id": "UWWK2JG13A_1",
+                "gui_type": "Table, Label",
+                "instruction": "Click on the balck cell of \\\"REVIEWER TITLE\\\" in the dialog box on the upper left"
+            },
+            {
+                "id": "UWWK2JG13A_2",
+                "gui_type": "Table, Label",
+                "instruction": "Click on the lower right corner of cell I27"
+            },
+            {
+                "id": "7JW3IENVKW_1",
+                "gui_type": "Menu Bar, Dropdown Menu, Label",
+                "instruction": "I want to know what's under Map function."
+            },
+            {
+                "id": "AO45N0NT8O_0",
+                "gui_type": "Text Field/Input Box, Label",
+                "instruction": "Select the text box with words from Rain on the current slide."
+            },
+            {
+                "id": "0FOB4CLBT2_0",
+                "gui_type": "Label, Button, Icon",
+                "instruction": "Open the filter function for search settings."
+            },
+            {
+                "id": "0FOB4CLBT2_1",
+                "gui_type": "Dropdown Menu, Label",
+                "instruction": "Unfold the drop-down bar of Auto Save settings."
+            },
+            {
+                "id": "OH23HT37NP_0",
+                "gui_type": "Banner/Notification, Button, Label, Icon",
+                "instruction": "Close the donations notification"
+            },
+            {
+                "id": "OH23HT37NP_1",
+                "gui_type": "Label, Accordion/Collapsible Panel",
+                "instruction": "collapse or fold up the Character panel"
+            },
+            {
+                "id": "OH23HT37NP_4",
+                "gui_type": "Text Field/Input Box, Label",
+                "instruction": "Click on the other text box that is not selected on the current slide."
+            },
+            {
+                "id": "6GNDSETVY9_0",
+                "gui_type": "Checkbox, Label",
+                "instruction": "Expand the advanced options in the window that floats on top of all others."
+            },
+            {
+                "id": "6GNDSETVY9_1",
+                "gui_type": "Checkbox, Label",
+                "instruction": "Cancel the highlight of the picture."
+            },
+            {
+                "id": "XQ52HJNEH5_0",
+                "gui_type": "Dropdown Menu, Label",
+                "instruction": "Change for another background color."
+            },
+            {
+                "id": "XQ52HJNEH5_2",
+                "gui_type": "Button, Icon, Label",
+                "instruction": "Click on the settings of Slide properties."
+            },
+            {
+                "id": "XQ52HJNEH5_3",
+                "gui_type": "Checkbox, Label",
+                "instruction": "I don't want the master background for master slide."
+            },
+            {
+                "id": "FJPHK8AFB6_0",
+                "gui_type": "Menu Bar, Dropdown Menu, Label",
+                "instruction": "Highlighted option"
+            },
+            {
+                "id": "2X4C2ZQ4NN_1",
+                "gui_type": "Dropdown Menu, Button, Label",
+                "instruction": "dropdown arrow (or downward-facing chevron) next to the \"Reply All\" button"
+            },
+            {
+                "id": "R20F17BPDI_0",
+                "gui_type": "Icon, Label",
+                "instruction": "The last option under Curves and Polygons"
+            },
+            {
+                "id": "R20F17BPDI_1",
+                "gui_type": "Icon, Label",
+                "instruction": "row 2, column 4 of \"Basic Shapes\" section (if we count from left to right, top to bottom)"
+            },
+            {
+                "id": "RR8T7414NV_0",
+                "gui_type": "Icon, Sidebar, Label",
+                "instruction": "Click on Gallery icon again to collapse the panel"
+            },
+            {
+                "id": "B6XOOLSCJF_1",
+                "gui_type": "Divider, Label",
+                "instruction": "Drag the left border of the Properties panel to expand its width"
+            },
+            {
+                "id": "3665T6DMTQ_0",
+                "gui_type": "Color Picker, Label",
+                "instruction": "Choose the first recent color"
+            },
+            {
+                "id": "3665T6DMTQ_1",
+                "gui_type": "Color Picker, Label",
+                "instruction": "Choose the second recent color"
+            },
+            {
+                "id": "3665T6DMTQ_2",
+                "gui_type": "Checkbox, Label",
+                "instruction": "Select Outline"
+            },
+            {
+                "id": "3665T6DMTQ_3",
+                "gui_type": "Button, Label",
+                "instruction": "Reset to default"
+            },
+            {
+                "id": "VFRAT6TTNZ_0",
+                "gui_type": "Label, Banner/Notification",
+                "instruction": "Give them feedback to make the software better"
+            },
+            {
+                "id": "VFRAT6TTNZ_2",
+                "gui_type": "Label",
+                "instruction": "Click the place right after \"06:53:30\" and before the comma"
+            },
+            {
+                "id": "ZEPP63ZW8S_0",
+                "gui_type": "Tab, Label",
+                "instruction": "Enter audio preferences"
+            },
+            {
+                "id": "4NVKY1C69O_0",
+                "gui_type": "Label",
+                "instruction": "Continue walkthroughs"
+            },
+            {
+                "id": "4NVKY1C69O_1",
+                "gui_type": "Icon, Label",
+                "instruction": "Turn off the settings by clicking"
+            },
+            {
+                "id": "4NVKY1C69O_3",
+                "gui_type": "Menu Bar, Label",
+                "instruction": "Try to open a new terminal"
+            },
+            {
+                "id": "BM35AF086O_3",
+                "gui_type": "Icon, Label, Sidebar",
+                "instruction": "Select \"device status\""
+            },
+            {
+                "id": "UJEEK2XCW7_1",
+                "gui_type": "List, Label",
+                "instruction": "Change the theme to grey"
+            },
+            {
+                "id": "5TLJMXTVRF_0",
+                "gui_type": "Table, Label",
+                "instruction": "Select the blank area at C4"
+            },
+            {
+                "id": "5TLJMXTVRF_1",
+                "gui_type": "Table, Label",
+                "instruction": "Select the blank area at U42"
+            },
+            {
+                "id": "KHXS7B1U44_7",
+                "gui_type": "Label, Button, Dropdown Menu",
+                "instruction": "Change the mode of this image"
+            },
+            {
+                "id": "B8IYUU0NND_0",
+                "gui_type": "Table, Label",
+                "instruction": "Select \"No. 9\""
+            },
+            {
+                "id": "B8IYUU0NND_1",
+                "gui_type": "Table, Label",
+                "instruction": "Select A9 cell"
+            },
+            {
+                "id": "B8IYUU0NND_5",
+                "gui_type": "Dropdown Menu, Label",
+                "instruction": "Expand the font list"
+            },
+            {
+                "id": "GLZAK60UIX_2",
+                "gui_type": "Checkbox, Label",
+                "instruction": "Unselect Preview"
+            },
+            {
+                "id": "SJ1YJQMOGW_1",
+                "gui_type": "Label",
+                "instruction": "Check the word account"
+            },
+            {
+                "id": "BHXSNCTIKJ_2",
+                "gui_type": "Checkbox, Label",
+                "instruction": "Select the split view"
+            },
+            {
+                "id": "RU8N4G5BN2_0",
+                "gui_type": "Label, Button",
+                "instruction": "Sort the files according to the size"
+            },
+            {
+                "id": "RU8N4G5BN2_1",
+                "gui_type": "List, Label",
+                "instruction": "Sort the files in descending order"
+            },
+            {
+                "id": "RU8N4G5BN2_2",
+                "gui_type": "Label, Button",
+                "instruction": "Sort the files according to the modified time"
+            }
+        ],
+        "element_recognition": [
+            {
+                "id": "hMjkRFL62H_0",
+                "gui_type": "Button, Dialog/Modal, Label",
+                "instruction": "Allow the pop-up window"
+            },
+            {
+                "id": "i6kF2cNDtn_0",
+                "gui_type": "Button, Dialog/Modal, Label",
+                "instruction": "Click \"Replace\""
+            },
+            {
+                "id": "3Fh257K4Pd_4",
+                "gui_type": "Button, Menu bar",
+                "instruction": "Click to the button that is on the right side of the \\\"Help\\\"."
+            },
+            {
+                "id": "RxKFXF20dm_0",
+                "gui_type": "Button, Banner/Notification, Label",
+                "instruction": "Open \"Show recommendations\""
+            },
+            {
+                "id": "IyG0dOsYle_0",
+                "gui_type": "Toolbar, Button, Table, Icon",
+                "instruction": "Bold the text in the selected box"
+            },
+            {
+                "id": "dy9PDLqz8E_0",
+                "gui_type": "Menu Bar, Dropdown Menu, Button",
+                "instruction": "Align the text to the center."
+            },
+            {
+                "id": "6t8bUw46XQ_2",
+                "gui_type": "Icon, Dropdown Menu",
+                "instruction": "Choose the option that has an orange circular icon."
+            },
+            {
+                "id": "a5GZt5CjGJ_0",
+                "gui_type": "Label, Button, List",
+                "instruction": "Select \"Box List Blue\""
+            },
+            {
+                "id": "oODH5wNXxj_0",
+                "gui_type": "Label, Image",
+                "instruction": "Click the title of the chart on the left."
+            },
+            {
+                "id": "s8szzBS40r_0",
+                "gui_type": "Button, Banner/Notification, Label",
+                "instruction": "Remove the bookmark"
+            },
+            {
+                "id": "26lutpfWbA_0",
+                "gui_type": "Button, Dialog/Modal, Label",
+                "instruction": "Accept the tracking preferences"
+            },
+            {
+                "id": "I5RRXeOqSv_0",
+                "gui_type": "Button, Toolbar",
+                "instruction": "Set to vertically center align."
+            },
+            {
+                "id": "4vEmVUJ355_1",
+                "gui_type": "Button, Icon, Toolbar",
+                "instruction": "Choose the pink circular button."
+            },
+            {
+                "id": "SSkeqHyDHI_0",
+                "gui_type": "Button, Dialog/Modal, Label",
+                "instruction": "Accept the cookies"
+            },
+            {
+                "id": "yXbCraFIDT_0",
+                "gui_type": "Button, Menu bar, Label",
+                "instruction": "Click the Help button above"
+            },
+            {
+                "id": "rKWTjVSg8W_0",
+                "gui_type": "Button, Dialog/Modal, Icon",
+                "instruction": "Close the pop-up message."
+            },
+            {
+                "id": "J4LybGu1qw_0",
+                "gui_type": "Button, Label, Dialog/Modal",
+                "instruction": "Consent"
+            },
+            {
+                "id": "u9BcjAUTlQ_0",
+                "gui_type": "Button, Dialog/Modal, Label",
+                "instruction": "Click \"OK\""
+            },
+            {
+                "id": "pakqrW3f3S_0",
+                "gui_type": "Button, Toolbar, Icon",
+                "instruction": "Set the font to italic."
+            },
+            {
+                "id": "mJAfD5H9gZ_0",
+                "gui_type": "Icon, Label",
+                "instruction": "Open the twitter under the email"
+            },
+            {
+                "id": "72Ivc1tZpd_0",
+                "gui_type": "Icon, Button, Color Picker",
+                "instruction": "Set color tag to red"
+            },
+            {
+                "id": "72Ivc1tZpd_1",
+                "gui_type": "Icon, Button, Color Picker",
+                "instruction": "Set color tag to pink"
+            },
+            {
+                "id": "5LWu2cxt31_3",
+                "gui_type": "Button, Icon",
+                "instruction": "Click on red button \\\"open\\\"."
+            },
+            {
+                "id": "1y0CmHiyPQ_0",
+                "gui_type": "Label, Button",
+                "instruction": "Add website"
+            },
+            {
+                "id": "oAuNhTPDYZ_0",
+                "gui_type": "Button, Dialog/Modal, Label",
+                "instruction": "Enable Replacement"
+            },
+            {
+                "id": "eVSYgzYOGd_0",
+                "gui_type": "Icon, Label, Button",
+                "instruction": "Install GitLens"
+            },
+            {
+                "id": "CSX8vMhbjY_0",
+                "gui_type": "Image, Grid",
+                "instruction": "Choose the picture in the middle of row 2."
+            },
+            {
+                "id": "Sbve3LkRIP_0",
+                "gui_type": "Label, Button, Tree View",
+                "instruction": "Enter Junk Settings under Local Folders"
+            },
+            {
+                "id": "Y7jpDzySN3_0",
+                "gui_type": "Icon, Button, Color Picker",
+                "instruction": "Choose Purple color"
+            },
+            {
+                "id": "ohiYxEdwYz_0",
+                "gui_type": "Button, Icon, Toolbar",
+                "instruction": "Random play"
+            },
+            {
+                "id": "ohiYxEdwYz_1",
+                "gui_type": "Icon, Label",
+                "instruction": "Lec powerpoint"
+            },
+            {
+                "id": "wun8PhjByw_0",
+                "gui_type": "Button, Label",
+                "instruction": "Enable Dark"
+            },
+            {
+                "id": "IJJKnL5DD9_0",
+                "gui_type": "Label, Button, Dropdown Menu",
+                "instruction": "Select 'Add Function Breakpoint'"
+            },
+            {
+                "id": "fUFbPxMJK2_0",
+                "gui_type": "Label, Button, Dropdown Menu",
+                "instruction": "Sign in to see tabs from other devices"
+            },
+            {
+                "id": "1YgyNsIUQY_1",
+                "gui_type": "Icon",
+                "instruction": "Click to the blue background layer."
+            },
+            {
+                "id": "aB5dapCXde_0",
+                "gui_type": "Label, Dropdown Menu, Button, Menu Bar",
+                "instruction": "The menu option with the shortcut Shift+Ctrl+4"
+            },
+            {
+                "id": "aB5dapCXde_1",
+                "gui_type": "Label, Dropdown Menu, Button, Menu Bar",
+                "instruction": "The formatting option that corresponds to Shift+Ctrl+2"
+            },
+            {
+                "id": "OOSqUm0DKi_0",
+                "gui_type": "Icon",
+                "instruction": "Icon for clearing the current input"
+            },
+            {
+                "id": "OsnoXxdBON_0",
+                "gui_type": "Button, Label",
+                "instruction": "Clear Errors"
+            },
+            {
+                "id": "U0ppjHyHfi_0",
+                "gui_type": "Button, Label, Dialog/Modal",
+                "instruction": "Agree"
+            },
+            {
+                "id": "U0ppjHyHfi_1",
+                "gui_type": "Button, Label, Accordion/Collapsible Panel",
+                "instruction": "Feedback"
+            },
+            {
+                "id": "y3WoCWMMny_0",
+                "gui_type": "Button, Label",
+                "instruction": "Check License"
+            },
+            {
+                "id": "EJ3cQkXkJD_0",
+                "gui_type": "Button, Label, Dialog/Modal",
+                "instruction": "Retry"
+            },
+            {
+                "id": "EJ3cQkXkJD_1",
+                "gui_type": "Label, Button",
+                "instruction": "Click \\\"OK\\\" to close the window."
+            },
+            {
+                "id": "vVlEBxIuJA_1",
+                "gui_type": "Label, Button, Dropdown Menu",
+                "instruction": "Change Orientation"
+            },
+            {
+                "id": "yQJ2YNOnuf_0",
+                "gui_type": "Label, Button, Dropdown Menu",
+                "instruction": "Manage Extensions"
+            },
+            {
+                "id": "yQJ2YNOnuf_1",
+                "gui_type": "Icon, Button, Dropdown Menu",
+                "instruction": "Make chrome fullscreen"
+            },
+            {
+                "id": "F3Tq2CIYu2_0",
+                "gui_type": "Icon, Dialog/Modal",
+                "instruction": "Close the pop-up"
+            },
+            {
+                "id": "esiHUQwNzp_2",
+                "gui_type": "Icon, Toolbar",
+                "instruction": "Enlarge and bold the title."
+            },
+            {
+                "id": "0uDXBwOIEw_0",
+                "gui_type": "Button, Label",
+                "instruction": "Keep"
+            },
+            {
+                "id": "0uDXBwOIEw_1",
+                "gui_type": "Button, Label",
+                "instruction": "Click on \\\"Cancel\\\" to close the dialog box."
+            },
+            {
+                "id": "ulmbnPhoBQ_1",
+                "gui_type": "Button, Label, Banner/Notification",
+                "instruction": "Install Python extension"
+            },
+            {
+                "id": "5NqxHv9Cdb_0",
+                "gui_type": "Icon, Label",
+                "instruction": "Open Audio Settings"
+            },
+            {
+                "id": "9ICpvdGZBC_0",
+                "gui_type": "Button, Label, Banner/Notification",
+                "instruction": "Postpone the update request"
+            },
+            {
+                "id": "9ICpvdGZBC_1",
+                "gui_type": "Label, Button",
+                "instruction": "Open recent folder"
+            },
+            {
+                "id": "LApQBqioDJ_0",
+                "gui_type": "Tab, Icon",
+                "instruction": "activate the window of thunderbird"
+            },
+            {
+                "id": "l1SV14v5KJ_0",
+                "gui_type": "Toolbar, Button, Icon",
+                "instruction": "Insert an image"
+            },
+            {
+                "id": "ETqru32Co7_0",
+                "gui_type": "Label, Icon",
+                "instruction": "Filter extensions having 5-star rating"
+            },
+            {
+                "id": "ETqru32Co7_1",
+                "gui_type": "Icon, Button",
+                "instruction": "Set the Libreoffice Writer window backward to the bottom of the screen."
+            },
+            {
+                "id": "2YBXgaVbYt_0",
+                "gui_type": "Icon, Button, Sidebar",
+                "instruction": "Explore Extension Marketplace"
+            },
+            {
+                "id": "M0KqB4heNx_0",
+                "gui_type": "Button, Label, Dropdown Menu",
+                "instruction": "Expand the selection for slide scale"
+            },
+            {
+                "id": "yDzPBBqsAM_0",
+                "gui_type": "Button, Icon, Sidebar",
+                "instruction": "Go to my contacts on the left side."
+            },
+            {
+                "id": "i6SZmhHk3w_0",
+                "gui_type": "Button, Label, Dialog/Modal",
+                "instruction": "Accept the cookie preferences"
+            },
+            {
+                "id": "clHADy1fZ1_0",
+                "gui_type": "Button, Label",
+                "instruction": "Close the error message"
+            },
+            {
+                "id": "clHADy1fZ1_2",
+                "gui_type": "Button, Label",
+                "instruction": "Click Undo button."
+            },
+            {
+                "id": "JYf6ngCswz_0",
+                "gui_type": "Button, Label",
+                "instruction": "Change the target file type of searching"
+            },
+            {
+                "id": "TdyOBtT7nP_0",
+                "gui_type": "Icon, Button",
+                "instruction": "Switch from fullscreen to windowed mode"
+            },
+            {
+                "id": "2giG7oqQXU_0",
+                "gui_type": "Button, Label",
+                "instruction": "Close the current panel"
+            },
+            {
+                "id": "2giG7oqQXU_1",
+                "gui_type": "Button, Label",
+                "instruction": "Click on the \\\"x\\\" button to close the popup window."
+            },
+            {
+                "id": "6fWi5QcVFq_0",
+                "gui_type": "Button, Icon",
+                "instruction": "Show the plain text of the file"
+            },
+            {
+                "id": "p8W2RYMJqD_0",
+                "gui_type": "Button, Icon",
+                "instruction": "Create an new preset"
+            },
+            {
+                "id": "5Q21KgN00f_0",
+                "gui_type": "Tab, Button, Icon",
+                "instruction": "Close the current active setting tab"
+            },
+            {
+                "id": "lXE8wTWQhO_0",
+                "gui_type": "Button, Label",
+                "instruction": "Close the error panel"
+            },
+            {
+                "id": "Vecoz8xrmU_0",
+                "gui_type": "Radio Button, Icon",
+                "instruction": "Switch to Blue Channel"
+            },
+            {
+                "id": "U4krDP46q7_0",
+                "gui_type": "Tab, Icon, Button",
+                "instruction": "Create a new tab for webpage"
+            },
+            {
+                "id": "aC2nRbndfz_0",
+                "gui_type": "Icon, Button, Toolbar",
+                "instruction": "Create a rectangle shape in the current slide"
+            },
+            {
+                "id": "Gmy8mWXMdK_0",
+                "gui_type": "Button, Icon, Banner/Notification",
+                "instruction": "Close the extension suggestion"
+            },
+            {
+                "id": "xBujQjkLin_0",
+                "gui_type": "Icon, Button",
+                "instruction": "View my shopping cart"
+            },
+            {
+                "id": "D7onqmvcmj_0",
+                "gui_type": "Button, Icon",
+                "instruction": "Stop playing the video"
+            },
+            {
+                "id": "KeSZ4lSKNS_0",
+                "gui_type": "Menu Bar, Dropdown Menu, Button, Label",
+                "instruction": "Exit the libreoffice writer application"
+            },
+            {
+                "id": "FA3EIo8w05_0",
+                "gui_type": "Icon, Button, Toolbar",
+                "instruction": "Export the file as pdf"
+            },
+            {
+                "id": "A7ZEJm25hP_0",
+                "gui_type": "Button, Label, Dialog/Modal",
+                "instruction": "Agree with the privacy agreement"
+            },
+            {
+                "id": "vRhKOfGCJp_0",
+                "gui_type": "Icon, Button",
+                "instruction": "Search for specific content"
+            },
+            {
+                "id": "FfjmOj9Bbr_0",
+                "gui_type": "Icon, Button, Toolbar",
+                "instruction": "Center the content in the block"
+            },
+            {
+                "id": "O2pG2oIhW9_0",
+                "gui_type": "Dropdown Menu, Icon, Button",
+                "instruction": "Expand the color selection for the selected text"
+            },
+            {
+                "id": "HWUIMK7pKL_0",
+                "gui_type": "Button, Icon",
+                "instruction": "Create a new folder"
+            },
+            {
+                "id": "3x9KMOC3hE_0",
+                "gui_type": "Icon, Button",
+                "instruction": "Maximize terminal window"
+            },
+            {
+                "id": "3x9KMOC3hE_1",
+                "gui_type": "Button, Icon",
+                "instruction": "Plus icon' at the top left of terminal window"
+            },
+            {
+                "id": "bC5RG16JsK_0",
+                "gui_type": "Button, Icon",
+                "instruction": "Button to print out the pdf"
+            },
+            {
+                "id": "bC5RG16JsK_1",
+                "gui_type": "Button, Icon",
+                "instruction": "Button to rotate the pdf"
+            },
+            {
+                "id": "bC5RG16JsK_3",
+                "gui_type": "Button, Icon",
+                "instruction": "Click on Upload button."
+            },
+            {
+                "id": "hBrUZN5ZUo_0",
+                "gui_type": "Button, Label, Dialog/Modal",
+                "instruction": "Press and hold"
+            },
+            {
+                "id": "nqrmff6e0l_0",
+                "gui_type": "Icon, Button, Label, List",
+                "instruction": "Three-dot menu icon to the right of 'Taylor Swift - Shake It Off' entry"
+            },
+            {
+                "id": "5KLFDjQGy6_0",
+                "gui_type": "Icon, Toolbar",
+                "instruction": "Curved angled connector with arrow icon in the bottom-right side of shape connector dropdown menu"
+            },
+            {
+                "id": "5KLFDjQGy6_1",
+                "gui_type": "Icon, Toolbar, Dropdown Menu",
+                "instruction": "Smiley face (emoticon) icon in the toolbar"
+            },
+            {
+                "id": "5KLFDjQGy6_2",
+                "gui_type": "Icon, Toolbar",
+                "instruction": "Smiley face icon to the right of the diamond shape icon in the toolbar"
+            },
+            {
+                "id": "5KLFDjQGy6_3",
+                "gui_type": "Icon, Toolbar, Dropdown Menu",
+                "instruction": "The button below the curved angled connector with arrow icon in the right side of shape connector dropdown menu"
+            },
+            {
+                "id": "5KLFDjQGy6_4",
+                "gui_type": "Icon, Toolbar",
+                "instruction": "Smiley face icon to the right of the circular shape icon in the toolbar"
+            },
+            {
+                "id": "2r2EGLJKi7_3",
+                "gui_type": "Button, Text Field/Input Box, Pagination Control",
+                "instruction": "Navigate to a specific page."
+            },
+            {
+                "id": "wFt6OJ7KZU_0",
+                "gui_type": "Label, Button, Dialog/Modal",
+                "instruction": "Close the popup which said \"Clear Current Selection before New Search\""
+            },
+            {
+                "id": "J7nmwdoXTR_1",
+                "gui_type": "Button, Icon",
+                "instruction": "Place to input the characters"
+            },
+            {
+                "id": "l5uw8UNl5Z_0",
+                "gui_type": "Label, Button, List",
+                "instruction": "Select All' selection"
+            },
+            {
+                "id": "35h7FwTKtF_1",
+                "gui_type": "Button, Icon",
+                "instruction": "Change the exact time."
+            },
+            {
+                "id": "Cf4yF5Buvk_0",
+                "gui_type": "Button, Icon",
+                "instruction": "Refresh the puzzle pic"
+            },
+            {
+                "id": "Cf4yF5Buvk_2",
+                "gui_type": "Image, Icon",
+                "instruction": "Move the puzzle slider upwards"
+            },
+            {
+                "id": "rf4N7456AI_0",
+                "gui_type": "Icon, Grid",
+                "instruction": "Choose the blue color from row 1 the third"
+            },
+            {
+                "id": "JAjmL17PpY_0",
+                "gui_type": "Icon, Label",
+                "instruction": "Close the \"To protect your privacy, Thunderbird has blocked remote content in this message.\" remind"
+            },
+            {
+                "id": "JAjmL17PpY_1",
+                "gui_type": "Label, Icon",
+                "instruction": "Mark the email from AWS"
+            },
+            {
+                "id": "Iw8DGT7qH2_0",
+                "gui_type": "Panel/Container, Icon",
+                "instruction": "Choose the terminal page"
+            },
+            {
+                "id": "lxMx5EFQ8d_0",
+                "gui_type": "Label, Icon, Sidebar",
+                "instruction": "Check My Videos in VLC media player"
+            },
+            {
+                "id": "cIwmHfS5VV_0",
+                "gui_type": "Icon, Dropdown Menu, Toolbar",
+                "instruction": "Start to draw a pentagon"
+            },
+            {
+                "id": "cIwmHfS5VV_1",
+                "gui_type": "Dropdown Menu, Icon, Toolbar",
+                "instruction": "In the dropdown panel choose the shape in the middle of the 5th row."
+            },
+            {
+                "id": "U4oYsSxsMu_0",
+                "gui_type": "Label, Banner/Notification, Button",
+                "instruction": "Involve in helping making LibreOffice even better"
+            },
+            {
+                "id": "mMBNkv9deo_0",
+                "gui_type": "Button, Label",
+                "instruction": "Change my delivery address to see items that ship to a different country"
+            },
+            {
+                "id": "rZEnVGu0rv_0",
+                "gui_type": "Icon, Label",
+                "instruction": "click the icon that enables us to see the password "
+            },
+            {
+                "id": "rZEnVGu0rv_1",
+                "gui_type": "Icon",
+                "instruction": "click the volume icon"
+            },
+            {
+                "id": "MSC2izlXwX_1",
+                "gui_type": "Label, Button",
+                "instruction": "Choose Dark style appearance"
+            },
+            {
+                "id": "MSC2izlXwX_2",
+                "gui_type": "Label, Dropdown Menu, Button",
+                "instruction": "Try tp change the size of desktop icons"
+            },
+            {
+                "id": "nUFdoivBO8_0",
+                "gui_type": "Label, Button, Dropdown Menu",
+                "instruction": "Change the way of Hardware-accelerated decoding"
+            },
+            {
+                "id": "XBQyRfME3f_0",
+                "gui_type": "Button, Label",
+                "instruction": "Sign in for Youtube"
+            },
+            {
+                "id": "XBQyRfME3f_1",
+                "gui_type": "Icon, Button",
+                "instruction": "Check the menu for youtube"
+            },
+            {
+                "id": "XBQyRfME3f_2",
+                "gui_type": "Icon, Button",
+                "instruction": "Search by voice input"
+            },
+            {
+                "id": "XBQyRfME3f_3",
+                "gui_type": "Icon, Button, Label",
+                "instruction": "Click more for The CRAZIEST Ending... video"
+            },
+            {
+                "id": "5EELuOrP6i_0",
+                "gui_type": "Icon, Button, Label",
+                "instruction": "Close the properties panel."
+            },
+            {
+                "id": "5EELuOrP6i_1",
+                "gui_type": "Icon, Button, Label",
+                "instruction": "Close the Slides panel."
+            },
+            {
+                "id": "P0yzR5MgBS_0",
+                "gui_type": "Image",
+                "instruction": "Click the mouth of the person in this slide"
+            },
+            {
+                "id": "iVkNplCzlj_0",
+                "gui_type": "Icon, Button",
+                "instruction": "Play the next video/song"
+            },
+            {
+                "id": "bm06fWt3Oy_0",
+                "gui_type": "Button, Label, Dialog/Modal",
+                "instruction": "Allow the extension Github to sign in using Github"
+            },
+            {
+                "id": "bm06fWt3Oy_1",
+                "gui_type": "Button, Label, Dialog/Modal",
+                "instruction": "Don't sign in using Github"
+            },
+            {
+                "id": "bm06fWt3Oy_2",
+                "gui_type": "Icon, Dialog/Modal, Button",
+                "instruction": "Click on the \\\"x\\\" button to close the popup window."
+            },
+            {
+                "id": "LdCkFpQ8JY_0",
+                "gui_type": "Button, Label",
+                "instruction": "Install eFootball"
+            },
+            {
+                "id": "LdCkFpQ8JY_1",
+                "gui_type": "Button, Icon, Label",
+                "instruction": "Check games for watch"
+            },
+            {
+                "id": "7cZKEbzsc7_3",
+                "gui_type": "Button, Label",
+                "instruction": "Click save to exit the panel"
+            },
+            {
+                "id": "7cZKEbzsc7_4",
+                "gui_type": "Icon, Button, Label",
+                "instruction": "Maximize the \\\"Adjustments and Effects\\\" window"
+            },
+            {
+                "id": "lpDS7oUi74_0",
+                "gui_type": "Dropdown Menu, Icon",
+                "instruction": "Browse for more network URLs"
+            },
+            {
+                "id": "2UccveuycN_0",
+                "gui_type": "Button, Icon, Toolbar",
+                "instruction": "Choose center alignment for layout."
+            },
+            {
+                "id": "2UccveuycN_1",
+                "gui_type": "Button, Icon, Label, Banner/Notification",
+                "instruction": "Close the popup \"Help us make LibreOffice even better\""
+            },
+            {
+                "id": "2UccveuycN_2",
+                "gui_type": "Label, Button, Icon",
+                "instruction": "Close the green popup \\\"Help us make LibreOffice even better\\\""
+            },
+            {
+                "id": "2UccveuycN_3",
+                "gui_type": "Label, Button, Icon",
+                "instruction": "Close the popup \\\"Help us make Thunderbird even better\\\""
+            },
+            {
+                "id": "TFTjusDjPe_1",
+                "gui_type": "Button, Label",
+                "instruction": "Check all folders of my bookmarks"
+            },
+            {
+                "id": "X3oULz4IY6_0",
+                "gui_type": "Icon, Button",
+                "instruction": "Open the remote window"
+            },
+            {
+                "id": "LKmqKFROXk_0",
+                "gui_type": "Button, Label, Banner/Notification",
+                "instruction": "Deal with the updates later"
+            },
+            {
+                "id": "LKmqKFROXk_1",
+                "gui_type": "Banner/Notification, Label, Button",
+                "instruction": "Download update now"
+            },
+            {
+                "id": "LKmqKFROXk_2",
+                "gui_type": "Icon, Button, Banner/Notification",
+                "instruction": "Close the popup of available update"
+            },
+            {
+                "id": "BT7yWIQyPi_1",
+                "gui_type": "Button, Label",
+                "instruction": "Check the privacy policy of delta.com"
+            },
+            {
+                "id": "wWpMG3bpUD_0",
+                "gui_type": "List, Label, Button",
+                "instruction": "Restore this image from trash"
+            },
+            {
+                "id": "wWpMG3bpUD_1",
+                "gui_type": "List, Label, Button",
+                "instruction": "Set this image as wallpaper"
+            },
+            {
+                "id": "czdcH3bfyC_0",
+                "gui_type": "Icon, Dropdown Menu, Toolbar",
+                "instruction": "Select the wave underline"
+            },
+            {
+                "id": "czdcH3bfyC_1",
+                "gui_type": "Icon, Dropdown Menu, Toolbar",
+                "instruction": "Choose the fifth underline option from the top down"
+            },
+            {
+                "id": "Ak6Dn4Q3D8_1",
+                "gui_type": "Icon, Sidebar",
+                "instruction": "Shift to the Libreoffice Impress file."
+            },
+            {
+                "id": "0NVmz0b7L0_2",
+                "gui_type": "Banner/Notification, Button, Icon",
+                "instruction": "Close the top notification bar."
+            },
+            {
+                "id": "2su9HTmO8V_1",
+                "gui_type": "Button, Label",
+                "instruction": "Click the upload button."
+            },
+            {
+                "id": "2XIa0KyxIh_0",
+                "gui_type": "Icon, Button, Sidebar",
+                "instruction": "Pull out the application panel."
+            },
+            {
+                "id": "2XIa0KyxIh_1",
+                "gui_type": "Icon",
+                "instruction": "Open the volume settings."
+            },
+            {
+                "id": "2XIa0KyxIh_2",
+                "gui_type": "Label, Button",
+                "instruction": "Click on \\\"Hide applications\\\""
+            },
+            {
+                "id": "3zYUXIQcmA_1",
+                "gui_type": "Button, Icon, Tab",
+                "instruction": "Close the current tab page."
+            },
+            {
+                "id": "3zYUXIQcmA_2",
+                "gui_type": "Icon, Tab",
+                "instruction": "Navigate to another tab in the firefox browser."
+            },
+            {
+                "id": "7MJ46l4hY9_1",
+                "gui_type": "Label, Button",
+                "instruction": "Make this repo private."
+            },
+            {
+                "id": "14seST9HcP_0",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Set to bold the chosen text."
+            },
+            {
+                "id": "Adkoq3dHbx_0",
+                "gui_type": "Icon, Label",
+                "instruction": "Show me the photo on the desktop."
+            },
+            {
+                "id": "tjaC4cJopH_0",
+                "gui_type": "Icon, Button",
+                "instruction": "Add the current tab to favorites."
+            },
+            {
+                "id": "uw2jsjXHQZ_0",
+                "gui_type": "Button, Label, List",
+                "instruction": "Open up the most recent downloaded file."
+            },
+            {
+                "id": "IZ1KbKvlLg_0",
+                "gui_type": "Icon, Button",
+                "instruction": "Return to the last page in the chrome opened in the background"
+            },
+            {
+                "id": "IZ1KbKvlLg_1",
+                "gui_type": "Button, Icon, Dropdown Menu",
+                "instruction": "Expand the dropdown menu for file and folder operations"
+            },
+            {
+                "id": "CFCohPPz5C_0",
+                "gui_type": "Label, Image",
+                "instruction": "The start point of drag on selecting the caption of the figure displayed"
+            },
+            {
+                "id": "CFCohPPz5C_1",
+                "gui_type": "Label, Image",
+                "instruction": "The end point of drag on selecting the caption of the figure displayed"
+            },
+            {
+                "id": "CFCohPPz5C_2",
+                "gui_type": "Button, Icon",
+                "instruction": "Open the dropdown menu for screen view scaling."
+            },
+            {
+                "id": "zU0WHpKAjl_0",
+                "gui_type": "Label, Icon",
+                "instruction": "Close the ad about the \"stay connected while traveling\" on the left side of the web page"
+            },
+            {
+                "id": "zU0WHpKAjl_1",
+                "gui_type": "Icon, Button",
+                "instruction": "Open the menu of location access on chrome"
+            },
+            {
+                "id": "3MwkAVUe4d_0",
+                "gui_type": "Icon, Button",
+                "instruction": "Switch display mode of files to icon view"
+            },
+            {
+                "id": "3MwkAVUe4d_1",
+                "gui_type": "Dropdown Menu, Icon, Label",
+                "instruction": "Expand the selection of directories"
+            },
+            {
+                "id": "e9jRS50WhC_0",
+                "gui_type": "Button, Icon",
+                "instruction": "Open the system calendar and notification hub"
+            },
+            {
+                "id": "e9jRS50WhC_1",
+                "gui_type": "Button, Icon",
+                "instruction": "Close the opened menu"
+            },
+            {
+                "id": "e9jRS50WhC_2",
+                "gui_type": "Icon, Label",
+                "instruction": "Close the opened menu"
+            },
+            {
+                "id": "e9jRS50WhC_3",
+                "gui_type": "Button, Icon",
+                "instruction": "Click on the \\\"x\\\" button on the top left corner of the popup window."
+            },
+            {
+                "id": "DF6iNtXc3T_1",
+                "gui_type": "Sidebar, Button, Icon",
+                "instruction": "Collapse the left tool menu of the thunderbird"
+            },
+            {
+                "id": "DF6iNtXc3T_2",
+                "gui_type": "Sidebar, Button, Icon",
+                "instruction": "Open up the settings of my Thunderbird."
+            },
+            {
+                "id": "o8viNr8L1u_2",
+                "gui_type": "Button, Icon",
+                "instruction": "Create a new file in the text editor"
+            },
+            {
+                "id": "kpEhefoX8c_0",
+                "gui_type": "Button, Label",
+                "instruction": "Add the selected folder to the bookmark in GIMP"
+            },
+            {
+                "id": "kpEhefoX8c_1",
+                "gui_type": "Button, Icon",
+                "instruction": "Sort the shown files in the order of file size"
+            },
+            {
+                "id": "xZksoRb976_0",
+                "gui_type": "Button, Icon",
+                "instruction": "Create a new brush in GIMP"
+            },
+            {
+                "id": "qkByHYi0jR_0",
+                "gui_type": "Icon, Button, Toolbar",
+                "instruction": "Undo the action"
+            },
+            {
+                "id": "Plv7sx72z6_1",
+                "gui_type": "Sidebar, Button, Icon",
+                "instruction": "Open the page for calender in thunderbird"
+            },
+            {
+                "id": "Plv7sx72z6_2",
+                "gui_type": "Text Field/Input Box, Label, Image",
+                "instruction": "Resolve this capcha to enter the amazon website."
+            },
+            {
+                "id": "T5l1sFEhSy_0",
+                "gui_type": "Icon, Button, Toolbar",
+                "instruction": "Insert an hyperlink"
+            },
+            {
+                "id": "T5l1sFEhSy_1",
+                "gui_type": "Icon, Button",
+                "instruction": "Create a new worksheet"
+            },
+            {
+                "id": "ZYlLS6Wqmr_2",
+                "gui_type": "Icon, Button",
+                "instruction": "Change the fill color of the paragraph."
+            },
+            {
+                "id": "v60hjsfr9l_0",
+                "gui_type": "Button, Icon",
+                "instruction": "Activate a new terminal "
+            },
+            {
+                "id": "v60hjsfr9l_1",
+                "gui_type": "Icon, Button",
+                "instruction": "Split the view of the main editor"
+            },
+            {
+                "id": "rpngAhRMhE_0",
+                "gui_type": "Button, Icon",
+                "instruction": "Proceed to the next step on the current web page"
+            },
+            {
+                "id": "YEDiHTZ1TV_1",
+                "gui_type": "Icon",
+                "instruction": "Select the third digit from left to right of the entered password"
+            },
+            {
+                "id": "YEDiHTZ1TV_2",
+                "gui_type": "Icon",
+                "instruction": "I want to view the password input."
+            },
+            {
+                "id": "2TeQ48aM48_1",
+                "gui_type": "Button, Icon",
+                "instruction": "The end point of drag on selecting the first command in the active terminal"
+            },
+            {
+                "id": "2TeQ48aM48_2",
+                "gui_type": "Icon, Button",
+                "instruction": "Resize the terminal in the background to windowed size"
+            },
+            {
+                "id": "2TeQ48aM48_4",
+                "gui_type": "Button, Icon",
+                "instruction": "Expand the smaller terminal to full screen."
+            },
+            {
+                "id": "F2qP3vDPSp_0",
+                "gui_type": "Icon, Button",
+                "instruction": "Refresh the current page"
+            },
+            {
+                "id": "F2qP3vDPSp_1",
+                "gui_type": "Icon, Button",
+                "instruction": "Bookmark the opened web page on chrome"
+            },
+            {
+                "id": "F2qP3vDPSp_2",
+                "gui_type": "Icon, Button",
+                "instruction": "Expand the selection of Google Apps"
+            },
+            {
+                "id": "F2qP3vDPSp_3",
+                "gui_type": "Icon, Button",
+                "instruction": "Open the Google Applications menu."
+            },
+            {
+                "id": "SlpCYPr3qW_0",
+                "gui_type": "Button, Icon",
+                "instruction": "Run another speed test"
+            },
+            {
+                "id": "SlpCYPr3qW_1",
+                "gui_type": "Icon, Button",
+                "instruction": "Share the test result via Twitter"
+            },
+            {
+                "id": "SlpCYPr3qW_2",
+                "gui_type": "Icon, Button",
+                "instruction": "Open my user center of the speedtest website."
+            },
+            {
+                "id": "ZX1JN9R9C5_2",
+                "gui_type": "Icon, Sidebar",
+                "instruction": "Click on the icon of a rope to choose \\\"Free Select Tool\\\""
+            },
+            {
+                "id": "I8B0XHIW8M_1",
+                "gui_type": "Image, Label, Pagination Control",
+                "instruction": "Click to see the third slide."
+            },
+            {
+                "id": "07JVNIBSB9_0",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Click on the printer icon with a magnifier"
+            },
+            {
+                "id": "07JVNIBSB9_1",
+                "gui_type": "Icon, Label, Banner/Notification",
+                "instruction": "Click \\\"x\\\" button to close the floating window of help us make LibreOffice even better"
+            },
+            {
+                "id": "07JVNIBSB9_3",
+                "gui_type": "Icon, Toolbar",
+                "instruction": "Click the icon for underlining words"
+            },
+            {
+                "id": "5NVELD6PT4_2",
+                "gui_type": "Button, Icon",
+                "instruction": "Close the current terminal window but don't close the terminal application"
+            },
+            {
+                "id": "GDZVK92HHZ_0",
+                "gui_type": "Icon, Dialog/Modal",
+                "instruction": "Click on the question icon of the \\\"save\\\" dialog."
+            },
+            {
+                "id": "GDZVK92HHZ_1",
+                "gui_type": "Button, Label, Dialog/Modal",
+                "instruction": "Confirm replacing the existing file."
+            },
+            {
+                "id": "GDZVK92HHZ_2",
+                "gui_type": "Icon, Label",
+                "instruction": "click on the file option right above \\\"videos\\\""
+            },
+            {
+                "id": "KBF8QQ7CCW_0",
+                "gui_type": "Dropdown Menu, Icon, Label",
+                "instruction": "Change the character fonts by clicking the downward button of the font autocomplete."
+            },
+            {
+                "id": "KBF8QQ7CCW_2",
+                "gui_type": "Label, Image",
+                "instruction": "Click on the exclamation mark of \\\"Big news!\\\""
+            },
+            {
+                "id": "17VE1HC7Z9_0",
+                "gui_type": "Button, Icon",
+                "instruction": "Add a sheet by clicking the button on the left of \\\"Sheet1\\\""
+            },
+            {
+                "id": "T4LDK7SR0X_0",
+                "gui_type": "Grid, Image, Label",
+                "instruction": "Select the 12th slide"
+            },
+            {
+                "id": "T4LDK7SR0X_4",
+                "gui_type": "Toolbar, Icon, Button",
+                "instruction": "Click on the save button"
+            },
+            {
+                "id": "NL9DJBVIYU_0",
+                "gui_type": "Button, Icon",
+                "instruction": "Click the search icon button of the terminal window\\\"user@user-virtual-machine: ~\\\""
+            },
+            {
+                "id": "NL9DJBVIYU_1",
+                "gui_type": "Button, Icon",
+                "instruction": "Close the terminal window\\\"user@user-virtual-machine: ~\\\""
+            },
+            {
+                "id": "NL9DJBVIYU_2",
+                "gui_type": "Stepper, Icon",
+                "instruction": "Increase the zoom level of this picture"
+            },
+            {
+                "id": "X0E85ITYFJ_3",
+                "gui_type": "Icon, Label, Dropdown Menu",
+                "instruction": "Click on the downward arrow of the filter autocomplete"
+            },
+            {
+                "id": "8W1YGC8ZFK_0",
+                "gui_type": "Icon, Button, Sidebar",
+                "instruction": "Click on the unified transform tool icon"
+            },
+            {
+                "id": "8W1YGC8ZFK_1",
+                "gui_type": "Button, Icon, Sidebar",
+                "instruction": "Click on the magic wand icon to select the fuzzy select tool"
+            },
+            {
+                "id": "8W1YGC8ZFK_2",
+                "gui_type": "Button, Icon",
+                "instruction": "Close the Colorize dialog by click the \\\"x\\\" button"
+            },
+            {
+                "id": "8W1YGC8ZFK_3",
+                "gui_type": "Button, Icon, Sidebar",
+                "instruction": "Click on the Paths Tool icon"
+            },
+            {
+                "id": "2ENZHM7E2X_0",
+                "gui_type": "Dialog/Modal, Icon, Label",
+                "instruction": "Close the \\\"Indexed Color Conversion\\\" dialog"
+            },
+            {
+                "id": "2ENZHM7E2X_1",
+                "gui_type": "Icon, Sidebar",
+                "instruction": "Close the current image editing window in GIMP"
+            },
+            {
+                "id": "2ENZHM7E2X_2",
+                "gui_type": "Icon, Button",
+                "instruction": "Click the bucket fill tool"
+            },
+            {
+                "id": "DDWOR3T8WC_1",
+                "gui_type": "Toolbar, Dropdown Menu, Icon",
+                "instruction": "Click on the character of /pi"
+            },
+            {
+                "id": "DDWOR3T8WC_2",
+                "gui_type": "Toolbar, Dropdown Menu, Icon",
+                "instruction": "Click on the character of /sigma"
+            },
+            {
+                "id": "9GDGV3U5J4_0",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Click on \\\"Insert video or audio\\\" icon"
+            },
+            {
+                "id": "9GDGV3U5J4_1",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Click on Ellipse icon"
+            },
+            {
+                "id": "9GDGV3U5J4_2",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Click on Symbol Shapes Icon"
+            },
+            {
+                "id": "R5CJC9VSAF_3",
+                "gui_type": "Image",
+                "instruction": "Click on the lower right corner of the histogram to adjust its size."
+            },
+            {
+                "id": "UWWK2JG13A_3",
+                "gui_type": "Icon, Dialog/Modal",
+                "instruction": "Enlarge the dialog box on the upper left to full screen"
+            },
+            {
+                "id": "7JW3IENVKW_0",
+                "gui_type": "Icon, Button",
+                "instruction": "Redo with mouse click"
+            },
+            {
+                "id": "CK2N607SQT_1",
+                "gui_type": "Icon, Button, Sidebar",
+                "instruction": "expand the brush function"
+            },
+            {
+                "id": "0FOB4CLBT2_0",
+                "gui_type": "Label, Button, Icon",
+                "instruction": "Open the filter function for search settings."
+            },
+            {
+                "id": "0FOB4CLBT2_2",
+                "gui_type": "Icon, Sidebar",
+                "instruction": "Open the debug panel"
+            },
+            {
+                "id": "X85C51OAHA_0",
+                "gui_type": "Image, Pagination Control",
+                "instruction": "Click on the other slide that has green background."
+            },
+            {
+                "id": "X85C51OAHA_1",
+                "gui_type": "Sidebar, Icon",
+                "instruction": "Shift the right side panel to the Picture panel."
+            },
+            {
+                "id": "X85C51OAHA_2",
+                "gui_type": "Icon, Toolbar, Dropdown Menu",
+                "instruction": "Close the Slide layout options panel."
+            },
+            {
+                "id": "OH23HT37NP_0",
+                "gui_type": "Banner/Notification, Button, Label, Icon",
+                "instruction": "Close the donations notification"
+            },
+            {
+                "id": "OH23HT37NP_2",
+                "gui_type": "Button, Icon",
+                "instruction": "Add strikethrough"
+            },
+            {
+                "id": "OH23HT37NP_3",
+                "gui_type": "Icon, Button",
+                "instruction": "Expand the non-numeric bullet point options"
+            },
+            {
+                "id": "1YJ0KGXNKU_1",
+                "gui_type": "Button, Icon",
+                "instruction": "Star the current chrome page."
+            },
+            {
+                "id": "DEFCEB4U9S_0",
+                "gui_type": "Icon, Button",
+                "instruction": "Fast forward the current video."
+            },
+            {
+                "id": "DEFCEB4U9S_1",
+                "gui_type": "Icon, Button",
+                "instruction": "Expand the video to watch in full screen mode."
+            },
+            {
+                "id": "XQ52HJNEH5_2",
+                "gui_type": "Button, Icon, Label",
+                "instruction": "Click on the settings of Slide properties."
+            },
+            {
+                "id": "1GTGZ3A3V8_1",
+                "gui_type": "Icon",
+                "instruction": "Star the first slide."
+            },
+            {
+                "id": "1GTGZ3A3V8_2",
+                "gui_type": "Icon, Button",
+                "instruction": "Hide the left side panel"
+            },
+            {
+                "id": "1GTGZ3A3V8_3",
+                "gui_type": "Icon, Button",
+                "instruction": "Hide the right side panel"
+            },
+            {
+                "id": "7NQUN7RBA5_0",
+                "gui_type": "Button, Icon, Toolbar",
+                "instruction": "Start from the first slide icon"
+            },
+            {
+                "id": "7NQUN7RBA5_1",
+                "gui_type": "Button, Icon, Toolbar",
+                "instruction": "Start from the current slide icon"
+            },
+            {
+                "id": "7NQUN7RBA5_2",
+                "gui_type": "Button, Icon, Toolbar",
+                "instruction": "Rotate icon"
+            },
+            {
+                "id": "7NQUN7RBA5_3",
+                "gui_type": "Button, Icon, Toolbar",
+                "instruction": "Shadow icon"
+            },
+            {
+                "id": "7NQUN7RBA5_4",
+                "gui_type": "Button, Icon, Toolbar",
+                "instruction": "Duplicate slide icon"
+            },
+            {
+                "id": "7NQUN7RBA5_5",
+                "gui_type": "Button, Icon, Toolbar",
+                "instruction": "Insert row above"
+            },
+            {
+                "id": "7NQUN7RBA5_6",
+                "gui_type": "Button, Icon, Toolbar",
+                "instruction": "Insert column after "
+            },
+            {
+                "id": "2X4C2ZQ4NN_0",
+                "gui_type": "Icon, Sidebar",
+                "instruction": "a fire icon (🔥) located on the left side toolbar/sidebar of the Thunderbird email client"
+            },
+            {
+                "id": "2X4C2ZQ4NN_1",
+                "gui_type": "Dropdown Menu, Button, Label",
+                "instruction": "dropdown arrow (or downward-facing chevron) next to the \"Reply All\" button"
+            },
+            {
+                "id": "2X4C2ZQ4NN_2",
+                "gui_type": "Button, Icon",
+                "instruction": "Display the Thunderbird menu"
+            },
+            {
+                "id": "R20F17BPDI_0",
+                "gui_type": "Icon, Label",
+                "instruction": "The last option under Curves and Polygons"
+            },
+            {
+                "id": "R20F17BPDI_1",
+                "gui_type": "Icon, Label",
+                "instruction": "row 2, column 4 of \"Basic Shapes\" section (if we count from left to right, top to bottom)"
+            },
+            {
+                "id": "R20F17BPDI_2",
+                "gui_type": "Icon",
+                "instruction": "Ring shape"
+            },
+            {
+                "id": "R20F17BPDI_3",
+                "gui_type": "Icon",
+                "instruction": "Puzzle shape"
+            },
+            {
+                "id": "RR8T7414NV_0",
+                "gui_type": "Icon, Sidebar, Label",
+                "instruction": "Click on Gallery icon again to collapse the panel"
+            },
+            {
+                "id": "RR8T7414NV_1",
+                "gui_type": "Icon",
+                "instruction": "Curved up-down arrow"
+            },
+            {
+                "id": "RR8T7414NV_2",
+                "gui_type": "Icon",
+                "instruction": "s-line-blue"
+            },
+            {
+                "id": "UYP0QN442S_0",
+                "gui_type": "Icon",
+                "instruction": "middle option among the chart variants for Column type charts"
+            },
+            {
+                "id": "UYP0QN442S_1",
+                "gui_type": "Icon",
+                "instruction": "right-most option among the chart variants for Column type charts"
+            },
+            {
+                "id": "4EDJ4LB61U_0",
+                "gui_type": "Button, Icon",
+                "instruction": "Close the partially covered window"
+            },
+            {
+                "id": "4EDJ4LB61U_2",
+                "gui_type": "Button, Icon",
+                "instruction": "In the file explorer window at the bottom layer (partially obscured), change the view to list view."
+            },
+            {
+                "id": "4EDJ4LB61U_3",
+                "gui_type": "Button, Icon",
+                "instruction": "Minimize the window at the bottom layer of the current screen"
+            },
+            {
+                "id": "3665T6DMTQ_3",
+                "gui_type": "Button, Label",
+                "instruction": "Reset to default"
+            },
+            {
+                "id": "9S1Z75JVOM_0",
+                "gui_type": "Dialog/Modal, Icon",
+                "instruction": "Choose the yellow font style"
+            },
+            {
+                "id": "9S1Z75JVOM_1",
+                "gui_type": "Dialog/Modal, Icon",
+                "instruction": "Select solid blue font style"
+            },
+            {
+                "id": "9S1Z75JVOM_2",
+                "gui_type": "Dialog/Modal, Icon",
+                "instruction": "Select \"x\" to exit the panel"
+            },
+            {
+                "id": "9S1Z75JVOM_3",
+                "gui_type": "Dialog/Modal, Icon",
+                "instruction": "Choose \"favorite 2\" style"
+            },
+            {
+                "id": "VFRAT6TTNZ_1",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Print the file"
+            },
+            {
+                "id": "ZEPP63ZW8S_1",
+                "gui_type": "Button, Icon",
+                "instruction": "Exit the preferences"
+            },
+            {
+                "id": "4NVKY1C69O_1",
+                "gui_type": "Icon, Label",
+                "instruction": "Turn off the settings by clicking"
+            },
+            {
+                "id": "4NVKY1C69O_2",
+                "gui_type": "Icon, Sidebar",
+                "instruction": "Enter git area"
+            },
+            {
+                "id": "BM35AF086O_0",
+                "gui_type": "Icon, Sidebar",
+                "instruction": "Choose \"fuzzy select\" tool"
+            },
+            {
+                "id": "BM35AF086O_1",
+                "gui_type": "Icon, Sidebar",
+                "instruction": "I want to select a contiguous region on the basis of color"
+            },
+            {
+                "id": "BM35AF086O_2",
+                "gui_type": "Color Picker, Icon, Sidebar",
+                "instruction": "Change Foreground Color from Black to another color"
+            },
+            {
+                "id": "BM35AF086O_3",
+                "gui_type": "Icon, Label, Sidebar",
+                "instruction": "Select \"device status\""
+            },
+            {
+                "id": "BM35AF086O_4",
+                "gui_type": "Icon, Button, Sidebar",
+                "instruction": "Configure the tab on the left side, just above \"Crop\" area."
+            },
+            {
+                "id": "BM35AF086O_5",
+                "gui_type": "Icon",
+                "instruction": "Select the brush with a hardness of 75."
+            },
+            {
+                "id": "BM35AF086O_6",
+                "gui_type": "Button, Icon, Sidebar",
+                "instruction": "Duplicate this brush"
+            },
+            {
+                "id": "UJEEK2XCW7_0",
+                "gui_type": "Tree View, Icon",
+                "instruction": "Hide the dropdown menu opened under Interface."
+            },
+            {
+                "id": "5TLJMXTVRF_3",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Select \"AutoFilter\" option"
+            },
+            {
+                "id": "5TLJMXTVRF_4",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Select \"sort\" option"
+            },
+            {
+                "id": "5TLJMXTVRF_5",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Edit Pivot Table"
+            },
+            {
+                "id": "5TLJMXTVRF_6",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Insert some special characters"
+            },
+            {
+                "id": "5TLJMXTVRF_7",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Change the cell to number format."
+            },
+            {
+                "id": "5TLJMXTVRF_8",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Set boarder styles"
+            },
+            {
+                "id": "5TLJMXTVRF_9",
+                "gui_type": "Icon, Button",
+                "instruction": "Add a new sheet"
+            },
+            {
+                "id": "5TLJMXTVRF_11",
+                "gui_type": "Sidebar, Icon",
+                "instruction": "Open Gallery"
+            },
+            {
+                "id": "KHXS7B1U44_0",
+                "gui_type": "Button, Icon",
+                "instruction": "Delete this image"
+            },
+            {
+                "id": "KHXS7B1U44_2",
+                "gui_type": "Icon, Button",
+                "instruction": "Edit this brush"
+            },
+            {
+                "id": "KHXS7B1U44_3",
+                "gui_type": "Icon, Button",
+                "instruction": "Check the channels of this image"
+            },
+            {
+                "id": "KHXS7B1U44_4",
+                "gui_type": "Icon, Button",
+                "instruction": "Hide the layer of this image."
+            },
+            {
+                "id": "KHXS7B1U44_5",
+                "gui_type": "Icon, Button",
+                "instruction": "Lock the position and the size of the image"
+            },
+            {
+                "id": "KHXS7B1U44_6",
+                "gui_type": "Image",
+                "instruction": "Click the small image to access the layer attribute settings"
+            },
+            {
+                "id": "KHXS7B1U44_7",
+                "gui_type": "Label, Button, Dropdown Menu",
+                "instruction": "Change the mode of this image"
+            },
+            {
+                "id": "KHXS7B1U44_8",
+                "gui_type": "Icon, Button",
+                "instruction": "Configure the bottom-right tab"
+            },
+            {
+                "id": "KHXS7B1U44_9",
+                "gui_type": "Icon, Button, Sidebar",
+                "instruction": "Select the color picker tool"
+            },
+            {
+                "id": "B8IYUU0NND_2",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Accept the content in this cell"
+            },
+            {
+                "id": "B8IYUU0NND_3",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Click the cut function option"
+            },
+            {
+                "id": "B8IYUU0NND_4",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Save this file by clicking."
+            },
+            {
+                "id": "GLZAK60UIX_0",
+                "gui_type": "Dialog/Modal, Icon",
+                "instruction": "Pick farthest full-transparency color"
+            },
+            {
+                "id": "GLZAK60UIX_1",
+                "gui_type": "Dialog/Modal, Icon",
+                "instruction": "Pick nearest full-opacity color"
+            },
+            {
+                "id": "GLZAK60UIX_3",
+                "gui_type": "Dialog/Modal, Icon",
+                "instruction": "Manage presets in the Color to Alpha Panel"
+            },
+            {
+                "id": "AS6VFKCIPM_0",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Add Decimal Place for the current cell"
+            },
+            {
+                "id": "AS6VFKCIPM_1",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Increase indent for the current cell"
+            },
+            {
+                "id": "AS6VFKCIPM_2",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Format the current cell as currency"
+            },
+            {
+                "id": "MZSHLRLER1_0",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Start from Current Slide"
+            },
+            {
+                "id": "MZSHLRLER1_1",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Master Slide"
+            },
+            {
+                "id": "MZSHLRLER1_2",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Insert a callout shape"
+            },
+            {
+                "id": "MZSHLRLER1_3",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Select \"Curves and Polygons\""
+            },
+            {
+                "id": "SJ1YJQMOGW_0",
+                "gui_type": "Sidebar, Icon",
+                "instruction": "Select the page setting in the sidebar"
+            },
+            {
+                "id": "SJ1YJQMOGW_2",
+                "gui_type": "Icon",
+                "instruction": "Switch to book view"
+            },
+            {
+                "id": "BHXSNCTIKJ_0",
+                "gui_type": "Dialog/Modal, Icon, Dropdown Menu",
+                "instruction": "Reduce the posterize levels"
+            },
+            {
+                "id": "BHXSNCTIKJ_1",
+                "gui_type": "Dialog/Modal, Icon",
+                "instruction": "Save the current settings as named preset"
+            },
+            {
+                "id": "IJOYC65OCU_0",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Clone Formatting"
+            },
+            {
+                "id": "IJOYC65OCU_1",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Clear Direct Formatting"
+            },
+            {
+                "id": "IJOYC65OCU_2",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Undo input"
+            },
+            {
+                "id": "K6SRLXWV6U_0",
+                "gui_type": "Button, Icon",
+                "instruction": "Skip backward to the previous media in the playlist"
+            },
+            {
+                "id": "K6SRLXWV6U_1",
+                "gui_type": "Button, Icon",
+                "instruction": "Toggle the video in fullscreen"
+            },
+            {
+                "id": "K6SRLXWV6U_2",
+                "gui_type": "Button, Icon",
+                "instruction": "Click to toggle between loop all, loop one and no loop"
+            },
+            {
+                "id": "K6SRLXWV6U_3",
+                "gui_type": "Button, Icon",
+                "instruction": "Show extended settings"
+            },
+            {
+                "id": "RU8N4G5BN2_0",
+                "gui_type": "Label, Button",
+                "instruction": "Sort the files according to the size"
+            },
+            {
+                "id": "RU8N4G5BN2_2",
+                "gui_type": "Label, Button",
+                "instruction": "Sort the files according to the modified time"
+            },
+            {
+                "id": "BMGIW3PGTY_0",
+                "gui_type": "Sidebar, Icon",
+                "instruction": "Enter the \"Run and Debug\" sidebar"
+            },
+            {
+                "id": "BMGIW3PGTY_1",
+                "gui_type": "Sidebar, Icon",
+                "instruction": "Enter the \"Source Control\" sidebar"
+            },
+            {
+                "id": "BMGIW3PGTY_2",
+                "gui_type": "Button, Icon",
+                "instruction": "Split editor right"
+            },
+            {
+                "id": "BMGIW3PGTY_3",
+                "gui_type": "Icon",
+                "instruction": "Check if there is any problems in the current file"
+            }
+        ],
+        "layout_understanding": [
+            {
+                "id": "9W4J8yevlZ_0",
+                "gui_type": "Dropdown Menu, Label",
+                "instruction": "Select \"As Attachment\""
+            },
+            {
+                "id": "hMjkRFL62H_0",
+                "gui_type": "Button, Dialog/Modal, Label",
+                "instruction": "Allow the pop-up window"
+            },
+            {
+                "id": "i6kF2cNDtn_0",
+                "gui_type": "Button, Dialog/Modal, Label",
+                "instruction": "Click \"Replace\""
+            },
+            {
+                "id": "RxKFXF20dm_0",
+                "gui_type": "Button, Banner/Notification, Label",
+                "instruction": "Open \"Show recommendations\""
+            },
+            {
+                "id": "IyG0dOsYle_0",
+                "gui_type": "Toolbar, Button, Table, Icon",
+                "instruction": "Bold the text in the selected box"
+            },
+            {
+                "id": "dy9PDLqz8E_0",
+                "gui_type": "Menu Bar, Dropdown Menu, Button",
+                "instruction": "Align the text to the center."
+            },
+            {
+                "id": "6t8bUw46XQ_0",
+                "gui_type": "Menu Bar, Dropdown Menu, Label",
+                "instruction": "Select \"Program Guide\""
+            },
+            {
+                "id": "6t8bUw46XQ_2",
+                "gui_type": "Icon, Dropdown Menu",
+                "instruction": "Choose the option that has an orange circular icon."
+            },
+            {
+                "id": "a5GZt5CjGJ_0",
+                "gui_type": "Label, Button, List",
+                "instruction": "Select \"Box List Blue\""
+            },
+            {
+                "id": "s8szzBS40r_0",
+                "gui_type": "Button, Banner/Notification, Label",
+                "instruction": "Remove the bookmark"
+            },
+            {
+                "id": "26lutpfWbA_0",
+                "gui_type": "Button, Dialog/Modal, Label",
+                "instruction": "Accept the tracking preferences"
+            },
+            {
+                "id": "I5RRXeOqSv_0",
+                "gui_type": "Button, Toolbar",
+                "instruction": "Set to vertically center align."
+            },
+            {
+                "id": "4vEmVUJ355_1",
+                "gui_type": "Button, Icon, Toolbar",
+                "instruction": "Choose the pink circular button."
+            },
+            {
+                "id": "SSkeqHyDHI_0",
+                "gui_type": "Button, Dialog/Modal, Label",
+                "instruction": "Accept the cookies"
+            },
+            {
+                "id": "rKWTjVSg8W_0",
+                "gui_type": "Button, Dialog/Modal, Icon",
+                "instruction": "Close the pop-up message."
+            },
+            {
+                "id": "J4LybGu1qw_0",
+                "gui_type": "Button, Label, Dialog/Modal",
+                "instruction": "Consent"
+            },
+            {
+                "id": "uFNby7qVe6_0",
+                "gui_type": "Stepper, Panel/Container",
+                "instruction": "Reduce brightness"
+            },
+            {
+                "id": "u9BcjAUTlQ_0",
+                "gui_type": "Button, Dialog/Modal, Label",
+                "instruction": "Click \"OK\""
+            },
+            {
+                "id": "Lh7eUcFYW7_0",
+                "gui_type": "Dropdown Menu, Label, Sidebar",
+                "instruction": "Select \"Meters\""
+            },
+            {
+                "id": "pakqrW3f3S_0",
+                "gui_type": "Button, Toolbar, Icon",
+                "instruction": "Set the font to italic."
+            },
+            {
+                "id": "lCfZ89UKBh_0",
+                "gui_type": "Pagination Control",
+                "instruction": "Click the fourth slide"
+            },
+            {
+                "id": "5LWu2cxt31_0",
+                "gui_type": "Label, List",
+                "instruction": "Choose \"requirement.txt\""
+            },
+            {
+                "id": "5LWu2cxt31_1",
+                "gui_type": "Label, List",
+                "instruction": "Choose \\\"requirement.txt\\\" that is no larger than 100 bytes."
+            },
+            {
+                "id": "oAuNhTPDYZ_0",
+                "gui_type": "Button, Dialog/Modal, Label",
+                "instruction": "Enable Replacement"
+            },
+            {
+                "id": "CSX8vMhbjY_0",
+                "gui_type": "Image, Grid",
+                "instruction": "Choose the picture in the middle of row 2."
+            },
+            {
+                "id": "qjjUE6JMB9_0",
+                "gui_type": "List, Label, Dropdown Menu",
+                "instruction": "Choose 18 pt"
+            },
+            {
+                "id": "Sbve3LkRIP_0",
+                "gui_type": "Label, Button, Tree View",
+                "instruction": "Enter Junk Settings under Local Folders"
+            },
+            {
+                "id": "f3A04p1Sec_0",
+                "gui_type": "Label, Dropdown Menu",
+                "instruction": "Select Caveat"
+            },
+            {
+                "id": "ohiYxEdwYz_0",
+                "gui_type": "Button, Icon, Toolbar",
+                "instruction": "Random play"
+            },
+            {
+                "id": "QNgRXBQhKu_0",
+                "gui_type": "Menu Bar, Dropdown Menu, Label",
+                "instruction": "User Tasks"
+            },
+            {
+                "id": "IJJKnL5DD9_0",
+                "gui_type": "Label, Button, Dropdown Menu",
+                "instruction": "Select 'Add Function Breakpoint'"
+            },
+            {
+                "id": "fUFbPxMJK2_0",
+                "gui_type": "Label, Button, Dropdown Menu",
+                "instruction": "Sign in to see tabs from other devices"
+            },
+            {
+                "id": "aB5dapCXde_0",
+                "gui_type": "Label, Dropdown Menu, Button, Menu Bar",
+                "instruction": "The menu option with the shortcut Shift+Ctrl+4"
+            },
+            {
+                "id": "aB5dapCXde_1",
+                "gui_type": "Label, Dropdown Menu, Button, Menu Bar",
+                "instruction": "The formatting option that corresponds to Shift+Ctrl+2"
+            },
+            {
+                "id": "Dd5jH9nufm_0",
+                "gui_type": "Dropdown Menu, Slider",
+                "instruction": "The scroll trigger area at the bottom edge of the tab dropdown menu"
+            },
+            {
+                "id": "Dd5jH9nufm_1",
+                "gui_type": "Dropdown Menu, Slider, List",
+                "instruction": "The auto-scroll region at the bottom of the open tabs list"
+            },
+            {
+                "id": "U0ppjHyHfi_0",
+                "gui_type": "Button, Label, Dialog/Modal",
+                "instruction": "Agree"
+            },
+            {
+                "id": "U0ppjHyHfi_1",
+                "gui_type": "Button, Label, Accordion/Collapsible Panel",
+                "instruction": "Feedback"
+            },
+            {
+                "id": "EJ3cQkXkJD_0",
+                "gui_type": "Button, Label, Dialog/Modal",
+                "instruction": "Retry"
+            },
+            {
+                "id": "vVlEBxIuJA_0",
+                "gui_type": "Pagination Control",
+                "instruction": "The last slide"
+            },
+            {
+                "id": "vVlEBxIuJA_1",
+                "gui_type": "Label, Button, Dropdown Menu",
+                "instruction": "Change Orientation"
+            },
+            {
+                "id": "yQJ2YNOnuf_0",
+                "gui_type": "Label, Button, Dropdown Menu",
+                "instruction": "Manage Extensions"
+            },
+            {
+                "id": "yQJ2YNOnuf_1",
+                "gui_type": "Icon, Button, Dropdown Menu",
+                "instruction": "Make chrome fullscreen"
+            },
+            {
+                "id": "F3Tq2CIYu2_0",
+                "gui_type": "Icon, Dialog/Modal",
+                "instruction": "Close the pop-up"
+            },
+            {
+                "id": "esiHUQwNzp_2",
+                "gui_type": "Icon, Toolbar",
+                "instruction": "Enlarge and bold the title."
+            },
+            {
+                "id": "ulmbnPhoBQ_1",
+                "gui_type": "Button, Label, Banner/Notification",
+                "instruction": "Install Python extension"
+            },
+            {
+                "id": "nPEMrT2iyl_0",
+                "gui_type": "Menu Bar, Dropdown Menu, Label",
+                "instruction": "Increase Size menu option"
+            },
+            {
+                "id": "nPEMrT2iyl_1",
+                "gui_type": "Menu Bar, Dropdown Menu, Label",
+                "instruction": "tOGGLE CASE menu option"
+            },
+            {
+                "id": "EUsTBhmnVc_0",
+                "gui_type": "Tab",
+                "instruction": "Switch to another desktop"
+            },
+            {
+                "id": "RcHExVNVpF_0",
+                "gui_type": "Tab",
+                "instruction": "Go back to the first desktop"
+            },
+            {
+                "id": "9ICpvdGZBC_0",
+                "gui_type": "Button, Label, Banner/Notification",
+                "instruction": "Postpone the update request"
+            },
+            {
+                "id": "LApQBqioDJ_0",
+                "gui_type": "Tab, Icon",
+                "instruction": "activate the window of thunderbird"
+            },
+            {
+                "id": "l1SV14v5KJ_0",
+                "gui_type": "Toolbar, Button, Icon",
+                "instruction": "Insert an image"
+            },
+            {
+                "id": "2YBXgaVbYt_0",
+                "gui_type": "Icon, Button, Sidebar",
+                "instruction": "Explore Extension Marketplace"
+            },
+            {
+                "id": "M0KqB4heNx_0",
+                "gui_type": "Button, Label, Dropdown Menu",
+                "instruction": "Expand the selection for slide scale"
+            },
+            {
+                "id": "yDzPBBqsAM_0",
+                "gui_type": "Button, Icon, Sidebar",
+                "instruction": "Go to my contacts on the left side."
+            },
+            {
+                "id": "i6SZmhHk3w_0",
+                "gui_type": "Button, Label, Dialog/Modal",
+                "instruction": "Accept the cookie preferences"
+            },
+            {
+                "id": "eqC33g4MYy_0",
+                "gui_type": "Menu Bar, Dropdown Menu, Label",
+                "instruction": "Create a new HTML document"
+            },
+            {
+                "id": "5Q21KgN00f_0",
+                "gui_type": "Tab, Button, Icon",
+                "instruction": "Close the current active setting tab"
+            },
+            {
+                "id": "SdpSnXaSyh_0",
+                "gui_type": "Menu Bar, Dropdown Menu, Label",
+                "instruction": "Open the settings for bullet points"
+            },
+            {
+                "id": "U4krDP46q7_0",
+                "gui_type": "Tab, Icon, Button",
+                "instruction": "Create a new tab for webpage"
+            },
+            {
+                "id": "aC2nRbndfz_0",
+                "gui_type": "Icon, Button, Toolbar",
+                "instruction": "Create a rectangle shape in the current slide"
+            },
+            {
+                "id": "Gmy8mWXMdK_0",
+                "gui_type": "Button, Icon, Banner/Notification",
+                "instruction": "Close the extension suggestion"
+            },
+            {
+                "id": "0lp8IshCDB_0",
+                "gui_type": "Dropdown Menu, Label",
+                "instruction": "Check News of NFL teams"
+            },
+            {
+                "id": "KeSZ4lSKNS_0",
+                "gui_type": "Menu Bar, Dropdown Menu, Button, Label",
+                "instruction": "Exit the libreoffice writer application"
+            },
+            {
+                "id": "euhgu8ctqN_0",
+                "gui_type": "Pagination Control, Text Field/Input Box",
+                "instruction": "Navigate to a specific page"
+            },
+            {
+                "id": "FA3EIo8w05_0",
+                "gui_type": "Icon, Button, Toolbar",
+                "instruction": "Export the file as pdf"
+            },
+            {
+                "id": "A7ZEJm25hP_0",
+                "gui_type": "Button, Label, Dialog/Modal",
+                "instruction": "Agree with the privacy agreement"
+            },
+            {
+                "id": "FfjmOj9Bbr_0",
+                "gui_type": "Icon, Button, Toolbar",
+                "instruction": "Center the content in the block"
+            },
+            {
+                "id": "GkJJa9Qfh1_0",
+                "gui_type": "Menu Bar, Label",
+                "instruction": "Expand menu item \"File\" in the menu bar"
+            },
+            {
+                "id": "O2pG2oIhW9_0",
+                "gui_type": "Dropdown Menu, Icon, Button",
+                "instruction": "Expand the color selection for the selected text"
+            },
+            {
+                "id": "hBrUZN5ZUo_0",
+                "gui_type": "Button, Label, Dialog/Modal",
+                "instruction": "Press and hold"
+            },
+            {
+                "id": "nqrmff6e0l_0",
+                "gui_type": "Icon, Button, Label, List",
+                "instruction": "Three-dot menu icon to the right of 'Taylor Swift - Shake It Off' entry"
+            },
+            {
+                "id": "5KLFDjQGy6_0",
+                "gui_type": "Icon, Toolbar",
+                "instruction": "Curved angled connector with arrow icon in the bottom-right side of shape connector dropdown menu"
+            },
+            {
+                "id": "5KLFDjQGy6_1",
+                "gui_type": "Icon, Toolbar, Dropdown Menu",
+                "instruction": "Smiley face (emoticon) icon in the toolbar"
+            },
+            {
+                "id": "5KLFDjQGy6_2",
+                "gui_type": "Icon, Toolbar",
+                "instruction": "Smiley face icon to the right of the diamond shape icon in the toolbar"
+            },
+            {
+                "id": "5KLFDjQGy6_3",
+                "gui_type": "Icon, Toolbar, Dropdown Menu",
+                "instruction": "The button below the curved angled connector with arrow icon in the right side of shape connector dropdown menu"
+            },
+            {
+                "id": "5KLFDjQGy6_4",
+                "gui_type": "Icon, Toolbar",
+                "instruction": "Smiley face icon to the right of the circular shape icon in the toolbar"
+            },
+            {
+                "id": "2r2EGLJKi7_0",
+                "gui_type": "Checkbox, Dropdown Menu, Label",
+                "instruction": "Checkbox of 'Right to Left...'"
+            },
+            {
+                "id": "2r2EGLJKi7_1",
+                "gui_type": "Checkbox, Dropdown Menu, Label",
+                "instruction": "Checkbox of 'Night Mode'"
+            },
+            {
+                "id": "2r2EGLJKi7_2",
+                "gui_type": "Checkbox, Dropdown Menu, Label",
+                "instruction": "Checkbox of 'Odd Pages Left'."
+            },
+            {
+                "id": "2r2EGLJKi7_3",
+                "gui_type": "Button, Text Field/Input Box, Pagination Control",
+                "instruction": "Navigate to a specific page."
+            },
+            {
+                "id": "2r2EGLJKi7_4",
+                "gui_type": "Pagination Control",
+                "instruction": "Navigate to page number 10."
+            },
+            {
+                "id": "wFt6OJ7KZU_0",
+                "gui_type": "Label, Button, Dialog/Modal",
+                "instruction": "Close the popup which said \"Clear Current Selection before New Search\""
+            },
+            {
+                "id": "l5uw8UNl5Z_0",
+                "gui_type": "Label, Button, List",
+                "instruction": "Select All' selection"
+            },
+            {
+                "id": "aw9QQgeLgs_0",
+                "gui_type": "Menu Bar, Dropdown Menu, Label",
+                "instruction": "Extensions"
+            },
+            {
+                "id": "35h7FwTKtF_0",
+                "gui_type": "Dropdown Menu, Label",
+                "instruction": "Option of 'Boston Logan Intl Airport...'"
+            },
+            {
+                "id": "Et7qwxZ9Fq_0",
+                "gui_type": "Label, List",
+                "instruction": "Proceedings of Knowledgeable NLP."
+            },
+            {
+                "id": "Et7qwxZ9Fq_1",
+                "gui_type": "Label, List",
+                "instruction": "Proceeding that has a paper volume between 30 and 50."
+            },
+            {
+                "id": "rf4N7456AI_0",
+                "gui_type": "Icon, Grid",
+                "instruction": "Choose the blue color from row 1 the third"
+            },
+            {
+                "id": "Iw8DGT7qH2_0",
+                "gui_type": "Panel/Container, Icon",
+                "instruction": "Choose the terminal page"
+            },
+            {
+                "id": "lxMx5EFQ8d_0",
+                "gui_type": "Label, Icon, Sidebar",
+                "instruction": "Check My Videos in VLC media player"
+            },
+            {
+                "id": "cIwmHfS5VV_0",
+                "gui_type": "Icon, Dropdown Menu, Toolbar",
+                "instruction": "Start to draw a pentagon"
+            },
+            {
+                "id": "cIwmHfS5VV_1",
+                "gui_type": "Dropdown Menu, Icon, Toolbar",
+                "instruction": "In the dropdown panel choose the shape in the middle of the 5th row."
+            },
+            {
+                "id": "U4oYsSxsMu_0",
+                "gui_type": "Label, Banner/Notification, Button",
+                "instruction": "Involve in helping making LibreOffice even better"
+            },
+            {
+                "id": "GPHNywfCwH_0",
+                "gui_type": "Menu Bar, Dropdown Menu, Label",
+                "instruction": "Insert Column Break for this file"
+            },
+            {
+                "id": "ZofGAgx6b9_0",
+                "gui_type": "Pagination Control",
+                "instruction": "Click to view the next page by clicking the next slide"
+            },
+            {
+                "id": "MSC2izlXwX_2",
+                "gui_type": "Label, Dropdown Menu, Button",
+                "instruction": "Try tp change the size of desktop icons"
+            },
+            {
+                "id": "nUFdoivBO8_0",
+                "gui_type": "Label, Button, Dropdown Menu",
+                "instruction": "Change the way of Hardware-accelerated decoding"
+            },
+            {
+                "id": "auZZYGZtqe_0",
+                "gui_type": "Label, Dropdown Menu",
+                "instruction": "Enable Fractional Scaling for Displays"
+            },
+            {
+                "id": "RH3GxAMJ2J_0",
+                "gui_type": "Menu Bar, Dropdown Menu, Label",
+                "instruction": "Check the color theme of VSCode"
+            },
+            {
+                "id": "RH3GxAMJ2J_1",
+                "gui_type": "Menu Bar, Dropdown Menu, Label",
+                "instruction": "Check file icon theme of VSCode"
+            },
+            {
+                "id": "bm06fWt3Oy_0",
+                "gui_type": "Button, Label, Dialog/Modal",
+                "instruction": "Allow the extension Github to sign in using Github"
+            },
+            {
+                "id": "bm06fWt3Oy_1",
+                "gui_type": "Button, Label, Dialog/Modal",
+                "instruction": "Don't sign in using Github"
+            },
+            {
+                "id": "bm06fWt3Oy_2",
+                "gui_type": "Icon, Dialog/Modal, Button",
+                "instruction": "Click on the \\\"x\\\" button to close the popup window."
+            },
+            {
+                "id": "byruBm7Hpm_0",
+                "gui_type": "Tree View, Label",
+                "instruction": "Check Accessibility options for LibreOffice"
+            },
+            {
+                "id": "7cZKEbzsc7_0",
+                "gui_type": "Tab, Label",
+                "instruction": "Check advanced audio effects settings"
+            },
+            {
+                "id": "lpDS7oUi74_0",
+                "gui_type": "Dropdown Menu, Icon",
+                "instruction": "Browse for more network URLs"
+            },
+            {
+                "id": "2UccveuycN_0",
+                "gui_type": "Button, Icon, Toolbar",
+                "instruction": "Choose center alignment for layout."
+            },
+            {
+                "id": "2UccveuycN_1",
+                "gui_type": "Button, Icon, Label, Banner/Notification",
+                "instruction": "Close the popup \"Help us make LibreOffice even better\""
+            },
+            {
+                "id": "TFTjusDjPe_0",
+                "gui_type": "Dropdown Menu, Label",
+                "instruction": "Turn on sync to get your bookmarks on all your devices."
+            },
+            {
+                "id": "X3oULz4IY6_1",
+                "gui_type": "List, Label",
+                "instruction": "Click the keybinding for Accept Next Word Of Inline Suggestion"
+            },
+            {
+                "id": "LKmqKFROXk_0",
+                "gui_type": "Button, Label, Banner/Notification",
+                "instruction": "Deal with the updates later"
+            },
+            {
+                "id": "LKmqKFROXk_1",
+                "gui_type": "Banner/Notification, Label, Button",
+                "instruction": "Download update now"
+            },
+            {
+                "id": "LKmqKFROXk_2",
+                "gui_type": "Icon, Button, Banner/Notification",
+                "instruction": "Close the popup of available update"
+            },
+            {
+                "id": "NS4vEYCV7u_0",
+                "gui_type": "Dropdown Menu, Label",
+                "instruction": "Turn off auto save of editors that have unsaved changes"
+            },
+            {
+                "id": "BT7yWIQyPi_0",
+                "gui_type": "Label, Banner/Notification",
+                "instruction": "Understand Delta's privacy policy"
+            },
+            {
+                "id": "wWpMG3bpUD_0",
+                "gui_type": "List, Label, Button",
+                "instruction": "Restore this image from trash"
+            },
+            {
+                "id": "wWpMG3bpUD_1",
+                "gui_type": "List, Label, Button",
+                "instruction": "Set this image as wallpaper"
+            },
+            {
+                "id": "czdcH3bfyC_0",
+                "gui_type": "Icon, Dropdown Menu, Toolbar",
+                "instruction": "Select the wave underline"
+            },
+            {
+                "id": "czdcH3bfyC_1",
+                "gui_type": "Icon, Dropdown Menu, Toolbar",
+                "instruction": "Choose the fifth underline option from the top down"
+            },
+            {
+                "id": "Ak6Dn4Q3D8_1",
+                "gui_type": "Icon, Sidebar",
+                "instruction": "Shift to the Libreoffice Impress file."
+            },
+            {
+                "id": "0NVmz0b7L0_0",
+                "gui_type": "Tab",
+                "instruction": "Navigate to the 2nd sheet of this workbook."
+            },
+            {
+                "id": "0NVmz0b7L0_2",
+                "gui_type": "Banner/Notification, Button, Icon",
+                "instruction": "Close the top notification bar."
+            },
+            {
+                "id": "2XIa0KyxIh_0",
+                "gui_type": "Icon, Button, Sidebar",
+                "instruction": "Pull out the application panel."
+            },
+            {
+                "id": "3zYUXIQcmA_0",
+                "gui_type": "Tab",
+                "instruction": "Navigate to another tab in this window."
+            },
+            {
+                "id": "3zYUXIQcmA_1",
+                "gui_type": "Button, Icon, Tab",
+                "instruction": "Close the current tab page."
+            },
+            {
+                "id": "3zYUXIQcmA_2",
+                "gui_type": "Icon, Tab",
+                "instruction": "Navigate to another tab in the firefox browser."
+            },
+            {
+                "id": "14seST9HcP_0",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Set to bold the chosen text."
+            },
+            {
+                "id": "QfCk36Hk1X_0",
+                "gui_type": "Text Field/Input Box, Grid, Table",
+                "instruction": "Fill up the middle space of the second blank line in the visualized information form."
+            },
+            {
+                "id": "uw2jsjXHQZ_0",
+                "gui_type": "Button, Label, List",
+                "instruction": "Open up the most recent downloaded file."
+            },
+            {
+                "id": "IZ1KbKvlLg_1",
+                "gui_type": "Button, Icon, Dropdown Menu",
+                "instruction": "Expand the dropdown menu for file and folder operations"
+            },
+            {
+                "id": "3MwkAVUe4d_1",
+                "gui_type": "Dropdown Menu, Icon, Label",
+                "instruction": "Expand the selection of directories"
+            },
+            {
+                "id": "3MwkAVUe4d_4",
+                "gui_type": "Tree View, Label",
+                "instruction": "Click to the /etc/ folder in the file manager."
+            },
+            {
+                "id": "DF6iNtXc3T_0",
+                "gui_type": "Tab",
+                "instruction": "Switch to the first opened tab"
+            },
+            {
+                "id": "DF6iNtXc3T_1",
+                "gui_type": "Sidebar, Button, Icon",
+                "instruction": "Collapse the left tool menu of the thunderbird"
+            },
+            {
+                "id": "DF6iNtXc3T_2",
+                "gui_type": "Sidebar, Button, Icon",
+                "instruction": "Open up the settings of my Thunderbird."
+            },
+            {
+                "id": "DF6iNtXc3T_3",
+                "gui_type": "Label, Dropdown Menu, List",
+                "instruction": "Click to the email address of Cindy Williams."
+            },
+            {
+                "id": "qkByHYi0jR_0",
+                "gui_type": "Icon, Button, Toolbar",
+                "instruction": "Undo the action"
+            },
+            {
+                "id": "Plv7sx72z6_1",
+                "gui_type": "Sidebar, Button, Icon",
+                "instruction": "Open the page for calender in thunderbird"
+            },
+            {
+                "id": "T5l1sFEhSy_0",
+                "gui_type": "Icon, Button, Toolbar",
+                "instruction": "Insert an hyperlink"
+            },
+            {
+                "id": "ZYlLS6Wqmr_0",
+                "gui_type": "Accordion/Collapsible Panel",
+                "instruction": "Collapse the tool menu on the right"
+            },
+            {
+                "id": "ZX1JN9R9C5_2",
+                "gui_type": "Icon, Sidebar",
+                "instruction": "Click on the icon of a rope to choose \\\"Free Select Tool\\\""
+            },
+            {
+                "id": "I8B0XHIW8M_1",
+                "gui_type": "Image, Label, Pagination Control",
+                "instruction": "Click to see the third slide."
+            },
+            {
+                "id": "I8B0XHIW8M_3",
+                "gui_type": "Dropdown Menu, Label",
+                "instruction": "Click on the downward arrow of the \\\"Format\\\" autocomplete to select different format"
+            },
+            {
+                "id": "07JVNIBSB9_0",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Click on the printer icon with a magnifier"
+            },
+            {
+                "id": "07JVNIBSB9_1",
+                "gui_type": "Icon, Label, Banner/Notification",
+                "instruction": "Click \\\"x\\\" button to close the floating window of help us make LibreOffice even better"
+            },
+            {
+                "id": "07JVNIBSB9_3",
+                "gui_type": "Icon, Toolbar",
+                "instruction": "Click the icon for underlining words"
+            },
+            {
+                "id": "GDZVK92HHZ_0",
+                "gui_type": "Icon, Dialog/Modal",
+                "instruction": "Click on the question icon of the \\\"save\\\" dialog."
+            },
+            {
+                "id": "GDZVK92HHZ_1",
+                "gui_type": "Button, Label, Dialog/Modal",
+                "instruction": "Confirm replacing the existing file."
+            },
+            {
+                "id": "KBF8QQ7CCW_0",
+                "gui_type": "Dropdown Menu, Icon, Label",
+                "instruction": "Change the character fonts by clicking the downward button of the font autocomplete."
+            },
+            {
+                "id": "17VE1HC7Z9_1",
+                "gui_type": "Dropdown Menu, Label",
+                "instruction": "Select the style right under the \\\"Accent 3\\\""
+            },
+            {
+                "id": "T4LDK7SR0X_0",
+                "gui_type": "Grid, Image, Label",
+                "instruction": "Select the 12th slide"
+            },
+            {
+                "id": "T4LDK7SR0X_1",
+                "gui_type": "Menu Bar, Dropdown Menu, Label",
+                "instruction": "Select Forms in Tools menu"
+            },
+            {
+                "id": "T4LDK7SR0X_2",
+                "gui_type": "Toolbar, Stepper",
+                "instruction": "Reduce the amount of slides in each row"
+            },
+            {
+                "id": "T4LDK7SR0X_4",
+                "gui_type": "Toolbar, Icon, Button",
+                "instruction": "Click on the save button"
+            },
+            {
+                "id": "X0E85ITYFJ_0",
+                "gui_type": "Dropdown Menu, Checkbox, Label",
+                "instruction": "Click on the checkbox of \\\"Preview\\\""
+            },
+            {
+                "id": "X0E85ITYFJ_1",
+                "gui_type": "Menu Bar, Dropdown Menu, Label",
+                "instruction": "Create a new file"
+            },
+            {
+                "id": "X0E85ITYFJ_2",
+                "gui_type": "Menu Bar, Dropdown Menu, Label",
+                "instruction": "Send this file by email"
+            },
+            {
+                "id": "X0E85ITYFJ_3",
+                "gui_type": "Icon, Label, Dropdown Menu",
+                "instruction": "Click on the downward arrow of the filter autocomplete"
+            },
+            {
+                "id": "8W1YGC8ZFK_0",
+                "gui_type": "Icon, Button, Sidebar",
+                "instruction": "Click on the unified transform tool icon"
+            },
+            {
+                "id": "8W1YGC8ZFK_1",
+                "gui_type": "Button, Icon, Sidebar",
+                "instruction": "Click on the magic wand icon to select the fuzzy select tool"
+            },
+            {
+                "id": "8W1YGC8ZFK_3",
+                "gui_type": "Button, Icon, Sidebar",
+                "instruction": "Click on the Paths Tool icon"
+            },
+            {
+                "id": "FQX7O9Z3HY_2",
+                "gui_type": "Dropdown Menu, Label",
+                "instruction": "Click the downward arrow of Presets' autocomplete to expand the Presets' options."
+            },
+            {
+                "id": "2ENZHM7E2X_0",
+                "gui_type": "Dialog/Modal, Icon, Label",
+                "instruction": "Close the \\\"Indexed Color Conversion\\\" dialog"
+            },
+            {
+                "id": "2ENZHM7E2X_1",
+                "gui_type": "Icon, Sidebar",
+                "instruction": "Close the current image editing window in GIMP"
+            },
+            {
+                "id": "DDWOR3T8WC_1",
+                "gui_type": "Toolbar, Dropdown Menu, Icon",
+                "instruction": "Click on the character of /pi"
+            },
+            {
+                "id": "DDWOR3T8WC_2",
+                "gui_type": "Toolbar, Dropdown Menu, Icon",
+                "instruction": "Click on the character of /sigma"
+            },
+            {
+                "id": "9GDGV3U5J4_0",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Click on \\\"Insert video or audio\\\" icon"
+            },
+            {
+                "id": "9GDGV3U5J4_1",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Click on Ellipse icon"
+            },
+            {
+                "id": "9GDGV3U5J4_2",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Click on Symbol Shapes Icon"
+            },
+            {
+                "id": "OMQI5J926Q_3",
+                "gui_type": "Dropdown Menu, Label, Dialog/Modal",
+                "instruction": "Click on the autocomplete including \\\"-undefined-\\\""
+            },
+            {
+                "id": "AQZO503SQJ_4",
+                "gui_type": "Dropdown Menu, Label",
+                "instruction": "Click the downward arrow of autocomplete to expand the autocomplete options of \\\"Fixed Aspect Ratio\\\"."
+            },
+            {
+                "id": "UWWK2JG13A_3",
+                "gui_type": "Icon, Dialog/Modal",
+                "instruction": "Enlarge the dialog box on the upper left to full screen"
+            },
+            {
+                "id": "7JW3IENVKW_1",
+                "gui_type": "Menu Bar, Dropdown Menu, Label",
+                "instruction": "I want to know what's under Map function."
+            },
+            {
+                "id": "CK2N607SQT_0",
+                "gui_type": "Stepper, List",
+                "instruction": "Increase the fifth value for the color"
+            },
+            {
+                "id": "CK2N607SQT_1",
+                "gui_type": "Icon, Button, Sidebar",
+                "instruction": "expand the brush function"
+            },
+            {
+                "id": "CK2N607SQT_2",
+                "gui_type": "Stepper, List",
+                "instruction": "Lower the value for color \\\"G\\\""
+            },
+            {
+                "id": "0FOB4CLBT2_1",
+                "gui_type": "Dropdown Menu, Label",
+                "instruction": "Unfold the drop-down bar of Auto Save settings."
+            },
+            {
+                "id": "0FOB4CLBT2_2",
+                "gui_type": "Icon, Sidebar",
+                "instruction": "Open the debug panel"
+            },
+            {
+                "id": "X85C51OAHA_0",
+                "gui_type": "Image, Pagination Control",
+                "instruction": "Click on the other slide that has green background."
+            },
+            {
+                "id": "X85C51OAHA_1",
+                "gui_type": "Sidebar, Icon",
+                "instruction": "Shift the right side panel to the Picture panel."
+            },
+            {
+                "id": "X85C51OAHA_2",
+                "gui_type": "Icon, Toolbar, Dropdown Menu",
+                "instruction": "Close the Slide layout options panel."
+            },
+            {
+                "id": "OH23HT37NP_0",
+                "gui_type": "Banner/Notification, Button, Label, Icon",
+                "instruction": "Close the donations notification"
+            },
+            {
+                "id": "OH23HT37NP_1",
+                "gui_type": "Label, Accordion/Collapsible Panel",
+                "instruction": "collapse or fold up the Character panel"
+            },
+            {
+                "id": "XQ52HJNEH5_0",
+                "gui_type": "Dropdown Menu, Label",
+                "instruction": "Change for another background color."
+            },
+            {
+                "id": "FJPHK8AFB6_0",
+                "gui_type": "Menu Bar, Dropdown Menu, Label",
+                "instruction": "Highlighted option"
+            },
+            {
+                "id": "7NQUN7RBA5_0",
+                "gui_type": "Button, Icon, Toolbar",
+                "instruction": "Start from the first slide icon"
+            },
+            {
+                "id": "7NQUN7RBA5_1",
+                "gui_type": "Button, Icon, Toolbar",
+                "instruction": "Start from the current slide icon"
+            },
+            {
+                "id": "7NQUN7RBA5_2",
+                "gui_type": "Button, Icon, Toolbar",
+                "instruction": "Rotate icon"
+            },
+            {
+                "id": "7NQUN7RBA5_3",
+                "gui_type": "Button, Icon, Toolbar",
+                "instruction": "Shadow icon"
+            },
+            {
+                "id": "7NQUN7RBA5_4",
+                "gui_type": "Button, Icon, Toolbar",
+                "instruction": "Duplicate slide icon"
+            },
+            {
+                "id": "7NQUN7RBA5_5",
+                "gui_type": "Button, Icon, Toolbar",
+                "instruction": "Insert row above"
+            },
+            {
+                "id": "7NQUN7RBA5_6",
+                "gui_type": "Button, Icon, Toolbar",
+                "instruction": "Insert column after "
+            },
+            {
+                "id": "2X4C2ZQ4NN_0",
+                "gui_type": "Icon, Sidebar",
+                "instruction": "a fire icon (🔥) located on the left side toolbar/sidebar of the Thunderbird email client"
+            },
+            {
+                "id": "2X4C2ZQ4NN_1",
+                "gui_type": "Dropdown Menu, Button, Label",
+                "instruction": "dropdown arrow (or downward-facing chevron) next to the \"Reply All\" button"
+            },
+            {
+                "id": "RR8T7414NV_0",
+                "gui_type": "Icon, Sidebar, Label",
+                "instruction": "Click on Gallery icon again to collapse the panel"
+            },
+            {
+                "id": "QT5DD37CGK_0",
+                "gui_type": "Dropdown Menu, List",
+                "instruction": "next option"
+            },
+            {
+                "id": "QT5DD37CGK_1",
+                "gui_type": "Dropdown Menu, List",
+                "instruction": "The fourth option"
+            },
+            {
+                "id": "QT5DD37CGK_2",
+                "gui_type": "Dropdown Menu, List",
+                "instruction": "The last option"
+            },
+            {
+                "id": "B6XOOLSCJF_0",
+                "gui_type": "Drawer",
+                "instruction": "Collapse the Properties panel"
+            },
+            {
+                "id": "LR6S8RBXW2_0",
+                "gui_type": "Panel/Container",
+                "instruction": "show the desktop"
+            },
+            {
+                "id": "9S1Z75JVOM_0",
+                "gui_type": "Dialog/Modal, Icon",
+                "instruction": "Choose the yellow font style"
+            },
+            {
+                "id": "9S1Z75JVOM_1",
+                "gui_type": "Dialog/Modal, Icon",
+                "instruction": "Select solid blue font style"
+            },
+            {
+                "id": "9S1Z75JVOM_2",
+                "gui_type": "Dialog/Modal, Icon",
+                "instruction": "Select \"x\" to exit the panel"
+            },
+            {
+                "id": "9S1Z75JVOM_3",
+                "gui_type": "Dialog/Modal, Icon",
+                "instruction": "Choose \"favorite 2\" style"
+            },
+            {
+                "id": "VFRAT6TTNZ_0",
+                "gui_type": "Label, Banner/Notification",
+                "instruction": "Give them feedback to make the software better"
+            },
+            {
+                "id": "VFRAT6TTNZ_1",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Print the file"
+            },
+            {
+                "id": "ZEPP63ZW8S_0",
+                "gui_type": "Tab, Label",
+                "instruction": "Enter audio preferences"
+            },
+            {
+                "id": "4NVKY1C69O_2",
+                "gui_type": "Icon, Sidebar",
+                "instruction": "Enter git area"
+            },
+            {
+                "id": "4NVKY1C69O_3",
+                "gui_type": "Menu Bar, Label",
+                "instruction": "Try to open a new terminal"
+            },
+            {
+                "id": "BM35AF086O_0",
+                "gui_type": "Icon, Sidebar",
+                "instruction": "Choose \"fuzzy select\" tool"
+            },
+            {
+                "id": "BM35AF086O_1",
+                "gui_type": "Icon, Sidebar",
+                "instruction": "I want to select a contiguous region on the basis of color"
+            },
+            {
+                "id": "BM35AF086O_2",
+                "gui_type": "Color Picker, Icon, Sidebar",
+                "instruction": "Change Foreground Color from Black to another color"
+            },
+            {
+                "id": "BM35AF086O_3",
+                "gui_type": "Icon, Label, Sidebar",
+                "instruction": "Select \"device status\""
+            },
+            {
+                "id": "BM35AF086O_4",
+                "gui_type": "Icon, Button, Sidebar",
+                "instruction": "Configure the tab on the left side, just above \"Crop\" area."
+            },
+            {
+                "id": "BM35AF086O_6",
+                "gui_type": "Button, Icon, Sidebar",
+                "instruction": "Duplicate this brush"
+            },
+            {
+                "id": "UJEEK2XCW7_0",
+                "gui_type": "Tree View, Icon",
+                "instruction": "Hide the dropdown menu opened under Interface."
+            },
+            {
+                "id": "UJEEK2XCW7_1",
+                "gui_type": "List, Label",
+                "instruction": "Change the theme to grey"
+            },
+            {
+                "id": "5TLJMXTVRF_2",
+                "gui_type": "Dropdown Menu, Toolbar",
+                "instruction": "Open the font color dropdown menu"
+            },
+            {
+                "id": "5TLJMXTVRF_3",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Select \"AutoFilter\" option"
+            },
+            {
+                "id": "5TLJMXTVRF_4",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Select \"sort\" option"
+            },
+            {
+                "id": "5TLJMXTVRF_5",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Edit Pivot Table"
+            },
+            {
+                "id": "5TLJMXTVRF_6",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Insert some special characters"
+            },
+            {
+                "id": "5TLJMXTVRF_7",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Change the cell to number format."
+            },
+            {
+                "id": "5TLJMXTVRF_8",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Set boarder styles"
+            },
+            {
+                "id": "5TLJMXTVRF_11",
+                "gui_type": "Sidebar, Icon",
+                "instruction": "Open Gallery"
+            },
+            {
+                "id": "KHXS7B1U44_7",
+                "gui_type": "Label, Button, Dropdown Menu",
+                "instruction": "Change the mode of this image"
+            },
+            {
+                "id": "KHXS7B1U44_9",
+                "gui_type": "Icon, Button, Sidebar",
+                "instruction": "Select the color picker tool"
+            },
+            {
+                "id": "B8IYUU0NND_2",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Accept the content in this cell"
+            },
+            {
+                "id": "B8IYUU0NND_3",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Click the cut function option"
+            },
+            {
+                "id": "B8IYUU0NND_4",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Save this file by clicking."
+            },
+            {
+                "id": "B8IYUU0NND_5",
+                "gui_type": "Dropdown Menu, Label",
+                "instruction": "Expand the font list"
+            },
+            {
+                "id": "GLZAK60UIX_0",
+                "gui_type": "Dialog/Modal, Icon",
+                "instruction": "Pick farthest full-transparency color"
+            },
+            {
+                "id": "GLZAK60UIX_1",
+                "gui_type": "Dialog/Modal, Icon",
+                "instruction": "Pick nearest full-opacity color"
+            },
+            {
+                "id": "GLZAK60UIX_3",
+                "gui_type": "Dialog/Modal, Icon",
+                "instruction": "Manage presets in the Color to Alpha Panel"
+            },
+            {
+                "id": "AS6VFKCIPM_0",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Add Decimal Place for the current cell"
+            },
+            {
+                "id": "AS6VFKCIPM_1",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Increase indent for the current cell"
+            },
+            {
+                "id": "AS6VFKCIPM_2",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Format the current cell as currency"
+            },
+            {
+                "id": "MZSHLRLER1_0",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Start from Current Slide"
+            },
+            {
+                "id": "MZSHLRLER1_1",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Master Slide"
+            },
+            {
+                "id": "MZSHLRLER1_2",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Insert a callout shape"
+            },
+            {
+                "id": "MZSHLRLER1_3",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Select \"Curves and Polygons\""
+            },
+            {
+                "id": "SJ1YJQMOGW_0",
+                "gui_type": "Sidebar, Icon",
+                "instruction": "Select the page setting in the sidebar"
+            },
+            {
+                "id": "BHXSNCTIKJ_0",
+                "gui_type": "Dialog/Modal, Icon, Dropdown Menu",
+                "instruction": "Reduce the posterize levels"
+            },
+            {
+                "id": "BHXSNCTIKJ_1",
+                "gui_type": "Dialog/Modal, Icon",
+                "instruction": "Save the current settings as named preset"
+            },
+            {
+                "id": "IJOYC65OCU_0",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Clone Formatting"
+            },
+            {
+                "id": "IJOYC65OCU_1",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Clear Direct Formatting"
+            },
+            {
+                "id": "IJOYC65OCU_2",
+                "gui_type": "Toolbar, Icon",
+                "instruction": "Undo input"
+            },
+            {
+                "id": "RU8N4G5BN2_1",
+                "gui_type": "List, Label",
+                "instruction": "Sort the files in descending order"
+            },
+            {
+                "id": "BMGIW3PGTY_0",
+                "gui_type": "Sidebar, Icon",
+                "instruction": "Enter the \"Run and Debug\" sidebar"
+            },
+            {
+                "id": "BMGIW3PGTY_1",
+                "gui_type": "Sidebar, Icon",
+                "instruction": "Enter the \"Source Control\" sidebar"
+            }
+        ],
+        "fine_grained_manipulation": [
+            {
+                "id": "tR5gErKrt6_0",
+                "gui_type": "Stepper",
+                "instruction": "Increase Audio Gain"
+            },
+            {
+                "id": "tR5gErKrt6_1",
+                "gui_type": "Radio Button, Label",
+                "instruction": "Change settings to show simple mode"
+            },
+            {
+                "id": "3Fh257K4Pd_0",
+                "gui_type": "Table",
+                "instruction": "Select the item at \"I-3\""
+            },
+            {
+                "id": "3Fh257K4Pd_1",
+                "gui_type": "Table",
+                "instruction": "Select the item at \\\"I-0\\\""
+            },
+            {
+                "id": "3Fh257K4Pd_2",
+                "gui_type": "Label, Table",
+                "instruction": "Select the item that says \\\"Dec, 2024\\\""
+            },
+            {
+                "id": "3Fh257K4Pd_3",
+                "gui_type": "Table, Label",
+                "instruction": "Select the item that contains a negative number"
+            },
+            {
+                "id": "3Fh257K4Pd_5",
+                "gui_type": "Table, Label",
+                "instruction": "Select the item at \\\"I-0\\\""
+            },
+            {
+                "id": "IyG0dOsYle_0",
+                "gui_type": "Toolbar, Button, Table, Icon",
+                "instruction": "Bold the text in the selected box"
+            },
+            {
+                "id": "kSmmkdLgeD_0",
+                "gui_type": "Input Box",
+                "instruction": "Select the place between the world \"person\" and the number \"1\""
+            },
+            {
+                "id": "6t8bUw46XQ_1",
+                "gui_type": "Slider",
+                "instruction": "Make the audio louder."
+            },
+            {
+                "id": "a5GZt5CjGJ_1",
+                "gui_type": "Stepper, Label",
+                "instruction": "Make Columns number smaller"
+            },
+            {
+                "id": "4vEmVUJ355_0",
+                "gui_type": "Checkbox",
+                "instruction": "Toggle native slider"
+            },
+            {
+                "id": "UG2NOtbSsK_0",
+                "gui_type": "Checkbox",
+                "instruction": "Enable match case"
+            },
+            {
+                "id": "uFNby7qVe6_0",
+                "gui_type": "Stepper, Panel/Container",
+                "instruction": "Reduce brightness"
+            },
+            {
+                "id": "72Ivc1tZpd_0",
+                "gui_type": "Icon, Button, Color Picker",
+                "instruction": "Set color tag to red"
+            },
+            {
+                "id": "72Ivc1tZpd_1",
+                "gui_type": "Icon, Button, Color Picker",
+                "instruction": "Set color tag to pink"
+            },
+            {
+                "id": "72Ivc1tZpd_2",
+                "gui_type": "Stepper",
+                "instruction": "Adjust the Offset X."
+            },
+            {
+                "id": "5LWu2cxt31_2",
+                "gui_type": "Checkbox",
+                "instruction": "Uncheck `Read-only` option in the file properties."
+            },
+            {
+                "id": "1y0CmHiyPQ_1",
+                "gui_type": "Text Field/Input Box, Label",
+                "instruction": "Add middle name."
+            },
+            {
+                "id": "qK3ccouEK0_0",
+                "gui_type": "Stepper, Label",
+                "instruction": "Increase JPEG compression Quality"
+            },
+            {
+                "id": "Y7jpDzySN3_0",
+                "gui_type": "Icon, Button, Color Picker",
+                "instruction": "Choose Purple color"
+            },
+            {
+                "id": "1YgyNsIUQY_0",
+                "gui_type": "Checkbox, Label",
+                "instruction": "The checkbox labeled 'Current layer only‘"
+            },
+            {
+                "id": "1YgyNsIUQY_2",
+                "gui_type": "Stepper",
+                "instruction": "Make the opacity of the layer higher."
+            },
+            {
+                "id": "Dd5jH9nufm_0",
+                "gui_type": "Dropdown Menu, Slider",
+                "instruction": "The scroll trigger area at the bottom edge of the tab dropdown menu"
+            },
+            {
+                "id": "Dd5jH9nufm_1",
+                "gui_type": "Dropdown Menu, Slider, List",
+                "instruction": "The auto-scroll region at the bottom of the open tabs list"
+            },
+            {
+                "id": "YGnsHWemJN_0",
+                "gui_type": "Label, Table",
+                "instruction": "Apr Column"
+            },
+            {
+                "id": "vcmBE8BueY_0",
+                "gui_type": "Text Field/Input Box, Label",
+                "instruction": "Modify hour part of start time"
+            },
+            {
+                "id": "vcmBE8BueY_1",
+                "gui_type": "Text Field/Input Box, Label",
+                "instruction": "Modify minute part of end time"
+            },
+            {
+                "id": "U0ppjHyHfi_1",
+                "gui_type": "Button, Label, Accordion/Collapsible Panel",
+                "instruction": "Feedback"
+            },
+            {
+                "id": "kwbF3fkXnk_0",
+                "gui_type": "Table, Label",
+                "instruction": "B13 cell"
+            },
+            {
+                "id": "kwbF3fkXnk_1",
+                "gui_type": "Table, Label",
+                "instruction": "D11"
+            },
+            {
+                "id": "kwbF3fkXnk_2",
+                "gui_type": "Table, Label",
+                "instruction": "Q35 cell"
+            },
+            {
+                "id": "E1p7kJp3uQ_0",
+                "gui_type": "Label, Text Field/Input Box",
+                "instruction": "The place to add new parameter to def respawn"
+            },
+            {
+                "id": "E1p7kJp3uQ_1",
+                "gui_type": "Label, Text Field/Input Box",
+                "instruction": "right after SNAKE SIZE, before the right clause"
+            },
+            {
+                "id": "vVlEBxIuJA_2",
+                "gui_type": "Checkbox",
+                "instruction": "Uncheck `Master Objects`"
+            },
+            {
+                "id": "ZNXMeuznz8_0",
+                "gui_type": "Date Picker",
+                "instruction": "16 January 2025"
+            },
+            {
+                "id": "ZNXMeuznz8_1",
+                "gui_type": "Label, Date Picker",
+                "instruction": "The next day of selected date"
+            },
+            {
+                "id": "ZNXMeuznz8_2",
+                "gui_type": "Date Picker",
+                "instruction": "Next month"
+            },
+            {
+                "id": "esiHUQwNzp_0",
+                "gui_type": "Label, Text Field/Input Box",
+                "instruction": "Place the cursor before the capital 'A' in the paragraph about novel climaxes"
+            },
+            {
+                "id": "esiHUQwNzp_1",
+                "gui_type": "Text Field/Input Box",
+                "instruction": "Delete the 10th paragraph in the document."
+            },
+            {
+                "id": "ulmbnPhoBQ_0",
+                "gui_type": "Label, Text Field/Input Box",
+                "instruction": "The end of the last line"
+            },
+            {
+                "id": "5NqxHv9Cdb_1",
+                "gui_type": "Checkbox, Label, Toggle/Menu",
+                "instruction": "Don't display the full screen mode."
+            },
+            {
+                "id": "2YBXgaVbYt_1",
+                "gui_type": "Label, Text Field/Input Box",
+                "instruction": "Edit the Min Tokenization Line Length."
+            },
+            {
+                "id": "nIgFpJQcyc_0",
+                "gui_type": "Table, Label",
+                "instruction": "Select the entire row 16"
+            },
+            {
+                "id": "clHADy1fZ1_1",
+                "gui_type": "Slider",
+                "instruction": "Navigate the video on play to 4:00."
+            },
+            {
+                "id": "zxJCTOiFJS_0",
+                "gui_type": "Checkbox",
+                "instruction": "Change my search settings to case sensitive"
+            },
+            {
+                "id": "5Q21KgN00f_1",
+                "gui_type": "Slider",
+                "instruction": "Adjust the darkness"
+            },
+            {
+                "id": "K3zNEki1mK_0",
+                "gui_type": "Stepper",
+                "instruction": "Increase the spacing above paragraph"
+            },
+            {
+                "id": "Vecoz8xrmU_0",
+                "gui_type": "Radio Button, Icon",
+                "instruction": "Switch to Blue Channel"
+            },
+            {
+                "id": "euhgu8ctqN_0",
+                "gui_type": "Pagination Control, Text Field/Input Box",
+                "instruction": "Navigate to a specific page"
+            },
+            {
+                "id": "bC5RG16JsK_2",
+                "gui_type": "Text Field/Input Box, Label",
+                "instruction": "Add \\\"s\\\" after the word \\\"Display\\\"."
+            },
+            {
+                "id": "l8sf22rM6n_0",
+                "gui_type": "Label, Text Field/Input Box",
+                "instruction": "Place the text cursor immediately after the colon in the heading"
+            },
+            {
+                "id": "l8sf22rM6n_1",
+                "gui_type": "Label, Text Field/Input Box",
+                "instruction": "Position the cursor right after the period that follows 'Latin America's borders' in the middle paragraph"
+            },
+            {
+                "id": "2r2EGLJKi7_0",
+                "gui_type": "Checkbox, Dropdown Menu, Label",
+                "instruction": "Checkbox of 'Right to Left...'"
+            },
+            {
+                "id": "2r2EGLJKi7_1",
+                "gui_type": "Checkbox, Dropdown Menu, Label",
+                "instruction": "Checkbox of 'Night Mode'"
+            },
+            {
+                "id": "2r2EGLJKi7_2",
+                "gui_type": "Checkbox, Dropdown Menu, Label",
+                "instruction": "Checkbox of 'Odd Pages Left'."
+            },
+            {
+                "id": "2r2EGLJKi7_3",
+                "gui_type": "Button, Text Field/Input Box, Pagination Control",
+                "instruction": "Navigate to a specific page."
+            },
+            {
+                "id": "J7nmwdoXTR_0",
+                "gui_type": "Text Field/Input Box, Label",
+                "instruction": "Refresh the page"
+            },
+            {
+                "id": "NpfPa5jbae_0",
+                "gui_type": "Table, Label",
+                "instruction": "Select the row where the value in column A is 42"
+            },
+            {
+                "id": "TmPFYxFR9u_0",
+                "gui_type": "Stepper",
+                "instruction": "Increase on row number"
+            },
+            {
+                "id": "624cPrSpKe_0",
+                "gui_type": "Radio Button, Label",
+                "instruction": "Checkbox of 'From file'"
+            },
+            {
+                "id": "eWUE7CwT9p_0",
+                "gui_type": "Text Field/Input Box, Label",
+                "instruction": "Min price from price range"
+            },
+            {
+                "id": "eWUE7CwT9p_1",
+                "gui_type": "Text Field/Input Box, Label",
+                "instruction": "Max price from price range"
+            },
+            {
+                "id": "Cf4yF5Buvk_1",
+                "gui_type": "Slider",
+                "instruction": "Slider of the puzzle"
+            },
+            {
+                "id": "Iw8DGT7qH2_1",
+                "gui_type": "Text Field/Input Box, Search Bar",
+                "instruction": "Search by typing"
+            },
+            {
+                "id": "GPHNywfCwH_1",
+                "gui_type": "Stepper",
+                "instruction": "Enlarge document view by clicking the plus sign"
+            },
+            {
+                "id": "MSC2izlXwX_0",
+                "gui_type": "Label, Toggle/Switch",
+                "instruction": "Don't show apersonal folder"
+            },
+            {
+                "id": "yqO1Wx47wE_0",
+                "gui_type": "Slider, Label",
+                "instruction": "Increase Saturation to the max"
+            },
+            {
+                "id": "yqO1Wx47wE_1",
+                "gui_type": "Checkbox, Label",
+                "instruction": "Enable Sharpen for video effects"
+            },
+            {
+                "id": "auZZYGZtqe_1",
+                "gui_type": "Toggle/Switch, Label",
+                "instruction": "Check orientation for Displays"
+            },
+            {
+                "id": "iVkNplCzlj_1",
+                "gui_type": "Slider",
+                "instruction": "Skip to the middle of this video/song"
+            },
+            {
+                "id": "byruBm7Hpm_1",
+                "gui_type": "Checkbox, Label",
+                "instruction": "Don't encrypt to self when encrypting documents"
+            },
+            {
+                "id": "7cZKEbzsc7_1",
+                "gui_type": "Checkbox, Label",
+                "instruction": "Enable equalizer"
+            },
+            {
+                "id": "7cZKEbzsc7_2",
+                "gui_type": "Slider",
+                "instruction": "Drag the slider which is the lowest."
+            },
+            {
+                "id": "Ak6Dn4Q3D8_0",
+                "gui_type": "Slider",
+                "instruction": "Go to the very beginning of this video."
+            },
+            {
+                "id": "0NVmz0b7L0_1",
+                "gui_type": "Slider, Stepper",
+                "instruction": "Enlarge the sheet view to a larger size."
+            },
+            {
+                "id": "0ombUjVVAI_0",
+                "gui_type": "Label, Stepper",
+                "instruction": "Increase the spacing."
+            },
+            {
+                "id": "9bQOfLzvdu_0",
+                "gui_type": "Slider",
+                "instruction": "Scroll up the screen in terminal."
+            },
+            {
+                "id": "QfCk36Hk1X_0",
+                "gui_type": "Text Field/Input Box, Grid, Table",
+                "instruction": "Fill up the middle space of the second blank line in the visualized information form."
+            },
+            {
+                "id": "sB5X6NMZV7_0",
+                "gui_type": "Checkbox, Label",
+                "instruction": "Enable the slide number to be shown on the slides"
+            },
+            {
+                "id": "o8viNr8L1u_3",
+                "gui_type": "Table",
+                "instruction": "Move the cursor to the libreoffice cell that is not empty."
+            },
+            {
+                "id": "qkByHYi0jR_1",
+                "gui_type": "Table",
+                "instruction": "Drag the resize grip of the current active block"
+            },
+            {
+                "id": "Plv7sx72z6_2",
+                "gui_type": "Text Field/Input Box, Label, Image",
+                "instruction": "Resolve this capcha to enter the amazon website."
+            },
+            {
+                "id": "T5l1sFEhSy_2",
+                "gui_type": "Table, Divider",
+                "instruction": "Increase the height of the first row in the Excel file."
+            },
+            {
+                "id": "ZYlLS6Wqmr_0",
+                "gui_type": "Accordion/Collapsible Panel",
+                "instruction": "Collapse the tool menu on the right"
+            },
+            {
+                "id": "ZYlLS6Wqmr_1",
+                "gui_type": "Checkbox, Label",
+                "instruction": "Turn off the preview function of font display."
+            },
+            {
+                "id": "rpngAhRMhE_1",
+                "gui_type": "Text Field/Input Box, Search Bar, Label",
+                "instruction": "Add \\\"s\\\" after the word \\\"extension\\\"."
+            },
+            {
+                "id": "YEDiHTZ1TV_0",
+                "gui_type": "Text Field/Input Box",
+                "instruction": "Make the entered password visible"
+            },
+            {
+                "id": "vkfGjTZ2ZI_1",
+                "gui_type": "Text Field/Input Box, Label",
+                "instruction": "Change the answer of question 3."
+            },
+            {
+                "id": "ZX1JN9R9C5_0",
+                "gui_type": "Slider",
+                "instruction": "Click on the scroll bar of System Resources panel"
+            },
+            {
+                "id": "ZX1JN9R9C5_1",
+                "gui_type": "Checkbox, Label",
+                "instruction": "Click on the checkbox of \\\"Delete cropped pixels\\\""
+            },
+            {
+                "id": "I8B0XHIW8M_2",
+                "gui_type": "Checkbox, Label",
+                "instruction": "Click on the checkbox to deselect Master Objects"
+            },
+            {
+                "id": "07JVNIBSB9_2",
+                "gui_type": "Slider",
+                "instruction": "Click on the 25% position of the slider"
+            },
+            {
+                "id": "07JVNIBSB9_4",
+                "gui_type": "Slider",
+                "instruction": "Increase the magnification of the view by clicking on the right part of the magnification slider"
+            },
+            {
+                "id": "5NVELD6PT4_1",
+                "gui_type": "Text Field/Input Box, Label",
+                "instruction": "Click on the area to the right of \\\"git add .\\\" on the same line to edit this command."
+            },
+            {
+                "id": "KBF8QQ7CCW_1",
+                "gui_type": "Slider",
+                "instruction": "Click on the 70% position of the slider."
+            },
+            {
+                "id": "T4LDK7SR0X_2",
+                "gui_type": "Toolbar, Stepper",
+                "instruction": "Reduce the amount of slides in each row"
+            },
+            {
+                "id": "T4LDK7SR0X_3",
+                "gui_type": "Checkbox, Label",
+                "instruction": "Click on the checkbox of Master Background"
+            },
+            {
+                "id": "NL9DJBVIYU_2",
+                "gui_type": "Stepper, Icon",
+                "instruction": "Increase the zoom level of this picture"
+            },
+            {
+                "id": "X0E85ITYFJ_0",
+                "gui_type": "Dropdown Menu, Checkbox, Label",
+                "instruction": "Click on the checkbox of \\\"Preview\\\""
+            },
+            {
+                "id": "FQX7O9Z3HY_0",
+                "gui_type": "Checkbox, Label",
+                "instruction": "Click on the checkbox of Split View"
+            },
+            {
+                "id": "FQX7O9Z3HY_1",
+                "gui_type": "Stepper, Label",
+                "instruction": "Decrease the Opacity by clicking the downward arrow"
+            },
+            {
+                "id": "FQX7O9Z3HY_3",
+                "gui_type": "Checkbox, Label",
+                "instruction": "Click on the checkbox of blending options to deselect it"
+            },
+            {
+                "id": "DDWOR3T8WC_0",
+                "gui_type": "Slider",
+                "instruction": "Set the zoom level to maximum by click the right end of the zoom slider"
+            },
+            {
+                "id": "DDWOR3T8WC_3",
+                "gui_type": "Slider",
+                "instruction": "Click on the position at the left 1/4 of the slider"
+            },
+            {
+                "id": "DDWOR3T8WC_4",
+                "gui_type": "Slider",
+                "instruction": "Set the zoom level to 100% by click the middle of the zoom slider"
+            },
+            {
+                "id": "OMQI5J926Q_0",
+                "gui_type": "Table, Label",
+                "instruction": "Click the score of Kanye East"
+            },
+            {
+                "id": "OMQI5J926Q_1",
+                "gui_type": "Table, Label",
+                "instruction": "Click to select row 12"
+            },
+            {
+                "id": "OMQI5J926Q_2",
+                "gui_type": "Table, Label",
+                "instruction": "Click to select column F"
+            },
+            {
+                "id": "OMQI5J926Q_4",
+                "gui_type": "Table, Label",
+                "instruction": "Click the B21 cell"
+            },
+            {
+                "id": "R5CJC9VSAF_0",
+                "gui_type": "Label, Table",
+                "instruction": "Select the row 25"
+            },
+            {
+                "id": "R5CJC9VSAF_1",
+                "gui_type": "Table, Label",
+                "instruction": "Click the second column of the 31st row."
+            },
+            {
+                "id": "R5CJC9VSAF_2",
+                "gui_type": "Table, Label",
+                "instruction": "Select the Food Bill in August 2020"
+            },
+            {
+                "id": "IIUBVIO06D_0",
+                "gui_type": "Table, Label",
+                "instruction": "Click on the product of row 12"
+            },
+            {
+                "id": "IIUBVIO06D_1",
+                "gui_type": "Table, Label",
+                "instruction": "Click on the E7 cell"
+            },
+            {
+                "id": "IIUBVIO06D_2",
+                "gui_type": "Table, Label",
+                "instruction": "Click on the quantity of product in 12/12/14 16:35"
+            },
+            {
+                "id": "IIUBVIO06D_3",
+                "gui_type": "Slider",
+                "instruction": "Click at the 80% position of the zoom slider."
+            },
+            {
+                "id": "IIUBVIO06D_4",
+                "gui_type": "Slider",
+                "instruction": "Click at the 30% position of the zoom slider."
+            },
+            {
+                "id": "AQZO503SQJ_0",
+                "gui_type": "Toggle/Switch, Label",
+                "instruction": "Click on the toggle button of \\\"Hot Corner\\\" to close the Hot Corner"
+            },
+            {
+                "id": "AQZO503SQJ_1",
+                "gui_type": "Checkbox, Label",
+                "instruction": "Click on the checkbox of \\\"Allow growing\\\""
+            },
+            {
+                "id": "AQZO503SQJ_2",
+                "gui_type": "Toggle/Switch, Label",
+                "instruction": "Click on the toggle button of \\\"Active Screen Edges\\\" to close the Active Screen Edges"
+            },
+            {
+                "id": "AQZO503SQJ_3",
+                "gui_type": "Checkbox, Label",
+                "instruction": "Click on the checkbox of \\\"Current layer only\\\""
+            },
+            {
+                "id": "UWWK2JG13A_0",
+                "gui_type": "Label, Table",
+                "instruction": "Click on the I15 cell"
+            },
+            {
+                "id": "UWWK2JG13A_1",
+                "gui_type": "Table, Label",
+                "instruction": "Click on the balck cell of \\\"REVIEWER TITLE\\\" in the dialog box on the upper left"
+            },
+            {
+                "id": "UWWK2JG13A_2",
+                "gui_type": "Table, Label",
+                "instruction": "Click on the lower right corner of cell I27"
+            },
+            {
+                "id": "UWWK2JG13A_4",
+                "gui_type": "Slider",
+                "instruction": "Click on the 10% position of the slider"
+            },
+            {
+                "id": "CK2N607SQT_0",
+                "gui_type": "Stepper, List",
+                "instruction": "Increase the fifth value for the color"
+            },
+            {
+                "id": "CK2N607SQT_2",
+                "gui_type": "Stepper, List",
+                "instruction": "Lower the value for color \\\"G\\\""
+            },
+            {
+                "id": "AO45N0NT8O_0",
+                "gui_type": "Text Field/Input Box, Label",
+                "instruction": "Select the text box with words from Rain on the current slide."
+            },
+            {
+                "id": "AO45N0NT8O_1",
+                "gui_type": "Color Picker",
+                "instruction": "Choose the bottom color of the blue column in the background color set."
+            },
+            {
+                "id": "OH23HT37NP_1",
+                "gui_type": "Label, Accordion/Collapsible Panel",
+                "instruction": "collapse or fold up the Character panel"
+            },
+            {
+                "id": "OH23HT37NP_4",
+                "gui_type": "Text Field/Input Box, Label",
+                "instruction": "Click on the other text box that is not selected on the current slide."
+            },
+            {
+                "id": "1YJ0KGXNKU_0",
+                "gui_type": "Slider",
+                "instruction": "Adjust the right margin of the Word document paper to be wider along the ruler."
+            },
+            {
+                "id": "6GNDSETVY9_0",
+                "gui_type": "Checkbox, Label",
+                "instruction": "Expand the advanced options in the window that floats on top of all others."
+            },
+            {
+                "id": "6GNDSETVY9_1",
+                "gui_type": "Checkbox, Label",
+                "instruction": "Cancel the highlight of the picture."
+            },
+            {
+                "id": "DEFCEB4U9S_2",
+                "gui_type": "Slider",
+                "instruction": "Go back to the beginning of the video."
+            },
+            {
+                "id": "XQ52HJNEH5_1",
+                "gui_type": "Text Field/Input Box",
+                "instruction": "Edit the detailed text description on this slide."
+            },
+            {
+                "id": "XQ52HJNEH5_3",
+                "gui_type": "Checkbox, Label",
+                "instruction": "I don't want the master background for master slide."
+            },
+            {
+                "id": "1GTGZ3A3V8_0",
+                "gui_type": "Slider",
+                "instruction": "I want to see the bottom of slide transition panel."
+            },
+            {
+                "id": "2X4C2ZQ4NN_3",
+                "gui_type": "Divider",
+                "instruction": "Drag to resize (or narrow) the leftmost folder panel in Thunderbird"
+            },
+            {
+                "id": "B6XOOLSCJF_1",
+                "gui_type": "Divider, Label",
+                "instruction": "Drag the left border of the Properties panel to expand its width"
+            },
+            {
+                "id": "B6XOOLSCJF_2",
+                "gui_type": "Divider",
+                "instruction": "Drag the horizontal scroll bar to center the image in the viewing area"
+            },
+            {
+                "id": "3665T6DMTQ_0",
+                "gui_type": "Color Picker, Label",
+                "instruction": "Choose the first recent color"
+            },
+            {
+                "id": "3665T6DMTQ_1",
+                "gui_type": "Color Picker, Label",
+                "instruction": "Choose the second recent color"
+            },
+            {
+                "id": "3665T6DMTQ_2",
+                "gui_type": "Checkbox, Label",
+                "instruction": "Select Outline"
+            },
+            {
+                "id": "BM35AF086O_2",
+                "gui_type": "Color Picker, Icon, Sidebar",
+                "instruction": "Change Foreground Color from Black to another color"
+            },
+            {
+                "id": "5TLJMXTVRF_0",
+                "gui_type": "Table, Label",
+                "instruction": "Select the blank area at C4"
+            },
+            {
+                "id": "5TLJMXTVRF_1",
+                "gui_type": "Table, Label",
+                "instruction": "Select the blank area at U42"
+            },
+            {
+                "id": "5TLJMXTVRF_10",
+                "gui_type": "Stepper",
+                "instruction": "Zoom in"
+            },
+            {
+                "id": "KHXS7B1U44_1",
+                "gui_type": "Stepper",
+                "instruction": "Increase the percentage of width of brush"
+            },
+            {
+                "id": "B8IYUU0NND_0",
+                "gui_type": "Table, Label",
+                "instruction": "Select \"No. 9\""
+            },
+            {
+                "id": "B8IYUU0NND_1",
+                "gui_type": "Table, Label",
+                "instruction": "Select A9 cell"
+            },
+            {
+                "id": "GLZAK60UIX_2",
+                "gui_type": "Checkbox, Label",
+                "instruction": "Unselect Preview"
+            },
+            {
+                "id": "BHXSNCTIKJ_2",
+                "gui_type": "Checkbox, Label",
+                "instruction": "Select the split view"
+            }
+        ]
+    },
+    "unclassified": {
+        "CSX8vMhbjY_1": {
+            "gui_type": "/",
+            "instruction": "Choose the top left picture that has a bed."
+        },
+        "Dd5jH9nufm_2": {
+            "gui_type": "/",
+            "instruction": "Sign out the Travel website."
+        },
+        "d0Dzqig3Ci_0": {
+            "gui_type": "/",
+            "instruction": "adjust the scale of the shown image"
+        },
+        "0lp8IshCDB_1": {
+            "gui_type": "/",
+            "instruction": "Explore the NFL website."
+        },
+        "0lp8IshCDB_2": {
+            "gui_type": "/",
+            "instruction": "Click on the Windows Start button at the left bottom corner."
+        },
+        "35h7FwTKtF_2": {
+            "gui_type": "/",
+            "instruction": "Change the exact time."
+        },
+        "Ak6Dn4Q3D8_2": {
+            "gui_type": "/",
+            "instruction": "Fade the background of the slide."
+        },
+        "0NVmz0b7L0_3": {
+            "gui_type": "/",
+            "instruction": "Navigate to the 20th sheet of this workbook."
+        },
+        "IZ1KbKvlLg_2": {
+            "gui_type": "/",
+            "instruction": "Click up to the window behind the file ma"
+        },
+        "CFCohPPz5C_3": {
+            "gui_type": "/",
+            "instruction": "Rename the file"
+        },
+        "3MwkAVUe4d_3": {
+            "gui_type": "/",
+            "instruction": "Switch to the libreoffice file that already opened."
+        },
+        "xZksoRb976_1": {
+            "gui_type": "/",
+            "instruction": "Restore the tool preset in GIMP"
+        },
+        "4EDJ4LB61U_1": {
+            "gui_type": "/",
+            "instruction": "Drag from here to horizontally expand the Chrome window containing GitHub towards the right"
+        }
+    }
+}
