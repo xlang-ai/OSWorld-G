@@ -1,0 +1,6 @@
+{
+    "text_matching": ["Label"],
+    "element_recognition": ["Icon", "Image", "Button"],
+    "layout_understanding": ["Tab", "Banner/Notification", "Accordion/Collapsible Panel", "Pagination Control", "Toolbar", "Menu Bar", "Dropdown Menu", "List", "Grid", "Tree View", "Dialog/Modal", "Panel/Container", "Sidebar", "Drawer", "Window Hierarchy"],
+    "fine_grained_manipulation": ["Slider", "Stepper", "Divider", "Toggle/Switch", "Accordion/Collapsible Panel", "Checkbox", "Radio Button", "Color Picker", "Date Picker", "Table", "Text Field/Input Box", "Search Bar", "Text Field", "Input Box", "Window Border"]
+}

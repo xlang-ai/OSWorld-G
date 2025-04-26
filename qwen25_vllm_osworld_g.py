@@ -205,7 +205,7 @@ class BenchmarkRunner:
             flatten_data_items.append({
                 'id': image_path[:-4],
                 'annotation_id': str(i), # annotation['id'] is wrong....
-                'data_id': item['id'].replace('-', '_'),
+                'data_id': item['id'],
                 'image': image,
                 'image_path': item['image_path'], # where different with ss v2
                 'instruction': item['instruction'],

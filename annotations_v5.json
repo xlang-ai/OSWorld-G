@@ -2452,7 +2452,7 @@
             700.39
         ],
         "GUI_types": [
-            "/"
+            "Window Border"
         ]
     },
     {
@@ -5280,7 +5280,9 @@
             20.189999999999827
         ],
         "GUI_types": [
-            "/"
+            "Label",
+            "Dropdown Menu",
+            "Text Field/Input Box"
         ]
     },
     {
@@ -6387,7 +6389,7 @@
             29.06000000000006
         ],
         "GUI_types": [
-            "/"
+            "Icon"
         ]
     },
     {
@@ -10727,7 +10729,7 @@
             1280,
             720
         ],
-        "instruction": "Click up to the window behind the file ma",
+        "instruction": "Click to open Chrome",
         "box_type": "bbox",
         "box_coordinates": [
             0.88,
@@ -10736,7 +10738,8 @@
             41.60000000000001
         ],
         "GUI_types": [
-            "/"
+            "Icon",
+            "Window Hierarchy"
         ]
     },
     {
