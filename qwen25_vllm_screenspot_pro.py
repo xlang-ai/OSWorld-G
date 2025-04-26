@@ -470,7 +470,21 @@ if __name__ == "__main__":
         print(f"Total samples: {results['total']}")
         print(f"Correct predictions: {results['correct']}")
         print(f"Accuracy: {results['accuracy']*100:.2f}%")
-        print(f"Accuracy dict: {results['accuracy_dict']}")
+        
+        # Print detailed accuracy by group and UI type
+        print(f"Accuracy by Group:")
+        for group, stats in results['accuracy_by_group'].items():
+            print(f"  {group}: {stats['accuracy']*100:.2f}% ({stats['correct']}/{stats['total']})")
+        
+        print(f"Accuracy by UI Type:")
+        for ui_type, stats in results['accuracy_by_ui_type'].items():
+            print(f"  {ui_type}: {stats['accuracy']*100:.2f}% ({stats['correct']}/{stats['total']})")
+        
+        print(f"Detailed Accuracy by Group and UI Type:")
+        for group, ui_types in results['accuracy_by_group_and_ui_type'].items():
+            print(f"  {group}:")
+            for ui_type, stats in ui_types.items():
+                print(f"    {ui_type}: {stats['accuracy']*100:.2f}% ({stats['correct']}/{stats['total']})")
 
         # Terminate VLLM service
         terminate_vllm_service(process)
