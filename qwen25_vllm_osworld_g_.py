@@ -45,7 +45,13 @@ You are provided with function signatures within <tools></tools> XML tags:
 For each function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags:
 <tool_call>
 {{"name": <function-name>, "arguments": <args-json-object>}}
-</tool_call>"""
+</tool_call>
+
+If you think the task is infeasible, return:
+<tool_call>
+{{"name": "computer_use", "arguments": {{"action": "wait", "time": 10}}}}
+</tool_call>
+"""
 
 
 NUM_SECONDS_TO_SLEEP = 5
@@ -64,16 +70,24 @@ gen_kwargs = {
 }
 
 def parse_coordinates(response):
-    action = json.loads(response.split('<tool_call>\n')[1].split('\n</tool_call>')[0])
-    action_name = action['name']
-    action_type = action['arguments']['action']
-    action_args = action['arguments']['coordinate']
+    try:
+        action = json.loads(response.split('<tool_call>\n')[1].split('\n</tool_call>')[0])
+        action_name = action['name']
+        action_type = action['arguments']['action']
 
-    if action_name != "computer_use" or action_type not in ("mouse_move", "left_click", "right_click", "double_click") or action_args is None:
+        if action_type == "wait":
+            return [-1, -1, -1, -1]
+
+        action_args = action['arguments']['coordinate']
+
+        if action_name != "computer_use" or action_type not in ("mouse_move", "left_click", "right_click", "double_click") or action_args is None:
+            print(f"Error parsing coordinates: {response}")
+            return [-1, -1, -1, -1]
+
+        return [action_args[0], action_args[1], action_args[0], action_args[1]]
+    except Exception as e:
         print(f"Error parsing coordinates: {response}")
-        return None
-
-    return [action_args[0], action_args[1], action_args[0], action_args[1]]
+        return [-1, -1, -1, -1]
 
 
 class Qwen25VL_OpenAI(lmms):
@@ -117,14 +131,15 @@ class Qwen25VL_OpenAI(lmms):
             payload["messages"].append({
                     "role": "user", "content": [
                         {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{self.encode_image(input_image)}"}},
-                        {"type": "text", "text": f"Please complete the following tasks by clicking using `left_click` function: {instruction}"}
+                        {"type": "text", "text": f"Please complete the following tasks: {instruction}\n\nCall tool_use 'wait' without other words if you think the task is infeasible"}
                         # {"type": "text", "text": f"{instruction}"}
                     ]
             })
 
             payload["messages"].append({
                 "role": "assistant", "content": [
-                    {"type": "text", "text": '<tool_call>\n{"name": "computer_use", "arguments": {"action": "left_click", "coordinate":'}
+                    # {"type": "text", "text": '<tool_call>\n{"name": "computer_use", "arguments": {"action": "left_click", "coordinate":'}
+                    {"type": "text", "text": '<tool_call>\n'}
                 ]
             })
 
@@ -143,7 +158,7 @@ class Qwen25VL_OpenAI(lmms):
                     
                     response_text = completion.choices[0].message.content
                     print("response_text: ", response_text)
-                    response_text = '<tool_call>\n{"name": "computer_use", "arguments": {"action": "left_click", "coordinate":' + response_text
+                    response_text = '<tool_call>\n' + response_text
                     predicted_coords = parse_coordinates(response_text)
                     if predicted_coords is None:
                         eval_logger.info(f"Attempt {attempt + 1} failed to parse coordinates.")
@@ -322,6 +337,8 @@ class BenchmarkRunner:
                 boxes_coordinate = item['box_coordinates']
                 boxes_size = item['image_size']
                 image_size = item['image_size']
+            else:
+                raise ValueError(f"Unknown box type: {item['box_type']}")
 
             # normalize predicted_coords -- 必须要有，要不没训到这个分辨率就没这能力
             predicted_coords[0] = predicted_coords[0] * image_size[0] / resized_width
