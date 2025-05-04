@@ -1,0 +1,23 @@
+{
+    "dialogs": ["Close the dialog", "Click on some options of the dialog", "Click on something outside the dialog"],
+    "drawers": ["Open the drawer if it is closed", "Close the drawer if it is opened", "Click on the element in the drawer", "Click on something outside the drawer if there's anything outside"],
+    "resizable-draggable-text-box": ["Resize the box by its handle", "Move the box", "Click to edit the box"],
+    "app-bar": ["Click on some icon on the app-bar"],
+    "table": ["Select certain row of the table", "Select certain column of the table", "Select certain cell of the table", "Select x column in y row"],
+    "selectable-text": ["Select a certain letter in a certain word", "Select a certain word", "Select the beginning or the end of a certain sentence"],
+    "menus": ["Click on the x-th options of the menu", "Close the menu if possible", "Click on certain sub-option of certain option if it exists"], 
+    "bottom-navigation": ["Click on some options of the bottom-navigation"],
+    "chips": ["Click on the icon of certain chip", "Click to close certain ship if it exists"],
+    "checkboxes": ["Click on the checkbox of some options", "Click on the text of some options"],
+    "alert": ["Click on the text of the alert", "Click on the icon of the alert"],
+    "snackbars": ["Click to close the snackbar", "Click on the text of the snackbar"],
+    "lists": ["Click on the xth option of the lists"],
+    "slider": ["Click on certain position of the slider"],
+    "rating": ["Click on the x-th star of the ratings"],
+    "transfer-list": ["Click on the x-th option of the left hand side of the transfer-list", "Click on the x-th option of the right hand side of the transfer-list", "Click to transfer some options"],
+    "toggle-buttons": ["Click on the toggle button", "Click on the text of the toggle button"],
+    "switch": ["Click on the switch"],
+    "speed-dial": ["Hover on the speed dial"],
+    "stepper": ["Click on the x-step of the stepper"],
+    "tabs": ["Click on the x-th tab"]
+}
