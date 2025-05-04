@@ -17,7 +17,7 @@ import torch
 import subprocess
 import socket
 import re
-from transformers import Qwen2_5_VLProcessor, Qwen2_5_VLForConditionalGeneration
+from transformers import AutoProcessor, Qwen2VLForConditionalGeneration
 from qwen_agent.llm.fncall_prompts.nous_fncall_prompt import (
     NousFnCallPrompt,
     Message,
@@ -31,21 +31,16 @@ from agent_function_call import ComputerUse
 
 MAX_ATTEMPTS = 5
 
-FN_CALL_TEMPLATE = """You are a helpful assistant.
+USER_PROMPT = """
+Your task is to help the user identify the precise coordinates (x, y) of a specific area/element/object on the screen based on a description.
 
-# Tools
+- Your response should aim to point to the center or a representative point within the described area/element/object as accurately as possible.
+- If the description is unclear or ambiguous, infer the most relevant area or element based on its likely context or purpose.
+- Your answer should be a single string (x, y) corresponding to the point of the interest.
 
-You may call one or more functions to assist with the user query.
+Description: {description}
 
-You are provided with function signatures within <tools></tools> XML tags:
-<tools>
-{tool_descs}
-</tools>
-
-For each function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags:
-<tool_call>
-{{"name": <function-name>, "arguments": <args-json-object>}}
-</tool_call>"""
+Answer:"""
 
 
 NUM_SECONDS_TO_SLEEP = 5
@@ -63,20 +58,53 @@ gen_kwargs = {
     "temperature": 0.01,
 }
 
-def parse_coordinates(response):
-    action = json.loads(response.split('<tool_call>\n')[1].split('\n</tool_call>')[0])
-    action_name = action['name']
-    action_type = action['arguments']['action']
-    action_args = action['arguments']['coordinate']
+def parse_coordinates(response_text):
+    """Parse coordinates from model output string."""
+    # 移除所有空白字符
+    response_text = response_text.strip()
+    
+    # 如果是pyautogui.click格式
+    if "pyautogui.click" in response_text or "pyautogui.moveTo" in response_text:
+        # 提取x=和y=后的数值
+        coordinates = {}
+        parts = response_text.split(',')
+        for part in parts:
+            if 'x=' in part:
+                coordinates['x'] = float(part.split('=')[1].strip())
+            elif 'y=' in part:
+                coordinates['y'] = float(part.split('=')[1].strip().rstrip(')'))
+            else:
+                print("Invalid coordinate format")
+                return [0, 0, 0, 0]
+        
+        if 'x' in coordinates and 'y' in coordinates:
+            return [
+                    coordinates['x'], 
+                    coordinates['y'],
+                    coordinates['x'],
+                    coordinates['y']
+                ]
+    
+    # # 如果是普通的列表格式 [x, y, x2, y2]
+    # elif response_text.startswith('[') and response_text.endswith(']'):
+    #     coords = eval(response_text)
+    #     if isinstance(coords, list) and len(coords) == 4:
+    #         return coords
+    else:
+        # for uground
+        pattern = r'(\d+,\s*\d+)'
+        matches = re.findall(pattern, response_text)
+        if matches:
+            last_match = matches[-1]
+            split_last_match = last_match.split(',')
+            x = float(int(split_last_match[0]) / 1000)
+            y = float(int(split_last_match[1]) / 1000)
+            return [x, y, x, y]
+        print(f"Invalid coordinate format: {response_text}")
+        return [0, 0, 0, 0]
 
-    if action_name != "computer_use" or action_type not in ("mouse_move", "left_click", "right_click", "double_click") or action_args is None:
-        print(f"Error parsing coordinates: {response}")
-        return None
 
-    return [action_args[0], action_args[1], action_args[0], action_args[1]]
-
-
-class Qwen25VL_OpenAI(lmms):
+class Qwen2VL_OpenAI(lmms):
     def __init__(self, model_name, model_path, **kwargs):
         super().__init__()
         self.model_name = model_name
@@ -102,31 +130,17 @@ class Qwen25VL_OpenAI(lmms):
 
         def process_request(index_request):
             index, request = index_request
-            instruction, tools, input_image, resized_args = request['instruction'], request['tools'], request['image'], request['resized_args']
+            instruction, input_image, resized_args = request['instruction'], request['image'], request['resized_args']
 
             payload = {"messages": []}
 
-            tool_descs = [{'type': 'function', 'function': f} for f in tools]
-            tool_descs = '\n'.join([json.dumps(f, ensure_ascii=False) for f in tool_descs])
-            payload["messages"].append({"role": "system", "content": [{"type": "text", "text": FN_CALL_TEMPLATE.format(tool_descs=tool_descs)}]})
-
-            # resized_width, resized_height = resized_args
-            # print(f"original_width: {input_image.width}, original_height: {input_image.height}")
-            # input_image = input_image.resize((resized_width, resized_height))
-            # print(f"resized_width: {input_image.width}, resized_height: {input_image.height}")
             payload["messages"].append({
                     "role": "user", "content": [
                         {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{self.encode_image(input_image)}"}},
-                        {"type": "text", "text": f"Please complete the following tasks by clicking using `left_click` function: {instruction}"}
-                        # {"type": "text", "text": f"{instruction}"}
+                        {"type": "text", "text": USER_PROMPT.format(description=instruction)}
                     ]
             })
 
-            payload["messages"].append({
-                "role": "assistant", "content": [
-                    {"type": "text", "text": '<tool_call>\n{"name": "computer_use", "arguments": {"action": "left_click", "coordinate":'}
-                ]
-            })
 
             payload["max_tokens"] = gen_kwargs["max_new_tokens"]
             payload["temperature"] = gen_kwargs["temperature"]
@@ -142,14 +156,14 @@ class Qwen25VL_OpenAI(lmms):
                     )
                     
                     response_text = completion.choices[0].message.content
-                    print("response_text: ", response_text)
-                    response_text = '<tool_call>\n{"name": "computer_use", "arguments": {"action": "left_click", "coordinate":' + response_text
+                    print(f"[index: {index}] response_text: {response_text}")
                     predicted_coords = parse_coordinates(response_text)
                     if predicted_coords is None:
                         eval_logger.info(f"Attempt {attempt + 1} failed to parse coordinates.")
                         if attempt < MAX_ATTEMPTS - 1:
                             time.sleep(NUM_SECONDS_TO_SLEEP)
                     else:
+                        print(f"[index: {index}] predicted_coords: {predicted_coords}")
                         break
                 except Exception as e:
                     eval_logger.error(f"Error during API call: {str(e)}")
@@ -183,14 +197,18 @@ class BenchmarkRunner:
         self.model_path = model_path
         self.image_dir = image_dir
         self.use_cache = use_cache
-        self.model = Qwen25VL_OpenAI(model_name, model_path)
-        self.processor = Qwen2_5_VLProcessor.from_pretrained(
+        self.model = Qwen2VL_OpenAI(model_name, model_path)
+        self.processor = AutoProcessor.from_pretrained(
             model_path
         )
 
     def load_annotations(self):
         with open(self.annotation_path, 'r') as f:
             data = json.load(f)
+        
+        debug = False
+        if debug:
+            data = data[:100]
         
         flatten_data_items = []
 
@@ -271,15 +289,10 @@ class BenchmarkRunner:
                 max_pixels=self.processor.image_processor.max_pixels,
             )
 
-            computer_use = ComputerUse(
-                cfg={"display_width_px": resized_width, "display_height_px": resized_height}
-            )
-            tools = [computer_use.function]
 
             instance = {
                 "instance_id": instance_id,
                 "instruction": user_query,
-                "tools": tools,
                 "image": input_image,
                 "resized_args": (resized_width, resized_height)
             }
@@ -361,10 +374,10 @@ def start_vllm_service(ckpt_path, port, model_name):
         "--port", str(port),
         "--tensor-parallel-size", str(torch.cuda.device_count()),
         "--enforce-eager",
-        # "--dtype", "bfloat16",
+        "--dtype", "float16",
         "--max-model-len", str(16384),
         # "--enable-auto-tool-choice",
-        "--chat-template", "qwen25vl_tool_use_grounding.jinja"
+        # "--chat-template", "qwen25vl_tool_use_grounding.jinja"
     ]
     return subprocess.Popen(command)
 

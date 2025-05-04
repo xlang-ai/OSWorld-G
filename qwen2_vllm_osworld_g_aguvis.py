@@ -17,40 +17,11 @@ import torch
 import subprocess
 import socket
 import re
-from transformers import Qwen2_5_VLProcessor, Qwen2_5_VLForConditionalGeneration
-from qwen_agent.llm.fncall_prompts.nous_fncall_prompt import (
-    NousFnCallPrompt,
-    Message,
-    ContentItem,
-)
-from transformers.models.qwen2_vl.image_processing_qwen2_vl_fast import smart_resize
+
 
 import sys
 sys.path.append("../OSWorld-G")
-from agent_function_call import ComputerUse
 
-MAX_ATTEMPTS = 5
-
-FN_CALL_TEMPLATE = """You are a helpful assistant.
-
-# Tools
-
-You may call one or more functions to assist with the user query.
-
-You are provided with function signatures within <tools></tools> XML tags:
-<tools>
-{tool_descs}
-</tools>
-
-For each function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags:
-<tool_call>
-{{"name": <function-name>, "arguments": <args-json-object>}}
-</tool_call>"""
-
-
-NUM_SECONDS_TO_SLEEP = 5
-
-client = OpenAI(base_url="http://localhost:8908/v1", api_key="token-abc123")
 
 # resolution_720p = 46 * 26 * 28 * 28
 # resolution_1080p = 69 * 39 * 28 * 28
@@ -58,25 +29,63 @@ client = OpenAI(base_url="http://localhost:8908/v1", api_key="token-abc123")
 
 # 20055648
 
+MAX_ATTEMPTS = 5
+
+NUM_SECONDS_TO_SLEEP = 5
+
+client = OpenAI(base_url="http://localhost:8908/v1", api_key="token-abc123")
+
+ground_system_message = f"You are a GUI agent. You are given a task and a screenshot of the screen. You need to perform pyautogui click/moveTo action to complete the task."
+
 gen_kwargs = {
     "max_new_tokens": 1024,
-    "temperature": 0.01,
+    "temperature": 0,
 }
 
-def parse_coordinates(response):
-    action = json.loads(response.split('<tool_call>\n')[1].split('\n</tool_call>')[0])
-    action_name = action['name']
-    action_type = action['arguments']['action']
-    action_args = action['arguments']['coordinate']
+def parse_coordinates(response_text):
+    """Parse coordinates from model output string."""
+    # 移除所有空白字符
+    response_text = response_text.strip()
+    response_text = (
+        response_text.split("\n")[0]
+        if len(response_text.split("\n")) > 1
+        else response_text
+    )
+    # print(response_text, ">>>>>>")
 
-    if action_name != "computer_use" or action_type not in ("mouse_move", "left_click", "right_click", "double_click") or action_args is None:
-        print(f"Error parsing coordinates: {response}")
-        return None
+    # 如果是pyautogui.click格式
+    if (
+        "pyautogui.click" in response_text
+        or "pyautogui.moveTo" in response_text
+    ):
+        # 提取x=和y=后的数值
+        coordinates = {}
+        parts = response_text.split(",")
+        for part in parts:
+            if "x=" in part:
+                coordinates["x"] = float(part.split("=")[1].strip())
+            elif "y=" in part:
+                coordinates["y"] = float(part.split("=")[1].strip().rstrip(")"))
 
-    return [action_args[0], action_args[1], action_args[0], action_args[1]]
+        if "x" in coordinates and "y" in coordinates:
+            return [
+                coordinates["x"],
+                coordinates["y"],
+                coordinates["x"],
+                coordinates["y"],
+            ]
+        else:
+            print(f"Invalid coordinate format: {response_text}")
+            return [0, 0, 0, 0]
+    
+    # 如果是wait格式
+    elif "wait" in response_text:
+        return [-1, -1, -1, -1]
+    else:
+        print(f"Invalid format: {response_text}")
+        return [0, 0, 0, 0]
 
-
-class Qwen25VL_OpenAI(lmms):
+class Qwen2VL_OpenAI(lmms):
     def __init__(self, model_name, model_path, **kwargs):
         super().__init__()
         self.model_name = model_name
@@ -102,29 +111,21 @@ class Qwen25VL_OpenAI(lmms):
 
         def process_request(index_request):
             index, request = index_request
-            instruction, tools, input_image, resized_args = request['instruction'], request['tools'], request['image'], request['resized_args']
+            instruction, input_image = request['instruction'], request['image']
 
             payload = {"messages": []}
-
-            tool_descs = [{'type': 'function', 'function': f} for f in tools]
-            tool_descs = '\n'.join([json.dumps(f, ensure_ascii=False) for f in tool_descs])
-            payload["messages"].append({"role": "system", "content": [{"type": "text", "text": FN_CALL_TEMPLATE.format(tool_descs=tool_descs)}]})
-
-            # resized_width, resized_height = resized_args
-            # print(f"original_width: {input_image.width}, original_height: {input_image.height}")
-            # input_image = input_image.resize((resized_width, resized_height))
-            # print(f"resized_width: {input_image.width}, resized_height: {input_image.height}")
+            payload["messages"].append({
+                "role": "system", "content": ground_system_message
+            })
             payload["messages"].append({
                     "role": "user", "content": [
                         {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{self.encode_image(input_image)}"}},
-                        {"type": "text", "text": f"Please complete the following tasks by clicking using `left_click` function: {instruction}"}
-                        # {"type": "text", "text": f"{instruction}"}
+                        {"type": "text", "text": instruction}
                     ]
             })
-
             payload["messages"].append({
                 "role": "assistant", "content": [
-                    {"type": "text", "text": '<tool_call>\n{"name": "computer_use", "arguments": {"action": "left_click", "coordinate":'}
+                    {"type": "text", "text": "<|im_start|>assistant<|recipient|>os\n"}
                 ]
             })
 
@@ -143,7 +144,6 @@ class Qwen25VL_OpenAI(lmms):
                     
                     response_text = completion.choices[0].message.content
                     print("response_text: ", response_text)
-                    response_text = '<tool_call>\n{"name": "computer_use", "arguments": {"action": "left_click", "coordinate":' + response_text
                     predicted_coords = parse_coordinates(response_text)
                     if predicted_coords is None:
                         eval_logger.info(f"Attempt {attempt + 1} failed to parse coordinates.")
@@ -183,10 +183,7 @@ class BenchmarkRunner:
         self.model_path = model_path
         self.image_dir = image_dir
         self.use_cache = use_cache
-        self.model = Qwen25VL_OpenAI(model_name, model_path)
-        self.processor = Qwen2_5_VLProcessor.from_pretrained(
-            model_path
-        )
+        self.model = Qwen2VL_OpenAI(model_name, model_path)
 
     def load_annotations(self):
         with open(self.annotation_path, 'r') as f:
@@ -263,25 +260,10 @@ class BenchmarkRunner:
                 continue
             input_image, image_path, user_query = item['image'], item['image_path'], item['instruction']
 
-            resized_height, resized_width = smart_resize(
-                input_image.height,
-                input_image.width,
-                factor=self.processor.image_processor.patch_size * self.processor.image_processor.merge_size,
-                min_pixels=self.processor.image_processor.min_pixels,
-                max_pixels=self.processor.image_processor.max_pixels,
-            )
-
-            computer_use = ComputerUse(
-                cfg={"display_width_px": resized_width, "display_height_px": resized_height}
-            )
-            tools = [computer_use.function]
-
             instance = {
                 "instance_id": instance_id,
                 "instruction": user_query,
-                "tools": tools,
                 "image": input_image,
-                "resized_args": (resized_width, resized_height)
             }
 
             instances.append(instance)
@@ -305,8 +287,6 @@ class BenchmarkRunner:
                 predicted_coords = None
                 continue
 
-            resized_width, resized_height = instance['resized_args']
-
             if 'bbox' == item['box_type']:
                 boxes_type = "bbox"
                 boxes_coordinate = item['box_coordinates'][:2]
@@ -322,12 +302,6 @@ class BenchmarkRunner:
                 boxes_coordinate = item['box_coordinates']
                 boxes_size = item['image_size']
                 image_size = item['image_size']
-
-            # normalize predicted_coords -- 必须要有，要不没训到这个分辨率就没这能力
-            predicted_coords[0] = predicted_coords[0] * image_size[0] / resized_width
-            predicted_coords[1] = predicted_coords[1] * image_size[1] / resized_height
-            predicted_coords[2] = predicted_coords[2] * image_size[0] / resized_width
-            predicted_coords[3] = predicted_coords[3] * image_size[1] / resized_height
 
             is_correct = evaluator._eval(
                 predicted_coords,
@@ -364,7 +338,7 @@ def start_vllm_service(ckpt_path, port, model_name):
         # "--dtype", "bfloat16",
         "--max-model-len", str(16384),
         # "--enable-auto-tool-choice",
-        "--chat-template", "qwen25vl_tool_use_grounding.jinja"
+        "--chat-template", "aguvis_chat_template.jinja"
     ]
     return subprocess.Popen(command)
 

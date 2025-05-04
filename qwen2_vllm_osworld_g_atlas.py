@@ -17,7 +17,7 @@ import torch
 import subprocess
 import socket
 import re
-from transformers import Qwen2_5_VLProcessor, Qwen2_5_VLForConditionalGeneration
+from transformers import AutoProcessor, Qwen2VLForConditionalGeneration
 from qwen_agent.llm.fncall_prompts.nous_fncall_prompt import (
     NousFnCallPrompt,
     Message,
@@ -31,22 +31,77 @@ from agent_function_call import ComputerUse
 
 MAX_ATTEMPTS = 5
 
-FN_CALL_TEMPLATE = """You are a helpful assistant.
+SYSTEM_PROMPT = """
+You are now operating in Executable Language Grounding mode. Your goal is to help users accomplish tasks by suggesting executable actions that best fit their needs. Your skill set includes both basic and custom actions:
 
-# Tools
+1. Basic Actions
+Basic actions are standardized and available across all platforms. They provide essential functionality and are defined with a specific format, ensuring consistency and reliability. 
+Basic Action 1: CLICK 
+    - purpose: Click at the specified position.
+    - format: CLICK <point>[[x-axis, y-axis]]</point>
+    - example usage: CLICK <point>[[101, 872]]</point>
+       
+Basic Action 2: TYPE
+    - purpose: Enter specified text at the designated location.
+    - format: TYPE [input text]
+    - example usage: TYPE [Shanghai shopping mall]
 
-You may call one or more functions to assist with the user query.
+Basic Action 3: SCROLL
+    - purpose: SCROLL in the specified direction.
+    - format: SCROLL [direction (UP/DOWN/LEFT/RIGHT)]
+    - example usage: SCROLL [UP]
+    
+2. Custom Actions
+Custom actions are unique to each user's platform and environment. They allow for flexibility and adaptability, enabling the model to support new and unseen actions defined by users. These actions extend the functionality of the basic set, making the model more versatile and capable of handling specific tasks.
+Custom Action 1: LONG_PRESS 
+    - purpose: Long press at the specified position.
+    - format: LONG_PRESS <point>[[x-axis, y-axis]]</point>
+    - example usage: LONG_PRESS <point>[[101, 872]]</point>
+       
+Custom Action 2: OPEN_APP
+    - purpose: Open the specified application.
+    - format: OPEN_APP [app_name]
+    - example usage: OPEN_APP [Google Chrome]
 
-You are provided with function signatures within <tools></tools> XML tags:
-<tools>
-{tool_descs}
-</tools>
+Custom Action 3: PRESS_BACK
+    - purpose: Press a back button to navigate to the previous screen.
+    - format: PRESS_BACK
+    - example usage: PRESS_BACK
 
-For each function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags:
-<tool_call>
-{{"name": <function-name>, "arguments": <args-json-object>}}
-</tool_call>"""
+Custom Action 4: PRESS_HOME
+    - purpose: Press a home button to navigate to the home page.
+    - format: PRESS_HOME
+    - example usage: PRESS_HOME
 
+Custom Action 5: PRESS_RECENT
+    - purpose: Press the recent button to view or switch between recently used applications.
+    - format: PRESS_RECENT
+    - example usage: PRESS_RECENT
+
+Custom Action 6: ENTER
+    - purpose: Press the enter button.
+    - format: ENTER
+    - example usage: ENTER
+
+Custom Action 7: WAIT
+    - purpose: Wait for the screen to load.
+    - format: WAIT
+    - example usage: WAIT
+
+Custom Action 8: COMPLETE
+    - purpose: Indicate the task is finished.
+    - format: COMPLETE
+    - example usage: COMPLETE
+
+In most cases, task instructions are high-level and abstract. Carefully read the instruction and action history, then perform reasoning to determine the most appropriate next action. Ensure you strictly generate two sections: Thoughts and Actions.
+Thoughts: Clearly outline your reasoning process for current step.
+Actions: Specify the actual actions you will take based on your reasoning. You should follow action format above when generating. 
+
+Your current task instruction, action history, and associated screenshot are as follows:
+Screenshot: <image>
+"""
+
+USER_PROMPT = """Task instruction: {description}\nHistory: null"""
 
 NUM_SECONDS_TO_SLEEP = 5
 
@@ -59,24 +114,39 @@ client = OpenAI(base_url="http://localhost:8908/v1", api_key="token-abc123")
 # 20055648
 
 gen_kwargs = {
-    "max_new_tokens": 1024,
+    "max_new_tokens": 128,
     "temperature": 0.01,
 }
 
-def parse_coordinates(response):
-    action = json.loads(response.split('<tool_call>\n')[1].split('\n</tool_call>')[0])
-    action_name = action['name']
-    action_type = action['arguments']['action']
-    action_args = action['arguments']['coordinate']
+def parse_coordinates(model_output_text):
+    model_output_text = model_output_text.strip()
 
-    if action_name != "computer_use" or action_type not in ("mouse_move", "left_click", "right_click", "double_click") or action_args is None:
-        print(f"Error parsing coordinates: {response}")
-        return None
+    # 1. 使用 re.search 检查 CLICK
+    # re.search 会在整个字符串中查找第一个匹配项
+    click_match = re.search(r"CLICK <point>\[\[(\d+),\s*(\d+)\]\]</point>", model_output_text)
+    if click_match:
+        x, y = map(int, click_match.groups())
+        x = float(x / 1000)
+        y = float(y / 1000)
+        return [x, y, x, y] # 找到 CLICK，返回坐标
 
-    return [action_args[0], action_args[1], action_args[0], action_args[1]]
+    # 2. 使用 re.search 检查 LONG_PRESS
+    long_press_match = re.search(r"LONG_PRESS <point>\[\[(\d+),\s*(\d+)\]\]</point>", model_output_text)
+    if long_press_match:
+        x, y = map(int, long_press_match.groups())
+        x = float(x / 1000)
+        y = float(y / 1000)
+        return [x, y, x, y] # 找到 LONG_PRESS，返回坐标
+
+    # 3. 检查 WAIT
+    if "WAIT" in model_output_text:
+        return [-1, -1, -1, -1] # 找到 WAIT，返回特定代码
+
+    return [0, 0, 0, 0] # 未找到任何特定动作
 
 
-class Qwen25VL_OpenAI(lmms):
+
+class Qwen2VL_OpenAI(lmms):
     def __init__(self, model_name, model_path, **kwargs):
         super().__init__()
         self.model_name = model_name
@@ -102,31 +172,19 @@ class Qwen25VL_OpenAI(lmms):
 
         def process_request(index_request):
             index, request = index_request
-            instruction, tools, input_image, resized_args = request['instruction'], request['tools'], request['image'], request['resized_args']
+            instruction, input_image, resized_args = request['instruction'], request['image'], request['resized_args']
 
             payload = {"messages": []}
 
-            tool_descs = [{'type': 'function', 'function': f} for f in tools]
-            tool_descs = '\n'.join([json.dumps(f, ensure_ascii=False) for f in tool_descs])
-            payload["messages"].append({"role": "system", "content": [{"type": "text", "text": FN_CALL_TEMPLATE.format(tool_descs=tool_descs)}]})
 
-            # resized_width, resized_height = resized_args
-            # print(f"original_width: {input_image.width}, original_height: {input_image.height}")
-            # input_image = input_image.resize((resized_width, resized_height))
-            # print(f"resized_width: {input_image.width}, resized_height: {input_image.height}")
             payload["messages"].append({
                     "role": "user", "content": [
+                        {"type": "text", "text": SYSTEM_PROMPT},
                         {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{self.encode_image(input_image)}"}},
-                        {"type": "text", "text": f"Please complete the following tasks by clicking using `left_click` function: {instruction}"}
-                        # {"type": "text", "text": f"{instruction}"}
+                        {"type": "text", "text": USER_PROMPT.format(description=instruction)}
                     ]
             })
 
-            payload["messages"].append({
-                "role": "assistant", "content": [
-                    {"type": "text", "text": '<tool_call>\n{"name": "computer_use", "arguments": {"action": "left_click", "coordinate":'}
-                ]
-            })
 
             payload["max_tokens"] = gen_kwargs["max_new_tokens"]
             payload["temperature"] = gen_kwargs["temperature"]
@@ -142,14 +200,14 @@ class Qwen25VL_OpenAI(lmms):
                     )
                     
                     response_text = completion.choices[0].message.content
-                    print("response_text: ", response_text)
-                    response_text = '<tool_call>\n{"name": "computer_use", "arguments": {"action": "left_click", "coordinate":' + response_text
+                    print(f"[index: {index}] response_text: {response_text}")
                     predicted_coords = parse_coordinates(response_text)
                     if predicted_coords is None:
                         eval_logger.info(f"Attempt {attempt + 1} failed to parse coordinates.")
                         if attempt < MAX_ATTEMPTS - 1:
                             time.sleep(NUM_SECONDS_TO_SLEEP)
                     else:
+                        print(f"[index: {index}] predicted_coords: {predicted_coords}")
                         break
                 except Exception as e:
                     eval_logger.error(f"Error during API call: {str(e)}")
@@ -183,8 +241,8 @@ class BenchmarkRunner:
         self.model_path = model_path
         self.image_dir = image_dir
         self.use_cache = use_cache
-        self.model = Qwen25VL_OpenAI(model_name, model_path)
-        self.processor = Qwen2_5_VLProcessor.from_pretrained(
+        self.model = Qwen2VL_OpenAI(model_name, model_path)
+        self.processor = AutoProcessor.from_pretrained(
             model_path
         )
 
@@ -271,15 +329,10 @@ class BenchmarkRunner:
                 max_pixels=self.processor.image_processor.max_pixels,
             )
 
-            computer_use = ComputerUse(
-                cfg={"display_width_px": resized_width, "display_height_px": resized_height}
-            )
-            tools = [computer_use.function]
 
             instance = {
                 "instance_id": instance_id,
                 "instruction": user_query,
-                "tools": tools,
                 "image": input_image,
                 "resized_args": (resized_width, resized_height)
             }
@@ -300,6 +353,7 @@ class BenchmarkRunner:
         for i, (response, item, instance) in enumerate(zip(responses, items, instances)):
             try:
                 predicted_coords = parse_coordinates(response)
+                print(f"predicted_coords: {predicted_coords}")
             except Exception as e:
                 eval_logger.info(f"Error parsing coordinates: {e}. The error response is: {response}")
                 predicted_coords = None
@@ -361,10 +415,10 @@ def start_vllm_service(ckpt_path, port, model_name):
         "--port", str(port),
         "--tensor-parallel-size", str(torch.cuda.device_count()),
         "--enforce-eager",
-        # "--dtype", "bfloat16",
+        "--dtype", "float16",
         "--max-model-len", str(16384),
         # "--enable-auto-tool-choice",
-        "--chat-template", "qwen25vl_tool_use_grounding.jinja"
+        # "--chat-template", "qwen25vl_tool_use_grounding.jinja"
     ]
     return subprocess.Popen(command)
 
