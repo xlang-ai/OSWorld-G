@@ -1,9 +1,0 @@
-action_intent_list=['Single selection', 'Multi-selection', 'Deselect single item', 'Deselect all', 'Select text']
-
-action_intent_list=['Select tab', 'Select text', 'Click floating action button']
-
-action_intent_list=['Select single item', 'Select multiple items', 'Move selected items to the right', 'Move selected items to the left', 'Move all items to the right', 'Move all items to the left', 'Select and move single item', 'Select and move multiple items', 'Click on item text to select', 'Select all items in one list', 'Deselect all items in one list', 'Deselect single item', 'Read item text']
-
-action_intent_list=['Select and format text', 'Adjust text alignment', 'Apply styling options (bold, italic, underline)', 'Change text color and background', 'Insert unordered or ordered lists', 'Access dropdown for more formatting options']
-
-action_intent_list=['Select single row', 'Select multiple rows using checkboxes', 'Select all rows using top checkbox', 'Deselect single row', 'Deselect all rows', 'Sort columns by clicking headers', 'Change rows per page using dropdown', 'Navigate to next page', 'Navigate to previous page', 'Select displayed text', 'Copy displayed text', 'Hover over rows for more details (if hover effect present)']

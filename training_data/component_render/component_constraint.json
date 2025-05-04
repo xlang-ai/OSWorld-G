@@ -1,4 +1,0 @@
-{
-    "slider": "Your component needs to be able to display the value range of each slider, including the start and the end!",
-    "table": "The elements in each cell of the table in your component should be centered by default!"
-}
