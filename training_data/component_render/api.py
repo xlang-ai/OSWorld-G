@@ -210,7 +210,7 @@ def call_with_retry_claude(model, prompt, temperature):
             response = bedrock.converse(
                 modelId=MODEL_ID,
                 messages=message_list,
-                inference_config={"temperature": temperature},
+                inferenceConfig={"temperature": temperature},
             )
             response = response["output"]["message"]["content"][0]["text"]
             return response

@@ -828,7 +828,7 @@ def annotate_grounding(
         for coords in coords_list:
             x, y = float(coords[0]), float(coords[1])
 
-            # Draw a small red dot
+            # Draw a small green dot
             dot_radius = 2
             draw.ellipse(
                 [
@@ -838,7 +838,7 @@ def annotate_grounding(
                 fill="#2D9B10",
             )
 
-            # Draw a larger red circle around the dot
+            # Draw a larger green circle around the dot
             circle_radius = 15
             draw.ellipse(
                 [

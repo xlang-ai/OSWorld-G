@@ -100,8 +100,12 @@ def crop_image(image, box_coordinates, crop_size=(1200, 1200)):
 
 
 async def refine_instruction(
-    client, item, instruction, image_path, prompt_type="component"
+    client, item, instruction, image_path, prompt_type="component", id_list=None
 ):
+    if id_list and item["id"] not in id_list:
+        return item
+    if "<todo>" not in instruction:
+        return item
     """
     Refine the user instruction with the provided image and box coordinates.
     """
@@ -190,8 +194,8 @@ async def refine_instruction(
                     print(f"Processed: {instruction} -> {refined_instruction}")
                 else:
                     print(f"No refinement for {instruction}")
-                item["instruction"] = refined_instruction
-                item["refined"] = refined
+                item["instruction"] = "<todo>" + refined_instruction
+                # item["refined"] = refined
                 return item
             except Exception as e:
                 print(f"Error generating refine_instruction: {e}")
@@ -208,9 +212,17 @@ async def process_json(
     image_folder,
     instruction_folder,
     prompt_type="component",
+    id_list=None,
 ):
     with open(input_annotation_path, "r", encoding="utf-8") as f:
         data = json.load(f)
+
+    # # remove items with "instruction" containing "<todo>"
+    # data = [item for item in data if "<todo>" in item["instruction"]]
+
+    # if id_list:
+    #     data = [item for item in data if item["id"] in id_list]
+    # print(len(data))
 
     if not os.path.exists(instruction_folder):
         os.makedirs(instruction_folder)
@@ -219,31 +231,39 @@ async def process_json(
         # Process data in chunks of 30
         for chunk in chunked_iterable(data, 30):
             batch_futures = []
-            for item in chunk:
+            indexed_chunk = list(enumerate(chunk))  # 显式添加索引
+            
+            for i, item in indexed_chunk:
                 instruction = item.get("instruction", "")
-                image_path = os.path.join(image_folder, item.get("id", "") + ".png")
+                image_path = os.path.join(image_folder, item.get("id", "").split("-")[0] + ".png")
 
                 if not os.path.exists(image_path):
                     print(f"Image not found: {image_path}")
                     continue
 
-                # Refine the instruction using GPT
+                # Refine the instruction using GPT，传入索引
                 batch_futures.append(
                     refine_instruction(
-                        client, item, instruction, image_path, prompt_type
+                        client, item, instruction, image_path, prompt_type, id_list
                     )
                 )
 
             # Wait for all futures in the current batch to complete
+            # gather 会保持顺序，results[i] 对应 batch_futures[i]
             results = await asyncio.gather(*batch_futures, return_exceptions=True)
-            print(len(results))
-            refined_data.extend(results)
+            print(f"Processed {len(results)} items in current chunk")
+            
+            # 处理结果，使用索引确保顺序
+            for i, result in enumerate(results):
+                if not isinstance(result, Exception):
+                    refined_data.append(result)
+                else:
+                    print(f"Error processing item {indexed_chunk[i][1]['id']}: {result}")
+                    refined_data.append(indexed_chunk[i][1])  # 使用原始数据
 
-        output_annotation_path = input_annotation_path.replace(
-            ".json", f"_refined_{prompt_type}.json"
-        )
+        output_annotation_path = input_annotation_path
         with open(output_annotation_path, "w") as f:
-            json.dump(refined_data, f, indent=4)
+            json.dump(refined_data, f, indent=2)
             print(f"Saved refined instructions to {output_annotation_path}")
     except Exception as e:
         print(f"Error generating action for {data['original']}: {e}")
@@ -252,13 +272,13 @@ async def process_json(
 
 # Main execution
 if __name__ == "__main__":
-    input_annotation_path = "annotations_v3.json"  # Path to your JSON file
+    input_annotation_path = "annotations_v5_refined_component.json"  # Path to your JSON file
     image_folder = "images"  # Path to your image folder
     instruction_folder = "instructions"  # Path to save processed results
-    with open("secret_keys/openai_key.txt", "r") as file:
+    with open("secret_keys/secret_key_openai.txt", "r") as file:
         apiKey = file.read()
     client = AsyncOpenAI(api_key=apiKey)
-
+    id_list = [] # TODO: change it to your id list
     start_time = time.perf_counter()
     asyncio.run(
         process_json(
@@ -267,6 +287,7 @@ if __name__ == "__main__":
             image_folder,
             instruction_folder,
             "component",  # TODO: select the instruction type you want to refine
+            id_list,
         )
     )
     print(f"Total time: {time.perf_counter() - start_time}")
