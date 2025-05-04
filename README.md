@@ -60,45 +60,6 @@ pip install -r requirements.txt
 
 For how to run evaluation, see [Evaluation](#-evaluation) chapter.
 
-### Pipeline of osworld-g-refined from the original osworld-g
-
-First, run `clear_referred_reformat.py` to get `annotations_v3_refined_{prompt_type}.json` to get annotation file with refiend instruction.
-
-You can choose the refinement style here:
-
-``` python
-    asyncio.run(
-        process_json(
-            client,
-            input_annotation_path,
-            image_folder,
-            instruction_folder,
-            "component",
-        )
-    )
-```
-
-We support 2 styles until now:
-
-Describe the instruction in a clear, actionable way, using basic computer-use terminology.
-
-Secondly, run `data_check.py` to manually check all instruction-image pair. Change the `start_index`(the index where you start your verification, in case you stop your verification halfway and want to continue) and `json_file_path`(the file that you want to check) before running this .py
-
-```python
-if __name__ == "__main__":
-    json_file_path = "annotations_v5_refined.json"  # TODO: change it to your annotation json file
-    images_folder_path = "images"
-    start_index = 0  # TODO: change it to your start index
-
-    process_json_data(json_file_path, images_folder_path)
-```
-
-The checking process looks like this:
-
-<img src="readme-images/image.png" alt="alt text" width="500"/>
-
-The terminal on the left shows the instruction of every piece of data. The image on the right show the corresponding image with a green bounding box.
-
 ## 🗄️ Dataset
 
 ### Icon data
