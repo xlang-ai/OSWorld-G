@@ -58,7 +58,7 @@ pip install -r requirements.txt
 
 ## 📊 Benchmark--OSWorld-G
 
-For how to run evaluation, see evaluation chapter.
+For how to run evaluation, see [Evaluation](#-evaluation) chapter.
 
 ### Pipeline of osworld-g-refined from the original osworld-g
 
@@ -101,10 +101,10 @@ The terminal on the left shows the instruction of every piece of data. The image
 
 ## 🗄️ Dataset
 
-### Icon
+### Icon data
 TODO: Haoyuan, Tianbao: add instruction on how to run the data preparation.
 
-### Component
+### Component data
 
 #### Code-and-rendering pipeline
 TODO: Junlin: add instruction on how to run the data preparation.
@@ -112,8 +112,11 @@ TODO: Junlin: add instruction on how to run the data preparation.
 #### Real-world augmentation pipeline
 TODO: Tianbao, Xiaochuan, Junlin: add instruction on how to run the data preparation.
 
-### Layout
+### Layout data
 TODO: Jiaqi, Tianbao: add instruction on how to run the data preparation.
+
+### Refusal data
+TODO: Junlin: add instruction on how to run the data preparation.
 
 ## 🔍 Evaluation
 TODO: Tianbao, Junlin: add a unified instruction for all evaluations, we have many eval scripts so we may not introduce them one by one.
