@@ -73,7 +73,7 @@ You can choose the refinement style here:
             input_annotation_path,
             image_folder,
             instruction_folder,
-            "component",  # TODO: select the instruction type you want to refine: "component" "baby"
+            "component",
         )
     )
 ```
@@ -86,7 +86,7 @@ Secondly, run `data_check.py` to manually check all instruction-image pair. Chan
 
 ```python
 if __name__ == "__main__":
-    json_file_path = "annotations_v3_refined_baby.json"  # TODO: change it to your annotation json file
+    json_file_path = "annotations_v5_refined.json"  # TODO: change it to your annotation json file
     images_folder_path = "images"
     start_index = 0  # TODO: change it to your start index
 
@@ -95,7 +95,7 @@ if __name__ == "__main__":
 
 The checking process looks like this:
 
-![alt text](image.png)
+<img src="readme-images/image.png" alt="alt text" width="500"/>
 
 The terminal on the left shows the instruction of every piece of data. The image on the right show the corresponding image with a green bounding box.
 
