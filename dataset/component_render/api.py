@@ -10,9 +10,6 @@ from pydantic import BaseModel
 from logger import logger
 from typing import Dict, List, get_type_hints, get_origin, get_args
 
-# Setup proxy and API key TODO You may not need this
-# os.environ["HTTP_PROXY"] = "http://127.0.0.1:8890"
-# os.environ["HTTPS_PROXY"] = "http://127.0.0.1:8890"
 with open("secret_keys/secret_key_openai.txt", "r") as f:
     openai_api_key = f.read()
 with open("secret_keys/secret_key_claude.txt", "r") as f:
