@@ -19,7 +19,7 @@ class TextSelectionLocator:
     def get_selection_positions(
         self, frame, element, text: str, start_index: int, end_index: int
     ):
-        """使用 Range 对象获取选区的精确位置，支持跨行选择"""
+        """Use Range object to get the exact position of the selection, supporting multi-line selection"""
         position = frame.evaluate(
             """async (data) => {
             const element = data.element;
@@ -36,15 +36,15 @@ class TextSelectionLocator:
             
             const range = document.createRange();
             try {
-                // 设置选区范围
+                // Set selection range
                 range.setStart(textNode, startIndex);
                 range.setEnd(textNode, endIndex + 1);
                 
-                // 获取选区的所有ClientRect
+                // Get all ClientRects of the selection
                 const rects = Array.from(range.getClientRects());
                 if (rects.length === 0) return null;
                 
-                // 获取起始和结束位置的精确Range
+                // Get precise Range for start and end positions
                 const startRange = document.createRange();
                 const endRange = document.createRange();
                 
@@ -57,10 +57,10 @@ class TextSelectionLocator:
                 const startRect = startRange.getBoundingClientRect();
                 const endRect = endRange.getBoundingClientRect();
                 
-                // 获取元素的位置信息用于坐标转换
+                // Get element position information for coordinate conversion
                 const elementRect = element.getBoundingClientRect();
                 
-                // 收集所有选区矩形的位置信息
+                // Collect position information for all selection rectangles
                 const selectionRects = rects.map(rect => ({
                     left: rect.left - elementRect.left,
                     right: rect.right - elementRect.left,
@@ -104,13 +104,13 @@ def extract_text_selections(
     url, save_dir="./select_range_text", max_retries=5, retry_delay=5
 ):
     """
-    提取文档中的文本选择数据，支持跨行选择
+    Extract text selection data from documents, supporting multi-line selections
 
     Args:
-        url: 文档URL
-        save_dir: 保存目录
-        max_retries: 最大重试次数
-        retry_delay: 重试延迟（秒）
+        url: Document URL
+        save_dir: Save directory
+        max_retries: Maximum retry attempts
+        retry_delay: Retry delay (seconds)
     """
     doc_id = url.split("!")[1].split("?")[0] if "!" in url else "unknown"
 
@@ -118,7 +118,7 @@ def extract_text_selections(
     selection_locator = TextSelectionLocator()
 
     def wait_for_network_idle(page, timeout=30000):
-        """等待网络请求完成"""
+        """Wait for network requests to complete"""
         try:
             page.wait_for_load_state("networkidle", timeout=timeout)
             return True
@@ -132,22 +132,22 @@ def extract_text_selections(
             page = browser.new_page(
                 viewport={"width": view_point[0], "height": view_point[1]}
             )
-            # 添加重试逻辑
+            # Add retry logic
             retry_count = 0
             while retry_count < max_retries:
                 try:
-                    # 使用更可靠的页面加载策略
+                    # Use more reliable page loading strategy
                     page.goto(url, wait_until="domcontentloaded")
                     if not wait_for_network_idle(page):
                         print("Warning: Network didn't reach idle state")
 
-                    # 等待iframe加载
+                    # Wait for iframe to load
                     iframe_selector = "iframe"
                     page.wait_for_selector(iframe_selector, timeout=30000)
 
-                    # 确保iframe完全加载
+                    # Ensure iframe is fully loaded
                     frame = page.frame_locator(iframe_selector).first
-                    # 等待文本元素出现
+                    # Wait for text elements to appear
                     text_runs = frame.locator("[class='NormalTextRun']")
                     text_runs.first.wait_for(state="visible", timeout=30000)
 
@@ -180,13 +180,13 @@ def extract_text_selections(
                     text_content = text_run.inner_text()
                     bbox = text_run.bounding_box()
 
-                    if len(text_content) < 10:  #! 对文本长度的限定
+                    if len(text_content) < 10:  #! Restriction on text length
                         continue
 
                     iframe_element = page.locator(iframe_selector).element_handle()
                     actual_frame = iframe_element.content_frame()
 
-                    # 随机选择起始和结束位置
+                    # Randomly select start and end positions
                     text_length = len(text_content)
                     valid_indices = [
                         j for j in range(text_length) if not text_content[j].isspace()
@@ -195,7 +195,7 @@ def extract_text_selections(
                     if len(valid_indices) < 2:
                         continue
 
-                    # 确保起始位置在结束位置之前
+                    # Ensure start position is before end position
                     start_index = random.choice(valid_indices)
                     end_candidates = [j for j in valid_indices if j > start_index]
 
@@ -204,7 +204,7 @@ def extract_text_selections(
 
                     end_index = random.choice(end_candidates)
 
-                    # 获取选区位置信息
+                    # Get selection position information
                     selection_position = selection_locator.get_selection_positions(
                         actual_frame,
                         text_run.element_handle(),
@@ -214,25 +214,25 @@ def extract_text_selections(
                     )
 
                     if selection_position:
-                        # 计算绝对坐标
+                        # Calculate absolute coordinates
                         start_x = bbox["x"] + selection_position["start"]["x"]
                         start_y = bbox["y"] + selection_position["start"]["y"]
                         end_x = bbox["x"] + selection_position["end"]["x"]
                         end_y = bbox["y"] + selection_position["end"]["y"]
 
-                        # 计算归一化坐标
+                        # Calculate normalized coordinates
                         pyautogui_code = f"""import pyautogui;pyautogui.click(x={round(start_x/view_point[0], 4)}, y={round(start_y/view_point[1], 4)});pyautogui.dragTo(x={round(end_x/view_point[0], 4)}, y={round(end_y/view_point[1], 4)}, duration=0.5)"""
 
-                        # 生成截图和标记
+                        # Generate screenshot and markers
                         selection_id = f"{doc_id}_{view_point[0]}x{view_point[1]}_SEL_{i}_{start_index}_{end_index}"
                         screenshot_path = f"{save_dir}/images/{selection_id}.png"
                         page.screenshot(path=screenshot_path)
 
-                        # 添加可视化标记
+                        # Add visual markers
                         img = Image.open(screenshot_path)
                         draw = ImageDraw.Draw(img)
 
-                        # 绘制选区矩形（半透明黄色）
+                        # Draw selection rectangles (semi-transparent yellow)
                         for rect in selection_position["selectionRects"]:
                             rect_coords = [
                                 bbox["x"] + rect["left"],
@@ -240,30 +240,30 @@ def extract_text_selections(
                                 bbox["x"] + rect["right"],
                                 bbox["y"] + rect["bottom"],
                             ]
-                            # 创建半透明效果
+                            # Create semi-transparent effect
                             overlay = Image.new("RGBA", img.size, (0, 0, 0, 0))
                             overlay_draw = ImageDraw.Draw(overlay)
                             overlay_draw.rectangle(
                                 rect_coords, fill=(255, 255, 0, 64)
-                            )  # 半透明黄色
+                            )  # semi-transparent yellow
                             img = Image.alpha_composite(img.convert("RGBA"), overlay)
                             draw = ImageDraw.Draw(img)
 
-                        # 绘制选区起始位置（蓝色）
+                        # Draw selection start position (blue)
                         draw.ellipse(
                             [start_x - 3, start_y - 3, start_x + 3, start_y + 3],
                             outline="blue",
                             width=2,
                         )
 
-                        # 绘制选区结束位置（红色）
+                        # Draw selection end position (red)
                         draw.ellipse(
                             [end_x - 3, end_y - 3, end_x + 3, end_y + 3],
                             outline="red",
                             width=2,
                         )
 
-                        # 保存标记后的图片
+                        # Save marked image
                         os.makedirs(
                             os.path.join(save_dir, "images-marked"), exist_ok=True
                         )
@@ -272,7 +272,7 @@ def extract_text_selections(
                         )
                         img.save(marked_path)
 
-                        # 保存数据
+                        # Save data
                         data = {
                             "image": f"{selection_id}.png",
                             "instruction": SELECT_RANGE_PROMPT.format(
@@ -301,7 +301,6 @@ def extract_text_selections(
 
 
 if __name__ == "__main__":
-    # url = "https://1drv.ms/w/s!AmHHgw-Nep9drl0QRYynCDySzt2D?e=n9pfAV"
     import argparse
 
     parser = argparse.ArgumentParser()

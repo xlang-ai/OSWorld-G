@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# 读取urls.txt中的每一行并传递给Python脚本
+# read every line of urls.txt and pass it to the Python script
 # echo "" > processing.log
 
 cd select_range
