@@ -1,3 +1,6 @@
+"""
+Convert the generated data into the training format, as defined by the user.
+"""
 import json
 import os
 

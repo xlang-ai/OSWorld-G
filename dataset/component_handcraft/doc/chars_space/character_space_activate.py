@@ -17,14 +17,14 @@ VIEW_POINTS = [(1280, 720), (1920, 1080), (3840, 2160)]  # 720p  # 1080p  # 4k
 
 class CharacterSpaceLocator:
     def get_char_pair_position(self, frame, element, text: str, first_char_index: int):
-        """使用 Range 对象获取相邻字符对之间的精确位置"""
+        """Use Range object to get the exact position between adjacent character pairs"""
         position = frame.evaluate(
             """async (data) => {
             const element = data.element;
             const text = data.text;
             const firstCharIndex = data.firstCharIndex;
             
-            // 确保元素内容是纯文本节点
+            // Ensure element content is a pure text node
             if (element.firstChild && element.firstChild.nodeType !== Node.TEXT_NODE) {
                 element.normalize();
             }
@@ -32,32 +32,32 @@ class CharacterSpaceLocator:
             const textNode = element.firstChild;
             if (!textNode) return null;
             
-            // 创建两个range对象，分别用于第一个和第二个字符
+            // Create two range objects for the first and second characters
             const firstCharRange = document.createRange();
             const secondCharRange = document.createRange();
             
             try {
-                // 选择第一个字符
+                // Select the first character
                 firstCharRange.setStart(textNode, firstCharIndex);
                 firstCharRange.setEnd(textNode, firstCharIndex + 1);
                 
-                // 选择第二个字符
+                // Select the second character
                 secondCharRange.setStart(textNode, firstCharIndex + 1);
                 secondCharRange.setEnd(textNode, firstCharIndex + 2);
                 
-                // 获取两个字符的 ClientRect
+                // Get ClientRect for both characters
                 const firstCharRect = firstCharRange.getBoundingClientRect();
                 const secondCharRect = secondCharRange.getBoundingClientRect();
                 
-                // 获取元素的位置信息用于坐标转换
+                // Get element position information for coordinate conversion
                 const elementRect = element.getBoundingClientRect();
                 
-                // 计算两个字符之间的空间
-                // 检查两个字符是否在同一行
-                const sameLineThreshold = 2; // 允许2像素的误差
+                // Calculate the space between the two characters
+                // Check if the two characters are on the same line
+                const sameLineThreshold = 2; // Allow 2 pixels of error
                 if (Math.abs(firstCharRect.top - secondCharRect.top) > sameLineThreshold ||
                     Math.abs(firstCharRect.bottom - secondCharRect.bottom) > sameLineThreshold) {
-                    return null; // 如果不在同一行，返回null
+                    return null; // If not on the same line, return null
                 }
                 
                 const spaceRect = {
@@ -67,7 +67,7 @@ class CharacterSpaceLocator:
                     bottom: Math.max(firstCharRect.bottom, secondCharRect.bottom)
                 };
                 
-                // 计算间距中点
+                // Calculate the midpoint of the spacing
                 const midPoint = {
                     x: (spaceRect.left + spaceRect.right) / 2 - elementRect.left,
                     y: (spaceRect.top + spaceRect.bottom) / 2 - elementRect.top
@@ -105,22 +105,22 @@ def extract_doc_char_spaces(
     url, save_dir="./doc_char_spaces", max_retries=5, retry_delay=5
 ):
     """
-    提取文档中的字符间距信息
+    Extract character spacing information from documents
 
     Args:
-        url: 文档URL
-        save_dir: 保存目录
-        max_retries: 最大重试次数
-        retry_delay: 重试延迟（秒）
+        url: Document URL
+        save_dir: Save directory
+        max_retries: Maximum number of retries
+        retry_delay: Retry delay (seconds)
     """
-    # 从URL中提取文档ID
+    # Extract document ID from URL
     doc_id = url.split("!")[1].split("?")[0] if "!" in url else "unknown"
 
     os.makedirs(os.path.join(save_dir, "images"), exist_ok=True)
     char_space_locator = CharacterSpaceLocator()
 
     def wait_for_network_idle(page, timeout=30000):
-        """等待网络请求完成"""
+        """Wait for network requests to complete"""
         try:
             page.wait_for_load_state("networkidle", timeout=timeout)
             return True
@@ -138,18 +138,18 @@ def extract_doc_char_spaces(
             retry_count = 0
             while retry_count < max_retries:
                 try:
-                    # 使用更可靠的页面加载策略
+                    # Use more reliable page loading strategy
                     page.goto(url, wait_until="domcontentloaded")
                     if not wait_for_network_idle(page):
                         print("Warning: Network didn't reach idle state")
 
-                    # 等待iframe加载
+                    # Wait for iframe to load
                     iframe_selector = "iframe"
                     page.wait_for_selector(iframe_selector, timeout=5000)
 
-                    # 确保iframe完全加载
+                    # Ensure iframe is fully loaded
                     frame = page.frame_locator(iframe_selector).first
-                    # 等待文本元素出现
+                    # Wait for text elements to appear
                     text_runs = frame.locator("[class='NormalTextRun']")
                     text_runs.first.wait_for(state="visible", timeout=5000)
 
@@ -182,14 +182,14 @@ def extract_doc_char_spaces(
                     text_content = text_run.inner_text()
                     bbox = text_run.bounding_box()
 
-                    if len(text_content) < 10:  #! 对文本长度的限定
+                    if len(text_content) < 10:  #! Limitation on text length
                         continue
 
                     iframe_element = page.locator(iframe_selector).element_handle()
                     actual_frame = iframe_element.content_frame()
 
-                    # 随机选择一个非空白字符作为第一个字符
-                    # 确保两个字符都不是空白，且在JavaScript中已验证它们在同一行
+                    # Randomly select a non-whitespace character as the first character
+                    # Ensure both characters are not whitespace and verify they are on the same line in JavaScript
                     first_char_index, turns = -1, 0
                     char_space_position = None
                     while first_char_index == -1:
@@ -198,17 +198,17 @@ def extract_doc_char_spaces(
                             not text_content[start_i].isspace()
                             and not text_content[start_i + 1].isspace()
                         ):
-                            # 获取位置信息来验证是否在同一行
+                            # Get position information to verify they are on the same line
                             position_check = char_space_locator.get_char_pair_position(
                                 actual_frame,
                                 text_run.element_handle(),
                                 text_content,
                                 start_i,
                             )
-                            if position_check:  # 如果返回不为None，说明在同一行
+                            if position_check:  # If not None, they are on the same line
                                 first_char_index = start_i
                                 char_space_position = (
-                                    position_check  # 获取字符对的位置信息
+                                    position_check  # Get character pair position information
                                 )
                         turns += 1
                         if turns > 10:
@@ -218,20 +218,20 @@ def extract_doc_char_spaces(
                         continue
 
                     if char_space_position:
-                        # 计算绝对坐标
+                        # Calculate absolute coordinates
                         abs_x = bbox["x"] + char_space_position["midPoint"]["x"]
                         abs_y = bbox["y"] + char_space_position["midPoint"]["y"]
 
-                        # 在space_id中加入文档ID
+                        # Add document ID to space_id
                         space_id = f"{doc_id}_{view_point[0]}x{view_point[1]}_SPACE_{i}_{first_char_index}"
                         screenshot_path = f"{save_dir}/images/{space_id}.png"
                         page.screenshot(path=screenshot_path)
 
-                        # 添加可视化标记
+                        # Add visualization markers
                         img = Image.open(screenshot_path)
                         draw = ImageDraw.Draw(img)
 
-                        # 绘制第一个字符边界（蓝色）
+                        # Draw first character boundary (blue)
                         draw.rectangle(
                             [
                                 bbox["x"] + char_space_position["firstChar"]["left"],
@@ -243,7 +243,7 @@ def extract_doc_char_spaces(
                             width=2,
                         )
 
-                        # 绘制第二个字符边界（绿色）
+                        # Draw second character boundary (green)
                         draw.rectangle(
                             [
                                 bbox["x"] + char_space_position["secondChar"]["left"],
@@ -255,20 +255,20 @@ def extract_doc_char_spaces(
                             width=2,
                         )
 
-                        # 标记中点位置（红色）
+                        # Mark midpoint position (red)
                         draw.ellipse(
                             [abs_x - 2, abs_y - 2, abs_x + 2, abs_y + 2], fill="red"
                         )
 
-                        # 保存标记后的图片
+                        # Save marked image
                         os.makedirs(
                             os.path.join(save_dir, "images-marked"), exist_ok=True
                         )
                         marked_path = f"{save_dir}/images-marked/marked_{space_id}.png"
                         img.save(marked_path)
 
-                        # 保存数据
-                        # 检查这对连续字符是否唯一
+                        # Save data
+                        # Check if this consecutive character pair is unique
                         char_pair = (
                             text_content[first_char_index]
                             + text_content[first_char_index + 1]
@@ -298,7 +298,7 @@ def extract_doc_char_spaces(
                         with open(f"{save_dir}/data.jsonl", "a", encoding="utf-8") as f:
                             f.write(json.dumps(data, ensure_ascii=False) + "\n")
 
-                        # 随机点击
+                        # Random click
                         if random.random() < 0.5:
                             page.mouse.click(abs_x, abs_y)
                             time.sleep(0.1)
@@ -314,7 +314,6 @@ def extract_doc_char_spaces(
 
 
 if __name__ == "__main__":
-    # url = "https://1drv.ms/w/s!AmHHgw-Nep9drl0QRYynCDySzt2D?e=n9pfAV"
     import argparse
 
     parser = argparse.ArgumentParser()

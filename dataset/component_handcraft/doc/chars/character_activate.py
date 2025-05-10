@@ -17,14 +17,14 @@ VIEW_POINTS = [(1280, 720), (1920, 1080), (3840, 2160)]  # 720p  # 1080p  # 4k
 
 class CharacterLocator:
     def get_char_position(self, frame, element, text: str, char_index: int):
-        """使用 Range 对象获取字符的精确位置"""
+        """Use Range object to get the exact position of the character"""
         position = frame.evaluate(
             """async (data) => {
             const element = data.element;
             const text = data.text;
             const charIndex = data.charIndex;
             
-            // 确保元素内容是纯文本节点
+            // Ensure element content is a pure text node
             if (element.firstChild && element.firstChild.nodeType !== Node.TEXT_NODE) {
                 element.normalize();
             }
@@ -34,21 +34,21 @@ class CharacterLocator:
             
             const range = document.createRange();
             try {
-                // 选择单个字符
+                // Select a single character
                 range.setStart(textNode, charIndex);
                 range.setEnd(textNode, charIndex + 1);
                 
-                // 获取字符的 ClientRect
+                // Get the ClientRect of the character
                 const rects = range.getClientRects();
                 if (rects.length === 0) return null;
                 
                 const rect = rects[0];
                 
-                // 获取元素的位置信息用于坐标转换
+                // Get element position information for coordinate conversion
                 const elementRect = element.getBoundingClientRect();
                 
                 return {
-                    // 返回相对于元素的坐标
+                    // Return coordinates relative to the element
                     x: (rect.left + rect.right) / 2 - elementRect.left,
                     y: (rect.top + rect.bottom) / 2 - elementRect.top,
                     width: rect.width,
@@ -59,7 +59,7 @@ class CharacterLocator:
                     bottom: rect.bottom - elementRect.top
                 };
             } finally {
-                range.detach(); // 清理 range 对象
+                range.detach(); // Clean up the range object
             }
         }""",
             {"element": element, "text": text, "charIndex": char_index},
@@ -68,7 +68,7 @@ class CharacterLocator:
         return position
 
     def is_in_viewport(self, frame, x: float, y: float, viewport_height: int) -> bool:
-        """检查坐标是否在视图内"""
+        """Check if coordinates are in the viewport"""
         return frame.evaluate(
             """(coords) => {
             const { x, y } = coords;
@@ -84,7 +84,7 @@ class CharacterLocator:
         )
 
     def scroll_into_view(self, frame, x: float, y: float):
-        """滚动页面直到指定坐标出现在视图中"""
+        """Scroll the page until the specified coordinates appear in the viewport"""
         frame.evaluate(
             """(coords) => {
             const { x, y } = coords;
@@ -95,19 +95,19 @@ class CharacterLocator:
         }""",
             {"x": x, "y": y},
         )
-        # 等待滚动完成
+        # Wait for scrolling to complete
         time.sleep(1)
 
 
 def extract_doc_characters(url, save_dir="./doc_chars", max_retries=5, retry_delay=5):
     """
-    提取文档中的字符信息
+    Extract character information from documents
 
     Args:
-        url: 文档URL
-        save_dir: 保存目录
-        max_retries: 最大重试次数
-        retry_delay: 重试延迟（秒）
+        url: Document URL
+        save_dir: Save directory
+        max_retries: Maximum number of retries
+        retry_delay: Retry delay (seconds)
     """
     doc_id = url.split("!")[1].split("?")[0] if "!" in url else "unknown"
 
@@ -115,7 +115,7 @@ def extract_doc_characters(url, save_dir="./doc_chars", max_retries=5, retry_del
     char_locator = CharacterLocator()
 
     def wait_for_network_idle(page, timeout=30000):
-        """等待网络请求完成"""
+        """Wait for network requests to complete"""
         try:
             page.wait_for_load_state("networkidle", timeout=timeout)
             return True
@@ -129,22 +129,22 @@ def extract_doc_characters(url, save_dir="./doc_chars", max_retries=5, retry_del
             page = browser.new_page(
                 viewport={"width": view_point[0], "height": view_point[1]}
             )
-            # 添加重试逻辑
+            # Add retry logic
             retry_count = 0
             while retry_count < max_retries:
                 try:
-                    # 使用更可靠的页面加载策略
+                    # Use a more reliable page loading strategy
                     page.goto(url, wait_until="domcontentloaded")
                     if not wait_for_network_idle(page):
                         print("Warning: Network didn't reach idle state")
 
-                    # 等待iframe加载
+                    # Wait for iframe to load
                     iframe_selector = "iframe"
                     page.wait_for_selector(iframe_selector, timeout=30000)
 
-                    # 确保iframe完全加载
+                    # Ensure iframe is fully loaded
                     frame = page.frame_locator(iframe_selector).first
-                    # 等待文本元素出现
+                    # Wait for text elements to appear
                     text_runs = frame.locator("[class='NormalTextRun']")
                     text_runs.first.wait_for(state="visible", timeout=30000)
 
@@ -177,13 +177,13 @@ def extract_doc_characters(url, save_dir="./doc_chars", max_retries=5, retry_del
                     text_content = text_run.inner_text()
                     bbox = text_run.bounding_box()
 
-                    if len(text_content) < 10:  #! 对文本长度的限定
+                    if len(text_content) < 10:  #! Restriction on text length
                         continue
 
                     iframe_element = page.locator(iframe_selector).element_handle()
                     actual_frame = iframe_element.content_frame()
 
-                    # 获取样式信息
+                    # Get style information
                     style_info = actual_frame.evaluate(
                         """
                     (element) => {
@@ -198,7 +198,7 @@ def extract_doc_characters(url, save_dir="./doc_chars", max_retries=5, retry_del
                     )
 
                     if bbox and text_content:
-                        # 随机选择一个非空白字符
+                        # Randomly select a non-whitespace character
                         is_blank = True
                         while is_blank:
                             char_index = random.randint(0, len(text_content) - 1)
@@ -208,7 +208,7 @@ def extract_doc_characters(url, save_dir="./doc_chars", max_retries=5, retry_del
                         print("Selected index:", char_index)
                         print("Selected char:", selected_char)
 
-                        # 获取字符的精确位置
+                        # Get the exact position of the character
                         char_position = char_locator.get_char_position(
                             actual_frame,
                             text_run.element_handle(),
@@ -217,11 +217,11 @@ def extract_doc_characters(url, save_dir="./doc_chars", max_retries=5, retry_del
                         )
 
                         if char_position:
-                            # 计算绝对坐标
+                            # Calculate absolute coordinates
                             abs_x = bbox["x"] + char_position["x"]
                             abs_y = bbox["y"] + char_position["y"]
 
-                            # 检查字符是否在视图内，如果不在则滚动
+                            # Check if the character is in the viewport, scroll if not
                             if not char_locator.is_in_viewport(
                                 actual_frame, abs_x, abs_y, view_point[1]
                             ):
@@ -230,7 +230,7 @@ def extract_doc_characters(url, save_dir="./doc_chars", max_retries=5, retry_del
                                 #     actual_frame, abs_x, abs_y
                                 # )
                                 text_run.scroll_into_view_if_needed()
-                                # 重新获取位置信息，因为滚动可能改变了坐标
+                                # Get position information again, as scrolling may have changed coordinates
                                 bbox = text_run.bounding_box()
                                 char_position = char_locator.get_char_position(
                                     actual_frame,
@@ -242,16 +242,16 @@ def extract_doc_characters(url, save_dir="./doc_chars", max_retries=5, retry_del
                                     abs_x = bbox["x"] + char_position["x"]
                                     abs_y = bbox["y"] + char_position["y"]
 
-                            # 生成截图和标记
+                            # Generate screenshot and markers
                             char_id = f"{doc_id}_{view_point[0]}x{view_point[1]}_CHAR_{i}_{char_index}"
                             screenshot_path = f"{save_dir}/images/{char_id}.png"
                             page.screenshot(path=screenshot_path)
 
-                            # 添加可视化标记
+                            # Add visual markers
                             img = Image.open(screenshot_path)
                             draw = ImageDraw.Draw(img)
 
-                            # 绘制字符边界（绿色）
+                            # Draw character boundary (green)
                             draw.rectangle(
                                 [
                                     bbox["x"] + char_position["left"],
@@ -263,13 +263,13 @@ def extract_doc_characters(url, save_dir="./doc_chars", max_retries=5, retry_del
                                 width=2,
                             )
 
-                            # 标记字符中心点（红色）
+                            # Mark character center point (red)
                             draw.ellipse(
                                 [abs_x - 2, abs_y - 2, abs_x + 2, abs_y + 2],
                                 fill="red",
                             )
 
-                            # 保存标记后的图片
+                            # Save marked image
                             os.makedirs(
                                 os.path.join(save_dir, "images-marked"), exist_ok=True
                             )
@@ -278,9 +278,9 @@ def extract_doc_characters(url, save_dir="./doc_chars", max_retries=5, retry_del
                             )
                             img.save(marked_path)
 
-                            # 保存数据
-                            # 不需要使用 find，因为我们已经知道 char_index
-                            # 计算这是第几个相同字符（从1开始计数）
+                            # Save data
+                            # No need to use find, as we already know char_index
+                            # Calculate which occurrence this is of the same character (counting from 1)
                             char_occurrence = text_content[: char_index + 1].count(
                                 selected_char
                             )
@@ -288,7 +288,7 @@ def extract_doc_characters(url, save_dir="./doc_chars", max_retries=5, retry_del
                                 "image": f"{char_id}.png",
                                 "instruction": ACTIVATE_CHAR_PROMPT.format(
                                     text=text_content,
-                                    index=char_occurrence,  # 使用相对序号而不是绝对位置
+                                    index=char_occurrence,  # Use relative sequence number instead of absolute position
                                     character=selected_char,
                                 ),
                                 "code": f"import pyautogui;pyautogui.click(x={abs_x/view_point[0]:.4f}, y={abs_y/view_point[1]:.4f})",
@@ -310,7 +310,7 @@ def extract_doc_characters(url, save_dir="./doc_chars", max_retries=5, retry_del
                             ) as f:
                                 f.write(json.dumps(data, ensure_ascii=False) + "\n")
 
-                            # 随机点击
+                            # Random click
                             if random.random() < 0.5:
                                 page.mouse.click(abs_x, abs_y)
                                 time.sleep(0.1)
@@ -326,7 +326,6 @@ def extract_doc_characters(url, save_dir="./doc_chars", max_retries=5, retry_del
 
 
 if __name__ == "__main__":
-    # url = "https://1drv.ms/w/s!AmHHgw-Nep9drl0QRYynCDySzt2D?e=n9pfAV"
     import argparse
 
     parser = argparse.ArgumentParser()
