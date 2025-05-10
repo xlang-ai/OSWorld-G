@@ -14,12 +14,12 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import List, Optional, Union, Dict, Literal
 from PIL import Image, ImageDraw, ImageFont
 
-from api import client, call_with_retry_openai
+from utils import client, call_with_retry_openai
 
 from openai import OpenAI
 from pydantic import BaseModel
 
-from logger import logger
+from utils import logger
 from render_prompts import (
     visual_description_templates,
     position_information_templates,
@@ -35,13 +35,6 @@ from render_prompts import (
 lock = threading.Lock()
 
 THREAD_TIMEOUT = 60
-
-# jsonl_file_path = "data_desktop_fullscreen.jsonl"
-
-# Two kinds of action
-# interact with the whole bbox
-# interact with part of the bbox
-
 
 class InstGen(BaseModel):
     visual_description: str
@@ -68,16 +61,6 @@ class ActionDetail(BaseModel):
 class Desc2Action(BaseModel):
     action_desc: str
     action_code: str
-
-
-# class FineAction(BaseModel):
-#     is_continuous: bool
-#     thought_process: str
-#     action_desc: str
-#     action_param: List[str]
-#     action_continuous_interval: Dict[str, List[List[float]]]
-#     action_code: str
-
 
 class FineAction(BaseModel):
     is_continuous: bool
@@ -143,15 +126,10 @@ def location_ok(result_item, screenshot):
     return True
 
 
-# 递归获取所有的 bbox
 def extract_bboxes(data, screenshot):
-    """
-    递归遍历树结构，提取每个节点并保留其 1 级 children。
-    """
     result = []
 
     def traverse(node, parent_info):
-        # 提取当前节点的信息，并保留 1 级 children 增加大小限定
         node_info = {
             "attributes": node.get("attributes", {}),
             "text": node.get("text", ""),
@@ -162,7 +140,6 @@ def extract_bboxes(data, screenshot):
             "parent": parent_info,
         }
 
-        # 添加 1 级 children 增加去重 增加大小限定
         original_children_list = node.get("children", [])
         for index, child in enumerate(original_children_list):
             child_info = {
@@ -182,10 +159,8 @@ def extract_bboxes(data, screenshot):
 
             node_info["children"].append(child_info)
 
-        # 将当前节点信息添加到结果中
         result.append(node_info)
 
-        # 递归遍历子节点
         for index, child in enumerate(original_children_list):
 
             repetition = False
@@ -197,22 +172,17 @@ def extract_bboxes(data, screenshot):
 
             traverse(child, {k: v for k, v in node_info.items() if k != "parent"})
 
-    # 从根节点开始遍历
     traverse(data, {})
 
-    # remove repetition
-    # remove box too big
     final_result = []
     for index, result_item in enumerate(result):
         if location_ok(result_item, screenshot) is False:
-            # logger.info("location not ok")
             continue
         repetition = False
         for prev_item in result[:index]:
             if result_item["position"] == prev_item["position"]:
                 repetition = True
         if repetition:
-            # logger.info("repetitive bbox")
             continue
         final_result.append(result_item)
     return final_result
@@ -228,14 +198,10 @@ def crop_image(image_path, bbox):
                 bbox["position"]["y_2"],
             )
         )
-        # 获取图片中心点坐标
         center_x = cropped_image.width / 2
         center_y = cropped_image.height / 2
 
-        # 创建 ImageDraw 对象
         draw = ImageDraw.Draw(cropped_image)
-
-        # 在中心点画一个小圆点（红色）
         point_radius = 2
         draw.ellipse(
             [
@@ -251,22 +217,18 @@ def crop_image(image_path, bbox):
 
 def annotate_image(image_path, bbox):
     with Image.open(image_path) as image:
-        # 创建一个可绘制的对象
         draw = ImageDraw.Draw(image)
 
-        # 计算矩形框的坐标
         left = bbox["position"]["x_1"]
         top = bbox["position"]["y_1"]
         right = bbox["position"]["x_2"]
         bottom = bbox["position"]["y_2"]
 
-        # 在图像上绘制红色矩形框
         draw.rectangle(
             [left, top, right, bottom], outline="red", width=2
-        )  # width可以调整矩形框的线宽
+        )
         center_x = (left + right) / 2
         center_y = (top + bottom) / 2
-        # 在中心点画一个小圆点（红色）
         point_radius = 2
         draw.ellipse(
             [
@@ -278,31 +240,27 @@ def annotate_image(image_path, bbox):
             fill="red",
         )
 
-        return image  # 返回带有矩形框的图像
+        return image
 
 
 def context_image(image_path, bbox):
     with Image.open(image_path) as image:
-        # 创建一个可绘制的对象
         draw = ImageDraw.Draw(image)
 
-        # 计算矩形框的坐标
         left = bbox["position"]["x_1"]
         top = bbox["position"]["y_1"]
         right = bbox["position"]["x_2"]
         bottom = bbox["position"]["y_2"]
 
-        # 在图像上绘制红色矩形框
         draw.rectangle(
             [left, top, right, bottom], outline="red", width=2
-        )  # width可以调整矩形框的线宽
+        )
 
         center_x = (
             bbox["position"]["x_1"] + bbox["position"]["x_2"]
-        ) / 2  # 计算矩形框的中心点
+        ) / 2
         center_y = (bbox["position"]["y_1"] + bbox["position"]["y_2"]) / 2
 
-        # 在中心点画一个小圆点（红色）
         point_radius = 2
         draw.ellipse(
             [
@@ -323,10 +281,9 @@ def context_image(image_path, bbox):
             )
         )
 
-        return image  # 返回带有矩形框的图像
+        return image
 
 
-# 调用 GPT-4 API 获取指令
 def generate_instructions(bbox, original_image_path):
     try:
         logger.info("start generate instructions")
@@ -360,205 +317,182 @@ def generate_instructions(bbox, original_image_path):
         os.remove(annotated_image_path)
         os.remove(context_image_path)
 
-        # if bbox["children"] == []: Sometimes, valid bbox has children(which are all invalid)
-        if True:
-            # logger.info("no children")
-            # 1. desc-based action--target is the bbox center， action type can be diverse [unique]--only for no children!
-            sys_prompt = DESC_INST_SYS_PROMPT
-            user_prompt = DESC_INST_USER_PROMPT.format(
-                bbox={k: v for k, v in bbox.items() if k != "parent"},
-                parent_bbox=bbox["parent"],
-            )
-            # logger.info("desc")
-            response = call_with_retry_openai(
-                client,
-                "gpt-4o-2024-11-20",
-                [
-                    {"role": "system", "content": sys_prompt},
-                    {
-                        "role": "user",
-                        "content": [
-                            {"type": "text", "text": user_prompt},
-                            {
-                                "type": "image_url",
-                                "image_url": {
-                                    "url": f"data:image/jpeg;base64,{base64_annotated_image}",
-                                },
+        # 1. desc-based action--target is the bbox center， action type can be diverse [unique]
+        sys_prompt = DESC_INST_SYS_PROMPT
+        user_prompt = DESC_INST_USER_PROMPT.format(
+            bbox={k: v for k, v in bbox.items() if k != "parent"},
+            parent_bbox=bbox["parent"],
+        )
+        response = call_with_retry_openai(
+            client,
+            "gpt-4o-2024-11-20",
+            [
+                {"role": "system", "content": sys_prompt},
+                {
+                    "role": "user",
+                    "content": [
+                        {"type": "text", "text": user_prompt},
+                        {
+                            "type": "image_url",
+                            "image_url": {
+                                "url": f"data:image/jpeg;base64,{base64_annotated_image}",
                             },
-                            {
-                                "type": "image_url",
-                                "image_url": {
-                                    "url": f"data:image/jpeg;base64,{base64_cropped_image}",
-                                },
+                        },
+                        {
+                            "type": "image_url",
+                            "image_url": {
+                                "url": f"data:image/jpeg;base64,{base64_cropped_image}",
                             },
-                            {
-                                "type": "image_url",
-                                "image_url": {
-                                    "url": f"data:image/jpeg;base64,{base64_contexted_image}",
-                                },
+                        },
+                        {
+                            "type": "image_url",
+                            "image_url": {
+                                "url": f"data:image/jpeg;base64,{base64_contexted_image}",
                             },
-                        ],
-                    },
-                ],
-                0.8,
-                InstGen,
-            )
+                        },
+                    ],
+                },
+            ],
+            0.8,
+            InstGen,
+        )
 
-            visual_description = response.visual_description
-            position_information = response.position_information
-            element_function = response.element_function
-            element_type = response.element_type.rstrip(".")
-            possible_actions = [
-                random.choice(response.possible_actions)
-            ]  # same action repeat many times so we randomly take one
-            element_complete_visibility_analysis = (
-                response.element_complete_visibility_analysis
-            )
-            element_complete_visibility_result = (
-                response.element_complete_visibility_result
-            )
-            element_atomicity_analysis = response.element_atomicity_analysis
-            element_atomicity_result = response.element_atomicity_result
-            # logger.info(f"VISUAL DESCIRPTION: \n{visual_description}")
-            # logger.info(f"POSITION INFORMATION: \n{position_information}")
-            # logger.info(f"ELEMENT FUNCTION: \n{element_function}")
-            # logger.info(
-            #     f"ELEMENT COMPLETE VISIBILITY RESULT: {str(element_complete_visibility_result)}"
-            # )
-            # logger.info(
-            #     f"ELEMENT COMPLETE VISIBILITY ANALYSIS: {str(element_complete_visibility_analysis)}"
-            # )
-            # logger.info(f"ELEMENT ATOMICITY RESULT: {str(element_atomicity_result)}")
-            # logger.info(
-            #     f"ELEMENT ATOMICITY ANALYSIS: {str(element_atomicity_analysis)}"
-            # )
+        visual_description = response.visual_description
+        position_information = response.position_information
+        element_function = response.element_function
+        element_type = response.element_type.rstrip(".")
+        possible_actions = [
+            random.choice(response.possible_actions)
+        ]  # same action repeat many times so we randomly take one
+        element_complete_visibility_result = (
+            response.element_complete_visibility_result
+        )
+        element_atomicity_result = response.element_atomicity_result
 
-            if element_complete_visibility_result and element_atomicity_result:
-                # 从0到11中随机生成两个不同的整数
-                random_ints = random.sample(range(0, 12), 2)
-                for index, random_int in enumerate(random_ints):
-                    element_desc = (
-                        visual_description_templates[random_int].format(
-                            visual_description=visual_description,
-                            element_type=element_type,
-                        )
-                        + position_information_templates[random_int].format(
-                            position_information=position_information,
-                            element_type=element_type,
-                        )
-                        if index == 0
-                        else element_function_templates[random_int].format(
-                            element_function=element_function,
-                            element_type=element_type,
-                        )
-                        + position_information_templates[random_int].format(
-                            position_information=position_information,
-                            element_type=element_type,
-                        )
+        if element_complete_visibility_result and element_atomicity_result:
+            random_ints = random.sample(range(0, 12), 2)
+            for index, random_int in enumerate(random_ints):
+                element_desc = (
+                    visual_description_templates[random_int].format(
+                        visual_description=visual_description,
+                        element_type=element_type,
                     )
-                    center_point = {
-                        "x_center": bbox["position"]["x_center"],
-                        "y_center": bbox["position"]["y_center"],
-                    }
-                    for possible_action in possible_actions:
-                        sys_prompt = DESC2ACTION_SYS_PROMPT.format(
-                            element_desc=element_desc,
-                            action_brief_desc=possible_action,
-                            center_point=center_point,
-                        )
-                        user_prompt = DESC2ACTION_USER_PROMPT.format(
-                            element_desc=element_desc,
-                            action_brief_desc=possible_action,
-                            center_point=center_point,
-                        )
-                        try:
-                            pass
-                            logger.info("d2a")
-                            response = call_with_retry_openai(
-                                client,
-                                "gpt-4o-mini",
-                                [
-                                    {"role": "system", "content": sys_prompt},
-                                    {
-                                        "role": "user",
-                                        "content": [
-                                            {"type": "text", "text": user_prompt},
-                                        ],
-                                    },
-                                ],
-                                0.5,
-                                Desc2Action,
-                            )
-                            action_desc = response.action_desc
-                            action_code = response.action_code
-                            new_action_detail = ActionDetail(
-                                thought_process="",
-                                action_space_type="unique",
-                                action_desc=action_desc,
-                                action_param=None,
-                                action_discrete_values=None,
-                                action_continuous_interval=None,
-                                action_code=action_code,
-                            )
-                            action_detail_list.append(new_action_detail)
-
-                        except Exception as e:
-                            logger.error(f"Error turning desc into action: {str(e)}")
-            # 2. fine-grained action TODO--target isn't the bbox of the center, but the certain loc of the bbox. inst can be diverse, too[continuous]
-            sys_prompt = FINE_ACTION_INST_SYS_PROMPT
-            user_prompt = FINE_ACTION_INST_USER_PROMPT.format(
-                bbox={k: v for k, v in bbox.items() if k != "parent"},
-                parent_bbox=bbox["parent"],
-            )
-            # logger.info("fine")
-            response = call_with_retry_openai(
-                client,
-                "gpt-4o-2024-11-20",
-                [
-                    {"role": "system", "content": sys_prompt},
-                    {
-                        "role": "user",
-                        "content": [
-                            {"type": "text", "text": user_prompt},
-                            {
-                                "type": "image_url",
-                                "image_url": {
-                                    "url": f"data:image/jpeg;base64,{base64_annotated_image}",
-                                },
-                            },
-                            {
-                                "type": "image_url",
-                                "image_url": {
-                                    "url": f"data:image/jpeg;base64,{base64_cropped_image}",
-                                },
-                            },
-                            {
-                                "type": "image_url",
-                                "image_url": {
-                                    "url": f"data:image/jpeg;base64,{base64_contexted_image}",
-                                },
-                            },
-                        ],
-                    },
-                ],
-                0.8,
-                FineAction,
-            )
-            parsed_response = response
-            logger.info("CONTINUOUS ANALYSIS DONE")
-            if parsed_response.is_continuous:
-                logger.info("HAS CONTINUOUS ACTION")
-                new_action_detail = ActionDetail(
-                    thought_process=parsed_response.thought_process,
-                    action_space_type="continuous",
-                    action_desc=parsed_response.action_desc,
-                    action_param=parsed_response.action_param,
-                    action_discrete_values=None,
-                    action_continuous_interval=parsed_response.action_continuous_interval,
-                    action_code=parsed_response.action_code,
+                    + position_information_templates[random_int].format(
+                        position_information=position_information,
+                        element_type=element_type,
+                    )
+                    if index == 0
+                    else element_function_templates[random_int].format(
+                        element_function=element_function,
+                        element_type=element_type,
+                    )
+                    + position_information_templates[random_int].format(
+                        position_information=position_information,
+                        element_type=element_type,
+                    )
                 )
-                action_detail_list.append(new_action_detail)
-                logger.info(f"continuous: {new_action_detail}")
+                center_point = {
+                    "x_center": bbox["position"]["x_center"],
+                    "y_center": bbox["position"]["y_center"],
+                }
+                for possible_action in possible_actions:
+                    sys_prompt = DESC2ACTION_SYS_PROMPT.format(
+                        element_desc=element_desc,
+                        action_brief_desc=possible_action,
+                        center_point=center_point,
+                    )
+                    user_prompt = DESC2ACTION_USER_PROMPT.format(
+                        element_desc=element_desc,
+                        action_brief_desc=possible_action,
+                        center_point=center_point,
+                    )
+                    try:
+                        pass
+                        logger.info("d2a")
+                        response = call_with_retry_openai(
+                            client,
+                            "gpt-4o-mini",
+                            [
+                                {"role": "system", "content": sys_prompt},
+                                {
+                                    "role": "user",
+                                    "content": [
+                                        {"type": "text", "text": user_prompt},
+                                    ],
+                                },
+                            ],
+                            0.5,
+                            Desc2Action,
+                        )
+                        action_desc = response.action_desc
+                        action_code = response.action_code
+                        new_action_detail = ActionDetail(
+                            thought_process="",
+                            action_space_type="unique",
+                            action_desc=action_desc,
+                            action_param=None,
+                            action_discrete_values=None,
+                            action_continuous_interval=None,
+                            action_code=action_code,
+                        )
+                        action_detail_list.append(new_action_detail)
+
+                    except Exception as e:
+                        logger.error(f"Error turning desc into action: {str(e)}")
+        # 2. fine-grained action--target isn't the bbox of the center, but the certain loc of the bbox. inst can be diverse, too[continuous]
+        sys_prompt = FINE_ACTION_INST_SYS_PROMPT
+        user_prompt = FINE_ACTION_INST_USER_PROMPT.format(
+            bbox={k: v for k, v in bbox.items() if k != "parent"},
+            parent_bbox=bbox["parent"],
+        )
+        response = call_with_retry_openai(
+            client,
+            "gpt-4o-2024-11-20",
+            [
+                {"role": "system", "content": sys_prompt},
+                {
+                    "role": "user",
+                    "content": [
+                        {"type": "text", "text": user_prompt},
+                        {
+                            "type": "image_url",
+                            "image_url": {
+                                "url": f"data:image/jpeg;base64,{base64_annotated_image}",
+                            },
+                        },
+                        {
+                            "type": "image_url",
+                            "image_url": {
+                                "url": f"data:image/jpeg;base64,{base64_cropped_image}",
+                            },
+                        },
+                        {
+                            "type": "image_url",
+                            "image_url": {
+                                "url": f"data:image/jpeg;base64,{base64_contexted_image}",
+                            },
+                        },
+                    ],
+                },
+            ],
+            0.8,
+            FineAction,
+        )
+        parsed_response = response
+        logger.info("CONTINUOUS ANALYSIS DONE")
+        if parsed_response.is_continuous:
+            logger.info("HAS CONTINUOUS ACTION")
+            new_action_detail = ActionDetail(
+                thought_process=parsed_response.thought_process,
+                action_space_type="continuous",
+                action_desc=parsed_response.action_desc,
+                action_param=parsed_response.action_param,
+                action_discrete_values=None,
+                action_continuous_interval=parsed_response.action_continuous_interval,
+                action_code=parsed_response.action_code,
+            )
+            action_detail_list.append(new_action_detail)
+            logger.info(f"continuous: {new_action_detail}")
 
     except Exception as e:
         logger.error(f"Error generate action: {str(e)}")
@@ -570,7 +504,6 @@ def task_generate_instructions(bbox, original_image_path):
     return generate_instructions(bbox, original_image_path)
 
 
-# 主函数：提取 bbox，裁剪图片，生成指令
 def generate_action_data_with_bbox(position_info, screenshot_path):
     action_detail_list = []
 
@@ -583,7 +516,7 @@ def generate_action_data_with_bbox(position_info, screenshot_path):
 
     futures = []
 
-    with ThreadPoolExecutor(max_workers=20) as executor:  # 设置最大线程数
+    with ThreadPoolExecutor(max_workers=20) as executor:
         futures = [
             executor.submit(task_generate_instructions, bbox, screenshot_path)
             for bbox in bboxes
@@ -603,10 +536,8 @@ def process_grounding(action_detail: Dict, screensize: Dict) -> str:
         raw_pairs = []
         grounding_pairs = []
         grounding_dicts = []
-        # 生成raw_pairs: inst + raw_code
 
         if action_detail.action_space_type == "unique":
-            # 1 pair
             raw_pairs.append(
                 (
                     action_detail.action_desc,
@@ -625,30 +556,16 @@ def process_grounding(action_detail: Dict, screensize: Dict) -> str:
 
             # Sample 10 values from each interval
             param_samples = []
-            # Sample 10 random values from this interval
             samples = [
                 int(random.uniform(param_interval[0], param_interval[1]))
                 for _ in range(10)
             ]
             param_samples.extend(samples)
 
-            # param_combinations = product(
-            #     *[sampled_values[param] for param in param_name]
-            # )
-
-            # for param_combo in param_combinations:
-            # Create parameter dictionary
-
             # Replace parameters in action description
             inst = action_detail.action_desc
-            # print(f"repr: param_name: {f'<{param_name}>'}, inst: {repr(inst)}")
-            # print(
-            #     f"utf8: param_name: {param_name.encode('utf-8')}, inst: {inst.encode('utf-8')}"
-            # )
-            # print(f"type: param_name: {type(f'<{param_name}>')}, inst: {type(inst)}")
 
             if f"<{param_name}>" not in inst:
-                # if inst.find(f"<{param_name}>") == -1:
                 logger.info(f"Parameter {param_name} not found in action description")
                 return []
 
@@ -673,41 +590,36 @@ def process_grounding(action_detail: Dict, screensize: Dict) -> str:
 
                 raw_pairs.append((inst, code))
 
-        # 生成pairs: inst + final_code
         for raw_pair in raw_pairs:
             lines = raw_pair[1].split("\n")
             modified_lines = []
 
             for line in lines:
                 if "pyautogui." in line:
-                    # 使用正则表达式提取函数名和参数
                     indent = re.match(r"(\s*)", line).group(1)
                     match = re.match(r".*pyautogui\.(\w+)\((.*)\)", line.strip())
                     if match:
                         func_name = match.group(1)
                         params_str = match.group(2)
 
-                        # 添加原始调用
                         modified_lines.append("# " + line)
 
-                        # 分割参数（考虑括号内的逗号）
                         params = []
                         param_start = 0
                         paren_count = 0
                         for i, char in enumerate(
                             params_str + ","
-                        ):  # 添加逗号以处理最后一个参数
+                        ):
                             if char == "(":
                                 paren_count += 1
                             elif char == ")":
                                 paren_count -= 1
                             elif char == "," and paren_count == 0:
                                 param = params_str[param_start:i].strip()
-                                if param:  # 避免空参数
+                                if param:
                                     params.append(param)
                                 param_start = i + 1
 
-                        # 添加打印语句
                         eval_params = []
                         for param in params:
                             if (
@@ -715,25 +627,20 @@ def process_grounding(action_detail: Dict, screensize: Dict) -> str:
                                 or param.startswith("'")
                                 or "=" in param
                             ):
-                                # 字符串参数直接使用
                                 eval_params.append('"' + param + '"')
                             elif param.startswith("*"):
-                                # 对象参数需要解析
                                 pattern = r"\*([\w_]+)\[([^\]]+)\]"
 
-                                # 匹配并生成目标字符串
                                 match = re.match(pattern, param)
                                 if match:
-                                    variable = match.group(1)  # 获取变量名，例如 stars
+                                    variable = match.group(1)
                                     ind_str = match.group(
                                         2
-                                    )  # 获取索引内容，例如 rating-1
-                                    # 生成目标格式字符串
+                                    )
                                     replaced_param = f"str({variable}[{ind_str}][0]), str({variable}[{ind_str}][1])"
                                     eval_params.append(replaced_param)
 
                             else:
-                                # 非字符串参数需要eval
                                 eval_params.append(f"str(eval({repr(param)}))")
 
                         print_stmt = (
@@ -794,7 +701,6 @@ def process_grounding(action_detail: Dict, screensize: Dict) -> str:
                             "coords_list": coords_list,
                         }
                     )
-        # logger.info(f"inst filter {len(grounding_dicts)} out of {len(grounding_pairs)}")
         return grounding_dicts
     except Exception as e:
         logger.error(f"Error processing action {action_detail.action_desc}: {e}")
@@ -809,7 +715,6 @@ def annotate_grounding(
     index: int,
     j: int,
 ):
-    # Try to load a font, fallback to default if not found
     try:
         font = ImageFont.truetype("arial.ttf", 14)
     except:
@@ -828,7 +733,6 @@ def annotate_grounding(
         for coords in coords_list:
             x, y = float(coords[0]), float(coords[1])
 
-            # Draw a small green dot
             dot_radius = 2
             draw.ellipse(
                 [
@@ -837,8 +741,6 @@ def annotate_grounding(
                 ],
                 fill="#2D9B10",
             )
-
-            # Draw a larger green circle around the dot
             circle_radius = 15
             draw.ellipse(
                 [
@@ -850,23 +752,19 @@ def annotate_grounding(
             )
 
             # Add instruction text
-            y_offset = img.height - 50  # Moved closer to bottom
-            # Draw a white rectangle as the background for the text
+            y_offset = img.height - 50
         text = f"{grounding_dict['instruction']} -> {grounding_dict['action']}"
 
         text_bbox = draw.textbbox((0, 0), text, font=font)
         text_width = text_bbox[2] - text_bbox[0]
         text_height = text_bbox[3] - text_bbox[1]
 
-        # Define the background box with padding
         background_box = (
             10,
             y_offset,
             10 + text_width + 10,
             y_offset + text_height + 10,
         )
-
-        # Draw the background box
         draw.rectangle(background_box, fill="white")
 
         # Draw the text on top of the rectangle
@@ -887,14 +785,11 @@ def annotate_grounding(
         return None
 
 
-# 使用示例
 def main():
-    json_file = f"position_example_3.json"  # 替换为你的 bbox.json 文件路径
-    screenshot_path = f"position_example_3.png"  # 替换为你的截图文件路径
+    json_file = f"position_example_3.json"
+    screenshot_path = f"position_example_3.png"
     with open(json_file, "r") as f:
         bbox_data = json.load(f)
-    # output_image_path = f"original_screenpair/{dir_name}/bboxes_screenshot_{dir_name}.png"  # 输出带有边界框的图片路径
-    # 执行处理
     action_detail_list = generate_action_data_with_bbox(bbox_data, screenshot_path)
     for action_detail in action_detail_list:
         grounding_dict = process_grounding(

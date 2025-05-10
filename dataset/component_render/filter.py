@@ -4,9 +4,9 @@ import json
 import time
 import shutil
 from render_prompts import VISUAL_FILTER_PROMPT
-from api import client, call_with_retry_openai
+from utils import client, call_with_retry_openai
 from utils import encode_image
-from logger import logger
+from utils import logger
 from typing import Dict, List
 from pydantic import BaseModel
 from concurrent.futures import ThreadPoolExecutor
@@ -18,26 +18,23 @@ class FilterResult(BaseModel):
     thought_process: str
     is_correct: bool
     correct_instruction: str
-    # more_instructions: List[str]
 
 
 def visual_filter(grounding_dict: Dict):
     logger.info(f"start filter grounding {str(grounding_dict)}")
     instruction = grounding_dict["instruction"]
     try:
-        # crop要做异常排查
         screenshot_path = grounding_dict["screenshot_path"]
         new_annotated_path = grounding_dict["annotated_grounding_path"]
         marked_screenshot_encoded = encode_image(new_annotated_path)
 
         # Extract coordinates from the action string
-
         coords = re.search(
             r"\((\d+\.?\d*),\s*(\d+\.?\d*)", grounding_dict["action"]
         ) or re.findall(r"\(\((\d+\.?\d*),\s*(\d+\.?\d*)", grounding_dict["action"])
         x, y = float(coords.group(1)), float(coords.group(2))
 
-        # Open the image [try]
+        # Open the image
         image = Image.open(new_annotated_path)
 
         # Define the cropping box (width 500, centered around (x, y))
@@ -50,7 +47,6 @@ def visual_filter(grounding_dict: Dict):
         # Crop the image using the calculated box
         cropped_marked_image = image.crop((left, top, right, bottom))
 
-        # You can save or process the cropped image as needed
         os.makedirs("cropped_marked_image", exist_ok=True)
         cropped_marked_image_path = (
             f"cropped_marked_image/cropped_marked_image_{time.time()}.png"
@@ -158,10 +154,6 @@ def process_file(
     with open(os.path.join(data_dir, data_file), "r") as f:
         data = json.load(f)
 
-    # grounding screenshot
-    # - true: grounding true
-    # - false: false
-    # - unknown: grounding
     filter_result = visual_filter(data)
     data["thought_process"] = filter_result.thought_process
     data["correct_instruction"] = filter_result.correct_instruction
@@ -188,7 +180,6 @@ def process_file(
             )
         ):
             shutil.copy(
-                # data["annotated_grounding_path"],
                 os.path.join(
                     grounding_screenshot_dir,
                     os.path.basename(data["annotated_grounding_path"]),
@@ -199,73 +190,11 @@ def process_file(
                 ),
             )
 
-            # TODO: 先看filter结果，之后再考虑删的事情
-            # 删grounding screenshot
             os.remove(
                 os.path.join(
                     grounding_screenshot_dir,
                     os.path.basename(data["annotated_grounding_path"]),
                 )
             )
-        # 删grounding data
-        # print(f"remove {os.path.join(data_dir, data_file)}")
         os.remove(os.path.join(data_dir, data_file))
         return 0
-
-
-if __name__ == "__main__":
-    name_list = [
-        # "slider",
-        # "menus",
-        # "drawers",
-        # "checkboxes",
-        # "rating",
-        # "bottom-navigation",
-        # "pagination",
-        # "table",
-        # "selectable-text",
-        # "resizable-draggable-text-box",
-        "chips",
-        "lists",
-        "alert",
-        "dialogs",
-        "snackbars",
-        "app-bar",
-    ]
-    for name in name_list:
-        data_dir = f""
-        grounding_screenshot_dir = f""
-        original_screenshot_dir = f""
-
-        screenshot_true_dir = f""
-        screenshot_false_dir = f""
-        os.makedirs(screenshot_true_dir, exist_ok=True)
-        os.makedirs(screenshot_false_dir, exist_ok=True)
-        data_file_list = os.listdir(data_dir)
-        # List all files in the data directory
-        data_file_list = os.listdir(data_dir)
-        total_data_count = len(data_file_list)
-        true_data_count = 0
-
-        # Process files in parallel
-        with ThreadPoolExecutor() as executor:
-            futures = [
-                executor.submit(
-                    process_file,
-                    data_dir,
-                    grounding_screenshot_dir,
-                    original_screenshot_dir,
-                    screenshot_true_dir,
-                    screenshot_false_dir,
-                    data_file,
-                )
-                for data_file in data_file_list
-            ]
-
-            # Ensure all tasks complete
-            for future in futures:
-                true_data_count += future.result()
-        with open("filter_note.txt", "a") as file:
-            file.write(
-                f"{name}: {true_data_count}/{total_data_count} ({true_data_count/total_data_count*100:.2f}%)\n"
-            )

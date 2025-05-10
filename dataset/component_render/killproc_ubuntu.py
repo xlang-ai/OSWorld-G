@@ -11,11 +11,9 @@ logger = logging.getLogger(__name__)
 def kill_port(port):
     """Kill all processes using the specified port on Ubuntu"""
     try:
-        # 使用 lsof 查找进程
         cmd = f"lsof -i :{port}"
         output = subprocess.check_output(cmd, shell=True).decode()
         if output:
-            # 遍历输出并提取 PID 并杀死进程
             for line in output.split("\n")[1:]:
                 if line:
                     pid = line.split()[1]
@@ -30,7 +28,6 @@ def kill_port(port):
 
 
 if __name__ == "__main__":
-    # 可以直接按范围杀死端口上的进程
     for i in range(3000, 3048):
         kill_port(i)
     subprocess.run(f"tmux kill-server", shell=True)

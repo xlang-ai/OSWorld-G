@@ -39,10 +39,8 @@ JS_EVAL_TREE = """() => {
     const component = document.querySelector('.App');
     if (!component) return null;
 
-    // 获取组件基本位置和信息
     const componentRect = component.getBoundingClientRect();
 
-    // 扩展可交互元素的选择器
     const interactiveElements = Array.from(component.querySelectorAll(
         'button, input, select, textarea, [role="button"], [role="slider"], ' +
         '[contenteditable="true"], a, [tabindex]:not([tabindex="-1"]), ' +
@@ -50,7 +48,6 @@ JS_EVAL_TREE = """() => {
         '[role="combobox"], [role="listbox"], [role="menu"], [role="menuitem"]'
     ));
 
-    // 判断元素是否可见
     const isVisible = (element) => {
         const style = window.getComputedStyle(element);
         return style.display !== 'none' && 
@@ -60,7 +57,6 @@ JS_EVAL_TREE = """() => {
                element.offsetHeight > 0;
     };
 
-    // 安全地获取className
     const getClassName = (element) => {
         if (element.className === undefined) return '';
         if (typeof element.className === 'string') return element.className;
@@ -68,7 +64,6 @@ JS_EVAL_TREE = """() => {
         return '';
     };
 
-    // 获取元素的完整路径
     const getElementPath = (element) => {
         const path = [];
         let currentElement = element;
@@ -89,7 +84,6 @@ JS_EVAL_TREE = """() => {
         return path.join(' > ');
     };
 
-    // 获取元素的所有属性
     const getElementAttributes = (element) => {
         const attributes = {};
         for (const attr of element.attributes) {
@@ -103,7 +97,6 @@ JS_EVAL_TREE = """() => {
             const rect = element.getBoundingClientRect();
             const style = window.getComputedStyle(element);
 
-            // 收集当前元素的信息
             const elementInfo = {
                 attributes: getElementAttributes(element),
                 text: element.textContent.trim(),
@@ -117,10 +110,9 @@ JS_EVAL_TREE = """() => {
                     x_center: rect.left + window.scrollX + rect.width / 2,
                     y_center: rect.top + window.scrollY + rect.height / 2,
                 },
-                children: [], // 初始化子节点数组
+                children: [],
             };
 
-            // 使用 TreeWalker 获取所有子节点
             const walker = document.createTreeWalker(
                 element,
                 NodeFilter.SHOW_ELEMENT,
@@ -128,10 +120,9 @@ JS_EVAL_TREE = """() => {
                 false
             );
 
-            // 递归处理子元素
             let childNode;
             while (childNode = walker.nextNode()) {
-                if (childNode !== element) { // 排除当前元素自身
+                if (childNode !== element) {
                     const childInfo = getElementInfo(childNode);
                     if (childInfo) {
                         elementInfo.children.push(childInfo);
@@ -146,7 +137,6 @@ JS_EVAL_TREE = """() => {
         }
     };
     
-    // 从根组件开始递归构建树结构
     return getElementInfo(component);
 }
 """
@@ -155,10 +145,8 @@ JS_EVAL_POSITION = """() => {
     const component = document.querySelector('.App');
     if (!component) return null;
     
-    // 获取组件基本位置和信息
     const componentRect = component.getBoundingClientRect();
     
-    // 扩展可交互元素的选择器
     const interactiveElements = Array.from(component.querySelectorAll(
         'button, input, select, textarea, [role="button"], [role="slider"], ' +
         '[contenteditable="true"], a, [tabindex]:not([tabindex="-1"]), ' +
@@ -166,7 +154,6 @@ JS_EVAL_POSITION = """() => {
         '[role="combobox"], [role="listbox"], [role="menu"], [role="menuitem"]'
     ));
     
-    // 获取所有元素（包括非交互元素）
     const getAllElements = (root) => {
         const elements = [];
         const walker = document.createTreeWalker(
@@ -183,7 +170,6 @@ JS_EVAL_POSITION = """() => {
         return elements;
     };
 
-    // 判断元素是否可见
     const isVisible = (element) => {
         const style = window.getComputedStyle(element);
         return style.display !== 'none' && 
@@ -193,7 +179,6 @@ JS_EVAL_POSITION = """() => {
                element.offsetHeight > 0;
     };
 
-    // 安全地获取className
     const getClassName = (element) => {
         if (element.className === undefined) return '';
         if (typeof element.className === 'string') return element.className;
@@ -201,7 +186,6 @@ JS_EVAL_POSITION = """() => {
         return '';
     };
 
-    // 获取元素的完整路径
     const getElementPath = (element) => {
         const path = [];
         let currentElement = element;
@@ -222,7 +206,6 @@ JS_EVAL_POSITION = """() => {
         return path.join(' > ');
     };
 
-    // 获取元素的所有属性
     const getElementAttributes = (element) => {
         const attributes = {};
         for (const attr of element.attributes) {
@@ -231,7 +214,6 @@ JS_EVAL_POSITION = """() => {
         return attributes;
     };
 
-    // 收集元素详细信息
     const getAllElementsInfo = (elements) => {
         return elements.map(element => {
             try {

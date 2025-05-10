@@ -1,4 +1,14 @@
-TODO: test port init
+TODO: modify main_comp to make it like main_elem 30min
+
+TODO: test main_comp pipeline
+TODO: test main_elem pipeline
+TODO: test final format
+TODO: test run_windows.sh 10min
+TODO: test killproc_windows.py 10min
+
+DONE: delete unnecessary files
+DONE: combine multiple utils into one 10min
+DONE: change Chinese to English 10min v
 
 # Component rendering
 

@@ -3,7 +3,6 @@ import datetime
 import platform
 import json
 import os
-import sys
 import re
 import shutil
 import psutil
@@ -14,45 +13,38 @@ import argparse
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 
-from action_bbox import (
-    generate_action_data_with_bbox,
+from action_comp import (
+    generate_action_data,
     process_grounding,
+    remove_repetition,
     annotate_grounding,
 )
 from javascripts import (
-    JS_EVAL_TREE,
+    JS_EVAL_POSITION,
     JS_WITH_COMPONENT,
     JS_WITHOUT_COMPONENT,
 )
-from logger import logger
+from utils import logger
 from playwright.async_api import async_playwright
 from pydantic import BaseModel
+from screenshot_annotate import annotate_screenshot_component
 from style import scenario_generation_worker
 from filter import visual_filter
 
-sys.path.append(".")
-
 MAX_WORKERS = 5
 
-# 初始化参数解析器
 parser = argparse.ArgumentParser(description="Process an image and draw text on it.")
 
-# 添加参数
 parser.add_argument("--port", type=int, required=True)
 parser.add_argument("--lib_name", type=str, required=True)
 parser.add_argument(
     "--components",
-    nargs="+",  # 表示接受一个或多个字符串
-    required=False,  # 设置为非必填参数
-    default=["all"],  # 默认值为 ["all"]
+    nargs="+",
+    required=False,
+    default=["all"],
     help="A list of strings separated by space. Default is 'all'.",
 )
 parser.add_argument("--scenario_count", type=int, required=True)
-parser.add_argument(
-    "--sample",
-    action="store_true",  # 使用 store_true 使其成为布尔标志
-    help="Enable sampling mode",  # 添加帮助说明
-)
 parser.add_argument("--api_type", type=str, default="openai", required=False)
 args = parser.parse_args()
 
@@ -128,7 +120,6 @@ class DataGenerator:
         pattern = r"export\s+(?:default\s+)?(?:function\s+(?P<name1>\w+)\s*\(|(?:const\s+)?(?P<name2>[a-zA-Z0-9_]+)\s*(?::|;|\s*=\s*(?:\(\)|\w+))|default\s+(?P<name3>\w+))"
         match = re.search(pattern, input_string)
         if match:
-            # 获取匹配到的名称（三个组中非None的那个）
             function_name = (
                 match.group("name1") or match.group("name2") or match.group("name3")
             )
@@ -147,14 +138,12 @@ class DataGenerator:
             log_dir.mkdir(parents=True, exist_ok=True)
             log_file = Path(log_dir) / f"react_app_{self.port}.log"
 
-            # 确保React应用已经初始化
             if not (app_dir / "package.json").exists():
                 logger.info("Initializing new React application...")
                 subprocess.run(
                     "npx create-react-app .", shell=True, cwd=str(app_dir), check=True
                 )
 
-            # 设置环境变量
             env = os.environ.copy()
 
             # Modify App.js
@@ -163,7 +152,6 @@ class DataGenerator:
             with open(app_js_path, "w") as f:
                 f.write(app_js_content)
 
-            # 启动服务器
             with open(log_file, "a") as f:
                 self.process = subprocess.Popen(
                     f"PORT={self.port} npm start",
@@ -174,10 +162,8 @@ class DataGenerator:
                     stderr=f,
                 )
 
-            # # 读取输出并记录到日志
             logger.info("React app started")
-            # 等待服务器启动
-            time.sleep(15)  # 增加等待时间确保服务器完全启动
+            time.sleep(10)
 
             return
 
@@ -194,29 +180,18 @@ class DataGenerator:
         component_name,
         screenshot_folder,
     ):
-        """刷新React应用并分析组件"""
         try:
-            # 创建必要的目录
             app_dir = Path(f"react-app-dir/react-app-{self.port}")
             app_dir.mkdir(parents=True, exist_ok=True)
 
-            # # 首先重置 App.js 到初始状态
             app_js_path = Path(app_dir) / "src" / "App.js"
-            # with open(app_js_path, "w") as f:
-            #     f.write(JS_WITHOUT_COMPONENT)
 
-            # time.sleep(1)
-            # await self.refresh_page()
-            # time.sleep(3)
-
-            # 然后写入新的组件文件
             component_js_path = (
                 Path(app_dir) / "src" / "components" / f"{component_name}.tsx"
             )
             with open(component_js_path, "w", encoding="utf-8", newline="\n") as f:
                 f.write(component_code)
 
-            # 最后更新 App.js 引入新组件
             app_js_content = JS_WITH_COMPONENT.format(component_name=component_name)
             with open(app_js_path, "w") as f:
                 f.write(app_js_content)
@@ -225,9 +200,8 @@ class DataGenerator:
             await self.refresh_page()
             time.sleep(4)
 
-            # 获取组件位置信息
-            await self.page.wait_for_selector(".App", state="attached", timeout=60000)
-            position = await self.page.evaluate(JS_EVAL_TREE)
+            await self.page.wait_for_selector(".App", state="attached", timeout=6000)
+            position = await self.page.evaluate(JS_EVAL_POSITION)
 
             if position:
                 screenshot_path = await self.capture_screenshot(
@@ -244,49 +218,36 @@ class DataGenerator:
             raise
 
     async def restart_react_server(self):
-        """重启 React 开发服务器"""
         logger.info("Restarting React development server...")
 
         if self.page:
-            # 清理 cookies 和 storage
             await self.page.context.clear_cookies()
             await self.page.evaluate("window.localStorage.clear()")
             await self.page.evaluate("window.sessionStorage.clear()")
 
-        # 终止现有的服务器进程
         self.terminate_process_on_port(self.port)
 
-        # 删除 Webpack 缓存和日志，避免 ESLint 报错
         eslint_cache_path = os.path.expanduser("~/.eslintcache")
         if os.path.exists(eslint_cache_path):
             logger.info(f"Deleting ESLint cache at {eslint_cache_path}...")
             shutil.rmtree(eslint_cache_path)
 
-        # 清理 Webpack 缓存
         webpack_cache_dir = os.path.join(os.getcwd(), "node_modules", ".cache")
         if os.path.exists(webpack_cache_dir):
             logger.info(f"Deleting Webpack cache at {webpack_cache_dir}...")
             shutil.rmtree(webpack_cache_dir)
 
-        # 重新启动服务器
         self.initialize_react_app()
 
-        # 等待服务器启动
         time.sleep(10)
         await self.refresh_page()
 
     def terminate_process_on_port(self, port: int):
-        """终止占用指定端口的进程
-
-        根据系统类型(macOS或Ubuntu)采用不同的实现方式来终止占用指定端口的进程
-        """
-
         system = platform.system()
         logger.info(f"Terminating process occupying port {port} on {system}...")
 
-        if system == "Darwin":  # macOS
+        if system == "Darwin":
             try:
-                # 使用 lsof 命令获取占用端口的进程ID
                 cmd = f"lsof -i :{port} -t"
                 result = subprocess.run(cmd, shell=True, capture_output=True, text=True)
 
@@ -318,16 +279,15 @@ class DataGenerator:
             except Exception as e:
                 logger.error(f"Error in macOS implementation: {e}")
 
-        elif system == "Linux":  # Ubuntu is a Linux distribution
+        elif system == "Linux":
             try:
-                # 首先尝试使用 ss 命令（现代Linux系统推荐）
                 cmd = f"ss -lptn 'sport = :{port}'"
                 result = subprocess.run(cmd, shell=True, capture_output=True, text=True)
 
                 pids = []
                 if result.stdout:
                     lines = result.stdout.strip().split("\n")
-                    for line in lines[1:]:  # 跳过标题行
+                    for line in lines[1:]:
                         if "pid=" in line:
                             pid_part = line.split("pid=")[1].split(",")[0]
                             try:
@@ -335,7 +295,6 @@ class DataGenerator:
                             except ValueError:
                                 pass
 
-                # 如果ss命令未找到任何进程，尝试使用netstat（旧系统兼容）
                 if not pids:
                     cmd = f"netstat -tlnp | grep :{port}"
                     result = subprocess.run(
@@ -352,7 +311,6 @@ class DataGenerator:
                                 except ValueError:
                                     pass
 
-                # 终止找到的进程
                 for pid in pids:
                     try:
                         proc = psutil.Process(pid)
@@ -379,7 +337,6 @@ class DataGenerator:
                 logger.error(f"Error in Linux implementation: {e}")
 
         else:
-            # 回退到原始的psutil实现（适用于Windows或其他系统）
             try:
                 for proc in psutil.process_iter(attrs=["pid", "name"]):
                     try:
@@ -438,10 +395,10 @@ async def main():
 
     component_desc = None
     base_path_dict = {
-        "material": "UIwebsite_doc/material",
-        "ant-design": "UIwebsite_doc/ant-design",
-        "chakra": "UIwebsite_doc/chakra",
-        "mantine": "UIwebsite_doc/mantine",
+        "material": "UI_basecode/material",
+        "ant-design": "UI_basecode/ant-design",
+        "chakra": "UI_basecode/chakra",
+        "mantine": "UI_basecode/mantine",
     }
 
     with open("component_tree.json", "r") as file:
@@ -499,7 +456,6 @@ async def main():
         os.makedirs(f"{component_root_dir}/grounding_false_screenshot", exist_ok=True)
         os.makedirs(f"{component_root_dir}/component_code", exist_ok=True)
 
-        # 创建screenshots文件夹
         screenshot_folder = Path(f"{component_root_dir}/other_screenshot")
         screenshot_folder.mkdir(parents=True, exist_ok=True)
         grounding_false_screenshot_folder = Path(
@@ -508,9 +464,6 @@ async def main():
         grounding_false_screenshot_folder.mkdir(parents=True, exist_ok=True)
         component_root_path = str(Path(*component_root_name.split("->")))
         prev_generated_code_list = []
-        if args.sample:
-            component_code_file_list = component_code_file_list[:1]
-            logger.info("Only sample one component for each category")
         for node_index, component_code_file in enumerate(component_code_file_list):
             try:
                 if component_root_name not in done_dict:
@@ -521,7 +474,6 @@ async def main():
                 logger.info(
                     f"Start to process component {component_code_file}: {node_index} / {len(component_code_file_list)}"
                 )
-                # component_desc = component_code["introduction"]
                 base_component_code_path = os.path.join(
                     base_path_dict[args.lib_name],
                     component_root_path,
@@ -532,21 +484,19 @@ async def main():
                     component_code = f.read()
 
                 async def process_queue(queue):
-                    """消费者：异步从队列中获取代码并处理"""
                     processed_index = 0
                     result_list = []
                     while True:
-                        item = await queue.get()  # queue.get()是异步的！
+                        item = await queue.get()
                         logger.info(f"QUEUE_LENGTH AFTER GET:{queue.qsize()}")
-                        if item == "end":  # 检查结束标记（可以用None作为退出信号）
+                        if item == "end":
                             logger.info("End signal received. Stopping processing.")
                             break
 
-                        # 异步处理队列中的任务
                         try:
                             result = await process_scenario_code(
                                 processed_index, item, component_num, action_num
-                            )  # 异步处理代码
+                            )
                             result_list.append(result)
                         except Exception as e:
                             tb = traceback.format_exc()
@@ -554,7 +504,7 @@ async def main():
                                 f"Error processing code {processed_index}: {e}\nStack trace:\n{tb}"
                             )
                             result_list.append(False)
-                    queue.task_done()  # 标记任务完成
+                    queue.task_done()
                     processed_index += 1
                     logger.info(f"Process result list: {str(result_list)}")
                     if result_list.count(True) >= result_list.count(False):
@@ -569,13 +519,10 @@ async def main():
                 ):
                     logger.info(f"Start to process scenario {scenario_index}")
                     component_code = scenario_augmentation_code
-                    # component_code = "666"
-                    # You can change component_code to some existed code for debugging
                     component_code_path = ""
                     try:
-                        # STEP 2: 提取组件名称&创建组件
+                        # STEP 1: extract component name and create component code file
                         logger.info(f"Extracting component name")
-                        # print(component_code)
                         component_name = generator.extract_export_name(component_code)
                         logger.info(
                             f"Scenario {scenario_index} of component {component_root_name} {node_index} / {len(component_code_file_list)}: {component_name}"
@@ -585,8 +532,7 @@ async def main():
                             / "component_code"
                             / f"{component_name}_{datetime.datetime.now().strftime('%m-%d %H:%M')}.tsx"
                         )
-                        # STEP 3: 创建并启动React应用，渲染组件，进行截图，并获取组件位置信息
-                        # TODO： bbox要精简
+                        # STEP 2: create and start React app, render component, take screenshot, and get component position information
                         logger.info(f"Creating and starting React app")
                         position, screenshot_path = await generator.refresh_react_app(
                             component_code,
@@ -596,18 +542,18 @@ async def main():
                         logger.info(f"React app created and started")
 
                         annotated_action_paths = []
-                        # STEP 4: 生成动作数据
-                        # TODO： 修改生成逻辑，基于bbox生成
-                        # TODO：unique action会很多，这种直接生成pyautogui.xxx(position)即可
+                        # STEP 3: generate action data
                         logger.info(f"Generating action data")
                         action_intent_list, action_detail_list = (
-                            [],
-                            generate_action_data_with_bbox(
-                                position,
-                                screenshot_path,
-                            ),
+                            await generate_action_data(
+                                component_desc=component_desc,
+                                component_name=component_name,
+                                raw_component_path=screenshot_path,
+                                position=position,
+                                component_code=component_code,
+                            )
                         )
-                        # STEP 5: 保存raw数据到json文件
+                        # STEP 4: save raw data
                         component_num += 1
                         action_num += len(annotated_action_paths)
                         os.makedirs(os.path.dirname(component_code_path), exist_ok=True)
@@ -648,28 +594,25 @@ async def main():
                                 )
                                 + "\n"
                             )
-                        # STEP 6: 保存grounding数据到json
+                        # STEP 5: parse and save grounding data
 
-                        # 6.1 process data into grounding format with inst filter
+                        # 5.1 process data into grounding format with inst filter
                         grounding_dict_list = []
 
-                        # 定义一个包装函数，方便传递参数
                         def process_grounding_task(action_detail):
                             new_dict_list = process_grounding(
                                 action_detail, generator.screensize
                             )
                             return new_dict_list
 
-                        # 使用 ThreadPoolExecutor 创建并行任务
                         with ThreadPoolExecutor() as executor:
                             futures = [
                                 executor.submit(process_grounding_task, action_detail)
                                 for action_detail in action_detail_list
                             ]
 
-                            # 等待所有任务完成并收集结果
                             for future in futures:
-                                new_dict_list = future.result()  # 等待每个任务的结果
+                                new_dict_list = future.result()
                                 if new_dict_list is not None:
                                     grounding_dict_list.extend(new_dict_list)
 
@@ -677,8 +620,13 @@ async def main():
                             f"process grounding & inst filter to {len(grounding_dict_list)}"
                         )
 
-                        # 6.2 grounding annotate
-                        # 定义一个包装函数，方便传递参数
+                        # 5.2 remove repetition
+                        old_len = len(grounding_dict_list)
+                        grounding_dict_list = remove_repetition(grounding_dict_list)
+                        new_len = len(grounding_dict_list)
+                        logger.info(f"remove repetition from {old_len} to {new_len}")
+
+                        # 5.3 grounding annotate
                         def annotate_grounding_task(grounding_index, grounding_dict):
                             return annotate_grounding(
                                 component_root_dir,
@@ -689,7 +637,6 @@ async def main():
                                 grounding_index,
                             )
 
-                        # 创建线程池并提交任务
                         with ThreadPoolExecutor() as executor:
                             futures = [
                                 executor.submit(
@@ -702,14 +649,13 @@ async def main():
                                 )
                             ]
 
-                            # 收集结果
                             grounding_dict_list = []
                             for future in futures:
                                 grounding_dict = future.result()
                                 if grounding_dict is not None:
                                     grounding_dict_list.append(grounding_dict)
 
-                        # 6.3 visual filter TODO： do we need this? Yes
+                        # 5.4 visual filter
                         old_len = len(grounding_dict_list)
                         true_len = 0
 
@@ -717,7 +663,6 @@ async def main():
                             new_dict = visual_filter(grounding_dict)
                             return new_dict
 
-                        # 使用 ThreadPoolExecutor 创建并行任务
                         with ThreadPoolExecutor() as executor:
                             futures = [
                                 executor.submit(visual_filter_task, grounding_dict)
@@ -725,9 +670,8 @@ async def main():
                             ]
 
                             grounding_dict_list = []
-                            # 等待所有任务完成并收集结果
                             for future in futures:
-                                new_dict = future.result()  # 等待每个任务的结果
+                                new_dict = future.result()
                                 if new_dict is not None:
                                     grounding_dict_list.append(new_dict)
                                 if new_dict["is_correct"]:
@@ -738,7 +682,6 @@ async def main():
                             grounding_dict_list
                         ):
                             if grounding_dict["is_correct"]:
-                                # if True:
                                 with open(
                                     os.path.join(
                                         component_root_dir,
@@ -812,7 +755,6 @@ async def main():
                                     ),
                                 )
 
-                                # 删grounding screenshot
                                 os.remove(grounding_dict["annotated_grounding_path"])
                         src_path = (
                             Path(f"react-app-dir/react-app-{args.port}/src/components")
@@ -826,7 +768,7 @@ async def main():
                     except Exception as e:
                         logger.error(
                             f"Error processing component {component_name or None} in category {component_root_name}: {e}",
-                            exc_info=True,  # 这会自动添加完整的堆栈跟踪
+                            exc_info=True,
                         )
                         src_path = (
                             Path(f"react-app-dir/react-app-{args.port}/src/components")
@@ -841,7 +783,6 @@ async def main():
 
                 with open("component_constraint.json", "r") as file:
                     component_constraint = json.load(file)
-                # 创建并启动生产者线程
                 logger.info(
                     f"component_constraint: {str(component_constraint.get(component_root_name, 'None'))}"
                 )
@@ -853,8 +794,6 @@ async def main():
                         prev_generated_code_list,
                         args.scenario_count,
                         code_queue,
-                        args.lib_name,
-                        args.api_type,
                     )
                 )
                 task2 = asyncio.create_task(process_queue(code_queue))
@@ -872,7 +811,6 @@ async def main():
                     and len(os.listdir(f"{component_root_dir}/grounding_screenshot"))
                     > 0
                 ):
-                    # 超过半数的code成功处理
                     with open(done_file_path, "r") as f:
                         done_dict = json.load(f)
                     if component_root_name not in done_dict:

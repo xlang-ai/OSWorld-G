@@ -1,5 +1,3 @@
-# TODO: add bbox-based action
-
 import datetime
 import math
 import os
@@ -10,20 +8,14 @@ import tempfile
 import asyncio
 from itertools import product
 from typing import Dict, List, Literal, Optional, Union
-
-from api import client, call_with_retry_openai
-# from api import call_with_retry_openai
-from logger import logger
+from utils import client, call_with_retry_openai, logger, encode_image
 from PIL import Image, ImageDraw, ImageFont
-
-# from anthropic import Anthropic
 from pydantic import BaseModel
 from render_prompts import (
     ACTION_DETAIL_PROMPT,
     ACTION_INTENT_PROMPT,
     INST_FILTER_PROMPT,
 )
-from utils import encode_image
 
 MAX_WORKERS = 5
 
@@ -113,17 +105,14 @@ async def generate_action_data(
     component_desc,
     component_name,
     raw_component_path,
-    annotated_component_path,
     position,
     component_code,
 ):
     base64_raw_image = encode_image(raw_component_path)
-    base64_annotated_image = encode_image(annotated_component_path)
     prompt = ACTION_INTENT_PROMPT.format(
         component_name=component_name,
         component_code=component_code,
     )
-    # action intent generation
     logger.info("generating action intent")
     response = await call_with_retry_openai(
         client,
@@ -145,25 +134,17 @@ async def generate_action_data(
         0.6,
         ActionIntentList,
     )
-    # logger.info(f"action intent response{response}")
     with open("token_cost.txt", "a") as file:
         file.write(f"prompt_action_intent:\n{response.usage.prompt_tokens}\n")
         file.write(f"completion_action_intent:\n{response.usage.completion_tokens}\n")
 
     action_intent_list = response.choices[0].message.parsed.action_intent_list
-    # with open("fine_grained.json", "r") as file:
-    #     fine_grained_examples = json.load(file)
-    #     if component_root_name in fine_grained_examples:
-    #         action_intent_list.extend(fine_grained_examples[component_root_name])
-    #         logger.info(f"fine grained examples added for {component_root_name}")
 
-    # 主处理函数
     action_detail_list = []
     logger.info(
         f"generating action detail for {component_name}'s {len(action_intent_list)} actions"
     )
 
-    # 准备参数列表
     args_list = [
         (
             i,
@@ -177,24 +158,12 @@ async def generate_action_data(
         for i, action_intent in enumerate(action_intent_list)
     ]
 
-    # 使用 asyncio.gather 来并发执行所有异步任务
     tasks = [generate_action_detail(args) for args in args_list]
-
-    # 等待所有任务执行完毕并收集结果
     results = await asyncio.gather(*tasks)
-
-    # 将生成的 action_detail 排序
     action_detail_list = [
         detail[1] for _, detail in sorted(zip(args_list, results), key=lambda x: x[0])
     ]
-    # logger.info(f"ACTION DETAIL: {action_detail_list[0]}")
     return action_intent_list, action_detail_list
-
-
-class ActionParsingError(Exception):
-    """Custom exception for action parsing errors"""
-
-    pass
 
 
 async def inst_filter(pair: tuple):
@@ -234,10 +203,8 @@ async def process_grounding(action_detail: Dict, screensize: Dict) -> str:
         raw_pairs = []
         grounding_pairs = []
         grounding_dicts = []
-        # 生成raw_pairs: inst + raw_code
 
         if action_detail.action_space_type == "unique":
-            # 1 pair
             code = action_detail.action_code
             if "def" in action_detail.action_code:
                 main_block = f"\n\nif __name__ == '__main__':\n    action()"
@@ -245,7 +212,6 @@ async def process_grounding(action_detail: Dict, screensize: Dict) -> str:
             raw_pairs.append((action_detail.action_desc, code))
 
         elif action_detail.action_space_type == "discrete":
-            # Get all parameter combinations
             param_names = action_detail.action_params
             param_values = action_detail.action_discrete_values
 
@@ -259,7 +225,6 @@ async def process_grounding(action_detail: Dict, screensize: Dict) -> str:
                 for param in param_names
             }
 
-            # 从每个 param 中随机选择 num_choices[param] 个值
             param_combinations = product(
                 *[
                     random.sample(param_values[param], num_choices[param])
@@ -267,13 +232,9 @@ async def process_grounding(action_detail: Dict, screensize: Dict) -> str:
                 ]
             )
 
-            # print(f"num_choices: {str(num_choices)}")
-
             for param_combo in param_combinations:
-                # Create parameter dictionary
                 param_dict = dict(zip(param_names, param_combo))
 
-                # Replace parameters in action description
                 inst = action_detail.action_desc
                 for param_name, param_value in param_dict.items():
                     if f"<{param_name}>" not in inst:
@@ -283,10 +244,8 @@ async def process_grounding(action_detail: Dict, screensize: Dict) -> str:
                         return []
                     inst = inst.replace(f"<{param_name}>", str(param_value))
 
-                # Create code with main block and action call
                 code = action_detail.action_code
 
-                # Add main block with action call
                 param_str = ", ".join(
                     f'"{value}"' if isinstance(value, str) else f"{value}"
                     for value in param_combo
@@ -301,17 +260,14 @@ async def process_grounding(action_detail: Dict, screensize: Dict) -> str:
 
         elif action_detail.action_space_type == "continuous":
 
-            # Get parameter names and their intervals
             param_names = action_detail.action_params
             param_intervals = action_detail.action_continuous_interval
 
-            # Sample 10 values from each interval
             sampled_values = {}
             for param_name in param_names:
                 intervals = param_intervals[param_name]
                 param_samples = []
                 for start, end in intervals:
-                    # Sample 10 random values from this interval
                     samples = [int(random.uniform(start, end)) for _ in range(10)]
                     param_samples.extend(samples)
                 sampled_values[param_name] = param_samples
@@ -321,10 +277,8 @@ async def process_grounding(action_detail: Dict, screensize: Dict) -> str:
             )
 
             for param_combo in param_combinations:
-                # Create parameter dictionary
                 param_dict = dict(zip(param_names, param_combo))
 
-                # Replace parameters in action description
                 inst = action_detail.action_desc
                 for param_name, param_value in param_dict.items():
                     if f"<{param_name}>" not in inst:
@@ -334,10 +288,8 @@ async def process_grounding(action_detail: Dict, screensize: Dict) -> str:
                         return []
                     inst = inst.replace(f"<{param_name}>", str(param_value))
 
-                # Create code with main block and action call
                 code = action_detail.action_code
 
-                # Add main block with action call
                 param_str = ", ".join(
                     f'"{value}"' if isinstance(value, str) else f"{value}"
                     for value in param_combo
@@ -351,41 +303,34 @@ async def process_grounding(action_detail: Dict, screensize: Dict) -> str:
 
                 raw_pairs.append((inst, code))
 
-        # 生成pairs: inst + final_code
         for raw_pair in raw_pairs:
             lines = raw_pair[1].split("\n")
             modified_lines = []
 
             for line in lines:
                 if "pyautogui." in line:
-                    # 使用正则表达式提取函数名和参数
                     indent = re.match(r"(\s*)", line).group(1)
                     match = re.match(r".*pyautogui\.(\w+)\((.*)\)", line.strip())
                     if match:
                         func_name = match.group(1)
                         params_str = match.group(2)
 
-                        # 添加原始调用
                         modified_lines.append("# " + line)
 
-                        # 分割参数（考虑括号内的逗号）
                         params = []
                         param_start = 0
                         paren_count = 0
-                        for i, char in enumerate(
-                            params_str + ","
-                        ):  # 添加逗号以处理最后一个参数
+                        for i, char in enumerate(params_str + ","):
                             if char == "(":
                                 paren_count += 1
                             elif char == ")":
                                 paren_count -= 1
                             elif char == "," and paren_count == 0:
                                 param = params_str[param_start:i].strip()
-                                if param:  # 避免空参数
+                                if param:
                                     params.append(param)
                                 param_start = i + 1
 
-                        # 添加打印语句
                         eval_params = []
                         for param in params:
                             if (
@@ -393,25 +338,18 @@ async def process_grounding(action_detail: Dict, screensize: Dict) -> str:
                                 or param.startswith("'")
                                 or "=" in param
                             ):
-                                # 字符串参数直接使用
                                 eval_params.append('"' + param + '"')
                             elif param.startswith("*"):
-                                # 对象参数需要解析
                                 pattern = r"\*([\w_]+)\[([^\]]+)\]"
 
-                                # 匹配并生成目标字符串
                                 match = re.match(pattern, param)
                                 if match:
-                                    variable = match.group(1)  # 获取变量名，例如 stars
-                                    ind_str = match.group(
-                                        2
-                                    )  # 获取索引内容，例如 rating-1
-                                    # 生成目标格式字符串
+                                    variable = match.group(1)
+                                    ind_str = match.group(2)
                                     replaced_param = f"str({variable}[{ind_str}][0]), str({variable}[{ind_str}][1])"
                                     eval_params.append(replaced_param)
 
                             else:
-                                # 非字符串参数需要eval
                                 eval_params.append(f"str(eval({repr(param)}))")
 
                         print_stmt = (
@@ -448,19 +386,14 @@ async def process_grounding(action_detail: Dict, screensize: Dict) -> str:
 
             os.remove(temp_path)
 
-        # logger.info(f"Generated pairs: {str(grounding_pairs)}")
-
-        # Process each pair individually
         if grounding_pairs:
             for _, pair in enumerate(grounding_pairs):
-                # filter pair
                 inst_filter_result = await inst_filter(pair)
                 if not inst_filter_result:
                     return []
                 coords_list = re.findall(
                     r"\((\d+\.?\d*),\s*(\d+\.?\d*)", pair[1]
                 ) or re.findall(r"\(\((\d+\.?\d*),\s*(\d+\.?\d*)", pair[1])
-                # for coords in coords_list:
                 print("coords: ", coords_list)
                 coords_in_range = True
                 for coords in coords_list:
@@ -495,17 +428,14 @@ def annotate_grounding(
     index: int,
     j: int,
 ):
-    # Try to load a font, fallback to default if not found
     try:
         font = ImageFont.truetype("arial.ttf", 14)
     except:
         font = ImageFont.load_default()
 
-    # Load a fresh copy of the image for each pair
     img = Image.open(screenshot_path)
     draw = ImageDraw.Draw(img)
 
-    # Extract coordinates from pyautogui action
     coords_list = re.findall(
         r"\((\d+\.?\d*),\s*(\d+\.?\d*)", grounding_dict["action"]
     ) or re.findall(r"\(\((\d+\.?\d*),\s*(\d+\.?\d*)", grounding_dict["action"])
@@ -514,7 +444,6 @@ def annotate_grounding(
         for coords in coords_list:
             x, y = float(coords[0]), float(coords[1])
 
-            # Draw a small red dot
             dot_radius = 2
             draw.ellipse(
                 [
@@ -524,7 +453,6 @@ def annotate_grounding(
                 fill="#2D9B10",
             )
 
-            # Draw a larger red circle around the dot
             circle_radius = 15
             draw.ellipse(
                 [
@@ -535,16 +463,13 @@ def annotate_grounding(
                 width=3,
             )
 
-            # Add instruction text
-            y_offset = img.height - 50  # Moved closer to bottom
-            # Draw a white rectangle as the background for the text
+            y_offset = img.height - 50
         text = f"{grounding_dict['instruction']} -> {grounding_dict['action']}"
 
         text_bbox = draw.textbbox((0, 0), text, font=font)
         text_width = text_bbox[2] - text_bbox[0]
         text_height = text_bbox[3] - text_bbox[1]
 
-        # Define the background box with padding
         background_box = (
             10,
             y_offset,
@@ -552,12 +477,8 @@ def annotate_grounding(
             y_offset + text_height + 10,
         )
 
-        # Draw the background box
         draw.rectangle(background_box, fill="white")
-
-        # Draw the text on top of the rectangle
         draw.text((10, y_offset), text, fill="black", font=font)
-        # Save individual annotated image
         output_path = f"{component_root_dir}/grounding_screenshot/{component_name}_type_{index}_action_{j}_{datetime.datetime.now().strftime('%m-%d %H:%M:%S')}.png"
         img.save(output_path)
         new_grounding_dict = {
@@ -583,7 +504,6 @@ def remove_repetition(grounding_dict_list):
     return new_grounding_dict_list
 
 
-# 测试代码
 async def main():
     action_detail_list = [
         {
@@ -593,7 +513,6 @@ async def main():
             "action_params": ["title"],
             "action_discrete_values": {
                 "title": ["Project Alpha", "Innovator Award 2022", "Global Outreach"]
-                # "dick": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
             },
             "action_continuous_interval": {},
             "action_code": 'import pyautogui\n\ndef action(title):\n    positions = {\n        "Project Alpha": (640, 173.875),\n        "Innovator Award 2022": (639.9921875, 2345.890625),\n        "Global Outreach": (640, 2517.90625),\n    }\n    if title in positions:\n        pyautogui.click(positions[title])',
@@ -612,12 +531,12 @@ async def main():
             action_code=detail_dict["action_code"],
         )
         result = await process_grounding(
-            # "dir",
-            # "component_name",
+            "dir",
+            "component_name",
             action_detail,
             {"height": 1080, "width": 1920},
-            # "/Users/nickyang/Desktop/Research/HKUNLP/OSWorld-G/training_data/component_render/data/dialogs/other_screenshot/original/FestivalLineupDemo_1737725581.38117.png",
-            # 1,
+            "<screenshot_path>",
+            1,
         )
         print("process_grounding_dict", result)
 
