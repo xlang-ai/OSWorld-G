@@ -162,3 +162,7 @@ STEP 5: Some base code is problematic, so the process may not be 100% finished. 
 STEP 6: Then, delete the `done_info` folder.[MUST DONE]
 
 STEP 7: Repeat STEP 4, 5, 6.
+
+### For Windows
+
+Support for windows will be added soon, hold on tight!
