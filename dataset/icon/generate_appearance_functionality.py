@@ -16,6 +16,12 @@ class Response(BaseModel):
 # 1. All of the icons are from the Audacity, and therefore, their usage should be related to the Audacity, use your knowledge to describe the icon.
 # 2. The file name and label contains the semantics of the icon, and you should use them to complete tasks for the icon.
 
+# For icons from the Snap store, change assumptions to
+# 1. The icon represents an application from the Linux Snap Store, and therefore, its usage should be related to the application, use your knowledge to describe the icon.
+# 2. The file name is the name of the application, and you should take that into account when completing the tasks.
+
+# For icons from a GitHub repository, change assumptions to
+
 SYSTEM_PROMPT = '''
 You will be provided with an icon with its file name and label. You can have the following assumptions:
 
@@ -35,8 +41,8 @@ from PIL import Image
 import base64
 from io import BytesIO
 
-dataset_dir = "./snap_icons"
-result_file = "./snap_icons_labels.jsonl"
+dataset_dir = "./downloaded_icons"
+result_file = "./downloaded_icons_labels.jsonl"
 
 def convert_svg_to_png(svg_path):
     """Convert SVG file to PNG format in memory"""
@@ -100,7 +106,7 @@ def analyse_icon(image_path):
     except Exception as e:
         return f"Error: {str(e)}"
 
-client = openai.OpenAI(api_key="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")
+client = openai.OpenAI(api_key="YOUR_OPENAI_API_KEY")
 
 NUM_WORKERS = 10
 file_lock = Lock()

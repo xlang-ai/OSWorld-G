@@ -1,0 +1,1094 @@
+{
+  "repos": {
+    "vorillaz/devicons": {
+      "name": "vorillaz/devicons",
+      "url": "https://api.github.com/repos/vorillaz/devicons",
+      "stars": 2672
+    },
+    "filamentgroup/grunticon": {
+      "name": "filamentgroup/grunticon",
+      "url": "https://api.github.com/repos/filamentgroup/grunticon",
+      "stars": 3302
+    },
+    "stephenhutchings/typicons.font": {
+      "name": "stephenhutchings/typicons.font",
+      "url": "https://api.github.com/repos/stephenhutchings/typicons.font",
+      "stars": 1438
+    },
+    "danleech/simple-icons": {
+      "name": "danleech/simple-icons",
+      "url": "https://api.github.com/repos/danleech/simple-icons",
+      "stars": 21615
+    },
+    "ashtuchkin/iconv-lite": {
+      "name": "ashtuchkin/iconv-lite",
+      "url": "https://api.github.com/repos/ashtuchkin/iconv-lite",
+      "stars": 3097
+    },
+    "DanBrooker/file-icons": {
+      "name": "DanBrooker/file-icons",
+      "url": "https://api.github.com/repos/DanBrooker/file-icons",
+      "stars": 1326
+    },
+    "haydenbleasel/favicons": {
+      "name": "haydenbleasel/favicons",
+      "url": "https://api.github.com/repos/haydenbleasel/favicons",
+      "stars": 1200
+    },
+    "driftyco/ionicons": {
+      "name": "driftyco/ionicons",
+      "url": "https://api.github.com/repos/driftyco/ionicons",
+      "stars": 17646
+    },
+    "matt-42/silicon": {
+      "name": "matt-42/silicon",
+      "url": "https://api.github.com/repos/matt-42/silicon",
+      "stars": 1723
+    },
+    "outpunk/evil-icons": {
+      "name": "outpunk/evil-icons",
+      "url": "https://api.github.com/repos/outpunk/evil-icons",
+      "stars": 5045
+    },
+    "das-labor/panopticon": {
+      "name": "das-labor/panopticon",
+      "url": "https://api.github.com/repos/das-labor/panopticon",
+      "stars": 1433
+    },
+    "ryanoasis/vim-webdevicons": {
+      "name": "ryanoasis/vim-webdevicons",
+      "url": "https://api.github.com/repos/ryanoasis/vim-webdevicons",
+      "stars": 5677
+    },
+    "snwh/paper-icon-theme": {
+      "name": "snwh/paper-icon-theme",
+      "url": "https://api.github.com/repos/snwh/paper-icon-theme",
+      "stars": 1572
+    },
+    "saeedalipoor/icono": {
+      "name": "saeedalipoor/icono",
+      "url": "https://api.github.com/repos/saeedalipoor/icono",
+      "stars": 3992
+    },
+    "JoanZapata/android-iconify": {
+      "name": "JoanZapata/android-iconify",
+      "url": "https://api.github.com/repos/JoanZapata/android-iconify",
+      "stars": 3935
+    },
+    "mikepenz/Android-Iconics": {
+      "name": "mikepenz/Android-Iconics",
+      "url": "https://api.github.com/repos/mikepenz/Android-Iconics",
+      "stars": 5203
+    },
+    "thesabbir/simple-line-icons": {
+      "name": "thesabbir/simple-line-icons",
+      "url": "https://api.github.com/repos/thesabbir/simple-line-icons",
+      "stars": 1863
+    },
+    "dmester/jdenticon": {
+      "name": "dmester/jdenticon",
+      "url": "https://api.github.com/repos/dmester/jdenticon",
+      "stars": 1270
+    },
+    "github/octicons": {
+      "name": "github/octicons",
+      "url": "https://api.github.com/repos/github/octicons",
+      "stars": 8382
+    },
+    "0x73/SDevIconFonts": {
+      "name": "0x73/SDevIconFonts",
+      "url": "https://api.github.com/repos/0x73/SDevIconFonts",
+      "stars": 1168
+    },
+    "ritz078/emoticons-js": {
+      "name": "ritz078/emoticons-js",
+      "url": "https://api.github.com/repos/ritz078/emoticons-js",
+      "stars": 1272
+    },
+    "lipis/flag-icon-css": {
+      "name": "lipis/flag-icon-css",
+      "url": "https://api.github.com/repos/lipis/flag-icon-css",
+      "stars": 10890
+    },
+    "w446108264/XhsEmoticonsKeyboard": {
+      "name": "w446108264/XhsEmoticonsKeyboard",
+      "url": "https://api.github.com/repos/w446108264/XhsEmoticonsKeyboard",
+      "stars": 2846
+    },
+    "visualpharm/icons8_flat_icons": {
+      "name": "visualpharm/icons8_flat_icons",
+      "url": "https://api.github.com/repos/visualpharm/icons8_flat_icons",
+      "stars": 2167
+    },
+    "theDazzler/droidicon": {
+      "name": "theDazzler/droidicon",
+      "url": "https://api.github.com/repos/theDazzler/droidicon",
+      "stars": 2202
+    },
+    "icons8/flat-color-icons": {
+      "name": "icons8/flat-color-icons",
+      "url": "https://api.github.com/repos/icons8/flat-color-icons",
+      "stars": 2167
+    },
+    "konifar/android-material-design-icon-generator-plugin": {
+      "name": "konifar/android-material-design-icon-generator-plugin",
+      "url": "https://api.github.com/repos/konifar/android-material-design-icon-generator-plugin",
+      "stars": 2414
+    },
+    "corymsmith/react-native-icons": {
+      "name": "corymsmith/react-native-icons",
+      "url": "https://api.github.com/repos/corymsmith/react-native-icons",
+      "stars": 1142
+    },
+    "NordicSemiconductor/Android-nRF-Toolbox": {
+      "name": "NordicSemiconductor/Android-nRF-Toolbox",
+      "url": "https://api.github.com/repos/NordicSemiconductor/Android-nRF-Toolbox",
+      "stars": 1114
+    },
+    "luukdv/animated-menu-icons": {
+      "name": "luukdv/animated-menu-icons",
+      "url": "https://api.github.com/repos/luukdv/animated-menu-icons",
+      "stars": 1000
+    },
+    "bitshadow/iconate": {
+      "name": "bitshadow/iconate",
+      "url": "https://api.github.com/repos/bitshadow/iconate",
+      "stars": 1980
+    },
+    "google/material-design-icons": {
+      "name": "google/material-design-icons",
+      "url": "https://api.github.com/repos/google/material-design-icons",
+      "stars": 50958
+    },
+    "oblador/react-native-font-icon": {
+      "name": "oblador/react-native-font-icon",
+      "url": "https://api.github.com/repos/oblador/react-native-font-icon",
+      "stars": 17497
+    },
+    "oblador/react-native-vector-icons": {
+      "name": "oblador/react-native-vector-icons",
+      "url": "https://api.github.com/repos/oblador/react-native-vector-icons",
+      "stars": 17501
+    },
+    "maicong/music": {
+      "name": "maicong/music",
+      "url": "https://api.github.com/repos/maicong/music",
+      "stars": 2078
+    },
+    "zavoloklom/material-design-iconic-font": {
+      "name": "zavoloklom/material-design-iconic-font",
+      "url": "https://api.github.com/repos/zavoloklom/material-design-iconic-font",
+      "stars": 1417
+    },
+    "cosmologicon/pywat": {
+      "name": "cosmologicon/pywat",
+      "url": "https://api.github.com/repos/cosmologicon/pywat",
+      "stars": 1216
+    },
+    "ryanoasis/font-nerd-icons": {
+      "name": "ryanoasis/font-nerd-icons",
+      "url": "https://api.github.com/repos/ryanoasis/font-nerd-icons",
+      "stars": 55831
+    },
+    "erikflowers/weather-icons": {
+      "name": "erikflowers/weather-icons",
+      "url": "https://api.github.com/repos/erikflowers/weather-icons",
+      "stars": 6962
+    },
+    "shinobicontrols/iOS9-day-by-day": {
+      "name": "shinobicontrols/iOS9-day-by-day",
+      "url": "https://api.github.com/repos/shinobicontrols/iOS9-day-by-day",
+      "stars": 1398
+    },
+    "rockerhieu/emojicon": {
+      "name": "rockerhieu/emojicon",
+      "url": "https://api.github.com/repos/rockerhieu/emojicon",
+      "stars": 3608
+    },
+    "ryanoasis/vim-devicons": {
+      "name": "ryanoasis/vim-devicons",
+      "url": "https://api.github.com/repos/ryanoasis/vim-devicons",
+      "stars": 5677
+    },
+    "AlexeyBelezeko/TBIconTransitionKit": {
+      "name": "AlexeyBelezeko/TBIconTransitionKit",
+      "url": "https://api.github.com/repos/AlexeyBelezeko/TBIconTransitionKit",
+      "stars": 1248
+    },
+    "code-mc/material-icon-lib": {
+      "name": "code-mc/material-icon-lib",
+      "url": "https://api.github.com/repos/code-mc/material-icon-lib",
+      "stars": 2274
+    },
+    "NordicSemiconductor/nRF-Master-Control-Panel": {
+      "name": "NordicSemiconductor/nRF-Master-Control-Panel",
+      "url": "https://api.github.com/repos/NordicSemiconductor/nRF-Master-Control-Panel",
+      "stars": 1366
+    },
+    "SiliconStudio/paradox": {
+      "name": "SiliconStudio/paradox",
+      "url": "https://api.github.com/repos/SiliconStudio/paradox",
+      "stars": 1535
+    },
+    "game-icons/icons": {
+      "name": "game-icons/icons",
+      "url": "https://api.github.com/repos/game-icons/icons",
+      "stars": 1116
+    },
+    "scottdejonge/Map-Icons": {
+      "name": "scottdejonge/Map-Icons",
+      "url": "https://api.github.com/repos/scottdejonge/Map-Icons",
+      "stars": 1046
+    },
+    "keremciu/sketch-iconfont": {
+      "name": "keremciu/sketch-iconfont",
+      "url": "https://api.github.com/repos/keremciu/sketch-iconfont",
+      "stars": 1971
+    },
+    "danleech/simpleicons.org": {
+      "name": "danleech/simpleicons.org",
+      "url": "https://api.github.com/repos/danleech/simpleicons.org",
+      "stars": 21615
+    },
+    "symfony/polyfill-iconv": {
+      "name": "symfony/polyfill-iconv",
+      "url": "https://api.github.com/repos/symfony/polyfill-iconv",
+      "stars": 1770
+    },
+    "gorangajic/react-icons": {
+      "name": "gorangajic/react-icons",
+      "url": "https://api.github.com/repos/gorangajic/react-icons",
+      "stars": 11795
+    },
+    "wentin/cssicon": {
+      "name": "wentin/cssicon",
+      "url": "https://api.github.com/repos/wentin/cssicon",
+      "stars": 3213
+    },
+    "juliettef/IconFontCHeaders": {
+      "name": "juliettef/IconFontCHeaders",
+      "url": "https://api.github.com/repos/juliettef/IconFontCHeaders",
+      "stars": 1243
+    },
+    "davidtheclark/load-multiconfig": {
+      "name": "davidtheclark/load-multiconfig",
+      "url": "https://api.github.com/repos/davidtheclark/load-multiconfig",
+      "stars": 3976
+    },
+    "konpa/devicon": {
+      "name": "konpa/devicon",
+      "url": "https://api.github.com/repos/konpa/devicon",
+      "stars": 10121
+    },
+    "davidtheclark/cosmiconfig": {
+      "name": "davidtheclark/cosmiconfig",
+      "url": "https://api.github.com/repos/davidtheclark/cosmiconfig",
+      "stars": 3979
+    },
+    "ciconia/awesome-music": {
+      "name": "ciconia/awesome-music",
+      "url": "https://api.github.com/repos/ciconia/awesome-music",
+      "stars": 1924
+    },
+    "SiliconStudio/xenko": {
+      "name": "SiliconStudio/xenko",
+      "url": "https://api.github.com/repos/SiliconStudio/xenko",
+      "stars": 1535
+    },
+    "tomkat83/PlexKodiConnect": {
+      "name": "tomkat83/PlexKodiConnect",
+      "url": "https://api.github.com/repos/tomkat83/PlexKodiConnect",
+      "stars": 1211
+    },
+    "muaz-khan/RTCMultiConnection": {
+      "name": "muaz-khan/RTCMultiConnection",
+      "url": "https://api.github.com/repos/muaz-khan/RTCMultiConnection",
+      "stars": 2585
+    },
+    "adoxa/ansicon": {
+      "name": "adoxa/ansicon",
+      "url": "https://api.github.com/repos/adoxa/ansicon",
+      "stars": 1240
+    },
+    "Jonno12345/TileIconify": {
+      "name": "Jonno12345/TileIconify",
+      "url": "https://api.github.com/repos/Jonno12345/TileIconify",
+      "stars": 1387
+    },
+    "AnalogJ/lexicon": {
+      "name": "AnalogJ/lexicon",
+      "url": "https://api.github.com/repos/AnalogJ/lexicon",
+      "stars": 1503
+    },
+    "fengbintu/Neural-Networks-on-Silicon": {
+      "name": "fengbintu/Neural-Networks-on-Silicon",
+      "url": "https://api.github.com/repos/fengbintu/Neural-Networks-on-Silicon",
+      "stars": 1893
+    },
+    "croneter/PlexKodiConnect": {
+      "name": "croneter/PlexKodiConnect",
+      "url": "https://api.github.com/repos/croneter/PlexKodiConnect",
+      "stars": 1218
+    },
+    "Jonno12345/TileIconifier": {
+      "name": "Jonno12345/TileIconifier",
+      "url": "https://api.github.com/repos/Jonno12345/TileIconifier",
+      "stars": 1389
+    },
+    "0x73/SwiftIconFont": {
+      "name": "0x73/SwiftIconFont",
+      "url": "https://api.github.com/repos/0x73/SwiftIconFont",
+      "stars": 1169
+    },
+    "jantimon/favicons-webpack-plugin": {
+      "name": "jantimon/favicons-webpack-plugin",
+      "url": "https://api.github.com/repos/jantimon/favicons-webpack-plugin",
+      "stars": 1206
+    },
+    "leungwensen/svg-icons": {
+      "name": "leungwensen/svg-icons",
+      "url": "https://api.github.com/repos/leungwensen/svg-icons",
+      "stars": 1060
+    },
+    "keeferrourke/la-capitaine-icon-theme": {
+      "name": "keeferrourke/la-capitaine-icon-theme",
+      "url": "https://api.github.com/repos/keeferrourke/la-capitaine-icon-theme",
+      "stars": 1946
+    },
+    "FooSoft/AnkiConnect": {
+      "name": "FooSoft/AnkiConnect",
+      "url": "https://api.github.com/repos/FooSoft/AnkiConnect",
+      "stars": 1960
+    },
+    "robertohuertasm/vscode-icons": {
+      "name": "robertohuertasm/vscode-icons",
+      "url": "https://api.github.com/repos/robertohuertasm/vscode-icons",
+      "stars": 4538
+    },
+    "PapirusDevelopmentTeam/papirus-icon-theme-gtk": {
+      "name": "PapirusDevelopmentTeam/papirus-icon-theme-gtk",
+      "url": "https://api.github.com/repos/PapirusDevelopmentTeam/papirus-icon-theme-gtk",
+      "stars": 6793
+    },
+    "dzenbot/Iconic": {
+      "name": "dzenbot/Iconic",
+      "url": "https://api.github.com/repos/dzenbot/Iconic",
+      "stars": 1575
+    },
+    "horst3180/arc-icon-theme": {
+      "name": "horst3180/arc-icon-theme",
+      "url": "https://api.github.com/repos/horst3180/arc-icon-theme",
+      "stars": 1103
+    },
+    "primer/octicons": {
+      "name": "primer/octicons",
+      "url": "https://api.github.com/repos/primer/octicons",
+      "stars": 8386
+    },
+    "domtronn/all-the-icons.el": {
+      "name": "domtronn/all-the-icons.el",
+      "url": "https://api.github.com/repos/domtronn/all-the-icons.el",
+      "stars": 1483
+    },
+    "MahApps/MahApps.Metro.IconPacks": {
+      "name": "MahApps/MahApps.Metro.IconPacks",
+      "url": "https://api.github.com/repos/MahApps/MahApps.Metro.IconPacks",
+      "stars": 1789
+    },
+    "leungwensen/svg-icon": {
+      "name": "leungwensen/svg-icon",
+      "url": "https://api.github.com/repos/leungwensen/svg-icon",
+      "stars": 1060
+    },
+    "NecronomiconCoding/Pokemon-Go-Bot": {
+      "name": "NecronomiconCoding/Pokemon-Go-Bot",
+      "url": "https://api.github.com/repos/NecronomiconCoding/Pokemon-Go-Bot",
+      "stars": 2470
+    },
+    "NecronomiconCoding/NecroBot": {
+      "name": "NecronomiconCoding/NecroBot",
+      "url": "https://api.github.com/repos/NecronomiconCoding/NecroBot",
+      "stars": 2470
+    },
+    "evilebottnawi/favicons": {
+      "name": "evilebottnawi/favicons",
+      "url": "https://api.github.com/repos/evilebottnawi/favicons",
+      "stars": 1200
+    },
+    "NordicSemiconductor/Android-nRF-Connect": {
+      "name": "NordicSemiconductor/Android-nRF-Connect",
+      "url": "https://api.github.com/repos/NordicSemiconductor/Android-nRF-Connect",
+      "stars": 1367
+    },
+    "danklammer/bytesize-icons": {
+      "name": "danklammer/bytesize-icons",
+      "url": "https://api.github.com/repos/danklammer/bytesize-icons",
+      "stars": 3860
+    },
+    "PKief/vscode-extension-material-icon-theme": {
+      "name": "PKief/vscode-extension-material-icon-theme",
+      "url": "https://api.github.com/repos/PKief/vscode-extension-material-icon-theme",
+      "stars": 2150
+    },
+    "stewartlord/identicon.js": {
+      "name": "stewartlord/identicon.js",
+      "url": "https://api.github.com/repos/stewartlord/identicon.js",
+      "stars": 1322
+    },
+    "evil-icons/evil-icons": {
+      "name": "evil-icons/evil-icons",
+      "url": "https://api.github.com/repos/evil-icons/evil-icons",
+      "stars": 5045
+    },
+    "PapirusDevelopmentTeam/papirus-icon-theme": {
+      "name": "PapirusDevelopmentTeam/papirus-icon-theme",
+      "url": "https://api.github.com/repos/PapirusDevelopmentTeam/papirus-icon-theme",
+      "stars": 6800
+    },
+    "neuecc/MagicOnion": {
+      "name": "neuecc/MagicOnion",
+      "url": "https://api.github.com/repos/neuecc/MagicOnion",
+      "stars": 3931
+    },
+    "file-icons/atom": {
+      "name": "file-icons/atom",
+      "url": "https://api.github.com/repos/file-icons/atom",
+      "stars": 1326
+    },
+    "zagum/Android-SwitchIcon": {
+      "name": "zagum/Android-SwitchIcon",
+      "url": "https://api.github.com/repos/zagum/Android-SwitchIcon",
+      "stars": 2329
+    },
+    "vscode-icons/vscode-icons": {
+      "name": "vscode-icons/vscode-icons",
+      "url": "https://api.github.com/repos/vscode-icons/vscode-icons",
+      "stars": 4542
+    },
+    "icons8/line-awesome": {
+      "name": "icons8/line-awesome",
+      "url": "https://api.github.com/repos/icons8/line-awesome",
+      "stars": 1265
+    },
+    "rust-lang-nursery/nomicon": {
+      "name": "rust-lang-nursery/nomicon",
+      "url": "https://api.github.com/repos/rust-lang-nursery/nomicon",
+      "stars": 1920
+    },
+    "PKief/vscode-material-icon-theme": {
+      "name": "PKief/vscode-material-icon-theme",
+      "url": "https://api.github.com/repos/PKief/vscode-material-icon-theme",
+      "stars": 2154
+    },
+    "icons8/titanic": {
+      "name": "icons8/titanic",
+      "url": "https://api.github.com/repos/icons8/titanic",
+      "stars": 2438
+    },
+    "edent/SuperTinySocialIcons": {
+      "name": "edent/SuperTinySocialIcons",
+      "url": "https://api.github.com/repos/edent/SuperTinySocialIcons",
+      "stars": 14815
+    },
+    "Nonchalant/AppIconExtractor": {
+      "name": "Nonchalant/AppIconExtractor",
+      "url": "https://api.github.com/repos/Nonchalant/AppIconExtractor",
+      "stars": 1484
+    },
+    "Nonchalant/AppIcon": {
+      "name": "Nonchalant/AppIcon",
+      "url": "https://api.github.com/repos/Nonchalant/AppIcon",
+      "stars": 1484
+    },
+    "cjdowner/cryptocurrency-icons": {
+      "name": "cjdowner/cryptocurrency-icons",
+      "url": "https://api.github.com/repos/cjdowner/cryptocurrency-icons",
+      "stars": 2629
+    },
+    "nickbutcher/AdaptiveIconPlayground": {
+      "name": "nickbutcher/AdaptiveIconPlayground",
+      "url": "https://api.github.com/repos/nickbutcher/AdaptiveIconPlayground",
+      "stars": 1356
+    },
+    "simple-icons/simple-icons": {
+      "name": "simple-icons/simple-icons",
+      "url": "https://api.github.com/repos/simple-icons/simple-icons",
+      "stars": 21654
+    },
+    "jessfraz/amicontained": {
+      "name": "jessfraz/amicontained",
+      "url": "https://api.github.com/repos/jessfraz/amicontained",
+      "stars": 1021
+    },
+    "onmyway133/IconGenerator": {
+      "name": "onmyway133/IconGenerator",
+      "url": "https://api.github.com/repos/onmyway133/IconGenerator",
+      "stars": 1416
+    },
+    "ionic-team/ionicons": {
+      "name": "ionic-team/ionicons",
+      "url": "https://api.github.com/repos/ionic-team/ionicons",
+      "stars": 17657
+    },
+    "eucalyptuss/ucreate-icons": {
+      "name": "eucalyptuss/ucreate-icons",
+      "url": "https://api.github.com/repos/eucalyptuss/ucreate-icons",
+      "stars": 3543
+    },
+    "dhanishgajjar/vscode-icons": {
+      "name": "dhanishgajjar/vscode-icons",
+      "url": "https://api.github.com/repos/dhanishgajjar/vscode-icons",
+      "stars": 1665
+    },
+    "feathericons/feather": {
+      "name": "feathericons/feather",
+      "url": "https://api.github.com/repos/feathericons/feather",
+      "stars": 25161
+    },
+    "edent/SuperTinyIcons": {
+      "name": "edent/SuperTinyIcons",
+      "url": "https://api.github.com/repos/edent/SuperTinyIcons",
+      "stars": 14821
+    },
+    "franzsilva/flutter_launcher_icons": {
+      "name": "franzsilva/flutter_launcher_icons",
+      "url": "https://api.github.com/repos/franzsilva/flutter_launcher_icons",
+      "stars": 2034
+    },
+    "NordicSemiconductor/Android-BLE-Library": {
+      "name": "NordicSemiconductor/Android-BLE-Library",
+      "url": "https://api.github.com/repos/NordicSemiconductor/Android-BLE-Library",
+      "stars": 2078
+    },
+    "sschoger/heroicons-ui": {
+      "name": "sschoger/heroicons-ui",
+      "url": "https://api.github.com/repos/sschoger/heroicons-ui",
+      "stars": 2063
+    },
+    "xxhomey19/github-file-icons": {
+      "name": "xxhomey19/github-file-icons",
+      "url": "https://api.github.com/repos/xxhomey19/github-file-icons",
+      "stars": 1470
+    },
+    "xxhomey19/github-file-icon": {
+      "name": "xxhomey19/github-file-icon",
+      "url": "https://api.github.com/repos/xxhomey19/github-file-icon",
+      "stars": 1470
+    },
+    "vkarampinis/awesome-icons": {
+      "name": "vkarampinis/awesome-icons",
+      "url": "https://api.github.com/repos/vkarampinis/awesome-icons",
+      "stars": 1352
+    },
+    "juliettef/IconFontCppHeaders": {
+      "name": "juliettef/IconFontCppHeaders",
+      "url": "https://api.github.com/repos/juliettef/IconFontCppHeaders",
+      "stars": 1244
+    },
+    "genuinetools/amicontained": {
+      "name": "genuinetools/amicontained",
+      "url": "https://api.github.com/repos/genuinetools/amicontained",
+      "stars": 1021
+    },
+    "jacobwgillespie/styled-icons": {
+      "name": "jacobwgillespie/styled-icons",
+      "url": "https://api.github.com/repos/jacobwgillespie/styled-icons",
+      "stars": 2092
+    },
+    "coreui/coreui-icons": {
+      "name": "coreui/coreui-icons",
+      "url": "https://api.github.com/repos/coreui/coreui-icons",
+      "stars": 2000
+    },
+    "zhanghuanchong/icon-workshop": {
+      "name": "zhanghuanchong/icon-workshop",
+      "url": "https://api.github.com/repos/zhanghuanchong/icon-workshop",
+      "stars": 2158
+    },
+    "itgalaxy/favicons": {
+      "name": "itgalaxy/favicons",
+      "url": "https://api.github.com/repos/itgalaxy/favicons",
+      "stars": 1201
+    },
+    "atisawd/boxicons": {
+      "name": "atisawd/boxicons",
+      "url": "https://api.github.com/repos/atisawd/boxicons",
+      "stars": 2996
+    },
+    "hyperdexapp/cryptocurrency-icons": {
+      "name": "hyperdexapp/cryptocurrency-icons",
+      "url": "https://api.github.com/repos/hyperdexapp/cryptocurrency-icons",
+      "stars": 2629
+    },
+    "atomiclabs/cryptocurrency-icons": {
+      "name": "atomiclabs/cryptocurrency-icons",
+      "url": "https://api.github.com/repos/atomiclabs/cryptocurrency-icons",
+      "stars": 2629
+    },
+    "react-icons/react-icons": {
+      "name": "react-icons/react-icons",
+      "url": "https://api.github.com/repos/react-icons/react-icons",
+      "stars": 11806
+    },
+    "fluttercommunity/flutter_launcher_icons": {
+      "name": "fluttercommunity/flutter_launcher_icons",
+      "url": "https://api.github.com/repos/fluttercommunity/flutter_launcher_icons",
+      "stars": 2037
+    },
+    "eucalyptuss/custom-icons": {
+      "name": "eucalyptuss/custom-icons",
+      "url": "https://api.github.com/repos/eucalyptuss/custom-icons",
+      "stars": 3543
+    },
+    "iconify-design/iconify": {
+      "name": "iconify-design/iconify",
+      "url": "https://api.github.com/repos/iconify-design/iconify",
+      "stars": 4805
+    },
+    "akveo/eva-icons": {
+      "name": "akveo/eva-icons",
+      "url": "https://api.github.com/repos/akveo/eva-icons",
+      "stars": 8640
+    },
+    "Remix-Design/remixicon": {
+      "name": "Remix-Design/remixicon",
+      "url": "https://api.github.com/repos/Remix-Design/remixicon",
+      "stars": 7054
+    },
+    "Iconscout/unicons": {
+      "name": "Iconscout/unicons",
+      "url": "https://api.github.com/repos/Iconscout/unicons",
+      "stars": 1437
+    },
+    "Cysharp/MagicOnion": {
+      "name": "Cysharp/MagicOnion",
+      "url": "https://api.github.com/repos/Cysharp/MagicOnion",
+      "stars": 3933
+    },
+    "antonreshetov/vue-unicons": {
+      "name": "antonreshetov/vue-unicons",
+      "url": "https://api.github.com/repos/antonreshetov/vue-unicons",
+      "stars": 1001
+    },
+    "Cuberto/Bubble-Icon-Tabbar": {
+      "name": "Cuberto/Bubble-Icon-Tabbar",
+      "url": "https://api.github.com/repos/Cuberto/Bubble-Icon-Tabbar",
+      "stars": 1100
+    },
+    "lululxvi/sciconet": {
+      "name": "lululxvi/sciconet",
+      "url": "https://api.github.com/repos/lululxvi/sciconet",
+      "stars": 2859
+    },
+    "Cuberto/bubble-icon-tabbar": {
+      "name": "Cuberto/bubble-icon-tabbar",
+      "url": "https://api.github.com/repos/Cuberto/bubble-icon-tabbar",
+      "stars": 1100
+    },
+    "EliverLara/candy-icons": {
+      "name": "EliverLara/candy-icons",
+      "url": "https://api.github.com/repos/EliverLara/candy-icons",
+      "stars": 1122
+    },
+    "devblackops/Terminal-Icons": {
+      "name": "devblackops/Terminal-Icons",
+      "url": "https://api.github.com/repos/devblackops/Terminal-Icons",
+      "stars": 2557
+    },
+    "Remix-Design/RemixIcon": {
+      "name": "Remix-Design/RemixIcon",
+      "url": "https://api.github.com/repos/Remix-Design/RemixIcon",
+      "stars": 7064
+    },
+    "vinceliuice/Tela-icon-theme": {
+      "name": "vinceliuice/Tela-icon-theme",
+      "url": "https://api.github.com/repos/vinceliuice/Tela-icon-theme",
+      "stars": 1558
+    },
+    "home-assistant/Iconic": {
+      "name": "home-assistant/Iconic",
+      "url": "https://api.github.com/repos/home-assistant/Iconic",
+      "stars": 1575
+    },
+    "feathericons/react-feather": {
+      "name": "feathericons/react-feather",
+      "url": "https://api.github.com/repos/feathericons/react-feather",
+      "stars": 1939
+    },
+    "Aloxaf/silicon": {
+      "name": "Aloxaf/silicon",
+      "url": "https://api.github.com/repos/Aloxaf/silicon",
+      "stars": 3203
+    },
+    "iconify/iconify": {
+      "name": "iconify/iconify",
+      "url": "https://api.github.com/repos/iconify/iconify",
+      "stars": 4820
+    },
+    "modulz/radix-icons": {
+      "name": "modulz/radix-icons",
+      "url": "https://api.github.com/repos/modulz/radix-icons",
+      "stars": 2287
+    },
+    "exyte/ConcentricOnboarding": {
+      "name": "exyte/ConcentricOnboarding",
+      "url": "https://api.github.com/repos/exyte/ConcentricOnboarding",
+      "stars": 1438
+    },
+    "rust-lang/nomicon": {
+      "name": "rust-lang/nomicon",
+      "url": "https://api.github.com/repos/rust-lang/nomicon",
+      "stars": 1926
+    },
+    "twbs/icons": {
+      "name": "twbs/icons",
+      "url": "https://api.github.com/repos/twbs/icons",
+      "stars": 7486
+    },
+    "refactoringui/heroicons": {
+      "name": "refactoringui/heroicons",
+      "url": "https://api.github.com/repos/refactoringui/heroicons",
+      "stars": 21876
+    },
+    "codex-src/heroicons-viewer": {
+      "name": "codex-src/heroicons-viewer",
+      "url": "https://api.github.com/repos/codex-src/heroicons-viewer",
+      "stars": 1239
+    },
+    "tabler/tabler-icons": {
+      "name": "tabler/tabler-icons",
+      "url": "https://api.github.com/repos/tabler/tabler-icons",
+      "stars": 18627
+    },
+    "codex-src/heroicons.dev": {
+      "name": "codex-src/heroicons.dev",
+      "url": "https://api.github.com/repos/codex-src/heroicons.dev",
+      "stars": 1239
+    },
+    "kyazdani42/nvim-web-devicons": {
+      "name": "kyazdani42/nvim-web-devicons",
+      "url": "https://api.github.com/repos/kyazdani42/nvim-web-devicons",
+      "stars": 2186
+    },
+    "spothq/cryptocurrency-icons": {
+      "name": "spothq/cryptocurrency-icons",
+      "url": "https://api.github.com/repos/spothq/cryptocurrency-icons",
+      "stars": 2629
+    },
+    "blade-ui-kit/blade-icons": {
+      "name": "blade-ui-kit/blade-icons",
+      "url": "https://api.github.com/repos/blade-ui-kit/blade-icons",
+      "stars": 2239
+    },
+    "homerchen19/github-file-icon": {
+      "name": "homerchen19/github-file-icon",
+      "url": "https://api.github.com/repos/homerchen19/github-file-icon",
+      "stars": 1470
+    },
+    "microsoft/fluentui-system-icons": {
+      "name": "microsoft/fluentui-system-icons",
+      "url": "https://api.github.com/repos/microsoft/fluentui-system-icons",
+      "stars": 6195
+    },
+    "styled-icons/styled-icons": {
+      "name": "styled-icons/styled-icons",
+      "url": "https://api.github.com/repos/styled-icons/styled-icons",
+      "stars": 2092
+    },
+    "below/HelloSilicon": {
+      "name": "below/HelloSilicon",
+      "url": "https://api.github.com/repos/below/HelloSilicon",
+      "stars": 4474
+    },
+    "elrumo/macOS-Big-Sur-icons-replacements": {
+      "name": "elrumo/macOS-Big-Sur-icons-replacements",
+      "url": "https://api.github.com/repos/elrumo/macOS-Big-Sur-icons-replacements",
+      "stars": 4189
+    },
+    "antfu/iconify-explorer": {
+      "name": "antfu/iconify-explorer",
+      "url": "https://api.github.com/repos/antfu/iconify-explorer",
+      "stars": 6057
+    },
+    "vinceliuice/WhiteSur-icon-theme": {
+      "name": "vinceliuice/WhiteSur-icon-theme",
+      "url": "https://api.github.com/repos/vinceliuice/WhiteSur-icon-theme",
+      "stars": 1411
+    },
+    "teenyicons/teenyicons": {
+      "name": "teenyicons/teenyicons",
+      "url": "https://api.github.com/repos/teenyicons/teenyicons",
+      "stars": 1813
+    },
+    "MedicOneSystems/livewire-datatables": {
+      "name": "MedicOneSystems/livewire-datatables",
+      "url": "https://api.github.com/repos/MedicOneSystems/livewire-datatables",
+      "stars": 1200
+    },
+    "elrumo/macOS_Big_Sur_icons_replacements": {
+      "name": "elrumo/macOS_Big_Sur_icons_replacements",
+      "url": "https://api.github.com/repos/elrumo/macOS_Big_Sur_icons_replacements",
+      "stars": 4190
+    },
+    "antfu/icones": {
+      "name": "antfu/icones",
+      "url": "https://api.github.com/repos/antfu/icones",
+      "stars": 6070
+    },
+    "codex-zaydek/heroicons.dev": {
+      "name": "codex-zaydek/heroicons.dev",
+      "url": "https://api.github.com/repos/codex-zaydek/heroicons.dev",
+      "stars": 1239
+    },
+    "devicons/devicon": {
+      "name": "devicons/devicon",
+      "url": "https://api.github.com/repos/devicons/devicon",
+      "stars": 10129
+    },
+    "phosphor-icons/phosphor-web": {
+      "name": "phosphor-icons/phosphor-web",
+      "url": "https://api.github.com/repos/phosphor-icons/phosphor-web",
+      "stars": 4614
+    },
+    "tailwindlabs/heroicons": {
+      "name": "tailwindlabs/heroicons",
+      "url": "https://api.github.com/repos/tailwindlabs/heroicons",
+      "stars": 21890
+    },
+    "bytedance/IconPark": {
+      "name": "bytedance/IconPark",
+      "url": "https://api.github.com/repos/bytedance/IconPark",
+      "stars": 8490
+    },
+    "bytedance/icons": {
+      "name": "bytedance/icons",
+      "url": "https://api.github.com/repos/bytedance/icons",
+      "stars": 8486
+    },
+    "niconielsen32/ComputerVision": {
+      "name": "niconielsen32/ComputerVision",
+      "url": "https://api.github.com/repos/niconielsen32/ComputerVision",
+      "stars": 1012
+    },
+    "zaydek/heroicons.dev": {
+      "name": "zaydek/heroicons.dev",
+      "url": "https://api.github.com/repos/zaydek/heroicons.dev",
+      "stars": 1240
+    },
+    "lucide-icons/lucide": {
+      "name": "lucide-icons/lucide",
+      "url": "https://api.github.com/repos/lucide-icons/lucide",
+      "stars": 12246
+    },
+    "07akioni/vicons": {
+      "name": "07akioni/vicons",
+      "url": "https://api.github.com/repos/07akioni/vicons",
+      "stars": 1328
+    },
+    "Donnnno/Arcticons": {
+      "name": "Donnnno/Arcticons",
+      "url": "https://api.github.com/repos/Donnnno/Arcticons",
+      "stars": 1039
+    },
+    "phosphor-icons/phosphor-home": {
+      "name": "phosphor-icons/phosphor-home",
+      "url": "https://api.github.com/repos/phosphor-icons/phosphor-home",
+      "stars": 4618
+    },
+    "homerchen19/github-file-icons": {
+      "name": "homerchen19/github-file-icons",
+      "url": "https://api.github.com/repos/homerchen19/github-file-icons",
+      "stars": 1472
+    },
+    "07akioni/xicons": {
+      "name": "07akioni/xicons",
+      "url": "https://api.github.com/repos/07akioni/xicons",
+      "stars": 1328
+    },
+    "radix-ui/icons": {
+      "name": "radix-ui/icons",
+      "url": "https://api.github.com/repos/radix-ui/icons",
+      "stars": 2289
+    },
+    "phosphor-icons/phosphor-react": {
+      "name": "phosphor-icons/phosphor-react",
+      "url": "https://api.github.com/repos/phosphor-icons/phosphor-react",
+      "stars": 1215
+    },
+    "basmilius/weather-icons": {
+      "name": "basmilius/weather-icons",
+      "url": "https://api.github.com/repos/basmilius/weather-icons",
+      "stars": 1058
+    },
+    "duerrsimon/bioicons": {
+      "name": "duerrsimon/bioicons",
+      "url": "https://api.github.com/repos/duerrsimon/bioicons",
+      "stars": 1401
+    },
+    "antfu/vite-plugin-icons": {
+      "name": "antfu/vite-plugin-icons",
+      "url": "https://api.github.com/repos/antfu/vite-plugin-icons",
+      "stars": 4215
+    },
+    "lucaburgio/iconoir": {
+      "name": "lucaburgio/iconoir",
+      "url": "https://api.github.com/repos/lucaburgio/iconoir",
+      "stars": 3930
+    },
+    "WalkxCode/dashboard-icons": {
+      "name": "WalkxCode/dashboard-icons",
+      "url": "https://api.github.com/repos/WalkxCode/dashboard-icons",
+      "stars": 5281
+    },
+    "antfu/unplugin-icons": {
+      "name": "antfu/unplugin-icons",
+      "url": "https://api.github.com/repos/antfu/unplugin-icons",
+      "stars": 4216
+    },
+    "lipis/flag-icons": {
+      "name": "lipis/flag-icons",
+      "url": "https://api.github.com/repos/lipis/flag-icons",
+      "stars": 10902
+    },
+    "semicons/java_oci_manage": {
+      "name": "semicons/java_oci_manage",
+      "url": "https://api.github.com/repos/semicons/java_oci_manage",
+      "stars": 1622
+    },
+    "YuliangXiu/ICON": {
+      "name": "YuliangXiu/ICON",
+      "url": "https://api.github.com/repos/YuliangXiu/ICON",
+      "stars": 1616
+    },
+    "natemoo-re/astro-icon": {
+      "name": "natemoo-re/astro-icon",
+      "url": "https://api.github.com/repos/natemoo-re/astro-icon",
+      "stars": 1171
+    },
+    "LawnchairLauncher/lawnicons": {
+      "name": "LawnchairLauncher/lawnicons",
+      "url": "https://api.github.com/repos/LawnchairLauncher/lawnicons",
+      "stars": 1455
+    },
+    "pheralb/iconr": {
+      "name": "pheralb/iconr",
+      "url": "https://api.github.com/repos/pheralb/iconr",
+      "stars": 2971
+    },
+    "mikeroyal/Apple-Silicon-Guide": {
+      "name": "mikeroyal/Apple-Silicon-Guide",
+      "url": "https://api.github.com/repos/mikeroyal/Apple-Silicon-Guide",
+      "stars": 1705
+    },
+    "xushier/HD-Icons": {
+      "name": "xushier/HD-Icons",
+      "url": "https://api.github.com/repos/xushier/HD-Icons",
+      "stars": 1434
+    },
+    "tandpfun/skill-icons": {
+      "name": "tandpfun/skill-icons",
+      "url": "https://api.github.com/repos/tandpfun/skill-icons",
+      "stars": 8257
+    },
+    "segecey/SwiftIconFont": {
+      "name": "segecey/SwiftIconFont",
+      "url": "https://api.github.com/repos/segecey/SwiftIconFont",
+      "stars": 1169
+    },
+    "iconoir-icons/iconoir": {
+      "name": "iconoir-icons/iconoir",
+      "url": "https://api.github.com/repos/iconoir-icons/iconoir",
+      "stars": 3933
+    },
+    "walkxcode/Dashboard-Icons": {
+      "name": "walkxcode/Dashboard-Icons",
+      "url": "https://api.github.com/repos/walkxcode/Dashboard-Icons",
+      "stars": 5284
+    },
+    "Atinux/nuxt-icon": {
+      "name": "Atinux/nuxt-icon",
+      "url": "https://api.github.com/repos/Atinux/nuxt-icon",
+      "stars": 1023
+    },
+    "nuxt-modules/icon": {
+      "name": "nuxt-modules/icon",
+      "url": "https://api.github.com/repos/nuxt-modules/icon",
+      "stars": 1023
+    },
+    "Mahmud0808/Iconify": {
+      "name": "Mahmud0808/Iconify",
+      "url": "https://api.github.com/repos/Mahmud0808/Iconify",
+      "stars": 2091
+    },
+    "traderepublic/Cilicon": {
+      "name": "traderepublic/Cilicon",
+      "url": "https://api.github.com/repos/traderepublic/Cilicon",
+      "stars": 1008
+    },
+    "walkxcode/dashboard-icons": {
+      "name": "walkxcode/dashboard-icons",
+      "url": "https://api.github.com/repos/walkxcode/dashboard-icons",
+      "stars": 5291
+    },
+    "phosphor-icons/react": {
+      "name": "phosphor-icons/react",
+      "url": "https://api.github.com/repos/phosphor-icons/react",
+      "stars": 1215
+    },
+    "Helicone/helicone": {
+      "name": "Helicone/helicone",
+      "url": "https://api.github.com/repos/Helicone/helicone",
+      "stars": 3004
+    },
+    "phosphor-icons/homepage": {
+      "name": "phosphor-icons/homepage",
+      "url": "https://api.github.com/repos/phosphor-icons/homepage",
+      "stars": 4627
+    },
+    "cosmiconfig/cosmiconfig": {
+      "name": "cosmiconfig/cosmiconfig",
+      "url": "https://api.github.com/repos/cosmiconfig/cosmiconfig",
+      "stars": 3979
+    },
+    "nvim-tree/nvim-web-devicons": {
+      "name": "nvim-tree/nvim-web-devicons",
+      "url": "https://api.github.com/repos/nvim-tree/nvim-web-devicons",
+      "stars": 2192
+    },
+    "unplugin/unplugin-icons": {
+      "name": "unplugin/unplugin-icons",
+      "url": "https://api.github.com/repos/unplugin/unplugin-icons",
+      "stars": 4217
+    },
+    "siliconflow/onediff": {
+      "name": "siliconflow/onediff",
+      "url": "https://api.github.com/repos/siliconflow/onediff",
+      "stars": 1759
+    },
+    "Arcticons-Team/Arcticons": {
+      "name": "Arcticons-Team/Arcticons",
+      "url": "https://api.github.com/repos/Arcticons-Team/Arcticons",
+      "stars": 1041
+    },
+    "antfu-collective/icones": {
+      "name": "antfu-collective/icones",
+      "url": "https://api.github.com/repos/antfu-collective/icones",
+      "stars": 6075
+    },
+    "nuxt/icon": {
+      "name": "nuxt/icon",
+      "url": "https://api.github.com/repos/nuxt/icon",
+      "stars": 1023
+    },
+    "material-extensions/vscode-material-icon-theme": {
+      "name": "material-extensions/vscode-material-icon-theme",
+      "url": "https://api.github.com/repos/material-extensions/vscode-material-icon-theme",
+      "stars": 2155
+    },
+    "pqoqubbw/icons": {
+      "name": "pqoqubbw/icons",
+      "url": "https://api.github.com/repos/pqoqubbw/icons",
+      "stars": 3450
+    }
+  }
+}

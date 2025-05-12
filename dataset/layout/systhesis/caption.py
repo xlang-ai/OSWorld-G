@@ -238,7 +238,7 @@ def analyze_sample(sample: dict) -> Response:
     except Exception as e:
         return f"Error: {e}"
 
-client = openai.OpenAI(api_key="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")
+client = openai.OpenAI(api_key="YOUR_OPENAI_API_KEY")
 
 import json
 
