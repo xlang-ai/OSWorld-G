@@ -6,7 +6,6 @@ import os
 from typing import List, Tuple
 from loguru import logger as eval_logger
 from tqdm import tqdm
-from lmms_eval import utils
 from openai import OpenAI
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from PIL import Image
@@ -16,13 +15,7 @@ from eval import GroundingEval
 import torch
 import subprocess
 import socket
-import re
-from transformers import Qwen2_5_VLProcessor, Qwen2_5_VLForConditionalGeneration
-from qwen_agent.llm.fncall_prompts.nous_fncall_prompt import (
-    NousFnCallPrompt,
-    Message,
-    ContentItem,
-)
+from transformers import Qwen2_5_VLProcessor
 from transformers.models.qwen2_vl.image_processing_qwen2_vl_fast import smart_resize
 
 import sys
@@ -51,13 +44,7 @@ For each function call, return a json object with function name and arguments wi
 
 NUM_SECONDS_TO_SLEEP = 5
 
-client = OpenAI(base_url="http://localhost:8908/v1", api_key="token-abc123")
-
-# resolution_720p = 46 * 26 * 28 * 28
-# resolution_1080p = 69 * 39 * 28 * 28
-# resolution_2160p = 92 * 58 * 28 * 28
-
-# 20055648
+client = OpenAI()  # TODO: add your key
 
 gen_kwargs = {
     "max_new_tokens": 1024,

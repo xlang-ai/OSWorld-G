@@ -1,3 +1,15 @@
+TODO: evaluation script incomplete, do we display them? or we only keep eval for jedi? delete most of them and add a readme for them 30min (readme done)
+DONE: what to keep in benchmark folder?--no py
+
+TODO: add new banner 5min
+TODO: component render code 1h
+TODO: slide readme 10min
+TODO: bench on hgf 15min
+TODO: reevaluate op refusal and without refusal
+
+TODO: add new paper link
+TODO: layout code
+
 <p align="center">
   <img src="banner.png" alt="Banner">
 </p>
@@ -8,26 +20,27 @@
   <a href="https://huggingface.co/datasets/xlangai/Jedi">Dataset</a> •
   <a href="https://huggingface.co/xlangai/Jedi-3B-1080p">JeDi-3B</a> •
   <a href="https://huggingface.co/xlangai/Jedi-7B-1080p">JeDi-7B</a> •
+  <!-- <a href="https://huggingface.co/xlangai/Jedi-7B-1080p">Benchmark [TODO]</a> -->
 </p>
 
-<p align="center">
+<!-- <p align="center">
     <a href="https://img.shields.io/badge/PRs-Welcome-red">
         <img src="https://img.shields.io/badge/PRs-Welcome-red">
     </a>
     <a href="https://img.shields.io/github/last-commit/xlang-ai/OSWorld-G?color=green">
         <img src="https://img.shields.io/github/last-commit/xlang-ai/OSWorld-G?color=green">
     </a>
-    <!-- <a href="https://opensource.org/licenses/Apache-2.0">
+    <a href="https://opensource.org/licenses/Apache-2.0">
         <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg">
-    </a> -->
-    <!-- <a href="https://badge.fury.io/py/desktop-env">
+    </a>
+    <a href="https://badge.fury.io/py/desktop-env">
         <img src="https://badge.fury.io/py/desktop-env.svg">
-    </a> -->
-    <!-- <a href="https://pepy.tech/project/desktop-env">
+    </a>
+    <a href="https://pepy.tech/project/desktop-env">
         <img src="https://static.pepy.tech/badge/desktop-env">
-    </a> -->
+    </a>
     <br/>
-</p>
+</p> -->
 
 This is the official repository for "Scaling Computer-Use Grounding via UI Decomposition and Synthesis", which includes the benchmark--OSWorld-G and dataset pipeline--JeDi. We also provide links to the models (JeDi-3B, JeDi-7B) and dataset (JeDi) here.
 
@@ -45,6 +58,9 @@ cd OSWorld-G
 
 conda create -n osworld-g python=3.9
 conda activate osworld-g
+
+# Go to one folder(take dataset/icon as an example)
+cd dataset/icon
 
 # Install required dependencies
 pip install -r requirements.txt
@@ -99,6 +115,4 @@ TODO -->
 
 ## 📄 Citation
 If you find this work useful, please consider citing our paper:
-```
 <!-- TODO -->
-```

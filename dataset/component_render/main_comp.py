@@ -401,7 +401,7 @@ async def main():
         "mantine": "UI_basecode/mantine",
     }
 
-    with open("component_tree.json", "r") as file:
+    with open("json_files/component_tree.json", "r") as file:
         component_tree_all = json.load(file)
     component_tree_lib = component_tree_all[args.lib_name]
     component_list = (
@@ -781,7 +781,7 @@ async def main():
 
                 code_queue = asyncio.Queue()
 
-                with open("component_constraint.json", "r") as file:
+                with open("json_files/component_constraint.json", "r") as file:
                     component_constraint = json.load(file)
                 logger.info(
                     f"component_constraint: {str(component_constraint.get(component_root_name, 'None'))}"

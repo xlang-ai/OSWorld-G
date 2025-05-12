@@ -70,7 +70,7 @@ def _generate_single_scenario_openai(
         print(new_style_code)
 
         # import check
-        with open("lucide-react_import_list.json", "r") as file:
+        with open("json_files/lucide-react_import_list.json", "r") as file:
             import_list = json.load(file)
 
         if "lucide-react" in new_style_code:
@@ -172,7 +172,7 @@ def _generate_single_scenario_claude(
         new_style_code = response["new_style_code"]
 
         # import check
-        with open("lucide-react_import_list.json", "r") as file:
+        with open("json_files/lucide-react_import_list.json", "r") as file:
             import_list = json.load(file)
         if "lucide-react" in new_style_code:
 
