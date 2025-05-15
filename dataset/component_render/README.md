@@ -1,6 +1,6 @@
-TODO: test main_comp pipeline
-TODO: test main_elem pipeline
-TODO: test final format
+TODO: test main_comp pipeline 45min
+TODO: test main_elem pipeline 45min
+TODO: test final format 10min
 TODO: test run_windows.sh 10min
 TODO: test killproc_windows.py 10min
 

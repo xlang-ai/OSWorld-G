@@ -79,15 +79,10 @@ class GroundingEval:
                 boxes_coordinate[0] + boxes_size[0],
                 boxes_coordinate[1] + boxes_size[1],
             ]
-            # print(">>>>>>>")
-            # print(boxes_coordinate)
-            # print(center_point)
-            # print(">>>>>>>")
             return _is_point_in_rectangle(center_point, boxes_coordinate)
         elif boxes_type == "polygon":
             return _is_point_in_polygon(center_point, boxes_coordinate)
         elif boxes_type == "refusal":
-            # todo: think about how to evaluate the refusal
             # all the center point should be negative
             return all(center_point[i] < 0 for i in range(2))
 

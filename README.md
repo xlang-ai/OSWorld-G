@@ -1,17 +1,17 @@
-TODO: evaluation script incomplete, do we display them? or we only keep eval for jedi? delete most of them and add a readme for them 30min (readme done)
+<!-- TODO: evaluation script incomplete, do we display them? or we only keep eval for jedi? delete most of them and add a readme for them 30min (readme done)
 DONE: what to keep in benchmark folder?--no py
 
 TODO: add new banner 5min
 TODO: component render code 1h
 TODO: slide readme 10min
 TODO: bench on hgf 15min
-TODO: reevaluate op refusal and without refusal
+TODO: reevaluate op refusal and without refusal 1h
 
 TODO: add new paper link
-TODO: layout code
+TODO: layout code -->
 
 <p align="center">
-  <img src="banner.png" alt="Banner">
+  <img src="readme-images/banner.png" alt="Banner">
 </p>
 
 <p align="center">

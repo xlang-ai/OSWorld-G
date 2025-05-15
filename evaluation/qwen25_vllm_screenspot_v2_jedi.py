@@ -44,7 +44,7 @@ For each function call, return a json object with function name and arguments wi
 
 NUM_SECONDS_TO_SLEEP = 5
 
-client = OpenAI()  # TODO: add your key
+client = OpenAI(api_key="YOUR_API_KEY")  # TODO: change to your own API key
 
 gen_kwargs = {
     "max_new_tokens": 1024,
@@ -146,7 +146,6 @@ class Qwen25VL_OpenAI(lmms):
                             "type": "text",
                             "text": f"Please complete the following tasks by clicking using `left_click` function: {instruction}",
                         },
-                        # {"type": "text", "text": f"{instruction}"}
                     ],
                 }
             )
@@ -168,7 +167,6 @@ class Qwen25VL_OpenAI(lmms):
 
             for attempt in range(MAX_ATTEMPTS):
                 try:
-                    # print("messages: ", payload["messages"])
                     completion = client.chat.completions.create(
                         model=self.model_name,
                         messages=payload["messages"],
@@ -224,14 +222,14 @@ class Qwen25VL_OpenAI(lmms):
 
 class BenchmarkRunner:
     def __init__(
-        # self, annotation_path, model_name, model_path, image_dir, use_cache=False
         self,
         model_name,
         model_path,
         image_dir,
+        annotation_path,
         use_cache=False,
     ):
-        self.annotation_path = "screenspot_v2.json"
+        self.annotation_path = annotation_path
         self.model_name = model_name
         self.model_path = model_path
         self.image_dir = image_dir
@@ -252,18 +250,16 @@ class BenchmarkRunner:
             data.extend(sub_data)
         flatten_data_items = []
 
-        # for item in data['items']:
         for i, item in enumerate(data):
             image_path = os.path.join(self.image_dir, item["img_filename"])
             image = Image.open(image_path)
 
             # Get instruction and coordinates
-            # for i, annotation in enumerate(item['annotations']):
 
             flatten_data_items.append(
                 {
                     "id": image_path[:-4],
-                    "annotation_id": str(i),  # annotation['id'] is wrong....
+                    "annotation_id": str(i),
                     "image": image,
                     "image_path": item["img_filename"],
                     "instruction": item["instruction"],
@@ -409,7 +405,7 @@ class BenchmarkRunner:
                 boxes_size = item["image_size"]
                 image_size = item["image_size"]
 
-            # normalize predicted_coords -- 必须要有，要不没训到这个分辨率就没这能力
+            # normalize predicted_coords -- must have, otherwise no ability to this resolution
             predicted_coords[0] = predicted_coords[0] * image_size[0] / resized_width
             predicted_coords[1] = predicted_coords[1] * image_size[1] / resized_height
             predicted_coords[2] = predicted_coords[2] * image_size[0] / resized_width
@@ -442,7 +438,6 @@ class BenchmarkRunner:
                 accuracy_dict_group[group]["correct"]
                 / accuracy_dict_group[group]["total"]
             )
-        # TODO: add correct and total for each part here.
         return {
             "total": total,
             "correct": correct,
@@ -510,7 +505,12 @@ if __name__ == "__main__":
     )
 
     # Add arguments for annotation_path, model_path, and image_dir
-    # parser.add_argument("--annotation_path", type=str, required=True, help="Path to the annotation file (e.g., screenspot_desktop_v2.json).")
+    parser.add_argument(
+        "--annotation_path",
+        type=str,
+        required=True,
+        help="Path to the annotation file (e.g., screenspot_desktop_v2.json).",
+    )
     parser.add_argument(
         "--port",
         type=int,
@@ -529,7 +529,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--image_dir",
         type=str,
-        default="screenspotv2_image",
+        required=True,
         help="Directory containing images (default: 'screenspotv2_image').",
     )
     parser.add_argument(
@@ -549,10 +549,10 @@ if __name__ == "__main__":
     else:
         # Initialize BenchmarkRunner and evaluate
         runner = BenchmarkRunner(
-            # annotation_path=args.annotation_path,
             model_name=args.model_name,
             model_path=args.model_path,
             image_dir=args.image_dir,
+            annotation_path=args.annotation_path,
             use_cache=args.use_cache,
         )
 
@@ -561,9 +561,25 @@ if __name__ == "__main__":
         print(f"Total samples: {results['total']}")
         print(f"Correct predictions: {results['correct']}")
         print(f"Accuracy: {results['accuracy']*100:.2f}%")
-        print(f"Accuracy dict 2x2: {results['accuracy_dict_2x2']}")
-        print(f"Accuracy dict ui_type: {results['accuracy_dict_ui_type']}")
-        print(f"Accuracy dict group: {results['accuracy_dict_group']}")
+        print(f"Accuracy by Group:")
+        for group, stats in results["accuracy_dict_group"].items():
+            print(
+                f"  {group}: {stats['accuracy']*100:.2f}% ({stats['correct']}/{stats['total']})"
+            )
+
+        print(f"Accuracy by UI Type:")
+        for ui_type, stats in results["accuracy_dict_ui_type"].items():
+            print(
+                f"  {ui_type}: {stats['accuracy']*100:.2f}% ({stats['correct']}/{stats['total']})"
+            )
+
+        print(f"Detailed Accuracy by Group and UI Type:")
+        for group, ui_types in results["accuracy_dict_2x2"].items():
+            print(f"  {group}:")
+            for ui_type, stats in ui_types.items():
+                print(
+                    f"    {ui_type}: {stats['accuracy']*100:.2f}% ({stats['correct']}/{stats['total']})"
+                )
 
         # Terminate VLLM service
         terminate_vllm_service(process)

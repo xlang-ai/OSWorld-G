@@ -7893,7 +7893,7 @@
             1920,
             1080
         ],
-        "instruction": "Select the place between the world \"person\" and the number \"1\"",
+        "instruction": "Select the place between the word \"person\" and the number \"1\"",
         "box_type": "bbox",
         "box_coordinates": [
             585.03,

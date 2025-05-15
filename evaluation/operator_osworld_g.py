@@ -544,7 +544,7 @@ if __name__ == "__main__":
         type=str,
         default="implicit",
         help="Type of refusal (default: 'implicit').",
-    )  # Whether explicitly remind operator to refuse infeasible actions
+    )  # Whether explicitly remind operator in prompt to refuse infeasible actions
 
     # Parse the arguments
     args = parser.parse_args()
