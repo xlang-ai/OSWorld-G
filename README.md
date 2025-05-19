@@ -25,7 +25,6 @@
 </p>
 
 This is the official repository for "Scaling Computer-Use Grounding via UI Decomposition and Synthesis", which includes the benchmark--OSWorld-G and dataset pipeline--Jedi. We also provide links to the models (Jedi-3B, Jedi-7B) and dataset (Jedi) here.
-This is the official repository for "Scaling Computer-Use Grounding via UI Decomposition and Synthesis", which includes the benchmark--OSWorld-G and dataset pipeline--Jedi. We also provide links to the models (Jedi-3B, Jedi-7B) and dataset (Jedi) here.
 
 ## 📢 Updates
 - 2025-05-19: Initial release of this repository.
