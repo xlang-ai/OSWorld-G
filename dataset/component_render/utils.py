@@ -8,18 +8,12 @@ import asyncio
 import anthropic
 from openai import AsyncOpenAI, OpenAI
 from pydantic import BaseModel
-from utils import logger
 from typing import Dict, List, get_type_hints, get_origin, get_args
 import os
 import logging
 
-with open("secret_keys/secret_key_openai.txt", "r") as f:
-    openai_api_key = f.read()
-with open("secret_keys/secret_key_claude.txt", "r") as f:
-    claude_api_key = f.read()
-os.environ["OPENAI_API_KEY"] = openai_api_key
-os.environ["CLAUDE_API_KEY"] = claude_api_key
-client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+openai_api_key = os.environ.get("OPENAI_API_KEY")
+client = OpenAI(api_key=openai_api_key)
 
 claude = anthropic.Anthropic()
 
@@ -145,6 +139,7 @@ def pydantic_to_json_schema(model_class):
 def call_with_retry_openai(client, model, messages, temperature, response_format):
     response_format_json = pydantic_to_json_schema(response_format)
     url = "https://api.openai.com/v1/chat/completions"
+    # print(f"key: {openai_api_key}")
     headers = {
         "Content-Type": "application/json",
         "Authorization": f"Bearer {openai_api_key}",
@@ -222,20 +217,15 @@ def setup_logger(port):
 
     # Create a file handler for logging to a log file with dynamic filename
     os.makedirs("logs", exist_ok=True)
-    log_filename = f"logs/log_{port}.txt"
-    file_handler = logging.FileHandler(log_filename)
-    file_handler.setLevel(logging.INFO)
 
     # Create a formatter and set it for both handlers
     formatter = logging.Formatter(
         "%(asctime)s - %(levelname)s - %(message)s [Line: %(lineno)d] [Module: %(module)s] [Function: %(funcName)s]"
     )
     console_handler.setFormatter(formatter)
-    file_handler.setFormatter(formatter)
 
     # Add the handlers to the logger
     logger.addHandler(console_handler)
-    logger.addHandler(file_handler)
 
     return logger
 
@@ -265,13 +255,11 @@ async def api_test():
 
 
 async def logger_test():
-    port = 3000
-    logger = setup_logger(port)
     logger.info("This is an informational message.")
     logger.warning("This is a warning message.")
     logger.error("This is an error message.")
 
 
 if __name__ == "__main__":
-    asyncio.run(api_test())
-    # asyncio.run(logger_test())
+    # asyncio.run(api_test())
+    asyncio.run(logger_test())

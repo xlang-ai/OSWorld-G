@@ -48,6 +48,9 @@ parser.add_argument("--scenario_count", type=int, required=True)
 parser.add_argument("--api_type", type=str, default="openai", required=False)
 args = parser.parse_args()
 
+os.makedirs("data", exist_ok=True)
+os.makedirs("logs", exist_ok=True)
+
 os.environ["BROWSER"] = "none"
 
 
