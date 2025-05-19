@@ -3,12 +3,12 @@
 </p>
 
 <p align="center">
-  <a href="https://osworld-grounding.github.io/">Website</a> •
-  <!-- <a href="https://arxiv.org/abs/2404.07972">Paper</a> • -->
-  <a href="https://huggingface.co/xlangai/Jedi-3B-1080p">Jedi-3B</a> •
-  <a href="https://huggingface.co/xlangai/Jedi-7B-1080p">Jedi-7B</a> •
-    <a href="https://huggingface.co/datasets/xlangai/Jedi">Dataset (4 million)</a>
-  <a href="https://github.com/xlang-ai/OSWorld-G/tree/main/benchmark">Benchmark [TODO]</a>
+    <a href="https://osworld-grounding.github.io/">Website</a> •
+    <!-- <a href="https://arxiv.org/abs/2404.07972">Paper</a> • -->
+    <a href="https://huggingface.co/xlangai/Jedi-3B-1080p">Jedi-3B</a> •
+    <a href="https://huggingface.co/xlangai/Jedi-7B-1080p">Jedi-7B</a> •
+    <a href="https://huggingface.co/datasets/xlangai/Jedi">Dataset (4 million)</a> •
+    <a href="https://github.com/xlang-ai/OSWorld-G/tree/main/benchmark">Benchmark</a>
 </p>
 
 <p align="center">
