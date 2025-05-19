@@ -7,7 +7,7 @@
   <!-- <a href="https://arxiv.org/abs/2404.07972">Paper</a> • -->
   <a href="https://huggingface.co/datasets/xlangai/Jedi">Dataset</a> •
   <a href="https://huggingface.co/xlangai/Jedi-3B-1080p">JeDi-3B</a> •
-  <a href="https://huggingface.co/xlangai/Jedi-7B-1080p">JeDi-7B</a> •
+  <a href="https://huggingface.co/xlangai/Jedi-7B-1080p">JeDi-7B</a>
   <!-- <a href="https://huggingface.co/xlangai/Jedi-7B-1080p">Benchmark [TODO]</a> -->
 </p>
 
@@ -33,7 +33,7 @@
 This is the official repository for "Scaling Computer-Use Grounding via UI Decomposition and Synthesis", which includes the benchmark--OSWorld-G and dataset pipeline--JeDi. We also provide links to the models (JeDi-3B, JeDi-7B) and dataset (JeDi) here.
 
 ## 📢 Updates
-<!-- - 2025-05-04: Initial release of this README. -->
+- 2025-05-19: Initial release of this repository.
 
 ## 💾 Environment
 First, clone this repository and `cd` into it. Then, install the dependencies listed in `requirements.txt`. We recommend using the latest version of Conda to manage the environment, but you can also choose to manually install the dependencies. Please ensure that Python version is >= 3.9.
@@ -56,7 +56,7 @@ pip install -r requirements.txt
 
 ## 🤖 Model
 
-We provide two JeDi models:
+We provide two JeDi models with different sizes:
 - [Jedi-3B](https://huggingface.co/xlangai/Jedi-3B-1080p)
 - [Jedi-7B](https://huggingface.co/xlangai/Jedi-7B-1080p)
 
