@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="readme-images/banner.jpg" alt="Banner">
+  <img src="readme-images/banner.png" alt="Banner">
 </p>
 
 <p align="center">
@@ -8,7 +8,7 @@
   <a href="https://huggingface.co/xlangai/Jedi-3B-1080p">Jedi-3B</a> •
   <a href="https://huggingface.co/xlangai/Jedi-7B-1080p">Jedi-7B</a> •
     <a href="https://huggingface.co/datasets/xlangai/Jedi">Dataset (4 million)</a>
-  <!-- <a href="https://huggingface.co/xlangai/Jedi-7B-1080p">Benchmark [TODO]</a> -->
+  <a href="https://github.com/xlang-ai/OSWorld-G/tree/main/benchmark">Benchmark [TODO]</a>
 </p>
 
 <p align="center">
@@ -61,7 +61,6 @@ We provide our OSWorld-G benchmark with original instructions (`benchmark/OSWorl
 
 For instructions on running evaluations, please refer to the [Evaluation](#-evaluation) section and `README.md` in the `evaluation` folder.
 
-## 🗄️ Dataset--Jedi
 ## 🗄️ Dataset--Jedi
 
 Our dataset is available at https://huggingface.co/datasets/xlangai/Jedi
