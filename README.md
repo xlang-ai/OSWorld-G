@@ -25,6 +25,7 @@
 </p>
 
 This is the official repository for "Scaling Computer-Use Grounding via UI Decomposition and Synthesis", which includes the benchmark--OSWorld-G and dataset pipeline--Jedi. We also provide links to the models (Jedi-3B, Jedi-7B) and dataset (Jedi) here.
+This is the official repository for "Scaling Computer-Use Grounding via UI Decomposition and Synthesis", which includes the benchmark--OSWorld-G and dataset pipeline--Jedi. We also provide links to the models (Jedi-3B, Jedi-7B) and dataset (Jedi) here.
 
 ## 📢 Updates
 - 2025-05-19: Initial release of this repository.
@@ -32,6 +33,7 @@ This is the official repository for "Scaling Computer-Use Grounding via UI Decom
 ## 💾 Environment
 First, clone this repository and `cd` into it. Then, install the dependencies listed in `requirements.txt`. We recommend using the latest version of Conda to manage the environment, but you can also choose to manually install the dependencies. Please ensure that Python version is >= 3.9.
 ```bash
+# Clone the OSWorld-G(Jedi) repository
 # Clone the OSWorld-G(Jedi) repository
 git clone https://github.com/xlang-ai/OSWorld-G.git
 
@@ -59,6 +61,7 @@ We provide our OSWorld-G benchmark with original instructions (`benchmark/OSWorl
 
 For instructions on running evaluations, please refer to the [Evaluation](#-evaluation) section and `README.md` in the `evaluation` folder.
 
+## 🗄️ Dataset--Jedi
 ## 🗄️ Dataset--Jedi
 
 Our dataset is available at https://huggingface.co/datasets/xlangai/Jedi
