@@ -7,7 +7,6 @@ class A11yInspector {
     private var dir_name: String
     
     init(dir_name: String) {
-        // 查找 PowerPoint 进程
         self.app = NSWorkspace.shared.runningApplications.first(where: { 
             $0.localizedName == "Microsoft PowerPoint" 
         })
@@ -31,7 +30,6 @@ class A11yInspector {
     }    
 
     func getElementInfo(_ element: AXUIElement, parentPath: String = "") -> ElementInfo? {
-        // 基本属性
         var role: CFTypeRef?
         var title: CFTypeRef?
         var value: CFTypeRef?
@@ -45,7 +43,6 @@ class A11yInspector {
         var selected: CFTypeRef?
         var children: CFTypeRef?
         
-        // 获取基本属性
         AXUIElementCopyAttributeValue(element, kAXRoleAttribute as CFString, &role)
         AXUIElementCopyAttributeValue(element, kAXTitleAttribute as CFString, &title)
         AXUIElementCopyAttributeValue(element, kAXValueAttribute as CFString, &value)
@@ -59,7 +56,6 @@ class A11yInspector {
         AXUIElementCopyAttributeValue(element, kAXSelectedAttribute as CFString, &selected)
         AXUIElementCopyAttributeValue(element, kAXChildrenAttribute as CFString, &children)
         
-        // 解析位置和大小
         var frame = CGRect.zero
         if let positionValue = position as! AXValue? {
             var point = CGPoint.zero
@@ -73,25 +69,21 @@ class A11yInspector {
             frame.size = size
         }
         
-        // 获取元素支持的所有属性
         var attributeNames: CFArray?
         var actionNames: CFArray?
         AXUIElementCopyAttributeNames(element, &attributeNames)
         AXUIElementCopyActionNames(element, &actionNames)
-                
-        // 获取可用的动作
+
         var actions: [String] = []
         if let actArray = actionNames as? [String] {
             actions = actArray
         }
         
-        // 构建元素路径
         let roleStr = (role as? String) ?? "unknown"
         let titleStr = (title as? String) ?? ""
         let currentPath = parentPath.isEmpty ? roleStr : "\(parentPath)/\(roleStr)"
         let displayPath = titleStr.isEmpty ? currentPath : "\(currentPath)[\(titleStr)]"
         
-        // 递归获取子元素
         var childrenInfo: [ElementInfo] = []
         if let childArray = children as? [AXUIElement] {
             for childElement in childArray {
@@ -120,7 +112,6 @@ class A11yInspector {
             return
         }
         
-        // 获取窗口
         var value: CFTypeRef?
         AXUIElementCopyAttributeValue(appRef, kAXWindowsAttribute as CFString, &value)
         
@@ -146,7 +137,6 @@ class A11yInspector {
     func takeScreenshot() {
         let screenshotPath = "original_screenpair/\(dir_name)/screenshot_\(dir_name).png"
         
-        // Capture the screen
         let image = CGWindowListCreateImage(CGRect.infinite, .optionOnScreenOnly, CGWindowID(0), .bestResolution)
         
         if let image = image {
@@ -165,10 +155,8 @@ class A11yInspector {
     }
 }
 
-// 使用示例
 let dir_name = "tab6"
 
-// 创建目录
 let fileManager = FileManager.default
 let directoryPath = "original_screenpair/\(dir_name)"
 if !fileManager.fileExists(atPath: directoryPath) {
@@ -181,9 +169,7 @@ if !fileManager.fileExists(atPath: directoryPath) {
 }
 
 let inspector = A11yInspector(dir_name: dir_name)
-// 添加暂停
-Thread.sleep(forTimeInterval: 3) // 暂停5秒
+Thread.sleep(forTimeInterval: 3)
 
 inspector.saveToJSON(filePath: "\(directoryPath)/ppt_a11y_tree_\(dir_name).json")
-// Take a screenshot after saving the a11y tree
 inspector.takeScreenshot()

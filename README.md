@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="https://osworld-grounding.github.io/">Website</a> •
-  <!-- <a href="https://arxiv.org/abs/2404.07972">Paper</a> • -->
+  <a href="https://arxiv.org/abs/2505.13227">Paper</a> •
   <a href="https://huggingface.co/datasets/xlangai/Jedi">Dataset</a> •
   <a href="https://huggingface.co/xlangai/Jedi-3B-1080p">Jedi-3B</a> •
   <a href="https://huggingface.co/xlangai/Jedi-7B-1080p">Jedi-7B</a>
@@ -74,25 +74,25 @@ In this repository, we provide the code for the data collection pipeline.
 
 ### Icon data
 
-The pipeline code for icon data is provided in `dataset/icon`.
+The pipeline code for icon data is provided in [`dataset/icon`](dataset/icon/README.md).
 
 ### Component data
 
 #### Code-and-rendering pipeline
 
-The complete code-and-rendering pipeline code is available in `dataset/component_render`.
+The complete code-and-rendering pipeline code is available in [`dataset/component_render`](dataset/component_render/README.md).
 
 #### Real-world augmentation pipeline
 
-For the real-world augmentation pipeline, we provide code for document data, spreadsheet data, and presentation data in `dataset/component_handcraft`.
+For the real-world augmentation pipeline, we provide code for document data, spreadsheet data, and presentation data in [`dataset/component_handcraft`](dataset/component_handcraft/README.md).
 
 ### Layout data
 
-The code for layout data collection is provided in `dataset/layout`.
+The code for layout data collection is provided in [`dataset/layout`](dataset/layout/README.md).
 
 ### Refusal data
 
-The code for refusal data collection is provided in `dataset/refusal`.
+The code for refusal data collection is provided in [`dataset/refusal`](dataset/refusal/README.md).
 
 ## 🔍 Evaluation
 
@@ -103,4 +103,15 @@ TODO -->
 
 ## 📄 Citation
 If you find this work useful, please consider citing our paper:
-<!-- TODO -->
+
+```bibtex
+@misc{xie2025scalingcomputerusegroundinguser,
+      title={Scaling Computer-Use Grounding via User Interface Decomposition and Synthesis}, 
+      author={Tianbao Xie and Jiaqi Deng and Xiaochuan Li and Junlin Yang and Haoyuan Wu and Jixuan Chen and Wenjing Hu and Xinyuan Wang and Yuhui Xu and Zekun Wang and Yiheng Xu and Junli Wang and Doyen Sahoo and Tao Yu and Caiming Xiong},
+      year={2025},
+      eprint={2505.13227},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI},
+      url={https://arxiv.org/abs/2505.13227}, 
+}
+```
