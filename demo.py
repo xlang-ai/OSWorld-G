@@ -1,13 +1,12 @@
 import json
-import base64
-from io import BytesIO
+import re
 from PIL import Image, ImageDraw
 from transformers import AutoTokenizer
 from vllm import LLM, SamplingParams
-import ast
 from agent_function_call import ComputerUse
 from transformers.models.qwen2_vl.image_processing_qwen2_vl_fast import smart_resize
-from transformers.models.qwen2_vl.processor_qwen2_vl import Qwen2_5_VLProcessor
+from transformers import Qwen2_5_VLProcessor
+from huggingface_hub import hf_hub_download
 
 model_path = "xlangai/Jedi-3B-1080p"
 # model_path = "xlangai/Jedi-7B-1080p"
@@ -29,11 +28,35 @@ For each function call, return a json object with function name and arguments wi
 </tool_call>"""
 
 
-NUM_SECONDS_TO_SLEEP = 5
+def visualize_click_position(image, coords, circle_radius=9, point_radius=3):
+    draw = ImageDraw.Draw(image)
+
+    x, y = coords
+
+    draw.ellipse(
+        [x - circle_radius, y - circle_radius, x + circle_radius, y + circle_radius],
+        outline="lightgreen",
+        width=2,
+    )
+
+    draw.ellipse(
+        [x - point_radius, y - point_radius, x + point_radius, y + point_radius],
+        fill="lightgreen",
+    )
+
+    return image
 
 
 def parse_coordinates(response):
-    action = json.loads(response.split("<tool_call>\n")[1].split("\n</tool_call>")[0])
+    match = re.search(r"<tool_call>(.*?)</tool_call>", response, re.DOTALL)
+    action = None
+    if not match:
+        raise ValueError("No <tool_call> block found in response.")
+
+    try:
+        action = json.loads(match.group(1))
+    except json.JSONDecodeError as e:
+        raise ValueError(f"Failed to parse tool_call JSON: {e}")
     action_name = action["name"]
     action_type = action["arguments"]["action"]
     action_args = action["arguments"]["coordinate"]
@@ -47,7 +70,7 @@ def parse_coordinates(response):
         print(f"Error parsing coordinates: {response}")
         return None
 
-    return [action_args[0], action_args[1], action_args[0], action_args[1]]
+    return action_args
 
 
 def main():
@@ -85,6 +108,12 @@ def main():
         model_path, trust_remote_code=True, use_fast=False
     )
 
+    chat_template_path = hf_hub_download(
+        repo_id=model_path, filename="chat_template.json"
+    )
+    with open(chat_template_path, "r") as f:
+        tokenizer.chat_template = json.load(f)["chat_template"]
+
     messages = [
         {
             "role": "system",
@@ -99,26 +128,12 @@ def main():
             "role": "user",
             "content": [
                 {
-                    "role": "user",
-                    "content": [
-                        {
-                            "type": "image",
-                        },
-                        {
-                            "type": "text",
-                            "text": f"Please complete the following tasks by clicking using `left_click` function: {instruction}",
-                        },
-                    ],
-                }
-            ],
-        },
-        {
-            "role": "assistant",
-            "content": [
+                    "type": "image",
+                },
                 {
                     "type": "text",
-                    "text": '<tool_call>\n{"name": "computer_use", "arguments": {"action": "left_click", "coordinate":',
-                }
+                    "text": instruction,
+                },
             ],
         },
     ]
@@ -133,31 +148,21 @@ def main():
         {
             "prompt_token_ids": message,
             "multi_modal_data": {
-                "image": [input_image],
-                "max_image_size": 980,
-                "split_image": True,
+                "image": input_image,
             },
         },
         sampling_params=sampling_params,
     )
-    for o in outputs:
-        generated_tokens = o.outputs[0].token_ids
-        response = tokenizer.decode(generated_tokens, skip_special_tokens=True)
-        print(response)
-        response_text = (
-            response.replace("<|im_end|>", "")
-            .replace("```", "")
-            .replace(" ", "")
-            .strip()
-        )
-        print("response_text: ", response_text)
-        response_text = (
-            '<tool_call>\n{"name": "computer_use", "arguments": {"action": "left_click", "coordinate":'
-            + response_text
-        )
-        predicted_coords = parse_coordinates(response_text)
-        print("predicted_coords: ", predicted_coords)
-        return predicted_coords
+    generated_tokens = outputs[0].outputs[0].token_ids
+    response = tokenizer.decode(generated_tokens, skip_special_tokens=True)
+    predicted_coords = parse_coordinates(response)
+    print("predicted_coords: ", predicted_coords)
+
+    if predicted_coords:
+        viz_image = visualize_click_position(input_image, predicted_coords)
+        viz_image.save("click_visualization.png")
+
+    return predicted_coords
 
 
 if __name__ == "__main__":
