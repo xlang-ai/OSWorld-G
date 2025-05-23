@@ -1,5 +1,3 @@
-# TODO: 去掉table和rotate同时出现的数据
-
 import os
 import json
 import random
@@ -15,10 +13,9 @@ import time
 
 lock = threading.Lock()
 
-with open("secret_keys/secret_key_openai.txt", "r") as f:
-    openai_api_key = f.read()
-os.environ["OPENAI_API_KEY"] = openai_api_key
-client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+openai_api_key = os.environ.get("OPENAI_API_KEY")
+print(openai_api_key)
+client = OpenAI(api_key=openai_api_key)
 
 REFORMAT_PROMPT_SIMPLE = """
 You are an intelligent agent that receives a **natural language instruction** describing an action to be performed based on the UI in the screenshot.
@@ -658,6 +655,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    # create_click_rotate_action(
-    #     f"slides_1280*720/slide_1/original_bbox_0.png", f"has the content", 1, 2
-    # )

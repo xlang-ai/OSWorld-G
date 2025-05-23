@@ -67,7 +67,6 @@ def _generate_single_scenario_openai(
         )
         json_response = response
         new_style_code = json_response.new_style_code
-        print(new_style_code)
 
         # import check
         with open("json_files/lucide-react_import_list.json", "r") as file:

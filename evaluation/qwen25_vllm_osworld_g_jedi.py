@@ -47,7 +47,9 @@ Additionally, if you think the task is infeasible (e.g., the task is not related
 
 NUM_SECONDS_TO_SLEEP = 5
 
-client = OpenAI(api_key="YOUR_API_KEY")  # TODO: change to your own API key
+client = OpenAI(
+    base_url="http://localhost:8908/v1", api_key="token-abc123"
+)  # TODO: change to your own base_url and API key for hosting vllm service
 
 gen_kwargs = {
     "max_new_tokens": 1024,

@@ -1,3 +1,4 @@
+import json
 import datetime
 import math
 import os
@@ -16,6 +17,7 @@ from render_prompts import (
     ACTION_INTENT_PROMPT,
     INST_FILTER_PROMPT,
 )
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 MAX_WORKERS = 5
 
@@ -24,7 +26,7 @@ class ActionDetail(BaseModel):
     thought_process: str
     action_space_type: Literal["none", "unique", "discrete", "continuous"]
     action_desc: str
-    action_params: List[str]
+    action_params: Optional[str] = None
     action_discrete_values: Optional[Dict[str, List[Union[str, int, float]]]] = None
     action_continuous_interval: Optional[Dict[str, List[List[float]]]] = None
     action_code: str
@@ -50,7 +52,7 @@ class InstFilter(BaseModel):
     multiple_steps: bool
 
 
-async def generate_action_detail(args) -> ActionDetail:
+def generate_action_detail(args) -> ActionDetail:
     (
         i,
         action_intent,
@@ -69,7 +71,7 @@ async def generate_action_detail(args) -> ActionDetail:
     )
 
     try:
-        response = await call_with_retry_openai(
+        response = call_with_retry_openai(
             client,
             "gpt-4o-2024-11-20",
             [
@@ -89,19 +91,65 @@ async def generate_action_detail(args) -> ActionDetail:
             0.3,
             ActionDetail,
         )
-        with open("token_cost.txt", "a") as file:
-            file.write(f"prompt_action_detail:\n{response.usage.prompt_tokens}\n")
-            file.write(
-                f"completion_action_detail:\n{response.usage.completion_tokens}\n"
-            )
         logger.info(f"action detail {i} generated")
-        return i, response.choices[0].message.parsed
+
+        # 处理 action_discrete_values
+        discrete_values = {}
+        if (
+            hasattr(response, "action_discrete_values")
+            and response.action_discrete_values
+        ):
+            try:
+                if isinstance(response.action_discrete_values, str):
+                    discrete_values = json.loads(response.action_discrete_values)
+                else:
+                    discrete_values = response.action_discrete_values
+            except json.JSONDecodeError:
+                logger.warning(
+                    f"Failed to parse action_discrete_values: {response.action_discrete_values}"
+                )
+
+        # 处理 action_continuous_interval
+        continuous_interval = {}
+        if (
+            hasattr(response, "action_continuous_interval")
+            and response.action_continuous_interval
+        ):
+            try:
+                if isinstance(response.action_continuous_interval, str):
+                    # 将字符串中的元组形式 (x, y) 替换为数组形式 [x, y]
+                    interval_str = response.action_continuous_interval.replace(
+                        "(", "["
+                    ).replace(")", "]")
+                    continuous_interval = json.loads(interval_str)
+                else:
+                    continuous_interval = response.action_continuous_interval
+            except json.JSONDecodeError:
+                logger.warning(
+                    f"Failed to parse action_continuous_interval: {response.action_continuous_interval}"
+                )
+
+        # 处理 action_params
+        param = None
+        if hasattr(response, "action_params"):
+            param = response.action_params
+
+        new_action_detail = ActionDetail(
+            thought_process=response.thought_process,
+            action_space_type=response.action_space_type,
+            action_desc=response.action_desc,
+            action_params=param,
+            action_discrete_values=discrete_values,
+            action_continuous_interval=continuous_interval,
+            action_code=response.action_code,
+        )
+        return i, new_action_detail
     except Exception as e:
         logger.error(f"Error generating action detail {i}: {str(e)}")
         return None
 
 
-async def generate_action_data(
+def generate_action_data(
     component_desc,
     component_name,
     raw_component_path,
@@ -114,7 +162,7 @@ async def generate_action_data(
         component_code=component_code,
     )
     logger.info("generating action intent")
-    response = await call_with_retry_openai(
+    response = call_with_retry_openai(
         client,
         "gpt-4o-2024-11-20",
         [
@@ -134,11 +182,8 @@ async def generate_action_data(
         0.6,
         ActionIntentList,
     )
-    with open("token_cost.txt", "a") as file:
-        file.write(f"prompt_action_intent:\n{response.usage.prompt_tokens}\n")
-        file.write(f"completion_action_intent:\n{response.usage.completion_tokens}\n")
 
-    action_intent_list = response.choices[0].message.parsed.action_intent_list
+    action_intent_list = response.action_intent_list
 
     action_detail_list = []
     logger.info(
@@ -158,20 +203,34 @@ async def generate_action_data(
         for i, action_intent in enumerate(action_intent_list)
     ]
 
-    tasks = [generate_action_detail(args) for args in args_list]
-    results = await asyncio.gather(*tasks)
-    action_detail_list = [
-        detail[1] for _, detail in sorted(zip(args_list, results), key=lambda x: x[0])
-    ]
+    # Using ThreadPoolExecutor instead of asyncio
+    action_detail_list = [None] * len(args_list)  # Pre-allocate list with correct size
+    with ThreadPoolExecutor(max_workers=min(32, len(args_list))) as executor:
+        # Submit all tasks and store futures with their indices
+        future_to_index = {
+            executor.submit(generate_action_detail, args): i
+            for i, args in enumerate(args_list)
+        }
+
+        # As each future completes, store result in correct position
+        for future in as_completed(future_to_index):
+            index = future_to_index[future]
+            try:
+                _, result = future.result()
+                action_detail_list[index] = result
+            except Exception as e:
+                logger.error(f"Error processing action {index}: {str(e)}")
+                action_detail_list[index] = None
+    print(action_detail_list)
     return action_intent_list, action_detail_list
 
 
-async def inst_filter(pair: tuple):
+def inst_filter(pair: tuple):
     prompt = INST_FILTER_PROMPT.format(
         instruction=pair[0],
     )
     try:
-        response = await call_with_retry_openai(
+        response = call_with_retry_openai(
             client,
             "gpt-4o-mini",
             [
@@ -181,7 +240,7 @@ async def inst_filter(pair: tuple):
             InstFilter,
         )
 
-        filter_result = response.choices[0].message.parsed
+        filter_result = response
         if (
             filter_result.ambiguity == False
             and filter_result.multiple_targets == False
@@ -196,7 +255,7 @@ async def inst_filter(pair: tuple):
         return False
 
 
-async def process_grounding(action_detail: Dict, screensize: Dict) -> str:
+def process_grounding(action_detail: Dict, screensize: Dict) -> str:
     try:
         if "import pyautogui" not in action_detail.action_code:
             action_detail.action_code = "import pyautogui\n" + action_detail.action_code
@@ -388,13 +447,12 @@ async def process_grounding(action_detail: Dict, screensize: Dict) -> str:
 
         if grounding_pairs:
             for _, pair in enumerate(grounding_pairs):
-                inst_filter_result = await inst_filter(pair)
+                inst_filter_result = inst_filter(pair)
                 if not inst_filter_result:
                     return []
                 coords_list = re.findall(
                     r"\((\d+\.?\d*),\s*(\d+\.?\d*)", pair[1]
                 ) or re.findall(r"\(\((\d+\.?\d*),\s*(\d+\.?\d*)", pair[1])
-                print("coords: ", coords_list)
                 coords_in_range = True
                 for coords in coords_list:
                     if (
@@ -484,6 +542,7 @@ def annotate_grounding(
         new_grounding_dict = {
             "instruction": grounding_dict["instruction"],
             "action": grounding_dict["action"],
+            "screenshot_path": screenshot_path,
             "annotated_grounding_path": output_path,
             "coords_list": grounding_dict["coords_list"],
         }
@@ -504,7 +563,7 @@ def remove_repetition(grounding_dict_list):
     return new_grounding_dict_list
 
 
-async def main():
+async def test_process_grounding():
     action_detail_list = [
         {
             "thought_process": "1. Key UI points: Identified the positions of project titles. Each project is visually separated by dividers.\n2. All items are visible in the screenshot, allowing interaction.\n3. Discrete selection of project titles is possible as they represent distinct options for user interaction.\n4. Parameters: List of project titles.\n5. Coordinates are determined from center positions of the components representing project titles.",
@@ -530,16 +589,23 @@ async def main():
             action_continuous_interval=detail_dict["action_continuous_interval"],
             action_code=detail_dict["action_code"],
         )
-        result = await process_grounding(
-            "dir",
-            "component_name",
+        result = process_grounding(
             action_detail,
             {"height": 1080, "width": 1920},
-            "<screenshot_path>",
-            1,
         )
         print("process_grounding_dict", result)
 
 
+async def test_action_data():
+    action_data = generate_action_data(
+        "component_desc",
+        "component_name",
+        "data/material/slider/other_screenshot/original/AudioMixerSlider_1747660131.5718021.png",
+        "position",
+        "component_code",
+    )
+
+
 if __name__ == "__main__":
-    asyncio.run(main())
+    asyncio.run(test_action_data())
+    # asyncio.run(test_process_grounding())

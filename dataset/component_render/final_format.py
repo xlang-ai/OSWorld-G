@@ -7,10 +7,16 @@ from typing import Dict
 from PIL import Image
 from tqdm import tqdm
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from collections import defaultdict
 
 lib_root_dir = "data"
-
 lib_dir_list = os.listdir(lib_root_dir)
+
+new_dir = os.path.join(f"final_{time.time()}")
+os.makedirs(new_dir, exist_ok=True)
+os.makedirs(os.path.join(new_dir, "data"), exist_ok=True)
+grounding_jsonl_path = os.path.join(new_dir, "grounding_data.jsonl")
+merged_grounding_jsonl_path = os.path.join(new_dir, "merged_grounding_data.jsonl")
 
 
 def process_component_action(component_dir_path, lib_dir, component_dir):
@@ -64,20 +70,22 @@ def process_component_action(component_dir_path, lib_dir, component_dir):
                     action = coord_match_0.group(1)
                     num1 = float(coord_match_0.group(2))
                     num2 = float(coord_match_0.group(3))
-                    rel_num1 = round(num1 / width, 4)
-                    rel_num2 = round(num2 / height, 4)
+                    # rel_num1 = round(num1 / width, 4)
+                    # rel_num2 = round(num2 / height, 4)
                     rest = coord_match_0.group(4)
-                    filtered_action = f"pyautogui.{action}({rel_num1}, {rel_num2}{rest}"
+                    # filtered_action = f"pyautogui.{action}({rel_num1}, {rel_num2}{rest}"
+                    filtered_action = f"pyautogui.{action}({num1}, {num2}{rest}"
                 if coord_match_1:
                     action = coord_match_1.group(1)
                     num1 = float(coord_match_1.group(2))
                     num2 = float(coord_match_1.group(3))
-                    rel_num1 = round(num1 / width, 4)
-                    rel_num2 = round(num2 / height, 4)
+                    # rel_num1 = round(num1 / width, 4)
+                    # rel_num2 = round(num2 / height, 4)
                     rest = coord_match_1.group(4)
-                    filtered_action = (
-                        f"pyautogui.{action}(({rel_num1}, {rel_num2}{rest}"
-                    )
+                    # filtered_action = (
+                    #     f"pyautogui.{action}(({rel_num1}, {rel_num2}{rest}"
+                    # )
+                    filtered_action = f"pyautogui.{action}(({num1}, {num2}{rest}"
                 final_actions_list.append(filtered_action)
 
             filtered_actions_string = "\n".join(final_actions_list)
@@ -125,6 +133,21 @@ def process_component_action(component_dir_path, lib_dir, component_dir):
     return data_list, action_lines_list
 
 
+def process_component_screenshot(component_dir_path, lib_dir, component_dir, new_dir):
+    if component_dir == ".DS_Store" or not os.path.isdir(component_dir_path):
+        return
+
+    src_dir = os.path.join(component_dir_path, "other_screenshot", "original")
+    dst_dir = os.path.join(
+        new_dir, "data", lib_dir, component_dir, "other_screenshot", "original"
+    )
+
+    if os.path.exists(src_dir):
+        if os.path.exists(dst_dir):
+            shutil.rmtree(dst_dir)
+        shutil.copytree(src_dir, dst_dir)
+
+
 all_data_list = []
 all_action_lines_list = []
 for lib_dir in lib_dir_list:
@@ -154,14 +177,31 @@ for lib_dir in lib_dir_list:
             all_data_list.extend(data_list)
             all_action_lines_list.extend(action_lines_list)
 
-with open(os.path.join(lib_root_dir, "grounding_data.jsonl"), "w") as file:
+    if os.path.isdir(lib_dir_path):
+        os.makedirs(os.path.join(new_dir, "data", lib_dir), exist_ok=True)
+        component_dir_list = os.listdir(lib_dir_path)
+
+        with ThreadPoolExecutor(max_workers=20) as executor:
+            futures = [
+                executor.submit(
+                    process_component_screenshot,
+                    os.path.join(lib_dir_path, component_dir),
+                    lib_dir,
+                    component_dir,
+                    new_dir,
+                )
+                for component_dir in component_dir_list
+            ]
+
+            for future in as_completed(futures):
+                future.result()
+
+with open(grounding_jsonl_path, "w") as file:
     pass
 print(len(all_data_list))
 json_lines = [json.dumps(data) + "\n" for data in all_data_list]
 
-with open(
-    os.path.join(lib_root_dir, "grounding_data.jsonl"), "a", buffering=8192
-) as file:
+with open(grounding_jsonl_path, "a", buffering=8192) as file:
     file.writelines(json_lines)
 
 pyautogui_types = set(
@@ -187,51 +227,67 @@ non_matching_strings = [
     or ("moveTo" in line and not re.match(moveTo_pattern, line))
     or ("click" in line and not re.match(click_pattern, line))
 ]
-print(non_matching_strings)
+print(f"non_matching_strings: {non_matching_strings}")
+print(f"pyautogui_types: {pyautogui_types}")
 
-print(pyautogui_types)
+# Group data by image
+image_dict = defaultdict(list)
 
-new_dir = os.path.join(f"final_{time.time()}")
-os.makedirs(new_dir, exist_ok=True)
-os.makedirs(os.path.join(new_dir, "data"), exist_ok=True)
+for line in json_lines:
+    data = json.loads(line)
+    image_path = data["image"]
+    image_dict[image_path].append(data["conversations"])
 
-new_jsonl_path = os.path.join(new_dir, "grounding_data.jsonl")
+merged_data = []
 
-shutil.copy(os.path.join(lib_root_dir, "grounding_data.jsonl"), new_jsonl_path)
+for image_path, conversation_groups in image_dict.items():
+    merged_conversations = []
+
+    system_message = None
+    for convo in conversation_groups:
+        for msg in convo:
+            if msg["from"] == "system":
+                system_message = msg
+                break
+        if system_message:
+            break
+
+    if not system_message:
+        continue
+
+    merged_conversations.append(system_message)
+
+    first = True
+    for convo in conversation_groups:
+        human_msg = None
+        gpt_msg = None
+        for msg in convo:
+            if msg["from"] == "human":
+                human_msg = msg
+            elif msg["from"] == "gpt":
+                gpt_msg = msg
+
+        if human_msg and gpt_msg:
+            if first:
+                merged_conversations.append(human_msg)
+                first = False
+            else:
+                clean_human_msg = {
+                    "from": "human",
+                    "value": re.sub(
+                        r"^<image>\nPlease generate the next move according to the UI screenshot and instruction.\n\n\n?",
+                        "",
+                        human_msg["value"],
+                    ),
+                }
+                merged_conversations.append(clean_human_msg)
+
+            merged_conversations.append(gpt_msg)
+
+    merged_data.append({"image": image_path, "conversations": merged_conversations})
 
 
-def process_component_screenshot(component_dir_path, lib_dir, component_dir, new_dir):
-    if component_dir == ".DS_Store" or not os.path.isdir(component_dir_path):
-        return
-
-    src_dir = os.path.join(component_dir_path, "other_screenshot", "original")
-    dst_dir = os.path.join(
-        new_dir, "data", lib_dir, component_dir, "other_screenshot", "original"
-    )
-
-    if os.path.exists(src_dir):
-        if os.path.exists(dst_dir):
-            shutil.rmtree(dst_dir)
-        shutil.copytree(src_dir, dst_dir)
-
-
-for lib_dir in lib_dir_list:
-    lib_dir_path = os.path.join(lib_root_dir, lib_dir)
-    if os.path.isdir(lib_dir_path):
-        os.makedirs(os.path.join(new_dir, "data", lib_dir), exist_ok=True)
-        component_dir_list = os.listdir(lib_dir_path)
-
-        with ThreadPoolExecutor(max_workers=20) as executor:
-            futures = [
-                executor.submit(
-                    process_component_screenshot,
-                    os.path.join(lib_dir_path, component_dir),
-                    lib_dir,
-                    component_dir,
-                    new_dir,
-                )
-                for component_dir in component_dir_list
-            ]
-
-            for future in as_completed(futures):
-                future.result()
+# write merged data to file
+with open(merged_grounding_jsonl_path, "w") as file:
+    for line in merged_data:
+        file.write(json.dumps(line, ensure_ascii=False) + "\n")

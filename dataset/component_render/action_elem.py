@@ -36,6 +36,7 @@ lock = threading.Lock()
 
 THREAD_TIMEOUT = 60
 
+
 class InstGen(BaseModel):
     visual_description: str
     position_information: str
@@ -61,6 +62,7 @@ class ActionDetail(BaseModel):
 class Desc2Action(BaseModel):
     action_desc: str
     action_code: str
+
 
 class FineAction(BaseModel):
     is_continuous: bool
@@ -224,9 +226,7 @@ def annotate_image(image_path, bbox):
         right = bbox["position"]["x_2"]
         bottom = bbox["position"]["y_2"]
 
-        draw.rectangle(
-            [left, top, right, bottom], outline="red", width=2
-        )
+        draw.rectangle([left, top, right, bottom], outline="red", width=2)
         center_x = (left + right) / 2
         center_y = (top + bottom) / 2
         point_radius = 2
@@ -252,13 +252,9 @@ def context_image(image_path, bbox):
         right = bbox["position"]["x_2"]
         bottom = bbox["position"]["y_2"]
 
-        draw.rectangle(
-            [left, top, right, bottom], outline="red", width=2
-        )
+        draw.rectangle([left, top, right, bottom], outline="red", width=2)
 
-        center_x = (
-            bbox["position"]["x_1"] + bbox["position"]["x_2"]
-        ) / 2
+        center_x = (bbox["position"]["x_1"] + bbox["position"]["x_2"]) / 2
         center_y = (bbox["position"]["y_1"] + bbox["position"]["y_2"]) / 2
 
         point_radius = 2
@@ -364,9 +360,7 @@ def generate_instructions(bbox, original_image_path):
         possible_actions = [
             random.choice(response.possible_actions)
         ]  # same action repeat many times so we randomly take one
-        element_complete_visibility_result = (
-            response.element_complete_visibility_result
-        )
+        element_complete_visibility_result = response.element_complete_visibility_result
         element_atomicity_result = response.element_atomicity_result
 
         if element_complete_visibility_result and element_atomicity_result:
@@ -607,9 +601,7 @@ def process_grounding(action_detail: Dict, screensize: Dict) -> str:
                         params = []
                         param_start = 0
                         paren_count = 0
-                        for i, char in enumerate(
-                            params_str + ","
-                        ):
+                        for i, char in enumerate(params_str + ","):
                             if char == "(":
                                 paren_count += 1
                             elif char == ")":
@@ -634,9 +626,7 @@ def process_grounding(action_detail: Dict, screensize: Dict) -> str:
                                 match = re.match(pattern, param)
                                 if match:
                                     variable = match.group(1)
-                                    ind_str = match.group(
-                                        2
-                                    )
+                                    ind_str = match.group(2)
                                     replaced_param = f"str({variable}[{ind_str}][0]), str({variable}[{ind_str}][1])"
                                     eval_params.append(replaced_param)
 
@@ -795,8 +785,8 @@ def main():
         grounding_dict = process_grounding(
             action_detail, {"width": 1920, "height": 1080}
         )
-        if action_detail.action_space_type == "continuous":
-            print(str(grounding_dict))
+        # if action_detail.action_space_type == "continuous":
+        #     print(str(grounding_dict))
     with open("action_detail_list.json", "w") as f:
         json.dump(
             [

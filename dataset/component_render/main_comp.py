@@ -48,6 +48,9 @@ parser.add_argument("--scenario_count", type=int, required=True)
 parser.add_argument("--api_type", type=str, default="openai", required=False)
 args = parser.parse_args()
 
+os.makedirs("data", exist_ok=True)
+os.makedirs("logs", exist_ok=True)
+
 os.environ["BROWSER"] = "none"
 
 
@@ -200,7 +203,7 @@ class DataGenerator:
             await self.refresh_page()
             time.sleep(4)
 
-            await self.page.wait_for_selector(".App", state="attached", timeout=6000)
+            await self.page.wait_for_selector(".App", state="attached", timeout=60000)
             position = await self.page.evaluate(JS_EVAL_POSITION)
 
             if position:
@@ -544,14 +547,12 @@ async def main():
                         annotated_action_paths = []
                         # STEP 3: generate action data
                         logger.info(f"Generating action data")
-                        action_intent_list, action_detail_list = (
-                            await generate_action_data(
-                                component_desc=component_desc,
-                                component_name=component_name,
-                                raw_component_path=screenshot_path,
-                                position=position,
-                                component_code=component_code,
-                            )
+                        action_intent_list, action_detail_list = generate_action_data(
+                            component_desc=component_desc,
+                            component_name=component_name,
+                            raw_component_path=screenshot_path,
+                            position=position,
+                            component_code=component_code,
                         )
                         # STEP 4: save raw data
                         component_num += 1
@@ -794,6 +795,8 @@ async def main():
                         prev_generated_code_list,
                         args.scenario_count,
                         code_queue,
+                        args.lib_name,
+                        args.api_type,
                     )
                 )
                 task2 = asyncio.create_task(process_queue(code_queue))
