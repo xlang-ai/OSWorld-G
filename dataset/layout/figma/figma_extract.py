@@ -10,7 +10,9 @@ from concurrent.futures import ThreadPoolExecutor
 import numpy as np
 import time
 
-# TODO: test figma token, change the access token with your own
+access_token = "Your Figma Access Token"
+file_key = "Your Figma File Key"
+output_dir = "Your Output Directory"
 
 @dataclass
 class UIElement:
@@ -149,9 +151,7 @@ class FigmaExporter:
         children = []
         if 'children' in node:
             children = [self.extract_ui_element(child) for child in node['children']]
-        
-        # 获取绝对位置和大小
-        # 添加额外的空字典作为默认值，防止 None 的情况
+
         bounding_box = node.get('absoluteBoundingBox') or {}
         x = bounding_box.get('x', 0)
         y = bounding_box.get('y', 0)
@@ -222,17 +222,12 @@ class FigmaExporter:
             return node_id, False
 
 def main():
-    # 设置访问令牌和文件信息
-    access_token = "figd_HhRcM4w71MD3RydhCJ86LwQL5EZdgVFIDEpNkEXy"
-    file_key = "Flc0McAMvN4fsJmBLKk2Hg"
-    output_dir = "data/Real-Estate-App-UI-Kit-(Community)"
-    
+
     exporter = FigmaExporter(access_token)
     
     try:
         print("Getting file data...")
         node_data = exporter.get_file(file_key)['document']
-        #node_data = exporter.get_node(file_key, "29497-31982")['nodes']['29497:31982']['document']
         print(f"Successfully retrieved node data")
 
         filtered_node = exporter.filter_node(node_data)

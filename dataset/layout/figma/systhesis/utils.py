@@ -23,7 +23,6 @@ def get_element_positions(node, hierarchy, positions=None, frame_x=None, frame_y
         relative_x = current_x - frame_x
         relative_y = current_y - frame_y
         
-        # 检查元素是否在frame内
         is_inside_frame = (
             relative_x >= 0 and 
             relative_y >= 0 and 
@@ -33,7 +32,7 @@ def get_element_positions(node, hierarchy, positions=None, frame_x=None, frame_y
     else:
         relative_x = current_x
         relative_y = current_y
-        is_inside_frame = True  # 如果是最顶层frame，则认为是在内部
+        is_inside_frame = True
     
     if all(key in node for key in ['id', 'name', 'type']):
         if (node.get('type') == 'FRAME' or node.get('type') == 'INSTANCE') and is_inside_frame:
@@ -58,7 +57,6 @@ def get_element_positions(node, hierarchy, positions=None, frame_x=None, frame_y
     return positions
 
 def visualize_elements(image_path, data, output_dir):
-    # 读取原始图片
     img = cv2.imread(str(image_path))
     if img is None:
         raise ValueError(f"Could not load image from {image_path}")
@@ -71,11 +69,9 @@ def visualize_elements(image_path, data, output_dir):
     w = int(pos['width'])
     h = int(pos['height'])
     
-    # 确保不超出图像边界
     x2 = min(canvas.shape[1], x + w)
     y2 = min(canvas.shape[0], y + h)
     
-    # 重新计算实际的宽度和高度
     w = x2 - x
     h = y2 - y
     
@@ -88,42 +84,12 @@ def visualize_elements(image_path, data, output_dir):
     cropped_dir = output_dir / "cropped_images"
     cropped_dir.mkdir(parents=True, exist_ok=True)
 
-    # use id for hash
-    # hash_id = hashlib.md5(str(data['id']).encode()).hexdigest()
-    # cv2.imwrite(str(cropped_dir / f"{hash_id}.png"), cropped_image)
     cv2.imwrite(str(cropped_dir / f"{data['processed_image_name']}"), cropped_image)
 
-    # 画红色矩形
     cv2.rectangle(canvas, (x, y), (x + w, y + h), (0, 0, 255), 2)
-    
-    # # 添加标签
-    # label = f"{data['name']}"
-    # font = cv2.FONT_HERSHEY_SIMPLEX
-    # font_scale = 0.7
-    # thickness = 2
-    
-    # # 获取文本大小
-    # (text_width, text_height), _ = cv2.getTextSize(label, font, font_scale, thickness)
-    
-    # # 计算文本位置
-    # text_x = x + w - text_width
-    # text_y = y + h + text_height + 5
-    
-    # # 添加白色背景
-    # cv2.rectangle(canvas, 
-    #                 (text_x - 5, text_y - text_height - 5),
-    #                 (text_x + text_width + 5, text_y + 5),
-    #                 (255, 255, 255),
-    #                 -1)
-    
-    # # 添加文本
-    # cv2.putText(canvas, label, (text_x, text_y), font, font_scale, (0, 0, 255), thickness
-
-    # 确保输出目录存在
-    output_dir = Path(output_dir)  # 确保 output_dir 是 Path 对象
+    output_dir = Path(output_dir)
     vis_images_dir = output_dir / "vis_images"
-    vis_images_dir.mkdir(parents=True, exist_ok=True)  # 创建目录（如果不存在）
+    vis_images_dir.mkdir(parents=True, exist_ok=True)
     
-    # 构建输出路径
     output_path = vis_images_dir / f"{data['processed_image_name']}"
     cv2.imwrite(str(output_path), canvas)
