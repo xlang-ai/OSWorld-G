@@ -75,26 +75,15 @@ import jsonlines
 from typing import List
 import os
 
-data_dir = "/mnt/moonfs/dengjiaqi-m2/OSWorld-G/layout_crawling/systhesis/figma500k"
+data_dir = "Your data dir"
+full_image_dir = "Your full image dir"
+cropped_image_dir = "Your cropped image dir"
+jsonl_path = "Your jsonl file path"
+output_path = "Your output path"
 
-def sample_from_jsonl(file_path: str, n_samples: int, random_seed: int = 0) -> List[dict]:
-    # Set random seed for reproducibility
-    random.seed(random_seed)
-    
-    # Read all data from jsonl file
-    with jsonlines.open(file_path) as reader:
-        data = list(reader)
-    
-    # Sample n examples
-    sampled_data = random.sample(data, n_samples)
-    return sampled_data
+client = openai.OpenAI(api_key="Your openai api key")
 
-# Example usage
-n_samples = 200
-random_seed = 0
-#samples = sample_from_jsonl(os.path.join(data_dir, "layout2k_filtered.jsonl"), n_samples, random_seed)
-# read the samples from the jsonl file
-with jsonlines.open(os.path.join(data_dir, "layout2k_filtered.jsonl")) as reader:
+with jsonlines.open(jsonl_path) as reader:
     samples = list(reader)
 
 import cv2
@@ -162,9 +151,6 @@ def get_context_region(image, bbox, context_size=512):
     return image[crop_y1:crop_y2, crop_x1:crop_x2]
 
 import base64
-
-full_image_dir = "/mnt/moonfs/dengjiaqi-m2/OSWorld-G/layout_crawling/systhesis/figma500k/vis_images"
-cropped_image_dir = "/mnt/moonfs/dengjiaqi-m2/OSWorld-G/layout_crawling/systhesis/figma500k/cropped_images"
 
 def format_messages(sample: dict) -> List[dict]:
     # get the image from the sample
@@ -238,15 +224,9 @@ def analyze_sample(sample: dict) -> Response:
     except Exception as e:
         return f"Error: {e}"
 
-client = openai.OpenAI(api_key="YOUR_OPENAI_API_KEY")
-
 import json
 
 def process_sample(sample: dict) -> dict:
-
-    # sample_id = sample["id"]
-    # image_name = sample["image_name"].split(".")[0]
-    # image_name = f"{image_name}_{sample_id}.png"
 
     processed_image_name = sample["processed_image_name"]
     original_image_name = sample["original_image_name"]
@@ -289,19 +269,4 @@ with concurrent.futures.ThreadPoolExecutor(max_workers=256) as executor:
 
 df = pd.DataFrame(data)
 
-df.to_csv(os.path.join(data_dir, "layout2k_caption_full.csv"), index=False)
-
-import shutil
-output_dir = "/mnt/moonfs/dengjiaqi-m2/OSWorld-G/layout_crawling/systhesis/figma500k/vis_images_full"
-os.makedirs(output_dir, exist_ok=True)
-
-# extract all the images from the samples
-for sample in samples:
-    # image_name = sample["image_name"].split(".")[0]
-    # image_name = f"{image_name}_{sample['id']}.png"
-    # image_path = os.path.join(image_dir, image_name)
-    processed_image_name = sample["processed_image_name"]
-    try:
-        shutil.copy(os.path.join(full_image_dir, processed_image_name), os.path.join(output_dir, processed_image_name))
-    except Exception as e:
-        print(f"Error: {e}")
+df.to_csv(output_path, index=False)

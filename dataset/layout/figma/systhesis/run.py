@@ -7,7 +7,7 @@ import shutil
 import concurrent.futures
 from tqdm import tqdm
 from concurrent.futures import ThreadPoolExecutor
-def extract_data(input_dir, output_dir):
+def extract_data(input_dir, output_dir, output_filtered_path):
     # First step: collect all json paths
     json_paths = []
     for root, dirs, files in os.walk(input_dir):
@@ -66,14 +66,14 @@ def extract_data(input_dir, output_dir):
     
     print(f"Successfully processed {len(processed_data)} JSON files")
     
-    with open(os.path.join(output_dir, "layout2k.jsonl"), "w", encoding="utf-8") as f:
+    with open(output_filtered_path, "w", encoding="utf-8") as f:
         for data in processed_data:
             for element in data:
                 f.write(json.dumps(element) + "\n")
 
-def visualize_data(input_dir, output_dir):
+def visualize_data(input_dir, output_dir, output_filtered_path):
     # read layout2k.jsonl
-    with open(os.path.join(input_dir, "layout2k.jsonl"), "r", encoding="utf-8") as f:
+    with open(output_filtered_path, "r", encoding="utf-8") as f:
         data = [json.loads(line) for line in f]
     
     with ThreadPoolExecutor(max_workers=128) as executor:
@@ -97,21 +97,20 @@ def visualize_data(input_dir, output_dir):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--mode", type=str, required=True, 
-                       choices=['extract', 'visualize', 'synthesize'],
-                       help="Operation mode: extract, visualize, or synthesize")
+                       choices=['extract', 'visualize'],
+                       help="Operation mode: extract, visualize")
     parser.add_argument("--input_dir", type=str, required=True)
     parser.add_argument("--output_dir", type=str, default="processed_data")
+    parser.add_argument("--output_filtered_path", type=str, default="layout_data.jsonl")
     args = parser.parse_args()
 
     if not os.path.exists(args.output_dir):
         os.makedirs(args.output_dir)
 
     if args.mode == 'extract':
-        extract_data(args.input_dir, args.output_dir)
+        extract_data(args.input_dir, args.output_dir, args.output_filtered_path)
     elif args.mode == 'visualize':
-        visualize_data(args.input_dir, args.output_dir)
-    elif args.mode == 'synthesize':
-        synthesize_data(args.input_dir, args.output_dir)
+        visualize_data(args.input_dir, args.output_dir, args.output_filtered_path)
 
 if __name__ == "__main__":
     main()
