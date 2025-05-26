@@ -281,7 +281,15 @@ class BenchmarkRunner:
         cached_results = []
         accuracy_dict_group = {}
         classification_result = {}
-        with open("classification_result.json", "r") as f:
+        with open(
+            os.path.join(
+                os.path.dirname(__file__),
+                "..",
+                "benchmark",
+                "classification_result.json",
+            ),
+            "r",
+        ) as f:
             classification_result = json.load(f)
 
         for item in items:

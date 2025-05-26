@@ -1,6 +1,6 @@
 # Evaluation
 
-We provide evaluation scripts for Jedi on Screenspot-v2, Screenspot-pro, and OSWorld-G.
+We provide evaluation scripts for Jedi on Screenspot-v2, Screenspot-pro, and OSWorld-G. You can go into `evaluation` folder and run the scripts.
 
 ## Jedi on Screenspot-v2
 Fetch the benchmark dataset from [here](https://huggingface.co/datasets/OS-Copilot/ScreenSpot-v2/tree/main).
