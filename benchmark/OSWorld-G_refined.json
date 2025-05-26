@@ -1927,13 +1927,13 @@
       1920,
       1080
     ],
-    "instruction": "Move your mouse to the cell in the 7th column and 28th row (this cell is labeled as G28)",
+    "instruction": "Move your mouse to the cell in the 7th column and 2th row (this cell is labeled as G27)",
     "box_type": "bbox",
     "box_coordinates": [
       936.07,
-      762.63,
+      745.35,
       95.78999999999985,
-      18.82000000000005
+      18.809999999999945
     ],
     "GUI_types": [
       "Table",
