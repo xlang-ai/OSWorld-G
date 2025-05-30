@@ -1,0 +1,12 @@
+transformers>=4.45.0
+torch>=2.0.0
+vllm>=0.6.0
+pillow>=8.0.0
+huggingface-hub>=0.20.0
+safetensors>=0.3.0
+tokenizers>=0.15.0
+qwen-agent>=0.0.1
+regex
+requests
+tqdm
+numpy>=1.21.0 

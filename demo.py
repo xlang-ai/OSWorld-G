@@ -77,7 +77,7 @@ def main():
     processor = Qwen2_5_VLProcessor.from_pretrained(model_path)
 
     input_image = Image.open("demo_image.png")
-    instruction = "Open the filter function for search settings."
+    instruction = "Unfold the drop-down bar of Auto Save settings."
 
     resized_height, resized_width = smart_resize(
         input_image.height,
@@ -156,6 +156,9 @@ def main():
     generated_tokens = outputs[0].outputs[0].token_ids
     response = tokenizer.decode(generated_tokens, skip_special_tokens=True)
     predicted_coords = parse_coordinates(response)
+    predicted_coords[0] = predicted_coords[0] * input_image.width / resized_width
+    predicted_coords[1] = predicted_coords[1] * input_image.height / resized_height
+
     print("predicted_coords: ", predicted_coords)
 
     if predicted_coords:
