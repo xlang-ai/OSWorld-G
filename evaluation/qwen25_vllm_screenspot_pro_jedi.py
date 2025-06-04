@@ -130,9 +130,9 @@ class Qwen25VL_OpenAI(lmms):
                 f"original_width: {input_image.width}, original_height: {input_image.height}"
             )
             # input_image = input_image.resize((resized_width, resized_height))
-            print(
-                f"resized_width: {input_image.width}, resized_height: {input_image.height}"
-            )
+            # print(
+            #     f"resized_width: {input_image.width}, resized_height: {input_image.height}"
+            # )
 
             payload["messages"].append(
                 {
