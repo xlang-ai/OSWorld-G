@@ -475,3 +475,4 @@ false_context_image_desktop/
 context_image_desktop/
 cropped_image/
 data_history/
+node_modules/
