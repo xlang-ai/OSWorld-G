@@ -94,7 +94,7 @@ The code for refusal data collection is provided in [`dataset/refusal`](dataset/
 
 ## 🔍 Evaluation
 
-We have provided a series of evaluation scripts in the `benchmark` folder for different models (Jedi, Aguvis, UGround, UI-TARS) and benchmarks (OSWorld-G, ScreenSpot-v2, ScreenSpot-Pro). You can easily extend these scripts to test additional model-benchmark combinations.
+We have provided a series of evaluation scripts in the `evaluation` folder for different models (Jedi, Aguvis, UGround, UI-TARS) and benchmarks (OSWorld-G, ScreenSpot-v2, ScreenSpot-Pro). You can easily extend these scripts to test additional model-benchmark combinations.
 
 <!-- ## ❓ FAQ
 TODO -->
