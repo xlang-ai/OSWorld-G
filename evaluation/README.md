@@ -19,7 +19,7 @@ python qwen25_vllm_screenspot_pro.py --annotation_path <path_to_annotation(folde
 ## Jedi on OSWorld-G
 Run the following command to evaluate on OSWorld-G:
 ```bash
-python qwen25_vllm_osworld_g.py --annotation_path <path_to_annotation(json file)> --model_path <path_to_model> --image_dir <path_to_image_dir>
+python qwen25_vllm_osworld_g.py --annotation_path <path_to_annotation(json file)> --model_path <path_to_model> --classification_path <path_to_classification_result> --image_dir <path_to_image_dir>
 ```
 
 ## Other open source models on OSWorld-G
@@ -27,7 +27,7 @@ You can modify our script to test other open-source models on these benchmark da
 
 Run the following command to evaluate on OSWorld-G using Aguvis:
 ```bash
-python qwen2_vllm_osworld_g_aguvis.py --annotation_path <path_to_annotation> --model_path <path_to_model> --image_dir <path_to_image_dir>
+python qwen2_vllm_osworld_g_aguvis.py --annotation_path <path_to_annotation> --model_path <path_to_model> --classification_path <path_to_classification_result> --image_dir <path_to_image_dir>
 ```
 
 ## Other closed source models on OSWorld-G
@@ -35,5 +35,7 @@ You can also evaluate other closed-source models on OSWorld-G. An example with O
 
 Run the following command to evaluate on OSWorld-G using Operator:
 ```bash
-python operator_osworld_g.py --annotation_path <path_to_annotation> --model_name <path_to_model> --image_dir <path_to_image_dir>
+python operator_osworld_g.py --annotation_path <path_to_annotation> --model_name <path_to_model> --classification_path <path_to_classification_result> --image_dir <path_to_image_dir>
 ```
+
+python operator_osworld_g.py --annotation_path ../benchmark/OSWorld-G.json --model_name kimiv_grounding_sota_1221 --image_dir ../benchmark/images

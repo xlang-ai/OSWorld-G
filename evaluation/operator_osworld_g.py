@@ -274,12 +274,15 @@ class Qwen2VL_OpenAI(lmms):
 
 
 class BenchmarkRunner:
-    def __init__(self, annotation_path, model_path, image_dir, refusal_type):
+    def __init__(
+        self, annotation_path, model_path, image_dir, refusal_type, classification_path
+    ):
         self.annotation_path = annotation_path
         self.model_path = model_path
         self.image_dir = image_dir
         self.refusal_type = refusal_type
         self.model = Qwen2VL_OpenAI(model_path)
+        self.classification_path = classification_path
 
     def load_annotations(self):
         with open(self.annotation_path, "r") as f:
@@ -338,7 +341,10 @@ class BenchmarkRunner:
         cached_results = []
         accuracy_dict_group = {}
         classification_result = {}
-        with open("classification_result.json", "r") as f:
+        with open(
+            self.classification_path,
+            "r",
+        ) as f:
             classification_result = json.load(f)
 
         for item in items:
@@ -531,13 +537,13 @@ if __name__ == "__main__":
     parser.add_argument(
         "--model_name",
         type=str,
-        default="kimiv_grounding_sota_1221",
-        help="Name of the model (default: 'ui_tars_72b_sft').",
+        required=True,
+        help="Name of the model (default: 'operator').",
     )
     parser.add_argument(
         "--image_dir",
         type=str,
-        default="screenspotv2_image",
+        required=True,
         help="Directory containing images (default: 'screenspotv2_image').",
     )
     parser.add_argument(
@@ -546,6 +552,12 @@ if __name__ == "__main__":
         default="implicit",
         help="Type of refusal (default: 'implicit').",
     )  # Whether explicitly remind operator in prompt to refuse infeasible actions
+    parser.add_argument(
+        "--classification_path",
+        type=str,
+        required=True,
+        help="Path to the classification result file (default: 'classification_result.json').",
+    )
 
     # Parse the arguments
     args = parser.parse_args()
@@ -555,6 +567,7 @@ if __name__ == "__main__":
         model_path=args.model_name,
         image_dir=args.image_dir,
         refusal_type=args.refusal_type,
+        classification_path=args.classification_path,
     )
 
     results = runner.evaluate()
@@ -562,4 +575,8 @@ if __name__ == "__main__":
     print(f"Total samples: {results['total']}")
     print(f"Correct predictions: {results['correct']}")
     print(f"Accuracy: {results['accuracy']*100:.2f}%")
-    print(f"Accuracy for each group: {results['accuracy_dict_group']}")
+    print(f"Accuracy by Group:")
+    for group, stats in results["accuracy_dict_group"].items():
+        print(
+            f"  {group}: {stats['accuracy']*100:.2f}% ({stats['correct']}/{stats['total']})"
+        )
