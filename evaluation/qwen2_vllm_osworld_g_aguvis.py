@@ -347,9 +347,10 @@ class BenchmarkRunner:
 
         accuracy = correct / total
         for group in accuracy_dict_group:
-            accuracy_dict_group[group][
-                "accuracy"
-            ] = f"{(accuracy_dict_group[group]['correct'] / accuracy_dict_group[group]['total'])*100:.2f}%"
+            accuracy_dict_group[group]["accuracy"] = (
+                accuracy_dict_group[group]["correct"]
+                / accuracy_dict_group[group]["total"]
+            )
         return {
             "total": total,
             "correct": correct,
