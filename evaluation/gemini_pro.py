@@ -315,7 +315,7 @@ class BenchmarkRunner:
             image = Image.open(image_path)
             item["image"] = image
             item["image_path"] = image_path
-        return data[:3]
+        return data
 
     def evaluate(self):
         items = self.load_annotations()
