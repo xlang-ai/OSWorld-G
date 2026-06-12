@@ -64,6 +64,14 @@ We provide our OSWorld-G benchmark with original instructions (`benchmark/OSWorl
 
 For instructions on running evaluations, please refer to the [Evaluation](#-evaluation) section and `README.md` in the `evaluation` folder.
 
+### Community-reported results
+
+Self-reported results on `benchmark/OSWorld-G.json`. See linked predictions for per-sample rescoring.
+
+| Model | Overall (510, refusal excluded) | Overall (564, refusal as miss) | Text Matching | Element Recognition | Layout Understanding | Fine-grained Manipulation | Refusal | Protocol / predictions |
+|---|---|---|---|---|---|---|---|---|
+| [duvo-eye-1](https://huggingface.co/duvoai/duvo-eye-1) | 78.0 | 70.6 | 85.0 | 84.3 | 81.6 | 68.9 | 0.0 | [predictions](https://huggingface.co/datasets/duvoai/duvo-eye-1-evals), single-shot, temp 0, thinking off |
+
 ## 🗄️ Dataset--Jedi
 
 Our dataset is available at https://huggingface.co/datasets/xlangai/Jedi
