@@ -27,8 +27,11 @@ class GroundingEval:
                 data["size"],
                 data["boxes_coordinate"],
             )
+            image_size = [image.width, image.height]
 
-            success += self._eval(coordinate, boxes_type, boxes_size, boxes_coordinate)
+            success += self._eval(
+                coordinate, boxes_type, boxes_size, boxes_coordinate, image_size
+            )
 
         return success / total
 
