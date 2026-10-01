@@ -66,10 +66,11 @@ For instructions on running evaluations, please refer to the [Evaluation](#-eval
 
 ### Community-reported results
 
-Self-reported results on `benchmark/OSWorld-G.json`. See linked predictions for per-sample rescoring.
+Self-reported results on `benchmark/OSWorld-G.json`. See linked predictions for per-sample rescoring. The 564 column scores the 54 refusal items with the benchmark's rule: a refusal is correct when both coordinates are negative.
 
-| Model | Overall (510, refusal excluded) | Overall (564, refusal as miss) | Text Matching | Element Recognition | Layout Understanding | Fine-grained Manipulation | Refusal | Protocol / predictions |
+| Model | Overall (510, refusal excluded) | Overall (564) | Text Matching | Element Recognition | Layout Understanding | Fine-grained Manipulation | Refusal | Protocol / predictions |
 |---|---|---|---|---|---|---|---|---|
+| [duvo-eye-2](https://huggingface.co/duvoai/duvo-eye-2) | 78.6 | 75.2 | 84.6 | 84.3 | 80.8 | 72.7 | 42.6 | [predictions](https://huggingface.co/datasets/duvoai/duvo-eye-2-evals), single-shot, temp 0, thinking off |
 | [duvo-eye-1](https://huggingface.co/duvoai/duvo-eye-1) | 78.0 | 70.6 | 85.0 | 84.3 | 81.6 | 68.9 | 0.0 | [predictions](https://huggingface.co/datasets/duvoai/duvo-eye-1-evals), single-shot, temp 0, thinking off |
 
 ## 🗄️ Dataset--Jedi
